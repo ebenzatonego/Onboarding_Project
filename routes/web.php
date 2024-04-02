@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/video_instruction', function () {
+    return view('video_instruction');
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

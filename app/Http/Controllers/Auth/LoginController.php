@@ -37,4 +37,30 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function username()
+    {
+        return 'username'; // กำหนดให้ใช้ 'username' แทน 'email'
+    }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->only('username', 'password');
+
+        if (Auth::attempt($credentials)) {
+            // Authentication passed...
+
+            // $data_user = Auth::user();
+
+            // Log::create([
+            //     "log_content"=> ' 001_Log in page',
+            //     "user_id"=> $data_user->id,
+            //     "role"=> $data_user->role,
+            // ]);
+           
+            return redirect("home");
+        }
+
+        return redirect('login')->with('error', 'Login failed, please check your credentials.');
+    }
 }

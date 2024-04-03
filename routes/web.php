@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// -- ROLE -- //
+// Super-admin
+// Admin
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -25,5 +29,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // LOGIN
 Route::middleware(['auth',])->group(function () {
+
+});
+
+// LOGIN
+Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
+
+    Route::get('/welcome_admin', 'HomeController@welcome_admin');
 
 });

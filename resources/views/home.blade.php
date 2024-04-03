@@ -15,6 +15,11 @@
                     @endif
 
                     You are logged in!
+                    <br>
+                    <br>
+                    <a href="{{ url('/welcome_admin') }}" style="width:35%;" class="btn btn-sm btn-primary">
+                        Admin
+                    </a>
                 </div>
             </div>
         </div>

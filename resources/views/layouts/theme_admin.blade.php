@@ -110,40 +110,86 @@
             </div>
             <ul class="metismenu" id="menu">
 
-                <li class="">
-                    <a href="{{ url('/') }}" class="">
-                        <div class="parent-icon">
-                            <i class="fa-solid fa-chart-user"></i>
-                        </div>
-                        <div class="menu-title">
-                            ...
-                        </div>
-                    </a>
-                </li>
-
                 <li>
                     <a href="javascript:;" class="has-arrow">
                         <div class="parent-icon">
                             <i class="fa-duotone fa-users"></i>
                         </div>
                         <div class="menu-title">
-                            ...
+                            Member
                         </div>
                     </a>
                     
                     <ul>
                         <li>
                             <a class="btn" onclick="pass_lock_menu('');">
-                                <i class="fa-solid fa-plus"></i> ...
+                                <i class="fa-solid fa-circle-plus"></i> Add Member
                             </a>
                         </li>
                         <li>
                             <a class="btn" href="{{ url('/') }}">
-                                <i class="fa-solid fa-address-card"></i> ...
+                                <i class="fa-solid fa-address-card"></i> Member list
                             </a>
                         </li>
                     </ul>
                 </li>
+
+                <li class="">
+                    <a href="{{ url('/') }}" class="">
+                        <div class="parent-icon">
+                            <i class="fa-duotone fa-books"></i>
+                        </div>
+                        <div class="menu-title">
+                            Training
+                        </div>
+                    </a>
+                </li>
+
+                <li class="">
+                    <a href="{{ url('/') }}" class="">
+                        <div class="parent-icon">
+                            <i class="fa-solid fa-passport"></i>
+                        </div>
+                        <div class="menu-title">
+                            Company Profile
+                        </div>
+                    </a>
+                </li>
+
+                <li class="">
+                    <a href="{{ url('/') }}" class="">
+                        <div class="parent-icon">
+                            <i class="fa-solid fa-newspaper"></i>
+                        </div>
+                        <div class="menu-title">
+                            News
+                        </div>
+                    </a>
+                </li>
+
+                <li class="">
+                    <a href="{{ url('/') }}" class="">
+                        <div class="parent-icon">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
+                        <div class="menu-title">
+                            Product
+                        </div>
+                    </a>
+                </li>
+
+                <li class="">
+                    <a href="{{ url('/') }}" class="">
+                        <div class="parent-icon">
+                            <i class="fa-solid fa-list-timeline"></i>
+                        </div>
+                        <div class="menu-title">
+                            Career Path
+                        </div>
+                    </a>
+                </li>
+
+
             </ul>
         </div>
 

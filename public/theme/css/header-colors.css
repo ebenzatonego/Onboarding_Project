@@ -239,7 +239,7 @@ html.color-sidebar .sidebar-wrapper {
 
 
 .switcher-wrapper .sidebarcolor1 {
-	background-image: url("{{ asset('img/bg/admin.png') }}");
+	background-image: url(../images/bg-themes/admin.png);
 }
 .switcher-wrapper .sidebarcolor2 {
 	background-image: url(../images/bg-themes/2.png);

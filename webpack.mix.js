@@ -1,5 +1,5 @@
 const mix = require('laravel-mix');
-
+const tailwindcss = require('tailwindcss');
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -13,3 +13,10 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css');
+
+// Build Tailwind Css and Flowbite UI
+mix.js('resources/js/tailwind.js', 'public/js')
+    .sass('resources/sass/tailwind.scss', 'public/css')
+    .options({
+        postCss: [ tailwindcss('./tailwind.config.js') ],
+    });

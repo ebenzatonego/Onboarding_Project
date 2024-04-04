@@ -99,7 +99,12 @@
         background-color: rgb(255, 255, 255, .3);
         border-radius: 10px;
     }
-
+    @media (width <1200px) {
+        .detail-info {
+            width: 100%;
+            padding: 20px 20px;
+        }
+    }
     @media (width >=1200px) {
         #header-text-login {
             width: 40% !important;
@@ -111,6 +116,7 @@
         }
 
         .detail-info {
+            width: 50%;
             padding: 20px 20px;
         }
     }
@@ -156,17 +162,20 @@
                 </div>
             </div>
 
-            <div class="detail-info w-100">
-                <h2 class="header-info text-center">
-                    ยินดีต้อนรับ
-                </h2>
-                <p class="text-center">
-                    คุณ <span style="color: #10c6e3;">{{ Auth::user()->name ? Auth::user()->name : 'ไม่พบชื่อ'}}</span> <span style="color: #10c6e3;">{{ Auth::user()->lastname ? Auth::user()->lastname : 'ไม่พบนามสกุล'}}</span>
-                </p>
+            <div class="detail-info d-flex justify-content-center align-items-center">
+                <div>
+                     <h2 class="header-info text-center">
+                        ยินดีต้อนรับ
+                    </h2>
+                    <p class="text-center">
+                        คุณ <span style="color: #10c6e3;">{{ Auth::user()->name ? Auth::user()->name : 'ไม่พบชื่อ'}}</span> <span style="color: #10c6e3;">{{ Auth::user()->lastname ? Auth::user()->lastname : 'ไม่พบนามสกุล'}}</span>
+                    </p>
 
-                <p class="text-center">
-                    เข้าสู่ครอบครัว Alianz
-                </p>
+                    <p class="text-center">
+                        เข้าสู่ครอบครัว Alianz
+                    </p>
+                </div>
+               
             </div>
         </div>
 

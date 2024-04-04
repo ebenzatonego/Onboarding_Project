@@ -32,7 +32,9 @@ Route::middleware(['auth',])->group(function () {
     Route::get('/video_instruction', function () {
         return view('video_instruction');
     });
-
+    Route::get('/profile', function () {
+        return view('profile/view_profile');
+    });
 });
 
 // LOGIN

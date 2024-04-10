@@ -26,8 +26,16 @@ Auth::routes();
 // LOGIN
 Route::middleware(['auth',])->group(function () {
 
-    Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/', 'HomeController@index');
+    // Route::get('/home', 'HomeController@index')->name('home');
+    // Route::get('/', 'HomeController@index');
+
+    Route::get('/home', function () {
+        return view('profile/view_profile');
+    });
+
+    Route::get('/', function () {
+        return view('profile/view_profile');
+    });
 
     Route::get('/video_instruction', function () {
         return view('video_instruction');
@@ -41,5 +49,6 @@ Route::middleware(['auth',])->group(function () {
 Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
 
     Route::get('/welcome_admin', 'HomeController@welcome_admin');
+    Route::get('/calendar_admin', 'AdminController@calendar_admin');
 
 });

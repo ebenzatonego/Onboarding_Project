@@ -60,8 +60,14 @@ class LoginController extends Controller
             //     "user_id"=> $data_user->id,
             //     "role"=> $data_user->role,
             // ]);
-           
-            return redirect("home");
+            
+            $data_user = Auth::user();
+            if($data_user->video_instruction != "no"){
+                return redirect("/video_instruction");
+            }
+            else{
+                return redirect("/profile");
+            }
         }
 
         return redirect('login')->with('error', 'Login failed, please check your credentials.');

@@ -257,7 +257,7 @@
             }
         </style>
         <div class="d-flex justify-content-center mt-4 mb-3">
-            <button class="btn btn-submit mx-3" type="button">Next</button>
+            <a href="{{ url('/profile') }}" class="btn btn-submit mx-3" type="button">Next</a>
         </div>
     </div>
 </div>

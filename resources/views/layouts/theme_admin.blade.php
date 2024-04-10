@@ -33,7 +33,6 @@
     <!-- fontawesome icon -->
 	<link href="https://kit-pro.fontawesome.com/releases/v6.2.1/css/pro.min.css" rel="stylesheet">
 
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -44,6 +43,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@600;700;800&family=Prompt:wght@500&display=swap" rel="stylesheet">
+
+    <!-- fullcalendar -->
+    <link href="{{ asset('/theme/plugins/fullcalendar/css/main.min.css') }}" rel="stylesheet" />
 
     <title>Admin - The AZ Sale Onboarding</title>
 
@@ -123,30 +125,43 @@
                     <ul>
                         <li>
                             <a class="btn" onclick="pass_lock_menu('');">
-                                <i class="fa-solid fa-circle-plus"></i> Add Member
+                                <i class="fa-solid fa-circle-plus"></i> เพิ่มสมาชิก
                             </a>
                         </li>
                         <li>
-                            <a class="btn" href="{{ url('/') }}">
-                                <i class="fa-solid fa-address-card"></i> Member list
+                            <a class="btn" href="#">
+                                <i class="fa-solid fa-address-card"></i> รายชื่อสมาชิก
                             </a>
                         </li>
                     </ul>
                 </li>
 
-                <li class="">
-                    <a href="{{ url('/') }}" class="">
+                <li>
+                    <a href="javascript:;" class="has-arrow">
                         <div class="parent-icon">
-                            <i class="fa-duotone fa-books"></i>
+                            <i class="fa-solid fa-books"></i>
                         </div>
                         <div class="menu-title">
                             Training
                         </div>
                     </a>
+                    
+                    <ul>
+                        <li>
+                            <a class="btn" href="#">
+                                <i class="fa-solid fa-file-plus"></i> เพิ่มข้อมูลหลักสูตร
+                            </a>
+                        </li>
+                        <li>
+                            <a class="btn" href="#">
+                                <i class="fa-solid fa-calendar-lines-pen"></i> เพิ่มตารางอบรม/สอบ
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
-                <li class="">
-                    <a href="{{ url('/') }}" class="">
+                <li>
+                    <a href="#" class="">
                         <div class="parent-icon">
                             <i class="fa-solid fa-passport"></i>
                         </div>
@@ -156,8 +171,8 @@
                     </a>
                 </li>
 
-                <li class="">
-                    <a href="{{ url('/') }}" class="">
+                <li>
+                    <a href="#" class="">
                         <div class="parent-icon">
                             <i class="fa-solid fa-newspaper"></i>
                         </div>
@@ -167,8 +182,8 @@
                     </a>
                 </li>
 
-                <li class="">
-                    <a href="{{ url('/') }}" class="">
+                <li>
+                    <a href="#" class="">
                         <div class="parent-icon">
                             <i class="fa-solid fa-layer-group"></i>
                         </div>
@@ -178,8 +193,8 @@
                     </a>
                 </li>
 
-                <li class="">
-                    <a href="{{ url('/') }}" class="">
+                <li>
+                    <a href="#" class="">
                         <div class="parent-icon">
                             <i class="fa-solid fa-list-timeline"></i>
                         </div>
@@ -225,6 +240,11 @@
                                     </div>
                                 </div>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{url('/calendar_admin')}}">
+                                    <i class="fa-solid fa-calendar-days text-white"></i>
+                                </a>
+                            </li>
                         </ul>
                     </div>
 
@@ -245,7 +265,7 @@
                                 </p>
                             </div>
                             <div style="margin-left:10px ;">
-                            <i class="fa-solid fa-bars text-white"></i>
+                                <i class="fa-solid fa-bars text-white"></i>
                             </div>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
@@ -298,6 +318,8 @@
 	<script src="{{ asset('/theme/plugins/notifications/js/notification-custom-script.js') }}"></script>
     
     <link href="{{ asset('/theme/plugins/datatable/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" />
+    <!-- fullcalendar -->
+    <script src="{{ asset('/theme/plugins/fullcalendar/js/main.min.js') }}"></script>
 
     <script>
         

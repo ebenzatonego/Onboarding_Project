@@ -36,6 +36,8 @@ class User extends Authenticatable
         'last_rank',
         'supervisor_id',
         'status',
+        'pdpa',
+        'video_instruction',
     ];
 
     /**

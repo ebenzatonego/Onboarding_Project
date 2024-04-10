@@ -24,6 +24,12 @@
                                 <p class="text-secondary mb-1">{{Auth::user()->detail}}</p>
                                 
                                 <button class="btn btn-primary px-5 mt-2">แก้ไข</button>
+
+                                @if(Auth::user()->role == "Super-admin" || Auth::user()->role == "Admin")
+                                <a href="{{ url('/welcome_admin') }}" style="width:70%;" class="btn btn-sm btn-danger mt-2">
+                                    For Admin
+                                </a>
+                                @endif
                             </div>
                         </div>
                         <hr class="my-4">

@@ -44,6 +44,10 @@ Route::middleware(['auth',])->group(function () {
     Route::get('/profile', function () {
         return view('profile/view_profile');
     });
+
+    Route::get('/demo/training', function () {
+        return view('demo/training');
+    });
 });
 
 // Super-admin,Admin

@@ -150,9 +150,124 @@
         padding: 0;
         margin: 0;
     }
-</style>
 
-<div class="container-center text-white">
+
+    .shape {
+        height: 0;
+    }
+
+    .shape:before {
+        content: "";
+        position: absolute;
+        top: calc(55% - 50px);
+        right: -50px;
+        transform: translate(-50%, -50%);
+        background-color: tran;
+    
+        height: 100px;
+        width: 100px;
+        border-radius: 50px 0 50px 0;
+        box-shadow: 0 50px 0 0 #5d6dd6;
+    }
+
+    .top-section {
+        height: 55vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #2a3c68;
+    }
+
+    .second-section {
+        height: 45vh;
+        width: 100%;
+        background: rgb(98, 115, 221);
+        background: -moz-linear-gradient(183deg, rgba(98, 115, 221, 1) 0%, rgba(36, 50, 134, 1) 100%);
+        background: -webkit-linear-gradient(183deg, rgba(98, 115, 221, 1) 0%, rgba(36, 50, 134, 1) 100%);
+        background: linear-gradient(183deg, rgba(98, 115, 221, 1) 0%, rgba(36, 50, 134, 1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#6273dd", endColorstr="#243286", GradientType=1);
+        border-radius: 50px 0 0 0;
+        -webkit-border-radius: 50px 0 0 0;
+        -moz-border-radius: 50px 0 0 0;
+        -ms-border-radius: 50px 0 0 0;
+        -o-border-radius: 50px 0 0 0;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .btn-submit-login{
+        width: 100%;
+        border-radius:  50px;
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        -ms-border-radius: 50px;
+        -o-border-radius: 50px;
+        color: #0E2B81;
+        padding:  .7rem 0;
+        border: none;
+        margin-top: 40px;
+        margin-bottom: 30px;
+        font-size: 16px;
+        font-weight: bolder;
+    }
+
+    .btn-submit-login:disabled{
+        color: #57759C;
+        background-color: rgb(248, 248, 248,0.61);
+        
+    }
+</style>
+<div class="container text-white p-0" style="position: relative;">
+    <div class="top-section">
+        <div class="text-center">
+        <img src="{{ url('/img/logo/logo.png') }}" style="width:99px">
+            <p style="font-size: 32px;font-weight: bolder;margin: 0;">Allianz Journey</p>
+            <p style="font-size: 10px;font-weight: bold;margin: 0;">ALLIANZ ON-BOARDING WEB</p>
+
+            <div class="d-flex-justify-content-center w-100 p-3">
+                <video src="https://www.franchisebuilder2024.com/video/The%20Franchise%20Builder_Final.mp4" controls autoplay loop muted style="width:100%;border-radius: 10px; max-width: 700px;" class="video-preview"></video>
+            </div>
+        </div>
+
+    </div>
+    <div class="shape"></div>
+    <div class="second-section">
+        <div class="text-center px-5 h-100 d-flex align-items-center">
+
+            <div>
+
+                <p style="font-size: 20px;margin: 5px;">ยินดีต้อนรับ !</p>
+                <p style="font-size: 23px;margin: 30px 0 30px 0;">{{Auth::user()->name}}</p>
+                <p class="m-0">เข้าสู่เว็บ Allianz Journey</p>
+                <p>แหล่งรวมความรู้และข่าวสารอัพเดตจาก Allianz</p>
+    
+               
+                <button type="submit" id="btn_dont_show_welcome" class="btn-submit-login" disabled>
+                    ถัดไป
+                </button>
+
+                <div class="d-flex align-items-center justify-content-center">
+                    <input name="check_dont_show_welcome" id="check_dont_show_welcome" class="form-check-input font-20 m-0 p-o" type="checkbox" value="" aria-label="Checkbox for following text input" onchange="validate_condition()">
+                    <label for="check_dont_show_welcome" class="ms-2 h-100 mt-1" style="color: #989898;">ไม่แสดงหน้านี้อีก</label>
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function validate_condition() {
+        if (document.getElementById('check_dont_show_welcome').checked) {
+            document.querySelector('#btn_dont_show_welcome').disabled = false;
+        } else {
+            document.querySelector('#btn_dont_show_welcome').disabled = true;
+        }
+    }
+</script>
+<!-- 
+<div class="container-center text-white d-none">
     <div style="width: 90vw;">
         <h4 class="header-instruction text-center mt-3">Video Instruction</h4>
         <div class="container section-info pb-3">
@@ -260,7 +375,7 @@
             <a href="{{ url('/profile') }}" class="btn btn-submit mx-3" type="button">Next</a>
         </div>
     </div>
-</div>
+</div> -->
 
 <!-- Modal -->
 <!-- <div class="modal fade" id="modalAcceptRegis" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

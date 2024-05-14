@@ -31,7 +31,6 @@
 
 <style>
     body{
-        background-image: url("{{ asset('img/bg/login.png') }}");
         background-size: cover;
         background-position: center; 
         background-repeat: no-repeat;
@@ -60,7 +59,7 @@
             </div>
         </div>
 
-        <div class="col-12">
+        <div class="col-12 p-0">
             @yield('content')
         </div>
     </div>

@@ -1,0 +1,9 @@
+{
+    "fields": [
+        {
+            "name": "type_article",
+            "type": "string"
+        }
+
+    ]
+}

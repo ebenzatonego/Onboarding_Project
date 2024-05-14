@@ -148,12 +148,12 @@
                     
                     <ul>
                         <li>
-                            <a class="btn" href="#">
+                            <a class="btn" href="{{ url('/training_create/article') }}">
                                 <i class="fa-solid fa-file-plus"></i> เพิ่มข้อมูลหลักสูตร
                             </a>
                         </li>
                         <li>
-                            <a class="btn" href="#">
+                            <a class="btn" href="{{ url('/training_create/table') }}">
                                 <i class="fa-solid fa-calendar-lines-pen"></i> เพิ่มตารางอบรม/สอบ
                             </a>
                         </li>
@@ -172,7 +172,7 @@
                 </li>
 
                 <li>
-                    <a href="#" class="">
+                    <a href="{{ url('/news/create') }}" class="">
                         <div class="parent-icon">
                             <i class="fa-solid fa-newspaper"></i>
                         </div>

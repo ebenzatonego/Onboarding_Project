@@ -1,0 +1,44 @@
+{
+    "fields": [
+        {
+            "name": "title",
+            "type": "string"
+        },
+        {
+            "name": "detail",
+            "type": "longtext"
+        },
+        {
+            "name": "photo_content",
+            "type": "longtext"
+        },
+        {
+            "name": "photo_cover",
+            "type": "string"
+        },
+        {
+            "name": "link_video",
+            "type": "longtext"
+        },
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "link_content",
+            "type": "longtext"
+        },
+        {
+            "name": "title_link_content",
+            "type": "string"
+        },
+        {
+            "name": "user_like",
+            "type": "longtext"
+        },
+        {
+            "name": "user_dislike",
+            "type": "longtext"
+        }
+    ]
+}

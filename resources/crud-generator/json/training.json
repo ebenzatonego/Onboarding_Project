@@ -1,0 +1,68 @@
+{
+    "fields": [
+        {
+            "name": "name_article",
+            "type": "string"
+        },
+        {
+            "name": "type_article",
+            "type": "string"
+        },
+        {
+            "name": "start_date",
+            "type": "date"
+        },
+        {
+            "name": "end_date",
+            "type": "date"
+        },
+        {
+            "name": "start_time",
+            "type": "time"
+        },
+        {
+            "name": "end_time",
+            "type": "time"
+        },
+        {
+            "name": "check_all_day_start",
+            "type": "string"
+        },
+        {
+            "name": "check_all_day_end",
+            "type": "string"
+        },
+        {
+            "name": "detail",
+            "type": "longtext"
+        },
+        {
+            "name": "photo",
+            "type": "file"
+        },
+        {
+            "name": "link_video",
+            "type": "longtext"
+        },
+        {
+            "name": "link_lms",
+            "type": "longtext"
+        },
+        {
+            "name": "like",
+            "type": "longtext"
+        },
+        {
+            "name": "fav",
+            "type": "longtext"
+        },
+        {
+            "name": "share",
+            "type": "longtext"
+        },
+        {
+            "name": "user_view",
+            "type": "longtext"
+        }
+    ]
+}

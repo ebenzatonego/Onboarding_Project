@@ -1,0 +1,16 @@
+{
+    "fields": [
+        {
+            "name": "name_type",
+            "type": "string"
+        },
+        {
+            "name": "number_menu",
+            "type": "string"
+        },
+        {
+            "name": "check_highlight",
+            "type": "string"
+        }
+    ]
+}

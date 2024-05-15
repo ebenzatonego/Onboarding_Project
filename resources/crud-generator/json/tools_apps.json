@@ -1,0 +1,32 @@
+{
+    "fields": [
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "type",
+            "type": "string"
+        },
+        {
+            "name": "photo_icon",
+            "type": "longtext"
+        },
+        {
+            "name": "link_ios",
+            "type": "longtext"
+        },
+        {
+            "name": "click_link_ios",
+            "type": "longtext"
+        },
+        {
+            "name": "link_android",
+            "type": "longtext"
+        },
+        {
+            "name": "click_link_android",
+            "type": "longtext"
+        }
+    ]
+}

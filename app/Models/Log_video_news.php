@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Training extends Model
+class Log_video_news extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'trainings';
+    protected $table = 'log_video_news';
 
     /**
     * The database primary key value.
@@ -25,6 +25,7 @@ class Training extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'detail', 'training_type_id', 'photo', 'video', 'user_like', 'user_dislike', 'user_share', 'user_fav', 'user_view', 'highlight_number'];
+    protected $fillable = ['news_id', 'user_id', 'log'];
+
     
 }

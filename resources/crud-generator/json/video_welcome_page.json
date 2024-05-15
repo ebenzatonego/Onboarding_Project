@@ -1,0 +1,24 @@
+{
+    "fields": [
+        {
+            "name": "name_video",
+            "type": "string"
+        },
+        {
+            "name": "type",
+            "type": "string"
+        },
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "status",
+            "type": "string"
+        },
+        {
+            "name": "log",
+            "type": "longtext"
+        }
+    ]
+}

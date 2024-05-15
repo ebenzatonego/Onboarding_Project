@@ -1,0 +1,60 @@
+{
+    "fields": [
+        {
+            "name": "title",
+            "type": "string"
+        },
+        {
+            "name": "detail",
+            "type": "longtext"
+        },
+        {
+            "name": "photo",
+            "type": "longtext"
+        },
+        {
+            "name": "product_type_id",
+            "type": "longtext"
+        },
+        {
+            "name": "user_like",
+            "type": "longtext"
+        },
+        {
+            "name": "user_dislike",
+            "type": "longtext"
+        },
+        {
+            "name": "user_share",
+            "type": "longtext"
+        },
+        {
+            "name": "user_fav",
+            "type": "longtext"
+        },
+        {
+            "name": "user_view",
+            "type": "longtext"
+        },
+        {
+            "name": "sum_rating",
+            "type": "string"
+        },
+        {
+            "name": "log_rating",
+            "type": "longtext"
+        },
+        {
+            "name": "pdf_file",
+            "type": "longtext"
+        },
+        {
+            "name": "user_download_pdf",
+            "type": "longtext"
+        },
+        {
+            "name": "highlight_number",
+            "type": "string"
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+{
+    "fields": [
+        {
+            "name": "title",
+            "type": "string"
+        },
+        {
+            "name": "detail",
+            "type": "longtext"
+        },
+        {
+            "name": "photo",
+            "type": "longtext"
+        },
+        {
+            "name": "video",
+            "type": "longtext"
+        }
+    ]
+}

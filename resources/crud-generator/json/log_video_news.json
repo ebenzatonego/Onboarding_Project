@@ -1,0 +1,16 @@
+{
+    "fields": [
+        {
+            "name": "news_id",
+            "type": "string"
+        },
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "log",
+            "type": "longtext"
+        }
+    ]
+}

@@ -71,3 +71,21 @@ Route::middleware(['auth', 'role:Super-admin,Admin,Member'])->group(function () 
 });
 
 // Route::resource('training_type', 'Training_typeController');
+
+Route::resource('calendars', 'CalendarsController');
+Route::resource('favorites', 'FavoritesController');
+Route::resource('log_video_trainings', 'Log_video_trainingsController');
+Route::resource('log_video_news', 'Log_video_newsController');
+Route::resource('log_video_tools_tutorials', 'Log_video_tools_tutorialsController');
+Route::resource('logs', 'LogsController');
+Route::resource('video_welcome_page', 'Video_welcome_pageController');
+Route::resource('appointments', 'AppointmentsController');
+Route::resource('tools_apps', 'Tools_appsController');
+Route::resource('tools_contacts', 'Tools_contactsController');
+Route::resource('tools_tutorials', 'Tools_tutorialsController');
+Route::resource('news_types', 'News_typesController');
+Route::resource('activitys', 'ActivitysController');
+Route::resource('activity_types', 'Activity_typesController');
+Route::resource('product_types', 'Product_typesController');
+Route::resource('products', 'ProductsController');
+Route::resource('notis', 'NotisController');

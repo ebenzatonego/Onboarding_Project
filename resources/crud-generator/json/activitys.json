@@ -1,0 +1,80 @@
+{
+    "fields": [
+        {
+            "name": "title",
+            "type": "string"
+        },
+        {
+            "name": "detail",
+            "type": "longtext"
+        },
+        {
+            "name": "photo",
+            "type": "longtext"
+        },
+        {
+            "name": "activity_type_id",
+            "type": "longtext"
+        },
+        {
+            "name": "all_day",
+            "type": "string"
+        },
+        {
+            "name": "date_start",
+            "type": "date"
+        },
+        {
+            "name": "date_end",
+            "type": "date"
+        },
+        {
+            "name": "time_start",
+            "type": "time"
+        },
+        {
+            "name": "time_end",
+            "type": "time"
+        },
+        {
+            "name": "location_detail",
+            "type": "longtext"
+        },
+        {
+            "name": "link_map",
+            "type": "longtext"
+        },
+        {
+            "name": "user_like",
+            "type": "longtext"
+        },
+        {
+            "name": "user_dislike",
+            "type": "longtext"
+        },
+        {
+            "name": "user_share",
+            "type": "longtext"
+        },
+        {
+            "name": "user_fav",
+            "type": "longtext"
+        },
+        {
+            "name": "user_view",
+            "type": "longtext"
+        },
+        {
+            "name": "sum_rating",
+            "type": "string"
+        },
+        {
+            "name": "log_rating",
+            "type": "longtext"
+        },
+        {
+            "name": "highlight_number",
+            "type": "string"
+        }
+    ]
+}

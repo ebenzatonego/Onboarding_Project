@@ -46,7 +46,10 @@ Route::middleware(['auth',])->group(function () {
     });
 
     Route::get('/demo/training', function () {
-        return view('demo/training');
+        return view('demo/training/training');
+    });
+    Route::get('/demo/sub_training', function () {
+        return view('demo/training/sub_training');
     });
 });
 

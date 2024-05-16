@@ -100,14 +100,14 @@
                     <div class="w-100">
                         <a href="" class="long-item">
                             <center>
-                                <p style="font-size: 14px;color:#fff;font-weight: bold;text-align: center;">หลักสูตร</p>
+                                <p style="font-size: 14px;color:#fff;font-weight: bold;text-align: center;margin-bottom: 7px;">หลักสูตร</p>
                                 <p style="font-size: 18px;color:#fff;font-weight: bolder;text-align: center;">แนะนำ</p>
                                 <svg width="64" height="87" viewBox="0 0 64 87" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M18.5 81.5987V47.3003H45.5V81.5987L34.0071 73.5536C32.802 72.7101 31.198 72.7101 29.9929 73.5536L18.5 81.5987Z" stroke="#EBF1FD" stroke-width="5" />
                                     <path d="M61.5 30.4C61.5 45.6895 48.4148 58.3 32 58.3C15.5852 58.3 2.5 45.6895 2.5 30.4C2.5 15.1105 15.5852 2.5 32 2.5C48.4148 2.5 61.5 15.1105 61.5 30.4Z" fill="#003781" stroke="#EBF1FD" stroke-width="5" />
                                     <path d="M27.6799 25.8724C27.6495 25.9288 27.5938 25.9673 27.5302 25.9757L20.198 26.9493L20.0664 26.9738C19.8671 27.0223 19.6854 27.1183 19.5398 27.2521C19.3943 27.3859 19.2902 27.5526 19.238 27.7353C19.1859 27.918 19.1877 28.1102 19.2431 28.292C19.2986 28.4739 19.4058 28.6391 19.5537 28.7706L24.8546 33.4959C24.9069 33.5425 24.931 33.6131 24.9181 33.682L23.6689 40.3518L23.6538 40.4691C23.6416 40.6579 23.6844 40.8463 23.7778 41.0149C23.8712 41.1836 24.0119 41.3264 24.1854 41.4289C24.359 41.5314 24.5591 41.5898 24.7654 41.5981C24.9717 41.6065 25.1767 41.5645 25.3595 41.4764L31.9208 38.3172C31.9756 38.2908 32.0396 38.2908 32.0944 38.3173L38.6406 41.4764L38.7571 41.5255C38.9494 41.5948 39.1585 41.6161 39.3627 41.5871C39.567 41.5581 39.7591 41.4798 39.9194 41.3604C40.0798 41.2409 40.2025 41.0845 40.2751 40.9073C40.3476 40.73 40.3674 40.5383 40.3324 40.3518L39.082 33.682C39.0691 33.6131 39.0932 33.5425 39.1455 33.4959L44.4487 28.7695L44.5396 28.6789C44.6694 28.5324 44.7545 28.3571 44.7863 28.1707C44.818 27.9844 44.7952 27.7937 44.7203 27.618C44.6453 27.4423 44.5209 27.288 44.3596 27.1707C44.1983 27.0534 44.0059 26.9774 43.8021 26.9503L36.4699 25.9757C36.4063 25.9673 36.3506 25.9288 36.3202 25.8724L33.0457 19.7951C32.9496 19.6164 32.8007 19.4659 32.616 19.3607C32.4313 19.2555 32.2182 19.1997 32.0006 19.1997C31.7831 19.1997 31.5699 19.2555 31.3852 19.3607C31.2005 19.4659 31.0517 19.6164 30.9555 19.7951L27.6799 25.8724Z" fill="#EBF1FD" />
                                 </svg>
-                                <div class="mt-4">
+                                <div class="mt-2">
                                     <span id="" style="font-size: 24px;font-weight: bolder;color: #fff;">15</span>
                                     <span class="ms-1" style="color: #fff;">หลักสูตร</span>
                                 </div>
@@ -115,7 +115,7 @@
                         </a>
                         <div class="square-item mt-3">
                             <center>
-                                <p style="font-size: 14px;color:#003781;font-weight: bold;text-align: center;">หลักสูตร</p>
+                                <p style="font-size: 14px;color:#003781;font-weight: bold;text-align: center;margin-bottom: 10px;">หลักสูตร</p>
                                 <div class="d-flex align-items-center">
                                     <svg width="71" height="71" viewBox="0 0 71 71" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M3 39.5625H41.5938M3 39.5625L19.25 57.8438M3 39.5625L19.25 21.2812M41.5938 39.5625L61.9062 3M41.5938 39.5625L61.9062 68M61.9062 3L37.5312 7.0625M61.9062 3L68 25.3438M61.9062 68L68 45.6562M61.9062 68L37.5312 65.9688" stroke="#003781" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
@@ -134,7 +134,7 @@
                     <div class="w-100">
                         <div class="square-item">
                             <center>
-                                <p style="font-size: 14px;color:#003781;font-weight: bold;text-align: center;">หลักสูตร</p>
+                                <p style="font-size: 14px;color:#003781;font-weight: bold;text-align: center;margin-bottom: 10px;">หลักสูตร</p>
                                 <div class="d-flex ">
                                     <span style="color: #003781; font-size: 18px;font-weight: bolder;margin-right: 5px;">Blue<br>Star</span>
                                     <svg width="71" height="71" viewBox="0 0 71 71" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -152,12 +152,12 @@
                         </div>
                         <div class="long-item mt-3">
                             <center>
-                                <p style="font-size: 14px;color:#fff;font-weight: bold;text-align: center;">หลักสูตร</p>
+                                <p style="font-size: 14px;color:#fff;font-weight: bold;text-align: center;margin-bottom: 7px;">หลักสูตร</p>
                                 <p style="font-size: 18px;color:#fff;font-weight: bolder;text-align: center;">ทั้งหมด</p>
                                 <svg width="87" height="87" viewBox="0 0 87 87" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M55.0003 87C52.5861 87 50.5198 86.1391 48.8016 84.4172C47.0797 82.6989 46.2188 80.6327 46.2188 78.2184V55.0003C46.2188 52.5861 47.0797 50.5198 48.8016 48.8016C50.5234 47.0833 52.5897 46.2224 55.0003 46.2188H78.2184C80.6327 46.2188 82.6989 47.0797 84.4172 48.8016C86.1391 50.5198 87 52.5861 87 55.0003V78.2184C87 80.6327 86.1391 82.6989 84.4172 84.4172C82.6989 86.1391 80.6327 87 78.2184 87H55.0003ZM55.0003 40.7812C52.5861 40.7812 50.5198 39.9203 48.8016 38.1984C47.0833 36.4766 46.2224 34.4103 46.2188 31.9997V8.78156C46.2188 6.36731 47.0797 4.30106 48.8016 2.58281C50.5198 0.860937 52.5861 0 55.0003 0H78.2184C80.6327 0 82.6989 0.860937 84.4172 2.58281C86.1391 4.30106 87 6.36731 87 8.78156V31.9997C87 34.4139 86.1391 36.4802 84.4172 38.1984C82.6989 39.9203 80.6327 40.7812 78.2184 40.7812H55.0003ZM8.78156 40.7812C6.36731 40.7812 4.30106 39.9203 2.58281 38.1984C0.860937 36.4802 0 34.4139 0 31.9997V8.78156C0 6.36731 0.860937 4.30106 2.58281 2.58281C4.30106 0.860937 6.36731 0 8.78156 0H31.9997C34.4139 0 36.4802 0.860937 38.1984 2.58281C39.9203 4.30106 40.7812 6.36731 40.7812 8.78156V31.9997C40.7812 34.4139 39.9203 36.4802 38.1984 38.1984C36.4766 39.9167 34.4103 40.7776 31.9997 40.7812H8.78156ZM8.78156 87C6.36731 87 4.30106 86.1391 2.58281 84.4172C0.860937 82.6989 0 80.6327 0 78.2184V55.0003C0 52.5861 0.860937 50.5198 2.58281 48.8016C4.30106 47.0797 6.36731 46.2188 8.78156 46.2188H31.9997C34.4139 46.2188 36.4802 47.0797 38.1984 48.8016C39.9167 50.5234 40.7776 52.5897 40.7812 55.0003V78.2184C40.7812 80.6327 39.9203 82.6989 38.1984 84.4172C36.4802 86.1391 34.4139 87 31.9997 87H8.78156Z" fill="#EBF1FD" />
                                 </svg>
-                                <div class="mt-4">
+                                <div class="mt-2">
                                     <span id="" style="font-size: 24px;font-weight: bolder;color: #fff;">50</span>
                                     <span class="ms-1" style="color: #fff;">หลักสูตร</span>
                                 </div>
@@ -166,7 +166,7 @@
                     </div>
                 </div>
 
-                <div class="more-coures">
+                <!-- <div class="more-coures">
                     <div class="item">
                         <div class="w-100">
                             <center>
@@ -251,7 +251,7 @@
                         </div>
 
                     </div>
-                </div>
+                </div> -->
             </div>
             <style>
                 .tabs {
@@ -294,23 +294,29 @@
                     transition: color 0.15s ease-in;
                     font-weight: bolder;
                 }
-                .stroke-svg {
+
+                /* .stroke-svg {
                     stroke: #989898;
                 }
                 .fill-svg {
                     fill: #989898;
-                }
+                } */
                 .container input[type="radio"]:checked+label {
 
                     color: #243287;
 
                 }
 
-                .container input[type="radio"]:checked + label svg  .stroke-svg {
+                .container input[type="radio"]+label svg {
+                    margin-left: -20px;
+                    margin-right: 10px;
+                }
+
+                .container input[type="radio"]:checked+label svg .stroke-svg {
                     stroke: #003781;
                 }
 
-                .container input[type="radio"]:checked + label svg .fill-svg {
+                .container input[type="radio"]:checked+label svg .fill-svg {
                     fill: #003781 !important;
                 }
 
@@ -343,38 +349,243 @@
                     -moz-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
                 }
 
-                /* @media (max-width: 700px) {
- 
-  .tabs {
-    transform: scale(0.6);
-  }
-} */
+                .btn-toggle-traning-appointment {
+                    color: #989898 !important;
+                    border: #E6E6E6 1px solid !important;
+                    border-radius: 50px !important;
+                    -webkit-border-radius: 50px !important;
+                    -moz-border-radius: 50px !important;
+                    -ms-border-radius: 50px !important;
+                    -o-border-radius: 50px !important;
+                    font-size: 12px !important;
+                    padding: 6px 14px !important;
+                }
+
+                .btn-toggle-traning-appointment.active {
+                    color: #fff !important;
+                    background-color: #003781 !important;
+                }
             </style>
             <div class="col-lg-8 mt-4">
                 <div class="tabs">
-                    <input type="radio" id="radio-1" name="tabs" checked="">
+                    <input type="radio" id="radio-1" name="tabs_traning_appointment" checked="">
                     <label class="tab" for="radio-1">
                         <svg width="27" height="24" viewBox="0 0 27 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect class="stroke-svg" x="0.5" y="0.5" width="26" height="19" rx="2.5" fill="none"  />
-                            <rect class="fill-svg" x="6" y="23" width="15" height="1" rx="0.5"  />
+                            <rect class="stroke-svg" x="0.5" y="0.5" width="26" height="19" rx="2.5" fill="none" />
+                            <rect class="fill-svg" x="6" y="23" width="15" height="1" rx="0.5" />
                             <rect class="fill-svg" x="5.63574" y="14.4985" width="14.7941" height="0.704481" rx="0.35224" />
                             <path class="fill-svg" d="M21.9062 7.98751L21.0126 7.09375C20.9829 7.06403 20.9476 7.04045 20.9088 7.02436C20.87 7.00828 20.8284 7 20.7863 7C20.7443 7 20.7027 7.00828 20.6639 7.02436C20.625 7.04045 20.5897 7.06403 20.56 7.09375L18.0938 9.56005C18.064 9.58966 18.0403 9.6249 18.0242 9.66373C18.0081 9.70256 17.9999 9.74421 18 9.78624V10.68C18 10.7649 18.0337 10.8463 18.0937 10.9063C18.1537 10.9663 18.2351 11 18.32 11H19.2138C19.2559 11.0001 19.2975 10.9919 19.3363 10.9758C19.3752 10.9597 19.4104 10.936 19.44 10.9062L21.9062 8.4401C21.936 8.41038 21.9595 8.3751 21.9756 8.33628C21.9917 8.29745 22 8.25583 22 8.21381C22 8.17178 21.9917 8.13016 21.9756 8.09133C21.9595 8.05251 21.936 8.01723 21.9062 7.98751ZM19.2138 10.68H18.32V9.78624L20.08 8.02631L20.9738 8.92008L19.2138 10.68ZM21.2 8.69369L20.3062 7.80012L20.7862 7.32014L21.68 8.21371L21.2 8.69369Z" />
                             <path class="fill-svg" d="M10.3128 14.6357H8.91505L12.0557 5.90847H13.577L16.7176 14.6357H15.3199L12.8525 7.4937H12.7844L10.3128 14.6357ZM10.5471 11.2181H15.0812V12.3261H10.5471V11.2181Z" />
                             <path class="fill-svg" d="M14.4174 12V11.2685L18.242 5.67188H14.3855V4.72727H19.5843V5.45881L15.7598 11.0554H19.6163V12H14.4174Z" />
-                            <line class="stroke-svg" x1="10.5" y1="20" x2="10.5" y2="23"  />
-                            <line class="stroke-svg" x1="16.5" y1="20" x2="16.5" y2="23"  />
+                            <line class="stroke-svg" x1="10.5" y1="20" x2="10.5" y2="23" />
+                            <line class="stroke-svg" x1="16.5" y1="20" x2="16.5" y2="23" />
                         </svg>
-                        <span class="ms-2">ตารางอบรม</span>
+                        <span>ตารางอบรม</span>
                     </label>
-                    <input type="radio" id="radio-2" name="tabs">
-                    <label class="tab" for="radio-2">ตารางสอบ</label>
+                    <input type="radio" id="radio-2" name="tabs_traning_appointment">
+                    <label class="tab" for="radio-2">
+                        <svg width="27" height="24" viewBox="0 0 27 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect class="stroke-svg" x="0.5" y="0.5" width="26" height="19" rx="2.5" fill="none" />
+                            <rect class="fill-svg" x="6" y="23" width="15" height="1" rx="0.5" />
+                            <rect class="fill-svg" x="5.63574" y="14.4985" width="14.7941" height="0.704481" rx="0.35224" />
+                            <path class="fill-svg" d="M21.9062 7.98751L21.0126 7.09375C20.9829 7.06403 20.9476 7.04045 20.9088 7.02436C20.87 7.00828 20.8284 7 20.7863 7C20.7443 7 20.7027 7.00828 20.6639 7.02436C20.625 7.04045 20.5897 7.06403 20.56 7.09375L18.0938 9.56005C18.064 9.58966 18.0403 9.6249 18.0242 9.66373C18.0081 9.70256 17.9999 9.74421 18 9.78624V10.68C18 10.7649 18.0337 10.8463 18.0937 10.9063C18.1537 10.9663 18.2351 11 18.32 11H19.2138C19.2559 11.0001 19.2975 10.9919 19.3363 10.9758C19.3752 10.9597 19.4104 10.936 19.44 10.9062L21.9062 8.4401C21.936 8.41038 21.9595 8.3751 21.9756 8.33628C21.9917 8.29745 22 8.25583 22 8.21381C22 8.17178 21.9917 8.13016 21.9756 8.09133C21.9595 8.05251 21.936 8.01723 21.9062 7.98751ZM19.2138 10.68H18.32V9.78624L20.08 8.02631L20.9738 8.92008L19.2138 10.68ZM21.2 8.69369L20.3062 7.80012L20.7862 7.32014L21.68 8.21371L21.2 8.69369Z" />
+                            <path class="fill-svg" d="M10.3128 14.6357H8.91505L12.0557 5.90847H13.577L16.7176 14.6357H15.3199L12.8525 7.4937H12.7844L10.3128 14.6357ZM10.5471 11.2181H15.0812V12.3261H10.5471V11.2181Z" />
+                            <path class="fill-svg" d="M14.4174 12V11.2685L18.242 5.67188H14.3855V4.72727H19.5843V5.45881L15.7598 11.0554H19.6163V12H14.4174Z" />
+                            <line class="stroke-svg" x1="10.5" y1="20" x2="10.5" y2="23" />
+                            <line class="stroke-svg" x1="16.5" y1="20" x2="16.5" y2="23" />
+                        </svg>
+                        <span>ตารางสอบ</span>
+                    </label>
                     <span class="glider"></span>
                 </div>
-                <div class="card pt-4" style="margin-top: -15px;z-index: 0;">
-<h1>asdasd</h1>
+                <div class="card py-4 px-2" style="margin-top: -15px;z-index: 0;">
+                    <div class="d-flex w-100 justify-content-between align-items-center my-3 px-2">
+                            <a  class=" m-0 p-0"  onclick="goBack()">
+                                <i class="fa-regular fa-chevron-left" style="font-size: 14px;color:#848CA1;"></i>
+                            </a>
+
+                            <span id="displayDate_appointment" style="font-size: 14px;color:#848CA1;"></span>
+
+                            <a  class=" m-0 p-0"  onclick="goNext()">
+                                <i class="fa-solid fa-chevron-right"style="font-size: 14px;color:#848CA1;"></i>
+                            </a>
+                    </div>
+                    <div class="dropdown">
+                        <!-- <button class="btn dropdown-toggle btn-toggle-traning-appointment active" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="document.querySelector('#dropdownMenuButton').classList.toggle('active')">
+                            ทั้งหมด
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                        <button class="btn btn-toggle-traning-appointment">แนะนำ</button>
+                        <button class="btn btn-toggle-traning-appointment">Blue Star</button>
+                        <button class="btn btn-toggle-traning-appointment">Unit Links</button> -->
+
+                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                            <li class="nav-item me-2 dropdown">
+                                <a class="nav-link dropdown-toggle btn-toggle-traning-appointment"  data-toggle="pill" href="#" role="tap" aria-haspopup="true" aria-expanded="false" onclick="document.querySelector('#dropdowntest').classList.add('show')">ทั้งหมด</a>
+                                <div class="dropdown-menu" id="dropdowntest">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Separated link</a>
+                                </div>
+                            </li>
+                            <li class="nav-item me-2">
+                                <a class="nav-link btn-toggle-traning-appointment"  data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false"  onclick="document.querySelector('#dropdowntest').classList.remove('show')">แนะนำ</a>
+                            </li>
+                            <li class="nav-item me-2">
+                                <a class="nav-link btn-toggle-traning-appointment"  data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false"  onclick="document.querySelector('#dropdowntest').classList.remove('show')">Blue Star</a>
+                            </li>
+                            <li class="nav-item me-2">
+                                <a class="nav-link btn-toggle-traning-appointment"  data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false"  onclick="document.querySelector('#dropdowntest').classList.remove('show')">Unit Links</a>
+                            </li>
+                        </ul>
+                        <style>
+                            .name-date-appointment{
+                                font-size: 14px;
+                                margin-right: 10px;
+                                margin-bottom:0;
+                            }.day-appointment{
+                                font-size: 12px;
+                                margin-bottom:0;
+                            }
+                            .time-start{
+                                font-size: 12px;
+                                color: #646363;
+                                margin: 0;
+                            } .time-end{
+                                font-size: 12px;
+                                color: #989898;
+                                margin: 0;
+                            }
+                            .content-appointment{
+                                position: relative;
+                                margin-left: 20px;
+                                padding: 10px;
+                                color: #000;
+                                display: flex;
+                                align-items: center;
+                                width: calc(100% - 80px);
+                                border-radius: 0 10px 10px 0;
+                                -webkit-border-radius: 0 10px 10px 0;
+                                -moz-border-radius: 0 10px 10px 0;
+                                -ms-border-radius: 0 10px 10px 0;
+                                -o-border-radius: 0 10px 10px 0;
+                            }
+                            .content-appointment::after{
+                                content: "";
+                                height: 100%;
+                                width: 10px;
+                                position: absolute;
+                                top: 50%;
+                                left: 0px;
+                                transform: translate(-50%, -50%);
+                                border-radius:50px;
+                                -webkit-border-radius:50px;
+                                -moz-border-radius:50px;
+                                -ms-border-radius:50px;
+                                -o-border-radius:50px;
+                            }
+                            .content-appointment.training-schedule::after {
+                                background-color: #78CBE5;
+                            }
+                            .content-appointment.exam-schedule::after {
+                                background-color: #FFBF44;
+                            }
+
+                            .content-appointment.training-schedule{
+                                background-color: #D7F5FF;
+                            }
+                            .content-appointment.exam-schedule{
+                                background-color: #FFF2BB;
+                            }
+
+                            .title-appointment{
+                                font-size: 12px;
+                                margin-bottom: 3px;
+                                font-weight: bolder;
+                            }
+                            .detail-appointment{
+                                font-size: 11px;
+                                margin-bottom: 0;
+                            }
+                        </style>
+                        <div class="appointment">
+                            <div class="d-flex w-100 align-items-center">
+                                <div class="name-date-appointment">Wednesday</div>
+                                <div class="day-appointment">25 April 2024</div>
+                            </div>
+                            <div class="d-flex w-100 align-items-center mt-2">
+                                <div>
+                                    <p class="time-start">16:00 pm</p>
+                                    <p class="time-end">16:45 pm</p>
+                                </div>
+                                <div class="content-appointment training-schedule">
+                                    <div>
+                                        <p class="title-appointment">อบรมพนักงานใหม่</p>
+                                        <p class="detail-appointment">หลักสูตร Star Blue</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex w-100 align-items-center mt-2">
+                                <div>
+                                    <p class="time-start">16:00 pm</p>
+                                    <p class="time-end">16:45 pm</p>
+                                </div>
+                                <div class="content-appointment exam-schedule ">
+                                    <div>
+                                        <p class="title-appointment">อบรมพนักงานใหม่</p>
+                                        <p class="detail-appointment">หลักสูตร Star Blue</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>  
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<input type="text" id="appointment_month" name="month" placeholder="MM" class="d-none">
+<input type="text" id="appointment_year" name="year" placeholder="YYYY" class="d-none">
+
+<script>
+// ดึงข้อมูลวันที่ปัจจุบัน
+let today = new Date();
+const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+// ฟังก์ชั่นสำหรับอัปเดตการแสดงผล
+function updateDisplay(date) {
+    const currentYear = date.getFullYear();
+    const currentMonth = (date.getMonth() + 1).toString().padStart(2, '0'); // เดือนใน JavaScript นับจาก 0
+    const monthName = monthNames[date.getMonth()];
+
+    document.getElementById('appointment_month').value = currentMonth;
+    document.getElementById('appointment_year').value = currentYear;
+    document.getElementById('displayDate_appointment').textContent = `${monthName} ${currentYear}`;
+}
+
+// แสดงผลเดือนและปีปัจจุบันในแท็ก p ทันทีเมื่อโหลดหน้าเว็บ
+updateDisplay(today);
+
+// ฟังก์ชั่นสำหรับปุ่ม ย้อนกลับ
+function goBack() {
+    today.setMonth(today.getMonth() - 1);
+    updateDisplay(today);
+}
+
+// ฟังก์ชั่นสำหรับปุ่ม ถัดไป
+function goNext() {
+    today.setMonth(today.getMonth() + 1);
+    updateDisplay(today);
+}
+</script>
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 @endsection

@@ -25,9 +25,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 
     <!-- font -->
-
-
-</head>
+    
+    </head>
 <style>
     body ,html{
         background-color: #fff !important;
@@ -197,18 +196,18 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">	
+                        <a class="nav-link dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">	
                         <i class="fa-regular fa-bookmark text-color-obd"></i>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> 
+                        <a class="nav-link dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> 
                         <span class="alert-count d-none"></span>
                         <i class="fa-regular fa-calendar text-color-obd"></i>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> 
+                        <a class="nav-link dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> 
                             <span class="alert-count"></span>
                             <i class="fa-regular fa-bell text-color-obd"></i>
                         </a>

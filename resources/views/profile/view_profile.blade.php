@@ -1149,15 +1149,15 @@
         check_birthday()
     }) 
 
-    function check_birthday(params) {
-        let date_now = `{{ (\Carbon\Carbon::now()->format('d/m')) }}`
-        let birth_day = `{{ (\Carbon\Carbon::parse(Auth::user()->birthday))->format('m/d') }}`
+    // function check_birthday(params) {
+    //     let date_now = `{{ (\Carbon\Carbon::now()->format('d/m')) }}`
+    //     let birth_day = `{{ (\Carbon\Carbon::parse(Auth::user()->birthday))->format('m/d') }}`
 
-        if (date_now == birth_day) {
-            console.log('วันเกิด');  
-            $('#happybirthday').modal('show');
-        }
-    }
+    //     if (date_now == birth_day) {
+    //         console.log('วันเกิด');  
+    //         $('#happybirthday').modal('show');
+    //     }
+    // }
 
 
 </script>

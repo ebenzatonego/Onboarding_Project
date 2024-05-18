@@ -130,7 +130,7 @@
     input:-webkit-autofill:active {
         color: #30DAE5;
         transition: background-color 5000s ease-in-out 0s;
-        -webkit-text-fill-color: #30DAE5;
+        -webkit-text-fill-color: #fff;
     }
 
     .header-terms {
@@ -470,7 +470,7 @@ input:-webkit-autofill:active {
     </div>
     <div class="shape"></div>
     <div class="second-section">
-        <form id="form_login" class="text-center px-5 h-100 d-flex align-items-center" method="POST" action="{{ route('login') }}"autocomplete="off">
+        <form id="form_login" class="text-center px-5 h-100 d-flex align-items-center" method="POST" action="{{ route('login') }}" autocomplete="off">
             @csrf
             <div>
 
@@ -479,13 +479,13 @@ input:-webkit-autofill:active {
     
     
                 <div class="group-input-login">
-                    <input id="username" type="text" class="input-login-new" name="username"   value="{{ old('username') }}" autofocus placeholder="กรุณากรอกชื่อ/อีเมลของคุณ" required oninput="check_login()">
+                    <input id="username" type="text" class="input-login-new" name="username"   autofocus placeholder="กรุณากรอกชื่อ/อีเมลของคุณ" required oninput="check_login()"  autocomplete="new-username">
                     <i class="fa-thin fa-circle-user icon-login-new"></i>
                 </div>
                 
                 
                 <div class="group-input-login">
-                    <input id="password" type="password" class="input-login-new" name="password" required autocomplete="current-password" placeholder="กรุณากรอกรหัสผ่านของคุณ"  oninput="check_login()">
+                    <input id="password" type="password" class="input-login-new" name="password" required  placeholder="กรุณากรอกรหัสผ่านของคุณ"  oninput="check_login()"  autocomplete="new-password">
                     <i class="fa-thin fa-lock icon-login-new"></i>
                 </div>
     

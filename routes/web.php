@@ -51,6 +51,9 @@ Route::middleware(['auth',])->group(function () {
     Route::get('/demo/sub_training', function () {
         return view('demo/training/sub_training');
     });
+    Route::get('/demo/training_show', function () {
+        return view('demo/training/training_show');
+    });
 });
 
 // Super-admin,Admin

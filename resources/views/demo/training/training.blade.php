@@ -5,7 +5,7 @@
         overflow: auto;
     } */
 
-    @media screen and (max-width: 992px) {
+    /* @media screen and (max-width: 992px) {
 
 
         .container-course {
@@ -14,7 +14,7 @@
         }
     }
 
-    @media screen and (min-width: 992px) {}
+    @media screen and (min-width: 992px) {} */
 
     .fav-course {
         display: flex;
@@ -23,6 +23,7 @@
     .long-item {
         /* aspect-ratio:  11/ 16; */
         /* width: 159px; */
+        position: relative;
         width: 95%;
         height: 214px;
         background-color: #003781;
@@ -37,10 +38,27 @@
         align-items: center;
         justify-content: center;
     }
+    .long-item img {
+        max-width: 159px !important;
+        max-height: 211px;
+    }.square-item img{
+        max-width: 159px !important;
 
+    }
+    @media only screen and (min-width: 990px) and (max-width: 1200px) {
+        .fav-course{    
+            scale: .83;
+            margin-left: -30px;
+        }
+        .all-coures{
+            margin-top: -25px !important;
+        }
+    }
+    
     .square-item {
         /* aspect-ratio:  1/ 1; */
         /* width: 159px; */
+        position: relative;
         width: 95%;
         height: 159px;
         background-color: #CADCFF;
@@ -83,6 +101,18 @@
         -o-border-radius: 10px;
         padding: 5px;
     }
+
+    .long-item .count-training {
+        position: absolute;
+        bottom: 15px;
+
+    }
+
+    .square-item .count-training {
+        position: absolute;
+        bottom: 10px;
+
+    }
 </style>
 @section('content')
 <div class="container">
@@ -99,7 +129,12 @@
                     </div>
                     <div class="w-100">
                         <a href="" class="long-item">
-                            <center>
+                            <img src="{{ url('/img/icon/long-content-1.png') }}" alt="" >
+                            <div class="count-training">
+                                <span id="" style="font-size: 24px;font-weight: bolder;color: #fff;">15</span>
+                                <span class="ms-1" style="color: #fff;">หลักสูตร</span>
+                            </div>
+                            <!-- <center class="d-none">
                                 <p style="font-size: 14px;color:#fff;font-weight: bold;text-align: center;margin-bottom: 7px;">หลักสูตร</p>
                                 <p style="font-size: 18px;color:#fff;font-weight: bolder;text-align: center;">แนะนำ</p>
                                 <svg width="64" height="87" viewBox="0 0 64 87" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -111,10 +146,15 @@
                                     <span id="" style="font-size: 24px;font-weight: bolder;color: #fff;">15</span>
                                     <span class="ms-1" style="color: #fff;">หลักสูตร</span>
                                 </div>
-                            </center>
+                            </center> -->
                         </a>
                         <div class="square-item mt-3">
-                            <center>
+                            <img src="{{ url('/img/icon/square-content-1.png') }}" alt="" >
+                            <div class="count-training">
+                                <span id="" style="font-size: 24px;font-weight: bolder;color: #003781;">15</span>
+                                <span class="ms-1" style="color: #003781;">หลักสูตร</span>
+                            </div>
+                            <!-- <center>
                                 <p style="font-size: 14px;color:#003781;font-weight: bold;text-align: center;margin-bottom: 10px;">หลักสูตร</p>
                                 <div class="d-flex align-items-center">
                                     <svg width="71" height="71" viewBox="0 0 71 71" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -127,13 +167,18 @@
                                     <span id="" style="font-size: 24px;font-weight: bolder;color: #003781;">15</span>
                                     <span class="ms-1" style="color: #003781;">หลักสูตร</span>
                                 </div>
-                            </center>
+                            </center> -->
 
                         </div>
                     </div>
                     <div class="w-100">
                         <div class="square-item">
-                            <center>
+                            <img src="{{ url('/img/icon/square-content-2.png') }}" alt="" >
+                            <div class="count-training">
+                                <span id="" style="font-size: 24px;font-weight: bolder;color: #003781;">15</span>
+                                <span class="ms-1" style="color: #003781;">หลักสูตร</span>
+                            </div>
+                            <!-- <center>
                                 <p style="font-size: 14px;color:#003781;font-weight: bold;text-align: center;margin-bottom: 10px;">หลักสูตร</p>
                                 <div class="d-flex ">
                                     <span style="color: #003781; font-size: 18px;font-weight: bolder;margin-right: 5px;">Blue<br>Star</span>
@@ -148,10 +193,15 @@
                                     <span id="" style="font-size: 24px;font-weight: bolder;color: #003781;">15</span>
                                     <span class="ms-1" style="color: #003781;">หลักสูตร</span>
                                 </div>
-                            </center>
+                            </center> -->
                         </div>
                         <div class="long-item mt-3">
-                            <center>
+                            <img src="{{ url('/img/icon/long-content-2.png') }}" alt="" >
+                            <div class="count-training">
+                                <span id="" style="font-size: 24px;font-weight: bolder;color: #fff;">15</span>
+                                <span class="ms-1" style="color: #fff;">หลักสูตร</span>
+                            </div>
+                            <!-- <center>
                                 <p style="font-size: 14px;color:#fff;font-weight: bold;text-align: center;margin-bottom: 7px;">หลักสูตร</p>
                                 <p style="font-size: 18px;color:#fff;font-weight: bolder;text-align: center;">ทั้งหมด</p>
                                 <svg width="87" height="87" viewBox="0 0 87 87" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -161,11 +211,42 @@
                                     <span id="" style="font-size: 24px;font-weight: bolder;color: #fff;">50</span>
                                     <span class="ms-1" style="color: #fff;">หลักสูตร</span>
                                 </div>
-                            </center>
+                            </center> -->
                         </div>
                     </div>
                 </div>
 
+                <style>
+                    .all-coures {
+                        position: relative;
+                        background-color: #376AAF;
+                        color: #fff;
+                        margin-top: 10px;
+                        border-radius: 10px;
+                        -webkit-border-radius: 10px;
+                        -moz-border-radius: 10px;
+                        -ms-border-radius: 10px;
+                        -o-border-radius: 10px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 20px;
+
+                    }
+                </style>
+                <div class="all-coures w-100 d-flex justify-content-evenly align-items-center">
+                    <div>
+                        <p style="font-size: 14px;margin-bottom: 0;">หลักสูตร</p>
+                        <p style="font-size: 18px;font-weight: bolder;margin-bottom: 0;">ทั้งหมด</p>
+                    </div>
+                    <div>
+                        <img src="{{ url('/img/icon/icon-all-training.png') }}" alt="" width="71">
+                    </div>
+                    <div>
+                        <span style="font-size: 24px;font-weight: bolder;">60</span>
+                        <span id style="font-size:14 px;">หลักสูตร</span>
+                    </div>
+                </div>
                 <!-- <div class="more-coures">
                     <div class="item">
                         <div class="w-100">
@@ -369,7 +450,7 @@
             <div class="col-lg-8 mt-4">
                 <div class="tabs">
                     <input type="radio" id="radio-1" name="tabs_traning_appointment" checked="">
-                    <label class="tab" for="radio-1">
+                    <label class="tab" for="radio-1" onclick="document.querySelector('#content_training_schedule').classList.toggle('d-none');document.querySelector('#content_exam_schedule').classList.toggle('d-none');">
                         <svg width="27" height="24" viewBox="0 0 27 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect class="stroke-svg" x="0.5" y="0.5" width="26" height="19" rx="2.5" fill="none" />
                             <rect class="fill-svg" x="6" y="23" width="15" height="1" rx="0.5" />
@@ -383,7 +464,7 @@
                         <span>ตารางอบรม</span>
                     </label>
                     <input type="radio" id="radio-2" name="tabs_traning_appointment">
-                    <label class="tab" for="radio-2">
+                    <label class="tab" for="radio-2" onclick="document.querySelector('#content_training_schedule').classList.toggle('d-none');document.querySelector('#content_exam_schedule').classList.toggle('d-none');">
                         <svg width="27" height="24" viewBox="0 0 27 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect class="stroke-svg" x="0.5" y="0.5" width="26" height="19" rx="2.5" fill="none" />
                             <rect class="fill-svg" x="6" y="23" width="15" height="1" rx="0.5" />
@@ -398,17 +479,17 @@
                     </label>
                     <span class="glider"></span>
                 </div>
-                <div class="card py-4 px-2" style="margin-top: -15px;z-index: 0;">
+                <div class="card py-4 px-2" style="margin-top: -15px;z-index: 0;" id="content_training_schedule">
                     <div class="d-flex w-100 justify-content-between align-items-center my-3 px-2">
-                            <a  class=" m-0 p-0"  onclick="goBack()">
-                                <i class="fa-regular fa-chevron-left" style="font-size: 14px;color:#848CA1;"></i>
-                            </a>
+                        <a class=" m-0 p-0" onclick="goBack()">
+                            <i class="fa-regular fa-chevron-left" style="font-size: 14px;color:#848CA1;"></i>
+                        </a>
 
-                            <span id="displayDate_appointment" style="font-size: 14px;color:#848CA1;"></span>
+                        <span id="displayDate_appointment" style="font-size: 14px;color:#848CA1;"></span>
 
-                            <a  class=" m-0 p-0"  onclick="goNext()">
-                                <i class="fa-solid fa-chevron-right"style="font-size: 14px;color:#848CA1;"></i>
-                            </a>
+                        <a class=" m-0 p-0" onclick="goNext()">
+                            <i class="fa-solid fa-chevron-right" style="font-size: 14px;color:#848CA1;"></i>
+                        </a>
                     </div>
                     <div class="dropdown">
                         <!-- <button class="btn dropdown-toggle btn-toggle-traning-appointment active" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="document.querySelector('#dropdownMenuButton').classList.toggle('active')">
@@ -425,7 +506,7 @@
 
                         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                             <li class="nav-item me-2 dropdown">
-                                <a class="nav-link dropdown-toggle btn-toggle-traning-appointment"  data-toggle="pill" href="#" role="tap" aria-haspopup="true" aria-expanded="false" onclick="document.querySelector('#dropdowntest').classList.add('show')">ทั้งหมด</a>
+                                <a class="nav-link dropdown-toggle btn-toggle-traning-appointment" data-toggle="pill" href="#" role="tap" aria-haspopup="true" aria-expanded="false" onclick="document.querySelector('#dropdowntest').classList.add('show')">ทั้งหมด</a>
                                 <div class="dropdown-menu" id="dropdowntest">
                                     <a class="dropdown-item" href="#">Action</a>
                                     <a class="dropdown-item" href="#">Another action</a>
@@ -435,34 +516,40 @@
                                 </div>
                             </li>
                             <li class="nav-item me-2">
-                                <a class="nav-link btn-toggle-traning-appointment"  data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false"  onclick="document.querySelector('#dropdowntest').classList.remove('show')">แนะนำ</a>
+                                <a class="nav-link btn-toggle-traning-appointment" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false" onclick="document.querySelector('#dropdowntest').classList.remove('show')">แนะนำ</a>
                             </li>
                             <li class="nav-item me-2">
-                                <a class="nav-link btn-toggle-traning-appointment"  data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false"  onclick="document.querySelector('#dropdowntest').classList.remove('show')">Blue Star</a>
+                                <a class="nav-link btn-toggle-traning-appointment" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false" onclick="document.querySelector('#dropdowntest').classList.remove('show')">Blue Star</a>
                             </li>
                             <li class="nav-item me-2">
-                                <a class="nav-link btn-toggle-traning-appointment"  data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false"  onclick="document.querySelector('#dropdowntest').classList.remove('show')">Unit Links</a>
+                                <a class="nav-link btn-toggle-traning-appointment" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false" onclick="document.querySelector('#dropdowntest').classList.remove('show')">Unit Links</a>
                             </li>
                         </ul>
                         <style>
-                            .name-date-appointment{
+                            .name-date-appointment {
                                 font-size: 14px;
                                 margin-right: 10px;
-                                margin-bottom:0;
-                            }.day-appointment{
-                                font-size: 12px;
-                                margin-bottom:0;
+                                margin-bottom: 0;
                             }
-                            .time-start{
+
+                            .day-appointment {
+                                font-size: 12px;
+                                margin-bottom: 0;
+                            }
+
+                            .time-start {
                                 font-size: 12px;
                                 color: #646363;
                                 margin: 0;
-                            } .time-end{
+                            }
+
+                            .time-end {
                                 font-size: 12px;
                                 color: #989898;
                                 margin: 0;
                             }
-                            .content-appointment{
+
+                            .content-appointment {
                                 position: relative;
                                 margin-left: 20px;
                                 padding: 10px;
@@ -476,7 +563,8 @@
                                 -ms-border-radius: 0 10px 10px 0;
                                 -o-border-radius: 0 10px 10px 0;
                             }
-                            .content-appointment::after{
+
+                            .content-appointment::after {
                                 content: "";
                                 height: 100%;
                                 width: 10px;
@@ -484,32 +572,36 @@
                                 top: 50%;
                                 left: 0px;
                                 transform: translate(-50%, -50%);
-                                border-radius:50px;
-                                -webkit-border-radius:50px;
-                                -moz-border-radius:50px;
-                                -ms-border-radius:50px;
-                                -o-border-radius:50px;
+                                border-radius: 50px;
+                                -webkit-border-radius: 50px;
+                                -moz-border-radius: 50px;
+                                -ms-border-radius: 50px;
+                                -o-border-radius: 50px;
                             }
+
                             .content-appointment.training-schedule::after {
                                 background-color: #78CBE5;
                             }
+
                             .content-appointment.exam-schedule::after {
                                 background-color: #FFBF44;
                             }
 
-                            .content-appointment.training-schedule{
+                            .content-appointment.training-schedule {
                                 background-color: #D7F5FF;
                             }
-                            .content-appointment.exam-schedule{
+
+                            .content-appointment.exam-schedule {
                                 background-color: #FFF2BB;
                             }
 
-                            .title-appointment{
+                            .title-appointment {
                                 font-size: 12px;
                                 margin-bottom: 3px;
                                 font-weight: bolder;
                             }
-                            .detail-appointment{
+
+                            .detail-appointment {
                                 font-size: 11px;
                                 margin-bottom: 0;
                             }
@@ -544,47 +636,192 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                        </div>  
+
+                        </div>
                     </div>
+                </div>
+                <style>
+                    .btn-select-region{
+                        position: relative;
+                        background-color: #003781;
+                        color: #fff;
+                        border-radius:50px;
+                        -webkit-border-radius:50px;
+                        -moz-border-radius:50px;
+                        -ms-border-radius:50px;
+                        -o-border-radius:50px;
+                        width: 100%;
+                        padding: 10px;
+                    }
+                    .btn-select-region:hover{
+                        background-color: #003781;
+                        color: #fff;
+                    }
+                    .btn-select-region .icon-arrow {
+                        position: absolute;
+                        top: 50%;
+                        right: 0%;
+                        transform: translate(-50%, -50%);
+                        height: 18.2;
+                    }
+
+                    .btn-select-region i {
+                        position: relative;
+                        -webkit-transform: rotate(90deg);
+                        transform: rotate(90deg);
+                        transition: all .15s ease-in-out;
+                    }
+                    .btn-select-region.collapsed i {
+                        -webkit-transform: rotate(0deg);
+                        transform: rotate(0deg);
+                        transition: all .15s ease-in-out;
+                    }
+
+                    #content_exam_schedule .collapse{
+                        max-height: 350px;
+                        overflow: auto;
+                    }
+
+                    
+                    #content_exam_schedule .collapse::-webkit-scrollbar-track
+                    {
+                        border-radius: 10px;
+                        background-color: #E6E6E6;
+                        -webkit-box-shadow: inset 0 0 6px rgb(230, 230, 230);
+                    }
+
+                    #content_exam_schedule .collapse::-webkit-scrollbar
+                    {
+                        width: 10px;
+                        background-color: #E6E6E6;
+                        border-radius: 10px;
+                        right: 10px;
+                    }
+
+                    #content_exam_schedule .collapse::-webkit-scrollbar-thumb
+                    {
+                        border-radius: 10px;
+                        background-color: #989898;
+                    }
+
+                </style>
+                <div id="content_exam_schedule" class="d-none">
+
+                    <div class="card py-4 px-2" style="margin-top: -15px;z-index: 0;">
+                        <h6 style="color: #243287;text-align: center;margin-top: 10px;"><b>เลือกภูมิภาคที่ต้องการ</b></h6>
+                        <div class="px-3">
+                            <div class="card">
+                                <div >
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-select-region collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            ภาคกลาง 
+                                            <div class="icon-arrow">
+                                            &nbsp;
+                                               <i class="fa-solid fa-arrow-right "></i>
+                                            </div>
+                                        </button>
+
+                                    </h5>
+
+                                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <a href="" class="d-block text-center my-2">กรุงเทพมหานคร</a>
+                                            <a href="" class="d-block text-center my-2">กำแพงเพชร</a>
+                                            <a href="" class="d-block text-center my-2">ชัยนาท</a>
+                                            <a href="" class="d-block text-center my-2">นครนายก</a>
+                                            <a href="" class="d-block text-center my-2">นครปฐม</a>
+                                            <a href="" class="d-block text-center my-2">นครสวรรค์</a>
+                                            <a href="" class="d-block text-center my-2">นนทบุรี</a>
+                                            <a href="" class="d-block text-center my-2">ปทุมธานี</a>
+                                            <a href="" class="d-block text-center my-2">พระนครศรีอยุธยา</a>
+                                            <a href="" class="d-block text-center my-2">พิจิตร</a>
+                                            <a href="" class="d-block text-center my-2">พิษณุโลก</a>
+                                            <a href="" class="d-block text-center my-2">เพชรบูรณ์</a>
+                                            <a href="" class="d-block text-center my-2">ลพบุรี</a>
+                                            <a href="" class="d-block text-center my-2">กรุงเทพมหานคร</a>
+                                            <a href="" class="d-block text-center my-2">กำแพงเพชร</a>
+                                            <a href="" class="d-block text-center my-2">ชัยนาท</a>
+                                            <a href="" class="d-block text-center my-2">นครนายก</a>
+                                            <a href="" class="d-block text-center my-2">นครปฐม</a>
+                                            <a href="" class="d-block text-center my-2">นครสวรรค์</a>
+                                            <a href="" class="d-block text-center my-2">นนทบุรี</a>
+                                            <a href="" class="d-block text-center my-2">ปทุมธานี</a>
+                                            <a href="" class="d-block text-center my-2">พระนครศรีอยุธยา</a>
+                                            <a href="" class="d-block text-center my-2">พิจิตร</a>
+                                            <a href="" class="d-block text-center my-2">พิษณุโลก</a>
+                                            <a href="" class="d-block text-center my-2">เพชรบูรณ์</a>
+                                            <a href="" class="d-block text-center my-2">ลพบุรี</a>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <div class="px-3">
+                            <div class="card">
+                                <div >
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-select-region collapsed " data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                            ภาคกลาง 
+                                            <div class="icon-arrow">
+                                            &nbsp;
+                                               <i class="fa-solid fa-arrow-right "></i>
+                                            </div>
+                                        </button>
+
+                                    </h5>
+
+                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                        <div class="card-body">
+                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
-<input type="text" id="appointment_month" name="month" placeholder="MM" class="d-none">
-<input type="text" id="appointment_year" name="year" placeholder="YYYY" class="d-none">
+
+
+<input type="text" id="appointment_month" name="month" placeholder="MM" class="d-non">
+<input type="text" id="appointment_year" name="year" placeholder="YYYY" class="d-non">
 
 <script>
-// ดึงข้อมูลวันที่ปัจจุบัน
-let today = new Date();
-const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    // ดึงข้อมูลวันที่ปัจจุบัน
+    let today = new Date();
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-// ฟังก์ชั่นสำหรับอัปเดตการแสดงผล
-function updateDisplay(date) {
-    const currentYear = date.getFullYear();
-    const currentMonth = (date.getMonth() + 1).toString().padStart(2, '0'); // เดือนใน JavaScript นับจาก 0
-    const monthName = monthNames[date.getMonth()];
+    // ฟังก์ชั่นสำหรับอัปเดตการแสดงผล
+    function updateDisplay(date) {
+        const currentYear = date.getFullYear();
+        const currentMonth = (date.getMonth() + 1).toString().padStart(2, '0'); // เดือนใน JavaScript นับจาก 0
+        const monthName = monthNames[date.getMonth()];
 
-    document.getElementById('appointment_month').value = currentMonth;
-    document.getElementById('appointment_year').value = currentYear;
-    document.getElementById('displayDate_appointment').textContent = `${monthName} ${currentYear}`;
-}
+        document.getElementById('appointment_month').value = currentMonth;
+        document.getElementById('appointment_year').value = currentYear;
+        document.getElementById('displayDate_appointment').textContent = `${monthName} ${currentYear}`;
+    }
 
-// แสดงผลเดือนและปีปัจจุบันในแท็ก p ทันทีเมื่อโหลดหน้าเว็บ
-updateDisplay(today);
-
-// ฟังก์ชั่นสำหรับปุ่ม ย้อนกลับ
-function goBack() {
-    today.setMonth(today.getMonth() - 1);
+    // แสดงผลเดือนและปีปัจจุบันในแท็ก p ทันทีเมื่อโหลดหน้าเว็บ
     updateDisplay(today);
-}
 
-// ฟังก์ชั่นสำหรับปุ่ม ถัดไป
-function goNext() {
-    today.setMonth(today.getMonth() + 1);
-    updateDisplay(today);
-}
+    // ฟังก์ชั่นสำหรับปุ่ม ย้อนกลับ
+    function goBack() {
+        today.setMonth(today.getMonth() - 1);
+        updateDisplay(today);
+    }
+
+    // ฟังก์ชั่นสำหรับปุ่ม ถัดไป
+    function goNext() {
+        today.setMonth(today.getMonth() + 1);
+        updateDisplay(today);
+    }
 </script>
 
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>

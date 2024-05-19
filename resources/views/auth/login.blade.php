@@ -124,13 +124,15 @@
 
     }
 
-    input:-webkit-autofill,
-    input:-webkit-autofill:hover,
-    input:-webkit-autofill:focus,
-    input:-webkit-autofill:active {
+    .input-login-new:-webkit-autofill,
+    .input-login-new:-webkit-autofill:hover,
+    .input-login-new:-webkit-autofill:focus,
+    .input-login-new:-webkit-autofill:active {
         color: #30DAE5;
-        transition: background-color 5000s ease-in-out 0s;
         -webkit-text-fill-color: #fff;
+        background-color: #243286 !important;
+        box-shadow: 0 0 0 1000px #243286 inset !important;
+        -webkit-box-shadow: 0 0 0 1000px #243286 inset !important;
     }
 
     .header-terms {
@@ -479,13 +481,13 @@ input:-webkit-autofill:active {
     
     
                 <div class="group-input-login">
-                    <input id="username" type="text" class="input-login-new" name="username"   autofocus placeholder="กรุณากรอกชื่อ/อีเมลของคุณ" required oninput="check_login()"  autocomplete="new-username">
+                    <input id="username" type="text" class="input-login-new" name="username"   autofocus placeholder="กรุณากรอกชื่อ/อีเมลของคุณ" required oninput="check_login()"  autocomplete="username">
                     <i class="fa-thin fa-circle-user icon-login-new"></i>
                 </div>
                 
                 
                 <div class="group-input-login">
-                    <input id="password" type="password" class="input-login-new" name="password" required  placeholder="กรุณากรอกรหัสผ่านของคุณ"  oninput="check_login()"  autocomplete="new-password">
+                    <input id="password" type="password" class="input-login-new" name="password" required  placeholder="กรุณากรอกรหัสผ่านของคุณ"  oninput="check_login()"  autocomplete="password">
                     <i class="fa-thin fa-lock icon-login-new"></i>
                 </div>
     

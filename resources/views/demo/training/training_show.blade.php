@@ -95,18 +95,24 @@
         align-items: center;
         transition: all .15s ease-in-out;
     }
-    .btn-like .icon-btn i{
-       color: #B8C6D8;
+
+    .btn-like .icon-btn i {
+        color: #B8C6D8;
     }
+
     .btn-like.active {
         background-color: #4B90E2;
     }
-    .btn-like.active .icon-btn i{
+
+    .btn-like.active .icon-btn i {
         color: #4B90E2;
     }
-    .btn-like:hover ,.btn-dislike:hover ,.btn-share:hover{
+
+    .btn-like:hover,
+    .btn-dislike:hover,
+    .btn-share:hover {
         color: #fff;
-        
+
     }
 
     .btn-dislike {
@@ -123,17 +129,20 @@
         justify-content: center;
         transition: all .15s ease-in-out;
     }
-    .btn-dislike .icon-btn i{
-       color: #E6E6E6;
+
+    .btn-dislike .icon-btn i {
+        color: #E6E6E6;
     }
 
     .btn-dislike.active {
         background-color: #EA0505;
     }
-    .btn-dislike.active .icon-btn i{
+
+    .btn-dislike.active .icon-btn i {
         color: #EA0505;
 
     }
+
     .btn-share {
         background-color: #203881;
         width: 70px;
@@ -164,7 +173,7 @@
         justify-content: center;
     }
 
-    .icon-btn i{
+    .icon-btn i {
         font-size: 14px;
         margin: 0;
     }
@@ -194,7 +203,7 @@
                         </div>
                     </button>
                     <button class="btn btn-share me-1">
-                            <i class="fa-solid fa-share m-0"></i>
+                        <i class="fa-solid fa-share m-0"></i>
                     </button>
                 </div>
                 <div class=" px-2 py-0 d-flex align-items-start btn-bookmark-training" onclick="document.querySelector('.btn-bookmark-training').classList.toggle('active')">
@@ -205,10 +214,131 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-8 col-md-7">
+        <style>
+            .hastag-training {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+
+            .hastag-training span {
+                border: #0E2B81 1px solid;
+                padding: 0 10px;
+                color: #0E2B81;
+                font-size: 9px;
+                font-style: normal;
+                font-weight: 300;
+                line-height: normal;
+                border-radius: 50px;
+                -webkit-border-radius: 50px;
+                -moz-border-radius: 50px;
+                -ms-border-radius: 50px;
+                -o-border-radius: 50px;
+            }
 
 
+
+            .star-rating {
+                text-align: left;
+                font-style: normal;
+                display: inline-block;
+                position: relative;
+                unicode-bidi: bidi-override;
+            }
+
+            .star-rating::before {
+                display: block;
+                content: '★★★★★';
+                color: #fff;
+                -webkit-text-stroke-width: .5px;
+                -webkit-text-stroke-color: #EDB529;
+            }
+
+            .star-rating::after {
+                white-space: nowrap;
+                position: absolute;
+                top: 0;
+                left: 0;
+                content: '★★★★★';
+                color: #EDB529;
+                overflow: hidden;
+                height: 100%;
+            }
+
+            .star-rating::after {
+                width: var(--rating-width);
+            }
+        </style>
+        <div class="col-lg-8 col-md-7 px-4 mb-5">
+            <div>
+                <p class="mb-2" style="color: #003781;font-size: 20px;font-style: normal;font-weight: 600;line-height: normal;">หลักสูตรการพัฒนาทักษะการขายเชิงกลยุทธ์ 505</p>
+            </div>
+            <div class="hastag-training">
+                <span>#หลักสูตร Unit Links</span>
+            </div>
+            <div class="rating-training mt-2">
+                <span style="color: #EDB529;font-size: 14px;font-style: normal;font-weight: 600;line-height: normal;margin-right: 5px;">4.5</span>
+                <i data-star="4.5" class="star-rating"></i>
+            </div>
+
+            <div class="detail-training">
+                <p class="mt-2">
+                    การพัฒนาทักษะการขาย (Selling Skill) ให้กับนักขายมืออาชีพขั้นสูง จะช่วยทำให้พนักงานมีความมั่นใจในการขายสินค้าและบริการของตัวเองเพิ่มมากขึ้น เช่น.....     - การนำเสนอขายด้วยเครื่องมือในรูปแบบต่างๆ     - การเจรจาต่อรองอย่างเหนือชั้น     - การปิดการขายให้ลูกค้าเห็นคุณค่าด้วยตัวเอง การเรียนรู้ในรูปแบบ Blended Learning เชิงปฏิบัติการจริง ด้วยการฝึกฝนทักษะต่างๆ ด้วยตัวเอง ทำให้ผู้เรียน ได้ปรับปรุง แก้ไข แนวทางและเทคนิคการขายของตัวเองได้ทันที     - VDO (Self-Learning)     - Practices in Classroom     - Show & Share ซึ่งกันและกัน
+                    รายละเอียดของหลักสูตรฝึกอบรมหลักการขายเชิงกลยุทธ์ (Strategic Selling)  สนุกกับ คำสำคัญ ของงานขาย  หัวใจสำคัญของการขายให้โดนใจ  ทักษะพื้นฐานของการขาย  คุณสมบัติของนักขายมืออาชีพ  กิจกรรม: กำหนดแนวทางการขายเชิงกลยุทธ์ด้วย Canvasเทคนิคการนำเสนอด้วยเครื่องมือในรูปแบบต่างๆ (Presentation)  การนำเสนอให้สอดคล้องคุณลักษณะของบุคคล (DISC)  การนำเสนอด้วย Presentation Tools Kit  การนำเสนอในรูปแบบ Pitching & Storytelling  Role Playing: การฝึกฝนเทคนิคการนำเสนอให้โดนใจ     เทคนิคการเจรจาต่อรองอย่างเหนือชั้น (Negotiation)  หลักการเจรจาต่อรองอย่างมีคุณภาพ  การกำหนดจุดประสงค์ให้ชัดเจน  การประเมินทางเลือกของการเจรจา (BATNA)  การบริหารจัดการให้การเจรจามีคุณภาพ (ZOPA)  การเตรียมความพร้อมก่อนการเจรจาต่อรอง  Role Playing: การฝึกฝนเทคนิคการเจรจาต่อรองอย่างสร้างสรรค์เทคนิคการปิดการขายให้ลูกค้าเห็นคุณค่า (Value Proposition)   
+                </p>
+                <div class="d-flex justify-content-end w-100" style="color: #989898;">
+                    <i class="fa-regular fa-clock me-2"></i>
+                    <span id="">30 นาที</span>
+                </div>
+
+                <div class="d-flex justify-content-center w-100 mt-3">
+                    <video src="https://www.franchisebuilder2024.com/video/The%20Franchise%20Builder_Final.mp4" controls  loop muted style="width:100%;border-radius: 10px; max-width: 700px;" class="video-preview"></video>
+                </div>
+
+                <div class="w-100 mt-3">
+                    <p class="mb-0" style="color: #989898;font-size: 14px;font-style: normal;font-weight: 500;line-height: normal;">ถูกใจหลักสูตรนี้?</p>
+
+                    <div class="d-flex justify-content-end ">
+                        <button class="btn btn-like  me-1" onclick="document.querySelector('.btn-like').classList.toggle('active');">
+                            <div class="icon-btn d-flex">
+                                <i class="fa-solid fa-thumbs-up"></i>
+                            </div>
+                            <div class="d-flex align-items-center ms-1">25</div>
+    
+                        </button>
+                        <button class="btn btn-dislike me-1" onclick="document.querySelector('.btn-dislike').classList.toggle('active');">
+                            <div class="icon-btn">
+                                <i class="fa-solid fa-thumbs-down"></i>
+                            </div>
+                        </button>
+                        <button class="btn btn-share me-1">
+                            <i class="fa-solid fa-share m-0"></i>
+                        </button>
+
+                        <div class=" px-2 py-0 d-flex align-items-start " onclick="document.querySelector('.btn-bookmark-training').classList.toggle('active')">
+                            <svg width="33" height="42" viewBox="0 0 33 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path class="bookmark-bg" d="M31.3077 0H1C0.447715 0 0 0.447716 0 1V40.3889C0 41.1306 0.779123 41.6141 1.44379 41.285L15.71 34.2198C15.9897 34.0813 16.318 34.0813 16.5976 34.2198L30.8639 41.285C31.5286 41.6141 32.3077 41.1306 32.3077 40.3889V1C32.3077 0.447715 31.86 0 31.3077 0Z" fill="#CDCDCD" />
+                                <path class="bookmark-icon" d="M12.8462 13.4417L7.21748 14.2246L7.11779 14.2441C6.96687 14.2825 6.82929 14.3587 6.7191 14.4648C6.6089 14.571 6.53004 14.7033 6.49057 14.8482C6.4511 14.9931 6.45243 15.1455 6.49442 15.2898C6.53642 15.4341 6.61757 15.5651 6.7296 15.6695L10.8073 19.4775L9.84567 24.8564L9.8342 24.9495C9.82496 25.0993 9.85737 25.2487 9.92811 25.3825C9.99885 25.5163 10.1054 25.6296 10.2368 25.7109C10.3682 25.7922 10.5198 25.8385 10.676 25.8451C10.8322 25.8518 10.9874 25.8184 11.1258 25.7486L16.1598 23.2093L21.1824 25.7486L21.2707 25.7875C21.4163 25.8425 21.5745 25.8594 21.7292 25.8364C21.8839 25.8134 22.0294 25.7513 22.1508 25.6565C22.2722 25.5618 22.3651 25.4377 22.4201 25.2971C22.475 25.1565 22.49 25.0044 22.4634 24.8564L21.5009 19.4775L25.5804 15.6686L25.6492 15.5967C25.7475 15.4805 25.812 15.3414 25.836 15.1936C25.86 15.0458 25.8428 14.8945 25.786 14.7551C25.7293 14.6157 25.635 14.4933 25.5129 14.4003C25.3907 14.3072 25.2451 14.2469 25.0907 14.2255L19.4621 13.4417L16.9459 8.54942C16.8731 8.40768 16.7604 8.28832 16.6205 8.20485C16.4807 8.12138 16.3193 8.07715 16.1546 8.07715C15.9898 8.07715 15.8284 8.12138 15.6886 8.20485C15.5487 8.28832 15.436 8.40768 15.3632 8.54942L12.8462 13.4417Z" fill="#FBFBFB" />
+                            </svg>
+                        </div>
+
+                    </div>
+                    <div class="mt-5">
+                        <a href="">
+                            <i class="fa-solid fa-chevron-left"></i> กลับหน้ารวมหลักสูตร
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+<script>
+    document.querySelectorAll('.star-rating').forEach(el => {
+        const rating = parseFloat(el.getAttribute('data-star'));
+        el.style.setProperty('--rating', (rating / 5) * 100 + '%');
+        el.style.setProperty('--rating-width', `${(rating / 5) * 100}%`);
+    });
+</script>
 @endsection

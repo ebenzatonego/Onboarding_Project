@@ -25,7 +25,7 @@ class Calendar extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'type', 'user_id', 'all_day', 'date_start', 'date_end', 'time_start', 'time_end', 'training_id', 'appointment_id', 'activity_id'];
+    protected $fillable = ['title', 'type', 'user_id', 'all_day', 'date_start', 'date_end', 'time_start', 'time_end', 'training_id', 'appointment_id', 'activity_id','type_memo'];
 
     
 }

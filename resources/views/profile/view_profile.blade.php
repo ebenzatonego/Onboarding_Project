@@ -465,9 +465,13 @@
                                 </p>
                             </div>
                             <div class="col-4 d-flex justify-content-end align-items-end">
-                                <a href="" style="color: #999999;font-size: 10px;"><u>ออกจากระบบ</u></a>
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="color: #999999;font-size: 10px;">
+                                    <u>ออกจากระบบ</u>
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
                             </div>
-
                         </div>
                         <div class="alert-license-expire">
                             <i class="fa-solid fa-triangle-exclamation"></i>
@@ -794,6 +798,15 @@
 
 
                 </div>
+
+                @if(in_array(Auth::user()->role, ['Super-admin', 'Admin', 'Staff']))
+                <center>
+                    <a href="{{ url('/welcome_admin') }}" class="btn btn-sm btn-info mb-3" style="width:80%;">
+                        For <b>{{ Auth::user()->role }}</b>
+                    </a>
+                </center>
+                @endif
+
                 <div class="contact-leader mb-5">
                     <p style="color: #003781;font-size: 16px;font-weight: bolder;">Contact Leader</p>
                     <div class="d-flex align-items-center">

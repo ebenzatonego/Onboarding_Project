@@ -43,12 +43,12 @@ class LoginController extends Controller
 
     public function username()
     {
-        return 'username'; // กำหนดให้ใช้ 'username' แทน 'email'
+        return 'account'; // กำหนดให้ใช้ 'account' แทน 'email'
     }
 
     public function login(Request $request)
     {
-        $credentials = $request->only('username', 'password');
+        $credentials = $request->only('account', 'password');
 
         if (Auth::attempt($credentials)) {
             // Authentication passed...
@@ -62,11 +62,11 @@ class LoginController extends Controller
             // ]);
             
             $data_user = Auth::user();
-            if($data_user->video_instruction != "no"){
+            if($data_user->check_video_welcome_page != "Yes"){
                 return redirect("/video_instruction");
             }
             else{
-                return redirect("/profile");
+                return redirect("/home");
             }
         }
 

@@ -25,7 +25,7 @@ class Product_type extends Model
      *
      * @var array
      */
-    protected $fillable = ['name_type', 'number_menu', 'check_highlight'];
+    protected $fillable = ['name_type', 'number_menu', 'check_highlight','icon','color_code'];
 
     
 }

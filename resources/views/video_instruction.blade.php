@@ -219,7 +219,44 @@
         background-color: rgb(248, 248, 248,0.61);
         
     }
+
+    .shine {
+        font-size: 2em;
+        font-weight: 900;
+        color: rgba(21, 30, 52, 0.3);
+        background: #222 -webkit-gradient(
+            linear,
+            left top,
+            right top,
+            from(#222),
+            to(#222),
+            color-stop(0.5, #fff)
+        ) 0 0 no-repeat;
+        background-image: -webkit-linear-gradient(
+            -40deg,
+            transparent 0%,
+            transparent 40%,
+            #fff 50%,
+            transparent 60%,
+            transparent 100%
+      );
+        -webkit-background-clip: text;
+        -webkit-background-size: 50px;
+        -webkit-animation: zezzz;
+        -webkit-animation-duration: 5.5s;
+        -webkit-animation-iteration-count: infinite;
+    }
+    @-webkit-keyframes zezzz {
+        0% {
+            background-position: -265px;
+        }
+        100% {
+            background-position: 265px;
+        }
+    }
+
 </style>
+
 <div class="container text-white p-0" style="position: relative;">
     <div class="top-section">
         <div class="text-center">
@@ -240,13 +277,18 @@
             <div>
 
                 <p style="font-size: 20px;margin: 5px;">ยินดีต้อนรับ !</p>
-                <p style="font-size: 23px;margin: 30px 0 30px 0;">{{Auth::user()->name}}</p>
+                <!-- <p style="font-size: 25px;margin: 15px 0 15px 0;">
+                    <b>{{Auth::user()->name}}</b>
+                </p> -->
+                <div style="font-size: 25px;margin: 15px 0 15px 0;" class="shine">
+                    {{Auth::user()->name}}
+                </div>
                 <p class="m-0">เข้าสู่เว็บ Allianz Journey</p>
                 <p>แหล่งรวมความรู้และข่าวสารอัพเดตจาก Allianz</p>
     
                
                 <button type="submit" id="btn_dont_show_welcome" class="btn-submit-login" disabled>
-                    ถัดไป
+                    ถัดไป <span id="text_countdown"></span>
                 </button>
 
                 <div class="d-flex align-items-center justify-content-center">
@@ -257,14 +299,63 @@
         </div>
     </div>
 </div>
+
+
 <script>
-    function validate_condition() {
-        if (document.getElementById('check_dont_show_welcome').checked) {
-            document.querySelector('#btn_dont_show_welcome').disabled = false;
-        } else {
-            document.querySelector('#btn_dont_show_welcome').disabled = true;
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // console.log("START");
+        var countdownNumber = 10;
+        var countdownElement = document.getElementById('text_countdown');
+        var buttonElement = document.getElementById('btn_dont_show_welcome');
+
+        // อัปเดตข้อความนับถอยหลังและทำงานนับถอยหลัง
+        function updateCountdown() {
+            countdownElement.textContent = "("+countdownNumber+")";
+
+            // ตรวจสอบว่าการนับถอยหลังสิ้นสุดแล้วหรือไม่
+            if (countdownNumber === 0) {
+                // เปิดการใช้งานปุ่มเมื่อการนับถอยหลังสิ้นสุด
+                buttonElement.disabled = false;
+                countdownElement.textContent = "";
+                document.querySelector('#btn_dont_show_welcome').disabled = false;
+            } else {
+                // ลดค่าการนับถอยหลังและตั้งเวลาถัดไป
+                countdownNumber--;
+                document.querySelector('#btn_dont_show_welcome').disabled = true;
+                setTimeout(updateCountdown, 1000);
+            }
         }
+
+        // เริ่มการนับถอยหลัง
+        updateCountdown();
+
+        buttonElement.addEventListener('click', function() {
+            window.location.href = "{{ url('/home') }}";
+        });
+
+    });
+
+
+
+    function validate_condition() {
+        let check_dont_show_welcome = document.getElementById('check_dont_show_welcome').checked;
+            // console.log(check_dont_show_welcome);
+
+        let skip_video_welcome;
+        if(check_dont_show_welcome){
+            skip_video_welcome = "Yes";
+        }else{
+            skip_video_welcome = "No";
+        }
+
+        fetch("{{ url('/') }}/api/skip_video_welcome/" + "{{ Auth::user()->id }}" + "/" + skip_video_welcome)
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+            });
     }
+
 </script>
 <!-- 
 <div class="container-center text-white d-none">

@@ -115,16 +115,45 @@
                 <li>
                     <a href="javascript:;" class="has-arrow">
                         <div class="parent-icon">
-                            <i class="fa-duotone fa-users"></i>
+                            <i class="fa-regular fa-bars-progress"></i>
                         </div>
                         <div class="menu-title">
-                            Member
+                            การจัดการ
                         </div>
                     </a>
                     
                     <ul>
                         <li>
-                            <a class="btn" onclick="pass_lock_menu('');">
+                            <a class="btn" onclick="pass_lock_menu('{{ url("/video_welcome_page") }}');">
+                                <i class="fa-solid fa-photo-film-music"></i> Video Intro
+                            </a>
+                        </li>
+                        <li>
+                            <a class="btn" href="#">
+                                <i class="fa-solid fa-sparkles"></i> Video Congrate
+                            </a>
+                        </li>
+                        <li>
+                            <a class="btn" href="#">
+                                <i class="fa-solid fa-megaphone"></i> Custom Popup
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon">
+                            <i class="fa-duotone fa-users"></i>
+                        </div>
+                        <div class="menu-title">
+                            สมาชิก
+                        </div>
+                    </a>
+                    
+                    <ul>
+                        <li>
+                            <a class="btn" onclick="pass_lock_menu('{{ url("/index_user_excel") }}');">
                                 <i class="fa-solid fa-circle-plus"></i> เพิ่มสมาชิก
                             </a>
                         </li>

@@ -1,0 +1,28 @@
+{
+    "fields": [
+        {
+            "name": "name_rank",
+            "type": "string"
+        },
+        {
+            "name": "number_story",
+            "type": "string"
+        },
+        {
+            "name": "title_story",
+            "type": "string"
+        },
+        {
+            "name": "description_story",
+            "type": "longtext"
+        },
+        {
+            "name": "photo_story",
+            "type": "longtext"
+        },
+        {
+            "name": "user_view",
+            "type": "longtext"
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "fields": [
+        {
+            "name": "area",
+            "type": "string"
+        },
+        {
+            "name": "sub_area",
+            "type": "string"
+        }
+    ]
+}

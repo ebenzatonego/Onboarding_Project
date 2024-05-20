@@ -1,0 +1,36 @@
+{
+    "fields": [
+        {
+            "name": "title",
+            "type": "string"
+        },
+        {
+            "name": "detail",
+            "type": "longtext"
+        },
+        {
+            "name": "photo",
+            "type": "longtext"
+        },
+        {
+            "name": "video",
+            "type": "longtext"
+        },
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "status",
+            "type": "string"
+        },
+        {
+            "name": "log_video",
+            "type": "longtext"
+        },
+        {
+            "name": "user_view",
+            "type": "longtext"
+        }
+    ]
+}

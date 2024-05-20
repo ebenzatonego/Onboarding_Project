@@ -25,7 +25,7 @@ class Tools_contact extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'phone', 'mail', 'type'];
+    protected $fillable = ['phone', 'mail', 'type'];
 
     
 }

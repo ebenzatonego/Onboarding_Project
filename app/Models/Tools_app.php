@@ -25,7 +25,7 @@ class Tools_app extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'type', 'photo_icon', 'link_ios', 'click_link_ios', 'link_android', 'click_link_android'];
+    protected $fillable = ['name', 'type', 'photo_icon', 'link_ios', 'click_link_ios', 'link_android', 'click_link_android','detail','number'];
 
     
 }

@@ -72,7 +72,9 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
 // Super-admin,Admin , Member
 Route::middleware(['auth', 'role:Super-admin,Admin,Member'])->group(function () {
 
+    Route::get('/index_user_excel', 'AdminController@index_user_excel');
     Route::get('/news_index', 'NewsController@index');
+    Route::resource('video_welcome_page', 'Video_welcome_pageController');
 
 });
 
@@ -84,7 +86,6 @@ Route::resource('log_video_trainings', 'Log_video_trainingsController');
 Route::resource('log_video_news', 'Log_video_newsController');
 Route::resource('log_video_tools_tutorials', 'Log_video_tools_tutorialsController');
 Route::resource('logs', 'LogsController');
-Route::resource('video_welcome_page', 'Video_welcome_pageController');
 Route::resource('appointments', 'AppointmentsController');
 Route::resource('tools_apps', 'Tools_appsController');
 Route::resource('tools_contacts', 'Tools_contactsController');
@@ -95,3 +96,12 @@ Route::resource('activity_types', 'Activity_typesController');
 Route::resource('product_types', 'Product_typesController');
 Route::resource('products', 'ProductsController');
 Route::resource('notis', 'NotisController');
+Route::resource('appointment_areas', 'Appointment_areasController');
+Route::resource('career_paths', 'Career_pathsController');
+Route::resource('career_path_contents', 'Career_path_contentsController');
+Route::resource('my_goal_users', 'My_goal_usersController');
+Route::resource('my_goal_types', 'My_goal_typesController');
+Route::resource('content_popups', 'Content_popupsController');
+Route::resource('contact_area_supervisors', 'Contact_area_supervisorsController');
+Route::resource('contact_group_managers', 'Contact_group_managersController');
+Route::resource('contact_upper_als', 'Contact_upper_alsController');

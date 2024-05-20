@@ -1,0 +1,35 @@
+<div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
+    <label for="name" class="control-label">{{ 'Name' }}</label>
+    <input class="form-control" name="name" type="text" id="name" value="{{ isset($contact_upper_al->name) ? $contact_upper_al->name : ''}}" >
+    {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
+</div>
+<div class="form-group {{ $errors->has('nickname') ? 'has-error' : ''}}">
+    <label for="nickname" class="control-label">{{ 'Nickname' }}</label>
+    <input class="form-control" name="nickname" type="text" id="nickname" value="{{ isset($contact_upper_al->nickname) ? $contact_upper_al->nickname : ''}}" >
+    {!! $errors->first('nickname', '<p class="help-block">:message</p>') !!}
+</div>
+<div class="form-group {{ $errors->has('account') ? 'has-error' : ''}}">
+    <label for="account" class="control-label">{{ 'Account' }}</label>
+    <input class="form-control" name="account" type="text" id="account" value="{{ isset($contact_upper_al->account) ? $contact_upper_al->account : ''}}" >
+    {!! $errors->first('account', '<p class="help-block">:message</p>') !!}
+</div>
+<div class="form-group {{ $errors->has('organization_name') ? 'has-error' : ''}}">
+    <label for="organization_name" class="control-label">{{ 'Organization Name' }}</label>
+    <input class="form-control" name="organization_name" type="text" id="organization_name" value="{{ isset($contact_upper_al->organization_name) ? $contact_upper_al->organization_name : ''}}" >
+    {!! $errors->first('organization_name', '<p class="help-block">:message</p>') !!}
+</div>
+<div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
+    <label for="phone" class="control-label">{{ 'Phone' }}</label>
+    <input class="form-control" name="phone" type="text" id="phone" value="{{ isset($contact_upper_al->phone) ? $contact_upper_al->phone : ''}}" >
+    {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
+</div>
+<div class="form-group {{ $errors->has('email') ? 'has-error' : ''}}">
+    <label for="email" class="control-label">{{ 'Email' }}</label>
+    <input class="form-control" name="email" type="text" id="email" value="{{ isset($contact_upper_al->email) ? $contact_upper_al->email : ''}}" >
+    {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
+</div>
+
+
+<div class="form-group">
+    <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
+</div>

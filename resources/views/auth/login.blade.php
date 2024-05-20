@@ -481,7 +481,7 @@ input:-webkit-autofill:active {
     
     
                 <div class="group-input-login">
-                    <input id="username" type="text" class="input-login-new" name="username"   autofocus placeholder="กรุณากรอกชื่อ/อีเมลของคุณ" required oninput="check_login()"  autocomplete="username">
+                    <input id="account" type="text" class="input-login-new" name="account"   autofocus placeholder="กรุณากรอกชื่อ/อีเมลของคุณ" required oninput="check_login()"  autocomplete="account">
                     <i class="fa-thin fa-circle-user icon-login-new"></i>
                 </div>
                 
@@ -593,10 +593,10 @@ test
     }) 
     
     function  check_login() {
-        let check_username = document.getElementById("username");
+        let check_account = document.getElementById("account");
         let check_password = document.getElementById("password");
-        console.log(check_username.value);
-        if (check_username.value && check_password.value) {
+        // console.log(check_account.value);
+        if (check_account.value && check_password.value) {
             document.querySelector('.btn-submit-login').disabled = false;
         }else{
             document.querySelector('.btn-submit-login').disabled = true;

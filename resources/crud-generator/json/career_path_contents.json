@@ -1,0 +1,56 @@
+{
+    "fields": [
+        {
+            "name": "career_path_id",
+            "type": "string"
+        },
+        {
+            "name": "title",
+            "type": "string"
+        },
+        {
+            "name": "icon",
+            "type": "longtext"
+        },
+        {
+            "name": "read",
+            "type": "string"
+        },
+        {
+            "name": "recommend",
+            "type": "string"
+        },
+        {
+            "name": "detail",
+            "type": "longtext"
+        },
+        {
+            "name": "pdf_file",
+            "type": "longtext"
+        },
+        {
+            "name": "photo",
+            "type": "longtext"
+        },
+        {
+            "name": "video",
+            "type": "longtext"
+        },
+        {
+            "name": "number",
+            "type": "string"
+        },
+        {
+            "name": "user_download_pdf",
+            "type": "longtext"
+        },
+        {
+            "name": "user_view",
+            "type": "longtext"
+        },
+        {
+            "name": "log_video",
+            "type": "longtext"
+        }
+    ]
+}

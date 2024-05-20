@@ -25,7 +25,7 @@ class Video_welcome_page extends Model
      *
      * @var array
      */
-    protected $fillable = ['name_video', 'type', 'user_id', 'status', 'log'];
+    protected $fillable = ['name_video', 'type', 'user_id', 'status', 'log','video'];
 
     
 }

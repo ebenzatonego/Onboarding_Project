@@ -192,24 +192,6 @@
     });
 </script>
 
-<!-- ----------------------------- firebase --------------------------------- -->
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
-<script>
-    // Initialize Firebase
-    var firebaseConfig = {
-        apiKey: "AIzaSyDdaRHU9RfAmLP9NHVnwvbEqBThNbwfs14",
-        authDomain: "test-storage-63113.firebaseapp.com",
-        projectId: "test-storage-63113",
-        storageBucket: "test-storage-63113.appspot.com",
-        messagingSenderId: "886771711607",
-        appId: "1:886771711607:web:6ce7ba6fb159414ba65072"
-    };
-    firebase.initializeApp(firebaseConfig);
-  
-    var storage = firebase.storage();
-</script>
-
 <script>
     function upload_to_firebase() {
       var fileInput = document.getElementById('select_video');

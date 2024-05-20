@@ -6,8 +6,8 @@
     <title>Onboarding Project</title>
 
     <!-- Favicons -->
-    <link href="{{ url('/img/logo/Favicons.png') }}" rel="icon">
-    <link href="{{ url('/img/logo/Favicons.png') }}" rel="apple-touch-icon">
+    <link href="{{ url('/img/logo/logo-login.png') }}" rel="icon">
+    <link href="{{ url('/img/logo/logo-login.png') }}" rel="apple-touch-icon">
 
     <!-- loader-->
     <link href="{{ asset('/theme/css/pace.min.css') }}" rel="stylesheet" />
@@ -47,7 +47,7 @@
 <div class="container">
     <div class="row">
 
-        <div class="col-12">
+        <!-- <div class="col-12">
             <div class="text-center">
                 <div class="col d-block d-md-none">
                     <img src="{{ url('/img/logo/Favicons.png') }}" style="width: 60%" id="header-text-login">
@@ -57,7 +57,7 @@
                     <img src="{{ url('/img/logo/Favicons.png') }}" style="width: 20%" id="header-text-login">
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div class="col-12 p-0">
             @yield('content')

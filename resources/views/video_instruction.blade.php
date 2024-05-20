@@ -265,7 +265,7 @@
             <p style="font-size: 10px;font-weight: bold;margin: 0;">ALLIANZ ON-BOARDING WEB</p>
 
             <div class="d-flex-justify-content-center w-100 p-3">
-                <video src="https://www.franchisebuilder2024.com/video/The%20Franchise%20Builder_Final.mp4" controls autoplay loop muted style="width:100%;border-radius: 10px; max-width: 700px;" class="video-preview"></video>
+                <video id="tag_video_intro" src="" controls autoplay loop muted style="width:100%;border-radius: 10px; max-width: 700px;" class="video-preview"></video>
             </div>
         </div>
 
@@ -305,6 +305,9 @@
 
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
+
+        get_video_intro();
+
         var countdownNumber = 10;
         var countdownElement = document.getElementById('text_countdown');
         var buttonElement = document.getElementById('btn_dont_show_welcome');
@@ -353,6 +356,17 @@
             .then(response => response.text())
             .then(result => {
                 // console.log(result);
+            });
+    }
+
+    function get_video_intro(){
+        fetch("{{ url('/') }}/api/get_video_intro")
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+                if(result){
+                    document.querySelector('#tag_video_intro').src = result ;
+                }
             });
     }
 

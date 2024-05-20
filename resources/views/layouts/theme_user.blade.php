@@ -4,8 +4,8 @@
     <title>The Franchise builder 2024</title>
 
     <!-- Favicons -->
-    <!-- <link href="{{ url('/img/logo/Favicons.png') }}" rel="icon">
-    <link href="{{ url('/img/logo/Favicons.png') }}" rel="apple-touch-icon"> -->
+    <link href="{{ url('/img/logo/logo-login.png') }}" rel="icon">
+    <link href="{{ url('/img/logo/logo-login.png') }}" rel="apple-touch-icon">
 
     <!-- loader-->
     <link href="{{ asset('/theme/css/pace.min.css') }}" rel="stylesheet" />

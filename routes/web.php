@@ -72,9 +72,14 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
 // Super-admin,Admin , Member
 Route::middleware(['auth', 'role:Super-admin,Admin,Member'])->group(function () {
 
+    // Admin
     Route::get('/index_user_excel', 'AdminController@index_user_excel');
+    // News
     Route::get('/news_index', 'NewsController@index');
+    // video_welcome_page
     Route::resource('video_welcome_page', 'Video_welcome_pageController');
+    Route::get('/manage_video_welcome_page', 'Video_welcome_pageController@manage_video_welcome_page');
+    Route::get('/create_video_welcome_page', 'Video_welcome_pageController@create_video_welcome_page');
 
 });
 

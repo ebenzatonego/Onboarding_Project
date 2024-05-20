@@ -18,6 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/get_video_intro', 'AdminController@get_video_intro');
 Route::get('/get_data_for_calendar', 'AdminController@get_data_for_calendar');
 Route::get('/skip_video_welcome/{user_id}/{skip_video_welcome}', 'AdminController@skip_video_welcome');
 

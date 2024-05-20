@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Training;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\Video_welcome_page;
 
 class AdminController extends Controller
 {
@@ -43,5 +44,13 @@ class AdminController extends Controller
 
         return "success" ;
 
+    }
+
+    function get_video_intro(){
+        $data = Video_welcome_page::where('type','Video_Intro')
+            ->where('status','Yes')
+            ->first();
+
+        return $data->video ;
     }
 }

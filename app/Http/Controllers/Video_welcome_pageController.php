@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use Illuminate\Support\Facades\DB;
+use App\User;
 
 use App\Models\Video_welcome_page;
 use Illuminate\Http\Request;
@@ -55,10 +57,22 @@ class Video_welcome_pageController extends Controller
     {
         
         $requestData = $request->all();
-        
+
+        if($requestData['status'] == "Yes"){
+            DB::table('video_welcome_pages')
+                ->where([ 
+                        ['type', 'Video_Intro'],
+                        ['status', 'Yes'],
+                    ])
+                ->update([
+                        'status' => null,
+                    ]);
+        }
+
         Video_welcome_page::create($requestData);
 
-        return redirect('video_welcome_page')->with('flash_message', 'Video_welcome_page added!');
+        return view('video_welcome_page.manage_video');
+        // return redirect('video_welcome_page')->with('flash_message', 'Video_welcome_page added!');
     }
 
     /**
@@ -120,5 +134,13 @@ class Video_welcome_pageController extends Controller
         Video_welcome_page::destroy($id);
 
         return redirect('video_welcome_page')->with('flash_message', 'Video_welcome_page deleted!');
+    }
+
+    function manage_video_welcome_page(){
+        return view('video_welcome_page.manage_video');
+    }
+
+    function create_video_welcome_page(){
+        return view('video_welcome_page.create');
     }
 }

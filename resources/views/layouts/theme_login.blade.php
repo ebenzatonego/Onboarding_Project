@@ -40,7 +40,13 @@
         backdrop-filter: blur(5px);
     }
     
-
+    video::-webkit-media-controls-timeline {
+        display: none;
+    }
+    video::-webkit-media-controls-current-time-display,
+    video::-webkit-media-controls-time-remaining-display {
+        display: none;
+    }
 </style>
 
 <body>

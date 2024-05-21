@@ -491,10 +491,10 @@ input:-webkit-autofill:active {
                     <i class="fa-thin fa-lock icon-login-new"></i>
                 </div>
     
-                <button type="submit"  class="btn-submit-login" disabled>
+                <button id="submit_button" type="submit" class="btn-submit-login" disabled>
                     เข้าสู่ระบบ
                 </button>
-                <a class="btn-forgot-password" href="authentication-forgot-password.html">ลืมรหัสผ่าน</a>
+                <!-- <a class="btn-forgot-password" href="authentication-forgot-password.html">ลืมรหัสผ่าน</a> -->
             </div>
         </form>
     </div>
@@ -564,12 +564,12 @@ input:-webkit-autofill:active {
 </div> -->
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+<button id="btn_modal_pdpa" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#Modal_PDPA">
 test
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="Modal_PDPA" tabindex="-1" role="dialog" aria-labelledby="Modal_PDPATitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document" >
     <div class="modal-content"style="border-radius: 10px;margin: 0 20px;">
         <div class="modal-body" style="background-color: #3D467F;border-radius: 10px; color:#fff;font-size: 14px;padding:  50px 30px;">
@@ -580,8 +580,8 @@ test
                 <input name="check_box_submit_condition" id="check_box_submit_condition" class="form-check-input font-18 m-0 p-o" type="checkbox" value="" aria-label="Checkbox for following text input" onchange="validate_condition()">
                 <label for="check_box_submit_condition" class="ms-2">ฉันยอมรับ และยินยอมในเงื่อนไขดังกล่าว</label>
             </div> 
-            <button type="button"  class="btn-submit-login mb-0" id="btn_submit_condition" style="font-weight: bolder;" disabled>
-                เข้าสู่ระบบ
+            <button type="button"  class="btn-submit-login mb-0" id="btn_submit_condition" style="font-weight: bolder;" disabled onclick="update_pdpa();">
+                ถัดไป
             </button>
         </div>
     </div>
@@ -589,8 +589,45 @@ test
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        check_login()
-    }) 
+        check_login();
+
+        var form = document.getElementById('form_login');
+        var submitButton = document.getElementById('submit_button');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault(); // ป้องกันฟอร์มจากการส่งข้อมูลโดยอัตโนมัติ
+
+            // Check PDPA
+            let account = document.querySelector('#account').value ;
+            fetch("{{ url('/') }}/api/check_pdpa/" + account)
+                .then(response => response.text())
+                .then(result => {
+                    // console.log(result);
+                    if(result == "Yes"){
+                        form.submit();
+                    }
+                    else if(result == "No"){
+                        document.querySelector('#btn_modal_pdpa').click();
+                    }
+                    else if(result == "Account none"){
+                        alert("ไม่พบ Account ของคุณ");
+                    }
+                });
+        });
+    })
+
+    function update_pdpa(){
+        let form = document.getElementById('form_login');
+        let account = document.querySelector('#account').value ;
+        fetch("{{ url('/') }}/api/update_pdpa/" + account)
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+                if(result == "ok"){
+                    form.submit();
+                }
+            });
+    }
     
     function  check_login() {
         let check_account = document.getElementById("account");

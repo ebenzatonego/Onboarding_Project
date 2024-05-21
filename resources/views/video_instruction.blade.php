@@ -303,6 +303,8 @@
 
 <script>
 
+    var button_skip_Clicked = false;
+
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
 
@@ -334,6 +336,13 @@
         updateCountdown();
 
         buttonElement.addEventListener('click', function() {
+            // console.log(countTime);
+            button_skip_Clicked = true;
+            fetch("{{ url('/') }}/api/update_countTime_video_intro/" + "{{ Auth::user()->id }}" + "/" + countTime)
+                .then(response => response.text())
+                .then(result => {
+                    // console.log(result);
+                });
             window.location.href = "{{ url('/home') }}";
         });
 
@@ -370,184 +379,55 @@
             });
     }
 
-</script>
-<!-- 
-<div class="container-center text-white d-none">
-    <div style="width: 90vw;">
-        <h4 class="header-instruction text-center mt-3">Video Instruction</h4>
-        <div class="container section-info pb-3">
-            <div>
-                <div class="d-flex-justify-content-center w-100">
-                    <video src="https://www.franchisebuilder2024.com/video/The%20Franchise%20Builder_Final.mp4" controls autoplay loop muted style="width:100%;" class="video-preview"></video>
-                </div>
-            </div>
 
-            <div class="detail-info d-flex justify-content-center align-items-center">
-                <div>
-                     <h2 class="header-info text-center">
-                        ยินดีต้อนรับ
-                    </h2>
-                    <p class="text-center">
-                        คุณ <span style="color: #10c6e3;">{{ Auth::user()->name ? Auth::user()->name : 'ไม่พบชื่อ'}}</span> <span style="color: #10c6e3;">{{ Auth::user()->lastname ? Auth::user()->lastname : 'ไม่พบนามสกุล'}}</span>
-                    </p>
+    // นับเวลาวิดีโอ
+    const video = document.getElementById('tag_video_intro');
+    let countTime = 0;
+    let interval;
 
-                    <p class="text-center">
-                        เข้าสู่ครอบครัว Alianz
-                    </p>
-                </div>
-               
-            </div>
-        </div>
-
-        <style>
-            .btn-submit {
-                -webkit-border-radius: 5px;
-                border-radius: 5px;
-                -moz-border-radius: 5px;
-                -khtml-border-radius: 5px;
-                font-size: 16px;
-                margin-top: 15px;
-                padding: 5px 40px;
-                background-color: #005CD3;
-                color: #fff;
-            }
-
-            .btn-submit:hover {
-                border: 1px solid #00E0FF;
-                box-shadow: 0px 0px 15px 1px #00FBFF;
-                color: #fff;
-
-            }
-
-            .btn-cancel {
-                font-size: 16px;
-                margin-top: 15px;
-                padding: 5px 40px;
-                -webkit-border-radius: 5px;
-                border-radius: 5px;
-                -moz-border-radius: 5px;
-                -khtml-border-radius: 5px;
-
-                background-color: #FF3838;
-                color: #fff;
-            }
-
-            .img-modal {
-                margin: 20px 0px;
-                width: 120px;
-            }
-
-            .modal-text-header {
-                font-size: 16px;
-            }
-
-            .modal-detail {
-                font-size: 12px;
-            }
-
-            .accept-text-header {
-                color: #128DFF;
-            }
-
-            .btn-outline-submit {
-                border: #005CD3 1px solid;
-                color: #005CD3;
-
-                -webkit-border-radius: 5px;
-                border-radius: 5px;
-                -moz-border-radius: 5px;
-                -khtml-border-radius: 5px;
-                font-size: 16px;
-                margin-top: 15px;
-                padding: 5px 40px;
-            }
-
-            .text-agree {
-                color: #00377F;
-            }
-
-            #checkRegis {
-                accent-color: #002449;
-                font-size: 18px;
-            }
-
-            .text-warn {
-                font-size: 12px;
-                padding: 0 30px;
-            }
-        </style>
-        <div class="d-flex justify-content-center mt-4 mb-3">
-            <a href="{{ url('/profile') }}" class="btn btn-submit mx-3" type="button">Next</a>
-        </div>
-    </div>
-</div> -->
-
-<!-- Modal -->
-<!-- <div class="modal fade" id="modalAcceptRegis" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="d-flex justify-content-center">
-                    <img src="{{ url('/img/icon/ask.png') }}" class="img-modal text-center">
-                </div>
-
-                <h6 class="text-center accept-text-header">
-                    <b>คุณต้องการเข้าร่วมกิจกรรมใช่หรือไม่ ?</b>
-                </h6>
-                <p class="text-center modal-detail">ยืนยันการเข้าร่วม Franchise builder 2024 และยินยอมให้บริษัทหักชำระค่าบริการ</p>
-                <div class="text-center mt-5">
-                    <input type="checkbox" name="" id="checkRegis" onchange="AcceptRegister()">
-                    <span class="text-agree">ฉันยอมรับเงื่อนไขเเละข้อกำหนด</span>
-                </div>
-
-                <div class="d-flex justify-content-center ">
-                    <button type="submit" id="btnAcceptRegis" class="btn btn-outline-submit mx-3" disabled onclick="location.href='{{ url('first_profile?type=first_profile') }}'">OK</button>
-                    <button type="button" class="btn btn-cancel px-4  " data-dismiss="modal">Cancel</button>
-                </div>
-                <a class="infomation" data-toggle="modal" data-target="#modal-infomation">
-                    <div class=" m-0 p-0">
-
-                        <i class="fa-solid fa-circle-info icon m-0 p-0"></i>
-                    </div>
-                    <span class="detail">กดเพื่อดูข้อมูลเพิ่มเติม</span>
-                </a>
-            </div>
-        </div>
-    </div>
-</div> -->
-
-<!-- <script>
-    function AcceptRegister() {
-        let checkRegis = document.getElementById("checkRegis");
-
-        if (checkRegis.checked) {
-            document.getElementById("btnAcceptRegis").classList.remove('btn-outline-submit');
-            document.getElementById("btnAcceptRegis").classList.add('btn-submit');
-            document.getElementById("btnAcceptRegis").disabled = false;
-        } else {
-            document.getElementById("btnAcceptRegis").classList.add('btn-outline-submit');
-            document.getElementById("btnAcceptRegis").classList.remove('btn-submit');
-            document.getElementById("btnAcceptRegis").disabled = true;
-        }
+    // ฟังก์ชั่นเพื่อเริ่มนับเวลา
+    function startCountTime() {
+        interval = setInterval(() => {
+            countTime += 1;
+            // console.log('Elapsed time:', countTime);
+        }, 1000); // เพิ่มค่าทีละ 1 วินาที
     }
-</script>
 
-<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-    @csrf
-</form>
-
-<script>
-    function check_form() {
-        if ($("#form_upload_info")[0].checkValidity()) {
-
-            $('#modal_upload_info_success').modal('show');
-
-        } else {
-            // Validate Form
-            $("#form_upload_info")[0].reportValidity();
-            event.preventDefault();
-        }
+    // ฟังก์ชั่นเพื่อหยุดนับเวลา
+    function stopCountTime() {
+        clearInterval(interval);
     }
-</script> -->
 
+    // จับเหตุการณ์เมื่อวิดีโอเริ่มเล่น
+    video.addEventListener('play', () => {
+        startCountTime();
+    });
+
+    // จับเหตุการณ์เมื่อวิดีโอหยุด
+    video.addEventListener('pause', () => {
+        stopCountTime();
+    });
+
+    // จับเหตุการณ์เมื่อวิดีโอสิ้นสุดการเล่น
+    video.addEventListener('ended', () => {
+        stopCountTime();
+    });
+
+
+    // ก่อนปิดหน้าหรือเปลี่ยนหน้า
+    window.addEventListener('beforeunload', function (e) {
+        // console.log(countTime);
+        if (!button_skip_Clicked) {
+        fetch("{{ url('/') }}/api/update_countTime_video_intro/" + "{{ Auth::user()->id }}" + "/" + countTime)
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+            });
+        }
+    });
+
+
+
+
+</script>
 @endsection

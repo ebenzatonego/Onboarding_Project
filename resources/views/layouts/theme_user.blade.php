@@ -28,6 +28,14 @@
     
     </head>
 <style>
+    video::-webkit-media-controls-timeline {
+        display: none;
+    }
+    video::-webkit-media-controls-current-time-display,
+    video::-webkit-media-controls-time-remaining-display {
+        display: none;
+    }
+
     body ,html{
         background-color: #fff !important;
     }

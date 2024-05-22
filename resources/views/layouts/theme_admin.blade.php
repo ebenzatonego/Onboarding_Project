@@ -97,12 +97,14 @@
         <div class="sidebar-wrapper" data-simplebar="true">
             <div class="has-arrow">
                 <div class="sidebar-header toggle-icon">
-                    <img id="img_logo_sidebar" src="{{ url('/img/logo/LOGO (2).png') }}" class="d-none" style="width:50px;">
+                    <img id="img_logo_sidebar" src="{{ url('/img/logo/LOGO (2).png') }}" class="d-none" style="width:35px;">
                     <!-- <h6 style="font-size: 20px;" class="logo-text">The Franchise builder 2024</h6> -->
 
                     <div class="text-center mt-3 logo-text">
-                        <img src="{{ url('/img/logo/LOGO (2).png') }}" style="width:55%;">
-                        <p class="mt-1" style="margin-left: 5px;color: #fff;font-size: 12px;">The AZ Sale Onboarding</p>
+                        <img src="{{ url('/img/logo/LOGO (2).png') }}" style="width:15%;">
+                        <p class="mt-1" style="margin-left: 5px;color: #fff;font-size: 12px;">
+                            ALLIANZ ON-BOARDING WEB
+                        </p>
                     </div>
 
                     <div class="ms-auto">

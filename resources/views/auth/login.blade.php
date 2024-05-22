@@ -1,75 +1,135 @@
 @extends('layouts.theme_login')
 
 @section('content')
-<!-- <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+<style>
+    @media (max-width: 992px) {
+        .authentication-top {
+            position: absolute;
+            background: rgb(123, 0, 0, 0) !important;
+            top: 0;
+            left: 0;
+            right: 0;
+            min-height: 35%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+        .authentication-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            min-height: 65%;
+            background: rgb(98, 115, 221);
+            background: -moz-linear-gradient(183deg, rgba(98, 115, 221, 1) 0%, rgba(36, 50, 134, 1) 100%);
+            background: -webkit-linear-gradient(183deg, rgba(98, 115, 221, 1) 0%, rgba(36, 50, 134, 1) 100%);
+            background: linear-gradient(183deg, rgba(98, 115, 221, 1) 0%, rgba(36, 50, 134, 1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#6273dd", endColorstr="#243286", GradientType=1);
+            border-radius: 50px 0 0 0;
+            -webkit-border-radius: 50px 0 0 0;
+            -moz-border-radius: 50px 0 0 0;
+            -ms-border-radius: 50px 0 0 0;
+            -o-border-radius: 50px 0 0 0;
 
-                        <div class="form-group row">
-                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-                            <div class="col-md-6">
-                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+        .section-authentication-signin {
+            height: 100vh;
+        }
+    }
 
-                                @error('username')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+    @media (min-width: 992px) {
+       
+        .shape{
+            display: none;
+        }
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+        .wrapper{
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+        align-items: center;
+      
+        }
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+        .authentication-top {
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
 
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+        .authentication-bottom {
+            position: relative;
+            border-radius:20px;
+            -webkit-border-radius:50px;
+            -moz-border-radius:50px;
+            -ms-border-radius:50px;
+            -o-border-radius:50px;
+            padding: 40px 20px ;
+            flex: 0 0 50%;
+            max-width: 50%;
+            background: rgb(98, 115, 221);
+            background: -moz-linear-gradient(183deg, rgba(98, 115, 221, 1) 0%, rgba(36, 50, 134, 1) 100%);
+            background: -webkit-linear-gradient(183deg, rgba(98, 115, 221, 1) 0%, rgba(36, 50, 134, 1) 100%);
+            background: linear-gradient(183deg, rgba(98, 115, 221, 1) 0%, rgba(36, 50, 134, 1) 100%);
+        }
+    }
 
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
+    /* 
+    .section-authentication-signin {
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
+
+        height: 100%;
+
+
+        margin-top: 6rem;
+
+
+        margin-bottom: 2rem;
+
+
+    }
+
+
+    .authentication-reset-password {
+
+
+        height: auto;
+
+
+        padding: 2.0rem 1rem;
+
+
+    }
+
+
+    .authentication-lock-screen {
+
+
+        height: auto;
+
+
+        padding: 2.0rem 1rem;
+
+
+    }
+
+
+    .compose-mail-popup {
+        width: auto;
+        position: fixed;
+        bottom: -30px;
+        right: 0;
+        left: 0;
+    } */
+</style>
+
 <style>
     .header-login h6 {
         color: #fff;
@@ -288,11 +348,9 @@
     .shape:before {
         content: "";
         position: absolute;
-        top: calc(50% - 50px);
+        top: -50px;
         right: -50px;
         transform: translate(-50%, -50%);
-        background-color: tran;
-    
         height: 100px;
         width: 100px;
         border-radius: 50px 0 50px 0;
@@ -356,8 +414,8 @@
         border: #999999 1px solid;
     }
 
-    
-    
+
+
 
     .input-login-new::-webkit-input-placeholder {
         color: #fff;
@@ -385,11 +443,13 @@
     }
 
     .input-login-new:focus,
-    .input-login-new:hover ,.input-login-new:valid{
+    .input-login-new:hover,
+    .input-login-new:valid {
         outline: none;
         border-color: #fff;
         background-color: #243286;
     }
+
     .icon-login-new {
         position: absolute;
         left: 1rem;
@@ -427,217 +487,163 @@
     .input-login-new:focus::placeholder {
         color: #fff !important;
     }
+
     input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
-    background-color: #0d0c22 !important;
-}
-    .btn-submit-login{
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+        background-color: #0d0c22 !important;
+    }
+
+    .btn-submit-login {
         width: 100%;
-        border-radius:  50px;
+        border-radius: 50px;
         -webkit-border-radius: 50px;
         -moz-border-radius: 50px;
         -ms-border-radius: 50px;
         -o-border-radius: 50px;
         color: #0E2B81;
-        padding:  .7rem 0;
+        padding: .7rem 0;
         border: none;
         margin-top: 40px;
         margin-bottom: 30px;
         font-size: 16px;
     }
 
-    .btn-submit-login:disabled{
+    .btn-submit-login:disabled {
         color: #8C9DB2;
         background-color: #fff;
-        
+
     }
-    .btn-forgot-password{
+
+    .btn-forgot-password {
         font-size: 16px;
         color: #999999;
     }
-
 </style>
-
-
-<div class="container text-white p-0" style="position: relative;">
-    <div class="top-section">
-        <div class="text-center">
-            <p style="font-size: 32px;font-weight: bolder;margin: 0;">Allianz Journey</p>
-            <p style="font-size: 10px;font-weight: bold;margin: 0;">ALLIANZ ON-BOARDING WEB</p>
+<div class="col-12 p-0">
+    <div class="wrapper" style="position: relative;">
+        <div class="section-authentication-signin d-flex align-items-center justify-content-center my-0">
         </div>
-
-    </div>
-    <div class="shape"></div>
-    <div class="second-section">
-        <form id="form_login" class="text-center px-5 h-100 d-flex align-items-center" method="POST" action="{{ route('login') }}" autocomplete="off">
-            @csrf
-            <div>
-
-                <p style="font-size: 28px;margin: 5px;">ยินดีต้อนรับ !</p>
-                <p style="font-size: 14px;margin: 0 0 30px 0;">กรุณากรอกชื่อ/อีเมลของคุณ หากคุณมีบัญชีเเล้ว หากไม่เคยลงทะเบียนกรุณาลงทะเบียนก่อนเข้าร่วม !</p>
-    
-    
-                <div class="group-input-login">
-                    <input id="account" type="text" class="input-login-new" name="account"   autofocus placeholder="กรุณากรอกชื่อ/อีเมลของคุณ" required oninput="check_login()"  autocomplete="account">
-                    <i class="fa-thin fa-circle-user icon-login-new"></i>
-                </div>
-                
-                
-                <div class="group-input-login">
-                    <input id="password" type="password" class="input-login-new" name="password" required  placeholder="กรุณากรอกรหัสผ่านของคุณ"  oninput="check_login()"  autocomplete="password">
-                    <i class="fa-thin fa-lock icon-login-new"></i>
-                </div>
-    
-                <button id="submit_button" type="submit" class="btn-submit-login" disabled>
-                    เข้าสู่ระบบ
-                </button>
-                <!-- <a class="btn-forgot-password" href="authentication-forgot-password.html">ลืมรหัสผ่าน</a> -->
+        <div class="authentication-top col-lg-6">
+            <div class="text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="130" height="121" viewBox="0 0 130 121" fill="none">
+                    <path d="M128.444 101.75L121.673 89.1863H115.033H108.328H52.0818C49.9987 89.1863 48.1108 88.0796 47.0692 86.3219C46.0276 84.5642 45.9625 82.3508 46.939 80.528L57.8757 60.3472H37.4996H30.7943H24.1542L1.82506 101.75C-0.323223 105.722 -0.193024 110.344 2.08546 114.184C4.55924 118.286 8.986 120.759 13.9336 120.759H116.335C121.283 120.759 125.709 118.286 128.183 114.184C130.462 110.344 130.527 105.722 128.444 101.75Z" fill="#243286" />
+                    <path d="M77.2092 7.03074C74.8656 2.66908 70.2435 0 65.1007 0C59.9578 0 55.3358 2.66908 52.9922 7.03074L30.4678 48.6944H37.1079H43.7481H67.6396C69.7227 48.6944 71.6106 49.8011 72.6522 51.5588C73.6938 53.3165 73.7589 55.5298 72.7824 57.3526L61.8457 77.5335H101.882H108.522H115.162L77.2092 7.03074Z" fill="#243286" />
+                </svg>
+                <p style="font-size: 32px;font-weight: bolder;margin: 10px 0 0 0;">Allianz Journey</p>
+                <p style="font-size: 10px;font-weight: bold;margin: 0;">ALLIANZ ON-BOARDING WEB</p>
             </div>
-        </form>
+        </div>
+        <div class="authentication-bottom col-lg-6">
+            <div class="shape"></div>
+            <form id="form_login" class="text-center px-5 h-100 d-flex align-items-center" method="POST" action="{{ route('login') }}" autocomplete="off">
+                @csrf
+                <div>
+
+                    <p style="font-size: 28px;margin: 5px;color: #fff;">ยินดีต้อนรับ !</p>
+                    <p style="font-size: 14px;margin: 0;color: #fff;text-indent: 20px;text-align: left;">กรุณากรอกหมายเลขรหัสเอเจนท์ (Agent Code) ที่ช่องแรกและ ใช้วันเดือนปีเกิด (ค.ศ. 4 ตัว) ของคุณ เพื่อเป็นรหัสผ่าน เช่น เกิดวันที่ 1 เดือนกันยายน ปี ค.ศ. 1984 รหัสผ่านของคุณจึงเป็น 01091984</p>
+                    <p style="font-size: 14px;margin: 0 0 30px 0;color: #fff;text-indent: 20px;text-align: left;">Enter your Agent in the first field and user your date of birth (4-digit year) as your password in the second field. E.g. You were born on Sep 1st, 1984, your password is 01091984.</p>
+                    <!-- <p style="font-size: 14px;margin: 0 0 30px 0;color: #fff;">กรุณากรอกชื่อ/อีเมลของคุณ หากคุณมีบัญชีเเล้ว หากไม่เคยลงทะเบียนกรุณาลงทะเบียนก่อนเข้าร่วม !</p> -->
+
+
+                    <div class="group-input-login">
+                        <input id="account" type="text" class="input-login-new" name="account" autofocus placeholder="กรุณากรอกชื่อ/อีเมลของคุณ" required oninput="check_login()" autocomplete="account">
+                        <i class="fa-thin fa-circle-user icon-login-new"></i>
+                    </div>
+
+
+                    <div class="group-input-login">
+                        <input id="password" type="password" class="input-login-new" name="password" required placeholder="กรุณากรอกรหัสผ่านของคุณ" oninput="check_login()" autocomplete="password">
+                        <i class="fa-thin fa-lock icon-login-new"></i>
+                    </div>
+
+                    <button id="submit_button" type="submit" class="btn-submit-login" disabled>
+                        เข้าสู่ระบบ
+                    </button>
+                    <!-- <a class="btn-forgot-password" href="authentication-forgot-password.html">ลืมรหัสผ่าน</a> -->
+                </div>
+            </form>
+        </div>
     </div>
 </div>
-<!-- <div class="container-login text-white d-none">
-    <div id="div_first" class="container text-center mt-5 w-100 p-0" style="width: 100vw;">
-        <div class="w-100">
-            <div class="col w-100">
-                <img src="{{ url('/img/logo/logo-login.png') }}" id="header-img-login">
-            </div>
-            <div class="d-flex justify-content-center">
-                <a style="margin-top: 100px;" class="btn btn-login" onclick="document.querySelector('#div_second').classList.remove('d-none'),document.querySelector('#div_first').classList.add('d-none')">
-                    Login
-                </a>
-            </div>
-        </div>
 
-    </div>
-
-    <div class="container-fluid d-none" id="div_second">
-        <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3">
-            <div class="col mx-auto">
-                <div class="mb-4 text-center">
-                    <img src="assets/images/logo-img.png" width="180" alt="">
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <div class="p-4 rounded">
-                            <div class="text-center">
-                                <h3 class="">Sign in</h3>
-                                <div class="form-body">
-                                    <form id="form_login" class="row g-3" method="POST" action="{{ route('login') }}">
-                                        @csrf
-                                        <div class="col-12">
-                                            <label for="inputEmailAddress" class="form-label text-dark text-start">Username</label>
-                                            <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
-                                        </div>
-                                        <div class="col-12">
-                                            <label for="inputChoosePassword" class="form-label text-dark text-start">Password</label>
-                                            <div class="input-group" id="show_hide_password">
-                                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror input-login" name="password" required autocomplete="current-password">
-                                                <a href="javascript:;" class="input-group-text bg-transparent"><i class="bx bx-hide"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked="">
-                                                <label class="form-check-label" for="flexSwitchCheckChecked">Remember Me</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 text-end"> <a href="authentication-forgot-password.html">Forgot Password ?</a>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="d-grid">
-                                                <button type="submit" class="btn btn-primary"><i class="bx bxs-lock-open"></i>เข้าสู่ระบบ</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
 
 <!-- Button trigger modal -->
 <button id="btn_modal_pdpa" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#Modal_PDPA">
-test
+    test
 </button>
 
 <!-- Modal -->
 <div class="modal fade" id="Modal_PDPA" tabindex="-1" role="dialog" aria-labelledby="Modal_PDPATitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document" >
-    <div class="modal-content"style="border-radius: 10px;margin: 0 20px;">
-        <div class="modal-body" style="background-color: #3D467F;border-radius: 10px; color:#fff;font-size: 14px;padding:  50px 30px;">
-            <p>Allianz Journey จะทำการเก็บรวบรวมเพื่อ ใช้ หรือ เปิดเผยรหัสข้อมูลส่วนตัวของตัวแทน ต่อบริษัท Box Exhibit เพื่อการใช้งานเว็บไซต์ Allianz Journey</p>
-            <br>
-            <p>To give consent to Allianz Journey to Collect, Use, and/or Disclosure of Personal Data process my Personal Data, I (“Data Subject”), have marked in the consent box and given my full name as an electronic signature.</p>
-            <div class="d-flex align-items-center">
-                <input name="check_box_submit_condition" id="check_box_submit_condition" class="form-check-input font-18 m-0 p-o" type="checkbox" value="" aria-label="Checkbox for following text input" onchange="validate_condition()">
-                <label for="check_box_submit_condition" class="ms-2">ฉันยอมรับ และยินยอมในเงื่อนไขดังกล่าว</label>
-            </div> 
-            <button type="button"  class="btn-submit-login mb-0" id="btn_submit_condition" style="font-weight: bolder;" disabled onclick="update_pdpa();">
-                ถัดไป
-            </button>
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="border-radius: 10px;margin: 0 20px;">
+            <div class="modal-body" style="background-color: #3D467F;border-radius: 10px; color:#fff;font-size: 14px;padding:  50px 30px;">
+                <p>Allianz Journey จะทำการเก็บรวบรวมเพื่อ ใช้ หรือ เปิดเผยรหัสข้อมูลส่วนตัวของตัวแทน ต่อบริษัท Box Exhibit เพื่อการใช้งานเว็บไซต์ Allianz Journey</p>
+                <br>
+                <p>To give consent to Allianz Journey to Collect, Use, and/or Disclosure of Personal Data process my Personal Data, I (“Data Subject”), have marked in the consent box and given my full name as an electronic signature.</p>
+                <div class="d-flex align-items-center">
+                    <input name="check_box_submit_condition" id="check_box_submit_condition" class="form-check-input font-18 m-0 p-o" type="checkbox" value="" aria-label="Checkbox for following text input" onchange="validate_condition()">
+                    <label for="check_box_submit_condition" class="ms-2">ฉันยอมรับ และยินยอมในเงื่อนไขดังกล่าว</label>
+                </div>
+                <button type="button" class="btn-submit-login mb-0" id="btn_submit_condition" style="font-weight: bolder;" disabled onclick="update_pdpa();">
+                    ถัดไป
+                </button>
+            </div>
         </div>
     </div>
-  </div>
 </div>
+
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         check_login();
 
         var form = document.getElementById('form_login');
         var submitButton = document.getElementById('submit_button');
 
-        form.addEventListener('submit', function (event) {
+        form.addEventListener('submit', function(event) {
             event.preventDefault(); // ป้องกันฟอร์มจากการส่งข้อมูลโดยอัตโนมัติ
 
             // Check PDPA
-            let account = document.querySelector('#account').value ;
+            let account = document.querySelector('#account').value;
             fetch("{{ url('/') }}/api/check_pdpa/" + account)
                 .then(response => response.text())
                 .then(result => {
                     // console.log(result);
-                    if(result == "Yes"){
+                    if (result == "Yes") {
                         form.submit();
-                    }
-                    else if(result == "No"){
+                    } else if (result == "No") {
                         document.querySelector('#btn_modal_pdpa').click();
-                    }
-                    else if(result == "Account none"){
+                    } else if (result == "Account none") {
                         alert("ไม่พบ Account ของคุณ");
                     }
                 });
         });
     })
 
-    function update_pdpa(){
+    function update_pdpa() {
         let form = document.getElementById('form_login');
-        let account = document.querySelector('#account').value ;
+        let account = document.querySelector('#account').value;
         fetch("{{ url('/') }}/api/update_pdpa/" + account)
             .then(response => response.text())
             .then(result => {
                 // console.log(result);
-                if(result == "ok"){
+                if (result == "ok") {
                     form.submit();
                 }
             });
     }
-    
-    function  check_login() {
+
+    function check_login() {
         let check_account = document.getElementById("account");
         let check_password = document.getElementById("password");
         // console.log(check_account.value);
         if (check_account.value && check_password.value) {
             document.querySelector('.btn-submit-login').disabled = false;
-        }else{
+        } else {
             document.querySelector('.btn-submit-login').disabled = true;
-            
+
         }
     }
 

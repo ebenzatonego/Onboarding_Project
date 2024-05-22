@@ -6,7 +6,89 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.css" integrity="sha512-bs9fAcCAeaDfA4A+NiShWR886eClUcBtqhipoY5DM60Y1V3BbVQlabthUBal5bq8Z8nnxxiyb1wfGX2n76N1Mw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.js" integrity="sha512-Zt7blzhYHCLHjU0c+e4ldn5kGAbwLKTSOTERgqSNyTB50wWSI21z0q6bn/dEIuqf6HiFzKJ6cfj2osRhklb4Og==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css" integrity="sha512-hvNR0F/e2J7zPPfLC9auFe3/SE0yG4aJCOd/qxew74NN7eyiSKjr7xJJMu1Jy2wf7FXITpWS1E/RY8yzuXN7VA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+    @media (max-width: 992px) {
+        .authentication-top {
+            position: absolute;
+            background: rgb(123, 0, 0, 0) !important;
+            top: 0;
+            left: 0;
+            right: 0;
+            min-height: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
+        .authentication-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            min-height: 50%;
+            background: rgb(98, 115, 221);
+            background: -moz-linear-gradient(183deg, rgba(98, 115, 221, 1) 0%, rgba(36, 50, 134, 1) 100%);
+            background: -webkit-linear-gradient(183deg, rgba(98, 115, 221, 1) 0%, rgba(36, 50, 134, 1) 100%);
+            background: linear-gradient(183deg, rgba(98, 115, 221, 1) 0%, rgba(36, 50, 134, 1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#6273dd", endColorstr="#243286", GradientType=1);
+            border-radius: 50px 0 0 0;
+            -webkit-border-radius: 50px 0 0 0;
+            -moz-border-radius: 50px 0 0 0;
+            -ms-border-radius: 50px 0 0 0;
+            -o-border-radius: 50px 0 0 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section-authentication-signin {
+            height: 100vh;
+        }
+    }
+
+    @media (min-width: 992px) {
+
+        /* .shape {
+            display: none;
+        } */
+        .section-authentication-signin {
+            height: 0;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+            height: 100vh;
+            justify-content: center;
+
+        }
+
+        .authentication-top {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .authentication-bottom {
+            position: relative;
+            border-radius: 20px;
+            -webkit-border-radius: 50px 0 0 0;
+            -moz-border-radius: 50px 0 0 0;
+            -ms-border-radius: 50px 0 0 0;
+            -o-border-radius: 50px 0 0 0;
+            padding: 40px 20px;
+            width: 100%;
+            background: rgb(98, 115, 221);
+            background: -moz-linear-gradient(183deg, rgba(98, 115, 221, 1) 0%, rgba(36, 50, 134, 1) 100%);
+            background: -webkit-linear-gradient(183deg, rgba(98, 115, 221, 1) 0%, rgba(36, 50, 134, 1) 100%);
+            background: linear-gradient(183deg, rgba(98, 115, 221, 1) 0%, rgba(36, 50, 134, 1) 100%);
+        }
+    }
+</style>
 <style>
     #header-text-login {
         display: none;
@@ -99,12 +181,14 @@
         background-color: rgb(255, 255, 255, .3);
         border-radius: 10px;
     }
+
     @media (width <1200px) {
         .detail-info {
             width: 100%;
             padding: 20px 20px;
         }
     }
+
     @media (width >=1200px) {
         #header-text-login {
             width: 40% !important;
@@ -159,11 +243,11 @@
     .shape:before {
         content: "";
         position: absolute;
-        top: calc(55% - 50px);
+        top: -50px;
         right: -50px;
         transform: translate(-50%, -50%);
         background-color: tran;
-    
+
         height: 100px;
         width: 100px;
         border-radius: 50px 0 50px 0;
@@ -198,15 +282,15 @@
         align-items: center;
     }
 
-    .btn-submit-login{
+    .btn-submit-login {
         width: 100%;
-        border-radius:  50px;
+        border-radius: 50px;
         -webkit-border-radius: 50px;
         -moz-border-radius: 50px;
         -ms-border-radius: 50px;
         -o-border-radius: 50px;
         color: #0E2B81;
-        padding:  .7rem 0;
+        padding: .7rem 0;
         border: none;
         margin-top: 40px;
         margin-bottom: 30px;
@@ -214,87 +298,90 @@
         font-weight: bolder;
     }
 
-    .btn-submit-login:disabled{
+    .btn-submit-login:disabled {
         color: #57759C;
-        background-color: rgb(248, 248, 248,0.61);
-        
+        background-color: rgb(248, 248, 248, 0.61);
+
     }
 
     .shine {
         font-size: 2em;
         font-weight: 900;
         color: rgba(21, 30, 52, 0.3);
-        background: #222 -webkit-gradient(
-            linear,
-            left top,
-            right top,
-            from(#222),
-            to(#222),
-            color-stop(0.5, #fff)
-        ) 0 0 no-repeat;
-        background-image: -webkit-linear-gradient(
-            -40deg,
-            transparent 0%,
-            transparent 40%,
-            #fff 50%,
-            transparent 60%,
-            transparent 100%
-      );
+        background: #222 -webkit-gradient(linear,
+                left top,
+                right top,
+                from(#222),
+                to(#222),
+                color-stop(0.5, #fff)) 0 0 no-repeat;
+        background-image: -webkit-linear-gradient(-40deg,
+                transparent 0%,
+                transparent 40%,
+                #fff 50%,
+                transparent 60%,
+                transparent 100%);
         -webkit-background-clip: text;
         -webkit-background-size: 50px;
         -webkit-animation: zezzz;
         -webkit-animation-duration: 5.5s;
         -webkit-animation-iteration-count: infinite;
     }
+
     @-webkit-keyframes zezzz {
         0% {
             background-position: -265px;
         }
+
         100% {
             background-position: 265px;
         }
     }
-
 </style>
-
-<div class="container text-white p-0" style="position: relative;">
-    <div class="top-section">
-        <div class="text-center">
-        <img src="{{ url('/img/logo/logo.png') }}" style="width:99px">
-            <p style="font-size: 32px;font-weight: bolder;margin: 0;">Allianz Journey</p>
-            <p style="font-size: 10px;font-weight: bold;margin: 0;">ALLIANZ ON-BOARDING WEB</p>
-
-            <div class="d-flex-justify-content-center w-100 p-3">
-                <video id="tag_video_intro" src="" controls autoplay loop muted style="width:100%;border-radius: 10px; max-width: 700px;" class="video-preview"></video>
-            </div>
+<div class="col-12 p-0">
+    <div class="wrapper" style="position: relative;">
+        <div class="section-authentication-signin d-flex align-items-center justify-content-center my-0">
         </div>
 
-    </div>
-    <div class="shape"></div>
-    <div class="second-section">
-        <div class="text-center px-5 h-100 d-flex align-items-center">
+        <div class="authentication-top ">
+            <div class="text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="90" height="83" viewBox="0 0 90 83" fill="none">
+                    <path d="M88.8385 69.9348L84.1851 61.2992H79.6212H75.0126H36.3538C34.922 61.2992 33.6245 60.5385 32.9086 59.3305C32.1926 58.1224 32.1479 56.6011 32.8191 55.3482L40.336 41.4776H26.3312H21.7226H17.1587L1.81151 69.9348C0.334965 72.6642 0.424453 75.841 1.99049 78.4809C3.69076 81.2997 6.73335 83 10.1339 83H80.5161C83.9166 83 86.9592 81.2997 88.6595 78.4809C90.2255 75.841 90.2703 72.6642 88.8385 69.9348Z" fill="#243286" />
+                    <path d="M53.6252 4.83235C52.0144 1.8345 48.8376 0 45.3028 0C41.768 0 38.5912 1.8345 36.9804 4.83235L21.499 33.4685H26.0629H30.6268H47.0478C48.4796 33.4685 49.7772 34.2291 50.4931 35.4372C51.209 36.6453 51.2537 38.1666 50.5826 39.4194L43.0656 53.29H70.5831H75.147H79.7109L53.6252 4.83235Z" fill="#243286" />
+                </svg>
+                <p style="font-size: 32px;font-weight: bolder;margin: 0;">Allianz Journey</p>
+                <p style="font-size: 10px;font-weight: bold;margin: 0;">ALLIANZ ON-BOARDING WEB</p>
 
-            <div>
-
-                <p style="font-size: 20px;margin: 5px;">ยินดีต้อนรับ !</p>
-                <!-- <p style="font-size: 25px;margin: 15px 0 15px 0;">
-                    <b>{{Auth::user()->name}}</b>
-                </p> -->
-                <div style="font-size: 25px;margin: 15px 0 15px 0;" class="shine">
-                    {{Auth::user()->name}}
+                <div class="d-flex-justify-content-center w-100 p-3">
+                    <video id="tag_video_intro" src="" controls autoplay loop muted style="width:100%;border-radius: 10px; max-width: 628px;" class="video-preview"></video>
                 </div>
-                <p class="m-0">เข้าสู่เว็บ Allianz Journey</p>
-                <p>แหล่งรวมความรู้และข่าวสารอัพเดตจาก Allianz</p>
-    
-               
-                <button type="submit" id="btn_dont_show_welcome" class="btn-submit-login" disabled>
-                    ถัดไป <span id="text_countdown"></span>
-                </button>
+            </div>
+        </div>
+        <div class="authentication-bottom">
+            <div class="shape"></div>
+            <div class="text-center px-5 h-100 d-flex align-items-center justify-content-center">
 
-                <div class="d-flex align-items-center justify-content-center">
-                    <input name="check_dont_show_welcome" id="check_dont_show_welcome" class="form-check-input font-20 m-0 p-o" type="checkbox" value="" aria-label="Checkbox for following text input" onchange="validate_condition()">
-                    <label for="check_dont_show_welcome" class="ms-2 h-100 mt-1" style="color: #989898;">ไม่แสดงหน้านี้อีก</label>
-                </div> 
+                <div>
+
+                    <p style="font-size: 20px;margin: 5px;color: #fff;">ยินดีต้อนรับ !</p>
+                    <!-- <p style="font-size: 25px;margin: 15px 0 15px 0;">
+        <b>{{Auth::user()->name}}</b>
+    </p> -->
+                    <div style="font-size: 25px;margin: 15px 0 15px 0;" class="shine">
+                        {{Auth::user()->name}}
+                    </div>
+                    <p class="m-0 text-white">เข้าสู่เว็บ Allianz Journey</p>
+                    <p class="text-white">แหล่งรวมความรู้และข่าวสารอัพเดตจาก Allianz</p>
+
+
+                    <button type="submit" id="btn_dont_show_welcome" class="btn-submit-login" disabled>
+                        ถัดไป <span id="text_countdown"></span>
+                    </button>
+
+                    <div class="d-flex align-items-center justify-content-center">
+                        <input name="check_dont_show_welcome" id="check_dont_show_welcome" class="form-check-input font-20 m-0 p-o" type="checkbox" value="" aria-label="Checkbox for following text input" onchange="validate_condition()">
+                        <label for="check_dont_show_welcome" class="ms-2 h-100 mt-1" style="color: #989898;">ไม่แสดงหน้านี้อีก</label>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -302,7 +389,6 @@
 
 
 <script>
-
     var button_skip_Clicked = false;
 
     document.addEventListener('DOMContentLoaded', (event) => {
@@ -316,7 +402,7 @@
 
         // อัปเดตข้อความนับถอยหลังและทำงานนับถอยหลัง
         function updateCountdown() {
-            countdownElement.textContent = "("+countdownNumber+")";
+            countdownElement.textContent = "(" + countdownNumber + ")";
 
             // ตรวจสอบว่าการนับถอยหลังสิ้นสุดแล้วหรือไม่
             if (countdownNumber === 0) {
@@ -352,12 +438,12 @@
 
     function validate_condition() {
         let check_dont_show_welcome = document.getElementById('check_dont_show_welcome').checked;
-            // console.log(check_dont_show_welcome);
+        // console.log(check_dont_show_welcome);
 
         let skip_video_welcome;
-        if(check_dont_show_welcome){
+        if (check_dont_show_welcome) {
             skip_video_welcome = "Yes";
-        }else{
+        } else {
             skip_video_welcome = "No";
         }
 
@@ -368,13 +454,13 @@
             });
     }
 
-    function get_video_intro(){
+    function get_video_intro() {
         fetch("{{ url('/') }}/api/get_video_intro")
             .then(response => response.text())
             .then(result => {
                 // console.log(result);
-                if(result){
-                    document.querySelector('#tag_video_intro').src = result ;
+                if (result) {
+                    document.querySelector('#tag_video_intro').src = result;
                 }
             });
     }
@@ -415,19 +501,15 @@
 
 
     // ก่อนปิดหน้าหรือเปลี่ยนหน้า
-    window.addEventListener('beforeunload', function (e) {
+    window.addEventListener('beforeunload', function(e) {
         // console.log(countTime);
         if (!button_skip_Clicked) {
-        fetch("{{ url('/') }}/api/update_countTime_video_intro/" + "{{ Auth::user()->id }}" + "/" + countTime)
-            .then(response => response.text())
-            .then(result => {
-                // console.log(result);
-            });
+            fetch("{{ url('/') }}/api/update_countTime_video_intro/" + "{{ Auth::user()->id }}" + "/" + countTime)
+                .then(response => response.text())
+                .then(result => {
+                    // console.log(result);
+                });
         }
     });
-
-
-
-
 </script>
 @endsection

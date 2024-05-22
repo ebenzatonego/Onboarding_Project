@@ -143,4 +143,11 @@ class Video_welcome_pageController extends Controller
     function create_video_welcome_page(){
         return view('video_welcome_page.create');
     }
+
+    function view_video_intro($id){
+        
+        $video_welcome_page = Video_welcome_page::findOrFail($id);
+
+        return view('video_welcome_page.view_video_intro', compact('video_welcome_page'));
+    }
 }

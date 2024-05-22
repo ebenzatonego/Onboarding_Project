@@ -83,6 +83,13 @@ class AdminController extends Controller
         return $data->video ;
     }
 
+    function get_data_video_intro_all(){
+        $data = Video_welcome_page::where('type','Video_Intro')
+            ->get();
+
+        return $data ;
+    }
+
     function update_countTime_video_intro($user_id, $countTime){
         $video_intro = Video_welcome_page::where('type','Video_Intro')
             ->where('status','Yes')
@@ -91,7 +98,8 @@ class AdminController extends Controller
         $array_log = array();
 
         if( empty($video_intro->log) ){
-            $array_log[$user_id]['1'] = $countTime;
+            $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+            $array_log[$user_id]['1']['countTime'] = $countTime;
         }
         else{
             $array_log = json_decode($video_intro->log, true);
@@ -100,10 +108,13 @@ class AdminController extends Controller
                 // หากเท่ากันให้เพิ่ม key round และ time ใน key นั้น
                 $count_round_old = count($array_log[$user_id]);
                 $new_round = intval($count_round_old) + 1 ;
-                $array_log[$user_id][$new_round] = $countTime;
+
+                $array_log[$user_id][$new_round]['datetime'] = date("d/m/Y H:i");
+                $array_log[$user_id][$new_round]['countTime'] = $countTime;
             } else {
                 // หากไม่เท่ากันให้เพิ่ม key ใหม่โดยใช้ $user_id
-                $array_log[$user_id]['1'] = $countTime;
+                $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+                $array_log[$user_id]['1']['countTime'] = $countTime;
             }
         }
 
@@ -119,6 +130,66 @@ class AdminController extends Controller
 
         return "ok";
 
+    }
+
+    function change_status_video_intro($click_id){
+
+        $video_intro = Video_welcome_page::where('id',$click_id)->first();
+
+        $data_arr = [];
+        $data_arr['open'] = '';
+        $data_arr['off'] = '';
+
+        if($video_intro->status == "Yes"){
+            DB::table('video_welcome_pages')
+            ->where([ 
+                    ['id', $video_intro->id],
+                ])
+            ->update([
+                    'status' => null,
+                ]);
+
+            $data_arr['off'] = strval($video_intro->id);
+        }
+        else{
+            $video_intro_Yes = Video_welcome_page::where('type','Video_Intro')
+                ->where('status','Yes')
+                ->first();
+
+            if( !empty($video_intro_Yes->id) ){
+                DB::table('video_welcome_pages')
+                ->where([ 
+                        ['id', $video_intro_Yes->id],
+                    ])
+                ->update([
+                        'status' => null,
+                    ]);
+
+                
+                $data_arr['off'] = strval($video_intro_Yes->id);
+            }
+
+            DB::table('video_welcome_pages')
+                ->where([ 
+                        ['id', $click_id],
+                    ])
+                ->update([
+                        'status' => 'Yes',
+                    ]);
+
+            $data_arr['open'] = strval($click_id);
+        }
+
+        return $data_arr ;
+
+    }
+
+    function get_user_for_view_CountTime($user_id){
+        $data_user = User::where('id',$user_id)
+            ->select('name','account','photo')
+            ->first();
+
+        return $data_user ;
     }
 
 }

@@ -88,93 +88,186 @@
 	</div>
 </div>
 
-<div class="row row-cols-1 row-cols-md-1 row-cols-lg-3 row-cols-xl-3">
-	<div class="col">
-		<div class="card">
-			<video id="tag_video_intro" src="https://www.franchisebuilder2024.com/video/The%20Franchise%20Builder_Final.mp4" controls muted style="width:100%;border-radius: 10px; max-width: 700px;" class="video-preview"></video>
-			<div class="card-body">
-				<h5 class="card-title">
-					Intro
-				</h5>
-			</div>
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item">
-					<span class="float-start" style="margin-top: 7px;">
-						ดูแล้ว 12 ครั้ง จากผู้ใช้ 8 คน
-					</span>
-					<span class="float-end">
-						<button type="button" class="btn btn-sm btn-info">View log</button>
-					</span>
-				</li>
-			</ul>
-			<center>
-				<hr style="width:80%;">
-			</center>
-			<div class="card-body">
-				<div class="toggle-wrapper">
-				  	<input class="toggle-checkbox" type="checkbox">
-				  	<div class="toggle-container">  
-				    	<div class="toggle-button">
-					      	<div class="toggle-button-circles-container">
-				        	<div class="toggle-button-circle"></div>
-					        <div class="toggle-button-circle"></div>
-					        <div class="toggle-button-circle"></div>
-					        <div class="toggle-button-circle"></div>
-					        <div class="toggle-button-circle"></div>
-					        <div class="toggle-button-circle"></div>
-					        <div class="toggle-button-circle"></div>
-					        <div class="toggle-button-circle"></div>
-					        <div class="toggle-button-circle"></div>
-					        <div class="toggle-button-circle"></div>
-					        <div class="toggle-button-circle"></div>
-					        <div class="toggle-button-circle"></div>
-					      	</div>
-				    	</div>
-				  	</div>
-				</div>
-				<center>
-					<br>
-					<span class="text-danger">
-						(หากเปิดใช้งานวิดีโอที่เปิดใช้งานอยู่จะถูกปิด)
-					</span>
-				</center>
-			</div>
-		</div>
-	</div>
-	<div class="col">
-		<div class="card">
-			<img src="assets/images/gallery/06.png" class="card-img-top" alt="...">
-			<div class="card-body">
-				<h5 class="card-title">Card title</h5>
-				<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-			</div>
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item">Cras justo odio</li>
-				<li class="list-group-item">Dapibus ac facilisis in</li>
-				<li class="list-group-item">Vestibulum at eros</li>
-			</ul>
-			<div class="card-body">	<a href="#" class="card-link">Card link</a>
-				<a href="#" class="card-link">Another link</a>
-			</div>
-		</div>
-	</div>
-	<div class="col">
-		<div class="card">
-			<img src="assets/images/gallery/07.png" class="card-img-top" alt="...">
-			<div class="card-body">
-				<h5 class="card-title">Card title</h5>
-				<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-			</div>
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item">Cras justo odio</li>
-				<li class="list-group-item">Dapibus ac facilisis in</li>
-				<li class="list-group-item">Vestibulum at eros</li>
-			</ul>
-			<div class="card-body">	<a href="#" class="card-link">Card link</a>
-				<a href="#" class="card-link">Another link</a>
-			</div>
-		</div>
-	</div>
+<div id="content_video_intro" class="row row-cols-1 row-cols-md-1 row-cols-lg-3 row-cols-xl-3">
+	<!-- content_video_intro -->
 </div>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+        get_data_video_intro_all();
+    });
+
+    function get_data_video_intro_all(){
+    	fetch("{{ url('/') }}/api/get_data_video_intro_all")
+	        .then(response => response.json())
+	        .then(result => {
+	            // console.log(result);
+
+	            let content_video_intro = document.querySelector('#content_video_intro');
+	            	content_video_intro.innerHTML = '';
+
+	            for (let i = 0; i < result.length; i++) {
+
+	            	let datetime = result[i].created_at;
+					// แยกวันที่และเวลา
+					let [date, time] = datetime.split('T');
+					// แยกส่วนของวันที่
+					let [year, month, day] = date.split('-');
+					// แปลงรูปแบบวันที่เป็น วัน/เดือน/ปี
+					let formattedDate = `${day}/${month}/${year}`;
+					// แยกส่วนของเวลา (เฉพาะ HH:MM:SS)
+					let [hour, minute, second] = time.split('.')[0].split(':');
+					let formattedTime = `${hour}:${minute}`;
+
+	            	let time_create = `<b>สร้างเมื่อ</b> `+formattedDate+` <b>เวลา</b> `+formattedTime+` น.` ;
+
+	            	// Amount log
+	            	let countLv1 = 0 ;
+					let countLv2 = 0 ;
+	            	let data_log = JSON.parse(result[i].log);
+	            		// console.log(data_log);
+
+					if(result[i].log){
+						// นับจำนวนระดับทั้งหมดใน Level 1
+						countLv1 = Object.keys(data_log).length;
+
+						// นับจำนวนระดับทั้งหมดใน Level 2
+						countLv2 = Object.values(data_log).reduce((acc, val) => acc + Object.keys(val).length, 0);
+					}
+
+					// status
+					let check_status = result[i].status ;
+					let input_checked = '';
+					let text_guide = '';
+					let color_status = '';
+					if(check_status == "Yes"){
+						input_checked = "checked";
+						text_guide = "(คุณเปิดใช้งานวิดีโอนี้อยู่)";
+						color_status = "success";
+					}
+					else{
+						input_checked = "";
+						text_guide = "(หากเปิดใช้งานวิดีโอที่เปิดใช้งานอยู่จะถูกปิด)";
+						color_status = "danger";
+					}
+
+	            	let html = `
+	            		<div class="col">
+							<div class="card">
+								<video id="tag_video_intro" src="`+result[i].video+`" controls muted style="width:100%;border-radius: 10px; max-width: 700px;" class="video-preview"></video>
+								<div class="card-body">
+									<h5 class="card-title">
+										<b>`+result[i].name_video+`</b>
+									</h5>
+									<p class="card-text">
+										`+time_create+`
+									</p>
+								</div>
+								<ul class="list-group list-group-flush">
+									<li class="list-group-item">
+										<span class="float-start" style="margin-top: 7px;">
+											ดูแล้ว `+countLv2+` ครั้ง จากผู้ใช้ `+countLv1+` คน
+										</span>
+										<span class="float-end">
+											<a href="{{ url('/view_video_intro') }}/`+result[i].id+`" type="button" class="btn btn-sm btn-info">
+												View log
+											</a>
+										</span>
+									</li>
+								</ul>
+								<center>
+									<hr style="width:80%;">
+								</center>
+								<div class="card-body">
+									<div id="div_toggle_status_`+result[i].id+`" class="toggle-wrapper" onclick="change_status('`+result[i].id+`');">
+									  	<input id="input_of_`+result[i].id+`" class="toggle-checkbox" type="checkbox" `+input_checked+`>
+									  	<div class="toggle-container">  
+									    	<div class="toggle-button">
+										      	<div class="toggle-button-circles-container">
+									        	<div class="toggle-button-circle"></div>
+										        <div class="toggle-button-circle"></div>
+										        <div class="toggle-button-circle"></div>
+										        <div class="toggle-button-circle"></div>
+										        <div class="toggle-button-circle"></div>
+										        <div class="toggle-button-circle"></div>
+										        <div class="toggle-button-circle"></div>
+										        <div class="toggle-button-circle"></div>
+										        <div class="toggle-button-circle"></div>
+										        <div class="toggle-button-circle"></div>
+										        <div class="toggle-button-circle"></div>
+										        <div class="toggle-button-circle"></div>
+										      	</div>
+									    	</div>
+									  	</div>
+									</div>
+									<center>
+										<br>
+										<span text_guide_for="`+result[i].id+`" class="text-`+color_status+`">
+											`+text_guide+`
+										</span>
+									</center>
+								</div>
+							</div>
+						</div>
+	            	`;
+
+	            	content_video_intro.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+	            }
+	        });
+    }
+
+    function change_status(click_id){
+    	fetch("{{ url('/') }}/api/change_status_video_intro/" + click_id)
+	        .then(response => response.json())
+	        .then(result => {
+	            // console.log(result);
+
+	            let text_guide_for ;
+	            let input_of ;
+
+	            if(result){
+	            	if(result['off']){
+	            		text_guide_for = document.querySelector('[text_guide_for="'+result['off']+'"]');
+	            			text_guide_for.innerHTML = "(หากเปิดใช้งานวิดีโอที่เปิดใช้งานอยู่จะถูกปิด)";
+	            			text_guide_for.setAttribute('class' , 'text-danger');
+
+	            			let div_toggle_status = document.querySelector('#div_toggle_status_'+result['off']);
+	            				div_toggle_status.innerHTML = `
+	            					<input id="input_of_`+result['off']+`" class="toggle-checkbox" type="checkbox">
+								  	<div class="toggle-container">  
+								    	<div class="toggle-button">
+									      	<div class="toggle-button-circles-container">
+								        	<div class="toggle-button-circle"></div>
+									        <div class="toggle-button-circle"></div>
+									        <div class="toggle-button-circle"></div>
+									        <div class="toggle-button-circle"></div>
+									        <div class="toggle-button-circle"></div>
+									        <div class="toggle-button-circle"></div>
+									        <div class="toggle-button-circle"></div>
+									        <div class="toggle-button-circle"></div>
+									        <div class="toggle-button-circle"></div>
+									        <div class="toggle-button-circle"></div>
+									        <div class="toggle-button-circle"></div>
+									        <div class="toggle-button-circle"></div>
+									      	</div>
+								    	</div>
+								  	</div>
+	            				`;
+	            		// input_of = document.querySelector('#input_of_'+result['off']);
+	            		// 	input_of.removeAttribute('checked');
+	            	}
+
+	            	if(result['open']){
+	            		text_guide_for = document.querySelector('[text_guide_for="'+result['open']+'"]');
+	            			text_guide_for.innerHTML = "(คุณเปิดใช้งานวิดีโอนี้อยู่)";
+	            			text_guide_for.setAttribute('class' , 'text-success');;
+	            		// input_of = document.querySelector('#input_of_'+result['open']);
+	            		// 	input_of.setAttribute('checked');
+	            	}
+	            }
+
+    	});
+    }
+</script>
 
 @endsection

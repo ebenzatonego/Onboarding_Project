@@ -62,6 +62,15 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
     Route::get('/welcome_admin', 'HomeController@welcome_admin');
     Route::get('/calendar_admin', 'AdminController@calendar_admin');
 
+    // Admin
+    Route::get('/index_user_excel', 'AdminController@index_user_excel');
+
+    // video_welcome_page
+    Route::resource('video_welcome_page', 'Video_welcome_pageController');
+    Route::get('/manage_video_welcome_page', 'Video_welcome_pageController@manage_video_welcome_page');
+    Route::get('/create_video_welcome_page', 'Video_welcome_pageController@create_video_welcome_page');
+    Route::get('/view_video_intro/{id}', 'Video_welcome_pageController@view_video_intro');
+
     // training
     Route::resource('training', 'TrainingController');
     Route::get('/training_create/{type}', 'TrainingController@create');
@@ -69,17 +78,11 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
 
 });
 
-// Super-admin,Admin , Member
+// Member
 Route::middleware(['auth', 'role:Super-admin,Admin,Member'])->group(function () {
 
-    // Admin
-    Route::get('/index_user_excel', 'AdminController@index_user_excel');
     // News
     Route::get('/news_index', 'NewsController@index');
-    // video_welcome_page
-    Route::resource('video_welcome_page', 'Video_welcome_pageController');
-    Route::get('/manage_video_welcome_page', 'Video_welcome_pageController@manage_video_welcome_page');
-    Route::get('/create_video_welcome_page', 'Video_welcome_pageController@create_video_welcome_page');
 
 });
 

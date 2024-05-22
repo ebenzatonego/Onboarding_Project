@@ -282,7 +282,7 @@
                     <div class="user-box dropdown">
                         <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             @if( !empty(Auth::user()->photo) )
-                                <img src="{{ url('storage')}}/{{ Auth::user()->photo }}" class="user-img">
+                                <img src="{{ Auth::user()->photo }}" class="user-img">
                             @else
                                 <img src="{{ url('/img/icon/profile.png') }}" class="user-img">
                             @endif

@@ -488,46 +488,9 @@
                             <p class="text-color-obd ms-2">My Goal</p>
                         </div>
                         <div class="body-my-goal">
-                            <div>
-                                <p style="color: #373737;font-size: 14px;">PC (ยอดสะสมรายปี)</p>
-                                <div class="dropdown_my_goal">
-                                    <div class="select_my_goal">
-                                        <label class="label_select_my_goal">เลือกความฝันของคุณ</label>
-                                        <span class="selected_my_goal">10,000,000</span>
-                                        <div class="caret_may_goal"></div>
-                                    </div>
-                                    <ul class="menu_my_goal">
-                                        <li class="">
-                                            <i class="fa-solid fa-money-bill"></i>
-                                            <span class="ms-2">50,000</span>
-                                        </li>
-                                        <li class="">
-                                            <i class="fa-solid fa-tag fa-flip-horizontal"></i>
+                            <!-- MY GOAL QUESTIONAIRE -->
+                            @include ('profile.my_goal_questionaire')
 
-                                            <span class="ms-2">100,000</span>
-                                        </li>
-                                        <li class="">
-                                            <i class="fa-regular fa-plane-departure"></i>
-
-                                            <span class="ms-2">500,000</span>
-                                        </li>
-                                        <li class="">
-                                            <i class="fa-regular fa-motorcycle"></i>
-
-                                            <span class="ms-2">1,000,000</span>
-                                        </li>
-                                        <li class="">
-                                            <i class="fa-regular fa-car"></i>
-                                            <span class="ms-2">5,000,000</span>
-                                        </li>
-                                        <li class="my_goal_active">
-                                            <i class="fa-regular fa-house-tree"></i>
-
-                                            <span class="ms-2">10,000,000</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
                             <div class="mt-3" style="overflow: auto;">
                                 <p style="color: #373737;font-size: 14px;">การฝึกฝนของคุณ</p>
                                 <div class="w-100">

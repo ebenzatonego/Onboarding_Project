@@ -7,6 +7,7 @@ use App\Models\Training;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Video_welcome_page;
+use App\Models\Video_congrat;
 use App\User;
 
 class AdminController extends Controller
@@ -85,6 +86,13 @@ class AdminController extends Controller
 
     function get_data_video_intro_all(){
         $data = Video_welcome_page::where('type','Video_Intro')
+            ->get();
+
+        return $data ;
+    }
+
+    function get_data_video_congrats_all(){
+        $data = Video_congrat::where('type','Video_Congrats')
             ->get();
 
         return $data ;
@@ -170,6 +178,58 @@ class AdminController extends Controller
             }
 
             DB::table('video_welcome_pages')
+                ->where([ 
+                        ['id', $click_id],
+                    ])
+                ->update([
+                        'status' => 'Yes',
+                    ]);
+
+            $data_arr['open'] = strval($click_id);
+        }
+
+        return $data_arr ;
+
+    }
+
+    function change_status_video_congrats($click_id){
+
+        $video_congrat = Video_congrat::where('id',$click_id)->first();
+
+        $data_arr = [];
+        $data_arr['open'] = '';
+        $data_arr['off'] = '';
+
+        if($video_congrat->status == "Yes"){
+            DB::table('video_congrats')
+            ->where([ 
+                    ['id', $video_congrat->id],
+                ])
+            ->update([
+                    'status' => null,
+                ]);
+
+            $data_arr['off'] = strval($video_congrat->id);
+        }
+        else{
+            $video_congrat_Yes = Video_congrat::where('type','Video_Congrats')
+                ->where('status','Yes')
+                ->first();
+
+            if( !empty($video_congrat_Yes->id) ){
+                DB::table('video_congrats')
+                ->where([ 
+                        ['id', $video_congrat_Yes->id],
+                    ])
+                ->update([
+                        'status' => null,
+                    ]);
+
+                
+                $data_arr['off'] = strval($video_congrat_Yes->id);
+            }
+
+            DB::table('video_congrats')
                 ->where([ 
                         ['id', $click_id],
                     ])

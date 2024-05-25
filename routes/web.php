@@ -18,10 +18,6 @@ use Illuminate\Support\Facades\Route;
 // Admin
 // Member
 
-// Route::get('/', function () {
-//     return view('home');
-// });
-
 Auth::routes();
 
 // LOGIN
@@ -41,6 +37,11 @@ Route::middleware(['auth',])->group(function () {
     Route::get('/video_instruction', function () {
         return view('video_instruction');
     });
+
+    Route::get('/video_congrats', function () {
+        return view('video_congrats');
+    });
+
     Route::get('/profile', function () {
         return view('profile/view_profile');
     });
@@ -74,6 +75,14 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
     Route::get('/manage_video_welcome_page', 'Video_welcome_pageController@manage_video_welcome_page');
     Route::get('/create_video_welcome_page', 'Video_welcome_pageController@create_video_welcome_page');
     Route::get('/view_video_intro/{id}', 'Video_welcome_pageController@view_video_intro');
+
+    // video_congrats
+    Route::resource('video_congrats', 'Video_congratsController');
+    Route::resource('video_congrats_type_ranks', 'Video_congrats_type_ranksController');
+    Route::get('/manage_video_congrats', 'Video_congratsController@manage_video_congrats');
+    Route::get('/create_video_congrats', 'Video_congratsController@create_video_congrats');
+    Route::get('/view_video_congrats/{id}', 'Video_congratsController@view_video_congrats');
+
 
     // training
     Route::resource('training', 'TrainingController');

@@ -131,8 +131,8 @@
                             </a>
                         </li>
                         <li>
-                            <a class="btn" href="#">
-                                <i class="fa-solid fa-sparkles"></i> Video Congrate
+                            <a class="btn" onclick="pass_lock_menu('{{ url("/manage_video_congrats") }}');">
+                                <i class="fa-solid fa-sparkles"></i> Video Congrats
                             </a>
                         </li>
                         <li>

@@ -130,7 +130,7 @@
 }
 .container_upload{
   background-color: #fff;
-  border: #0dcaf0 3px solid;
+  border: #29cc39 3px solid;
   width: 100%;
   height: 250px;
   border-radius: 10px; 
@@ -148,7 +148,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: #0dcaf0;
+  color: #29cc39;
   font-size: 22px;
   display: flex;
   justify-content: center;
@@ -164,14 +164,14 @@
 
 <div class="row">
     <div class="col-12 mx-auto">
-        <div class="card border-top border-0 border-4 border-info">
+        <div class="card border-top border-0 border-4 border-success">
             <div class="card-body">
                 <div class="p-4 rounded">
                     <div class="card-title d-flex align-items-center">
                         <div>
-                            <i class="fa-solid fa-layer-plus me-1 font-22 text-info"></i>
+                            <i class="fa-solid fa-sparkles me-1 font-22 text-success"></i>
                         </div>
-                        <h5 class="mb-0 text-info">สร้างวิดีโอการแนะนำ</h5>
+                        <h5 class="mb-0 text-success">สร้างวิดีโอแสดงความยินดี</h5>
                     </div>
                     <hr>
                     <div class="row mb-3">
@@ -190,7 +190,7 @@
                             <div id="div_videoPreview" class="d-none">
                                 <center>
                                     <div id="videoPreview"></div>
-                                    <span class="btn btn-sm btn-info" onclick="document.querySelector('#select_video').click();">
+                                    <span class="btn btn-sm btn-success" onclick="document.querySelector('#select_video').click();">
                                         เลือกใหม่
                                     </span>
                                 </center>
@@ -208,12 +208,36 @@
                             {!! $errors->first('name_video', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>
+                    <div class="row mb-3">
+                        <label for="for_rank" class="col-sm-3 col-form-label">
+                            ระดับที่แสดงผล
+                        </label>
+                        <div class="col-sm-6">
+                            <select class="form-select" name="select_for_rank" id="select_for_rank" onchange="change_type_rank('select');">
+                                <option selected value="">เลือกระดับที่ต้องการแสดงผล</option>
+                                @foreach($type_rank as $rank)
+                                    <option value="{{ $rank->name_rank }}">{{ $rank->name_rank }}</option>
+                                @endforeach
+                            </select>
+                            <input class="form-control d-none" type="text" name="add_for_rank" id="add_for_rank" placeholder="เพิ่มระดับที่ต้องการแสดงผล" oninput="change_type_rank('add');">
+
+                            <input class="form-control d-none" type="text" name="for_rank" id="for_rank" readonly>
+                        </div>
+                        <div class="col-sm-3">
+                            <span id="span_type_rank_add" class="btn btn-sm btn-secondary" style="margin-top: 4px;" onclick="change_input_type_rank('add');">
+                                เพิ่มระดับใหม่
+                            </span>
+                            <span id="span_type_rank_select" class="btn btn-sm btn-secondary d-none" style="margin-top: 4px;" onclick="change_input_type_rank('select');">
+                                เลือกระดับ
+                            </span>
+                        </div>
+                    </div>
                     <div class="row mb-3 d-none">
                         <label for="type" class="col-sm-3 col-form-label">
                             Type
                         </label>
                         <div class="col-sm-9">
-                            <input class="form-control" name="type" type="text" id="type" value="Video_Intro" readonly>
+                            <input class="form-control" name="type" type="text" id="type" value="Video_Congrats" readonly>
                             {!! $errors->first('type', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>
@@ -256,8 +280,8 @@
                     <div class="row">
                         <label class="col-sm-3 col-form-label"></label>
                         <div class="col-sm-9">
-                            <input id="btn_submit_video_intro" class="btn btn-info px-5 d-none" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
-                            <span id="btn_submit" class="btn btn-info px-5 disabled" onclick="upload_to_firebase();" >
+                            <input id="btn_submit_video_congrats" class="btn btn-success px-5 d-none" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
+                            <span id="btn_submit" class="btn btn-success px-5 disabled" onclick="upload_to_firebase();" >
                                 Upload Video
                             </span>
                         </div>
@@ -308,7 +332,7 @@
         var fileInput = document.getElementById('select_video');
         var file = fileInput.files[0];
         var name_file = new Date() + '-' + file.name ;
-        var storageRef = storage.ref('/videos/Video_Intro/' + name_file);
+        var storageRef = storage.ref('/videos/Video_Congrats/' + name_file);
 
         var uploadTask = storageRef.put(file);
 
@@ -329,7 +353,7 @@
                     document.querySelector('#select_video').value = null;
 
                     setTimeout(() => {
-                        document.querySelector('#btn_submit_video_intro').click();
+                        document.querySelector('#btn_submit_video_congrats').click();
                     }, 800);
 
                     // ตัวอย่างการแสดง URL บนหน้าเว็บ
@@ -354,14 +378,59 @@
         let btn_submit = document.querySelector('#btn_submit');
         let select_video = document.querySelector('#select_video').value;
         let name_video = document.querySelector('#name_video').value;
+        let for_rank = document.querySelector('#for_rank').value;
         // console.log(select_video);
         // console.log(name_video);
 
-        if (select_video && name_video) {
+        if (select_video && name_video && for_rank) {
             btn_submit.classList.remove('disabled');
         }
         else{
             btn_submit.classList.add('disabled');
         }
     }
+
+    function change_input_type_rank(type) {
+
+        let for_rank = document.querySelector('#for_rank');
+            for_rank.value = '';
+        let add_for_rank = document.querySelector('#add_for_rank');
+        let select_for_rank = document.querySelector('#select_for_rank');
+
+        if(type == 'add'){
+            document.querySelector('#span_type_rank_select').classList.remove('d-none');
+            document.querySelector('#span_type_rank_add').classList.add('d-none');
+
+            document.querySelector('#add_for_rank').classList.remove('d-none');
+            document.querySelector('#select_for_rank').classList.add('d-none');
+            select_for_rank.value = '';
+        }
+        else{
+            document.querySelector('#span_type_rank_add').classList.remove('d-none');
+            document.querySelector('#span_type_rank_select').classList.add('d-none');
+
+            document.querySelector('#select_for_rank').classList.remove('d-none');
+            document.querySelector('#add_for_rank').classList.add('d-none');
+            add_for_rank.value = '';
+        }
+
+        check_data_for_submit();
+    }
+
+    function change_type_rank(type){
+
+        let for_rank = document.querySelector('#for_rank');
+        let add_for_rank = document.querySelector('#add_for_rank');
+        let select_for_rank = document.querySelector('#select_for_rank');
+
+        if(type == 'add'){
+            for_rank.value = add_for_rank.value ;
+        }
+        else{
+            for_rank.value = select_for_rank.value ;
+        }
+
+        check_data_for_submit();
+    }
 </script>
+

@@ -71,8 +71,9 @@ class Video_welcome_pageController extends Controller
 
         Video_welcome_page::create($requestData);
 
-        return view('video_welcome_page.manage_video');
+        return redirect('/manage_video_welcome_page');
         // return redirect('video_welcome_page')->with('flash_message', 'Video_welcome_page added!');
+
     }
 
     /**

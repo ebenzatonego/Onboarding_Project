@@ -79,35 +79,68 @@
 </style>
 
 <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-	<div class="breadcrumb-title pe-3">วิดีโอการแนะนำ</div>
+	<div class="breadcrumb-title pe-3">วิดีโอแสดงความยินดี</div>
+	<div class="ps-3">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb mb-0 p-0">
+				<li class="breadcrumb-item active" aria-current="page">
+					<!-- Example single info button -->
+					<div class="btn-group">
+					  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					    ทั้งหมด
+					  </button>
+					  <div class="dropdown-menu">
+					    <a class="dropdown-item" href="#">
+					    	AG
+					    </a>
+					    <div class="dropdown-divider"></div>
+					    <a class="dropdown-item" href="#">
+					    	UM
+					    </a>
+					    <div class="dropdown-divider"></div>
+					    <a class="dropdown-item" href="#">
+					    	SUM
+					    </a>
+					    <div class="dropdown-divider"></div>
+					    <a class="dropdown-item" href="#">
+					    	DM
+					    </a>
+					    <div class="dropdown-divider"></div>
+					    <a class="dropdown-item" href="#">
+					    	...
+					    </a>
+					  </div>
+					</div>
+				</li>
+			</ol>
+		</nav>
+	</div>
 	<div class="ms-auto">
 		<div class="btn-group">
-			<a href="{{ url('/create_video_welcome_page') }}" class="btn btn-primary">
-				<i class="fa-solid fa-layer-plus"></i> สร้างใหม่
+			<a href="{{ url('/create_video_congrats') }}" class="btn btn-primary">
+				<i class="fa-solid fa-sparkles"></i> สร้างใหม่
 			</a>
 		</div>
 	</div>
 </div>
 
-<hr>
-
-<div id="content_video_intro" class="row row-cols-1 row-cols-md-1 row-cols-lg-3 row-cols-xl-3">
-	<!-- content_video_intro -->
+<div id="content_video_congrats" class="row row-cols-1 row-cols-md-1 row-cols-lg-3 row-cols-xl-3">
+	<!-- content_video_congrats -->
 </div>
 
 <script>
 	document.addEventListener('DOMContentLoaded', function () {
-        get_data_video_intro_all();
+        get_data_video_congrats_all();
     });
 
-    function get_data_video_intro_all(){
-    	fetch("{{ url('/') }}/api/get_data_video_intro_all")
+    function get_data_video_congrats_all(){
+    	fetch("{{ url('/') }}/api/get_data_video_congrats_all")
 	        .then(response => response.json())
 	        .then(result => {
 	            // console.log(result);
 
-	            let content_video_intro = document.querySelector('#content_video_intro');
-	            	content_video_intro.innerHTML = '';
+	            let content_video_congrats = document.querySelector('#content_video_congrats');
+	            	content_video_congrats.innerHTML = '';
 
 	            for (let i = 0; i < result.length; i++) {
 
@@ -157,7 +190,7 @@
 	            	let html = `
 	            		<div class="col">
 							<div class="card">
-								<video id="tag_video_intro" src="`+result[i].video+`" controls muted style="width:100%;border-radius: 10px; max-width: 700px;" class="video-preview"></video>
+								<video id="tag_video_congrats" src="`+result[i].video+`" controls muted style="width:100%;border-radius: 10px; max-width: 700px;" class="video-preview"></video>
 								<div class="card-body">
 									<h5 class="card-title">
 										<b>`+result[i].name_video+`</b>
@@ -172,7 +205,7 @@
 											ดูแล้ว `+countLv2+` ครั้ง จากผู้ใช้ `+countLv1+` คน
 										</span>
 										<span class="float-end">
-											<a href="{{ url('/view_video_intro') }}/`+result[i].id+`" type="button" class="btn btn-sm btn-info">
+											<a href="{{ url('/view_video_congrats') }}/`+result[i].id+`" type="button" class="btn btn-sm btn-info">
 												View log
 											</a>
 										</span>
@@ -214,13 +247,13 @@
 						</div>
 	            	`;
 
-	            	content_video_intro.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+	            	content_video_congrats.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
 	            }
 	        });
     }
 
     function change_status(click_id){
-    	fetch("{{ url('/') }}/api/change_status_video_intro/" + click_id)
+    	fetch("{{ url('/') }}/api/change_status_video_congrats/" + click_id)
 	        .then(response => response.json())
 	        .then(result => {
 	            // console.log(result);

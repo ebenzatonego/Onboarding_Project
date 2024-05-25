@@ -1,0 +1,12 @@
+{
+    "fields": [
+        {
+            "name": "name_rank",
+            "type": "string"
+        },
+        {
+            "name": "check_active",
+            "type": "string"
+        }
+    ]
+}

@@ -61,7 +61,8 @@ class Content_popupsController extends Controller
         
         Content_popup::create($requestData);
 
-        return redirect('content_popups')->with('flash_message', 'Content_popup added!');
+        return redirect('/manage_content_popups');
+        // return redirect('content_popups')->with('flash_message', 'Content_popup added!');
     }
 
     /**
@@ -123,5 +124,13 @@ class Content_popupsController extends Controller
         Content_popup::destroy($id);
 
         return redirect('content_popups')->with('flash_message', 'Content_popup deleted!');
+    }
+
+    function manage_content_popups(){
+        return view('content_popups.manage_content');
+    }
+
+    function create_content_popups(){
+        return view('content_popups.create');
     }
 }

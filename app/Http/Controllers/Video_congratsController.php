@@ -172,8 +172,16 @@ class Video_congratsController extends Controller
 
     function view_video_congrats($id){
         
-        $video_congrats = Video_welcome_page::findOrFail($id);
+        $video_congrats = Video_congrat::findOrFail($id);
+        $data_user = User::where('id', $video_congrats->user_id)->first();
+        $name_creator = $data_user->name ;
 
-        return view('video_congrats.view_video_congrats', compact('video_congrats'));
+        return view('video_congrats.view_video_congrats', compact('video_congrats','name_creator'));
+    }
+
+    function show_video_congrats(Request $request)
+    {
+        $fromPage = $request->query('from');
+        return view('video_congrats', compact('fromPage'));
     }
 }

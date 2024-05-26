@@ -78,6 +78,110 @@
 }
 </style>
 
+<style>
+  .checkmark {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: block;
+      stroke-width: 2;
+      stroke: #29cc39;
+      stroke-miterlimit: 10;
+      margin: 10% auto;
+      box-shadow: inset 0px 0px 0px #ffffff;
+      animation: fill 0.9s ease-in-out .4s forwards, scale .3s ease-in-out .9s both
+  }
+
+  .checkmark__check {
+      transform-origin: 50% 50%;
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+      animation: stroke 0.8s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards
+  }
+
+  @keyframes stroke {
+      100% {
+          stroke-dashoffset: 0
+      }
+  }
+
+  @keyframes scale {
+
+      0%,
+      100% {
+          transform: none
+      }
+
+      50% {
+          transform: scale3d(1.1, 1.1, 1)
+      }
+  }
+
+  @keyframes fill {
+      100% {
+          box-shadow: inset 0px 0px 0px 60px #fff
+      }
+  }
+
+  .radius-20 {
+      border-radius: 20px;
+  }
+
+  .checkmark__circle {
+      stroke-dasharray: 166;
+      stroke-dashoffset: 166;
+      stroke-width: 2;
+      stroke-miterlimit: 10;
+      stroke: #7ac142;
+      fill: none;
+      animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards
+  }
+
+  .checkmark {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: block;
+      stroke-width: 2;
+      stroke: #fff;
+      stroke-miterlimit: 10;
+      margin: 10% auto;
+      box-shadow: inset 0px 0px 0px #7ac142;
+      animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both
+  }
+
+  .checkmark__check {
+      transform-origin: 50% 50%;
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+      animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards
+  }
+
+  @keyframes stroke {
+      100% {
+          stroke-dashoffset: 0
+      }
+  }
+
+  @keyframes scale {
+
+      0%,
+      100% {
+          transform: none
+      }
+
+      50% {
+          transform: scale3d(1.1, 1.1, 1)
+      }
+  }
+
+  @keyframes fill {
+      100% {
+          box-shadow: inset 0px 0px 0px 30px #7ac142
+      }
+  }
+</style>
+
 <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
 	<div class="breadcrumb-title pe-3">วิดีโอการแนะนำ</div>
 	<div class="ms-auto">
@@ -86,7 +190,50 @@
 				<i class="fa-solid fa-layer-plus"></i> สร้างใหม่
 			</a>
 		</div>
+		<div class="btn-group">
+			<span class="btn btn-warning" data-toggle="modal" data-target="#Modal_reset_video_intro">
+				<i class="fa-solid fa-rotate"></i> รีเซ็ตการแจ้งเตือน
+			</span>
+		</div>
 	</div>
+</div>
+
+<!-- Modal รีเซ็ตการแจ้งเตือน -->
+<div class="modal fade" id="Modal_reset_video_intro" tabindex="-1" aria-labelledby="Modal_reset_video_introLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <center>
+        	<div id="modal_body_question">
+	        	<img src="{{ url('/img/icon/problem (1).png') }}" style="width:60%;">
+	        	<h5 class="modal-title mt-3" id="Modal_reset_video_introLabel">ยืนยัน <b>"รีเซ็ตการแจ้งเตือน"</b> ?</h5>
+        	</div>
+        	<div id="modal_body_success" class="d-none">
+            <div class="contrainerCheckmark">
+              <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                  <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+                  <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+              </svg>
+              <center>
+                  <h5 class="mt-5">เสร็จสิ้น</h5>
+              </center>
+        		</div>
+        	</div>
+        </center>
+        <hr>
+      </div>
+      <div class="mt-2 mb-4">
+      	<center>
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width:40%;">
+	        	ปิด
+	        </button>
+	        <button id="btn_cf_reset_video_intro" type="button" class="btn btn-primary" style="width:40%;" onclick="reset_check_video_welcome_page();">
+	        	ยืนยัน
+	        </button>
+      	</center>
+      </div>
+    </div>
+  </div>
 </div>
 
 <hr>
@@ -112,106 +259,109 @@
 	            for (let i = 0; i < result.length; i++) {
 
 	            	let datetime = result[i].created_at;
-					// แยกวันที่และเวลา
-					let [date, time] = datetime.split('T');
-					// แยกส่วนของวันที่
-					let [year, month, day] = date.split('-');
-					// แปลงรูปแบบวันที่เป็น วัน/เดือน/ปี
-					let formattedDate = `${day}/${month}/${year}`;
-					// แยกส่วนของเวลา (เฉพาะ HH:MM:SS)
-					let [hour, minute, second] = time.split('.')[0].split(':');
-					let formattedTime = `${hour}:${minute}`;
+								// แยกวันที่และเวลา
+								let [date, time] = datetime.split(' ');
+								// แยกส่วนของวันที่
+								let [year, month, day] = date.split('-');
+								// แปลงรูปแบบวันที่เป็น วัน/เดือน/ปี
+								let formattedDate = `${day}/${month}/${year}`;
+								// แยกส่วนของเวลา (เฉพาะ HH:MM:SS)
+								let [hour, minute, second] = time.split('.')[0].split(':');
+								let formattedTime = `${hour}:${minute}`;
 
-	            	let time_create = `<b>สร้างเมื่อ</b> `+formattedDate+` <b>เวลา</b> `+formattedTime+` น.` ;
+				            	let time_create = `<b>สร้างเมื่อ</b> `+formattedDate+` <b>เวลา</b> `+formattedTime+` น.` ;
 
-	            	// Amount log
-	            	let countLv1 = 0 ;
-					let countLv2 = 0 ;
-	            	let data_log = JSON.parse(result[i].log);
-	            		// console.log(data_log);
+				            	// Amount log
+				            	let countLv1 = 0 ;
+								let countLv2 = 0 ;
+				            	let data_log = JSON.parse(result[i].log);
+				            		// console.log(data_log);
 
-					if(result[i].log){
-						// นับจำนวนระดับทั้งหมดใน Level 1
-						countLv1 = Object.keys(data_log).length;
+								if(result[i].log){
+									// นับจำนวนระดับทั้งหมดใน Level 1
+									countLv1 = Object.keys(data_log).length;
 
-						// นับจำนวนระดับทั้งหมดใน Level 2
-						countLv2 = Object.values(data_log).reduce((acc, val) => acc + Object.keys(val).length, 0);
-					}
+									// นับจำนวนระดับทั้งหมดใน Level 2
+									countLv2 = Object.values(data_log).reduce((acc, val) => acc + Object.keys(val).length, 0);
+								}
 
-					// status
-					let check_status = result[i].status ;
-					let input_checked = '';
-					let text_guide = '';
-					let color_status = '';
-					if(check_status == "Yes"){
-						input_checked = "checked";
-						text_guide = "(คุณเปิดใช้งานวิดีโอนี้อยู่)";
-						color_status = "success";
-					}
-					else{
-						input_checked = "";
-						text_guide = "(หากเปิดใช้งานวิดีโอที่เปิดใช้งานอยู่จะถูกปิด)";
-						color_status = "danger";
-					}
+								// status
+								let check_status = result[i].status ;
+								let input_checked = '';
+								let text_guide = '';
+								let color_status = '';
+								if(check_status == "Yes"){
+									input_checked = "checked";
+									text_guide = "(คุณเปิดใช้งานวิดีโอนี้อยู่)";
+									color_status = "success";
+								}
+								else{
+									input_checked = "";
+									text_guide = "(หากเปิดใช้งานวิดีโอที่เปิดใช้งานอยู่จะถูกปิด)";
+									color_status = "danger";
+								}
 
 	            	let html = `
 	            		<div class="col">
-							<div class="card">
-								<video id="tag_video_intro" src="`+result[i].video+`" controls muted style="width:100%;border-radius: 10px; max-width: 700px;" class="video-preview"></video>
-								<div class="card-body">
-									<h5 class="card-title">
-										<b>`+result[i].name_video+`</b>
-									</h5>
-									<p class="card-text">
-										`+time_create+`
-									</p>
-								</div>
-								<ul class="list-group list-group-flush">
-									<li class="list-group-item">
-										<span class="float-start" style="margin-top: 7px;">
-											ดูแล้ว `+countLv2+` ครั้ง จากผู้ใช้ `+countLv1+` คน
-										</span>
-										<span class="float-end">
-											<a href="{{ url('/view_video_intro') }}/`+result[i].id+`" type="button" class="btn btn-sm btn-info">
-												View log
-											</a>
-										</span>
-									</li>
-								</ul>
-								<center>
-									<hr style="width:80%;">
-								</center>
-								<div class="card-body">
-									<div id="div_toggle_status_`+result[i].id+`" class="toggle-wrapper" onclick="change_status('`+result[i].id+`');">
-									  	<input id="input_of_`+result[i].id+`" class="toggle-checkbox" type="checkbox" `+input_checked+`>
-									  	<div class="toggle-container">  
-									    	<div class="toggle-button">
-										      	<div class="toggle-button-circles-container">
-									        	<div class="toggle-button-circle"></div>
-										        <div class="toggle-button-circle"></div>
-										        <div class="toggle-button-circle"></div>
-										        <div class="toggle-button-circle"></div>
-										        <div class="toggle-button-circle"></div>
-										        <div class="toggle-button-circle"></div>
-										        <div class="toggle-button-circle"></div>
-										        <div class="toggle-button-circle"></div>
-										        <div class="toggle-button-circle"></div>
-										        <div class="toggle-button-circle"></div>
-										        <div class="toggle-button-circle"></div>
-										        <div class="toggle-button-circle"></div>
-										      	</div>
-									    	</div>
-									  	</div>
+										<div class="card">
+											<video id="tag_video_intro" src="`+result[i].video+`" controls muted style="width:100%;border-radius: 10px; max-width: 700px;" class="video-preview"></video>
+											<div class="card-body">
+												<h5 class="card-title">
+													<b>`+result[i].name_video+`</b>
+												</h5>
+												<p class="card-text">
+													`+time_create+`
+												</p>
+												<p class="card-text">
+													ผู้สร้าง : `+result[i].name_user+`
+												</p>
+											</div>
+											<ul class="list-group list-group-flush">
+												<li class="list-group-item">
+													<span class="float-start" style="margin-top: 7px;">
+														ดูแล้ว `+countLv2+` ครั้ง จากผู้ใช้ `+countLv1+` คน
+													</span>
+													<span class="float-end">
+														<a href="{{ url('/view_video_intro') }}/`+result[i].id+`" type="button" class="btn btn-sm btn-info">
+															View log
+														</a>
+													</span>
+												</li>
+											</ul>
+											<center>
+												<hr style="width:80%;">
+											</center>
+											<div class="card-body">
+												<div id="div_toggle_status_`+result[i].id+`" class="toggle-wrapper" onclick="change_status('`+result[i].id+`');">
+												  	<input id="input_of_`+result[i].id+`" class="toggle-checkbox" type="checkbox" `+input_checked+`>
+												  	<div class="toggle-container">  
+												    	<div class="toggle-button">
+													      	<div class="toggle-button-circles-container">
+												        	<div class="toggle-button-circle"></div>
+													        <div class="toggle-button-circle"></div>
+													        <div class="toggle-button-circle"></div>
+													        <div class="toggle-button-circle"></div>
+													        <div class="toggle-button-circle"></div>
+													        <div class="toggle-button-circle"></div>
+													        <div class="toggle-button-circle"></div>
+													        <div class="toggle-button-circle"></div>
+													        <div class="toggle-button-circle"></div>
+													        <div class="toggle-button-circle"></div>
+													        <div class="toggle-button-circle"></div>
+													        <div class="toggle-button-circle"></div>
+													      	</div>
+												    	</div>
+												  	</div>
+												</div>
+												<center>
+													<br>
+													<span text_guide_for="`+result[i].id+`" class="text-`+color_status+`">
+														`+text_guide+`
+													</span>
+												</center>
+											</div>
+										</div>
 									</div>
-									<center>
-										<br>
-										<span text_guide_for="`+result[i].id+`" class="text-`+color_status+`">
-											`+text_guide+`
-										</span>
-									</center>
-								</div>
-							</div>
-						</div>
 	            	`;
 
 	            	content_video_intro.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
@@ -270,6 +420,22 @@
 	            }
 
     	});
+    }
+
+    function reset_check_video_welcome_page(){
+
+    	fetch("{{ url('/') }}/api/reset_check_video_welcome_page")
+	        .then(response => response.text())
+	        .then(result => {
+	            // console.log(result);
+
+	        	if(result == "success"){
+	        		document.querySelector('#modal_body_question').classList.add('d-none');
+	        		document.querySelector('#btn_cf_reset_video_intro').classList.add('d-none');
+	        		document.querySelector('#modal_body_success').classList.remove('d-none');
+	        	}
+    	});
+
     }
 </script>
 

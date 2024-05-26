@@ -352,7 +352,7 @@
                 <p style="font-size: 10px;font-weight: bold;margin: 0;">ALLIANZ ON-BOARDING WEB</p>
 
                 <div class="d-flex-justify-content-center w-100 p-3">
-                    <video id="tag_video_congrat" src="" controls autoplay loop muted style="width:100%;border-radius: 10px; max-width: 628px;" class="video-preview"></video>
+                    <video id="tag_video_congrats" src="" controls autoplay loop muted style="width:100%;border-radius: 10px; max-width: 628px;" class="video-preview"></video>
                 </div>
             </div>
         </div>
@@ -371,18 +371,21 @@
                     </div>
                     
                     <p class="m-0 text-white">จาก ตำแหน่ง</p>
-                    <p style="color:#243286;">Agent Level (AG)</p>
+                    <div style="font-size: 18px;margin: 5px 0 5px 0;" class="shine">
+                        {{ Auth::user()->last_rank }}
+                    </div>
                     <p class="m-0 text-white">สู่ ตำแหน่ง</p>
-                    <p style="color:#243286;">ผู้จัดการหน่วย (UM)</p>
+                    <div style="font-size: 18px;margin: 5px 0 5px 0;" class="shine">
+                        {{ Auth::user()->current_rank }}
+                    </div>
 
-
-                    <button type="submit" id="btn_dont_show_congrat" class="btn-submit-login" disabled>
+                    <button type="submit" id="btn_dont_show_congrats" class="btn-submit-login" disabled>
                         ถัดไป <span id="text_countdown"></span>
                     </button>
 
                     <div class="d-flex align-items-center justify-content-center">
-                        <input name="check_dont_show_congrat" id="check_dont_show_congrat" class="form-check-input font-20 m-0 p-o" type="checkbox" value="" aria-label="Checkbox for following text input" onchange="validate_condition()">
-                        <label for="check_dont_show_congrat" class="ms-2 h-100 mt-1" style="color: #989898;">ไม่แสดงหน้านี้อีก</label>
+                        <input name="check_dont_show_congrats" id="check_dont_show_congrats" class="form-check-input font-20 m-0 p-o" type="checkbox" value="" aria-label="Checkbox for following text input" onchange="validate_condition()">
+                        <label for="check_dont_show_congrats" class="ms-2 h-100 mt-1" style="color: #989898;">ไม่แสดงหน้านี้อีก</label>
                     </div>
                 </div>
             </div>
@@ -390,18 +393,18 @@
     </div>
 </div>
 
-
 <script>
     var button_skip_Clicked = false;
 
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
+        // console.log("{{ $fromPage }}");
 
-        // get_video_congrat();
+        get_video_congrats();
 
         var countdownNumber = 10;
         var countdownElement = document.getElementById('text_countdown');
-        var buttonElement = document.getElementById('btn_dont_show_congrat');
+        var buttonElement = document.getElementById('btn_dont_show_congrats');
 
         // อัปเดตข้อความนับถอยหลังและทำงานนับถอยหลัง
         function updateCountdown() {
@@ -412,11 +415,11 @@
                 // เปิดการใช้งานปุ่มเมื่อการนับถอยหลังสิ้นสุด
                 buttonElement.disabled = false;
                 countdownElement.textContent = "";
-                document.querySelector('#btn_dont_show_congrat').disabled = false;
+                document.querySelector('#btn_dont_show_congrats').disabled = false;
             } else {
                 // ลดค่าการนับถอยหลังและตั้งเวลาถัดไป
                 countdownNumber--;
-                document.querySelector('#btn_dont_show_congrat').disabled = true;
+                document.querySelector('#btn_dont_show_congrats').disabled = true;
                 setTimeout(updateCountdown, 1000);
             }
         }
@@ -424,51 +427,58 @@
         // เริ่มการนับถอยหลัง
         updateCountdown();
 
-        // buttonElement.addEventListener('click', function() {
-        //     // console.log(countTime);
-        //     button_skip_Clicked = true;
-        //     fetch("{{ url('/') }}/api/update_countTime_video_congrat/" + "{{ Auth::user()->id }}" + "/" + countTime)
-        //         .then(response => response.text())
-        //         .then(result => {
-        //             // console.log(result);
-        //         });
-        //     window.location.href = "{{ url('/home') }}";
-        // });
+        buttonElement.addEventListener('click', function() {
+            // console.log(countTime);
+            button_skip_Clicked = true;
+            fetch("{{ url('/') }}/api/update_countTime_video_congrats/" + "{{ Auth::user()->id }}" + "/" + countTime)
+                .then(response => response.text())
+                .then(result => {
+                    // console.log(result);
+                });
+
+            fetch("{{ url('/') }}/api/update_check_video_congratulation/" + "{{ Auth::user()->id }}" + "/" + skip_video_congrats)
+                .then(response => response.text())
+                .then(result => {
+                    // console.log(result);
+                    window.location.href = "{{ $fromPage }}";
+                });
+        });
 
     });
 
-    function validate_condition() {
-        let check_dont_show_congrat = document.getElementById('check_dont_show_congrat').checked;
-        // console.log(check_dont_show_congrat);
+    var skip_video_congrats = "No";
 
-        let skip_video_congrat;
-        if (check_dont_show_congrat) {
-            skip_video_congrat = "Yes";
+    function validate_condition() {
+        let check_dont_show_congrats = document.getElementById('check_dont_show_congrats').checked;
+        // console.log(check_dont_show_congrats);
+
+        if (check_dont_show_congrats) {
+            skip_video_congrats = "Yes";
         } else {
-            skip_video_congrat = "No";
+            skip_video_congrats = "No";
         }
 
-        // fetch("{{ url('/') }}/api/skip_video_congrat/" + "{{ Auth::user()->id }}" + "/" + skip_video_congrat)
-        //     .then(response => response.text())
-        //     .then(result => {
-        //         // console.log(result);
-        //     });
+        fetch("{{ url('/') }}/api/skip_video_congrats/" + "{{ Auth::user()->id }}" + "/" + skip_video_congrats)
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+            });
     }
 
-    function get_video_congrat() {
-        fetch("{{ url('/') }}/api/get_video_congrat")
+    function get_video_congrats() {
+        fetch("{{ url('/') }}/api/get_video_congrats" +"/"+ "{{ Auth::user()->id }}")
             .then(response => response.text())
             .then(result => {
                 // console.log(result);
                 if (result) {
-                    document.querySelector('#tag_video_congrat').src = result;
+                    document.querySelector('#tag_video_congrats').src = result;
                 }
             });
     }
 
 
     // นับเวลาวิดีโอ
-    const video = document.getElementById('tag_video_congrat');
+    const video = document.getElementById('tag_video_congrats');
     let countTime = 0;
     let interval;
 
@@ -502,15 +512,15 @@
 
 
     // ก่อนปิดหน้าหรือเปลี่ยนหน้า
-    // window.addEventListener('beforeunload', function(e) {
-    //     // console.log(countTime);
-    //     if (!button_skip_Clicked) {
-    //         fetch("{{ url('/') }}/api/update_countTime_video_congrat/" + "{{ Auth::user()->id }}" + "/" + countTime)
-    //             .then(response => response.text())
-    //             .then(result => {
-    //                 // console.log(result);
-    //             });
-    //     }
-    // });
+    window.addEventListener('beforeunload', function(e) {
+        // console.log(countTime);
+        if (!button_skip_Clicked) {
+            fetch("{{ url('/') }}/api/update_countTime_video_congrats/" + "{{ Auth::user()->id }}" + "/" + countTime)
+                .then(response => response.text())
+                .then(result => {
+                    // console.log(result);
+                });
+        }
+    });
 </script>
 @endsection

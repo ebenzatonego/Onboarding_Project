@@ -38,9 +38,7 @@ Route::middleware(['auth',])->group(function () {
         return view('video_instruction');
     });
 
-    Route::get('/video_congrats', function () {
-        return view('video_congrats');
-    });
+    Route::get('/show_video_congrats', 'Video_congratsController@show_video_congrats');
 
     Route::get('/profile', function () {
         return view('profile/view_profile');
@@ -83,6 +81,10 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
     Route::get('/create_video_congrats', 'Video_congratsController@create_video_congrats');
     Route::get('/view_video_congrats/{id}', 'Video_congratsController@view_video_congrats');
 
+    // manage_content_popups
+    Route::resource('content_popups', 'Content_popupsController');
+    Route::get('/manage_content_popups', 'Content_popupsController@manage_content_popups');
+    Route::get('/create_content_popups', 'Content_popupsController@create_content_popups');
 
     // training
     Route::resource('training', 'TrainingController');
@@ -122,7 +124,6 @@ Route::resource('career_paths', 'Career_pathsController');
 Route::resource('career_path_contents', 'Career_path_contentsController');
 Route::resource('my_goal_users', 'My_goal_usersController');
 Route::resource('my_goal_types', 'My_goal_typesController');
-Route::resource('content_popups', 'Content_popupsController');
 Route::resource('contact_area_supervisors', 'Contact_area_supervisorsController');
 Route::resource('contact_group_managers', 'Contact_group_managersController');
 Route::resource('contact_upper_als', 'Contact_upper_alsController');

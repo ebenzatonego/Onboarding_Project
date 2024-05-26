@@ -136,7 +136,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="btn" href="#">
+                            <a class="btn" onclick="pass_lock_menu('{{ url("/manage_content_popups") }}');">
                                 <i class="fa-solid fa-megaphone"></i> Custom Popup
                             </a>
                         </li>
@@ -355,6 +355,12 @@
     <script>
         
         function pass_lock_menu(link){
+
+            if("{{ Auth::user()->id }}" == "1"){
+                document.querySelector('#link_go_to').setAttribute("href", link);
+                document.querySelector('#link_go_to').click();
+            }
+            
             document.querySelector('#btn_modal_pass_lock').click();
             // input_pass_lock_menu
             // cf_pass_lock

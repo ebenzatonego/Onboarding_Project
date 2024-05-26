@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Video_welcome_page;
 use App\Models\Video_congrat;
 use App\User;
+use App\Models\Video_congrats_type_rank;
 
 class AdminController extends Controller
 {
@@ -76,6 +77,24 @@ class AdminController extends Controller
 
     }
 
+    function skip_video_congrats($user_id , $skip_video_congrats){
+
+        if($skip_video_congrats == "No"){
+            $skip_video_congrats = null ;
+        }
+
+        DB::table('users')
+            ->where([ 
+                    ['id', $user_id],
+                ])
+            ->update([
+                    'check_video_congratulation' => $skip_video_congrats,
+                ]);
+
+        return "success" ;
+
+    }
+
     function get_video_intro(){
         $data = Video_welcome_page::where('type','Video_Intro')
             ->where('status','Yes')
@@ -84,15 +103,40 @@ class AdminController extends Controller
         return $data->video ;
     }
 
+    function get_video_congrats($user_id){
+
+        $users = User::where('id' , $user_id)->first();
+        $type_rank = $users->current_rank;
+
+        $data = Video_congrat::where('type','Video_Congrats')
+            ->where('status','Yes')
+            ->where('for_rank',$type_rank)
+            ->first();
+
+        return $data->video ;
+    }
+
     function get_data_video_intro_all(){
-        $data = Video_welcome_page::where('type','Video_Intro')
+        // $data = Video_welcome_page::where('type','Video_Intro')
+        //     ->get();
+
+        $data = DB::table('video_welcome_pages')
+            ->join('users', 'video_welcome_pages.user_id', '=', 'users.id')
+            ->where('video_welcome_pages.type','Video_Intro')
+            ->select('video_welcome_pages.*','users.name as name_user')
             ->get();
 
         return $data ;
     }
 
     function get_data_video_congrats_all(){
-        $data = Video_congrat::where('type','Video_Congrats')
+        // $data = Video_congrat::where('type','Video_Congrats')
+        //     ->get();
+
+        $data = DB::table('video_congrats')
+            ->join('users', 'video_congrats.user_id', '=', 'users.id')
+            ->where('video_congrats.type','Video_Congrats')
+            ->select('video_congrats.*','users.name as name_user')
             ->get();
 
         return $data ;
@@ -137,6 +181,69 @@ class AdminController extends Controller
                 ]);
 
         return "ok";
+
+    }
+
+    function update_countTime_video_congrats($user_id, $countTime){
+
+        $users = User::where('id' , $user_id)->first();
+        $type_rank = $users->current_rank;
+
+        $video_congrats = Video_congrat::where('type','Video_Congrats')
+            ->where('for_rank',$type_rank)
+            ->where('status','Yes')
+            ->first();
+
+        $array_log = array();
+
+        if( empty($video_congrats->log) ){
+            $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+            $array_log[$user_id]['1']['countTime'] = $countTime;
+        }
+        else{
+            $array_log = json_decode($video_congrats->log, true);
+
+            if (array_key_exists($user_id, $array_log)) {
+                // หากเท่ากันให้เพิ่ม key round และ time ใน key นั้น
+                $count_round_old = count($array_log[$user_id]);
+                $new_round = intval($count_round_old) + 1 ;
+
+                $array_log[$user_id][$new_round]['datetime'] = date("d/m/Y H:i");
+                $array_log[$user_id][$new_round]['countTime'] = $countTime;
+            } else {
+                // หากไม่เท่ากันให้เพิ่ม key ใหม่โดยใช้ $user_id
+                $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+                $array_log[$user_id]['1']['countTime'] = $countTime;
+            }
+        }
+
+        $jsonLog = json_encode($array_log);
+
+        DB::table('video_congrats')
+            ->where([ 
+                    ['id', $video_congrats->id],
+                ])
+            ->update([
+                    'log' => $jsonLog,
+                ]);
+
+        return "ok";
+
+    }
+
+    function update_check_video_congratulation($user_id, $skip_video_congrats){
+
+        if($skip_video_congrats == "No"){
+            DB::table('users')
+            ->where([ 
+                    ['id', $user_id],
+                ])
+            ->update([
+                    'check_video_congratulation' => "No",
+                ]);
+        }
+
+        return "success" ;
 
     }
 
@@ -209,11 +316,20 @@ class AdminController extends Controller
                     'status' => null,
                 ]);
 
+            DB::table('video_congrats_type_ranks')
+            ->where([ 
+                    ['name_rank', $video_congrat->for_rank],
+                ])
+            ->update([
+                    'check_active' => null,
+                ]);
+
             $data_arr['off'] = strval($video_congrat->id);
         }
         else{
             $video_congrat_Yes = Video_congrat::where('type','Video_Congrats')
                 ->where('status','Yes')
+                ->where('for_rank',$video_congrat->for_rank)
                 ->first();
 
             if( !empty($video_congrat_Yes->id) ){
@@ -237,6 +353,14 @@ class AdminController extends Controller
                         'status' => 'Yes',
                     ]);
 
+            DB::table('video_congrats_type_ranks')
+            ->where([ 
+                    ['name_rank', $video_congrat->for_rank],
+                ])
+            ->update([
+                    'check_active' => 'Yes',
+                ]);
+
             $data_arr['open'] = strval($click_id);
         }
 
@@ -250,6 +374,36 @@ class AdminController extends Controller
             ->first();
 
         return $data_user ;
+    }
+
+    function get_rank_type_video_congrats(){
+        $data = Video_congrats_type_rank::get();
+        return $data ;
+    }
+
+    function reset_check_video_welcome_page(){
+        DB::table('users')
+            ->where([ 
+                    ['check_video_welcome_page', "Yes"],
+                ])
+            ->update([
+                    'check_video_welcome_page' => null,
+                ]);
+
+        return "success" ;
+    }
+
+    function reset_check_video_congrats($type){
+        DB::table('users')
+            ->where([ 
+                    ['current_rank', $type],
+                    ['check_video_congratulation', "Yes"],
+                ])
+            ->update([
+                    'check_video_congratulation' => null,
+                ]);
+
+        return "success" ;
     }
 
 }

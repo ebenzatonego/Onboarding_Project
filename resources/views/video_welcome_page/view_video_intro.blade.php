@@ -19,6 +19,9 @@
 								<!-- time_create -->
 							</small>
 						</p>
+						<p class="card-text">
+							ผู้สร้าง : {{ $name_creator }}
+						</p>
 						<p id="text_amount_log" class="card-text">
 							<!-- text_amount_log -->
 						</p>

@@ -148,7 +148,9 @@ class Video_welcome_pageController extends Controller
     function view_video_intro($id){
         
         $video_welcome_page = Video_welcome_page::findOrFail($id);
+        $data_user = User::where('id', $video_welcome_page->user_id)->first();
+        $name_creator = $data_user->name ;
 
-        return view('video_welcome_page.view_video_intro', compact('video_welcome_page'));
+        return view('video_welcome_page.view_video_intro', compact('video_welcome_page','name_creator'));
     }
 }

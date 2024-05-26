@@ -452,3 +452,24 @@
 		$(".search-bar").addClass("full-search-bar");
 	});
 </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // console.log("START");
+
+        // ตรวจสอบการเลื่อนตำแหน่ง
+        check_current_rank();
+    });
+
+    function check_current_rank(){
+
+        let current_rank = "{{ Auth::user()->current_rank }}" ;
+        let last_rank = "{{ Auth::user()->last_rank }}" ;
+        let check_video_congratulation = "{{ Auth::user()->check_video_congratulation }}" ;
+
+        if(current_rank != last_rank && !check_video_congratulation){
+            window.location.href = "{{ url('/show_video_congrats') }}?from="+"{{ url()->full() }}";
+        }
+
+    }
+</script>

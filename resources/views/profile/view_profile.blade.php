@@ -851,7 +851,7 @@
                                 <p class="mb-0" style="color: #003781;font-size: 10px;font-style: normal;font-weight: 400;line-height: normal;">หน่วยอาวุโส Victory สีหราช Settee 64</p>
                                 <p style="color: #003781;font-size: 10px;font-style: normal;font-weight: 400;line-height: normal;">เลขที่ใบอนุญาต : 123456</p>
                             </div>
-                            <div style="width: 40%;">
+                            <div style="width: 40%;padding-left: 5px;">
                                 <div>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
                                         <path d="M14.3333 15H9.83333C9.46667 15 9.16667 14.7 9.16667 14.3333V10.5C9.16667 9.58333 8.41667 8.83333 7.5 8.83333C6.58333 8.83333 5.83333 9.58333 5.83333 10.5V14.3333C5.83333 14.7 5.53333 15 5.16667 15H0.666667C0.3 15 0 14.7 0 14.3333V8C0 7.83333 0.0666667 7.66667 0.183333 7.55L7.01667 0.216667C7.13333 0.0833333 7.31667 0 7.5 0C7.68333 0 7.86667 0.0833333 7.98333 0.216667L14.8167 7.55C14.9333 7.66667 15 7.83333 15 8V14.3333C15 14.7 14.7 15 14.3333 15ZM10.5 13.6667H13.6667V8.26667L7.5 1.65L1.33333 8.26667V13.6667H4.5V10.5C4.5 8.85 5.85 7.5 7.5 7.5C9.15 7.5 10.5 8.85 10.5 10.5V13.6667Z" fill="#003781" />
@@ -879,10 +879,10 @@
 
                         <p class="mb-0 text-end" style="color: #003781;font-size: 12px;font-style: normal;font-weight: 700;line-height: normal;">ALLIANZ ELITE AGENCY</p>
                     </div>
-                    <button id="btnDownload" type="button" class="btn-close-modal-detail W-100" style="border-radius: 50px;color: #FFF;text-align: center;font-size: 16px;font-style: normal;font-weight: 500;line-height: normal;">
+                    <a id="btnDownload" type="button" class="btn-close-modal-detail W-100" style="border-radius: 50px;color: #FFF;text-align: center;font-size: 16px;font-style: normal;font-weight: 500;line-height: normal;">
                         <i class="fa-regular fa-image"></i> <span style="color: #FFF;text-align: center;font-size: 16px;font-style: normal;font-weight: 500;line-height: normal;">ดาวน์โหลดรูปภาพ</span>
 
-                    </button>
+                        </a>
                 </div>
 
             </div>

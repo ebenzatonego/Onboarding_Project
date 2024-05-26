@@ -844,19 +844,19 @@
                         </div>
                         <div class="d-flex align-items-center">
                             <div style="width: 60%;">
-                                <p class="mb-0" style="color: #003781;font-size: 14px;font-style: normal;font-weight: 600;line-height: normal;">Pathumrat Chatrattanasak</p>
-                                <p class="mb-0" style="color: #003781;font-size: 14px;font-style: normal;font-weight: 600;line-height: normal;">ปทุมรัตน์ ฉัตรรัตนศักดิ์</p>
-                                <p class="mt-2 mb-3" style="color: #383838;font-size: 13px;font-style: normal;font-weight: 700;line-height: normal;">ผู้จัดการหน่วยอาวุโส</p>
+                                <p class="mb-0" style="color: #003781;font-size: 12px;font-style: normal;font-weight: 600;line-height: normal;">Pathumrat Chatrattanasak</p>
+                                <p class="mb-0" style="color: #003781;font-size: 12px;font-style: normal;font-weight: 600;line-height: normal;">ปทุมรัตน์ ฉัตรรัตนศักดิ์</p>
+                                <p class="mt-2 mb-3" style="color: #383838;font-size: 11px;font-style: normal;font-weight: 700;line-height: normal;">ผู้จัดการหน่วยอาวุโส</p>
 
-                                <p class="mb-0" style="color: #003781;font-size: 12px;font-style: normal;font-weight: 400;line-height: normal;">หน่วยอาวุโส Victory สีหราช Settee 64</p>
-                                <p style="color: #003781;font-size: 12px;font-style: normal;font-weight: 400;line-height: normal;">เลขที่ใบอนุญาต : 123456</p>
+                                <p class="mb-0" style="color: #003781;font-size: 10px;font-style: normal;font-weight: 400;line-height: normal;">หน่วยอาวุโส Victory สีหราช Settee 64</p>
+                                <p style="color: #003781;font-size: 10px;font-style: normal;font-weight: 400;line-height: normal;">เลขที่ใบอนุญาต : 123456</p>
                             </div>
                             <div style="width: 40%;">
                                 <div>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
                                         <path d="M14.3333 15H9.83333C9.46667 15 9.16667 14.7 9.16667 14.3333V10.5C9.16667 9.58333 8.41667 8.83333 7.5 8.83333C6.58333 8.83333 5.83333 9.58333 5.83333 10.5V14.3333C5.83333 14.7 5.53333 15 5.16667 15H0.666667C0.3 15 0 14.7 0 14.3333V8C0 7.83333 0.0666667 7.66667 0.183333 7.55L7.01667 0.216667C7.13333 0.0833333 7.31667 0 7.5 0C7.68333 0 7.86667 0.0833333 7.98333 0.216667L14.8167 7.55C14.9333 7.66667 15 7.83333 15 8V14.3333C15 14.7 14.7 15 14.3333 15ZM10.5 13.6667H13.6667V8.26667L7.5 1.65L1.33333 8.26667V13.6667H4.5V10.5C4.5 8.85 5.85 7.5 7.5 7.5C9.15 7.5 10.5 8.85 10.5 10.5V13.6667Z" fill="#003781" />
                                     </svg>
-                                    <p class="mt-2" style="color: #373737;font-size: 10px;font-style: normal;font-weight: 400;line-height: normal;">
+                                    <p class="mt-2" style="color: #373737;font-size:8px;font-style: normal;font-weight: 400;line-height: normal;">
                                         2248/15 ถ.เจริญกรุง แขวงบางคอแหลม เขตบางคอแหลม กรุงเทพฯ 10120
                                     </p>
                                 </div>
@@ -865,10 +865,10 @@
                                         <path d="M1.44918 16.468H12.064C13.6826 16.468 15 15.1506 15 13.532V2.93601C15 1.31744 13.6826 0 12.064 0H1.44918C1.12923 0 0.865747 0.263488 0.865747 0.583438V4.12171H0.583438C0.263488 4.12171 0 4.38519 0 4.70514C0 5.02509 0.263488 5.28858 0.583438 5.28858H0.846926V7.64115H0.583438C0.263488 7.64115 0 7.90464 0 8.24341C0 8.58218 0.263488 8.82685 0.583438 8.82685H0.846926V11.1794H0.583438C0.263488 11.1794 0 11.4429 0 11.7629C0 12.0828 0.263488 12.3463 0.583438 12.3463H0.846926V15.8846C0.865747 16.2045 1.12923 16.468 1.44918 16.468ZM13.8143 13.532C13.8143 14.5107 13.0238 15.3011 12.0452 15.3011H2.03262V1.1857H12.0452C13.0238 1.1857 13.8143 1.97616 13.8143 2.95483V13.532Z" fill="#003781" />
                                         <path d="M12.4974 11.0665L12.1586 9.88078C11.8952 8.92093 11.0859 8.22457 10.126 8.07401C10.446 7.64113 10.6342 7.09534 10.6342 6.5119C10.6342 5.02507 9.42966 3.82056 7.94283 3.82056C6.456 3.82056 5.25149 5.02507 5.25149 6.5119C5.25149 7.09534 5.43969 7.62231 5.75964 8.07401C4.79979 8.24339 4.00933 8.93975 3.72702 9.88078L3.38825 11.0665C3.27533 11.4429 3.35061 11.8381 3.59528 12.1581C3.83994 12.478 4.19753 12.6474 4.59277 12.6474H11.2929C11.6881 12.6474 12.0457 12.4592 12.2904 12.1581C12.5162 11.8381 12.5915 11.4429 12.4974 11.0665ZM7.92401 4.98743C8.77094 4.98743 9.44848 5.66497 9.44848 6.5119C9.44848 7.35883 8.77094 8.03637 7.92401 8.03637C7.07708 8.03637 6.39954 7.35883 6.39954 6.5119C6.39954 5.66497 7.0959 4.98743 7.92401 4.98743ZM11.2929 11.4805H4.55513L4.49866 11.4052L4.83743 10.2196C5.00682 9.63612 5.5338 9.22206 6.15487 9.22206H9.71196C10.3142 9.22206 10.86 9.63612 11.0294 10.2196L11.3682 11.4052L11.2929 11.4805Z" fill="#003781" />
                                     </svg>
-                                    <p class="mt-2 mb-0" style="color: #373737;font-size: 10px;font-style: normal;font-weight: 400;line-height: normal;">
+                                    <p class="mt-2 mb-0" style="color: #373737;font-size: 8px;font-style: normal;font-weight: 400;line-height: normal;">
                                         Mobile: 098-792-6596
                                     </p>
-                                    <p class="" style="color: #373737;font-size: 10px;font-style: normal;font-weight: 400;line-height: normal;">
+                                    <p class="" style="color: #373737;font-size: 8px;font-style: normal;font-weight: 400;line-height: normal;">
                                         Pathumrat.Cha@azayagency.com
                                     </p>
                                 </div>

@@ -55,110 +55,7 @@
 
     }
 
-    .header-my-goal {
-        font-size: 16px;
-        font-weight: bolder;
-    }
 
-
-    .dropdown_my_goal {
-        min-width: 15em;
-        position: relative;
-        top: 0;
-    }
-
-    .select_my_goal {
-        background: #FFF;
-        color: #000;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border: 1px #A1A1A1 solid;
-        border-radius: 0.5em;
-        padding: 1em;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-
-    /* .select-clicked {
-    border: 2px #26489a solid;
-    box-shadow: 0 0 0.8em #26489a;
-} */
-    .select_my_goal:hover {
-        color: #003781;
-    }
-
-    .caret_may_goal {
-        width: 0;
-        height: 0;
-        border-left: 5px solid transparent;
-        border-right: 5px solid transparent;
-        border-top: 6px solid #616161;
-        transition: 0.3s;
-    }
-
-    .caret_may_goal-rotate {
-        transform: rotate(180deg);
-    }
-
-    .menu_my_goal {
-        list-style: none;
-        padding: 0.2em 0.5em;
-        background: #fff;
-        border: 1px #fff solid;
-        box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
-        border-radius: 0.5em;
-        color: #9fa5b5;
-        position: absolute;
-        top: 4em;
-        left: 50%;
-        width: 100%;
-        transform: translateX(-50%);
-        opacity: 0;
-        display: none;
-        transition: 0.2s;
-        z-index: 1;
-    }
-
-    .menu_my_goal li {
-        padding: 0.7em 0.5em;
-        margin: 0.3em 0;
-        border-radius: 0.5em;
-        cursor: pointer;
-    }
-
-    .menu_my_goal li:hover {
-        background: #E6E6E6;
-        color: #003781;
-    }
-
-    .my_goal_active {
-        background: #E6E6E6;
-        color: #003781;
-
-    }
-
-    .menu_my_goal_open {
-        display: block;
-        opacity: 1;
-    }
-
-    .label_select_my_goal {
-        position: absolute;
-        top: -15px;
-        background-color: #fff;
-        padding: 5px 7px;
-        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-        -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-        -moz-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-        border-radius: 10px;
-        -webkit-border-radius: 10px;
-        -moz-border-radius: 10px;
-        -ms-border-radius: 10px;
-        -o-border-radius: 10px;
-        font-size: 12px;
-        font-weight: bolder;
-    }
 
     .progress-traing {
         display: flex;
@@ -413,6 +310,18 @@
         -o-border-radius: 10px !important;
         padding: 40px 0;
     }
+
+    .btn-detail-profile {
+        position: absolute;
+        top: 0px;
+        right: 0;
+        font-size: 21px;
+
+    }
+
+    .btn-detail-profile:hover {
+        cursor: pointer;
+    }
 </style>
 @section('content')
 <div class="container">
@@ -421,7 +330,7 @@
             <div class="col-lg-4 p-0 p-lg-3">
                 <div class="card-profile">
                     <div class="card-body">
-                        <div class="d-flex align-items-center">
+                        <div class="d-flex align-items-center position-relative">
                             <div style="position: relative;">
                                 <img src="{{ url('/img/logo/logo.png') }}" alt="profile user" class="rounded-circle p-1 img-profile-user" width="85" height="85">
 
@@ -448,10 +357,13 @@
                                     For Admin
                                 </a>
                                 @endif   -->
-
+                                <a class=" btn-detail-profile" data-toggle="modal" data-target="#modal_show_all_detail">
+                                    <i class="fa-light fa-circle-exclamation"></i>
+                                </a>
 
                             </div>
                         </div>
+
                         <div class="row mt-3">
                             <div class="col-8">
                                 <p class="m-0">
@@ -489,150 +401,34 @@
                         </div>
                         <div class="body-my-goal">
                             <!-- MY GOAL QUESTIONAIRE -->
+
+                            <div class="d-flex justify-content-center mt-3">
+                                <button class="btn-more-job px-5" data-toggle="modal" data-target="#modal_my_goal">
+                                    ดูเส้นทางอาชีพเพิ่มเติม
+                                </button>
+                            </div>
+
+
                             @include ('profile.my_goal_questionaire')
 
-                            <div class="mt-3" style="overflow: auto;">
-                                <p style="color: #373737;font-size: 14px;">การฝึกฝนของคุณ</p>
-                                <div class="w-100">
-                                    <!-- Part Time -->
-                                    <div class="d-flex   align-items-center" style="margin-top: 1.4px;">
-                                        <p class="mb-0 " style="min-width: 64px;max-width: 64px;margin-right: 10px;">Part Time</p>
-                                        <div class="progress-traing me-1" data-toggle="tooltip" title="อบรมหลักการขายออนไลน์">
-                                            <div class="progress-bar-traing bg-obd" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                        <div class="progress-traing me-1" data-toggle="tooltip" title="อบรมหลักการขายออนไลน์">
-                                            <div class="progress-bar-traing bg-obd" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                        <div class="progress-traing me-1" data-toggle="tooltip" title="อบรมหลักการขายออนไลน์">
-                                            <div class="progress-bar-traing bg-obd" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                        <div class="progress-traing me-1" data-toggle="tooltip" title="อบรมหลักการขายออนไลน์">
-                                            <div class="progress-bar-traing bg-obd" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                        <div class="progress-traing me-1" data-toggle="tooltip" title="อบรมหลักการขายออนไลน์">
-                                            <div class="progress-bar-traing bg-obd" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <i class="fa-sharp fa-light fa-badge-check" style="color:#FFBF44"></i>
-                                        </div>
-                                    </div>
 
+                            <div class="header-my-goal d-flex align-items-center my-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="20" viewBox="0 0 22 20" fill="none">
+                                    <path d="M13.4561 5.7015C13.4561 6.58312 14.5929 8.69437 15.2425 9.83119C15.4513 10.1792 15.9385 10.1792 16.1473 9.83119C16.7969 8.69437 17.9338 6.60632 17.9338 5.7015C17.9338 4.47187 16.9361 3.45105 15.6833 3.45105C14.4769 3.47425 13.4561 4.47187 13.4561 5.7015ZM15.7065 4.65748C16.2865 4.65748 16.7505 5.12149 16.7505 5.7015C16.7505 6.28151 16.2865 6.74552 15.7065 6.74552C15.1265 6.74552 14.6625 6.28151 14.6625 5.7015C14.6625 5.12149 15.1265 4.65748 15.7065 4.65748Z" fill="#003781" />
+                                    <path d="M15.9155 11.1073H11.7626C11.2058 11.1073 10.7418 10.6433 10.7418 10.0865C10.7418 9.52971 11.2058 9.0657 11.7626 9.0657H12.8995C13.1547 9.0657 13.3403 8.8569 13.3403 8.62489C13.3403 8.36969 13.1315 8.18408 12.8995 8.18408H11.7626C10.6954 8.18408 9.83698 9.0425 9.83698 10.1097C9.83698 11.1769 10.6954 12.0354 11.7626 12.0354H15.9155C16.4723 12.0354 16.9363 12.4994 16.9363 13.0562C16.9363 13.613 16.4723 14.077 15.9155 14.077H8.46815C8.21295 14.077 8.02734 14.2858 8.02734 14.5178C8.02734 14.773 8.23615 14.9586 8.46815 14.9586H15.9155C16.9827 14.9586 17.8412 14.1002 17.8412 13.033C17.8412 11.9658 16.9827 11.1073 15.9155 11.1073Z" fill="#003781" />
+                                    <path d="M6.33346 8.25366C5.10383 8.25366 4.08301 9.25128 4.08301 10.5041C4.08301 11.3857 5.21983 13.497 5.86945 14.6338C6.07825 14.9818 6.56546 14.9818 6.77427 14.6338C7.42388 13.497 8.56071 11.4089 8.56071 10.5041C8.58391 9.27448 7.56308 8.25366 6.33346 8.25366ZM6.33346 11.5481C5.75344 11.5481 5.28943 11.0841 5.28943 10.5041C5.28943 9.9241 5.75344 9.46009 6.33346 9.46009C6.91347 9.46009 7.37748 9.9241 7.37748 10.5041C7.37748 11.0841 6.91347 11.5481 6.33346 11.5481Z" fill="#003781" />
+                                    <path d="M21.4837 1.47903L14.5931 0.0174004C14.5003 -0.00580013 14.3843 -0.00580013 14.2915 0.0174004L7.56337 1.47903L0.835218 0.0638014C0.626414 0.0174004 0.417609 0.0638014 0.255206 0.203004C0.0928021 0.342208 0 0.527812 0 0.759817V17.6266C0 17.9514 0.232005 18.253 0.556812 18.3226L7.42416 19.7842C7.47057 19.7842 7.51697 19.8074 7.56337 19.8074C7.60977 19.8074 7.65617 19.8074 7.70257 19.7842L14.4307 18.3226L21.1589 19.7378C21.3677 19.7842 21.5765 19.7378 21.7389 19.5986C21.9013 19.4594 21.9941 19.2738 21.9941 19.0418V2.17505C22.0405 1.82704 21.8085 1.54863 21.4837 1.47903ZM20.6253 18.1834L14.5931 16.9074C14.5003 16.8842 14.3843 16.8842 14.2915 16.9074L7.56337 18.369L1.41523 17.0698V1.61824L7.44736 2.89426C7.54017 2.91746 7.65617 2.91746 7.74897 2.89426L14.4771 1.43263L20.6485 2.73186L20.6253 18.1834Z" fill="#003781" />
+                                </svg>
+                                <p class="text-color-obd ms-2 mb-0">Training Journey</p>
 
-
-                                    <!-- BlueStar -->
-                                    <div class="d-flex  align-items-center" style="margin-top: 10.8px;">
-                                        <p class="mb-0 " style="min-width: 64px;max-width: 64px;margin-right: 10px;">BlueStar</p>
-                                        <div class="progress-traing me-1" data-toggle="tooltip" title="อบรมหลักการขายออนไลน์">
-                                            <div class="progress-bar-traing bg-obd" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                        <div class="progress-traing me-1" data-toggle="tooltip" title="อบรมหลักการขายออนไลน์">
-                                            <div class="progress-bar-traing bg-obd" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                        <div class="progress-traing me-1" data-toggle="tooltip" title="อบรมหลักการขายออนไลน์">
-                                            <div class="progress-bar-traing bg-obd" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                        <div class="progress-traing me-1" data-toggle="tooltip" title="อบรมหลักการขายออนไลน์">
-                                            <div class="progress-bar-traing bg-obd" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                        <div class="d-none">
-                                            <i class="fa-sharp fa-light fa-badge-check" style="color:#FFBF44"></i>
-                                        </div>
-                                    </div>
-
-                                    <!-- BlueStar X -->
-                                    <div class="d-flex  align-items-center" style="margin-top: 10.8px;">
-                                        <p class="mb-0 " style="min-width: 64px;max-width: 64px;margin-right: 10px;">BlueStar X</p>
-                                        <div class="progress-traing me-1" data-toggle="tooltip" title="อบรมหลักการขายออนไลน์">
-                                            <div class="progress-bar-traing bg-obd" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                        <div class="progress-traing me-1" data-toggle="tooltip" title="อบรมหลักการขายออนไลน์">
-                                            <div class="progress-bar-traing bg-obd" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                        <div class="progress-traing me-1" data-toggle="tooltip" title="อบรมหลักการขายออนไลน์">
-                                            <div class="progress-bar-traing bg-obd" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                        <div class="progress-traing me-1" data-toggle="tooltip" title="อบรมหลักการขายออนไลน์">
-                                            <div class="progress-bar-traing bg-obd" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                        <div class="progress-traing me-1" data-toggle="tooltip" title="อบรมหลักการขายออนไลน์">
-                                            <div class="progress-bar-traing bg-obd" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                        <div class="progress-traing me-1" data-toggle="tooltip" title="อบรมหลักการขายออนไลน์">
-                                            <div class="progress-bar-traing bg-obd" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <i class="fa-sharp fa-light fa-badge-check" style="color:#FFBF44"></i>
-                                        </div>
-                                    </div>
-
-                                    <!-- Unit Link -->
-                                    <div class="d-flex  align-items-center" style="margin-top: 10.8px;">
-                                        <p class="mb-0 " style="min-width: 64px;max-width: 64px;margin-right: 10px;">Unit Link</p>
-                                        <div class="progress-traing me-1" data-toggle="tooltip" title="อบรมหลักการขายออนไลน์">
-                                            <div class="progress-bar-traing bg-obd" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                        <div class="progress-traing me-1" data-toggle="tooltip" title="อบรมหลักการขายออนไลน์">
-                                            <div class="progress-bar-traing bg-obd" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                        <div class="progress-traing me-1" data-toggle="tooltip" title="อบรมหลักการขายออนไลน์">
-                                            <div class="progress-bar-traing bg-obd" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                        <div class="progress-traing me-1" data-toggle="tooltip" title="อบรมหลักการขายออนไลน์">
-                                            <div class="progress-bar-traing bg-obd" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                        <div class="progress-traing me-1" data-toggle="tooltip" title="อบรมหลักการขายออนไลน์">
-                                            <div class="progress-bar-traing bg-obd" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <i class="fa-sharp fa-light fa-badge-check" style="color:#FFBF44"></i>
-                                        </div>
-                                    </div>
-
-                                    <!-- Leader -->
-
-                                    <div class="d-flex align-items-center" style="margin-top: 10.8px;">
-                                        <p class="mb-0 " style="min-width: 64px;max-width: 64px;margin-right: 10px;">Leader</p>
-                                        <div class="progress-traing me-1" data-toggle="tooltip" title="อบรมหลักการขายออนไลน์">
-                                            <div class="progress-bar-traing bg-obd" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                        <div class="progress-traing me-1" data-toggle="tooltip" title="อบรมหลักการขายออนไลน์">
-                                            <div class="progress-bar-traing bg-obd" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                        <div class="progress-traing me-1" data-toggle="tooltip" title="อบรมหลักการขายออนไลน์">
-                                            <div class="progress-bar-traing bg-obd" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                        <div class="progress-traing me-1" data-toggle="tooltip" title="อบรมหลักการขายออนไลน์">
-                                            <div class="progress-bar-traing bg-obd" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <i class="fa-sharp fa-light fa-badge-check" style="color:#FFBF44"></i>
-                                        </div>
-                                    </div>
-                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <img src="{{ url('/img/icon/training_path.png') }}" alt="" style="max-width: 300px; width: 100%;">
+                            </div>
+                            <div class="d-flex justify-content-center my-4">
+                                <button class="btn-more-job px-5">
+                                    ดูเส้นทางฝึกฝนเพิ่มเติม
+                                </button>
                             </div>
                             <p style="font-size: 14px; font-weight: bolder;color: #000;" class="m-0 my-1">ตำแหน่งของคุณ</p>
                             <div class="nav-menu sw sw-theme-dots sw-justified" id="div_menu_view">
@@ -749,9 +545,9 @@
                                 }
                             </style>
                             <div class="d-flex justify-content-center mt-3">
-                                <button class="btn-more-job">
+                                <a class="btn-more-job px-5">
                                     ดูเส้นทางอาชีพเพิ่มเติม
-                                </button>
+                                </a>
                             </div>
 
                         </div>
@@ -772,7 +568,22 @@
 
                 <div class="contact-leader mb-5">
                     <p style="color: #003781;font-size: 16px;font-weight: bolder;">Contact Leader</p>
-                    <div class="d-flex align-items-center">
+                    <div class="d-flex ">
+                        <div>
+                            <img src="{{ url('/img/logo/logo.png') }}" alt="" class="img-leader">
+                        </div>
+                        <div>
+                            <p class="mb-0 ms-3" style="color: #003781; font-size: 14px;font-weight: bolder;">อภิชญา เบ้าสิงห์สวย</p>
+                            <p class="mb-0 ms-3" style="font-size: 12px;">ชื่อเล่น: <span class="text-color-obd">เบลล์</span></p>
+                            <p class="mb-0 ms-3" style="font-size: 12px;">รหัสตัวเเทน : <span class="text-color-obd">548956</span></p>
+                            <p class="mb-0 ms-3" style="font-size: 12px;">ชื่อหน่วยงาน/AO : <span class="text-color-obd">AZ รักคุณเท่าฟ้า</span></p>
+                            <p class="mb-0 ms-3" style="font-size: 12px;">โทร : <a href="tel:088-567-8901" class="text-color-obd">088-567-8901</a></p>
+                            <p class="mb-0 ms-3" style="font-size: 12px;">อีเมล : <a href="mailto:Apitchaya@gmail.com"><u>Apitchaya@gmail.com</u></a></p>
+                        </div>
+                    </div>
+                    <br>
+                    <p style="color: #003781;font-size: 16px;font-weight: bolder;">Group Manager</p>
+                    <div class="d-flex ">
                         <div>
                             <img src="{{ url('/img/logo/logo.png') }}" alt="" class="img-leader">
                         </div>
@@ -787,7 +598,7 @@
                     </div>
                     <br>
                     <p style="color: #003781;font-size: 16px;font-weight: bolder;">ผู้ดูเเลพื้นที่</p>
-                    <div class="d-flex align-items-center">
+                    <div class="d-flex ">
                         <div>
                             <img src="{{ url('/img/logo/logo.png') }}" alt="" class="img-leader">
                         </div>
@@ -807,67 +618,70 @@
 
 <style>
     #picture_profile_input {
-  display: none;
-}
+        display: none;
+    }
 
-.picture {
-  min-width: 272px;
-  min-height: 272px;
-  max-width: 272px;
-  max-height: 272px;
-  background: #ddd;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #C4C4C4;
-  border: 8px solid #2e345f;
-  cursor: pointer;
-  transition: color 300ms ease-in-out, background 300ms ease-in-out;
-  outline: none;
-  overflow: hidden;
-  border-radius: 50%;
--webkit-border-radius:50%;
--moz-border-radius:50%;
--ms-border-radius:50%;
--o-border-radius:50%;
-}
+    .picture {
+        min-width: 272px;
+        min-height: 272px;
+        max-width: 272px;
+        max-height: 272px;
+        background: #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #C4C4C4;
+        border: 8px solid #2e345f;
+        cursor: pointer;
+        transition: color 300ms ease-in-out, background 300ms ease-in-out;
+        outline: none;
+        overflow: hidden;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+    }
 
-.picture:hover {
-  color: #777;
-  background: #ccc;
-}
+    .picture:hover {
+        color: #777;
+        background: #ccc;
+    }
 
-.picture:active {
- 
-  background: #eee;
-}
+    .picture:active {
 
-.picture:focus {
-  color: #777;
-  background: #ccc;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
+        background: #eee;
+    }
 
-.picture__img {
-  max-width: 100%;
-}
-.picture_profile_image i{
-    font-size: 55px;
-}
-.btn-submit-profile{
-    border-radius:  50px;
-    -webkit-border-radius: 50px;
-    -moz-border-radius: 50px;
-    -ms-border-radius: 50px;
-    -o-border-radius: 50px;
-    font-weight: bolder;
-}
-.btn-submit-profile:disabled{
-    background-color: #A3A3A3  !important;
-    color: #57759C !important;
-}
+    .picture:focus {
+        color: #777;
+        background: #ccc;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .picture__img {
+        max-width: 100%;
+    }
+
+    .picture_profile_image i {
+        font-size: 55px;
+    }
+
+    .btn-submit-profile {
+        border-radius: 50px;
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        -ms-border-radius: 50px;
+        -o-border-radius: 50px;
+        font-weight: bolder;
+    }
+
+    .btn-submit-profile:disabled {
+        background-color: #A3A3A3 !important;
+        color: #57759C !important;
+    }
 </style>
-<!-- Modal -->
+<!-- Modal แก้ไขข้อมูลโปรไฟล์-->
 <div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="editProfileTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content modal-profile">
@@ -878,8 +692,27 @@
                 </label>
 
                 <input type="file" name="picture_profile_input" id="picture_profile_input">
-            </div>
 
+            </div>
+            <div class="px-5">
+
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h6 class="mb-0 text-white">ชื่อเล่น</h6>
+                    </div>
+                    <div class="col-sm-12 text-secondary">
+                        <input type="text" class="form-control" value="{{Auth::user()->name}}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h6 class="mb-0 text-white">เบอร์โทร</h6>
+                    </div>
+                    <div class="col-sm-12 text-secondary">
+                        <input type="text" class="form-control" value="{{Auth::user()->phone}}">
+                    </div>
+                </div>
+            </div>
             <div class="w-100 px-5 mt-5">
                 <button class="btn w-100 bg-white btn-submit-profile" disabled id="btn_submit_change_profile">ตกลง</button>
 
@@ -888,20 +721,21 @@
     </div>
 </div>
 
+<!-- Modal Happy birthday-->
 <div class="modal fade" id="happybirthday" tabindex="-1" role="dialog" aria-labelledby="happybirthdayTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content modal-profile">
             <p class="text-white text-center mb-5 font-20">สุขสันต์วันเกิด!</p>
             <div class="w-100 d-flex justify-content-center">
                 <img src="{{ url('/img/icon/Birthday.png') }}" alt="" width="274">
-               
+
             </div>
             <div class="text-center mt-4 px-3">
                 <p class="text-white m-0" style="font-size: 23px;">{{Auth::user()->name}}</p>
                 <p class="text-white m-0" style="font-size: 23px;">{{Auth::user()->lastname}}</p>
                 <p class="text-white mb-0 mt-3">เราขอให้คุณสุขภาพแข็งแรง มีความสุขในชีวิต <br>และประสบความสำเร็จตามเป้าหมายที่วางไว้</p>
             </div>
-            
+
             <div class="w-100 px-5 mt-5">
                 <button class="btn w-100 bg-white btn-submit-profile" data-dismiss="modal" aria-label="Close">ขอให้สำเร็จ เพี้ยง!!!!</button>
 
@@ -909,6 +743,135 @@
         </div>
     </div>
 </div>
+
+<style>
+    .btn-close-modal-detail {
+        position: absolute;
+        bottom: -100px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 42px;
+        height: 42px;
+        background-color: #003781;
+        color: #fff;
+        border-radius: 50%;
+        font-size: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+<!-- Modal ข้อมูลส่วนตัวทั้งหมด-->
+<div class="modal fade px-2" id="modal_show_all_detail" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered " role="document">
+        <div class="modal-content" style="border: none;">
+            <div class="modal-body pt-0" style="border-radius: 10px;background: #F0F5FF;box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);">
+                <div  id="card_profile">
+                <div class="d-flex mt-2 align-items-end">
+                    <div>
+                        <img src="{{ url('/img/logo/logo.png') }}" alt="profile user" class="rounded-circle p-1 img-profile-user" width="58" height="58">
+                    </div>
+                    <div class="w-100 d-block ms-3">
+                        <div class="d-flex justify-content-end w-100">
+
+                            <img src="{{ url('/img/logo/logo-alianz.png') }}" alt="logo" width="70" height="23">
+                        </div>
+
+
+                        <p class="mb-0" style="color: #003781;font-size: 15px;font-style: normal;font-weight: 600;line-height: normal;">ปทุมรัตน์ ฉัตรรัตนศักดิ์</p>
+                        <p class="mb-0" style="color: #383838;font-size: 12px;font-style: normal;font-weight: 700;line-height: normal;">ผู้จัดการหน่วยอาวุโส</p>
+                    </div>
+                </div>
+                <div class="bg-white mt-3" style="padding:10px;border-radius: 10px;background: rgba(255, 255, 255, 0.50);box-shadow: 0px 2px 20px 0px rgba(200, 200, 200, 0.50);">
+                    <p class="mb-0 font-12"><b>รหัสตัวเเทน :</b> 123456</p>
+                    <p class="mb-0 font-12"><b>รหัสหน่วยงาน :</b> 123456</p>
+                    <p class="mb-0 font-12"><b>รหัสสาขา/สำนักงาน :</b> 123456</p>
+                    <p class="mb-0 font-12"><b>ชื่อสาขา/สำนักงาน :</b> หน่วยอาวุโส Victory สีหราช Settee 64</p>
+                    <p class="mb-0 font-12"><b>รหัสกลุ่ม :</b> 123456</p>
+                </div>
+
+                <div class="mt-3 me-1 ms-2 d-flex align-items-end">
+                    <div class="w-100">
+
+
+                        <p class="mb-0"> เลขที่ใบอนุญาต : <span style="color: #003781;"> 123456 </span></p>
+                        <p class="mb-0"> วันออกใบอนุญาต : <span style="color: #003781;"> 1 ม.ค. 2566 </span></p>
+                        <p class="mb-0"> วันหมดอายุใบอนุญาต : <span style="color: #003781;"> 1 ม.ค. 2567 </span></p>
+                        <p class="mb-0"> เลขที่ใบอนุญาต IC License : <span style="color: #003781;"> 123456 </span></p>
+                        <p class="mb-0"> วันออกใบอนุญาต IC License : <span style="color: #003781;"> 1 ม.ค. 2566 </span></p>
+                        <p class="mb-0"> วันหมดอายุใบอนุญาต IC License : <span style="color: #003781;"> 1 ม.ค. 2567 </span></p>
+                        <p class="mb-0"> สิทธิการขาย CLM : <span style="color: #003781;"> XXXXXX </span></p>
+                    </div>
+                    <style>
+                        .btn-download-prifile {
+                            color: #003781;
+                            font-size: 28px;
+                        }
+
+                        .btn-download-prifile:hover {
+                            cursor: pointer;
+                        }
+                    </style>
+                    <a class="btn-download-prifile" id="btn_download_profile">
+                        <i class="fa-solid fa-down-to-bracket"></i>
+                    </a>
+                </div>
+
+
+            </div>
+            <button type="button" class="btn-close-modal-detail" data-dismiss="modal" >
+                <i class="fa-solid fa-xmark"></i>&nbsp;
+            </button>
+                </div>
+               
+        </div>
+    </div>
+</div>
+<div id="html-content-holder" style="background-color: #F0F0F1; color: #00cc65; width: 500px;
+        padding-left: 25px; padding-top: 10px;">
+    <strong>Codepedia.info</strong>
+    <hr />
+    <h3 style="color: #3e4b51;">
+        Html to canvas, and canvas to proper image
+    </h3>
+    <p style="color: #3e4b51;">
+        <b>Codepedia.info</b> is a programming blog. Tutorials focused on Programming ASP.Net,
+        C#, jQuery, AngularJs, Gridview, MVC, Ajax, Javascript, XML, MS SQL-Server, NodeJs,
+        Web Design, Software
+    </p>
+    <p style="color: #3e4b51;">
+        <b>html2canvas</b> script allows you to take "screenshots" of webpages or parts
+        of it, directly on the users browser. The screenshot is based on the DOM and as
+        such may not be 100% accurate to the real representation.
+    </p>
+</div>
+<input id="btn-Preview-Image" type="button" value="Preview" />
+<a id="btn-Convert-Html2Image" href="#">Download</a>
+<br />
+<h3>Preview :</h3>
+<div id="previewImage">
+</div>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js'></script>
+<script>
+    $(document).ready(function() {
+
+
+        let element = $("#html-content-holder"); // global variable
+        let getCanvas; // global variable
+
+
+        $("#btn-Convert-Html2Image").on('click', function() {
+            var imgageData = getCanvas.toDataURL("image/jpeg");
+            // Now browser starts downloading it instead of just showing it
+            var newData = imgageData.replace(/^data:image\/jpeg/, "data:application/octet-stream");
+            $("#btn-Convert-Html2Image").attr("download", "your_pic_name.png").attr("href", newData);
+        });
+
+    });
+</script>
+
 <!-- <div class="container">
     <div class="main-body">
         <div class="row">
@@ -1056,74 +1019,51 @@
         nav: false,
 
     })
-
-    
 </script>
 <script type="text/javascript">
     $(document).ready(function() {
-    $("body").tooltip({ selector: '[data-toggle=tooltip]' });
-});
+        $("body").tooltip({
+            selector: '[data-toggle=tooltip]'
+        });
+    });
 </script>
 <script>
-    const dropdown_my_goal = document.querySelector(".dropdown_my_goal");
-    const select_my_goal = dropdown_my_goal.querySelector(".select_my_goal");
-    const caret_may_goal = dropdown_my_goal.querySelector(".caret_may_goal");
-    const menu_my_goal = dropdown_my_goal.querySelector(".menu_my_goal");
-    const options = dropdown_my_goal.querySelectorAll(".menu_my_goal li");
-    const selected_my_goal = dropdown_my_goal.querySelector(".selected_my_goal");
-    select_my_goal.addEventListener("click", () => {
-        select_my_goal.classList.toggle("select-clicked");
-        caret_may_goal.classList.toggle("caret_may_goal-rotate");
-        menu_my_goal.classList.toggle("menu_my_goal_open")
-    })
-    options.forEach(option => {
-        option.addEventListener("click", () => {
-            selected_my_goal.innerText = option.innerText;
-            select_my_goal.classList.remove("select-clicked");
-            caret_may_goal.classList.remove("caret_may_goal-rotate");
-            menu_my_goal.classList.remove("menu_my_goal_open");
-            options.forEach(option => {
-                option.classList.remove("my_goal_active")
-            })
-            option.classList.add("my_goal_active")
-        })
-    })
+    document.addEventListener("DOMContentLoaded", function() {
+        const inputFile = document.querySelector("#picture_profile_input");
+        const pictureImage = document.querySelector(".picture_profile_image");
+        const pictureImageTxt = `<i class="fa-solid fa-plus text-white"></i>`;
+        pictureImage.innerHTML = pictureImageTxt;
 
-    const inputFile = document.querySelector("#picture_profile_input");
-    const pictureImage = document.querySelector(".picture_profile_image");
-    const pictureImageTxt = `<i class="fa-solid fa-plus text-white"></i>`;
-    pictureImage.innerHTML = pictureImageTxt;
+        inputFile.addEventListener("change", function(e) {
+            const inputTarget = e.target;
+            const file = inputTarget.files[0];
 
-    inputFile.addEventListener("change", function (e) {
-        const inputTarget = e.target;
-        const file = inputTarget.files[0];
+            if (file) {
+                const reader = new FileReader();
 
-        if (file) {
-            const reader = new FileReader();
+                reader.addEventListener("load", function(e) {
+                    const readerTarget = e.target;
 
-            reader.addEventListener("load", function (e) {
-            const readerTarget = e.target;
+                    const img = document.createElement("img");
+                    img.src = readerTarget.result;
+                    img.classList.add("picture__img");
 
-            const img = document.createElement("img");
-            img.src = readerTarget.result;
-            img.classList.add("picture__img");
+                    pictureImage.innerHTML = "";
+                    pictureImage.appendChild(img);
+                });
 
-            pictureImage.innerHTML = "";
-            pictureImage.appendChild(img);
-            });
-
-            reader.readAsDataURL(file);
-            document.querySelector('#btn_submit_change_profile').disabled = false;
-        } else {
-            pictureImage.innerHTML = pictureImageTxt;
+                reader.readAsDataURL(file);
+                document.querySelector('#btn_submit_change_profile').disabled = false;
+            } else {
+                pictureImage.innerHTML = pictureImageTxt;
                 document.querySelector('#btn_submit_change_profile').disabled = true;
-
-        }
+            }
+        });
     });
 
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         check_birthday()
-    }) 
+    })
 
     // function check_birthday(params) {
     //     let date_now = `{{ (\Carbon\Carbon::now()->format('d/m')) }}`
@@ -1134,8 +1074,6 @@
     //         $('#happybirthday').modal('show');
     //     }
     // }
-
-
 </script>
 
 

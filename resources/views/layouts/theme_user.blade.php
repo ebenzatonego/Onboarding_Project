@@ -73,7 +73,7 @@
         margin-bottom: 5px;
     }
 
-    .calendar-btn {
+    /* .calendar-btn {
         position: absolute;
         top: 25px;
         right: 10px;
@@ -94,7 +94,7 @@
 
     .calendar-btn div:first-child {
         margin-right: 10px;
-    }
+    } */
 
     .div-navbar-top {
         position: fixed;
@@ -246,14 +246,14 @@
         </div> -->
 
         <div class="col-12 content-section mt-5 mb-5">
-            <div class="calendar-btn">
+            <!-- <div class="calendar-btn">
                 <div>
                     <i class="fa-solid fa-star" style="color: #e1bc1e;"></i>
                 </div>
                 <div>
                     <i class="fa-solid fa-calendar-days" style="color:#1d6de2;"></i>
                 </div>
-            </div>
+            </div> -->
             @yield('content')
         </div>
     </div>

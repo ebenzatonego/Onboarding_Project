@@ -25,7 +25,7 @@ class Content_popup extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'detail', 'photo', 'video', 'user_id', 'status', 'log_video', 'user_view'];
+    protected $fillable = ['title', 'detail', 'photo', 'video', 'user_id', 'status', 'log_video', 'user_view' ,'type'];
 
     
 }

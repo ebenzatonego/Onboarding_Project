@@ -137,7 +137,7 @@
                         </li>
                         <li>
                             <a class="btn" onclick="pass_lock_menu('{{ url("/manage_content_popups") }}');">
-                                <i class="fa-solid fa-megaphone"></i> Custom Popup
+                                <i class="fa-solid fa-megaphone"></i> Content Popup
                             </a>
                         </li>
                     </ul>

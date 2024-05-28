@@ -178,32 +178,84 @@
   margin: 6px;
 }
 
-.radio-input:checked + .radio-tile {
+
+
+.radio-input:checked + .radio-tile:before {
+  transform: scale(1);
+  opacity: 1;
+}
+
+
+.radio-photo:hover {
+  border-color: #2260ff;
+}
+
+.radio-input:checked + .radio-photo {
   border-color: #2260ff;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   color: #2260ff;
 }
 
-.radio-input:checked + .radio-tile:before {
+.radio-input:checked + .radio-photo:before {
   transform: scale(1);
   opacity: 1;
   background-color: #2260ff;
   border-color: #2260ff;
 }
 
-.radio-input:checked + .radio-tile .radio-icon svg {
+.radio-input:checked + .radio-photo .radio-icon svg {
   fill: #2260ff;
 }
 
-.radio-input:checked + .radio-tile .radio-label {
+.radio-input:checked + .radio-photo .radio-label {
   color: #2260ff;
 }
 
-.radio-input:focus + .radio-tile {
+.radio-input:focus + .radio-photo {
   border-color: #2260ff;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1), 0 0 0 4px #b5c9fc;
 }
 
+.radio-photo:hover {
+  border-color: #2260ff;
+}
+
+
+
+
+.radio-video:hover {
+  border-color: #db2d2e;
+}
+
+.radio-input:checked + .radio-video {
+  border-color: #db2d2e;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  color: #db2d2e;
+}
+
+.radio-input:checked + .radio-video:before {
+  transform: scale(1);
+  opacity: 1;
+  background-color: #db2d2e;
+  border-color: #db2d2e;
+}
+
+.radio-input:checked + .radio-video .radio-icon svg {
+  fill: #db2d2e;
+}
+
+.radio-input:checked + .radio-video .radio-label {
+  color: #db2d2e;
+}
+
+.radio-input:focus + .radio-video {
+  border-color: #db2d2e;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1), 0 0 0 4px #ffb7b6;
+}
+
+.radio-video:hover {
+  border-color: #db2d2e;
+}
 .radio-input:focus + .radio-tile:before {
   transform: scale(1);
   opacity: 1;
@@ -241,9 +293,7 @@
   transition: 0.25s ease;
 }
 
-.radio-tile:hover {
-  border-color: #2260ff;
-}
+
 
 .radio-tile:hover:before {
   transform: scale(1);
@@ -393,9 +443,15 @@ img {
 }
 .cropped{
     width: 100% !important;
-    height: 100% !important;
+    max-height: 300px !important;
 
 }
+/* .cropper-container{
+    max-height: 300px !important;
+
+} */
+
+
 </style>
 
 <div class="row">
@@ -427,7 +483,7 @@ img {
                             <div class="radio-inputs">
                                 <label onclick="change_type_content('photo');">
                                     <input checked="" class="radio-input" type="radio" name="type" value="photo">
-                                    <span class="radio-tile">
+                                    <span class="radio-tile radio-photo">
                                         <span class="radio-icon">
                                             <i class="fa-solid fa-image"></i>
                                         </span>
@@ -436,7 +492,7 @@ img {
                                 </label>
                                 <label onclick="change_type_content('video');">
                                     <input class="radio-input" type="radio" name="type" value="video">
-                                    <span class="radio-tile">
+                                    <span class="radio-tile radio-video">
                                         <span class="radio-icon">
                                             <i class="fa-solid fa-photo-film"></i>
                                         </span>
@@ -506,8 +562,8 @@ img {
                                         <div class="w-100 ">
                                             <p class="mb-2 mt-3 text-center">ปรับขนาดภาพ</p>
                                             <!-- leftbox -->
-                                            <div class="box-2 w-100 h-100">
-                                                <div class="result w-100 h-100"></div>
+                                            <div class="box-2 w-100 h-100 ">
+                                                <div class="result w-100 container_upload_preview "></div>
                                             </div>
                                         </div>
                                     </div>
@@ -551,8 +607,8 @@ img {
                             วิดีโอ
                         </label>
                         <div class="col-sm-9">
-                            <label id="upload_video_cover" for="photo_cover" class="container_upload" type="button" onclick="document.querySelector('#select_video').click();">
-                                <div class="upload_section">
+                            <label id="upload_video_cover" for="photo_cover" class="container_upload" style="  border: #db2d2e 3px solid;" type="button" onclick="document.querySelector('#select_video').click();">
+                                <div class="upload_section" style="color: #db2d2e;">
                                     <div class="text-center">
                                         <i class="fa-solid fa-cloud-arrow-up"></i>
                                         <p>Upload Video</p>
@@ -917,10 +973,12 @@ upload.addEventListener('change', (e) => {
                 cropper = new Cropper(img, {
 					dragMode: 'move',
                     aspectRatio: 16 / 9 ,
-					autoCropArea: 0.68,
+					autoCropArea: 1,
 					center: false,
 					cropBoxMovable: true,
 					cropBoxResizable: true,
+                    maxCropBoxHeight: 300,
+                    viewMode: 2,
 					guides: false,
 					ready: function(event) {
 						this.cropper = cropper;

@@ -240,7 +240,7 @@
             <div id="div_for_content_popup" class="modal-content modal-profile">
                 <!-- data_for_content_popup -->
 
-                <div class="w-100 px-5 mt-5">
+                <div class="w-100 px-5 mt-3">
                     <button type="submit" class="btn-submit-login" data-dismiss="modal" onclick="close_show_content_popup()">
                         ปิด
                     </button>
@@ -617,7 +617,7 @@
                         <div id="content_photo_or_video" class="w-100 d-flex justify-content-center ">
                             `+html_photo_or_video+`
                         </div>
-                        <div class="text-center mt-4 px-3" style="margin-bottom:-35px">
+                        <div class="text-center mt-4 px-3" >
                             <div id="content_detail" class="text-white mb-0 mt-3 px-3">
                                 `+text_detail+`
                             </div>

@@ -608,14 +608,17 @@
                     }
 
                     let html = `
-                        <p id="content_title" class="text-white text-center mb-5 font-20">
+                    <div class="px-3" >
+                        <p id="content_title" class="text-white text-center mb-4" style="font-size: 17px;font-style: normal;font-weight: 700;line-height: normal;margin-top:-5px">
                             `+result[0].title+`
                         </p>
-                        <div id="content_photo_or_video" class="w-100 d-flex justify-content-center">
+                    </div>
+                     
+                        <div id="content_photo_or_video" class="w-100 d-flex justify-content-center ">
                             `+html_photo_or_video+`
                         </div>
-                        <div class="text-center mt-4 px-3">
-                            <div id="content_detail" class="text-white mb-0 mt-3">
+                        <div class="text-center mt-4 px-3" style="margin-bottom:-35px">
+                            <div id="content_detail" class="text-white mb-0 mt-3 px-3">
                                 `+text_detail+`
                             </div>
                         </div>

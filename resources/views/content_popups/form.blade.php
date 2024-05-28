@@ -375,7 +375,7 @@
 
 .box-2 {
     padding: 0.5em;
-    width: calc(100%/2 - 1em);
+    /* width: calc(100%/2 - 1em); */
 }
 
 .options label,
@@ -390,6 +390,11 @@
 
 img {
     max-width: 100%;
+}
+.cropped{
+    width: 100% !important;
+    height: 100% !important;
+
 }
 </style>
 
@@ -444,10 +449,12 @@ img {
                     <script>
                         function change_type_content(type) {
                             console.log(type);
+                            let btn_submit = document.querySelector('#btn_submit');
+
                             if(type == 'photo'){
                                 document.querySelector('#div_type_photo').classList.remove('d-none');
                                 document.querySelector('#div_type_video').classList.add('d-none');
-
+                                btn_submit.classList.add('disabled');
                                 document.querySelector('#select_video').value = null;
                                 document.querySelector('#div_videoPreview').classList.add('d-none');
                                 document.querySelector('#upload_video_cover').classList.remove('d-none');
@@ -463,7 +470,12 @@ img {
                             else if(type == 'video'){
                                 document.querySelector('#div_type_video').classList.remove('d-none');
                                 document.querySelector('#div_type_photo').classList.add('d-none');
+                                document.querySelector('#div_preview_img').classList.add('d-none');
+                                document.querySelector('#upload_photo_content').classList.remove('d-none');
                                 document.querySelector('#select_photo').value = null;
+                                document.querySelector('#imgPreview').src = null;
+                                document.querySelector('.result').innerHTML = ``;
+                                 btn_submit.classList.add('disabled');
                                 document.querySelector('#div_photoPreview').innerHTML = `
                                     <center>
                                         <div id="photoPreview"></div>
@@ -479,7 +491,7 @@ img {
                         <label for="photo" class="col-sm-3 col-form-label">
                             รูปภาพ
                         </label>
-                        <div class="col-sm-9">
+                        <div class="col-sm-9" >
                             <label id="upload_photo_content" for="photo" class="container_upload" type="button" onclick="document.querySelector('#select_photo').click();">
                                 <div class="upload_section">
                                     <div class="text-center">
@@ -488,36 +500,48 @@ img {
                                     </div>
                                 </div>
                             </label>
-                            <main class="page">
-                                <!-- leftbox -->
-                                <div class="box-2">
-                                    <div class="result"></div>
+                            <div id="div_preview_img" class="d-none">
+                                <div class="row">
+                                    <div class="col-lg-6 d-flex justify-content-center align-items-center" style="border: #2260ff 2px solid;border-radius: 10px;">
+                                        <div class="w-100 ">
+                                            <p class="mb-2 mt-3 text-center">ปรับขนาดภาพ</p>
+                                            <!-- leftbox -->
+                                            <div class="box-2 w-100 h-100">
+                                                <div class="result w-100 h-100"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 d-flex justify-content-center align-items-center" style="border: #2260ff 2px solid;border-radius: 10px;">
+                                        <div>
+                                            <p class="mb-2 mt-3 text-center">ผลลัพธ์</p>
+                                          <!--rightbox-->
+                                            <div class="box-2 img-result ">
+                                                <!-- result of crop -->
+                                                <img class="cropped w-100 h-100" src="" alt="" id="imgPreview">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <!--rightbox-->
-                                <div class="box-2 img-result hide">
-                                    <!-- result of crop -->
-                                    <img class="cropped" src="" alt="">
+                                <div id="div_photoPreview" class="d-none mt-3">
+                                    <center>
+                                        <div id="photoPreview"></div>
+                                        <span class="btn btn-sm btn-info" onclick="document.querySelector('#select_photo').click();">
+                                            เลือกใหม่
+                                        </span>
+                                    </center>
                                 </div>
+                                
                                 <!-- input file -->
-                                <div class="box">
+                                <div class="box d-none">
                                     <div class="options hide">
                                         <label> Width</label>
                                         <input type="number" class="img-w d-none" value="300" min="100" max="1200" />
                                     </div>
-                                    <!-- save btn -->
                                     <button class="btn btn-sm btn-info save hide">Save</button>
-                                    <!-- download btn -->
                                     <a href="" class="btn download hide">Download</a>
                                 </div>
-                            </main>
-                            <div id="div_photoPreview" class="d-none">
-                                <center>
-                                    <div id="photoPreview"></div>
-                                    <span class="btn btn-sm btn-info" onclick="document.querySelector('#select_photo').click();">
-                                        เลือกใหม่
-                                    </span>
-                                </center>
                             </div>
+                           
                             <input class="form-control d-none" name="select_photo" type="file" id="select_photo" accept="image/*" onchange="check_data_for_submit();">
                             <input class="form-control d-none" name="photo" type="text" id="photo" value="{{ isset($video_welcome_page->photo) ? $video_welcome_page->photo : ''}}">
                         </div>
@@ -870,6 +894,8 @@ upload.addEventListener('change', (e) => {
 
     document.querySelector('#upload_photo_content').classList.add('d-none');
     document.querySelector('#div_photoPreview').classList.remove('d-none');
+    document.querySelector('#div_preview_img').classList.remove('d-none');
+    imgPreview = document.querySelector('#imgPreview');
 
     if (e.target.files.length) {
         // start file reader
@@ -889,7 +915,22 @@ upload.addEventListener('change', (e) => {
                 options.classList.remove('hide');
                 // init cropper
                 cropper = new Cropper(img, {
-                    aspectRatio: 16 / 9 // กำหนด aspect ratio ตามที่คุณต้องการ
+					dragMode: 'move',
+                    aspectRatio: 16 / 9 ,
+					autoCropArea: 0.68,
+					center: false,
+					cropBoxMovable: true,
+					cropBoxResizable: true,
+					guides: false,
+					ready: function(event) {
+						this.cropper = cropper;
+					},crop: function(event) {
+					  let imgSrc = this.cropper.getCroppedCanvas({
+							width: 800,
+							height: 830// input value
+						}).toDataURL("image/png");
+                        imgPreview.src = imgSrc;
+					}
                 });
             }
         };
@@ -898,17 +939,17 @@ upload.addEventListener('change', (e) => {
 });
 
 // save on click
-save.addEventListener('click',(e)=>{
-    e.preventDefault();
-    // get result to data uri
-    let imgSrc = cropper.getCroppedCanvas({
-        width: img_w.value // input value
-    }).toDataURL();
-    // remove hide class of img
-    cropped.classList.remove('hide');
-    img_result.classList.remove('hide');
-    // show image cropped
-    cropped.src = imgSrc;
-});
+// save.addEventListener('click',(e)=>{
+//     e.preventDefault();
+//     // get result to data uri
+//     let imgSrc = cropper.getCroppedCanvas({
+//         width: img_w.value // input value
+//     }).toDataURL();
+//     // remove hide class of img
+//     cropped.classList.remove('hide');
+//     img_result.classList.remove('hide');
+//     // show image cropped
+//     cropped.src = imgSrc;
+// });
 
 </script>

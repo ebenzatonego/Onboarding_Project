@@ -332,8 +332,11 @@
                     <div class="card-body">
                         <div class="d-flex align-items-center position-relative">
                             <div style="position: relative;">
-                                <img src="{{ url('/img/logo/logo.png') }}" alt="profile user" class="rounded-circle p-1 img-profile-user" width="85" height="85">
-
+                                @if( empty(Auth::user()->photo) )
+                                    <img src="{{ url('/img/icon/profile.png') }}" alt="profile user" class="rounded-circle p-1 img-profile-user" width="85" height="85">
+                                @else
+                                    <img src="{{ Auth::user()->photo }}" alt="profile user" class="rounded-circle p-1 img-profile-user" width="85" height="85">
+                                @endif
                                 <button class="btn-edit-img btn p-0" data-toggle="modal" data-target="#editProfile">
                                     <img src="{{ url('/img/icon/edit-img.png') }}" width="29" height="29">
                                 </button>
@@ -342,14 +345,15 @@
                             <div class="ms-2">
                                 <P style="font-size: 16px; font-weight: bold;margin-bottom: 10px;">
                                     {{ Auth::user()->name }}
-                                    <br>
-                                    {{ Auth::user()->lastname }}
                                 </P>
                                 <P style="font-size: 12px; font-weight: bold;color: #383838;margin: 0;">
-                                    รหัสตัวแทน : {{ Auth::user()->agent_code }}
+                                    รหัสตัวแทน : {{ Auth::user()->account }}
                                 </P>
                                 <P style="font-size: 12px; font-weight: bold;color: #383838;margin: 0;">
-                                    รหัสตัวแทน : {{ Auth::user()->agency_name }}
+                                    ตำแหน่ง : {{ Auth::user()->position }}
+                                </P>
+                                <P style="font-size: 12px; font-weight: bold;color: #383838;margin: 0;">
+                                    ชื่อหน่วยงาน/AO : {{ Auth::user()->organization_name }}
                                 </P>
 
                                 <!-- @if(Auth::user()->role == "Super-admin" || Auth::user()->role == "Admin")
@@ -366,6 +370,10 @@
 
                         <div class="row mt-3">
                             <div class="col-8">
+                                <p class="m-0">
+                                    <span style="font-size: 10;font-weight: bolder;color: #373737;">เลขที่ใบอนุญาต : </span>
+                                    <span style="font-size: 10;font-weight: bolder;color: #0E2B81;">{{ Auth::user()->license }}</span>
+                                </p>
                                 <p class="m-0">
                                     <span style="font-size: 10;font-weight: bolder;color: #373737;">วันที่เริ่มต้น : </span>
                                     <span style="font-size: 10;font-weight: bolder;color: #0E2B81;">{{ thaidate("j M Y" , strtotime(Auth::user()->license_start)) }} </span>
@@ -567,49 +575,57 @@
                 @endif
 
                 <div class="contact-leader mb-5">
-                    <p style="color: #003781;font-size: 16px;font-weight: bolder;">Contact Leader</p>
+                    @if( !empty($users->account_upper_al) )
+                    <p style="color: #003781;font-size: 16px;font-weight: bolder;">Upper Al</p>
                     <div class="d-flex ">
                         <div>
-                            <img src="{{ url('/img/logo/logo.png') }}" alt="" class="img-leader">
+                            <img src="{{ url('/img/icon/profile.png') }}" alt="" class="img-leader">
                         </div>
                         <div>
-                            <p class="mb-0 ms-3" style="color: #003781; font-size: 14px;font-weight: bolder;">อภิชญา เบ้าสิงห์สวย</p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">ชื่อเล่น: <span class="text-color-obd">เบลล์</span></p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">รหัสตัวเเทน : <span class="text-color-obd">548956</span></p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">ชื่อหน่วยงาน/AO : <span class="text-color-obd">AZ รักคุณเท่าฟ้า</span></p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">โทร : <a href="tel:088-567-8901" class="text-color-obd">088-567-8901</a></p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">อีเมล : <a href="mailto:Apitchaya@gmail.com"><u>Apitchaya@gmail.com</u></a></p>
+                            <p class="mb-0 ms-3" style="color: #003781; font-size: 14px;font-weight: bolder;">{{ $upper_al->name }}</p>
+                            <p class="mb-0 ms-3" style="font-size: 12px;">ชื่อเล่น: <span class="text-color-obd">{{ $upper_al->nickname }}</span></p>
+                            <p class="mb-0 ms-3" style="font-size: 12px;">รหัสตัวเเทน : <span class="text-color-obd">{{ $upper_al->account }}</span></p>
+                            <p class="mb-0 ms-3" style="font-size: 12px;">ชื่อหน่วยงาน/AO : <span class="text-color-obd">{{ $upper_al->organization_name }}</span></p>
+                            <p class="mb-0 ms-3" style="font-size: 12px;">โทร : <a href="tel:088-567-8901" class="text-color-obd">{{ $upper_al->phone }}</a></p>
+                            <p class="mb-0 ms-3" style="font-size: 12px;">อีเมล : <a href="mailto:Apitchaya@gmail.com"><u>{{ $upper_al->emial }}</u></a></p>
                         </div>
                     </div>
                     <br>
+                    @endif
+
+                    @if( !empty($users->account_group_manager) )
                     <p style="color: #003781;font-size: 16px;font-weight: bolder;">Group Manager</p>
                     <div class="d-flex ">
                         <div>
-                            <img src="{{ url('/img/logo/logo.png') }}" alt="" class="img-leader">
+                            <img src="{{ url('/img/icon/profile.png') }}" alt="" class="img-leader">
                         </div>
                         <div>
-                            <p class="mb-0 ms-3" style="color: #003781; font-size: 14px;font-weight: bolder;">อภิชญา เบ้าสิงห์สวย</p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">ชื่อเล่น: <span class="text-color-obd">เบลล์</span></p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">รหัสตัวเเทน : <span class="text-color-obd">548956</span></p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">ชื่อหน่วยงาน/AO : <span class="text-color-obd">AZ รักคุณเท่าฟ้า</span></p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">โทร : <a href="tel:088-567-8901" class="text-color-obd">088-567-8901</a></p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">อีเมล : <a href="mailto:Apitchaya@gmail.com"><u>Apitchaya@gmail.com</u></a></p>
+                            <p class="mb-0 ms-3" style="color: #003781; font-size: 14px;font-weight: bolder;">{{ $group_manager->name }}</p>
+                            <p class="mb-0 ms-3" style="font-size: 12px;">ชื่อเล่น: <span class="text-color-obd">{{ $group_manager->nickname }}</span></p>
+                            <p class="mb-0 ms-3" style="font-size: 12px;">รหัสตัวเเทน : <span class="text-color-obd">{{ $group_manager->account }}</span></p>
+                            <p class="mb-0 ms-3" style="font-size: 12px;">ชื่อหน่วยงาน/AO : <span class="text-color-obd">{{ $group_manager->organization_name }}</span></p>
+                            <p class="mb-0 ms-3" style="font-size: 12px;">โทร : <a href="tel:088-567-8901" class="text-color-obd">{{ $group_manager->phone }}</a></p>
+                            <p class="mb-0 ms-3" style="font-size: 12px;">อีเมล : <a href="mailto:Apitchaya@gmail.com"><u>{{ $group_manager->email }}</u></a></p>
                         </div>
                     </div>
                     <br>
+                    @endif
+
+                    @if( !empty($users->account_area_supervisor) )
                     <p style="color: #003781;font-size: 16px;font-weight: bolder;">ผู้ดูเเลพื้นที่</p>
                     <div class="d-flex ">
                         <div>
-                            <img src="{{ url('/img/logo/logo.png') }}" alt="" class="img-leader">
+                            <img src="{{ url('/img/icon/profile.png') }}" alt="" class="img-leader">
                         </div>
                         <div>
-                            <p class="mb-0 ms-3" style="color: #003781; font-size: 14px;font-weight: bolder;">ชวนันท์ อินทร์คำน้อย</p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">ชื่อเล่น: <span class="text-color-obd">มินนี่</span></p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">พื้นที่ดูเเล : <span class="text-color-obd">นนทบุรี</span></p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">โทร : <a href="tel:088-567-8901" class="text-color-obd">088-567-8901</a></p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">อีเมล : <a href="mailto:Chawanan@gmail.com"><u>Chawanan@gmail.com</u></a></p>
+                            <p class="mb-0 ms-3" style="color: #003781; font-size: 14px;font-weight: bolder;">{{ $area_supervisor->name }}</p>
+                            <p class="mb-0 ms-3" style="font-size: 12px;">ชื่อเล่น: <span class="text-color-obd">{{ $area_supervisor->nickname }}</span></p>
+                            <p class="mb-0 ms-3" style="font-size: 12px;">พื้นที่ดูเเล : <span class="text-color-obd">{{ $area_supervisor->area }}</span></p>
+                            <p class="mb-0 ms-3" style="font-size: 12px;">โทร : <a href="tel:088-567-8901" class="text-color-obd">{{ $area_supervisor->phone }}</a></p>
+                            <p class="mb-0 ms-3" style="font-size: 12px;">อีเมล : <a href="mailto:Chawanan@gmail.com"><u>{{ $area_supervisor->email }}</u></a></p>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -622,10 +638,10 @@
     }
 
     .picture {
-        min-width: 272px;
-        min-height: 272px;
-        max-width: 272px;
-        max-height: 272px;
+        min-width: 200px;
+        min-height: 200px;
+        max-width: 200px;
+        max-height: 200px;
         background: #ddd;
         display: flex;
         align-items: center;
@@ -685,7 +701,7 @@
 <div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="editProfileTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content modal-profile">
-            <p class="text-white text-center mb-5">เลือกรูปของคุณ</p>
+            <p class="text-white text-center mb-2">เลือกรูปของคุณ</p>
             <div class="modal-body d-flex justify-content-center">
                 <label class="picture" for="picture_profile_input" tabIndex="0">
                     <span class="picture_profile_image"></span>
@@ -698,13 +714,21 @@
 
                 <div class="row mb-4">
                     <div class="col-12">
-                        <h6 class="mb-0 text-white">ชื่อเล่น</h6>
+                        <h6 class="mb-0 text-white">ชื่อ</h6>
                     </div>
                     <div class="col-sm-12 text-secondary">
                         <input type="text" class="form-control" value="{{Auth::user()->name}}">
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h6 class="mb-0 text-white">ชื่อเล่น</h6>
+                    </div>
+                    <div class="col-sm-12 text-secondary">
+                        <input type="text" class="form-control" value="{{Auth::user()->nickname}}">
+                    </div>
+                </div>
+                <div class="row mb-4">
                     <div class="col-12">
                         <h6 class="mb-0 text-white">เบอร์โทร</h6>
                     </div>
@@ -712,9 +736,19 @@
                         <input type="text" class="form-control" value="{{Auth::user()->phone}}">
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h6 class="mb-0 text-white">อีเมล</h6>
+                    </div>
+                    <div class="col-sm-12 text-secondary">
+                        <input type="text" class="form-control" value="{{Auth::user()->email}}">
+                    </div>
+                </div>
             </div>
             <div class="w-100 px-5 mt-5">
-                <button class="btn w-100 bg-white btn-submit-profile" disabled id="btn_submit_change_profile">ตกลง</button>
+                <button class="btn w-100 bg-white btn-submit-profile" disabled id="btn_submit_change_profile">
+                    ตกลง
+                </button>
 
             </div>
         </div>
@@ -753,7 +787,11 @@
                 <div id="card_profile_detail" class="show">
                     <div class="d-flex mt-2 align-items-end">
                         <div>
-                            <img src="{{ url('/img/logo/logo.png') }}" alt="profile user" class="rounded-circle p-1 img-profile-user" width="58" height="58">
+                            @if( empty(Auth::user()->photo) )
+                                <img src="{{ url('/img/icon/profile.png') }}" alt="profile user" class="rounded-circle p-1 img-profile-user" width="58" height="58">
+                            @else
+                                <img src="{{ Auth::user()->photo }}" alt="profile user" class="rounded-circle p-1 img-profile-user" width="58" height="58">
+                            @endif
                         </div>
                         <div class="w-100 d-block ms-3">
                             <div class="d-flex justify-content-end w-100">
@@ -762,29 +800,52 @@
                             </div>
 
 
-                            <p class="mb-0" style="color: #003781;font-size: 15px;font-style: normal;font-weight: 600;line-height: normal;">ปทุมรัตน์ ฉัตรรัตนศักดิ์</p>
-                            <p class="mb-0" style="color: #383838;font-size: 12px;font-style: normal;font-weight: 700;line-height: normal;">ผู้จัดการหน่วยอาวุโส</p>
+                            <p class="mb-0" style="color: #003781;font-size: 15px;font-style: normal;font-weight: 600;line-height: normal;">{{ Auth::user()->name }}</p>
+                            <p class="mb-0" style="color: #383838;font-size: 12px;font-style: normal;font-weight: 700;line-height: normal;">{{ Auth::user()->position }}</p>
                         </div>
                     </div>
                     <div class="bg-white mt-3" style="padding:10px;border-radius: 10px;background: rgba(255, 255, 255, 0.50);box-shadow: 0px 2px 20px 0px rgba(200, 200, 200, 0.50);">
-                        <p class="mb-0 detail-profile"><b>รหัสตัวเเทน :</b> 123456</p>
-                        <p class="mb-0 detail-profile"><b>รหัสหน่วยงาน :</b> 123456</p>
-                        <p class="mb-0 detail-profile"><b>รหัสสาขา/สำนักงาน :</b> 123456</p>
-                        <p class="mb-0 detail-profile"><b>ชื่อสาขา/สำนักงาน :</b> หน่วยอาวุโส Victory สีหราช Settee 64</p>
-                        <p class="mb-0 detail-profile"><b>รหัสกลุ่ม :</b> 123456</p>
+                        <p class="mb-0 detail-profile"><b>รหัสตัวเเทน :</b> {{ Auth::user()->account }}</p>
+                        <p class="mb-0 detail-profile"><b>รหัสหน่วยงาน :</b> {{ Auth::user()->organization_code }}</p>
+                        <p class="mb-0 detail-profile"><b>ชื่อหน่วยงาน :</b> {{ Auth::user()->organization_name }}</p>
+                        <p class="mb-0 detail-profile"><b>รหัสสาขา/สำนักงาน :</b> {{ Auth::user()->branch_code }}</p>
+                        <p class="mb-0 detail-profile"><b>ชื่อสาขา/สำนักงาน :</b> {{ Auth::user()->branch_name }}</p>
+                        <p class="mb-0 detail-profile"><b>รหัสกลุ่ม :</b> {{ Auth::user()->group_code }}</p>
                     </div>
 
                     <div class="mt-3 me-1 ms-2 d-flex align-items-end">
                         <div class="w-100">
+                            <p class="detail-profile">
+                                เลขที่ใบอนุญาต : 
+                                <span style="color: #003781;">{{ Auth::user()->license }}</span>
+                            </p>
+                            <p class="detail-profile">
+                                วันออกใบอนุญาต : 
+                                <span style="color: #003781;">{{ Auth::user()->license_start }}</span>
+                            </p>
+                            <p class="detail-profile">
+                                วันหมดอายุใบอนุญาต : 
+                                <span style="color: #003781;">{{ Auth::user()->license_expire }}</span>
+                            </p>
+                            <p class="detail-profile">
+                                เลขที่ใบอนุญาต IC License : 
+                                <span style="color: #003781;">{{ Auth::user()->ic_license }}</span>
+                            </p>
+                            <p class="detail-profile">
+                                วันออกใบอนุญาต IC License : 
+                                <span style="color: #003781;">{{ Auth::user()->ic_license_start }}</span>
+                            </p>
+                            <p class="detail-profile">
+                                วันหมดอายุใบอนุญาต IC License : 
+                                <span style="color: #003781;">{{ Auth::user()->ic_license_expire }}</span>
+                            </p>
 
+                            @if(Auth::user()->clm == "1")
+                            <p class="detail-profile">
+                                <span style="color: #003781;"> มีสิทธิการขาย CLM </span>
+                            </p>
+                            @endif
 
-                            <p class="mb-0 detail-profile"> เลขที่ใบอนุญาต : <span style="color: #003781;"> 123456 </span></p>
-                            <p class="mb-0 detail-profile"> วันออกใบอนุญาต : <span style="color: #003781;"> 1 ม.ค. 2566 </span></p>
-                            <p class="mb-0 detail-profile"> วันหมดอายุใบอนุญาต : <span style="color: #003781;"> 1 ม.ค. 2567 </span></p>
-                            <p class="mb-0 detail-profile"> เลขที่ใบอนุญาต IC License : <span style="color: #003781;"> 123456 </span></p>
-                            <p class="mb-0 detail-profile"> วันออกใบอนุญาต IC License : <span style="color: #003781;"> 1 ม.ค. 2566 </span></p>
-                            <p class="mb-0 detail-profile"> วันหมดอายุใบอนุญาต IC License : <span style="color: #003781;"> 1 ม.ค. 2567 </span></p>
-                            <p class="mb-0 detail-profile"> สิทธิการขาย CLM : <span style="color: #003781;"> XXXXXX </span></p>
                         </div>
                         <style>
                             .btn-download-prifile {
@@ -811,7 +872,11 @@
                     <div>
                         <div class="d-flex mt-2 mb-3">
                             <div class="pt-3">
-                                <img src="{{ url('/img/logo/logo.png') }}" alt="profile user" class="rounded-circle p-1 img-profile-user" width="50" height="50">
+                                @if( empty(Auth::user()->photo) )
+                                    <img src="{{ url('/img/icon/profile.png') }}" alt="profile user" class="rounded-circle p-1 img-profile-user" width="50" height="50">
+                                @else
+                                    <img src="{{ Auth::user()->photo }}" alt="profile user" class="rounded-circle p-1 img-profile-user" width="50" height="50">
+                                @endif
                             </div>
                             <div class="w-100 d-block ms-3">
                                 <div class="d-flex justify-content-end w-100 align-item-start">
@@ -821,12 +886,12 @@
                         </div>
                         <div class="d-flex align-items-center">
                             <div style="width: 60%;">
-                                <p class="mb-0" style="color: #003781;font-size: 12px;font-style: normal;font-weight: 600;line-height: normal;">Pathumrat Chatrattanasak</p>
-                                <p class="mb-0" style="color: #003781;font-size: 12px;font-style: normal;font-weight: 600;line-height: normal;">ปทุมรัตน์ ฉัตรรัตนศักดิ์</p>
-                                <p class="mt-2 mb-3" style="color: #383838;font-size: 11px;font-style: normal;font-weight: 700;line-height: normal;">ผู้จัดการหน่วยอาวุโส</p>
+                                <!-- <p class="mb-0" style="color: #003781;font-size: 12px;font-style: normal;font-weight: 600;line-height: normal;">Pathumrat Chatrattanasak</p> -->
+                                <p class="mb-0" style="color: #003781;font-size: 15px;font-style: normal;font-weight: 600;line-height: normal;">{{ Auth::user()->name }}</p>
+                                <p class="mt-2 mb-3" style="color: #383838;font-size: 11px;font-style: normal;font-weight: 700;line-height: normal;">{{ Auth::user()->position }}</p>
 
-                                <p class="mb-0" style="color: #003781;font-size: 10px;font-style: normal;font-weight: 400;line-height: normal;">หน่วยอาวุโส Victory สีหราช Settee 64</p>
-                                <p style="color: #003781;font-size: 10px;font-style: normal;font-weight: 400;line-height: normal;">เลขที่ใบอนุญาต : 123456</p>
+                                <p class="mb-0" style="color: #003781;font-size: 10px;font-style: normal;font-weight: 400;line-height: normal;">{{ Auth::user()->organization_name }}</p>
+                                <p style="color: #003781;font-size: 10px;font-style: normal;font-weight: 400;line-height: normal;">เลขที่ใบอนุญาต : {{ Auth::user()->license }}</p>
                             </div>
                             <div style="width: 40%;padding-left: 5px;">
                                 <div>
@@ -834,7 +899,7 @@
                                         <path d="M14.3333 15H9.83333C9.46667 15 9.16667 14.7 9.16667 14.3333V10.5C9.16667 9.58333 8.41667 8.83333 7.5 8.83333C6.58333 8.83333 5.83333 9.58333 5.83333 10.5V14.3333C5.83333 14.7 5.53333 15 5.16667 15H0.666667C0.3 15 0 14.7 0 14.3333V8C0 7.83333 0.0666667 7.66667 0.183333 7.55L7.01667 0.216667C7.13333 0.0833333 7.31667 0 7.5 0C7.68333 0 7.86667 0.0833333 7.98333 0.216667L14.8167 7.55C14.9333 7.66667 15 7.83333 15 8V14.3333C15 14.7 14.7 15 14.3333 15ZM10.5 13.6667H13.6667V8.26667L7.5 1.65L1.33333 8.26667V13.6667H4.5V10.5C4.5 8.85 5.85 7.5 7.5 7.5C9.15 7.5 10.5 8.85 10.5 10.5V13.6667Z" fill="#003781" />
                                     </svg>
                                     <p class="mt-2" style="color: #373737;font-size:8px;font-style: normal;font-weight: 400;line-height: normal;">
-                                        2248/15 ถ.เจริญกรุง แขวงบางคอแหลม เขตบางคอแหลม กรุงเทพฯ 10120
+                                        {{ Auth::user()->address }}
                                     </p>
                                 </div>
                                 <div>
@@ -843,10 +908,10 @@
                                         <path d="M12.4974 11.0665L12.1586 9.88078C11.8952 8.92093 11.0859 8.22457 10.126 8.07401C10.446 7.64113 10.6342 7.09534 10.6342 6.5119C10.6342 5.02507 9.42966 3.82056 7.94283 3.82056C6.456 3.82056 5.25149 5.02507 5.25149 6.5119C5.25149 7.09534 5.43969 7.62231 5.75964 8.07401C4.79979 8.24339 4.00933 8.93975 3.72702 9.88078L3.38825 11.0665C3.27533 11.4429 3.35061 11.8381 3.59528 12.1581C3.83994 12.478 4.19753 12.6474 4.59277 12.6474H11.2929C11.6881 12.6474 12.0457 12.4592 12.2904 12.1581C12.5162 11.8381 12.5915 11.4429 12.4974 11.0665ZM7.92401 4.98743C8.77094 4.98743 9.44848 5.66497 9.44848 6.5119C9.44848 7.35883 8.77094 8.03637 7.92401 8.03637C7.07708 8.03637 6.39954 7.35883 6.39954 6.5119C6.39954 5.66497 7.0959 4.98743 7.92401 4.98743ZM11.2929 11.4805H4.55513L4.49866 11.4052L4.83743 10.2196C5.00682 9.63612 5.5338 9.22206 6.15487 9.22206H9.71196C10.3142 9.22206 10.86 9.63612 11.0294 10.2196L11.3682 11.4052L11.2929 11.4805Z" fill="#003781" />
                                     </svg>
                                     <p class="mt-2 mb-0" style="color: #373737;font-size: 8px;font-style: normal;font-weight: 400;line-height: normal;">
-                                        Mobile: 098-792-6596
+                                        Mobile: {{ Auth::user()->phone }}
                                     </p>
                                     <p class="" style="color: #373737;font-size: 8px;font-style: normal;font-weight: 400;line-height: normal;">
-                                        Pathumrat.Cha@azayagency.com
+                                        {{ Auth::user()->email }}
                                     </p>
                                 </div>
                             </div>
@@ -854,7 +919,9 @@
 
                         </div>
 
+                        @if( !empty(Auth::user()->elite_agency) )
                         <p class="mb-0 text-end" style="color: #003781;font-size: 12px;font-style: normal;font-weight: 700;line-height: normal;">ALLIANZ ELITE AGENCY</p>
+                        @endif
                     </div>
                     <a id="btnDownload" type="button" class="btn-close-modal-detail W-100" style="border-radius: 50px;color: #FFF;text-align: center;font-size: 16px;font-style: normal;font-weight: 500;line-height: normal;">
                         <i class="fa-regular fa-image"></i> <span style="color: #FFF;text-align: center;font-size: 16px;font-style: normal;font-weight: 500;line-height: normal;">ดาวน์โหลดรูปภาพ</span>

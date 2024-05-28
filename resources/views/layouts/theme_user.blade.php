@@ -602,6 +602,11 @@
                         `;
                     }
 
+                    let text_detail = ``;
+                    if(result[0].detail){
+                        text_detail = result[0].detail ;
+                    }
+
                     let html = `
                         <p id="content_title" class="text-white text-center mb-5 font-20">
                             `+result[0].title+`
@@ -611,7 +616,7 @@
                         </div>
                         <div class="text-center mt-4 px-3">
                             <div id="content_detail" class="text-white mb-0 mt-3">
-                                `+result[0].detail+`
+                                `+text_detail+`
                             </div>
                         </div>
                     `;

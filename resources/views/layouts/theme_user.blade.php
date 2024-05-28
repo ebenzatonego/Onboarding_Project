@@ -241,7 +241,7 @@
                 <!-- data_for_content_popup -->
 
                 <div class="w-100 px-5 mt-3">
-                    <button type="submit" class="btn-submit-login" data-dismiss="modal" onclick="close_show_content_popup()">
+                    <button type="submit" class="btn-submit-login mt-2" data-dismiss="modal" onclick="close_show_content_popup()">
                         ปิด
                     </button>
                     <div class="d-flex align-items-center justify-content-center">

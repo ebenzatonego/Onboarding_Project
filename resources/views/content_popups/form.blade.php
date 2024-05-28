@@ -795,7 +795,8 @@ img {
         if(type_value == "video"){
             let fileInput = document.getElementById('select_video');
             let file = fileInput.files[0];
-            let name_file = new Date() + '-' + file.name ;
+            let title = document.querySelector('#title').value;
+            let name_file = new Date() + '-' + title ;
             let storageRef = storage.ref('/videos/Content_Popup/' + name_file);
 
             let uploadTask = storageRef.put(file);

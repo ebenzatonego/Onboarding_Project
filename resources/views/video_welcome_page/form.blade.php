@@ -175,6 +175,15 @@
                     </div>
                     <hr>
                     <div class="row mb-3">
+                        <label for="name_video" class="col-sm-3 col-form-label">
+                            ชื่อวิดีโอ
+                        </label>
+                        <div class="col-sm-9">
+                            <input class="form-control" name="name_video" type="text" id="name_video" value="{{ isset($video_welcome_page->name_video) ? $video_welcome_page->name_video : ''}}" placeholder="เพิ่มชื่อวิดีโอ" oninput="check_data_for_submit();">
+                            {!! $errors->first('name_video', '<p class="help-block">:message</p>') !!}
+                        </div>
+                    </div>
+                    <div class="row mb-3">
                         <label for="video" class="col-sm-3 col-form-label">
                             วิดีโอ
                         </label>
@@ -197,15 +206,6 @@
                             </div>
                             <input class="form-control d-none" name="select_video" type="file" id="select_video" accept="video/*" onchange="check_data_for_submit();">
                             <input class="form-control d-none" name="video" type="text" id="video" value="{{ isset($video_welcome_page->video) ? $video_welcome_page->video : ''}}">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="name_video" class="col-sm-3 col-form-label">
-                            ชื่อวิดีโอ
-                        </label>
-                        <div class="col-sm-9">
-                            <input class="form-control" name="name_video" type="text" id="name_video" value="{{ isset($video_welcome_page->name_video) ? $video_welcome_page->name_video : ''}}" placeholder="เพิ่มชื่อวิดีโอ" oninput="check_data_for_submit();">
-                            {!! $errors->first('name_video', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>
                     <div class="row mb-3 d-none">
@@ -307,7 +307,8 @@
 
         var fileInput = document.getElementById('select_video');
         var file = fileInput.files[0];
-        var name_file = new Date() + '-' + file.name ;
+        let name_video = document.querySelector('#name_video').value;
+        var name_file = new Date() + '-' + name_video ;
         var storageRef = storage.ref('/videos/Video_Intro/' + name_file);
 
         var uploadTask = storageRef.put(file);

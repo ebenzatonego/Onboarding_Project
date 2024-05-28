@@ -269,13 +269,13 @@
 								let [hour, minute, second] = time.split('.')[0].split(':');
 								let formattedTime = `${hour}:${minute}`;
 
-				            	let time_create = `<b>สร้างเมื่อ</b> `+formattedDate+` <b>เวลา</b> `+formattedTime+` น.` ;
+	            	let time_create = `<b>สร้างเมื่อ</b> `+formattedDate+` <b>เวลา</b> `+formattedTime+` น.` ;
 
-				            	// Amount log
-				            	let countLv1 = 0 ;
+	            	// Amount log
+	            	let countLv1 = 0 ;
 								let countLv2 = 0 ;
-				            	let data_log = JSON.parse(result[i].log);
-				            		// console.log(data_log);
+	            	let data_log = JSON.parse(result[i].log);
+	            		// console.log(data_log);
 
 								if(result[i].log){
 									// นับจำนวนระดับทั้งหมดใน Level 1

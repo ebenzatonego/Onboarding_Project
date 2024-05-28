@@ -41,6 +41,11 @@ Route::get('/update_countTime_video_congrats/{user_id}/{countTime}', 'AdminContr
 Route::get('/update_check_video_congratulation/{user_id}/{skip_video_congrats}', 'AdminController@update_check_video_congratulation');
 Route::get('/reset_check_video_congrats/{type}', 'AdminController@reset_check_video_congrats');
 
+// Content Popup
+Route::get('/reset_check_content_popup', 'AdminController@reset_check_content_popup');
+Route::get('/get_data_content_popup', 'AdminController@get_data_content_popup');
+
+
 // Calendar
 Route::get('/get_data_for_calendar', 'AdminController@get_data_for_calendar');
 

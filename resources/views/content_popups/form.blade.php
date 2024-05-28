@@ -273,6 +273,86 @@
   white-space: nowrap;
   width: 1px;
 }
+
+.checkbox-wrapper-46 input[type="checkbox"] {
+  display: none;
+  visibility: hidden;
+}
+
+.checkbox-wrapper-46 .cbx {
+  margin: auto;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+.checkbox-wrapper-46 .cbx span {
+  display: inline-block;
+  vertical-align: middle;
+  transform: translate3d(0, 0, 0);
+}
+.checkbox-wrapper-46 .cbx span:first-child {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  transform: scale(1);
+  vertical-align: middle;
+  border: 1px solid #9098a9;
+  transition: all 0.2s ease;
+}
+.checkbox-wrapper-46 .cbx span:first-child svg {
+  position: absolute;
+  top: 3px;
+  left: 2px;
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 16px;
+  stroke-dashoffset: 16px;
+  transition: all 0.3s ease;
+  transition-delay: 0.1s;
+  transform: translate3d(0, 0, 0);
+}
+.checkbox-wrapper-46 .cbx span:first-child:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: #506eec;
+  display: block;
+  transform: scale(0);
+  opacity: 1;
+  border-radius: 50%;
+}
+.checkbox-wrapper-46 .cbx span:last-child {
+  padding-left: 8px;
+}
+.checkbox-wrapper-46 .cbx:hover span:first-child {
+  border-color: #506eec;
+}
+
+.checkbox-wrapper-46 .inp-cbx:checked + .cbx span:first-child {
+  background: #506eec;
+  border-color: #506eec;
+  animation: wave-46 0.4s ease;
+}
+.checkbox-wrapper-46 .inp-cbx:checked + .cbx span:first-child svg {
+  stroke-dashoffset: 0;
+}
+.checkbox-wrapper-46 .inp-cbx:checked + .cbx span:first-child:before {
+  transform: scale(3.5);
+  opacity: 0;
+  transition: all 0.6s ease;
+}
+
+@keyframes wave-46 {
+  50% {
+    transform: scale(0.9);
+  }
+}
+
+
 </style>
 
 <!-- CROPERJS -->
@@ -302,16 +382,6 @@
 .options input{
     width:4em;
     padding:0.5em 1em;
-}
-.btn{
-    background:white;
-    color:black;
-    border:1px solid black;
-    padding: 0.5em 1em;
-    text-decoration:none;
-    margin:0.8em 0.3em;
-    display:inline-block;
-    cursor:pointer;
 }
 
 .hide {
@@ -377,10 +447,31 @@ img {
                             if(type == 'photo'){
                                 document.querySelector('#div_type_photo').classList.remove('d-none');
                                 document.querySelector('#div_type_video').classList.add('d-none');
+
+                                document.querySelector('#select_video').value = null;
+                                document.querySelector('#div_videoPreview').classList.add('d-none');
+                                document.querySelector('#upload_video_cover').classList.remove('d-none');
+                                document.querySelector('#div_videoPreview').innerHTML = `
+                                    <center>
+                                        <div id="videoPreview"></div>
+                                        <span class="btn btn-sm btn-info" onclick="document.querySelector('#select_video').click();">
+                                            เลือกใหม่
+                                        </span>
+                                    </center>
+                                `;
                             }
                             else if(type == 'video'){
                                 document.querySelector('#div_type_video').classList.remove('d-none');
                                 document.querySelector('#div_type_photo').classList.add('d-none');
+                                document.querySelector('#select_photo').value = null;
+                                document.querySelector('#div_photoPreview').innerHTML = `
+                                    <center>
+                                        <div id="photoPreview"></div>
+                                        <span class="btn btn-sm btn-info" onclick="document.querySelector('#select_photo').click();">
+                                            เลือกใหม่
+                                        </span>
+                                    </center>
+                                `;
                             }
                         }
                     </script>
@@ -414,7 +505,7 @@ img {
                                         <input type="number" class="img-w d-none" value="300" min="100" max="1200" />
                                     </div>
                                     <!-- save btn -->
-                                    <button class="btn save hide">Save</button>
+                                    <button class="btn btn-sm btn-info save hide">Save</button>
                                     <!-- download btn -->
                                     <a href="" class="btn download hide">Download</a>
                                 </div>
@@ -436,7 +527,7 @@ img {
                             วิดีโอ
                         </label>
                         <div class="col-sm-9">
-                            <label id="upload_photo_cover" for="photo_cover" class="container_upload" type="button" onclick="document.querySelector('#select_video').click();">
+                            <label id="upload_video_cover" for="photo_cover" class="container_upload" type="button" onclick="document.querySelector('#select_video').click();">
                                 <div class="upload_section">
                                     <div class="text-center">
                                         <i class="fa-solid fa-cloud-arrow-up"></i>
@@ -491,6 +582,26 @@ img {
                             {!! $errors->first('status', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>
+                    <div id="div_reset_content_popup" class="row mb-3 d-none">
+                        <label for="status" class="col-sm-3 col-form-label">
+                            รีเซ็ตการแจ้งเตือน
+                        </label>
+                        <div class="col-sm-9" style="position: relative;">
+                            <div class="checkbox-wrapper-46 mt-2">
+                                <input type="checkbox" name="reset_check_content_popup" id="cbx-46" class="inp-cbx" />
+                                <label for="cbx-46" class="cbx">
+                                    <span>
+                                        <svg viewBox="0 0 12 10" height="10px" width="12px">
+                                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                        </svg>
+                                    </span>
+                                    <span style="position: absolute;top:10px;">
+                                        <b>รีเซ็ตการแจ้งเตือน</b>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row mb-3">
                         <label for="" class="col-sm-3 col-form-label">
                             ผู้สร้างวิดีโอ
@@ -529,7 +640,7 @@ img {
         videoPlayer.width = 400;
         document.getElementById('videoPreview').innerHTML = '';
         document.getElementById('videoPreview').appendChild(videoPlayer);
-        document.querySelector('#upload_photo_cover').classList.add('d-none');
+        document.querySelector('#upload_video_cover').classList.add('d-none');
         document.querySelector('#div_videoPreview').classList.remove('d-none');
         
     });
@@ -556,8 +667,10 @@ img {
 
         if(!check_status){
             status.value = 'Yes';
+            document.querySelector('#div_reset_content_popup').classList.remove('d-none');
         }else{
             status.value = '';
+            document.querySelector('#div_reset_content_popup').classList.add('d-none');
         }
     }
 
@@ -715,6 +828,7 @@ img {
         }
 
     }
+
 </script>
 
 <script src="https://cdn.tiny.cloud/1/qagffr3pkuv17a8on1afax661irst1hbr4e6tbv888sz91jc/tinymce/4/tinymce.min.js"></script>
@@ -748,7 +862,6 @@ img_h = document.querySelector('.img-h'),
 options = document.querySelector('.options'),
 save = document.querySelector('.save'),
 cropped = document.querySelector('.cropped'),
-dwn = document.querySelector('.download'),
 upload = document.querySelector('#select_photo'),
 cropper = '';
 
@@ -796,9 +909,6 @@ save.addEventListener('click',(e)=>{
     img_result.classList.remove('hide');
     // show image cropped
     cropped.src = imgSrc;
-    dwn.classList.remove('hide');
-    dwn.download = 'imagename.png';
-    dwn.setAttribute('href',imgSrc);
 });
 
 </script>

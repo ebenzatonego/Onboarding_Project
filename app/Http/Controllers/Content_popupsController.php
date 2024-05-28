@@ -7,6 +7,8 @@ use App\Http\Requests;
 
 use App\Models\Content_popup;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\User;
 
 class Content_popupsController extends Controller
 {
@@ -58,8 +60,29 @@ class Content_popupsController extends Controller
     {
         
         $requestData = $request->all();
+
+        if($requestData['status'] == "Yes"){
+            DB::table('content_popups')
+                ->where([ 
+                        ['status', 'Yes'],
+                    ])
+                ->update([
+                        'status' => null,
+                    ]);
+        }
         
         Content_popup::create($requestData);
+
+
+        if( !empty($requestData['reset_check_content_popup']) ){
+            DB::table('users')
+            ->where([ 
+                    ['check_content_popup', "Yes"],
+                ])
+            ->update([
+                    'check_content_popup' => null,
+                ]);
+        }
 
         return redirect('/manage_content_popups');
         // return redirect('content_popups')->with('flash_message', 'Content_popup added!');
@@ -132,5 +155,14 @@ class Content_popupsController extends Controller
 
     function create_content_popups(){
         return view('content_popups.create');
+    }
+
+    function view_content_popup($id){
+        
+        $content_popups = Content_popup::findOrFail($id);
+        $data_user = User::where('id', $content_popups->user_id)->first();
+        $name_creator = $data_user->name ;
+
+        return view('content_popups.view_content_popup', compact('content_popups','name_creator'));
     }
 }

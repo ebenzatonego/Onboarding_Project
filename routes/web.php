@@ -81,10 +81,11 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
     Route::get('/create_video_congrats', 'Video_congratsController@create_video_congrats');
     Route::get('/view_video_congrats/{id}', 'Video_congratsController@view_video_congrats');
 
-    // manage_content_popups
+    // content_popups
     Route::resource('content_popups', 'Content_popupsController');
     Route::get('/manage_content_popups', 'Content_popupsController@manage_content_popups');
     Route::get('/create_content_popups', 'Content_popupsController@create_content_popups');
+    Route::get('/view_content_popup/{id}', 'Content_popupsController@view_content_popup');
 
     // training
     Route::resource('training', 'TrainingController');

@@ -129,6 +129,15 @@ class AdminController extends Controller
         return $data ;
     }
 
+    function get_data_content_popup(){
+        $data = DB::table('content_popups')
+            ->join('users', 'content_popups.user_id', '=', 'users.id')
+            ->select('content_popups.*','users.name as name_user')
+            ->get();
+
+        return $data ;
+    }
+
     function get_data_video_congrats_all(){
         // $data = Video_congrat::where('type','Video_Congrats')
         //     ->get();
@@ -388,6 +397,18 @@ class AdminController extends Controller
                 ])
             ->update([
                     'check_video_welcome_page' => null,
+                ]);
+
+        return "success" ;
+    }
+
+    function reset_check_content_popup(){
+        DB::table('users')
+            ->where([ 
+                    ['check_content_popup', "Yes"],
+                ])
+            ->update([
+                    'check_content_popup' => null,
                 ]);
 
         return "success" ;

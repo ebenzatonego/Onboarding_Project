@@ -451,6 +451,9 @@ img {
 
 } */
 
+.mce-branding{
+    display: none;
+}
 
 </style>
 
@@ -504,7 +507,7 @@ img {
                     </div>
                     <script>
                         function change_type_content(type) {
-                            console.log(type);
+                            // console.log(type);
                             let btn_submit = document.querySelector('#btn_submit');
 
                             if(type == 'photo'){
@@ -517,7 +520,7 @@ img {
                                 document.querySelector('#div_videoPreview').innerHTML = `
                                     <center>
                                         <div id="videoPreview"></div>
-                                        <span class="btn btn-sm btn-info" onclick="document.querySelector('#select_video').click();">
+                                        <span class="btn btn-sm btn-info" onclick="document.querySelector('#select_video').click(),new_select_input('video');">
                                             เลือกใหม่
                                         </span>
                                     </center>
@@ -529,17 +532,38 @@ img {
                                 document.querySelector('#div_preview_img').classList.add('d-none');
                                 document.querySelector('#upload_photo_content').classList.remove('d-none');
                                 document.querySelector('#select_photo').value = null;
-                                document.querySelector('#imgPreview').src = null;
-                                document.querySelector('.result').innerHTML = ``;
+                                document.querySelector('#imgPreview').src = "";
+                                // document.querySelector('.result').innerHTML = ``;
                                  btn_submit.classList.add('disabled');
                                 document.querySelector('#div_photoPreview').innerHTML = `
                                     <center>
                                         <div id="photoPreview"></div>
-                                        <span class="btn btn-sm btn-info" onclick="document.querySelector('#select_photo').click();">
+                                        <span class="btn btn-sm btn-info" onclick="document.querySelector('#select_photo').click(),new_select_input('photo');">
                                             เลือกใหม่
                                         </span>
                                     </center>
                                 `;
+                            }
+                        }
+
+                        function new_select_input(type){
+
+                            let btn_submit = document.querySelector('#btn_submit');
+
+                            if(type == 'photo'){
+                                document.querySelector('#div_preview_img').classList.add('d-none');
+                                document.querySelector('#upload_photo_content').classList.remove('d-none');
+
+                                document.querySelector('#select_photo').value = null;
+                                document.querySelector('#imgPreview').src = "";
+                                // document.querySelector('.result').innerHTML = ``;
+                                btn_submit.classList.add('disabled');
+                            }
+                            else if(type == 'video'){
+                                document.querySelector('#select_video').value = null;
+                                document.querySelector('#div_videoPreview').classList.add('d-none');
+                                document.querySelector('#upload_video_cover').classList.remove('d-none');
+                                btn_submit.classList.add('disabled');
                             }
                         }
                     </script>
@@ -581,7 +605,7 @@ img {
                                 <div id="div_photoPreview" class="d-none mt-3">
                                     <center>
                                         <div id="photoPreview"></div>
-                                        <span class="btn btn-sm btn-info" onclick="document.querySelector('#select_photo').click();">
+                                        <span class="btn btn-sm btn-info" onclick="document.querySelector('#select_photo').click(),new_select_input('photo');">
                                             เลือกใหม่
                                         </span>
                                     </center>
@@ -618,7 +642,7 @@ img {
                             <div id="div_videoPreview" class="d-none">
                                 <center>
                                     <div id="videoPreview"></div>
-                                    <span class="btn btn-sm btn-info" onclick="document.querySelector('#select_video').click();">
+                                    <span class="btn btn-sm btn-info" onclick="document.querySelector('#select_video').click(),new_select_input('video');">
                                         เลือกใหม่
                                     </span>
                                 </center>
@@ -744,6 +768,7 @@ img {
         let check_status = document.querySelector('#check_status').checked ;
             // console.log(check_status);
         let status = document.querySelector('#status') ;
+        document.querySelector('#cbx-46').checked = false ;
 
         if(!check_status){
             status.value = 'Yes';

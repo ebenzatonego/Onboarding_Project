@@ -585,32 +585,33 @@
         fetch("{{ url('/') }}/api/theme_user_get_content_popup")
             .then(response => response.json())
             .then(result => {
-                console.log(result);
-                if(result){
+                // console.log(result);
+
+                if(result.length > 0){
                     let div_for_content_popup = document.querySelector('#div_for_content_popup');
 
                     let html_photo_or_video = `` ;
-                    if(result.type == "photo"){
+                    if(result[0].type == "photo"){
                         html_photo_or_video = `
-                            <img src="`+result.photo+`" alt="" style="width: 80%;border-radius: 10px;">
+                            <img src="`+result[0].photo+`" alt="" style="width: 80%;border-radius: 10px;">
                         `;
                     }
-                    else if(result.type == "video"){
+                    else if(result[0].type == "video"){
                         html_photo_or_video = `
-                            <video src="`+result.video+`" controls autoplay loop muted style="width:80%;border-radius: 10px; max-width: 628px;" class="video-preview"></video>
+                            <video src="`+result[0].video+`" controls autoplay loop muted style="width:80%;border-radius: 10px; max-width: 628px;" class="video-preview"></video>
                         `;
                     }
 
                     let html = `
                         <p id="content_title" class="text-white text-center mb-5 font-20">
-                            `+result.title+`
+                            `+result[0].title+`
                         </p>
                         <div id="content_photo_or_video" class="w-100 d-flex justify-content-center">
                             `+html_photo_or_video+`
                         </div>
                         <div class="text-center mt-4 px-3">
                             <div id="content_detail" class="text-white mb-0 mt-3">
-                                `+result.detail+`
+                                `+result[0].detail+`
                             </div>
                         </div>
                     `;

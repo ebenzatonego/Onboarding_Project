@@ -167,7 +167,7 @@ class Content_popupsController extends Controller
     }
 
     function theme_user_get_content_popup(){
-        $data = Content_popup::where('status',"Yes")->first();
+        $data = Content_popup::where('status',"Yes")->get();
         return $data;
     }
 }

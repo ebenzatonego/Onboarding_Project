@@ -51,6 +51,9 @@ class User extends Authenticatable
         'ic_license_start',
         'ic_license_expire',
         'clm',
+        'check_birthday',
+        'elite_agency',
+        'nickname',
     ];
 
     /**

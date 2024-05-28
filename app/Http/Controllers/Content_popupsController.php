@@ -70,7 +70,7 @@ class Content_popupsController extends Controller
                         'status' => null,
                     ]);
         }
-        
+
         Content_popup::create($requestData);
 
 
@@ -164,5 +164,10 @@ class Content_popupsController extends Controller
         $name_creator = $data_user->name ;
 
         return view('content_popups.view_content_popup', compact('content_popups','name_creator'));
+    }
+
+    function theme_user_get_content_popup(){
+        $data = Content_popup::where('status',"Yes")->first();
+        return $data;
     }
 }

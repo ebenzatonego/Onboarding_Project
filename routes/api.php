@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/check_pdpa/{account}', 'AdminController@check_pdpa');
 Route::get('/update_pdpa/{account}', 'AdminController@update_pdpa');
+Route::get('/update_check_birthday/{user_id}', 'AdminController@update_check_birthday');
 
 
 // Video INTRO
@@ -44,6 +45,8 @@ Route::get('/reset_check_video_congrats/{type}', 'AdminController@reset_check_vi
 // Content Popup
 Route::get('/reset_check_content_popup', 'AdminController@reset_check_content_popup');
 Route::get('/get_data_content_popup', 'AdminController@get_data_content_popup');
+Route::get('/theme_user_get_content_popup', 'Content_popupsController@theme_user_get_content_popup');
+Route::get('/skip_content_popup/{user_id}/{skip_content_popup}', 'AdminController@skip_content_popup');
 
 
 // Calendar

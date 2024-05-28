@@ -72,6 +72,16 @@ class LoginController extends Controller
                             'check_video_congratulation' => null,
                         ]);
             }
+
+            if($data_user->check_content_popup == "No"){
+                DB::table('users')
+                    ->where([ 
+                            ['id', $data_user->id],
+                        ])
+                    ->update([
+                            'check_content_popup' => null,
+                        ]);
+            }
             
             if($data_user->check_video_welcome_page != "Yes"){
                 return redirect("/video_instruction");

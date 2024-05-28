@@ -721,29 +721,6 @@
     </div>
 </div>
 
-<!-- Modal Happy birthday-->
-<div class="modal fade" id="happybirthday" tabindex="-1" role="dialog" aria-labelledby="happybirthdayTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content modal-profile">
-            <p class="text-white text-center mb-5 font-20">สุขสันต์วันเกิด!</p>
-            <div class="w-100 d-flex justify-content-center">
-                <img src="{{ url('/img/icon/Birthday.png') }}" alt="" width="274">
-
-            </div>
-            <div class="text-center mt-4 px-3">
-                <p class="text-white m-0" style="font-size: 23px;">{{Auth::user()->name}}</p>
-                <p class="text-white m-0" style="font-size: 23px;">{{Auth::user()->lastname}}</p>
-                <p class="text-white mb-0 mt-3">เราขอให้คุณสุขภาพแข็งแรง มีความสุขในชีวิต <br>และประสบความสำเร็จตามเป้าหมายที่วางไว้</p>
-            </div>
-
-            <div class="w-100 px-5 mt-5">
-                <button class="btn w-100 bg-white btn-submit-profile" data-dismiss="modal" aria-label="Close">ขอให้สำเร็จ เพี้ยง!!!!</button>
-
-            </div>
-        </div>
-    </div>
-</div>
-
 <style>
     .btn-close-modal-detail {
         position: absolute;
@@ -1080,20 +1057,6 @@
             }
         });
     });
-
-    document.addEventListener('DOMContentLoaded', function() {
-        check_birthday()
-    })
-
-    // function check_birthday(params) {
-    //     let date_now = `{{ (\Carbon\Carbon::now()->format('d/m')) }}`
-    //     let birth_day = `{{ (\Carbon\Carbon::parse(Auth::user()->birthday))->format('m/d') }}`
-
-    //     if (date_now == birth_day) {
-    //         console.log('วันเกิด');  
-    //         $('#happybirthday').modal('show');
-    //     }
-    // }
 
     const printDocument = (domElement) => {
     html2canvas(domElement , {backgroundColor: "rgba(0,0,0,0)"}).then((canvas) => {

@@ -41,6 +41,18 @@ class AdminController extends Controller
         return 'ok';
     }
 
+    function update_check_birthday($user_id){
+        DB::table('users')
+            ->where([ 
+                    ['id', $user_id],
+                ])
+            ->update([
+                    'check_birthday' => "Yes",
+                ]);
+        
+        return 'ok';
+    }
+
     public function calendar_admin()
     {
         return view('admin.calendar_admin');
@@ -89,6 +101,20 @@ class AdminController extends Controller
                 ])
             ->update([
                     'check_video_congratulation' => $skip_video_congrats,
+                ]);
+
+        return "success" ;
+
+    }
+
+    function skip_content_popup($user_id , $skip_content_popup){
+
+        DB::table('users')
+            ->where([ 
+                    ['id', $user_id],
+                ])
+            ->update([
+                    'check_content_popup' => $skip_content_popup,
                 ]);
 
         return "success" ;

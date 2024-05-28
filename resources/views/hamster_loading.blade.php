@@ -294,6 +294,6 @@
         <div class="spoke"></div>
     </div>
     <h5 class="text-success mx-4" style="position: absolute;bottom:0px;left:60px;">
-        กำลังอัพโหลดวิดีโอ..<span id="point_loading" class="d-none">.</span>
+        กำลังโหลด..<span id="point_loading" class="d-none">.</span>
     </h5>
 </div>

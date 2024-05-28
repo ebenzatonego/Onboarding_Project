@@ -176,8 +176,83 @@
     }
 
     }
+
+    .btn-submit-login {
+        width: 100%;
+        border-radius: 50px;
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        -ms-border-radius: 50px;
+        -o-border-radius: 50px;
+        color: #0E2B81;
+        padding: .7rem 0;
+        border: none;
+        margin-top: 40px;
+        margin-bottom: 30px;
+        font-size: 12px;
+        font-weight: bolder;
+    }
+
+    .btn-submit-login:disabled {
+        color: #57759C;
+        background-color: rgb(248, 248, 248, 0.61);
+
+    }
+
+    .video-preview {
+        border: #fff 1px solid;
+        margin-top: 25px;
+        max-width: 888px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -khtml-border-radius: 5px;
+    }
 </style>
+
 <header>
+    <!-- Modal Happy birthday-->
+    <button id="btn_modal_Happy_birthday" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#happybirthday"></button>
+    <div class="modal fade" id="happybirthday" tabindex="-1" role="dialog" aria-labelledby="happybirthdayTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content modal-profile">
+                <p class="text-white text-center mb-5 font-20">สุขสันต์วันเกิด!</p>
+                <div class="w-100 d-flex justify-content-center">
+                    <img src="{{ url('/img/icon/Birthday.png') }}" alt="" width="274">
+
+                </div>
+                <div class="text-center mt-4 px-3">
+                    <p class="text-white m-0" style="font-size: 23px;">{{Auth::user()->name}}</p>
+                    <p class="text-white mb-0 mt-3">เราขอให้คุณสุขภาพแข็งแรง มีความสุขในชีวิต <br>และประสบความสำเร็จตามเป้าหมายที่วางไว้</p>
+                </div>
+
+                <div class="w-100 px-5 mt-5">
+                    <button class="btn w-100 bg-white btn-submit-profile" data-dismiss="modal" aria-label="Close">ขอให้สำเร็จ เพี้ยง!!!!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal CONTENT POPUP-->
+    <button id="btn_modal_content_popup" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_content_popup">content_popup</button>
+    <div class="modal fade" id="modal_content_popup" tabindex="-1" role="dialog" aria-labelledby="modal_content_popupTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div id="div_for_content_popup" class="modal-content modal-profile">
+                <!-- data_for_content_popup -->
+
+                <div class="w-100 px-5 mt-5">
+                    <button type="submit" class="btn-submit-login" data-dismiss="modal" onclick="close_show_content_popup()">
+                        ปิด
+                    </button>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <input name="check_dont_content_popup" id="check_dont_content_popup" class="form-check-input font-20 m-0 p-o" type="checkbox" value="" aria-label="Checkbox for following text input">
+                        <label for="check_dont_content_popup" class="ms-2 h-100 mt-1" style="color: #989898;">ไม่แสดงหน้านี้อีก</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="w-100 div-navbar-top d-flex align-items-center">
         <nav class="navbar navbar-expand">
             <div class="top-menu-left">
@@ -462,7 +537,7 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
 
-        // ตรวจสอบการเลื่อนตำแหน่ง
+        // ตรวจสอบการเลื่อนตำแหน่ง => content_popup => birthday
         check_current_rank();
     });
 
@@ -471,10 +546,100 @@
         let current_rank = "{{ Auth::user()->current_rank }}" ;
         let last_rank = "{{ Auth::user()->last_rank }}" ;
         let check_video_congratulation = "{{ Auth::user()->check_video_congratulation }}" ;
+        let check_content_popup = "{{ Auth::user()->check_content_popup }}" ;
+        let check_birthday = "{{ Auth::user()->check_birthday }}" ;
+
+        let birthday = "{{ Auth::user()->birthday }}";
+        // แยกวันและเดือนจาก birthday
+        let [day, month, year] = birthday.split('-');
+
+        // สร้างวันที่ปัจจุบัน
+        let today = new Date();
+        let currentDay = String(today.getDate()).padStart(2, '0');
+        let currentMonth = String(today.getMonth() + 1).padStart(2, '0');
 
         if(current_rank != last_rank && !check_video_congratulation){
             window.location.href = "{{ url('/show_video_congrats') }}?from="+"{{ url()->full() }}";
         }
+        else{
+            if(!check_content_popup){
+                // SHOW CONTENT POPUP
+                show_content_popup_for_theme_user();
+            }
+            else if (day === currentDay && month === currentMonth && !check_birthday){
+                // ตรวจสอบวันและเดือน
+                // console.log("วันนี้เป็นวันเกิด!");
+                document.querySelector('#btn_modal_Happy_birthday').click();
 
+                fetch("{{ url('/') }}/api/update_check_birthday/" + "{{ Auth::user()->id }}")
+                    .then(response => response.text())
+                    .then(result => {
+                        // console.log(result);
+                    });
+            }
+        }
+        
     }
+
+    function show_content_popup_for_theme_user(){
+        fetch("{{ url('/') }}/api/theme_user_get_content_popup")
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                if(result){
+                    let div_for_content_popup = document.querySelector('#div_for_content_popup');
+
+                    let html_photo_or_video = `` ;
+                    if(result.type == "photo"){
+                        html_photo_or_video = `
+                            <img src="`+result.photo+`" alt="" style="width: 80%;border-radius: 10px;">
+                        `;
+                    }
+                    else if(result.type == "video"){
+                        html_photo_or_video = `
+                            <video src="`+result.video+`" controls autoplay loop muted style="width:80%;border-radius: 10px; max-width: 628px;" class="video-preview"></video>
+                        `;
+                    }
+
+                    let html = `
+                        <p id="content_title" class="text-white text-center mb-5 font-20">
+                            `+result.title+`
+                        </p>
+                        <div id="content_photo_or_video" class="w-100 d-flex justify-content-center">
+                            `+html_photo_or_video+`
+                        </div>
+                        <div class="text-center mt-4 px-3">
+                            <div id="content_detail" class="text-white mb-0 mt-3">
+                                `+result.detail+`
+                            </div>
+                        </div>
+                    `;
+
+                    div_for_content_popup.insertAdjacentHTML('afterbegin', html); // แทรกบนสุด
+
+                    document.querySelector('#btn_modal_content_popup').click();
+                }
+            });
+    }
+
+    function close_show_content_popup() {
+        let check_dont_content_popup = document.getElementById('check_dont_content_popup').checked;
+        // console.log(check_dont_content_popup);
+
+        let skip_content_popup;
+        if (check_dont_content_popup) {
+            skip_content_popup = "Yes";
+        } else {
+            skip_content_popup = "No";
+        }
+
+        // console.log(skip_content_popup);
+
+        fetch("{{ url('/') }}/api/skip_content_popup/" + "{{ Auth::user()->id }}" + "/" + skip_content_popup)
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+            });
+    }
+
 </script>

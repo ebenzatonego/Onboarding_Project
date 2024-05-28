@@ -36,6 +36,7 @@ Route::middleware(['auth',])->group(function () {
 
     Route::get('/', 'ProfileController@view_profile');
     Route::get('/home', 'ProfileController@view_profile');
+    Route::get('/404', 'ProfileController@view_profile');
 
 
     Route::get('/video_instruction', function () {

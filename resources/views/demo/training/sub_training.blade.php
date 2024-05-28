@@ -28,7 +28,7 @@
                     <i class="fa-regular fa-chevron-left me-3"></i> <span class="mt-1">กลับหน้ารวมหลักสูตร/อมรม/สอบ</span>
                 </a>
             </div>
-            <div class="col-lg-4 mt-3">
+            <div class="col-lg-12 mt-3">
                 <div class="owl-carousel carousel-fav-course owl-theme">
                     <div class="item">
                         <img src="{{ url('/img/icon/ad.png') }}">
@@ -41,7 +41,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8 mt-3">
+            <div class="col-lg-12 mt-3">
 
                 <style>
                     .carousel-menu-course .item {
@@ -72,7 +72,11 @@
                     }
                     .menu-course.active .icon-menu-course {
                         background-color: #003781;
-                    }
+                    }.carousel-menu-course {
+    display: flex !important; /* To override display:block I added !important */
+    flex-direction: row;
+    justify-content: center; /* To center the carousel */
+}
                 </style>
                 <div class="owl-carousel carousel-menu-course owl-theme">
                     <div class="item ">
@@ -140,6 +144,7 @@
                     
                 </div>
                 <style>
+                    
                     .course-item{
                         position: relative;
                         padding: 10px;
@@ -154,7 +159,22 @@
                         box-shadow: 0 0 2rem 0 rgb(136 152 170 / 15%);
                         border-radius: 0.25rem;
                         margin-bottom:1.5rem;
+                        
 
+                    }
+                    @media (max-width: 770px) {
+                        .course-item{
+                            width: 100% !important;
+                        }
+                    }
+                    @media (min-width: 770px) {
+                        .container-course{
+                        display: flex;
+                        justify-content: space-between;
+                    }
+                        .course-item{
+                            width: 49% !important;
+                        }
                     }
                     .course-item img{
                         width: 100px;
@@ -260,16 +280,20 @@
         // stagePadding:20,
         loop: false,
         autoWidth: true,
-        margin: 20,
-        nav: false,
+        
+        nav: false,    
+        dots: false,
         responsive: {
             0: {
+                margin: 20,
                 items: 6
             },
             600: {
+                margin: 20,
                 items: 3
             },
             1000: {
+                margin: 40,
                 items: 1
             }
         }

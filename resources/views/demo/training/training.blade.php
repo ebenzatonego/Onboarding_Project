@@ -121,7 +121,7 @@
             <div class="mt-2">
                 <h5 style="color: #003781; font-size: 18px; font-weight: bolder;">ยินดีต้อนรับเข้าสู่หลักสูตรการอบรม !</h5>
             </div>
-            <div class="col-lg-4 container-course">
+            <div class="col-lg-5 container-course">
                 <p style="color: #003781;">หมวดหมู่ของหลักสูตร</p>
                 <div class="fav-course">
                     <div class="d-felx">
@@ -447,7 +447,7 @@
                     background-color: #003781 !important;
                 }
             </style>
-            <div class="col-lg-8 mt-4">
+            <div class="col-lg-7 mt-4">
                 <div class="tabs">
                     <input type="radio" id="radio-1" name="tabs_traning_appointment" checked="">
                     <label class="tab" for="radio-1" onclick="document.querySelector('#content_training_schedule').classList.toggle('d-none');document.querySelector('#content_exam_schedule').classList.toggle('d-none');">

@@ -43,43 +43,46 @@
     }
 
     @media (min-width: 992px) {
-       
-        .shape{
-            display: none;
-        }
 
-        .wrapper{
-        display: flex;
-        flex-wrap: wrap;
-        margin-right: -15px;
-        margin-left: -15px;
-        align-items: center;
-      
-        }
+/* .shape {
+    display: none;
+} */
+.section-authentication-signin {
+    height: 0;
+}
 
-        .authentication-top {
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    height: 100vh;
+    justify-content: center;
 
-            flex: 0 0 50%;
-            max-width: 50%;
-        }
+}
 
-        .authentication-bottom {
-            position: relative;
-            border-radius:20px;
-            -webkit-border-radius:50px;
-            -moz-border-radius:50px;
-            -ms-border-radius:50px;
-            -o-border-radius:50px;
-            padding: 40px 20px ;
-            flex: 0 0 50%;
-            max-width: 50%;
-            background: rgb(98, 115, 221);
-            background: -moz-linear-gradient(183deg, rgba(98, 115, 221, 1) 0%, rgba(36, 50, 134, 1) 100%);
-            background: -webkit-linear-gradient(183deg, rgba(98, 115, 221, 1) 0%, rgba(36, 50, 134, 1) 100%);
-            background: linear-gradient(183deg, rgba(98, 115, 221, 1) 0%, rgba(36, 50, 134, 1) 100%);
-        }
-    }
+.authentication-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
 
+.authentication-bottom {
+    position: relative;
+    border-radius: 20px;
+    -webkit-border-radius: 50px 0 0 0;
+    -moz-border-radius: 50px 0 0 0;
+    -ms-border-radius: 50px 0 0 0;
+    -o-border-radius: 50px 0 0 0;
+    padding: 40px 20px;
+    width: 100%;
+    background: rgb(98, 115, 221);
+    background: -moz-linear-gradient(183deg, rgba(98, 115, 221, 1) 0%, rgba(36, 50, 134, 1) 100%);
+    background: -webkit-linear-gradient(183deg, rgba(98, 115, 221, 1) 0%, rgba(36, 50, 134, 1) 100%);
+    background: linear-gradient(183deg, rgba(98, 115, 221, 1) 0%, rgba(36, 50, 134, 1) 100%);
+}
+}
 
     /* 
     .section-authentication-signin {
@@ -521,8 +524,11 @@
         font-size: 16px;
         color: #999999;
     }
+    #form_login{
+        
+    }
 </style>
-<div class="col-12 p-0">
+<div class="col-12 p-0 d-flex justify-content-center">
     <div class="wrapper" style="position: relative;">
         <div class="section-authentication-signin d-flex align-items-center justify-content-center my-0">
         </div>
@@ -538,9 +544,9 @@
         </div>
         <div class="authentication-bottom col-lg-6">
             <div class="shape"></div>
-            <form id="form_login" class="text-center px-5 h-100 d-flex align-items-center" method="POST" action="{{ route('login') }}" autocomplete="off">
+            <form id="form_login" class="text-center px-5 h-100 d-flex align-items-center justify-content-center" method="POST" action="{{ route('login') }}" autocomplete="off">
                 @csrf
-                <div>
+                <div style="max-width: 740px;">
 
                     <p style="font-size: 28px;margin: 5px;color: #fff;">ยินดีต้อนรับ !</p>
                     <p style="font-size: 14px;margin: 0;color: #fff;text-indent: 20px;text-align: left;">กรุณากรอกหมายเลขรหัสเอเจนท์ (Agent Code) ที่ช่องแรกและ ใช้วันเดือนปีเกิด (ค.ศ. 4 ตัว) ของคุณ เพื่อเป็นรหัสผ่าน เช่น เกิดวันที่ 1 เดือนกันยายน ปี ค.ศ. 1984 รหัสผ่านของคุณจึงเป็น 01091984</p>

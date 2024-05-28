@@ -61,7 +61,10 @@
         opacity: 0;
         display: none;
         transition: 0.2s;
-        z-index: 1;
+        z-index: 99999999;
+        max-height: calc(30vh - 100%); /* ความสูงไม่เกินความสูงหน้าจอ ลบ 4em */
+        overflow-y: scroll;
+        overflow-x: hidden;
     }
 
     .menu_my_goal li {
@@ -116,11 +119,19 @@
         font-weight: bold;
         padding: 3px;
     }
-
+    .menu_my_goal li img {
+       width: 20px;
+       height: 20px;
+       object-fit: contain;
+       filter: grayscale(100);
+    }
+    .menu_my_goal li:hover img {
+       filter: grayscale(0);
+    }
     .btn-action-select-goal {
         background-color: #FFF;
         color: #003781;
-        padding: 1px 50px;
+        padding: 1px 45px;
         border-radius: 5px;
         -webkit-border-radius: 5px;
         -moz-border-radius: 5px;
@@ -133,6 +144,9 @@
         font-style: normal;
         font-weight: 700;
         line-height: normal;
+    }
+    .modal {
+        z-index: 99999999999 !important;
     }
 </style>
 
@@ -154,11 +168,30 @@
                                 <div class="caret_may_goal"></div>
                             </div>
                             <ul class="menu_my_goal">
-                                <li><i class="fa-solid fa-car"></i><span class="ms-2">อยากซื้อรถ</span></li>
-                                <li><i class="fa-solid fa-house"></i><span class="ms-2">อยากซื้อบ้าน</span></li>
-                                <li><i class="fa-solid fa-apartment"></i><span class="ms-2">อยากเก็บเงินลงทุน</span></li>
-                                <li><i class="fa-solid fa-child"></i><span class="ms-2">อยากเตรียมเงินให้ลูก</span></li>
-                                <li><i class="fa-solid fa-vault"></i><span class="ms-2">อยากเก็บเงินเกษียณ</span></li>
+                                <li>
+                                    <img src="{{url('img/icon/icon-car.png')}}" alt="">
+                                    <span class="ms-2">อยากซื้อรถ</span>
+                                </li>
+                                <li>
+                                    <img src="{{url('img/icon/icon-car.png')}}" alt="">
+                                    
+                                    <span class="ms-2">อยากซื้อบ้าน</span>
+                                </li>
+                                <li>
+                                    <img src="{{url('img/icon/icon-car.png')}}" alt="">
+                                    
+                                    <span class="ms-2">อยากเก็บเงินลงทุน</span>
+                                </li>
+                                <li>
+                                    <img src="{{url('img/icon/icon-car.png')}}" alt="">
+                                   
+                                    <span class="ms-2">อยากเตรียมเงินให้ลูก</span>
+                                </li>
+                                <li>
+                                    <img src="{{url('img/icon/icon-car.png')}}" alt="">
+                                    
+                                    <span class="ms-2">อยากเก็บเงินเกษียณ</span>
+                                </li>
                             </ul>
                         </div>
                         <div class="d-flex justify-content-center mt-3">
@@ -350,16 +383,9 @@
                 document.querySelector('#goal_period_title').innerText = selected.innerText;
                 document.querySelector('#goal_success_title').innerText = selected.innerText;
 
-                let goalText = selected.innerText;
-                let goalImg = {
-                    'อยากซื้อรถ': '{{url("img/icon/select_my_goal/อยากซื้อรถ.png")}}',
-                    'อยากซื้อบ้าน': '{{url("img/icon/select_my_goal/อยากซื้อบ้าน.png")}}',
-                    'อยากเก็บเงินลงทุน': '{{url("img/icon/select_my_goal/อยากเก็บเงินลงทุน.png")}}',
-                    'อยากเตรียมเงินให้ลูก': '{{url("img/icon/select_my_goal/อยากเตรียมเงินให้ลูก.png")}}',
-                    'อยากเก็บเงินเกษียณ': '{{url("img/icon/select_my_goal/อยากเก็บเงินเกษียณ.png")}}'
-                };
-                document.querySelector(`#${imgElementId}`).src = goalImg[goalText];
-                document.querySelector(`#goal_success_img`).src = goalImg[goalText];
+               console.log(selected.innerText);
+                document.querySelector(`#goal_value_img`).src = `{{url("img/icon/select_my_goal")}}` + '/' + selected.innerText.replace(/\s+/g, '') + '.png';
+                document.querySelector(`#goal_success_img`).src = `{{url("img/icon/select_my_goal")}}` + '/' + selected.innerText.replace(/\s+/g, '') + '.png';
             }
 
             if (nextSectionId === 'section_select_period') {

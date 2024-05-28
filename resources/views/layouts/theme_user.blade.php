@@ -170,6 +170,11 @@
 
     .text-color-obd{
         color: #0E2B81 !important;
+    } @media only screen and (min-width: 744px){
+         .div-navbar-botttom .col-navbar{
+        max-width: 150px;
+    }
+
     }
 </style>
 <header>
@@ -261,7 +266,7 @@
 
 
 <div id="navbar-botttom" class="container" style="z-index: 99998;">
-    <div class="row justify-content-evenly mx-2 div-navbar-botttom">
+    <div class="row justify-content-center mx-2 div-navbar-botttom">
         <div class="col text-center text-truncate col-navbar d-flex justify-content-center">
             <div class=" mx-2 pt-2 pb-1 mb-2">
                 <a href="{{ url('/home') }}">

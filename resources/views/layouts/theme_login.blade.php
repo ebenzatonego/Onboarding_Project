@@ -50,8 +50,8 @@
 </style>
 
 <body>
-<div class="container">
-    <div class="row">
+<div class="">
+    <div class="d-flex  justify-content-center">
 
         <!-- <div class="col-12">
             <div class="text-center">
@@ -65,7 +65,7 @@
             </div>
         </div> -->
 
-        <div class="col-12 p-0">
+        <div class="col-12 p-0  ">
             @yield('content')
         </div>
     </div>

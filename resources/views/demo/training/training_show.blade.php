@@ -180,7 +180,7 @@
 </style>
 <div class="container p-0 conteiner-detail-training">
     <div class="row">
-        <div class="col-lg-4 col-md-5 p-0" style="position: relative;">
+        <div class="col-lg-5 col-md-5 p-0" style="position: relative;">
             <button class="btn btn-back-all-course">
                 <i class="fa-solid fa-arrow-left"></i>
                 <span>กลับหน้ารวมหลักสูตร</span>
@@ -282,7 +282,7 @@
                 line-height: normal;
             }
         </style>
-        <div class="col-lg-8 col-md-7 px-4 mb-5">
+        <div class="col-lg-7 col-md-7 px-4 mb-5">
             <div>
                 <p class="mb-2" style="color: #003781;font-size: 20px;font-style: normal;font-weight: 600;line-height: normal;">หลักสูตรการพัฒนาทักษะการขายเชิงกลยุทธ์ 505</p>
             </div>

@@ -308,18 +308,8 @@
         font-size: 2em;
         font-weight: 900;
         color: rgba(21, 30, 52, 0.3);
-        background: #222 -webkit-gradient(linear,
-                left top,
-                right top,
-                from(#222),
-                to(#222),
-                color-stop(0.5, #fff)) 0 0 no-repeat;
-        background-image: -webkit-linear-gradient(-40deg,
-                transparent 0%,
-                transparent 40%,
-                #fff 50%,
-                transparent 60%,
-                transparent 100%);
+        background: #222 -webkit-gradient(linear, left top,right top,from(#222), to(#222),color-stop(0.5, #fff)) 0 0 no-repeat;
+        background-image: -webkit-linear-gradient(-40deg,transparent 0%,transparent 40%,#fff 50%,transparent 60%, transparent 100%);
         -webkit-background-clip: text;
         -webkit-background-size: 50px;
         -webkit-animation: zezzz;
@@ -337,7 +327,7 @@
         }
     }
 </style>
-<div class="col-12 p-0">
+<div class="col-12 p-0 d-flex justify-content-center">
     <div class="wrapper" style="position: relative;">
         <div class="section-authentication-signin d-flex align-items-center justify-content-center my-0">
         </div>

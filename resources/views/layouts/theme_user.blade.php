@@ -558,7 +558,7 @@
         let currentDay = String(today.getDate()).padStart(2, '0');
         let currentMonth = String(today.getMonth() + 1).padStart(2, '0');
 
-        if(current_rank != last_rank && !check_video_congratulation){
+        if(current_rank != last_rank && last_rank && !check_video_congratulation){
             window.location.href = "{{ url('/show_video_congrats') }}?from="+"{{ url()->full() }}";
         }
         else{
@@ -593,7 +593,7 @@
                     let html_photo_or_video = `` ;
                     if(result[0].type == "photo"){
                         html_photo_or_video = `
-                            <img src="`+result[0].photo+`" alt="" style="width: 80%;border-radius: 10px;">
+                            <img src="`+result[0].photo+`" class="mt-4" alt="" style="width: 80%;border-radius: 10px;">
                         `;
                     }
                     else if(result[0].type == "video"){
@@ -608,11 +608,11 @@
                     }
 
                     let html = `
-                    <div class="px-3" >
-                        <p id="content_title" class="text-white text-center mb-4" style="font-size: 17px;font-style: normal;font-weight: 700;line-height: normal;margin-top:-5px">
-                            `+result[0].title+`
-                        </p>
-                    </div>
+                        <div class="px-3" >
+                            <p id="content_title" class="text-white text-center mb-0" style="font-size: 17px;font-style: normal;font-weight: 700;line-height: normal;margin-top:-5px">
+                                `+result[0].title+`
+                            </p>
+                        </div>
                      
                         <div id="content_photo_or_video" class="w-100 d-flex justify-content-center ">
                             `+html_photo_or_video+`
@@ -627,11 +627,25 @@
                     div_for_content_popup.insertAdjacentHTML('afterbegin', html); // แทรกบนสุด
 
                     document.querySelector('#btn_modal_content_popup').click();
+                    startCountTime_show_content_popup();
                 }
             });
     }
 
     function close_show_content_popup() {
+
+        // บันทึกเวลาการดู Content Popup
+        check_click_close_content_popup = "Yes" ;
+        stopCountTime_show_content_popup();
+
+        fetch("{{ url('/') }}/api/update_countTime_content_popup/" + "{{ Auth::user()->id }}" + "/" + countTime_show_content_popup)
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+            });
+
+        // END บันทึกเวลาการดู Content Popup
+
         let check_dont_content_popup = document.getElementById('check_dont_content_popup').checked;
         // console.log(check_dont_content_popup);
 
@@ -650,5 +664,36 @@
                 // console.log(result);
             });
     }
+
+    var countTime_show_content_popup = 0;
+    var interval_show_content_popup;
+    var check_click_close_content_popup = "No";
+
+    // ฟังก์ชั่นเพื่อเริ่มนับเวลา
+    function startCountTime_show_content_popup() {
+        interval_show_content_popup = setInterval(() => {
+            countTime_show_content_popup += 1;
+            // console.log('Elapsed time:', countTime_show_content_popup);
+        }, 1000); // เพิ่มค่าทีละ 1 วินาที
+    }
+
+    // ฟังก์ชั่นเพื่อหยุดนับเวลา
+    function stopCountTime_show_content_popup() {
+        clearInterval(interval_show_content_popup);
+    }
+
+    // ก่อนปิดหน้าหรือเปลี่ยนหน้า
+    window.addEventListener('beforeunload', function(e) {
+
+        if(countTime_show_content_popup > 0 && check_click_close_content_popup == "No"){
+            // console.log(">>>>>>>>>>>" + countTime_show_content_popup);
+            fetch("{{ url('/') }}/api/update_countTime_content_popup/" + "{{ Auth::user()->id }}" + "/" + countTime_show_content_popup)
+                .then(response => response.text())
+                .then(result => {
+                    // console.log(result);
+                });
+        }
+
+    });
 
 </script>

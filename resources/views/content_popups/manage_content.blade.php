@@ -258,129 +258,185 @@ function get_data_content_popup(){
           for (let i = 0; i < result.length; i++) {
 
           	let datetime = result[i].created_at;
-						// แยกวันที่และเวลา
-						let [date, time] = datetime.split(' ');
-						// แยกส่วนของวันที่
-						let [year, month, day] = date.split('-');
-						// แปลงรูปแบบวันที่เป็น วัน/เดือน/ปี
-						let formattedDate = `${day}/${month}/${year}`;
-						// แยกส่วนของเวลา (เฉพาะ HH:MM:SS)
-						let [hour, minute, second] = time.split('.')[0].split(':');
-						let formattedTime = `${hour}:${minute}`;
+			// แยกวันที่และเวลา
+			let [date, time] = datetime.split(' ');
+			// แยกส่วนของวันที่
+			let [year, month, day] = date.split('-');
+			// แปลงรูปแบบวันที่เป็น วัน/เดือน/ปี
+			let formattedDate = `${day}/${month}/${year}`;
+			// แยกส่วนของเวลา (เฉพาะ HH:MM:SS)
+			let [hour, minute, second] = time.split('.')[0].split(':');
+			let formattedTime = `${hour}:${minute}`;
 
           	let time_create = `<b>สร้างเมื่อ</b> `+formattedDate+` <b>เวลา</b> `+formattedTime+` น.` ;
 
           	// Amount log
           	let countLv1 = 0 ;
-						let countLv2 = 0 ;
+			let countLv2 = 0 ;
 
-		        let data_log = JSON.parse(result[i].log_video);
-		        // console.log(data_log);
+	        let data_log = JSON.parse(result[i].log_video);
+	        // console.log(data_log);
 		        
-						if(result[i].log_video){
-							// นับจำนวนระดับทั้งหมดใน Level 1
-							countLv1 = Object.keys(data_log).length;
+			if(result[i].log_video){
+				// นับจำนวนระดับทั้งหมดใน Level 1
+				countLv1 = Object.keys(data_log).length;
 
-							// นับจำนวนระดับทั้งหมดใน Level 2
-							countLv2 = Object.values(data_log).reduce((acc, val) => acc + Object.keys(val).length, 0);
-						}
+				// นับจำนวนระดับทั้งหมดใน Level 2
+				countLv2 = Object.values(data_log).reduce((acc, val) => acc + Object.keys(val).length, 0);
+			}
 
           	// status
-						let check_status = result[i].status ;
-						let input_checked = '';
-						let text_guide = '';
-						let color_status = '';
-						if(check_status == "Yes"){
-							input_checked = "checked";
-							text_guide = "(คุณเปิดใช้งานเนื้อหานี้อยู่)";
-							color_status = "success";
-						}
-						else{
-							input_checked = "";
-							text_guide = "(หากเปิดใช้งานเนื้อหาที่เปิดใช้งานอยู่จะถูกปิด)";
-							color_status = "danger";
-						}
+			let check_status = result[i].status ;
+			let input_checked = '';
+			let text_guide = '';
+			let color_status = '';
+			if(check_status == "Yes"){
+				input_checked = "checked";
+				text_guide = "(คุณเปิดใช้งานเนื้อหานี้อยู่)";
+				color_status = "success";
+			}
+			else{
+				input_checked = "";
+				text_guide = "(หากเปิดใช้งานเนื้อหาที่เปิดใช้งานอยู่จะถูกปิด)";
+				color_status = "danger";
+			}
 
-						// video or photo
-						let check_type = result[i].type ;
-						let photo_or_video  ;
-						if(check_type == 'video'){
-							photo_or_video = `
-								<video id="tag_video_content" src="`+result[i].video+`" controls muted style="width:100%;border-radius: 10px; max-width: 700px;" class="video-preview"></video>
-							`;
-						}
-						else if(check_type == 'photo'){
-							photo_or_video = `
-								<img id="tag_photo_content" src="`+result[i].photo+`"style="width:100%;border-radius: 10px; max-width: 700px;" class="video-preview">
-							`;
-						}
+			// video or photo
+			let check_type = result[i].type ;
+			let photo_or_video  ;
+			if(check_type == 'video'){
+				photo_or_video = `
+					<video id="tag_video_content" src="`+result[i].video+`" controls muted style="width:100%;border-radius: 10px; max-width: 700px;" class="video-preview"></video>
+				`;
+			}
+			else if(check_type == 'photo'){
+				photo_or_video = `
+					<img id="tag_photo_content" src="`+result[i].photo+`"style="width:100%;border-radius: 10px; max-width: 700px;" class="video-preview">
+				`;
+			}
 
           	let html = `
           		<div class="col">
-								<div class="card">
-									`+photo_or_video+`
-									<div class="card-body">
-												<h5 class="card-title">
-													<b>`+result[i].title+`</b>
-												</h5>
-												<p class="card-text">
-													`+time_create+`
-												</p>
-												<p class="card-text">
-													ผู้สร้าง : `+result[i].name_user+`
-												</p>
-											</div>
-											<ul class="list-group list-group-flush">
-												<li class="list-group-item">
-													<span class="float-start" style="margin-top: 7px;">
-														ดูแล้ว `+countLv2+` ครั้ง จากผู้ใช้ `+countLv1+` คน
-													</span>
-													<span class="float-end">
-														<a href="{{ url('/view_content_popup') }}/`+result[i].id+`" type="button" class="btn btn-sm btn-info">
-															View log
-														</a>
-													</span>
-												</li>
-											</ul>
-									<center>
-										<hr style="width:80%;">
-									</center>
-									<div class="card-body">
-										<div id="div_toggle_status_`+result[i].id+`" class="toggle-wrapper" onclick="change_status('`+result[i].id+`');">
-										  	<input id="input_of_`+result[i].id+`" class="toggle-checkbox" type="checkbox" `+input_checked+`>
-										  	<div class="toggle-container">  
-										    	<div class="toggle-button">
-											      	<div class="toggle-button-circles-container">
-										        	<div class="toggle-button-circle"></div>
-											        <div class="toggle-button-circle"></div>
-											        <div class="toggle-button-circle"></div>
-											        <div class="toggle-button-circle"></div>
-											        <div class="toggle-button-circle"></div>
-											        <div class="toggle-button-circle"></div>
-											        <div class="toggle-button-circle"></div>
-											        <div class="toggle-button-circle"></div>
-											        <div class="toggle-button-circle"></div>
-											        <div class="toggle-button-circle"></div>
-											        <div class="toggle-button-circle"></div>
-											        <div class="toggle-button-circle"></div>
-											      	</div>
-										    	</div>
-										  	</div>
-										</div>
-										<center>
-											<br>
-											<span text_guide_for="`+result[i].id+`" class="text-`+color_status+`">
-												`+text_guide+`
-											</span>
-										</center>
-									</div>
-								</div>
+					<div class="card">
+						`+photo_or_video+`
+						<div class="card-body">
+							<h5 class="card-title">
+								<b>`+result[i].title+`</b>
+							</h5>
+							<p class="card-text">
+								`+time_create+`
+							</p>
+							<p class="card-text">
+								ประเภท : `+check_type+`
+							</p>
+							<p class="card-text">
+								ผู้สร้าง : `+result[i].name_user+`
+							</p>
+						</div>
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item">
+								<span class="float-start" style="margin-top: 7px;">
+									ดูแล้ว `+countLv2+` ครั้ง จากผู้ใช้ `+countLv1+` คน
+								</span>
+								<span class="float-end">
+									<a href="{{ url('/view_content_popup') }}/`+result[i].id+`" type="button" class="btn btn-sm btn-info">
+										View log
+									</a>
+								</span>
+							</li>
+						</ul>
+						<center>
+							<hr style="width:80%;">
+						</center>
+						<div class="card-body">
+							<div id="div_toggle_status_`+result[i].id+`" class="toggle-wrapper" onclick="change_status('`+result[i].id+`');">
+							  	<input id="input_of_`+result[i].id+`" class="toggle-checkbox" type="checkbox" `+input_checked+`>
+							  	<div class="toggle-container">  
+							    	<div class="toggle-button">
+								      	<div class="toggle-button-circles-container">
+							        	<div class="toggle-button-circle"></div>
+								        <div class="toggle-button-circle"></div>
+								        <div class="toggle-button-circle"></div>
+								        <div class="toggle-button-circle"></div>
+								        <div class="toggle-button-circle"></div>
+								        <div class="toggle-button-circle"></div>
+								        <div class="toggle-button-circle"></div>
+								        <div class="toggle-button-circle"></div>
+								        <div class="toggle-button-circle"></div>
+								        <div class="toggle-button-circle"></div>
+								        <div class="toggle-button-circle"></div>
+								        <div class="toggle-button-circle"></div>
+								      	</div>
+							    	</div>
+							  	</div>
 							</div>
+							<center>
+								<br>
+								<span text_guide_for="`+result[i].id+`" class="text-`+color_status+`">
+									`+text_guide+`
+								</span>
+							</center>
+						</div>
+					</div>
+				</div>
           	`;
 
           	content_popup.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
           }
       });
+}
+
+function change_status(click_id){
+	fetch("{{ url('/') }}/api/change_status_content_popup/" + click_id)
+        .then(response => response.json())
+        .then(result => {
+            // console.log(result);
+
+            let text_guide_for ;
+            let input_of ;
+
+            if(result){
+            	if(result['off']){
+            		text_guide_for = document.querySelector('[text_guide_for="'+result['off']+'"]');
+            			text_guide_for.innerHTML = "(หากเปิดใช้งานเนื้อหาที่เปิดใช้งานอยู่จะถูกปิด)";
+            			text_guide_for.setAttribute('class' , 'text-danger');
+
+            			let div_toggle_status = document.querySelector('#div_toggle_status_'+result['off']);
+            				div_toggle_status.innerHTML = `
+            					<input id="input_of_`+result['off']+`" class="toggle-checkbox" type="checkbox">
+							  	<div class="toggle-container">  
+							    	<div class="toggle-button">
+								      	<div class="toggle-button-circles-container">
+							        	<div class="toggle-button-circle"></div>
+								        <div class="toggle-button-circle"></div>
+								        <div class="toggle-button-circle"></div>
+								        <div class="toggle-button-circle"></div>
+								        <div class="toggle-button-circle"></div>
+								        <div class="toggle-button-circle"></div>
+								        <div class="toggle-button-circle"></div>
+								        <div class="toggle-button-circle"></div>
+								        <div class="toggle-button-circle"></div>
+								        <div class="toggle-button-circle"></div>
+								        <div class="toggle-button-circle"></div>
+								        <div class="toggle-button-circle"></div>
+								      	</div>
+							    	</div>
+							  	</div>
+            				`;
+            		// input_of = document.querySelector('#input_of_'+result['off']);
+            		// 	input_of.removeAttribute('checked');
+            	}
+
+            	if(result['open']){
+            		text_guide_for = document.querySelector('[text_guide_for="'+result['open']+'"]');
+            			text_guide_for.innerHTML = "(คุณเปิดใช้งานเนื้อหานี้อยู่)";
+            			text_guide_for.setAttribute('class' , 'text-success');;
+            		// input_of = document.querySelector('#input_of_'+result['open']);
+            		// 	input_of.setAttribute('checked');
+            	}
+            }
+
+	});
 }
 	
 function reset_check_content_popup(){

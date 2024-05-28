@@ -3,56 +3,6 @@
 @section('content')
 
 <style>
-    
-    .loader {
-        display: flex;
-        /* align-items: center;*/
-        /* justify-content: center;*/
-        flex-direction: row;
-    }
-
-    .slider {
-        overflow: hidden;
-        background-color: white;
-        margin: 0 15px;
-        height: 40px;
-        width: 20px;
-        border-radius: 30px;
-        box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.1), -15px -15px 30px #fff,
-        inset -5px -5px 10px rgba(0, 0, 255, 0.1),
-        inset 5px 5px 10px rgba(0, 0, 0, 0.1);
-        position: relative;
-    }
-
-    .slider::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 20px;
-        width: 20px;
-        border-radius: 100%;
-        box-shadow: inset 0px 0px 0px rgba(0, 0, 0, 0.3), 0px 420px 0 400px #2697f3,
-        inset 0px 0px 0px rgba(0, 0, 0, 0.1);
-        animation: animate_2 2.5s ease-in-out infinite;
-        animation-delay: calc(-0.5s * var(--i));
-    }
-
-    @keyframes animate_2 {
-        0% {
-            transform: translateY(250px);
-            filter: hue-rotate(0deg);
-        }
-
-        50% {
-            transform: translateY(0);
-        }
-
-        100% {
-            transform: translateY(250px);
-            filter: hue-rotate(180deg);
-        }
-    }
 
     .loading-container {
         display: flex;
@@ -139,12 +89,6 @@
         border-radius: 20px;
     }
 
-    #qrcode {
-  width:160px;
-  height:160px;
-  margin-top:15px;
-}
-
 </style>
 
 <div class="card">
@@ -176,7 +120,7 @@
                     </div>
                 </a>
             </li>
-            <li class="nav-item" role="presentation" onclick="clear_div_succell();">
+            <li class="nav-item d-none" role="presentation" onclick="clear_div_succell();">
                 <a class="nav-link" data-bs-toggle="tab" href="#primaryADDuser" role="tab" aria-selected="false">
                     <div class="d-flex align-items-center">
                         <div class="tab-icon">
@@ -272,16 +216,8 @@
             </div>
 
             <hr>
-
-            <div id="div_loader_Excel" class="col-12 mt-5 d-none">
-                <section class="loader">
-                    <div class="slider" style="--i:0"></div>
-                    <div class="slider" style="--i:1"></div>
-                    <div class="slider" style="--i:2"></div>
-                    <div class="slider" style="--i:3"></div>
-                    <div class="slider" style="--i:4"></div>
-                    <span id="text_load" class="text-success" style="margin-top: 25px;">กำลังประมวลผล..</span>
-                </section>
+            <div id="div_loader_Excel" class="d-none" style="position: relative;">
+                @include ('hamster_loading')
             </div>
             <div  class="loading-container" class="col-12 mt-5">
                 <div id="div_success_Excel" class="contrainerCheckmark d-none">
@@ -302,41 +238,36 @@
 
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
-        // get_data_account('add_account');
+        get_last_update_users();
     });
 
-    function get_data_account(type_get_data){
+    function get_last_update_users(){
         // console.log(type_get_data);
 
-        fetch("{{ url('/') }}/api/get_data_account/" + type_get_data)
+        fetch("{{ url('/') }}/api/get_last_update_users")
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
 
                 setTimeout(() => {
                     if(result){
-                        let last = result.length - 1 ;
-                        // console.log(result[last]);
+                        // ตัวอย่างข้อมูลจาก PHP
+                        const phpDateString = result['last_update'];
 
-                        if(result[last]){
-                            // ตัวอย่างข้อมูลจาก PHP
-                            const phpDateString = result[last].created_at;
+                        // สร้างวัตถุ Date จากข้อมูลที่ได้จาก PHP
+                        const phpDate = new Date(phpDateString);
 
-                            // สร้างวัตถุ Date จากข้อมูลที่ได้จาก PHP
-                            const phpDate = new Date(phpDateString);
+                        // สร้าง Options สำหรับการจัดรูปแบบ
+                        const options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' };
 
-                            // สร้าง Options สำหรับการจัดรูปแบบ
-                            const options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+                        // ใช้ toLocaleString() เพื่อแปลงวันที่
+                        const formattedDate = phpDate.toLocaleString('en-UK', options);
 
-                            // ใช้ toLocaleString() เพื่อแปลงวันที่
-                            const formattedDate = phpDate.toLocaleString('en-UK', options);
+                        // console.log(formattedDate);
 
-                            // console.log(formattedDate);
-
-
-                            document.querySelector('#count_user').innerHTML = result.length ;
-                            document.querySelector('#last_update').innerHTML = formattedDate ;
-                        }
+                        document.querySelector('#count_user').innerHTML = result.count ;
+                        document.querySelector('#last_update').innerHTML = formattedDate ;
+                        
 
                     }
                 }, 500);
@@ -445,58 +376,31 @@
         let file = input.files[0];
 
         if (file) {
+
+            setInterval(function() {
+               const pointLoading = document.querySelector('#point_loading');
+               pointLoading.classList.toggle('d-none');
+            }, 400);
+
             let reader = new FileReader();
 
             reader.onload = function(e) {
                 let data = e.target.result;
                 let workbook = XLSX.read(data, { type: 'binary' });
 
-                // เลือกชีทที่ต้องการ (0 คือชีทแรก)
-                let sheetName = workbook.SheetNames[0];
-                let sheet = workbook.Sheets[sheetName];
+                // console.log(workbook.SheetNames);
+                let sheetName ;
+                let sheet ;
 
-                // แปลงข้อมูลในชีทเป็น JSON
-                let jsonData = XLSX.utils.sheet_to_json(sheet);
+                for (let i = 0; i < workbook.SheetNames.length; i++) {
+                    // เลือกชีทที่ต้องการ (0 คือชีทแรก)
+                    sheetName = workbook.SheetNames[i];
+                    // console.log(sheetName);
+                    sheet = workbook.Sheets[sheetName];
 
-                // ตรวจสอบข้อมูลในคอนโซล
-                // console.log(jsonData);
-                
-                // create_user
-                fetch("{{ url('/') }}/api/create_user/excel", {
-                    method: 'post',
-                    body: JSON.stringify(jsonData),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }).then(function (response){
-                    return response.text();
-                }).then(function(data){
-                    // console.log(data);
-
-                    if(data == "success"){
-                        // เคลียร์ input
-                        clearFileInput('excel');
-
-                        document.querySelector('#text_load').innerHTML = 'กำลังสร้าง QR-Code..';
-
-                        fetch("{{ url('/') }}/api/qr_profile/")
-                            .then(response => response.text())
-                            .then(result => {
-                                // console.log(result);
-
-                                if(result){
-                                    document.querySelector('#div_loader_Excel').classList.add('d-none');
-                                    document.querySelector('#text_load').innerHTML = 'กำลังประมวลผล..';
-                                    document.querySelector('#div_success_Excel').classList.remove('d-none');
-
-                                }
-                        });
-                        
-                    }
-
-                }).catch(function(error){
-                    // console.error(error);
-                });
+                    create_user(sheet , sheetName);
+                    
+                }
 
             };
 
@@ -520,6 +424,54 @@
     function clear_div_succell(){
         // console.log('clear_div_succell');
         document.querySelector('#div_success_Excel').classList.add('d-none');
+    }
+
+    function create_user(sheet , sheetName){
+
+        // แปลงข้อมูลในชีทเป็น JSON
+        let jsonData = XLSX.utils.sheet_to_json(sheet);
+
+        // ตรวจสอบข้อมูลในคอนโซล
+        // console.log(jsonData);
+        
+        let link_api ;
+        if(sheetName == "Member"){
+            link_api = "{{ url('/') }}/api/create_user_member/excel";
+        }
+        else if(sheetName == "Upper AL"){
+            link_api = "{{ url('/') }}/api/create_user_upper_al/excel";
+        }
+        else if(sheetName == "Group Manager"){
+            link_api = "{{ url('/') }}/api/create_user_group_manager/excel";
+        }
+        else if(sheetName == "Area Supervisor"){
+            link_api = "{{ url('/') }}/api/create_user_area_supervisor/excel";
+        }
+
+        // create_user member
+        fetch(link_api, {
+            method: 'post',
+            body: JSON.stringify(jsonData),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response){
+            return response.text();
+        }).then(function(data){
+            // console.log(data);
+
+            if(sheetName == "Area Supervisor" && data == "success"){
+                // เคลียร์ input
+                clearFileInput('excel');
+
+                document.querySelector('#div_loader_Excel').classList.add('d-none');
+                document.querySelector('#text_load').innerHTML = '';
+                document.querySelector('#div_success_Excel').classList.remove('d-none');
+            }
+
+        }).catch(function(error){
+            // console.error(error);
+        });
     }
 
 </script>

@@ -10,9 +10,156 @@ use App\Models\Video_welcome_page;
 use App\Models\Video_congrat;
 use App\User;
 use App\Models\Video_congrats_type_rank;
+use App\Models\Content_popup;
+use Illuminate\Support\Facades\Hash;
+use App\Models\Contact_upper_al;
+use App\Models\Contact_group_manager;
+use App\Models\Contact_area_supervisor;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
+    function create_user_member(Request $request)
+    {
+        $requestData = $request->all();
+    
+        foreach ($requestData as $item) {
+            $data_arr = [];
+            foreach ($item as $key => $value) {
+
+                if($key == "password"){
+                    $data_arr['password'] = Hash::make($value);
+                }
+                else if($key == "license_start"){
+                    $data_arr['license_start'] = $value;
+                    // แปลงวันที่จาก d-m-Y เป็น Y-m-d
+                    $date = Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d');
+                    $data_arr['license_start'] = $date;
+                }
+                else if($key == "license_expire"){
+                    $data_arr['license_expire'] = $value;
+                    // แปลงวันที่จาก d-m-Y เป็น Y-m-d
+                    $date = Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d');
+                    $data_arr['license_expire'] = $date;
+                }
+                else if($key == "ic_license_start"){
+                    $data_arr['ic_license_start'] = $value;
+                    // แปลงวันที่จาก d-m-Y เป็น Y-m-d
+                    $date = Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d');
+                    $data_arr['ic_license_start'] = $date;
+                }
+                else if($key == "ic_license_expire"){
+                    $data_arr['ic_license_expire'] = $value;
+                    // แปลงวันที่จาก d-m-Y เป็น Y-m-d
+                    $date = Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d');
+                    $data_arr['ic_license_expire'] = $date;
+                }
+                else{
+                    $data_arr[$key] = $value;
+                }
+            }
+
+            $check_user = User::where('account',$data_arr['account'])->first();
+
+            if( !empty($check_user->account) ){
+
+                if(!empty($check_user->role)){
+                    $role = $check_user->role ;
+                }else{
+                    $role = $data_arr['role'] ;
+                }
+
+                $check_user->save();
+            }else{
+                User::create($data_arr);
+            }
+        }
+
+        return "success" ;
+
+    }
+
+    function create_user_upper_al(Request $request)
+    {
+        $requestData = $request->all();
+        
+        foreach ($requestData as $item) {
+            $data_arr = [];
+            foreach ($item as $key => $value) {
+                if($key == "password"){
+                    $data_arr['password'] = Hash::make($value);
+                }else{
+                    $data_arr[$key] = $value;
+                }
+            }
+
+            $upper_al = Contact_upper_al::where('account',$data_arr['account'])->first();
+
+            if( !empty($upper_al->account) ){
+                $upper_al->save();
+            }else{
+                Contact_upper_al::create($data_arr);
+            }
+        }
+
+        return "success" ;
+
+    }
+
+    function create_user_group_manager(Request $request)
+    {
+        $requestData = $request->all();
+        
+        foreach ($requestData as $item) {
+            $data_arr = [];
+            foreach ($item as $key => $value) {
+                if($key == "password"){
+                    $data_arr['password'] = Hash::make($value);
+                }else{
+                    $data_arr[$key] = $value;
+                }
+            }
+
+            $group_manager = Contact_group_manager::where('account',$data_arr['account'])->first();
+
+            if( !empty($group_manager->account) ){
+                $group_manager->save();
+            }else{
+                Contact_group_manager::create($data_arr);
+            }
+        }
+
+        return "success" ;
+
+    }
+
+    function create_user_area_supervisor(Request $request)
+    {
+        $requestData = $request->all();
+        
+        foreach ($requestData as $item) {
+            $data_arr = [];
+            foreach ($item as $key => $value) {
+                if($key == "password"){
+                    $data_arr['password'] = Hash::make($value);
+                }else{
+                    $data_arr[$key] = $value;
+                }
+            }
+
+            $area_supervisor = Contact_area_supervisor::where('account',$data_arr['account'])->first();
+
+            if( !empty($area_supervisor->account) ){
+                $area_supervisor->save();
+            }else{
+                Contact_area_supervisor::create($data_arr);
+            }
+        }
+
+        return "success" ;
+
+    }
+
     function check_pdpa($account){
         $data = User::where('account' , $account)->first();
 
@@ -266,6 +413,47 @@ class AdminController extends Controller
 
     }
 
+    function update_countTime_content_popup($user_id, $countTime){
+
+        $data_content_popup = Content_popup::where('status','Yes')->first();
+
+        $array_log = array();
+
+        if( empty($data_content_popup->log_video) ){
+            $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+            $array_log[$user_id]['1']['countTime'] = $countTime;
+        }
+        else{
+            $array_log = json_decode($data_content_popup->log_video, true);
+
+            if (array_key_exists($user_id, $array_log)) {
+                // หากเท่ากันให้เพิ่ม key round และ time ใน key นั้น
+                $count_round_old = count($array_log[$user_id]);
+                $new_round = intval($count_round_old) + 1 ;
+
+                $array_log[$user_id][$new_round]['datetime'] = date("d/m/Y H:i");
+                $array_log[$user_id][$new_round]['countTime'] = $countTime;
+            } else {
+                // หากไม่เท่ากันให้เพิ่ม key ใหม่โดยใช้ $user_id
+                $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+                $array_log[$user_id]['1']['countTime'] = $countTime;
+            }
+        }
+
+        $jsonLog = json_encode($array_log);
+
+        DB::table('content_popups')
+            ->where([ 
+                    ['id', $data_content_popup->id],
+                ])
+            ->update([
+                    'log_video' => $jsonLog,
+                ]);
+
+        return "ok";
+
+    }
+
     function update_check_video_congratulation($user_id, $skip_video_congrats){
 
         if($skip_video_congrats == "No"){
@@ -403,6 +591,56 @@ class AdminController extends Controller
 
     }
 
+    function change_status_content_popup($click_id){
+
+        $data = Content_popup::where('id',$click_id)->first();
+
+        $data_arr = [];
+        $data_arr['open'] = '';
+        $data_arr['off'] = '';
+
+        if($data->status == "Yes"){
+            DB::table('content_popups')
+            ->where([ 
+                    ['id', $data->id],
+                ])
+            ->update([
+                    'status' => null,
+                ]);
+
+            $data_arr['off'] = strval($data->id);
+        }
+        else{
+            $data_yes = Content_popup::where('status','Yes')->first();
+
+            if( !empty($data_yes->id) ){
+                DB::table('content_popups')
+                ->where([ 
+                        ['id', $data_yes->id],
+                    ])
+                ->update([
+                        'status' => null,
+                    ]);
+
+                
+                $data_arr['off'] = strval($data_yes->id);
+            }
+
+            DB::table('content_popups')
+                ->where([ 
+                        ['id', $click_id],
+                    ])
+                ->update([
+                        'status' => 'Yes',
+                    ]);
+
+            $data_arr['open'] = strval($click_id);
+        }
+
+        return $data_arr ;
+
+    }
+
     function get_user_for_view_CountTime($user_id){
         $data_user = User::where('id',$user_id)
             ->select('name','account','photo')
@@ -451,6 +689,20 @@ class AdminController extends Controller
                 ]);
 
         return "success" ;
+    }
+
+    function get_last_update_users(){
+        
+        $return = [];
+        $data = User::latest()->first();
+        $user_all = User::where('role' , '!=' , 'Super-admin')
+            ->where('role' , '!=' , 'Admin')
+            ->get();
+        
+        $return['last_update'] = $data->updated_at;
+        $return['count'] = count($user_all);
+
+        return $return ;
     }
 
 }

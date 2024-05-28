@@ -21,6 +21,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/check_pdpa/{account}', 'AdminController@check_pdpa');
 Route::get('/update_pdpa/{account}', 'AdminController@update_pdpa');
 Route::get('/update_check_birthday/{user_id}', 'AdminController@update_check_birthday');
+Route::get('/get_last_update_users', 'AdminController@get_last_update_users');
+Route::post('/create_user_member/excel', 'AdminController@create_user_member');
+Route::post('/create_user_upper_al/excel', 'AdminController@create_user_upper_al');
+Route::post('/create_user_group_manager/excel', 'AdminController@create_user_group_manager');
+Route::post('/create_user_area_supervisor/excel', 'AdminController@create_user_area_supervisor');
 
 
 // Video INTRO
@@ -47,6 +52,8 @@ Route::get('/reset_check_content_popup', 'AdminController@reset_check_content_po
 Route::get('/get_data_content_popup', 'AdminController@get_data_content_popup');
 Route::get('/theme_user_get_content_popup', 'Content_popupsController@theme_user_get_content_popup');
 Route::get('/skip_content_popup/{user_id}/{skip_content_popup}', 'AdminController@skip_content_popup');
+Route::get('/change_status_content_popup/{click_id}', 'AdminController@change_status_content_popup');
+Route::get('/update_countTime_content_popup/{user_id}/{countTime}', 'AdminController@update_countTime_content_popup');
 
 
 // Calendar

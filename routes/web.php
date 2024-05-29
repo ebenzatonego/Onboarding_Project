@@ -38,6 +38,9 @@ Route::middleware(['auth',])->group(function () {
     Route::get('/home', 'ProfileController@view_profile');
     Route::get('/404', 'ProfileController@view_profile');
 
+    Route::get('/test_crop_profile', function () {
+        return view('profile.test_crop_profile');
+    });
 
     Route::get('/video_instruction', function () {
         return view('video_instruction');

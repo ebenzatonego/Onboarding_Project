@@ -776,7 +776,7 @@
         font-size: 12px;
         font-style: normal;
         font-weight: 400;
-        line-height: 0;
+        margin-bottom: 0;
     }
 </style>
 <!-- Modal ข้อมูลส่วนตัวทั้งหมด-->

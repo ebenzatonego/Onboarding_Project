@@ -739,6 +739,17 @@ class AdminController extends Controller
         Log_excel_user::create($requestData);
 
         return 'success' ;
+        // return $requestData ;
+    }
+
+    function get_log_excel_users(){
+        // $data = Log_excel_user::get();
+        $data = DB::table('log_excel_users')
+            ->join('users', 'log_excel_users.user_id', '=', 'users.id')
+            ->select('log_excel_users.*','users.name as name_user')
+            ->orderBy('log_excel_users.id' , 'DESC')
+            ->get();
+        return $data ;
     }
 
 }

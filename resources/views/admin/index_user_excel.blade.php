@@ -89,6 +89,15 @@
         border-radius: 20px;
     }
 
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    tr td {
+        vertical-align: middle;
+        padding: 10px; /* Optional: เพิ่มการเว้นวรรคในเซลล์ */
+    }
 </style>
 
 <div class="card">
@@ -179,8 +188,22 @@
                 <div class="card border-top border-0 border-4 border-dark">
                     <div class="card-body p-5">
                         <div class="col-12">
-                            <div class="card-body p-5">
-                                <!--  -->
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>วันที่ / เวลา</th>
+                                                <th>เจ้าหน้าที่</th>
+                                                <th>ชื่อไฟล์</th>
+                                                <th>ไฟล์</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="content_tbody" class="">
+                                            <!-- content_tbody -->
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -212,6 +235,7 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         get_last_update_users();
+        get_log_excel_users();
     });
 
     function get_last_update_users(){
@@ -276,8 +300,6 @@
                 // console.log(workbook.SheetNames);
                 let sheetName ;
                 let sheet ;
-
-                upload_to_firebase();
 
                 for (let i = 0; i < workbook.SheetNames.length; i++) {
                     // เลือกชีทที่ต้องการ (0 คือชีทแรก)
@@ -348,6 +370,9 @@
             // console.log(data);
 
             if(sheetName == "Area Supervisor" && data == "success"){
+
+                // สร้าง log_excel_users
+                upload_to_firebase();
                 // เคลียร์ input
                 clearFileInput('excel');
 
@@ -374,8 +399,6 @@
         let storageRef = storage.ref('/Excel/create_users/' + name_file);
 
         let data_arr = [];
-            data_arr['name_file'] = name_file;
-            data_arr['user_id'] = "{{ Auth::user()->id }}";
 
         let uploadTask = storageRef.put(file);
 
@@ -392,7 +415,11 @@
                 uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
                     // ทำอะไรกับ URL ที่ได้รับเช่นการแสดงผลหรือบันทึกลงฐานข้อมูล
                     // console.log('File available at', downloadURL);
-                    data_arr['name_file'] = downloadURL;
+                    data_arr = {
+                        "name_file" : name_file,
+                        "user_id" : "{{ Auth::user()->id }}",
+                        "link_file" : downloadURL,
+                    }; 
 
                     fetch("{{ url('/') }}/api/create_log_excel_users", {
                         method: 'post',
@@ -411,6 +438,54 @@
                 });
             }
         );
+    }
+
+    function get_log_excel_users(){
+
+        fetch("{{ url('/') }}/api/get_log_excel_users")
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+
+                let content_tbody = document.querySelector('#content_tbody');
+                    content_tbody.innerHTML = '' ;
+
+                for (let i = 0; i < result.length; i++) {
+
+                    let datetime = result[i].created_at;
+                    // แยกวันที่และเวลา
+                    let [date, time] = datetime.split(' ');
+                    // แยกส่วนของวันที่
+                    let [year, month, day] = date.split('-');
+                    // แปลงรูปแบบวันที่เป็น วัน/เดือน/ปี
+                    let formattedDate = `${day}/${month}/${year}`;
+                    // แยกส่วนของเวลา (เฉพาะ HH:MM:SS)
+                    let [hour, minute, second] = time.split('.')[0].split(':');
+                    let formattedTime = `${hour}:${minute}`;
+
+                    let time_create = formattedDate+` `+formattedTime+` น.` ;
+
+                    let name_file ;
+                    if(result[i].name_file){
+                        name_file = result[i].name_file.split('-')[3];
+                    }
+
+                    let html = `
+                        <tr>
+                            <td>`+time_create+`</td>
+                            <td>`+result[i].name_user+`</td>
+                            <td>`+name_file+`</td>
+                            <td>
+                                <a href="`+result[i].link_file+`" class="btn btn-sm btn-info" download="">
+                                    Download
+                                </a>
+                            </td>
+                        </tr>
+                    `;
+
+                    content_tbody.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+                }
+        });
     }
 
 </script>

@@ -27,6 +27,7 @@ Route::post('/create_user_upper_al/excel', 'AdminController@create_user_upper_al
 Route::post('/create_user_group_manager/excel', 'AdminController@create_user_group_manager');
 Route::post('/create_user_area_supervisor/excel', 'AdminController@create_user_area_supervisor');
 Route::post('/create_log_excel_users', 'AdminController@create_log_excel_users');
+Route::get('/get_log_excel_users', 'AdminController@get_log_excel_users');
 
 
 // Video INTRO

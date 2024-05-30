@@ -126,17 +126,18 @@
                     
                     <ul>
                         <li>
-                            <a class="btn" onclick="pass_lock_menu('{{ url("/manage_video_welcome_page") }}');">
+                            <!-- onclick="pass_lock_menu('{{ url("/manage_video_welcome_page") }}');" -->
+                            <a class="btn" href="{{ url('/manage_video_welcome_page') }}">
                                 <i class="fa-solid fa-photo-film-music"></i> Video Intro
                             </a>
                         </li>
                         <li>
-                            <a class="btn" onclick="pass_lock_menu('{{ url("/manage_video_congrats") }}');">
+                            <a class="btn" href="{{ url('/manage_video_congrats') }}">
                                 <i class="fa-solid fa-sparkles"></i> Video Congrats
                             </a>
                         </li>
                         <li>
-                            <a class="btn" onclick="pass_lock_menu('{{ url("/manage_content_popups") }}');">
+                            <a class="btn" href="{{ url('/manage_content_popups') }}">
                                 <i class="fa-solid fa-megaphone"></i> Content Popup
                             </a>
                         </li>
@@ -155,13 +156,33 @@
                     
                     <ul>
                         <li>
-                            <a class="btn" onclick="pass_lock_menu('{{ url("/index_user_excel") }}');">
+                            <a class="btn" href="{{ url('/index_user_excel') }}">
                                 <i class="fa-solid fa-circle-plus"></i> เพิ่มสมาชิก
                             </a>
                         </li>
                         <li>
                             <a class="btn" href="#">
-                                <i class="fa-solid fa-address-card"></i> รายชื่อสมาชิก
+                                <i class="fa-sharp fa-solid fa-user-tie"></i> Admin
+                            </a>
+                        </li>
+                        <li>
+                            <a class="btn" href="#">
+                                <i class="fa-solid fa-address-card"></i> Member
+                            </a>
+                        </li>
+                        <li>
+                            <a class="btn" href="#">
+                                <i class="fa-duotone fa-user-group"></i> Upper Al
+                            </a>
+                        </li>
+                        <li>
+                            <a class="btn" href="#">
+                                <i class="fa-solid fa-people-roof"></i> Group Manager
+                            </a>
+                        </li>
+                        <li>
+                            <a class="btn" href="#">
+                                <i class="fa-solid fa-users-rectangle"></i> Area Supervisor
                             </a>
                         </li>
                     </ul>
@@ -396,6 +417,21 @@
         firebase.initializeApp(firebaseConfig);
       
         var storage = firebase.storage();
+    </script>
+
+    <script>
+        
+    function formatDate_for_firebase(date) {
+        let day = String(date.getDate()).padStart(2, '0');
+        let month = String(date.getMonth() + 1).padStart(2, '0'); // เดือนนับจาก 0, ต้องบวก 1
+        let year = date.getFullYear();
+        
+        let hours = String(date.getHours()).padStart(2, '0');
+        let minutes = String(date.getMinutes()).padStart(2, '0');
+        
+        return `${day}-${month}-${year}__${hours}:${minutes}`;
+    }
+
     </script>
 
 </body>

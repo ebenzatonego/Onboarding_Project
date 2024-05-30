@@ -796,7 +796,11 @@ img {
             let fileInput = document.getElementById('select_video');
             let file = fileInput.files[0];
             let title = document.querySelector('#title').value;
-            let name_file = new Date() + '-' + title ;
+
+            let date_now = new Date();
+            let Date_for_firebase = formatDate_for_firebase(date_now);
+
+            let name_file = Date_for_firebase + '-' + title ;
             let storageRef = storage.ref('/videos/Content_Popup/' + name_file);
 
             let uploadTask = storageRef.put(file);
@@ -838,7 +842,9 @@ img {
 
             // ตั้งค่า path และชื่อไฟล์ใน Firebase Storage
             let title = document.querySelector('#title').value;
-            let name_file = new Date() + '-' + title ;
+            let date_now = new Date();
+            let Date_for_firebase = formatDate_for_firebase(date_now);
+            let name_file = Date_for_firebase + '-' + title ;
             let storageRef = storage.ref('/images/Content_Popup/' + name_file);
 
             // อัพโหลด Blob ไปยัง Firebase Storage

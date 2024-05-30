@@ -101,9 +101,24 @@
                 </h4>
             </div>
             <div class="col-6 text-end">
-                <b>สมาชิกทั้งหมด : <span id="count_user"></span></b>
-                <br>
-                อัพเดทล่าสุด : <span id="last_update"></span>
+                <span>อัพเดทล่าสุด : <span id="last_update"></span></span>
+            </div>
+            <div class="col-12 row mt-3 text-center">
+                <div class="col">
+                    <b>Admin : <span id="count_admin"></span></b>
+                </div>
+                <div class="col">
+                    <b>Member : <span id="count_user"></span></b>
+                </div>
+                <div class="col">
+                    <b>Upper Al : <span id="count_upper_al"></span></b>
+                </div>
+                <div class="col">
+                    <b>Group Manager : <span id="count_group_manager"></span></b>
+                </div>
+                <div class="col">
+                    <b>Area Supervisor : <span id="count_area_supervisor"></span></b>
+                </div>
             </div>
         </div>
         
@@ -120,13 +135,13 @@
                     </div>
                 </a>
             </li>
-            <li class="nav-item d-none" role="presentation" onclick="clear_div_succell();">
-                <a class="nav-link" data-bs-toggle="tab" href="#primaryADDuser" role="tab" aria-selected="false">
+            <li class="nav-item" role="presentation" onclick="clear_div_succell();">
+                <a class="nav-link" data-bs-toggle="tab" href="#primaryLogUpFile" role="tab" aria-selected="false">
                     <div class="d-flex align-items-center">
                         <div class="tab-icon">
-                            <i class="fa-solid fa-plus font-18 me-1"></i>
+                            <i class="fa-solid fa-file-circle-info font-18 me-1"></i>
                         </div>
-                        <div class="tab-title">เพิ่มข้อมูลรายบุคคล</div>
+                        <div class="tab-title">LOG</div>
                     </div>
                 </a>
             </li>
@@ -159,55 +174,13 @@
                 </div>
 
             </div>
-            <div class="tab-pane fade" id="primaryADDuser" role="tabpanel">
+            <div class="tab-pane fade" id="primaryLogUpFile" role="tabpanel">
 
                 <div class="card border-top border-0 border-4 border-dark">
                     <div class="card-body p-5">
                         <div class="col-12">
                             <div class="card-body p-5">
-                                <div class="card-title d-flex align-items-center">
-                                    <div><i class="bx bxs-user me-1 font-22 text-primary"></i>
-                                    </div>
-                                    <h5 class="mb-0 text-primary">User Registration</h5>
-                                </div>
-                                <hr>
-                                <div class="row g-3">
-                                    <div class="col-12 col-md-6">
-                                        <label for="account" class="form-label">Account</label>
-                                        <input type="text" class="form-control" name="account" id="account" onchange="check_data_Registration();">
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <label for="password" class="form-label">Password</label>
-                                        <input type="text" class="form-control" name="password" id="password" onchange="check_data_Registration();">
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <label for="name" class="form-label">Name</label>
-                                        <input type="text" class="form-control" name="name" id="name" onchange="check_data_Registration();">
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <label for="phone" class="form-label">Phone</label>
-                                        <input type="text" class="form-control" name="phone" id="phone" onchange="check_data_Registration();">
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <label for="email" class="form-label">Email</label>
-                                        <input type="text" class="form-control" name="email" id="email" onchange="check_data_Registration();">
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <label for="role" class="form-label">Role</label>
-                                        <select name="role" id="role" class="form-select" onchange="check_data_Registration();">
-                                            <option selected value="AL">AL</option>
-                                            <option value="Super-admin">Super-admin</option>
-                                            <option value="Admin">Admin</option>
-                                            <option value="Staff">Staff</option>
-                                            <option value="QR">QR</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-12">
-                                        <button id="btn_Registration" class="btn btn-primary px-5" disabled onclick="Registration_user();">
-                                            ยืนยัน
-                                        </button>
-                                    </div>
-                                </div>
+                                <!--  -->
                             </div>
                         </div>
                     </div>
@@ -265,7 +238,11 @@
 
                         // console.log(formattedDate);
 
-                        document.querySelector('#count_user').innerHTML = result.count ;
+                        document.querySelector('#count_admin').innerHTML = result.count_admin.toLocaleString();
+                        document.querySelector('#count_user').innerHTML = result.count_user.toLocaleString();
+                        document.querySelector('#count_upper_al').innerHTML = result.count_upper_al.toLocaleString();
+                        document.querySelector('#count_group_manager').innerHTML = result.count_group_manager.toLocaleString();
+                        document.querySelector('#count_area_supervisor').innerHTML = result.count_area_supervisor.toLocaleString();
                         document.querySelector('#last_update').innerHTML = formattedDate ;
                         
 
@@ -273,98 +250,6 @@
                 }, 500);
 
             });
-    }
-
-    function check_data_Registration(){
-
-        let account = document.querySelector('#account').value ;
-        let password = document.querySelector('#password').value ;
-        let name = document.querySelector('#name').value ;
-        let phone = document.querySelector('#phone').value ;
-        let email = document.querySelector('#email').value ;
-        let role = document.querySelector('#role').value ;
-
-        // console.log(account);
-        // console.log(password);
-        // console.log(name);
-        // console.log(phone);
-        // console.log(email);
-        // console.log(role);
-
-        // ใช้ ternary operator และ every() เพื่อตรวจสอบทุกตัวแปร
-        let allFieldsFilled = [account, password, name, phone, email, role].every(field => field !== '');
-
-        // ตรวจสอบค่า allFieldsFilled
-        if (allFieldsFilled) {
-            document.querySelector('#btn_Registration').disabled = false ;
-        }else{
-            document.querySelector('#btn_Registration').disabled = true ;
-        }
-
-    }
-
-    function Registration_user(){
-
-        // console.log('Registration_user');
-        document.querySelector('#btn_Registration').disabled = true ;
-
-        let account = document.querySelector('#account').value ;
-        let password = document.querySelector('#password').value ;
-        let name = document.querySelector('#name').value ;
-        let phone = document.querySelector('#phone').value ;
-        let email = document.querySelector('#email').value ;
-        let role = document.querySelector('#role').value ;
-
-        let jsonData = [] ;
-            jsonData = {
-                    "account" : account,
-                    "password" : password,
-                    "name" : name,
-                    "phone" : phone,
-                    "email" : email,
-                    "role" : role,
-                };
-
-        // create_user
-        fetch("{{ url('/') }}/api/Registration_user", {
-            method: 'post',
-            body: JSON.stringify(jsonData),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(function (response){
-            return response.text();
-        }).then(function(data){
-            // console.log(data);
-
-            if(data == "success"){
-                // เคลียร์ input
-                document.querySelector('#account').value = '' ;
-                document.querySelector('#password').value = '' ;
-                document.querySelector('#name').value = '' ;
-                document.querySelector('#phone').value = '' ;
-                document.querySelector('#email').value = '' ;
-
-                document.querySelector('#text_load').innerHTML = 'กำลังสร้าง QR-Code..';
-
-                fetch("{{ url('/') }}/api/qr_profile/")
-                    .then(response => response.text())
-                    .then(result => {
-                        // console.log(result);
-
-                        if(result){
-                            document.querySelector('#div_loader_Excel').classList.add('d-none');
-                            document.querySelector('#text_load').innerHTML = 'กำลังประมวลผล..';
-                            document.querySelector('#div_success_Excel').classList.remove('d-none');
-
-                        }
-                });
-                
-            }
-
-        }).catch(function(error){
-            // console.error(error);
-        });
     }
 
     // EXCEL
@@ -391,6 +276,8 @@
                 // console.log(workbook.SheetNames);
                 let sheetName ;
                 let sheet ;
+
+                upload_to_firebase();
 
                 for (let i = 0; i < workbook.SheetNames.length; i++) {
                     // เลือกชีทที่ต้องการ (0 คือชีทแรก)
@@ -472,6 +359,58 @@
         }).catch(function(error){
             // console.error(error);
         });
+    }
+
+    function upload_to_firebase() {
+
+        let fileInput = document.getElementById('excelInput');
+        let file = fileInput.files[0];
+        let fileName = file.name;
+
+        let date_now = new Date();
+        let Date_for_firebase = formatDate_for_firebase(date_now);
+
+        let name_file = Date_for_firebase + '-' + fileName ;
+        let storageRef = storage.ref('/Excel/create_users/' + name_file);
+
+        let data_arr = [];
+            data_arr['name_file'] = name_file;
+            data_arr['user_id'] = "{{ Auth::user()->id }}";
+
+        let uploadTask = storageRef.put(file);
+
+        uploadTask.on('state_changed', 
+            function(snapshot){
+                // ติดตามความคืบหน้าของการอัพโหลด (optional)
+            }, 
+            function(error) {
+                // กรณีเกิดข้อผิดพลาดในการอัพโหลด
+                console.error('Upload failed:', error);
+            }, 
+            function() {
+                // เมื่ออัพโหลดสำเร็จ
+                uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+                    // ทำอะไรกับ URL ที่ได้รับเช่นการแสดงผลหรือบันทึกลงฐานข้อมูล
+                    // console.log('File available at', downloadURL);
+                    data_arr['name_file'] = downloadURL;
+
+                    fetch("{{ url('/') }}/api/create_log_excel_users", {
+                        method: 'post',
+                        body: JSON.stringify(data_arr),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then(function (response){
+                        return response.text();
+                    }).then(function(data){
+                        // console.log(data);
+                    }).catch(function(error){
+                        // console.error(error);
+                    });
+
+                });
+            }
+        );
     }
 
 </script>

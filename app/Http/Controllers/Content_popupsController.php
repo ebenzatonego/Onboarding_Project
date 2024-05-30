@@ -170,4 +170,18 @@ class Content_popupsController extends Controller
         $data = Content_popup::where('status',"Yes")->get();
         return $data;
     }
+
+    function get_active_content_popup(){
+
+        $data = Content_popup::where('status',"Yes")->first();
+
+        if( !empty($data->id) ){
+            $return = "Yes" ;
+        }
+        else{
+            $return = "No" ;
+        }
+
+        return $return;
+    }
 }

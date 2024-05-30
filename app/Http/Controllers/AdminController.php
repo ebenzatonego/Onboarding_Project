@@ -16,6 +16,7 @@ use App\Models\Contact_upper_al;
 use App\Models\Contact_group_manager;
 use App\Models\Contact_area_supervisor;
 use Carbon\Carbon;
+use App\Models\Log_excel_user;
 
 class AdminController extends Controller
 {
@@ -63,13 +64,13 @@ class AdminController extends Controller
 
             if( !empty($check_user->account) ){
 
-                if(!empty($check_user->role)){
-                    $role = $check_user->role ;
-                }else{
-                    $role = $data_arr['role'] ;
+                foreach ($data_arr as $key => $value) {
+                    if ($key != 'account') { // ยกเว้น account ไม่ต้องอัปเดต
+                        $check_user->$key = $value;
+                    }
                 }
-
                 $check_user->save();
+
             }else{
                 User::create($data_arr);
             }
@@ -96,6 +97,11 @@ class AdminController extends Controller
             $upper_al = Contact_upper_al::where('account',$data_arr['account'])->first();
 
             if( !empty($upper_al->account) ){
+                foreach ($data_arr as $key => $value) {
+                    if ($key != 'account') { // ยกเว้น account ไม่ต้องอัปเดต
+                        $upper_al->$key = $value;
+                    }
+                }
                 $upper_al->save();
             }else{
                 Contact_upper_al::create($data_arr);
@@ -123,6 +129,11 @@ class AdminController extends Controller
             $group_manager = Contact_group_manager::where('account',$data_arr['account'])->first();
 
             if( !empty($group_manager->account) ){
+                foreach ($data_arr as $key => $value) {
+                    if ($key != 'account') { // ยกเว้น account ไม่ต้องอัปเดต
+                        $group_manager->$key = $value;
+                    }
+                }
                 $group_manager->save();
             }else{
                 Contact_group_manager::create($data_arr);
@@ -150,6 +161,11 @@ class AdminController extends Controller
             $area_supervisor = Contact_area_supervisor::where('account',$data_arr['account'])->first();
 
             if( !empty($area_supervisor->account) ){
+                foreach ($data_arr as $key => $value) {
+                    if ($key != 'account') { // ยกเว้น account ไม่ต้องอัปเดต
+                        $area_supervisor->$key = $value;
+                    }
+                }
                 $area_supervisor->save();
             }else{
                 Contact_area_supervisor::create($data_arr);
@@ -695,14 +711,34 @@ class AdminController extends Controller
         
         $return = [];
         $data = User::latest()->first();
-        $user_all = User::where('role' , '!=' , 'Super-admin')
+
+        $user_admin = User::where('role' , 'Super-admin')
+            ->orWhere('role' , 'Admin')
+            ->get();
+        $user_member = User::where('role' , '!=' , 'Super-admin')
             ->where('role' , '!=' , 'Admin')
             ->get();
+        $upper_al = Contact_upper_al::get();
+        $group_manager = Contact_group_manager::get();
+        $area_supervisor = Contact_area_supervisor::get();
         
         $return['last_update'] = $data->updated_at;
-        $return['count'] = count($user_all);
+        $return['count_admin'] = count($user_admin);
+        $return['count_user'] = count($user_member);
+        $return['count_upper_al'] = count($upper_al);
+        $return['count_group_manager'] = count($group_manager);
+        $return['count_area_supervisor'] = count($area_supervisor);
 
         return $return ;
+    }
+
+    function create_log_excel_users(Request $request)
+    {
+        $requestData = $request->all();
+
+        Log_excel_user::create($requestData);
+
+        return 'success' ;
     }
 
 }

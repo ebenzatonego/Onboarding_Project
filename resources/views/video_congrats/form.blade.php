@@ -332,7 +332,9 @@
         var fileInput = document.getElementById('select_video');
         var file = fileInput.files[0];
         let name_video = document.querySelector('#name_video').value;
-        var name_file = new Date() + '-' + name_video ;
+        let date_now = new Date();
+        let Date_for_firebase = formatDate_for_firebase(date_now);
+        var name_file = Date_for_firebase + '-' + name_video ;
         var storageRef = storage.ref('/videos/Video_Congrats/' + name_file);
 
         var uploadTask = storageRef.put(file);

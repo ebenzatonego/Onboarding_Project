@@ -26,6 +26,7 @@ Route::post('/create_user_member/excel', 'AdminController@create_user_member');
 Route::post('/create_user_upper_al/excel', 'AdminController@create_user_upper_al');
 Route::post('/create_user_group_manager/excel', 'AdminController@create_user_group_manager');
 Route::post('/create_user_area_supervisor/excel', 'AdminController@create_user_area_supervisor');
+Route::post('/create_log_excel_users', 'AdminController@create_log_excel_users');
 
 
 // Video INTRO
@@ -48,6 +49,7 @@ Route::get('/update_check_video_congratulation/{user_id}/{skip_video_congrats}',
 Route::get('/reset_check_video_congrats/{type}', 'AdminController@reset_check_video_congrats');
 
 // Content Popup
+Route::get('/get_active_content_popup', 'Content_popupsController@get_active_content_popup');
 Route::get('/reset_check_content_popup', 'AdminController@reset_check_content_popup');
 Route::get('/get_data_content_popup', 'AdminController@get_data_content_popup');
 Route::get('/theme_user_get_content_popup', 'Content_popupsController@theme_user_get_content_popup');

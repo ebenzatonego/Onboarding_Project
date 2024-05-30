@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 // -- ROLE -- //
 // Super-admin
 // Admin
-// Member
+// member
 
 Auth::routes();
 
@@ -102,8 +102,8 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
 
 });
 
-// Member
-Route::middleware(['auth', 'role:Super-admin,Admin,Member'])->group(function () {
+// member
+Route::middleware(['auth', 'role:Super-admin,Admin,member'])->group(function () {
 
     // News
     Route::get('/news_index', 'NewsController@index');
@@ -136,3 +136,5 @@ Route::resource('my_goal_types', 'My_goal_typesController');
 Route::resource('contact_area_supervisors', 'Contact_area_supervisorsController');
 Route::resource('contact_group_managers', 'Contact_group_managersController');
 Route::resource('contact_upper_als', 'Contact_upper_alsController');
+
+Route::resource('log_excel_users', 'Log_excel_usersController');

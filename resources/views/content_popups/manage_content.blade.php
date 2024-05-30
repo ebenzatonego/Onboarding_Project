@@ -250,7 +250,7 @@ function get_data_content_popup(){
 	fetch("{{ url('/') }}/api/get_data_content_popup")
       .then(response => response.json())
       .then(result => {
-          console.log(result);
+          // console.log(result);
 
           let content_popup = document.querySelector('#content_popup');
           	content_popup.innerHTML = '';

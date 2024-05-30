@@ -562,21 +562,27 @@
             window.location.href = "{{ url('/show_video_congrats') }}?from="+"{{ url()->full() }}";
         }
         else{
-            if(!check_content_popup){
-                // SHOW CONTENT POPUP
-                show_content_popup_for_theme_user();
-            }
-            else if (day === currentDay && month === currentMonth && !check_birthday){
-                // ตรวจสอบวันและเดือน
-                // console.log("วันนี้เป็นวันเกิด!");
-                document.querySelector('#btn_modal_Happy_birthday').click();
 
-                fetch("{{ url('/') }}/api/update_check_birthday/" + "{{ Auth::user()->id }}")
-                    .then(response => response.text())
-                    .then(result => {
-                        // console.log(result);
-                    });
-            }
+            fetch("{{ url('/') }}/api/get_active_content_popup")
+                .then(response => response.text())
+                .then(result => {
+                    // console.log(result);
+                    if(!check_content_popup && result == "Yes"){
+                        // SHOW CONTENT POPUP
+                        show_content_popup_for_theme_user();
+                    }
+                    else if (day === currentDay && month === currentMonth && !check_birthday){
+                        // ตรวจสอบวันและเดือน
+                        // console.log("วันนี้เป็นวันเกิด!");
+                        document.querySelector('#btn_modal_Happy_birthday').click();
+
+                        fetch("{{ url('/') }}/api/update_check_birthday/" + "{{ Auth::user()->id }}")
+                            .then(response => response.text())
+                            .then(result => {
+                                // console.log(result);
+                            });
+                    }
+                });
         }
         
     }

@@ -1,0 +1,16 @@
+{
+    "fields": [
+        {
+            "name": "name_file",
+            "type": "longtext"
+        },
+        {
+            "name": "link_file",
+            "type": "longtext"
+        },
+        {
+            "name": "user_id",
+            "type": "string"
+        }
+    ]
+}

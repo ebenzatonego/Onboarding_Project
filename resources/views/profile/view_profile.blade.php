@@ -1,4 +1,7 @@
 @extends('layouts.theme_user')
+
+@include('profile.edit_profile_modal')
+
 <style>
     .card {
         border-radius: 15px !important;
@@ -333,9 +336,9 @@
                         <div class="d-flex align-items-center position-relative">
                             <div style="position: relative;">
                                 @if( empty(Auth::user()->photo) )
-                                    <img src="{{ url('/img/icon/profile.png') }}" alt="profile user" class="rounded-circle p-1 img-profile-user" width="85" height="85">
+                                    <img src="{{ url('/img/icon/profile.png') }}" alt="profile user" class="rounded-circle p-1 img-profile-user" width="85" height="85" id="profile-img">
                                 @else
-                                    <img src="{{ Auth::user()->photo }}" alt="profile user" class="rounded-circle p-1 img-profile-user" width="85" height="85">
+                                    <img src="{{ Auth::user()->photo }}" alt="profile user" class="rounded-circle p-1 img-profile-user" width="85" height="85" id="profile-img">
                                 @endif
                                 <button class="btn-edit-img btn p-0" data-toggle="modal" data-target="#editProfile">
                                     <img src="{{ url('/img/icon/edit-img.png') }}" width="29" height="29">
@@ -698,7 +701,7 @@
     }
 </style>
 <!-- Modal แก้ไขข้อมูลโปรไฟล์-->
-<div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="editProfileTitle" aria-hidden="true">
+<!-- <div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="editProfileTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content modal-profile">
             <p class="text-white text-center mb-2">เลือกรูปของคุณ</p>
@@ -753,7 +756,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <style>
     .btn-close-modal-detail {
@@ -798,7 +801,6 @@
 
                                 <img src="{{ url('/img/logo/logo-alianz.png') }}" alt="logo" width="70" height="23">
                             </div>
-
 
                             <p class="mb-0" style="color: #003781;font-size: 15px;font-style: normal;font-weight: 600;line-height: normal;">{{ Auth::user()->name }}</p>
                             <p class="mb-0" style="color: #383838;font-size: 12px;font-style: normal;font-weight: 700;line-height: normal;">{{ Auth::user()->position }}</p>

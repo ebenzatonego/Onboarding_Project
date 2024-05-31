@@ -1016,8 +1016,8 @@ upload.addEventListener('change', (e) => {
 						this.cropper = cropper;
 					},crop: function(event) {
 					  let imgSrc = this.cropper.getCroppedCanvas({
-							width: 800,
-							height: 830// input value
+							width: 1920,
+							height: 1080// input value
 						}).toDataURL("image/png");
                         imgPreview.src = imgSrc;
 					}

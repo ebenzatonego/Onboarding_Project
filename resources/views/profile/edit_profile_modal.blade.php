@@ -63,7 +63,7 @@
 						<label class="picture " for="picture_profile_input" tabIndex="0" style="position: relative;" >
 
 							@if(!empty(Auth::user()->photo))
-							<img src="{{ Auth::user()->photo }}" alt="">
+							<img src="{{ Auth::user()->photo }}" alt="" style="width: 100%; height: 100%;">
 							@else
 							<span class="picture_profile_image"></span>
 
@@ -200,8 +200,8 @@
 
 			if (cropper) {
 				canvas = cropper.getCroppedCanvas({
-					width: 160,
-					height: 160,
+					width: 512,
+					height: 512,
 				});
 				avatar.src = canvas.toDataURL();
 				// profile_img.src = canvas.toDataURL();

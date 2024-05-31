@@ -144,7 +144,7 @@
                     </div>
                 </a>
             </li>
-            <li class="nav-item" role="presentation" onclick="clear_div_succell();">
+            <li class="nav-item" role="presentation" onclick="clear_div_succell();get_log_excel_users();">
                 <a class="nav-link" data-bs-toggle="tab" href="#primaryLogUpFile" role="tab" aria-selected="false">
                     <div class="d-flex align-items-center">
                         <div class="tab-icon">
@@ -235,7 +235,6 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         get_last_update_users();
-        get_log_excel_users();
     });
 
     function get_last_update_users(){
@@ -445,7 +444,7 @@
         fetch("{{ url('/') }}/api/get_log_excel_users")
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 let content_tbody = document.querySelector('#content_tbody');
                     content_tbody.innerHTML = '' ;

@@ -25,7 +25,7 @@ class Contact_upper_al extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'nickname', 'account', 'organization_name', 'phone', 'email'];
+    protected $fillable = ['name', 'nickname', 'account', 'organization_name', 'phone', 'email','photo'];
 
     
 }

@@ -161,7 +161,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="btn" href="#">
+                            <a class="btn" href="{{ url('/list_admin') }}">
                                 <i class="fa-sharp fa-solid fa-user-tie"></i> Admin
                             </a>
                         </li>
@@ -171,7 +171,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="btn" href="#">
+                            <a class="btn" href="{{ url('/list_upper_al') }}">
                                 <i class="fa-duotone fa-user-group"></i> Upper Al
                             </a>
                         </li>

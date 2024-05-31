@@ -75,6 +75,8 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
 
     // Admin
     Route::get('/index_user_excel', 'AdminController@index_user_excel');
+    Route::get('/list_admin', 'AdminController@list_admin');
+    Route::get('/list_upper_al', 'AdminController@list_upper_al');
 
     // video_welcome_page
     Route::resource('video_welcome_page', 'Video_welcome_pageController');

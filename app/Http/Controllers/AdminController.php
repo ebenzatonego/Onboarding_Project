@@ -234,6 +234,14 @@ class AdminController extends Controller
         return view('admin.index_user_excel');
     }
 
+    function list_admin(){
+        return view('admin.list_admin');
+    }
+
+    function list_upper_al(){
+        return view('admin.list_upper_al');
+    }
+
     function skip_video_welcome($user_id , $skip_video_welcome){
 
         if($skip_video_welcome == "No"){
@@ -750,6 +758,18 @@ class AdminController extends Controller
             ->orderBy('log_excel_users.id' , 'DESC')
             ->get();
         return $data ;
+    }
+
+    function get_list_admin(){
+        $user_admin = User::where('role' , 'Super-admin')
+            ->orWhere('role' , 'Admin')
+            ->get();
+        return $user_admin ;
+    }
+
+    function get_list_upper_al(){
+        $upper_al = Contact_upper_al::get();
+        return $upper_al ;
     }
 
 }

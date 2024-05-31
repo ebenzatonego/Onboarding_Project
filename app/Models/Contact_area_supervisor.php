@@ -25,7 +25,7 @@ class Contact_area_supervisor extends Model
      *
      * @var array
      */
-    protected $fillable = ['area', 'name', 'nickname', 'account', 'organization_name', 'phone', 'email'];
+    protected $fillable = ['area', 'name', 'nickname', 'account', 'organization_name', 'phone', 'email','photo'];
 
     
 }

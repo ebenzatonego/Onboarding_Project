@@ -26,6 +26,7 @@
         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
         -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
         -moz-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        object-fit: cover;
     }
 
     .card-profile {
@@ -325,6 +326,7 @@
     .btn-detail-profile:hover {
         cursor: pointer;
     }
+
 </style>
 @section('content')
 <div class="container">
@@ -1096,9 +1098,11 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const inputFile = document.querySelector("#picture_profile_input");
-        const pictureImage = document.querySelector(".picture_profile_image");
-        const pictureImageTxt = `<i class="fa-solid fa-plus text-white"></i>`;
-        pictureImage.innerHTML = pictureImageTxt;
+        if(document.querySelector(".picture_profile_image")){
+            const pictureImage = document.querySelector(".picture_profile_image");
+            const pictureImageTxt = `<i class="fa-solid fa-plus text-white"></i>`;
+            pictureImage.innerHTML = pictureImageTxt;
+        }
 
         inputFile.addEventListener("change", function(e) {
             const inputTarget = e.target;

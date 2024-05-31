@@ -176,6 +176,23 @@ class AdminController extends Controller
 
     }
 
+    function edit_profile(Request $request)
+    {
+        $requestData = $request->all();
+
+        $users = User::where('id',$requestData['id'])->first();
+
+        foreach ($requestData as $key => $value) {
+            if ($key != 'id') { // ยกเว้น id ไม่ต้องอัปเดต
+                $users->$key = $value;
+            }
+        }
+        $users->save();
+
+        return "success" ;
+
+    }
+
     function check_pdpa($account){
         $data = User::where('account' , $account)->first();
 

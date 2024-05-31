@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/check_pdpa/{account}', 'AdminController@check_pdpa');
 Route::get('/update_pdpa/{account}', 'AdminController@update_pdpa');
+Route::post('/edit_profile', 'AdminController@edit_profile');
 Route::get('/update_check_birthday/{user_id}', 'AdminController@update_check_birthday');
 Route::get('/get_last_update_users', 'AdminController@get_last_update_users');
 Route::post('/create_user_member/excel', 'AdminController@create_user_member');

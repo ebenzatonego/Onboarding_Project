@@ -89,21 +89,12 @@
 
 				</div>
 				<div class="px-5">
-
-					<div class="row mb-4">
-						<div class="col-12">
-							<h6 class="mb-0 text-white">ชื่อ</h6>
-						</div>
-						<div class="col-sm-12 text-secondary">
-							<input type="text" class="form-control" value="{{Auth::user()->name}}">
-						</div>
-					</div>
 					<div class="row mb-4">
 						<div class="col-12">
 							<h6 class="mb-0 text-white">ชื่อเล่น</h6>
 						</div>
 						<div class="col-sm-12 text-secondary">
-							<input type="text" class="form-control" value="{{Auth::user()->nickname}}">
+							<input type="text" class="form-control" name="edit_nickname" id="edit_nickname" value="{{Auth::user()->nickname}}">
 						</div>
 					</div>
 					<div class="row mb-4">
@@ -111,20 +102,22 @@
 							<h6 class="mb-0 text-white">เบอร์โทร</h6>
 						</div>
 						<div class="col-sm-12 text-secondary">
-							<input type="text" class="form-control" value="{{Auth::user()->phone}}">
+							<input type="text" class="form-control" name="edit_phone" id="edit_phone" value="{{Auth::user()->phone}}">
 						</div>
 					</div>
+					@if(Auth::user()->current_rank == "AG")
 					<div class="row">
 						<div class="col-12">
 							<h6 class="mb-0 text-white">อีเมล</h6>
 						</div>
 						<div class="col-sm-12 text-secondary">
-							<input type="text" class="form-control" value="{{Auth::user()->email}}">
+							<input type="text" class="form-control" name="edit_email" id="edit_email" value="{{Auth::user()->email}}">
 						</div>
 					</div>
+					@endif
 				</div>
 				<div class="w-100 px-5 mt-5">
-					<button class="btn w-100 bg-white btn-submit-profile" disabled id="btn_submit_change_profile">
+					<button class="btn w-100 bg-white btn-submit-profile" disabled id="btn_submit_change_profile" onclick="upload_to_firebase();">
 						ตกลง
 					</button>
 
@@ -164,7 +157,7 @@
 			
 			let files = e.target.files;
 			let done = function(url) {
-				console.log(input.value)
+				// console.log(input.value)
 				image.src = url;
 
 				// $modal.modal('show');
@@ -219,5 +212,104 @@
 			}
 		});
 	});
+
+	function upload_to_firebase(){
+		// ดึง Base64 string จาก <img> element
+		let imgElement = document.querySelector('#preview_crop_profile');
+        let base64String = imgElement.src.split(',')[1]; // ลบ "data:image/png;base64," ออก
+
+        // แปลง Base64 เป็น Blob
+        let contentType = 'image/png'; // ตั้งค่าประเภทของรูปภาพ เช่น 'image/png' หรือ 'image/jpeg'
+        let blob = base64ToBlob(base64String, contentType);
+
+        // ตั้งค่า path และชื่อไฟล์ใน Firebase Storage
+        let title = "{{ Auth::user()->account }}";
+        let date_now = new Date();
+        let Date_for_firebase = formatDate_for_firebase(date_now);
+        let name_file = Date_for_firebase + '-' + title ;
+        let storageRef = storage.ref('/images/profile/' + name_file);
+
+        // อัพโหลด Blob ไปยัง Firebase Storage
+        let uploadTask = storageRef.put(blob);
+
+        uploadTask.on('state_changed', 
+            function(snapshot) {
+                // ติดตามความคืบหน้าของการอัพโหลด (optional)
+            }, 
+            function(error) {
+                // กรณีเกิดข้อผิดพลาดในการอัพโหลด
+                console.error('Upload failed:', error);
+            }, 
+            function() {
+                // เมื่ออัพโหลดสำเร็จ
+                uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+                    // ทำอะไรกับ URL ที่ได้รับเช่นการแสดงผลหรือบันทึกลงฐานข้อมูล
+                    // console.log('File available at', downloadURL);
+                    let data_arr = [];
+
+                    profile_crop = downloadURL ;
+                    let edit_nickname = document.querySelector('#edit_nickname');
+					let edit_phone = document.querySelector('#edit_phone');
+
+					if(document.querySelector('#edit_email')){
+						let edit_email = document.querySelector('#edit_email');
+						data_arr = {
+					        "id" : "{{ Auth::user()->id }}",
+					        "nickname" : edit_nickname.value,
+					        "phone" : edit_phone.value,
+					        "email" : edit_email.value,
+					        "photo" : profile_crop,
+					    }; 
+					}
+					else{
+						data_arr = {
+					        "id" : "{{ Auth::user()->id }}",
+					        "nickname" : edit_nickname.value,
+					        "phone" : edit_phone.value,
+					        "photo" : profile_crop,
+					    }; 
+					}
+
+					fetch("{{ url('/') }}/api/edit_profile", {
+			            method: 'post',
+			            body: JSON.stringify(data_arr),
+			            headers: {
+			                'Content-Type': 'application/json'
+			            }
+			        }).then(function (response){
+			            return response.text();
+			        }).then(function(data){
+			            // console.log(data);
+			            if(data == 'success'){
+			            	window.location.reload();
+			            }
+			        }).catch(function(error){
+			            // console.error(error);
+			        });
+
+                });
+            }
+        );
+	}
+
+	// ฟังก์ชันที่ใช้ในการแปลง Base64 เป็น Blob
+    function base64ToBlob(base64, contentType) {
+        const byteCharacters = atob(base64);
+        const byteArrays = [];
+
+        for (let offset = 0; offset < byteCharacters.length; offset += 512) {
+            const slice = byteCharacters.slice(offset, offset + 512);
+
+            const byteNumbers = new Array(slice.length);
+            for (let i = 0; i < slice.length; i++) {
+                byteNumbers[i] = slice.charCodeAt(i);
+            }
+
+            const byteArray = new Uint8Array(byteNumbers);
+            byteArrays.push(byteArray);
+        }
+
+        return new Blob(byteArrays, { type: contentType });
+    }
 
 </script>

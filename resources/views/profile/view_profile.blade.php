@@ -41,8 +41,9 @@
         margin-bottom: 1.5rem;
     }
 
+
     .alert-license-expire {
-        position: absolute;
+
         background-color: #EA0505;
         color: #fff;
         font-size: 9.81px;
@@ -55,7 +56,6 @@
         display: flex;
         align-items: center;
         /* width: 50px; */
-        bottom: -12px;
 
     }
 
@@ -326,7 +326,6 @@
     .btn-detail-profile:hover {
         cursor: pointer;
     }
-
 </style>
 @section('content')
 <div class="container">
@@ -338,9 +337,9 @@
                         <div class="d-flex align-items-center position-relative">
                             <div style="position: relative;">
                                 @if( empty(Auth::user()->photo) )
-                                    <img src="{{ url('/img/icon/profile.png') }}" alt="profile user" class="rounded-circle p-1 img-profile-user" width="85" height="85" id="profile-img">
+                                <img src="{{ url('/img/icon/profile.png') }}" alt="profile user" class="rounded-circle p-1 img-profile-user" width="85" height="85" id="profile-img">
                                 @else
-                                    <img src="{{ Auth::user()->photo }}" alt="profile user" class="rounded-circle p-1 img-profile-user" width="85" height="85" id="profile-img">
+                                <img src="{{ Auth::user()->photo }}" alt="profile user" class="rounded-circle p-1 img-profile-user" width="85" height="85" id="profile-img">
                                 @endif
                                 <button class="btn-edit-img btn p-0" data-toggle="modal" data-target="#editProfile">
                                     <img src="{{ url('/img/icon/edit-img.png') }}" width="29" height="29">
@@ -366,15 +365,15 @@
                                     For Admin
                                 </a>
                                 @endif   -->
-                                <a class=" btn-detail-profile" data-toggle="modal" data-target="#modal_show_all_detail">
+                                <a class=" btn-detail-profile" data-toggle="modal" data-target="#modal_show_card_profile">
                                     <i class="fa-light fa-circle-exclamation"></i>
                                 </a>
 
                             </div>
                         </div>
 
-                        <div class="row mt-3">
-                            <div class="col-8">
+                        <div class="d-flex justify-content-between mt-3">
+                            <div>
                                 <p class="m-0">
                                     <span style="font-size: 10;font-weight: bolder;color: #373737;">เลขที่ใบอนุญาต : </span>
                                     <span style="font-size: 10;font-weight: bolder;color: #0E2B81;">{{ Auth::user()->license }}</span>
@@ -389,7 +388,8 @@
 
                                 </p>
                             </div>
-                            <div class="col-4 d-flex justify-content-end align-items-end">
+
+                            <div class=" d-flex justify-content-end align-items-end">
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="color: #999999;font-size: 10px;">
                                     <u>ออกจากระบบ</u>
                                 </a>
@@ -398,10 +398,21 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="alert-license-expire">
-                            <i class="fa-solid fa-triangle-exclamation"></i>
-                            <span class="ms-1">หมดอายุภายใน <span id="">90</span> วัน</span>
+                        <div style=" position: absolute;bottom: -12px; display: flex;">
+                            <div class="alert-license-expire me-3">
+                                <div>
+                                    <i class="fa-solid fa-triangle-exclamation"></i>
+                                    <span class="ms-1">หมดอายุภายใน <span id="">90</span> วัน</span>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end align-items-end">
+                                <button type="button" class="" data-toggle="modal" data-target="#modal_show_all_detail" style="border: #003781 1px solid;background-color: #fff;padding: 3px 20px ;border-radius: 50px;">
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </button>
+                            </div>
                         </div>
+
+
                     </div>
                 </div>
             </div>
@@ -788,14 +799,14 @@
 <div class="modal fade px-2" id="modal_show_all_detail" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered " role="document">
         <div class="modal-content bg-transparent" style="border: none;max-width: 396px;">
-            <div id="card_profile_download" class="modal-body pt-0" style="border-radius: 10px;background: #F0F5FF;">
+            <div class="modal-body pt-0" style="border-radius: 10px;background: #F0F5FF;">
                 <div id="card_profile_detail" class="show">
                     <div class="d-flex mt-2 align-items-end">
                         <div>
                             @if( empty(Auth::user()->photo) )
-                                <img src="{{ url('/img/icon/profile.png') }}" alt="profile user" class="rounded-circle p-1 img-profile-user" width="58" height="58">
+                            <img src="{{ url('/img/icon/profile.png') }}" alt="profile user" class="rounded-circle p-1 img-profile-user" width="58" height="58">
                             @else
-                                <img src="{{ Auth::user()->photo }}" alt="profile user" class="rounded-circle p-1 img-profile-user" width="58" height="58">
+                            <img src="{{ Auth::user()->photo }}" alt="profile user" class="rounded-circle p-1 img-profile-user" width="58" height="58">
                             @endif
                         </div>
                         <div class="w-100 d-block ms-3">
@@ -820,27 +831,27 @@
                     <div class="mt-3 me-1 ms-2 d-flex align-items-end">
                         <div class="w-100">
                             <p class="detail-profile">
-                                เลขที่ใบอนุญาต : 
+                                เลขที่ใบอนุญาต :
                                 <span style="color: #003781;">{{ Auth::user()->license }}</span>
                             </p>
                             <p class="detail-profile">
-                                วันออกใบอนุญาต : 
+                                วันออกใบอนุญาต :
                                 <span style="color: #003781;">{{ Auth::user()->license_start }}</span>
                             </p>
                             <p class="detail-profile">
-                                วันหมดอายุใบอนุญาต : 
+                                วันหมดอายุใบอนุญาต :
                                 <span style="color: #003781;">{{ Auth::user()->license_expire }}</span>
                             </p>
                             <p class="detail-profile">
-                                เลขที่ใบอนุญาต IC License : 
+                                เลขที่ใบอนุญาต IC License :
                                 <span style="color: #003781;">{{ Auth::user()->ic_license }}</span>
                             </p>
                             <p class="detail-profile">
-                                วันออกใบอนุญาต IC License : 
+                                วันออกใบอนุญาต IC License :
                                 <span style="color: #003781;">{{ Auth::user()->ic_license_start }}</span>
                             </p>
                             <p class="detail-profile">
-                                วันหมดอายุใบอนุญาต IC License : 
+                                วันหมดอายุใบอนุญาต IC License :
                                 <span style="color: #003781;">{{ Auth::user()->ic_license_expire }}</span>
                             </p>
 
@@ -861,9 +872,9 @@
                                 cursor: pointer;
                             }
                         </style>
-                        <a class="btn-download-prifile" onclick="document.querySelector('#card_profile_detail').classList.toggle('d-none');document.querySelector('#card_profile').classList.toggle('d-none');">
+                        <!-- <a class="btn-download-prifile" onclick="document.querySelector('#card_profile_detail').classList.toggle('d-none');document.querySelector('#card_profile').classList.toggle('d-none');">
                             <i class="fa-solid fa-down-to-bracket"></i>
-                        </a>
+                        </a> -->
                     </div>
 
 
@@ -872,51 +883,68 @@
                     </button>
                 </div>
 
-                <div id="card_profile" class="d-none">
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade px-2" id="modal_show_card_profile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered " role="document">
+        <div class="modal-content bg-transparent" style="border: none;max-width: 396px;">
+            <div id="card_profile_download" class="modal-body pt-0" style="border-radius: 10px;background: #F0F5FF;">
+                <div id="card_profile">
                     <div>
                         <div class="d-flex mt-2 mb-3">
                             <div class="pt-3">
                                 @if( empty(Auth::user()->photo) )
-                                    <img src="{{ url('/img/icon/profile.png') }}" alt="profile user" class="rounded-circle p-1 img-profile-user" width="50" height="50">
+                                <img src="{{ url('/img/icon/profile.png') }}" alt="profile user" class="rounded-circle p-1 img-profile-user" width="50" height="50">
                                 @else
-                                    <img src="{{ Auth::user()->photo }}" alt="profile user" class="rounded-circle p-1 img-profile-user" width="50" height="50">
+                                <img src="{{ Auth::user()->photo }}" alt="profile user" class="rounded-circle p-1 img-profile-user" width="50" height="50">
                                 @endif
                             </div>
-                            <div class="w-100 d-block ms-3">
+                            <div class="w-100 mt-2 ">
+                                <div class="d-flex align-item-end pt-3 ps-3">
+                                    <div class="">
+                                        <p class="mb-0 w-100" style="color: #000;font-size: 10px;font-style: normal;font-weight: 400;line-height: normal;">{{ Auth::user()->organization_name }}</p>
+                                        <p class="mb-0 w-100" style="color: #000;font-size: 10px;font-style: normal;font-weight: 400;line-height: normal;">เลขที่ใบอนุญาต : <span style="color: #003781;">{{ Auth::user()->license }}</span></p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-block ms-3">
                                 <div class="d-flex justify-content-end w-100 align-item-start">
                                     <img src="{{ url('/img/logo/logo-alianz.png') }}" alt="logo" width="70" height="23">
                                 </div>
                             </div>
                         </div>
-                        <div class="d-flex align-items-center">
-                            <div style="width: 60%;">
-                                <!-- <p class="mb-0" style="color: #003781;font-size: 12px;font-style: normal;font-weight: 600;line-height: normal;">Pathumrat Chatrattanasak</p> -->
-                                <p class="mb-0" style="color: #003781;font-size: 15px;font-style: normal;font-weight: 600;line-height: normal;">{{ Auth::user()->name }}</p>
-                                <p class="mt-2 mb-3" style="color: #383838;font-size: 11px;font-style: normal;font-weight: 700;line-height: normal;">{{ Auth::user()->position }}</p>
+                        <div style="width: 100%;">
+                            <!-- <p class="mb-0" style="color: #003781;font-size: 12px;font-style: normal;font-weight: 600;line-height: normal;">Pathumrat Chatrattanasak</p> -->
+                            <p class="mb-0" style="color: #003781;font-size: 18px;font-style: normal;font-weight: 600;line-height: normal;">{{ Auth::user()->name }}</p>
+                            <p class=" mb-3" style="color: #383838;font-size: 11px;font-style: normal;font-weight: 700;line-height: normal;">{{ Auth::user()->position }}</p>
 
-                                <p class="mb-0" style="color: #003781;font-size: 10px;font-style: normal;font-weight: 400;line-height: normal;">{{ Auth::user()->organization_name }}</p>
-                                <p style="color: #003781;font-size: 10px;font-style: normal;font-weight: 400;line-height: normal;">เลขที่ใบอนุญาต : {{ Auth::user()->license }}</p>
-                            </div>
-                            <div style="width: 40%;padding-left: 5px;">
-                                <div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
-                                        <path d="M14.3333 15H9.83333C9.46667 15 9.16667 14.7 9.16667 14.3333V10.5C9.16667 9.58333 8.41667 8.83333 7.5 8.83333C6.58333 8.83333 5.83333 9.58333 5.83333 10.5V14.3333C5.83333 14.7 5.53333 15 5.16667 15H0.666667C0.3 15 0 14.7 0 14.3333V8C0 7.83333 0.0666667 7.66667 0.183333 7.55L7.01667 0.216667C7.13333 0.0833333 7.31667 0 7.5 0C7.68333 0 7.86667 0.0833333 7.98333 0.216667L14.8167 7.55C14.9333 7.66667 15 7.83333 15 8V14.3333C15 14.7 14.7 15 14.3333 15ZM10.5 13.6667H13.6667V8.26667L7.5 1.65L1.33333 8.26667V13.6667H4.5V10.5C4.5 8.85 5.85 7.5 7.5 7.5C9.15 7.5 10.5 8.85 10.5 10.5V13.6667Z" fill="#003781" />
-                                    </svg>
-                                    <p class="mt-2" style="color: #373737;font-size:8px;font-style: normal;font-weight: 400;line-height: normal;">
+
+                        </div>
+                        <div class="d-flex align-items-center">
+
+                            <div style="width: 100%;padding-left: 0px;">
+                                <div class="d-flex align-items-center mb-2">
+                                    <img src="{{url('img/icon/icon-home.png')}}" width="20" alt="">
+                                    <p class=" mb-0 " style="color: #373737;font-size:10px;font-style: normal;font-weight: 400;line-height: normal;margin-left: 11px;">
                                         {{ Auth::user()->address }}
                                     </p>
                                 </div>
-                                <div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="17" viewBox="0 0 15 17" fill="none">
-                                        <path d="M1.44918 16.468H12.064C13.6826 16.468 15 15.1506 15 13.532V2.93601C15 1.31744 13.6826 0 12.064 0H1.44918C1.12923 0 0.865747 0.263488 0.865747 0.583438V4.12171H0.583438C0.263488 4.12171 0 4.38519 0 4.70514C0 5.02509 0.263488 5.28858 0.583438 5.28858H0.846926V7.64115H0.583438C0.263488 7.64115 0 7.90464 0 8.24341C0 8.58218 0.263488 8.82685 0.583438 8.82685H0.846926V11.1794H0.583438C0.263488 11.1794 0 11.4429 0 11.7629C0 12.0828 0.263488 12.3463 0.583438 12.3463H0.846926V15.8846C0.865747 16.2045 1.12923 16.468 1.44918 16.468ZM13.8143 13.532C13.8143 14.5107 13.0238 15.3011 12.0452 15.3011H2.03262V1.1857H12.0452C13.0238 1.1857 13.8143 1.97616 13.8143 2.95483V13.532Z" fill="#003781" />
-                                        <path d="M12.4974 11.0665L12.1586 9.88078C11.8952 8.92093 11.0859 8.22457 10.126 8.07401C10.446 7.64113 10.6342 7.09534 10.6342 6.5119C10.6342 5.02507 9.42966 3.82056 7.94283 3.82056C6.456 3.82056 5.25149 5.02507 5.25149 6.5119C5.25149 7.09534 5.43969 7.62231 5.75964 8.07401C4.79979 8.24339 4.00933 8.93975 3.72702 9.88078L3.38825 11.0665C3.27533 11.4429 3.35061 11.8381 3.59528 12.1581C3.83994 12.478 4.19753 12.6474 4.59277 12.6474H11.2929C11.6881 12.6474 12.0457 12.4592 12.2904 12.1581C12.5162 11.8381 12.5915 11.4429 12.4974 11.0665ZM7.92401 4.98743C8.77094 4.98743 9.44848 5.66497 9.44848 6.5119C9.44848 7.35883 8.77094 8.03637 7.92401 8.03637C7.07708 8.03637 6.39954 7.35883 6.39954 6.5119C6.39954 5.66497 7.0959 4.98743 7.92401 4.98743ZM11.2929 11.4805H4.55513L4.49866 11.4052L4.83743 10.2196C5.00682 9.63612 5.5338 9.22206 6.15487 9.22206H9.71196C10.3142 9.22206 10.86 9.63612 11.0294 10.2196L11.3682 11.4052L11.2929 11.4805Z" fill="#003781" />
-                                    </svg>
-                                    <p class="mt-2 mb-0" style="color: #373737;font-size: 8px;font-style: normal;font-weight: 400;line-height: normal;">
-                                        Mobile: {{ Auth::user()->phone }}
-                                    </p>
-                                    <p class="" style="color: #373737;font-size: 8px;font-style: normal;font-weight: 400;line-height: normal;">
-                                        {{ Auth::user()->email }}
-                                    </p>
+                                <div class="d-flex align-items-center mb-2">
+                                    <img src="{{url('img/icon/icon-book.png')}}" width="20" alt="">
+                                    <div class="ms-2">
+                                        <p class="mb-0" style="color: #373737;font-size: 10px;font-style: normal;font-weight: 400;line-height: normal;">
+                                            Mobile: <a style="color: #373737;font-size: 10px;font-style: normal;font-weight: 400;line-height: normal;" href="tel:{{ Auth::user()->phone }}">{{ Auth::user()->phone }}</a>
+                                        </p>
+                                        <p class="mb-0">
+                                            <a style="color: #373737;font-size: 10px;font-style: normal;font-weight: 400;line-height: normal;" href="mailto:{{ Auth::user()->email }}">{{ Auth::user()->email }}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
 
@@ -928,17 +956,18 @@
                         @endif
                     </div>
                     <a id="btnDownload" type="button" class="btn-close-modal-detail W-100" style="border-radius: 50px;color: #FFF;text-align: center;font-size: 16px;font-style: normal;font-weight: 500;line-height: normal;">
-                        <i class="fa-regular fa-image"></i> <span style="color: #FFF;text-align: center;font-size: 16px;font-style: normal;font-weight: 500;line-height: normal;">ดาวน์โหลดรูปภาพ</span>
+                        <i class="fa-regular fa-image me-2"></i> <span style="color: #FFF;text-align: center;font-size: 16px;font-style: normal;font-weight: 500;line-height: normal;">ดาวน์โหลดรูปภาพ</span>
 
-                        </a>
+                    </a>
                 </div>
+
+
 
             </div>
 
         </div>
     </div>
 </div>
-
 <!-- <div class="container">
     <div class="main-body">
         <div class="row">
@@ -1098,7 +1127,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const inputFile = document.querySelector("#picture_profile_input");
-        if(document.querySelector(".picture_profile_image")){
+        if (document.querySelector(".picture_profile_image")) {
             const pictureImage = document.querySelector(".picture_profile_image");
             const pictureImageTxt = `<i class="fa-solid fa-plus text-white"></i>`;
             pictureImage.innerHTML = pictureImageTxt;
@@ -1132,19 +1161,21 @@
     });
 
     const printDocument = (domElement) => {
-    html2canvas(domElement , {backgroundColor: "rgba(0,0,0,0)"}).then((canvas) => {
-      const image = canvas.toDataURL('image/png');
-      const a = document.createElement('a');
-      a.setAttribute('download', 'certificate.png');
-      a.setAttribute('href', image);
-      a.click();
-    });
-  };
+        html2canvas(domElement, {
+            backgroundColor: "rgba(0,0,0,0)"
+        }).then((canvas) => {
+            const image = canvas.toDataURL('image/png');
+            const a = document.createElement('a');
+            a.setAttribute('download', 'Member Card {{Auth::user()->name}}.png');
+            a.setAttribute('href', image);
+            a.click();
+        });
+    };
 
-  document.getElementById('btnDownload').addEventListener('click', () => {
-    const domElement = document.getElementById('card_profile_download');
-    printDocument(domElement);
-  });
+    document.getElementById('btnDownload').addEventListener('click', () => {
+        const domElement = document.getElementById('card_profile_download');
+        printDocument(domElement);
+    });
 </script>
 
 

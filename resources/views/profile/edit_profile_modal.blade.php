@@ -46,7 +46,7 @@
 						<label class="picture " for="picture_profile_input" tabIndex="0" style="position: relative;" >
 
 							@if(!empty(Auth::user()->photo))
-							<img src="{{url('img/icon/ad.png')}}" alt="">
+							<img src="{{ Auth::user()->photo }}" alt="">
 							@else
 							<span class="picture_profile_image"></span>
 
@@ -198,8 +198,4 @@
 		});
 	});
 
-	$('img').cropper({
-  minContainerWidth: 800,
-  minContainerHeight: 600
-})
 </script>

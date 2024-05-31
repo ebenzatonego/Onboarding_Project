@@ -43,7 +43,7 @@
 				<div class="modal-body d-flex justify-content-center ">
 					<div class="position-relative" id="select-new-profile">
 
-						<label class="picture " for="picture_profile_input" tabIndex="0" style="position: relative;">
+						<label class="picture " for="picture_profile_input" tabIndex="0" style="position: relative;" >
 
 							@if(!empty(Auth::user()->photo))
 							<img src="{{url('img/icon/ad.png')}}" alt="">
@@ -68,7 +68,7 @@
 							<img src="{{ url('/img/icon/edit-img.png') }}" width="39" height="39">
 						</label>
 					</div>
-					<input type="file" name="picture_profile_input" id="picture_profile_input">
+					<input type="file" name="picture_profile_input" id="picture_profile_input" accept="image/*">
 
 				</div>
 				<div class="px-5">
@@ -162,7 +162,7 @@
 			reader = new FileReader();
 			reader.onload = function(e) {
 				document.getElementById('form_profile').classList.add('d-none');
-			document.getElementById('crop_profile').classList.remove('d-none');
+				document.getElementById('crop_profile').classList.remove('d-none');
 				done(reader.result);
 			};
 			reader.readAsDataURL(file);
@@ -189,7 +189,7 @@
 					height: 160,
 				});
 				avatar.src = canvas.toDataURL();
-				profile_img.src = canvas.toDataURL();
+				// profile_img.src = canvas.toDataURL();
 
 				cropper.destroy();
 				cropper = null;

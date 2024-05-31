@@ -34,15 +34,32 @@
 		min-height: 200px;
 		max-height: 500px;
 	}
+	.btn-close-modal{
+		width: 30px !important;
+		height: 30px !important;
+		border-radius: 50%;
+		background-color: #fff !important;
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0;
+		margin: 0;
+
+	}
 </style>
-<div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="editProfileTitle" aria-hidden="true">
+<div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="editProfileTitle" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content modal-profile">
+			<button type="button" class="close  btn-close-modal" data-dismiss="modal" aria-label="Close" style="">
+				<i class="fa-solid fa-xmark"></i>
+			</button>
 			<div id="form_profile">
 				<p class="text-white text-center mb-2">เลือกรูปของคุณ</p>
-				<div class="modal-body d-flex justify-content-center ">
+				<div class="modal-body d-flex justify-content-center position-relative">
 					<div class="position-relative" id="select-new-profile">
-
 						<label class="picture " for="picture_profile_input" tabIndex="0" style="position: relative;" >
 
 							@if(!empty(Auth::user()->photo))
@@ -140,7 +157,7 @@
 		let image = document.getElementById('uploadedAvatar');
 		let input = document.getElementById('picture_profile_input');
 		let cropBtn = document.getElementById('crop');
-		let $modal = $('#cropAvatarmodal');
+		let $modal = $('#editProfile');
 		let cropper;
 
 		input.addEventListener('change', function(e) {
@@ -168,12 +185,17 @@
 			reader.readAsDataURL(file);
 		});
 
-		// $modal.on('hidden.bs.modal', function() {
-		// 	if (cropper) {
-		// 		cropper.destroy();
-		// 		cropper = null;
-		// 	}
-		// });
+		$modal.on('hidden.bs.modal', function() {
+			document.getElementById('select-new-profile').classList.remove('d-none');
+			document.getElementById('preview-new-profile').classList.add('d-none');
+
+			if (cropper) {
+				cropper.destroy();
+				cropper = null;
+				document.getElementById('form_profile').classList.remove('d-none');
+				document.getElementById('crop_profile').classList.add('d-none');
+			}
+		});
 
 		cropBtn.addEventListener('click', function() {
 			document.getElementById('form_profile').classList.remove('d-none');

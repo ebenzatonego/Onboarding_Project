@@ -65,6 +65,12 @@ Route::middleware(['auth',])->group(function () {
     Route::get('/demo/new_index', function () {
         return view('demo/new/new_index');
     });
+    Route::get('/demo/calendar', function () {
+        return view('demo/calendar');
+    });
+    Route::get('/demo/new_show', function () {
+        return view('demo/new/new_show');
+    });
 });
 
 // Super-admin,Admin

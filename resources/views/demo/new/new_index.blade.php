@@ -131,7 +131,8 @@
         padding: 2px 10px;
     }
 
-    .container-course .course-item.bookmark-new .fav-course ,.container-course .course-item.bookmark-event .fav-event{
+    .container-course .course-item.bookmark-new .fav-course,
+    .container-course .course-item.bookmark-event .fav-event {
         display: block !important;
     }
 
@@ -141,12 +142,15 @@
         top: 0px;
         right: 0px;
     }
-    .fav-event{
+
+    .fav-event {
         display: none;
         position: absolute;
         top: 0px;
         right: 10px;
-    }.event-detail p{
+    }
+
+    .event-detail p {
         color: rgba(0, 0, 0, 0.67);
         font-size: 10px;
         font-style: normal;
@@ -154,18 +158,46 @@
         line-height: normal;
         margin: 0;
     }
+
+    .carousel-menu-course {
+        display: flex !important;
+        /* To override display:block I added !important */
+        flex-direction: row;
+        justify-content: center;
+        /* To center the carousel */
+    }
+
+    @media (max-width: 770px) {
+        .course-item {
+            width: 100% !important;
+        }
+    }
+
+    @media (min-width: 770px) {
+
+        .container-course {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .course-item {
+            width: 49% !important;
+        }
+    }
 </style>
 
 <div class="tab-content container mt-2" id="pills-tabContent">
-    <div class="col-lg-4">
-        <ul class="nav nav-pills w-100" id="pills-tab" role="tablist">
-            <li class="nav-item px-1">
-                <a class="nav-link active btn-filter-news" id="pills-news-tab" data-toggle="pill" href="#pills-news" role="tab" aria-controls="pills-news" aria-selected="true">ข่าวสาร/การแข่งขัน</a>
-            </li>
-            <li class="nav-item px-1">
-                <a class="nav-link btn-filter-news" id="pills-event-tab" data-toggle="pill" href="#pills-event" role="tab" aria-controls="pills-event" aria-selected="false">ตารางกิจกรรม</a>
-            </li>
-        </ul>
+    <div class="d-flex justify-content-center m-0 p-0">
+        <div class="col-md-6 col-12">
+            <ul class="nav nav-pills w-100 d-flex justify-content-center w-100" id="pills-tab" role="tablist">
+                <li class="nav-item px-1">
+                    <a class="nav-link active btn-filter-news" id="pills-news-tab" data-toggle="pill" href="#pills-news" role="tab" aria-controls="pills-news" aria-selected="true">ข่าวสาร/การแข่งขัน</a>
+                </li>
+                <li class="nav-item px-1">
+                    <a class="nav-link btn-filter-news" id="pills-event-tab" data-toggle="pill" href="#pills-event" role="tab" aria-controls="pills-event" aria-selected="false">ตารางกิจกรรม</a>
+                </li>
+            </ul>
+        </div>
     </div>
 
     <!-- news -->
@@ -173,7 +205,7 @@
         <div class="">
             <div class="main-body">
                 <div class="row">
-                    <div class="col-lg-4 mt-3">
+                    <div class="col-lg-12 mt-3">
                         <div class="owl-carousel carousel-fav-course owl-theme">
                             <div class="item">
                                 <img src="{{ url('/img/icon/ad.png') }}">
@@ -186,7 +218,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-8 mt-3">
+                    <div class="col-lg-12 mt-3">
                         <div class="owl-carousel carousel-menu-course owl-theme">
                             <div class="item ">
                                 <div class="menu-course text-center active">
@@ -264,7 +296,7 @@
         <div class="">
             <div class="main-body">
                 <div class="row">
-                    <div class="col-lg-4 mt-3">
+                    <div class="col-lg-12 my-3">
                         <div class="owl-carousel carousel-fav-course owl-theme">
                             <div class="item">
                                 <img src="{{ url('/img/icon/event.png') }}">
@@ -277,7 +309,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-8 mt-3">
+                    <div class="col-lg-12 mt-3">
 
 
                         <div class="owl-carousel carousel-menu-course owl-theme">
@@ -308,15 +340,15 @@
                             </div>
 
                         </div>
-                        <div class="container-course mt-2">
+                        <div class="container-course mt-3">
                             <!-- ถ้า user bookmark ใส่ class bookmark-event-->
                             <a href="" class="course-item bookmark-event">
                                 <div style="position: relative;">
                                     <img src="{{ url('/img/icon/event1.png') }}">
-                                    
+
                                     <div class="fav-event">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="22" viewBox="0 0 16 22" fill="none">
-                                            <path d="M15.1313 21.6111L7.74129 16.2135L0.344727 21.6111V0H15.1313V21.6111Z" fill="#E54141"/>
+                                            <path d="M15.1313 21.6111L7.74129 16.2135L0.344727 21.6111V0H15.1313V21.6111Z" fill="#E54141" />
                                         </svg>
                                     </div>
                                 </div>
@@ -333,10 +365,10 @@
                             <a href="" class="course-item">
                                 <div style="position: relative;">
                                     <img src="{{ url('/img/icon/event2.png') }}">
-                                    
+
                                     <div class="fav-event">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="22" viewBox="0 0 16 22" fill="none">
-                                            <path d="M15.1313 21.6111L7.74129 16.2135L0.344727 21.6111V0H15.1313V21.6111Z" fill="#E54141"/>
+                                            <path d="M15.1313 21.6111L7.74129 16.2135L0.344727 21.6111V0H15.1313V21.6111Z" fill="#E54141" />
                                         </svg>
                                     </div>
                                 </div>
@@ -366,16 +398,19 @@
         autoWidth: true,
         margin: 20,
         nav: false,
-        dots:false,
+        dots: false,
 
         responsive: {
             0: {
+                margin: 20,
                 items: 6
             },
             600: {
+                margin: 20,
                 items: 3
             },
             1000: {
+                margin: 40,
                 items: 1
             }
         }
@@ -401,10 +436,10 @@
     })
 
 
-    $('a[data-toggle="pill"]').on('shown.bs.tab', function (e) {
-          e.target // newly activated tab
-          e.relatedTarget // previous active tab
-          $(".owl-carousel").trigger('refresh.owl.carousel');
+    $('a[data-toggle="pill"]').on('shown.bs.tab', function(e) {
+        e.target // newly activated tab
+        e.relatedTarget // previous active tab
+        $(".owl-carousel").trigger('refresh.owl.carousel');
     });
 </script>
 @endsection

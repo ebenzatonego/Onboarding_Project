@@ -4,26 +4,43 @@
 <style>
     @media screen and (max-width: 500px) {
 
-        .conteiner-detail-training,
-        .conteiner-detail-training .row div {
+        .conteiner-detail-news,
+        .conteiner-detail-news .row div {
             padding: 0;
 
         }
     }
+
     @media only screen and (max-width: 767px) {
-       .title-training{
-        padding-left: 24px;
-       }
-       .btn-share-group{
-        padding:  24px ;
-       }
+        .title-news {
+            padding-left: 24px;
+        }
+
+        .btn-share-group {
+            padding: 24px;
+        }
+
+        .rating-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-right: 24px;
+        }
     }
- 
+
 
     @media screen and (min-width: 767px) {
-        .btn-share-group{
-         padding:  24px 0 24px 0;
-       }
+        .btn-share-group {
+            padding: 24px 0 24px 0;
+        }
+
+        .update_at {
+            padding: 15px 0;
+        }
+
+        .rating-group {
+            display: block;
+        }
     }
 
     .btn-back-all-course {
@@ -74,11 +91,11 @@
         -moz-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     }
 
-    .btn-bookmark-training.active svg .bookmark-bg {
+    .btn-bookmark-news.active svg .bookmark-bg {
         fill: #EDB529;
     }
 
-    .btn-bookmark-training.active svg .bookmark-icon {
+    .btn-bookmark-news.active svg .bookmark-icon {
         fill: #FBFBFB;
     }
 
@@ -178,9 +195,15 @@
         margin: 0;
     }
 
-
+    .update_at {
+        color: #999;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
 </style>
-<div class="container p-0 conteiner-detail-training">
+<div class="container p-0 conteiner-detail-news">
     <div class="row">
         <div class="col-lg-5 col-md-5 p-0" style="position: relative;">
             <button class="btn btn-back-all-course">
@@ -192,50 +215,55 @@
             <div class="d-flex justify-content-between">
 
                 <div class="w-100 d-flex btn-share-group">
-                    <button class="btn btn-like  me-1"   onclick="action_btnlike_dislike(this.className)">
+                    <button class="btn btn-like  me-1" onclick="action_btnlike_dislike(this.className)">
                         <div class="icon-btn d-flex">
                             <i class="fa-solid fa-thumbs-up"></i>
                         </div>
                         <div class="d-flex align-items-center ms-1">25</div>
 
                     </button>
-                    <button class="btn btn-dislike me-1"  onclick="action_btnlike_dislike(this.className)">
+                    <button class="btn btn-dislike me-1" onclick="action_btnlike_dislike(this.className)">
                         <div class="icon-btn">
                             <i class="fa-solid fa-thumbs-down"></i>
                         </div>
                     </button>
-                    <button class="btn btn-share me-1"  >
+                    <button class="btn btn-share me-1">
                         <i class="fa-solid fa-share m-0"></i>
                     </button>
                 </div>
-                <div class=" px-2 py-0 d-flex align-items-start btn-bookmark-training cursor-pointer" onclick="action_btnlike_dislike(this.className)">
+                <div class=" px-2 py-0 d-flex align-items-start btn-bookmark-news cursor-pointer" onclick="action_btnlike_dislike(this.className)">
                     <svg width="33" height="42" viewBox="0 0 33 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path class="bookmark-bg" d="M31.3077 0H1C0.447715 0 0 0.447716 0 1V40.3889C0 41.1306 0.779123 41.6141 1.44379 41.285L15.71 34.2198C15.9897 34.0813 16.318 34.0813 16.5976 34.2198L30.8639 41.285C31.5286 41.6141 32.3077 41.1306 32.3077 40.3889V1C32.3077 0.447715 31.86 0 31.3077 0Z" fill="#CDCDCD" />
                         <path class="bookmark-icon" d="M12.8462 13.4417L7.21748 14.2246L7.11779 14.2441C6.96687 14.2825 6.82929 14.3587 6.7191 14.4648C6.6089 14.571 6.53004 14.7033 6.49057 14.8482C6.4511 14.9931 6.45243 15.1455 6.49442 15.2898C6.53642 15.4341 6.61757 15.5651 6.7296 15.6695L10.8073 19.4775L9.84567 24.8564L9.8342 24.9495C9.82496 25.0993 9.85737 25.2487 9.92811 25.3825C9.99885 25.5163 10.1054 25.6296 10.2368 25.7109C10.3682 25.7922 10.5198 25.8385 10.676 25.8451C10.8322 25.8518 10.9874 25.8184 11.1258 25.7486L16.1598 23.2093L21.1824 25.7486L21.2707 25.7875C21.4163 25.8425 21.5745 25.8594 21.7292 25.8364C21.8839 25.8134 22.0294 25.7513 22.1508 25.6565C22.2722 25.5618 22.3651 25.4377 22.4201 25.2971C22.475 25.1565 22.49 25.0044 22.4634 24.8564L21.5009 19.4775L25.5804 15.6686L25.6492 15.5967C25.7475 15.4805 25.812 15.3414 25.836 15.1936C25.86 15.0458 25.8428 14.8945 25.786 14.7551C25.7293 14.6157 25.635 14.4933 25.5129 14.4003C25.3907 14.3072 25.2451 14.2469 25.0907 14.2255L19.4621 13.4417L16.9459 8.54942C16.8731 8.40768 16.7604 8.28832 16.6205 8.20485C16.4807 8.12138 16.3193 8.07715 16.1546 8.07715C15.9898 8.07715 15.8284 8.12138 15.6886 8.20485C15.5487 8.28832 15.436 8.40768 15.3632 8.54942L12.8462 13.4417Z" fill="#FBFBFB" />
                     </svg>
                 </div>
             </div>
-            <div class="title-training">
+            <div class="title-news">
                 <div>
                     <p class="mb-2" style="color: #003781;font-size: 20px;font-style: normal;font-weight: 600;line-height: normal;">หลักสูตรการพัฒนาทักษะการขายเชิงกลยุทธ์ 505</p>
                 </div>
-                <div class="hastag-training">
+                <div class="hastag-news">
                     <span>#หลักสูตร Unit Links</span>
                 </div>
-                <div class="rating-training mt-2">
-                    <span style="color: #EDB529;font-size: 14px;font-style: normal;font-weight: 600;line-height: normal;margin-right: 5px;">4.5</span>
-                    <i data-star="4.5" class="star-rating"></i>
+                <div class="rating-group">
+                    <div class="rating-news mt-2 ">
+                        <span style="color: #EDB529;font-size: 14px;font-style: normal;font-weight: 600;line-height: normal;margin-right: 5px;">4.5</span>
+                        <i data-star="4.5" class="star-rating"></i>
+                    </div>
+                    <div class=" d-flex align-items-center">
+                        <span class="update_at">Update : 30/05/2024 | 5.36 PM</span>
+                    </div>
                 </div>
             </div>
         </div>
         <style>
-            .hastag-training {
+            .hastag-news {
                 display: flex;
                 flex-wrap: wrap;
                 gap: 5px;
             }
 
-            .hastag-training span {
+            .hastag-news span {
                 border: #0E2B81 1px solid;
                 padding: 0 10px;
                 color: #0E2B81;
@@ -282,70 +310,113 @@
             .star-rating::after {
                 width: var(--rating-width);
             }
-            .btn-join-meet{
-                color: #fff;
-                background-color: #003781;
-                border-radius: 25px;
-                -webkit-border-radius: 25px;
-                -moz-border-radius: 25px;
-                -ms-border-radius: 25px;
-                -o-border-radius: 25px;
-                font-size: 14px;
-                font-style: normal;
-                font-weight: 600;
-                line-height: normal;
+
+            .group-img {
+                flex: 0 0 20%;
+                max-width: 20%;
+                position: relative;
+
+                cursor: pointer;
+            }
+
+            .img-news {
+                width: 100%;
+                aspect-ratio: 1/1;
+                object-fit: cover;
+                filter: blur(1px) grayscale(100%);
+            }
+
+            .img-news.active {
+                filter: blur(0) grayscale(0) !important;
+
+            }
+            .img-news.active +.icon-preview{
+               display: none !important;
+
+            }
+            .preview-img {
+                width: 100%;
+            }
+
+            .icon-preview {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: #fff !important;
+                font-size: 33px;
+                pointer-events: none; /* ปิดการใช้งาน hitbox */
             }
         </style>
         <div class="col-lg-7 col-md-7 px-4 mb-5">
-           
 
-            <!-- if ถ้ามีเวลาเข้าร่วม -->
-            <div class="d-flex my-2">
-                <i class="fa-light fa-calendar-days me-2" style="color: #0E2B81;font-size:18px"></i> <span style="color: #0E2B81;font-size: 12px;font-style: normal;font-weight: 600;line-height: normal;">Friday 19 April 2024  10:30 - 12:30 น. </span>
-            </div>
-            <!-- endif -->
-
-            <!-- if ถ้ามีลิงค์เข้าร่วมสอบ -->
-                <button class="btn w-100 btn-join-meet my-2">
-                    <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" fill="none">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M23 0H3.19412V3.19419H4.47192V1.27768H21.7222V15.9709H8.05806V17.2486H23V0ZM3.83302 8.30489C3.32468 8.30489 2.83716 8.10297 2.47771 7.74356C2.11826 7.38414 1.91632 6.89667 1.91632 6.38838C1.91632 5.88008 2.11826 5.39261 2.47771 5.0332C2.83716 4.67378 3.32468 4.47186 3.83302 4.47186C4.34136 4.47186 4.82887 4.67378 5.18833 5.0332C5.54778 5.39261 5.74972 5.88008 5.74972 6.38838C5.74972 6.89667 5.54778 7.38414 5.18833 7.74356C4.82887 8.10297 4.34136 8.30489 3.83302 8.30489ZM2.53541 9.58895C1.70548 9.58895 1.04869 9.96203 0.618715 10.5383C0.216846 11.0781 0.0468979 11.7457 0.008564 12.3621C-0.028986 12.9945 0.057169 13.6282 0.262207 14.2276C0.453876 14.7833 0.7778 15.3583 1.27742 15.7525V22.0399C1.27696 22.2807 1.36715 22.5128 1.53005 22.6901C1.69296 22.8674 1.91664 22.9768 2.1566 22.9967C2.39657 23.0166 2.63522 22.9454 2.8251 22.7974C3.01497 22.6493 3.14215 22.4352 3.18134 22.1977L4.00552 17.2486H4.19591L5.12743 22.2162C5.17166 22.4507 5.30177 22.6602 5.49232 22.8038C5.68286 22.9474 5.92013 23.0148 6.15772 22.9927C6.39531 22.9707 6.61613 22.8608 6.77699 22.6846C6.93785 22.5084 7.02719 22.2785 7.02751 22.0399V12.9256C7.15528 13.1202 7.28136 13.3159 7.40574 13.5127L7.45558 13.5913L7.46836 13.6117L7.47155 13.6175C7.55766 13.7557 7.67758 13.8697 7.82 13.9487C7.96242 14.0278 8.12263 14.0692 8.28551 14.0691H11.48C11.7342 14.0691 11.9779 13.9682 12.1577 13.7885C12.3374 13.6087 12.4384 13.365 12.4384 13.1109C12.4384 12.8567 12.3374 12.613 12.1577 12.4333C11.9779 12.2536 11.7342 12.1526 11.48 12.1526H8.81132C8.65607 11.9124 8.45162 11.6007 8.23695 11.2876C8.01334 10.9612 7.76672 10.6156 7.54694 10.3447C7.44024 10.2125 7.32077 10.0745 7.20066 9.96139C7.14188 9.90582 7.0601 9.83363 6.96043 9.76974C6.78454 9.6543 6.5792 9.59177 6.36881 9.58959L2.53541 9.58895Z" fill="white"/>
-                    </svg>
-                    <!-- if ตารางสอบ -->
-                    เข้าร่วมสอบ
-                    <!--  else-->
-                    <!-- เข้าร่วมอบรม -->
-                    <!-- endif -->
-                </button>
-            <!-- endif -->
-
-            <!-- if ถ้ามี รายละเอียดการเข้าอบรม -->
-            <div class="my-3">
-                <p style="color: #003781;font-size: 15px;font-style: normal;font-weight: 600;line-height: normal;">รายละเอียดการเข้าอบรม</p>
-                <div class="d-flex ">
-                    <i class="fa-light fa-location-dot me-2"></i>
-                    <div>
-                        <p class="m-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum magni reprehenderit, itaqu</p>
-                        <a href="https://www.google.com/maps/dir//test" id="link-to-copy" style="color: #0872FF;font-size: 10px;font-style: normal;font-weight: 600;line-height: normal;text-decoration-line: underline;">https://www.google.com/maps/dir//test</a>
-                        <i style="color: #9E9E9E;" class="fa-regular fa-copy mx-2"  onclick="copyLink()"></i>
-                    </div>
-                    <div>
-
-                    </div>
-                </div>
-            </div>
-            <!-- endif -->
-            <div class="detail-training">
+            <div class="detail-news">
                 <p class="mt-2">
                     การพัฒนาทักษะการขาย (Selling Skill) ให้กับนักขายมืออาชีพขั้นสูง จะช่วยทำให้พนักงานมีความมั่นใจในการขายสินค้าและบริการของตัวเองเพิ่มมากขึ้น เช่น.....     - การนำเสนอขายด้วยเครื่องมือในรูปแบบต่างๆ     - การเจรจาต่อรองอย่างเหนือชั้น     - การปิดการขายให้ลูกค้าเห็นคุณค่าด้วยตัวเอง การเรียนรู้ในรูปแบบ Blended Learning เชิงปฏิบัติการจริง ด้วยการฝึกฝนทักษะต่างๆ ด้วยตัวเอง ทำให้ผู้เรียน ได้ปรับปรุง แก้ไข แนวทางและเทคนิคการขายของตัวเองได้ทันที     - VDO (Self-Learning)     - Practices in Classroom     - Show & Share ซึ่งกันและกัน
-                    รายละเอียดของหลักสูตรฝึกอบรมหลักการขายเชิงกลยุทธ์ (Strategic Selling)  สนุกกับ คำสำคัญ ของงานขาย  หัวใจสำคัญของการขายให้โดนใจ  ทักษะพื้นฐานของการขาย  คุณสมบัติของนักขายมืออาชีพ  กิจกรรม: กำหนดแนวทางการขายเชิงกลยุทธ์ด้วย Canvasเทคนิคการนำเสนอด้วยเครื่องมือในรูปแบบต่างๆ (Presentation)  การนำเสนอให้สอดคล้องคุณลักษณะของบุคคล (DISC)  การนำเสนอด้วย Presentation Tools Kit  การนำเสนอในรูปแบบ Pitching & Storytelling  Role Playing: การฝึกฝนเทคนิคการนำเสนอให้โดนใจ     เทคนิคการเจรจาต่อรองอย่างเหนือชั้น (Negotiation)  หลักการเจรจาต่อรองอย่างมีคุณภาพ  การกำหนดจุดประสงค์ให้ชัดเจน  การประเมินทางเลือกของการเจรจา (BATNA)  การบริหารจัดการให้การเจรจามีคุณภาพ (ZOPA)  การเตรียมความพร้อมก่อนการเจรจาต่อรอง  Role Playing: การฝึกฝนเทคนิคการเจรจาต่อรองอย่างสร้างสรรค์เทคนิคการปิดการขายให้ลูกค้าเห็นคุณค่า (Value Proposition)   
+                    รายละเอียดของหลักสูตรฝึกอบรมหลักการขายเชิงกลยุทธ์ (Strategic Selling) สนุกกับ คำสำคัญ ของงานขาย หัวใจสำคัญของการขายให้โดนใจ ทักษะพื้นฐานของการขาย คุณสมบัติของนักขายมืออาชีพ กิจกรรม: กำหนดแนวทางการขายเชิงกลยุทธ์ด้วย Canvasเทคนิคการนำเสนอด้วยเครื่องมือในรูปแบบต่างๆ (Presentation) การนำเสนอให้สอดคล้องคุณลักษณะของบุคคล (DISC) การนำเสนอด้วย Presentation Tools Kit การนำเสนอในรูปแบบ Pitching & Storytelling Role Playing: การฝึกฝนเทคนิคการนำเสนอให้โดนใจ เทคนิคการเจรจาต่อรองอย่างเหนือชั้น (Negotiation) หลักการเจรจาต่อรองอย่างมีคุณภาพ การกำหนดจุดประสงค์ให้ชัดเจน การประเมินทางเลือกของการเจรจา (BATNA) การบริหารจัดการให้การเจรจามีคุณภาพ (ZOPA) การเตรียมความพร้อมก่อนการเจรจาต่อรอง Role Playing: การฝึกฝนเทคนิคการเจรจาต่อรองอย่างสร้างสรรค์เทคนิคการปิดการขายให้ลูกค้าเห็นคุณค่า (Value Proposition)  
                 </p>
+
+                <img src="{{url('img/icon/preview-img2.png')}}" class="preview-img" alt="">
+                <div class="row mb-3 row-cols-auto g-2 justify-content-start mt-3">
+                    <div class="group-img ">
+                        <img src="{{url('img/icon/preview-img.png')}}" class="img-news border rounded active" alt="">
+                        <i class="fa-light fa-eye icon-preview"></i>
+                    </div>
+                    <div class="group-img">
+                        <img src="{{url('img/icon/preview-img2.png')}}" class="img-news border rounded" alt="">
+                        <i class="fa-light fa-eye icon-preview"></i>
+                    </div>
+                    <div class="group-img">
+                        <img src="{{url('img/icon/preview-img2.png')}}" class="img-news border rounded" alt="">
+                        <i class="fa-light fa-eye icon-preview"></i>
+                    </div>
+                    <div class="group-img">
+                        <img src="{{url('img/icon/preview-img2.png')}}" class="img-news border rounded" alt="">
+                        <i class="fa-light fa-eye icon-preview"></i>
+                    </div>
+                    <div class="group-img">
+                        <img src="{{url('img/icon/preview-img2.png')}}" class="img-news border rounded" alt="">
+                        <i class="fa-light fa-eye icon-preview"></i>
+                    </div>
+                    <div class="group-img">
+                        <img src="{{url('img/icon/preview-img2.png')}}" class="img-news border rounded" alt="">
+                        <i class="fa-light fa-eye icon-preview"></i>
+                    </div>
+                    <div class="group-img">
+                        <img src="{{url('img/icon/preview-img2.png')}}" class="img-news border rounded" alt="">
+                        <i class="fa-light fa-eye icon-preview"></i>
+                    </div>
+                    <div class="group-img">
+                        <img src="{{url('img/icon/preview-img2.png')}}" class="img-news border rounded" alt="">
+                        <i class="fa-light fa-eye icon-preview"></i>
+                    </div>
+                </div>
+
+                <script>
+                    const imgNewsElements = document.querySelectorAll('.img-news');
+
+                    imgNewsElements.forEach(imgNews => {
+                    imgNews.addEventListener('click', function handleClick() {
+                        // Remove the 'active' class from all previously clicked images
+                        imgNewsElements.forEach(otherImg => otherImg.classList.remove('active'));
+
+                        // Add the 'active' class to the clicked image
+                        this.classList.add('active');
+
+                        // Update the 'src' attribute of the preview image
+                        const previewImg = document.querySelector('.preview-img');
+                        previewImg.src = this.src;
+                    });
+                    });
+
+                </script>
                 <div class="d-flex justify-content-end w-100" style="color: #989898;">
                     <i class="fa-regular fa-clock me-2"></i>
                     <span id="">30 นาที</span>
                 </div>
 
-                <div class="d-flex justify-content-center w-100 mt-3">
-                    <video src="https://www.franchisebuilder2024.com/video/The%20Franchise%20Builder_Final.mp4" controls  loop muted style="width:100%;border-radius: 10px; max-width: 700px;" class="video-preview"></video>
+                <div class="d-flex justify-content-center w-100 mt-0">
+                    <video src="https://www.franchisebuilder2024.com/video/The%20Franchise%20Builder_Final.mp4" controls loop muted style="width:100%;border-radius: 10px; max-width: 700px;" class="video-preview mt-2"></video>
                 </div>
 
                 <div class="w-100 mt-3">
@@ -357,18 +428,18 @@
                                 <i class="fa-solid fa-thumbs-up"></i>
                             </div>
                             <div class="d-flex align-items-center ms-1">25</div>
-    
+
                         </button>
-                        <button class="btn btn-dislike me-1"  onclick="action_btnlike_dislike(this.className)">
+                        <button class="btn btn-dislike me-1" onclick="action_btnlike_dislike(this.className)">
                             <div class="icon-btn">
                                 <i class="fa-solid fa-thumbs-down"></i>
                             </div>
                         </button>
-                        <button class="btn btn-share me-1"  >
+                        <button class="btn btn-share me-1">
                             <i class="fa-solid fa-share m-0"></i>
                         </button>
 
-                        <div class=" px-2 py-0 d-flex align-items-start btn-bookmark-training cursor-pointer" onclick="action_btnlike_dislike(this.className)">
+                        <div class=" px-2 py-0 d-flex align-items-start btn-bookmark-news cursor-pointer" onclick="action_btnlike_dislike(this.className)">
                             <svg width="33" height="42" viewBox="0 0 33 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path class="bookmark-bg" d="M31.3077 0H1C0.447715 0 0 0.447716 0 1V40.3889C0 41.1306 0.779123 41.6141 1.44379 41.285L15.71 34.2198C15.9897 34.0813 16.318 34.0813 16.5976 34.2198L30.8639 41.285C31.5286 41.6141 32.3077 41.1306 32.3077 40.3889V1C32.3077 0.447715 31.86 0 31.3077 0Z" fill="#CDCDCD" />
                                 <path class="bookmark-icon" d="M12.8462 13.4417L7.21748 14.2246L7.11779 14.2441C6.96687 14.2825 6.82929 14.3587 6.7191 14.4648C6.6089 14.571 6.53004 14.7033 6.49057 14.8482C6.4511 14.9931 6.45243 15.1455 6.49442 15.2898C6.53642 15.4341 6.61757 15.5651 6.7296 15.6695L10.8073 19.4775L9.84567 24.8564L9.8342 24.9495C9.82496 25.0993 9.85737 25.2487 9.92811 25.3825C9.99885 25.5163 10.1054 25.6296 10.2368 25.7109C10.3682 25.7922 10.5198 25.8385 10.676 25.8451C10.8322 25.8518 10.9874 25.8184 11.1258 25.7486L16.1598 23.2093L21.1824 25.7486L21.2707 25.7875C21.4163 25.8425 21.5745 25.8594 21.7292 25.8364C21.8839 25.8134 22.0294 25.7513 22.1508 25.6565C22.2722 25.5618 22.3651 25.4377 22.4201 25.2971C22.475 25.1565 22.49 25.0044 22.4634 24.8564L21.5009 19.4775L25.5804 15.6686L25.6492 15.5967C25.7475 15.4805 25.812 15.3414 25.836 15.1936C25.86 15.0458 25.8428 14.8945 25.786 14.7551C25.7293 14.6157 25.635 14.4933 25.5129 14.4003C25.3907 14.3072 25.2451 14.2469 25.0907 14.2255L19.4621 13.4417L16.9459 8.54942C16.8731 8.40768 16.7604 8.28832 16.6205 8.20485C16.4807 8.12138 16.3193 8.07715 16.1546 8.07715C15.9898 8.07715 15.8284 8.12138 15.6886 8.20485C15.5487 8.28832 15.436 8.40768 15.3632 8.54942L12.8462 13.4417Z" fill="#FBFBFB" />
@@ -388,7 +459,7 @@
 </div>
 
 <style>
-    .modal-vote-training {
+    .modal-vote-news {
         background-color: #3D467F !important;
         margin: 0 20px;
         border-radius: 10px !important;
@@ -399,49 +470,50 @@
         padding: 40px 0;
     }
 
-    
-   
+
+
     #rating_input .rating-group {
-    display: inline-flex;
+        display: inline-flex;
     }
 
     #rating_input .rating__icon {
-    pointer-events: none;
+        pointer-events: none;
     }
 
     #rating_input .rating__input {
-    position: absolute !important;
-    left: -9999px !important;
+        position: absolute !important;
+        left: -9999px !important;
     }
 
     #rating_input .rating__input--none {
-    display: none
+        display: none
     }
 
     #rating_input .rating__label {
-    cursor: pointer;
-    padding: 0 0.1em;
-    font-size: 2rem;
-    display: flex;
-    justify-content: center;
+        cursor: pointer;
+        padding: 0 0.1em;
+        font-size: 2rem;
+        display: flex;
+        justify-content: center;
     }
 
     #rating_input .rating__icon--star {
-    color: orange;
+        color: orange;
     }
 
-    #rating_input .rating__input:checked ~ .rating__label .rating__icon--star {
-    color: #ddd;
+    #rating_input .rating__input:checked~.rating__label .rating__icon--star {
+        color: #ddd;
     }
 
     #rating_input .rating-group:hover .rating__label .rating__icon--star {
-    color: orange;
+        color: orange;
     }
 
-    #rating_input .rating__input:hover ~ .rating__label .rating__icon--star {
-    color: #ddd;
+    #rating_input .rating__input:hover~.rating__label .rating__icon--star {
+        color: #ddd;
     }
-    .rating__text{
+
+    .rating__text {
         color: #FFF;
         text-align: center;
         font-size: 20px;
@@ -450,18 +522,19 @@
         line-height: normal;
     }
 
-    .btn-vote-training{
-    border-radius:  50px;
-    -webkit-border-radius: 50px;
-    -moz-border-radius: 50px;
-    -ms-border-radius: 50px;
-    -o-border-radius: 50px;
-    font-weight: bolder;
-}
-.btn-vote-training:disabled{
-    background-color: #A3A3A3  !important;
-    color: #57759C !important;
-}
+    .btn-vote-news {
+        border-radius: 50px;
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        -ms-border-radius: 50px;
+        -o-border-radius: 50px;
+        font-weight: bolder;
+    }
+
+    .btn-vote-news:disabled {
+        background-color: #A3A3A3 !important;
+        color: #57759C !important;
+    }
 </style>
 <!-- Button trigger modal -->
 <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#rating">
@@ -469,18 +542,18 @@
 </button> -->
 <div class="modal fade" id="rating" tabindex="-1" role="dialog" aria-labelledby="rating" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content modal-vote-training">
+        <div class="modal-content modal-vote-news">
             <p class="text-white text-center mb-5 font-20">ให้คะแนนผลิตภัณฑ์นี้</p>
             <div class="w-100 d-flex justify-content-center">
-                
+
                 <div id="rating_input">
                     <div class="rating-group">
-                        <input disabled  class="rating__input rating__input--none" name="rating" id="rating3-none" value="0" type="radio">
-                        
+                        <input disabled class="rating__input rating__input--none" name="rating" id="rating3-none" value="0" type="radio">
+
                         <label aria-label="1 star" class="rating__label" for="rating3-1">
                             <div>
                                 <i class="rating__icon rating__icon--star fa-sharp fa-solid fa-star"></i>
-                                <p class="rating__text" >1</p>
+                                <p class="rating__text">1</p>
                             </div>
                         </label>
                         <input class="rating__input" checked name="rating" id="rating3-1" value="1" type="radio">
@@ -488,57 +561,57 @@
                         <label aria-label="2 stars" class="rating__label" for="rating3-2">
                             <div>
                                 <i class="rating__icon rating__icon--star fa-sharp fa-solid fa-star"></i>
-                                <p class="rating__text" >2</p>
+                                <p class="rating__text">2</p>
                             </div>
                         </label>
                         <input class="rating__input" name="rating" id="rating3-2" value="2" type="radio">
-                        
+
                         <label aria-label="3 stars" class="rating__label" for="rating3-3">
                             <div>
                                 <i class="rating__icon rating__icon--star fa-sharp fa-solid fa-star"></i>
-                                <p class="rating__text" >3</p>
+                                <p class="rating__text">3</p>
                             </div>
                         </label>
                         <input class="rating__input" name="rating" id="rating3-3" value="3" type="radio">
-                        
+
                         <label aria-label="4 stars" class="rating__label" for="rating3-4">
                             <div>
                                 <i class="rating__icon rating__icon--star fa-sharp fa-solid fa-star"></i>
-                                <p class="rating__text" >4</p>
+                                <p class="rating__text">4</p>
                             </div>
                         </label>
                         <input class="rating__input" name="rating" id="rating3-4" value="4" type="radio">
-                        
+
                         <label aria-label="5 stars" class="rating__label" for="rating3-5">
                             <div>
                                 <i class="rating__icon rating__icon--star fa-sharp fa-solid fa-star"></i>
-                                <p class="rating__text" >5</p>
+                                <p class="rating__text">5</p>
                             </div>
                         </label>
                         <input class="rating__input" name="rating" id="rating3-5" value="5" type="radio">
                     </div>
                 </div>
-               
+
             </div>
-            
+
             <div class="w-100 px-5 mt-3">
-                <button class="btn w-100 bg-white btn-vote-training" data-dismiss="modal" aria-label="Close" onclick="getRating()">ให้คะแนน</button>
+                <button class="btn w-100 bg-white btn-vote-news" data-dismiss="modal" aria-label="Close" onclick="getRating()">ให้คะแนน</button>
             </div>
         </div>
     </div>
 </div>
 
 
-<div class="modal fade" id="dislike_training" tabindex="-1" role="dialog" aria-labelledby="rating" aria-hidden="true">
+<div class="modal fade" id="dislike_news" tabindex="-1" role="dialog" aria-labelledby="rating" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content modal-vote-training">
+        <div class="modal-content modal-vote-news">
             <p class="text-white text-center mb-5 font-20">ให้เหตุผลที่ไม่ชอบผลิตภัณฑ์นี้</p>
             <div class="w-100 d-flex justify-content-center px-4 mb-2">
                 <textarea class="form-control" id="reasons_dislike" placeholder="กรอกเหตุผลที่ไม่ชอบผลิตภัณฑ์นี้" rows="5" style="border-radius: 10px;" oninput="check_reasons_dislike()"></textarea>
             </div>
-            
+
             <div class="w-100 px-4 mt-4">
-                <button class="btn w-100 bg-white btn-vote-training" id="btn_submit_reasons_dislike" disabled onclick="submit_reasons_dislike();">ให้คะแนน</button>
+                <button class="btn w-100 bg-white btn-vote-news" id="btn_submit_reasons_dislike" disabled onclick="submit_reasons_dislike();">ให้คะแนน</button>
             </div>
         </div>
     </div>
@@ -546,17 +619,17 @@
 
 <!-- Modal -->
 <div class="modal fade" id="modalCopySuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content mx-5" style="border-radius: 10px;border: 1px solid #D6D6D6;background: #FFF;box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.50);">
-      <div class="modal-body text-center pt-4">
-        <svg svg xmlns="http://www.w3.org/2000/svg" width="93" height="92" viewBox="0 0 93 92" fill="none">
-            <path d="M46.5 89.5692C52.3449 89.5767 58.1337 88.4475 63.5337 86.2466C68.9337 84.0457 73.8384 80.8164 77.9659 76.7444C82.1043 72.6832 85.3863 67.8572 87.6231 62.5439C89.8599 57.2306 91.0075 51.5348 91 45.7837C91.0074 40.0326 89.8598 34.3368 87.6229 29.0235C85.3861 23.7102 82.1042 18.8842 77.9659 14.8229C73.8384 10.7509 68.9337 7.52163 63.5337 5.32072C58.1337 3.11981 52.3449 1.99063 46.5 1.99808C40.6551 1.99075 34.8663 3.11998 29.4664 5.32089C24.0664 7.52179 19.1617 10.751 15.0341 14.8229C10.8957 18.8842 7.61387 23.7102 5.37705 29.0235C3.14024 34.3368 1.99259 40.0326 2.00004 45.7837C1.99246 51.5348 3.14006 57.2306 5.37688 62.5439C7.6137 67.8572 10.8956 72.6832 15.0341 76.7444C19.1617 80.8163 24.0664 84.0455 29.4664 86.2464C34.8663 88.4473 40.6551 89.5766 46.5 89.5692Z" stroke="#0E2B81" stroke-width="4" stroke-linejoin="round"/>
-            <path d="M28.6992 45.7836L42.0492 58.9193L68.7492 32.6479" stroke="#0E2B81" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <p style="color: #0E2B81;font-size: 16px;font-style: normal;font-weight: 600;line-height: normal;margin-top: 20px;">คัดลอกสำเร็จ !</p>
-      </div>
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content mx-5" style="border-radius: 10px;border: 1px solid #D6D6D6;background: #FFF;box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.50);">
+            <div class="modal-body text-center pt-4">
+                <svg svg xmlns="http://www.w3.org/2000/svg" width="93" height="92" viewBox="0 0 93 92" fill="none">
+                    <path d="M46.5 89.5692C52.3449 89.5767 58.1337 88.4475 63.5337 86.2466C68.9337 84.0457 73.8384 80.8164 77.9659 76.7444C82.1043 72.6832 85.3863 67.8572 87.6231 62.5439C89.8599 57.2306 91.0075 51.5348 91 45.7837C91.0074 40.0326 89.8598 34.3368 87.6229 29.0235C85.3861 23.7102 82.1042 18.8842 77.9659 14.8229C73.8384 10.7509 68.9337 7.52163 63.5337 5.32072C58.1337 3.11981 52.3449 1.99063 46.5 1.99808C40.6551 1.99075 34.8663 3.11998 29.4664 5.32089C24.0664 7.52179 19.1617 10.751 15.0341 14.8229C10.8957 18.8842 7.61387 23.7102 5.37705 29.0235C3.14024 34.3368 1.99259 40.0326 2.00004 45.7837C1.99246 51.5348 3.14006 57.2306 5.37688 62.5439C7.6137 67.8572 10.8956 72.6832 15.0341 76.7444C19.1617 80.8163 24.0664 84.0455 29.4664 86.2464C34.8663 88.4473 40.6551 89.5766 46.5 89.5692Z" stroke="#0E2B81" stroke-width="4" stroke-linejoin="round" />
+                    <path d="M28.6992 45.7836L42.0492 58.9193L68.7492 32.6479" stroke="#0E2B81" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <p style="color: #0E2B81;font-size: 16px;font-style: normal;font-weight: 600;line-height: normal;margin-top: 20px;">คัดลอกสำเร็จ !</p>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
 
@@ -569,33 +642,42 @@
 
     function action_btnlike_dislike(className) {
 
-            if (className.includes('btn-like')) {
-                // console.log('btn-like');
-                document.querySelectorAll('.btn-like').forEach(function(element) {element.classList.toggle('active');});
+        if (className.includes('btn-like')) {
+            // console.log('btn-like');
+            document.querySelectorAll('.btn-like').forEach(function(element) {
+                element.classList.toggle('active');
+            });
 
-                if (!className.includes('active')) {
-                    $('#rating').modal('show');
-                }
-
-                
-            } else if (className.includes('btn-dislike')){
-                // console.log('btn-dislike');
-                document.querySelectorAll('.btn-dislike').forEach(function(element) {element.classList.toggle('active');});
-
-                if (!className.includes('active')) {
-                    $('#dislike_training').modal('show');
-                }
-
-            }else{
-                document.querySelectorAll('.btn-bookmark-training').forEach(function(element) {element.classList.toggle('active');});document.querySelectorAll('.btn-bookmark').forEach(function(element) {element.classList.toggle('active');});
+            if (!className.includes('active')) {
+                $('#rating').modal('show');
             }
+
+
+        } else if (className.includes('btn-dislike')) {
+            // console.log('btn-dislike');
+            document.querySelectorAll('.btn-dislike').forEach(function(element) {
+                element.classList.toggle('active');
+            });
+
+            if (!className.includes('active')) {
+                $('#dislike_news').modal('show');
+            }
+
+        } else {
+            document.querySelectorAll('.btn-bookmark-news').forEach(function(element) {
+                element.classList.toggle('active');
+            });
+            document.querySelectorAll('.btn-bookmark').forEach(function(element) {
+                element.classList.toggle('active');
+            });
         }
-//     document.querySelectorAll('.btn-like').forEach(function(button) {
-//     button.onclick = function() {
-//         // สิ่งที่ต้องการให้เกิดขึ้นเมื่อคลิกปุ่ม
-//         console.log('Button clicked!');
-//     };
-// });
+    }
+    //     document.querySelectorAll('.btn-like').forEach(function(button) {
+    //     button.onclick = function() {
+    //         // สิ่งที่ต้องการให้เกิดขึ้นเมื่อคลิกปุ่ม
+    //         console.log('Button clicked!');
+    //     };
+    // });
     // document.addEventListener('DOMContentLoaded', function () {
     //     $('#rating').modal('show');
     // }) 
@@ -605,12 +687,13 @@
 
         if (textarea && textarea.value.trim()) {
             document.getElementById("btn_submit_reasons_dislike").disabled = false;
-            
+
         } else {
             document.getElementById("btn_submit_reasons_dislike").disabled = true;
 
         }
     }
+
     function getRating() {
         const ratingInputs = document.querySelectorAll('input[name="rating"]');
         let selectedRating = 0;
@@ -624,33 +707,33 @@
         alert(selectedRating);
     }
 
-    function submit_reasons_dislike(){
+    function submit_reasons_dislike() {
         alert(
             document.querySelector('#reasons_dislike').value
         );
-        $('#dislike_training').modal('hide');
-        
+        $('#dislike_news').modal('hide');
+
     }
 
     function copyLink() {
-            let link = document.getElementById('link-to-copy').href;
-            let tempTextarea = document.createElement('textarea');
-            tempTextarea.value = link;
+        let link = document.getElementById('link-to-copy').href;
+        let tempTextarea = document.createElement('textarea');
+        tempTextarea.value = link;
 
-            document.body.appendChild(tempTextarea);
+        document.body.appendChild(tempTextarea);
 
-            tempTextarea.select();
+        tempTextarea.select();
 
-            document.execCommand('copy');
+        document.execCommand('copy');
 
-            document.body.removeChild(tempTextarea);
+        document.body.removeChild(tempTextarea);
 
-            $('#modalCopySuccess').modal('show');
+        $('#modalCopySuccess').modal('show');
 
-            setTimeout(() => {
+        setTimeout(() => {
             $('#modalCopySuccess').modal('hide');
-                
-            }, 2000);
-        }
+
+        }, 2000);
+    }
 </script>
 @endsection

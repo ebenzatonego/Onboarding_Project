@@ -36,8 +36,12 @@
         display: none;
     }
 
-    body ,html{
+   body,
+    html {
         background-color: #fff !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        height: 100% !important;
     }
 
     #navbar-botttom {
@@ -305,8 +309,8 @@
         </nav>
     </div>
 </header>
-<div class="container my-4">
-    <div class="row">
+<div class="container container-content my-4">
+    <div class="row row-content">
 
         <div class="div-btn-back d-none">
             <!-- <button type="button" class="btn btn-sm btn-back  mt-3" onclick="goBack();">

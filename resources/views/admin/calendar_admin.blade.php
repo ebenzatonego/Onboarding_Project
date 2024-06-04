@@ -201,37 +201,37 @@
 
             });
 
-        // data_arr_events = [
-		//     {
-		//         title: 'Go To Home',
-		//         url: "{{ url('/home') }}",
-		//         start: '2024-04-01'
-		//     },
-		//     {
-		//         title: 'Long Event',
-		//         start: '2024-04-07',
-		//         end: '2024-04-10',
-		//         backgroundColor: '#00BF2D'
-		//     },
-		//     {
-		//         title: 'Meeting',
-		//         start: '2024-04-12T10:30:00',
-		//         end: '2024-04-12T12:30:00'
-		//     },
-		//     {
-		//         title: 'Lunch',
-		//         start: '2024-04-12T12:00:00'
-		//     },
-		//     {
-		//         title: 'Dinner',
-		//         start: '2024-04-12T20:00:00'
-		//     },
-		//     {
-		//         title: 'Birthday Party',
-		//         start: '2024-04-13T07:00:00',
-		//         backgroundColor: 'red'
-		//     }
-		// ];
+        data_arr_events = [
+		    {
+		        title: 'Go To Home',
+		        url: "{{ url('/home') }}",
+		        start: '2024-04-01'
+		    },
+		    {
+		        title: 'Long Event',
+		        start: '2024-04-07',
+		        end: '2024-04-10',
+		        backgroundColor: '#00BF2D'
+		    },
+		    {
+		        title: 'Meeting',
+		        start: '2024-04-12T10:30:00',
+		        end: '2024-04-12T12:30:00'
+		    },
+		    {
+		        title: 'Lunch',
+		        start: '2024-04-12T12:00:00'
+		    },
+		    {
+		        title: 'Dinner',
+		        start: '2024-04-12T20:00:00'
+		    },
+		    {
+		        title: 'Birthday Party',
+		        start: '2024-04-13T07:00:00',
+		        backgroundColor: 'red'
+		    }
+		];
 
 		setTimeout(() => {
 			create_calendar(data_arr_events);

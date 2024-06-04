@@ -1058,10 +1058,11 @@
             calendar.next(); // call method
         });
 
-        const myEvents = JSON.parse(localStorage.getItem('events')) || [{
+        const myEvents = [
+            {
                 id: uuidv4(),
                 title: `Edit Me`,
-                start: '2023-04-11',
+                start: '2024-06-11',
                 backgroundColor: 'red',
                 allDay: false,
                 editable: false,
@@ -1069,8 +1070,8 @@
             {
                 id: uuidv4(),
                 title: `Delete me`,
-                start: '2023-04-17',
-                end: '2023-04-21',
+                start: '2024-06-17',
+                end: '2024-06-21',
 
                 allDay: false,
                 editable: false,
@@ -1108,7 +1109,7 @@
             },
             plugins: ['dayGrid', 'interaction'],
             allDay: false,
-            editable: true,
+            editable: false,
             selectable: true,
             unselectAuto: false,
             displayEventTime: false,
@@ -1180,7 +1181,7 @@
                             const eventIndex = myEvents.findIndex(event => event.id === updatedEvents.id);
                             myEvents.splice(eventIndex, 1, updatedEvents);
 
-                            localStorage.setItem('events', JSON.stringify(myEvents));
+                            // localStorage.setItem('events', JSON.stringify(myEvents));
 
                             // Update the event in the calendar
                             const calendarEvent = calendar.getEventById(info.event.id);
@@ -1199,53 +1200,53 @@
 
                     });
 
-                    // Delete menu
-                    menu.querySelector('li:last-child').addEventListener('click', function() {
-                        const deleteModal = new bootstrap.Modal(document.getElementById('delete-modal'));
-                        const modalBody = document.getElementById('delete-modal-body');
-                        const cancelModal = document.getElementById('cancel-button');
-                        modalBody.innerHTML = `Are you sure you want to delete <b>"${info.event.title}"</b>`
-                        deleteModal.show();
+                    // // Delete menu
+                    // menu.querySelector('li:last-child').addEventListener('click', function() {
+                    //     const deleteModal = new bootstrap.Modal(document.getElementById('delete-modal'));
+                    //     const modalBody = document.getElementById('delete-modal-body');
+                    //     const cancelModal = document.getElementById('cancel-button');
+                    //     modalBody.innerHTML = `Are you sure you want to delete <b>"${info.event.title}"</b>`
+                    //     deleteModal.show();
 
-                        const deleteButton = document.getElementById('delete-button');
-                        deleteButton.addEventListener('click', function() {
-                            myEvents.splice(eventIndex, 1);
-                            localStorage.setItem('events', JSON.stringify(myEvents));
-                            calendar.getEventById(info.event.id).remove();
-                            deleteModal.hide();
-                            menu.remove();
+                    //     const deleteButton = document.getElementById('delete-button');
+                    //     deleteButton.addEventListener('click', function() {
+                    //         myEvents.splice(eventIndex, 1);
+                    //         // localStorage.setItem('events', JSON.stringify(myEvents));
+                    //         calendar.getEventById(info.event.id).remove();
+                    //         deleteModal.hide();
+                    //         menu.remove();
 
-                        });
+                    //     });
 
-                        cancelModal.addEventListener('click', function() {
-                            deleteModal.hide();
-                        })
-
-
+                    //     cancelModal.addEventListener('click', function() {
+                    //         deleteModal.hide();
+                    //     })
 
 
-                    });
-                    document.addEventListener('click', function() {
-                        menu.remove();
-                    });
+
+
+                    // });
+                    // document.addEventListener('click', function() {
+                    //     menu.remove();
+                    // });
                 });
             },
 
-            eventDrop: function(info) {
-                let myEvents = JSON.parse(localStorage.getItem('events')) || [];
-                const eventIndex = myEvents.findIndex(event => event.id === info.event.id);
-                const updatedEvent = {
-                    ...myEvents[eventIndex],
-                    id: info.event.id,
-                    title: info.event.title,
-                    start: moment(info.event.start).format('YYYY-MM-DD'),
-                    end: moment(info.event.end).format('YYYY-MM-DD'),
-                    backgroundColor: info.event.backgroundColor
-                };
-                myEvents.splice(eventIndex, 1, updatedEvent); // Replace old event data with updated event data
-                localStorage.setItem('events', JSON.stringify(myEvents));
-                console.log(updatedEvent);
-            }
+            // eventDrop: function(info) {
+            //     let myEvents = JSON.parse(localStorage.getItem('events')) || [];
+            //     const eventIndex = myEvents.findIndex(event => event.id === info.event.id);
+            //     const updatedEvent = {
+            //         ...myEvents[eventIndex],
+            //         id: info.event.id,
+            //         title: info.event.title,
+            //         start: moment(info.event.start).format('YYYY-MM-DD'),
+            //         end: moment(info.event.end).format('YYYY-MM-DD'),
+            //         backgroundColor: info.event.backgroundColor
+            //     };
+            //     myEvents.splice(eventIndex, 1, updatedEvent); // Replace old event data with updated event data
+            //     localStorage.setItem('events', JSON.stringify(myEvents));
+            //     console.log(updatedEvent);
+            // }
 
         });
 
@@ -1300,7 +1301,7 @@
             calendar.addEvent(newEvent);
 
             // save events to local storage
-            localStorage.setItem('events', JSON.stringify(myEvents));
+            // localStorage.setItem('events', JSON.stringify(myEvents));
 
             myModal.hide();
             form.reset();

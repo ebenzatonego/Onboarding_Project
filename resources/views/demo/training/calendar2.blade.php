@@ -291,8 +291,8 @@
     }
 
     .fc-customButton-button,
-    .fc-header-toolbar,.fc-license-message {
-       display: none !important;
+    .fc-header-toolbar {
+        display: none !important;
     }
 
     @media only screen and (max-width: 767px) {
@@ -909,6 +909,13 @@
 
 
 
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.2.0/main.min.css'>
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.3.0/main.min.css'>
+
+
+
+
+
 <div class="modal fade edit-form" id="form" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content" style="border-radius: 8.214px;position: relative;">
@@ -1015,158 +1022,304 @@
         </div>
     </div>
 </div>
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@6.1.13/index.global.min.js'></script>
+<!-- partial -->
+<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.2.0/main.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.2.0/main.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@4.2.0/main.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/uuid@8.3.2/dist/umd/uuidv4.min.js'></script>
+
+
+
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const calendarEl = document.getElementById('calendar');
-        // const myModal = new bootstrap.Modal(document.getElementById('form'));
+        const myModal = new bootstrap.Modal(document.getElementById('form'));
         const dangerAlert = document.getElementById('danger-alert');
         const close = document.querySelector('.btn-close');
 
 
-        
-
-        var data_arr_events = [] ;
-        get_data_for_calendar();
-
-
-    });
-
-    function get_data_for_calendar(){
-
-        // fetch("{{ url('/') }}/api/get_data_for_calendar")
-        //     .then(response => response.json())
-        //     .then(result => {
-        //         console.log(result);
-
-        //         for (let i = 0; i < result.length; i++) {
-        //             // สร้างข้อมูลใหม่ที่ต้องการเพิ่ม
-
-        //             let newEvent ;
-        //             if(result[i].link_lms){
-        //                 newEvent = {
-        //                     title: result[i].name_article,
-        //                     url: result[i].link_lms,
-        //                     start: result[i].start_date
-        //                 };
-        //             }
-        //             else{
-        //                 newEvent = {
-        //                     title: result[i].name_article,
-        //                     start: result[i].start_date
-        //                 };
-        //             }
-                    
-        //             // เพิ่มข้อมูลใหม่เข้าไปในอาร์เรย์ data_arr_events
-        //             data_arr_events.push(newEvent);
-        //         }
-
-        //     });
-
-            data_arr_events = [
-                {
-                    title: 'Go To Home',
-                    url: "{{ url('/home') }}",
-                    start: '2024-06-01'
-                },
-                {
-                    title: 'Long Event',
-                    start: '2024-06-07',
-                    end: '2024-06-10',
-                    backgroundColor: '#00BF2D'
-                },
-                {
-                    title: 'Meeting',
-                    start: '2024-06-12T10:30:00',
-                    end: '2024-06-12T12:30:00'
-                },
-                {
-                    title: 'Lunch',
-                    start: '2024-06-12T12:00:00'
-                },
-                {
-                    title: 'Dinner',
-                    start: '2024-06-12T20:00:00'
-                },
-                {
-                    title: 'Birthday Party',
-                    start: '2024-06-13T07:00:00',
-                    backgroundColor: 'red'
-                }
-            ];
-
-            setTimeout(() => {
-                create_calendar(data_arr_events);
-            }, 500);
-        }
-
-        function create_calendar(data_arr_events){
-
-            const currentDate = new Date();
-            const year = currentDate.getFullYear();
-            const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-            const day = String(currentDate.getDate()).padStart(2, '0');
-
-            const formattedDate = `${year}-${month}-${day}`;
-            // console.log(formattedDate);
-
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                // เปิดลิงก์ในแท็บใหม่
-                eventClick: function(info) {
-                    console.log(info.event.startStr);
-                },
-                headerToolbar: {
-                    left: 'prev,next',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
-                },
-                initialView: 'dayGridMonth',
-                initialDate: formattedDate,
-                navLinks: true, // can click day/week names to navigate views
-                selectable: true,
-                nowIndicator: true,
-                dayMaxEvents: true, // allow "more" link when too many events
-                editable: false,
-                selectable: true,
-                businessHours: true,
-                dayMaxEvents: true, // allow "more" link when too many events
-                events: data_arr_events,
-
-            });
-            calendar.render();
-
-            updateTitle();
-
-        }
-</script>
-<script>
-    document.getElementById('prev-pc').addEventListener('click', function() {
-            // calendar.prev(); // call method
-           document.querySelector('.fc-prev-button').click();
-
+        document.getElementById('prev-pc').addEventListener('click', function() {
+            calendar.prev(); // call method
         });
 
         document.getElementById('next-pc').addEventListener('click', function() {
-           document.querySelector('.fc-next-button').click();
+            calendar.next(); // call method
         });
 
         document.getElementById('prev-mobile').addEventListener('click', function() {
-            // calendar.prev(); // call method
-           document.querySelector('.fc-prev-button').click();
-
+            calendar.prev(); // call method
         });
 
         document.getElementById('next-mobile').addEventListener('click', function() {
-           document.querySelector('.fc-next-button').click();
+            calendar.next(); // call method
         });
 
+        const myEvents = JSON.parse(localStorage.getItem('events')) || [{
+                id: uuidv4(),
+                title: `Edit Me`,
+                start: '2023-04-11',
+                backgroundColor: 'red',
+                allDay: false,
+                editable: false,
+            },
+            {
+                id: uuidv4(),
+                title: `Delete me`,
+                start: '2023-04-17',
+                end: '2023-04-21',
+
+                allDay: false,
+                editable: false,
+            },
+        ];
+
+
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+            customButtons: {
+                customButton: {
+                    text: 'Add Event',
+                    click: function() {
+                        myModal.show();
+                        const modalTitle = document.getElementById('modal-title');
+                        const submitButton = document.getElementById('submit-button');
+                        modalTitle.innerHTML = 'พิมพ์บันทึกของคุณ'
+                        submitButton.innerHTML = 'Add Event'
+                        submitButton.classList.remove('btn-primary');
+                        submitButton.classList.add('btn-success');
+
+
+
+                        close.addEventListener('click', () => {
+                            myModal.hide()
+                        })
+
+
+
+                    }
+                }
+            },
+            header: {
+                center: 'customButton', // add your custom button here
+                right: ''
+            },
+            plugins: ['dayGrid', 'interaction'],
+            allDay: false,
+            editable: true,
+            selectable: true,
+            unselectAuto: false,
+            displayEventTime: false,
+            events: myEvents,
+            eventRender: function(info) {
+                info.el.addEventListener('contextmenu', function(e) {
+                    e.preventDefault();
+                    let existingMenu = document.querySelector('.context-menu');
+                    existingMenu && existingMenu.remove();
+                    let menu = document.createElement('div');
+                    menu.className = 'context-menu';
+                    menu.innerHTML = `<ul>
+        <li id="agaggnf"><i class="fas fa-edit "></i>Edit</li>
+        <li id="aagag"><i class="fas fa-trash-alt "></i>Delete</li>
+        </ul>`;
+
+                    const eventIndex = myEvents.findIndex(event => event.id === info.event.id);
+
+
+                    document.body.appendChild(menu);
+                    menu.style.top = e.pageY + 'px';
+                    menu.style.left = e.pageX + 'px';
+
+                    // Edit context menu
+
+                    menu.querySelector('li:first-child').addEventListener('click', function() {
+                        menu.remove();
+
+                        const editModal = new bootstrap.Modal(document.getElementById('form'));
+                        const modalTitle = document.getElementById('modal-title');
+                        const titleInput = document.getElementById('event-title');
+                        const startDateInput = document.getElementById('start-date');
+                        const endDateInput = document.getElementById('end-date');
+                        const colorInput = document.getElementById('event-color');
+                        const submitButton = document.getElementById('submit-button');
+                        const cancelButton = document.getElementById('cancel-button');
+                        modalTitle.innerHTML = 'Edit Event';
+                        titleInput.value = info.event.title;
+                        startDateInput.value = moment(info.event.start).format('YYYY-MM-DD');
+                        endDateInput.value = moment(info.event.end, 'YYYY-MM-DD').subtract(1, 'day').format('YYYY-MM-DD');
+                        colorInput.value = info.event.backgroundColor;
+                        submitButton.innerHTML = 'Save Changes';
+
+
+
+
+
+                        editModal.show();
+
+                        submitButton.classList.remove('btn-success')
+                        submitButton.classList.add('btn-primary')
+
+                        // Edit button
+
+                        submitButton.addEventListener('click', function() {
+                            const updatedEvents = {
+                                id: info.event.id,
+                                title: titleInput.value,
+                                start: startDateInput.value,
+                                end: moment(endDateInput.value, 'YYYY-MM-DD').add(1, 'day').format('YYYY-MM-DD'),
+                                backgroundColor: colorInput.value
+                            }
+
+                            if (updatedEvents.end <= updatedEvents.start) { // add if statement to check end date
+                                dangerAlert.style.display = 'block';
+                                return;
+                            }
+
+                            const eventIndex = myEvents.findIndex(event => event.id === updatedEvents.id);
+                            myEvents.splice(eventIndex, 1, updatedEvents);
+
+                            localStorage.setItem('events', JSON.stringify(myEvents));
+
+                            // Update the event in the calendar
+                            const calendarEvent = calendar.getEventById(info.event.id);
+                            calendarEvent.setProp('title', updatedEvents.title);
+                            calendarEvent.setStart(updatedEvents.start);
+                            calendarEvent.setEnd(updatedEvents.end);
+                            calendarEvent.setProp('backgroundColor', updatedEvents.backgroundColor);
+
+
+
+                            editModal.hide();
+
+                        })
+
+
+
+                    });
+
+                    // Delete menu
+                    menu.querySelector('li:last-child').addEventListener('click', function() {
+                        const deleteModal = new bootstrap.Modal(document.getElementById('delete-modal'));
+                        const modalBody = document.getElementById('delete-modal-body');
+                        const cancelModal = document.getElementById('cancel-button');
+                        modalBody.innerHTML = `Are you sure you want to delete <b>"${info.event.title}"</b>`
+                        deleteModal.show();
+
+                        const deleteButton = document.getElementById('delete-button');
+                        deleteButton.addEventListener('click', function() {
+                            myEvents.splice(eventIndex, 1);
+                            localStorage.setItem('events', JSON.stringify(myEvents));
+                            calendar.getEventById(info.event.id).remove();
+                            deleteModal.hide();
+                            menu.remove();
+
+                        });
+
+                        cancelModal.addEventListener('click', function() {
+                            deleteModal.hide();
+                        })
+
+
+
+
+                    });
+                    document.addEventListener('click', function() {
+                        menu.remove();
+                    });
+                });
+            },
+
+            eventDrop: function(info) {
+                let myEvents = JSON.parse(localStorage.getItem('events')) || [];
+                const eventIndex = myEvents.findIndex(event => event.id === info.event.id);
+                const updatedEvent = {
+                    ...myEvents[eventIndex],
+                    id: info.event.id,
+                    title: info.event.title,
+                    start: moment(info.event.start).format('YYYY-MM-DD'),
+                    end: moment(info.event.end).format('YYYY-MM-DD'),
+                    backgroundColor: info.event.backgroundColor
+                };
+                myEvents.splice(eventIndex, 1, updatedEvent); // Replace old event data with updated event data
+                localStorage.setItem('events', JSON.stringify(myEvents));
+                console.log(updatedEvent);
+            }
+
+        });
+
+        calendar.on('select', function(info) {
+
+            const startDateInput = document.getElementById('start-date');
+            const endDateInput = document.getElementById('end-date');
+            startDateInput.value = info.startStr;
+            const endDate = moment(info.endStr, 'YYYY-MM-DD').subtract(1, 'day').format('YYYY-MM-DD');
+            endDateInput.value = endDate;
+            if (startDateInput.value === endDate) {
+                endDateInput.value = '';
+            }
+        });
+
+
+        calendar.render();
+
+        const form = document.querySelector('form');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // prevent default form submission
+
+            // retrieve the form input values
+            const title = document.querySelector('#event-title').value;
+            const startDate = document.querySelector('#start-date').value;
+            const endDate = document.querySelector('#end-date').value;
+            const color = document.querySelector('#event-color').value;
+            const endDateFormatted = moment(endDate, 'YYYY-MM-DD').add(1, 'day').format('YYYY-MM-DD');
+            const eventId = uuidv4();
+
+            console.log(eventId);
+
+            if (endDateFormatted <= startDate) { // add if statement to check end date
+                dangerAlert.style.display = 'block';
+                return;
+            }
+
+            const newEvent = {
+                id: eventId,
+                title: title,
+                start: startDate,
+                end: endDateFormatted,
+                allDay: false,
+                backgroundColor: color
+            };
+
+            // add the new event to the myEvents array
+            myEvents.push(newEvent);
+
+            // render the new event on the calendar
+            calendar.addEvent(newEvent);
+
+            // save events to local storage
+            localStorage.setItem('events', JSON.stringify(myEvents));
+
+            myModal.hide();
+            form.reset();
+        });
+
+        myModal._element.addEventListener('hide.bs.modal', function() {
+            dangerAlert.style.display = 'none';
+            form.reset();
+        });
+        updateTitle();
+
+    });
+</script>
+<script>
     function updateTitle(type) {
         setTimeout(() => {
 
             // ดึง text จาก element ที่มี class fc-left และ tag h2
-            let titleText = document.querySelector('.fc-toolbar-title').innerHTML;
+            let titleText = document.querySelector('.fc-left h2').innerHTML;
 
             // แยกเดือนและปีออกจากกัน
             let [month, year] = titleText.split(' ');

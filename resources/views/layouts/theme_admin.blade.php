@@ -188,6 +188,8 @@
                     </ul>
                 </li>
 
+                
+
                 <li>
                     <a href="javascript:;" class="has-arrow">
                         <div class="parent-icon">
@@ -200,13 +202,30 @@
                     
                     <ul>
                         <li>
-                            <a class="btn" href="{{ url('/training_create/article') }}">
+                            
+                        </li>
+                        <ul class="mm-collapse mm-show" style="">
+                            <li class="mm-active">
+                                <a class="btn" href="{{ url('/manage_training') }}">
+                                    <i class="fa-regular fa-chart-mixed"></i> หลักสูตร
+                                </a>
+                                <ul class="mm-collapse mm-show" style="">
+                                    <li class="mm-active">
+                                        <a class="has-arrow" href="javascript:;">
+                                            <i class="bx bx-right-arrow-alt"></i>Level Two
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <li>
+                            <a class="btn" href="{{ url('/training_create') }}">
                                 <i class="fa-solid fa-file-plus"></i> เพิ่มข้อมูลหลักสูตร
                             </a>
                         </li>
                         <li>
-                            <a class="btn" href="{{ url('/training_create/table') }}">
-                                <i class="fa-solid fa-calendar-lines-pen"></i> เพิ่มตารางอบรม/สอบ
+                            <a class="btn" href="#">
+                                <i class="fa-solid fa-calendar-lines-pen"></i> ตารางอบรม/สอบ
                             </a>
                         </li>
                     </ul>

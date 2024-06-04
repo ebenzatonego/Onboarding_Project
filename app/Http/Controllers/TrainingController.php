@@ -51,17 +51,10 @@ class TrainingController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create($type_page)
+    public function create()
     {
-        if($type_page == 'article'){
-            $type_article = Training_type::get();
-            return view('training.create', compact('type_page','type_article'));
-        }
-        else if($type_page == 'table'){
-            return view('training.create', compact('type_page'));
-        }
-
-        
+        $type_article = Training_type::get();
+        return view('training.create', compact('type_article'));
     }
 
     /**
@@ -82,12 +75,9 @@ class TrainingController extends Controller
 
         Training::create($requestData);
 
-        if($requestData['type_page'] == 'article'){
-            return redirect('training_create/article')->with('flash_message', 'Training added!');
-        }
-        else if($requestData['type_page'] == 'table'){
-            return redirect('calendar_admin')->with('flash_message', 'Training added!');
-        }
+        // return redirect('training_create/article')->with('flash_message', 'Training added!');
+        return redirect('/manage_training');
+        
     }
 
     /**
@@ -153,5 +143,9 @@ class TrainingController extends Controller
         Training::destroy($id);
 
         return redirect('training')->with('flash_message', 'Training deleted!');
+    }
+
+    function manage_training(){
+        return view('training.manage_training');
     }
 }

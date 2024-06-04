@@ -19,13 +19,7 @@
                         <form method="POST" action="{{ url('/training') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                             {{ csrf_field() }}
 
-                            @if($type_page == 'article')
-                                @include ('training.form', ['formMode' => 'create'])
-                            @elseif($type_page == 'table')
-                                @include ('training.training_table', ['formMode' => 'create'])
-                            @endif
-
-                            <input type="hidden" name="type_page" value="{{ $type_page }}">
+                            @include ('training.form', ['formMode' => 'create'])
 
                         </form>
 

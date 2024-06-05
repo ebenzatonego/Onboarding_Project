@@ -60,6 +60,9 @@ Route::get('/skip_content_popup/{user_id}/{skip_content_popup}', 'AdminControlle
 Route::get('/change_status_content_popup/{click_id}', 'AdminController@change_status_content_popup');
 Route::get('/update_countTime_content_popup/{user_id}/{countTime}', 'AdminController@update_countTime_content_popup');
 
+// training
+
+Route::get('/add_training_type/{training_type}', 'Training_typeController@add_training_type');
 
 // Calendar
 Route::get('/get_data_for_calendar', 'AdminController@get_data_for_calendar');

@@ -186,7 +186,7 @@
 	<div class="breadcrumb-title pe-3">การจัดการหลักสูตร</div>
 	<div class="ms-auto">
 		<div class="btn-group">
-			<a href="{{ url('/training_create') }}" class="btn btn-primary">
+			<a href="{{ url('/training_create') }}" class="btn btn-success">
 				<i class="fa-solid fa-layer-plus"></i> เพิ่มหลักสูตรใหม่
 			</a>
 		</div>
@@ -195,6 +195,11 @@
 				<i class="fa-solid fa-list-ol"></i> การจัดการเมนู
 			</span>
 		</div>
+    <div class="btn-group">
+      <span class="btn btn-info" data-toggle="modal" data-target="#Modal_manage_Highlight">
+        <i class="fa-solid fa-stars"></i> การจัดการ Highlight
+      </span>
+    </div>
 	</div>
 </div>
 
@@ -204,7 +209,7 @@
 <script>
 
 	document.addEventListener('DOMContentLoaded', function () {
-        get_data_video_intro_all();
+        // get_data_video_intro_all();
     });
 
 </script>

@@ -25,6 +25,6 @@ class Training extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'detail', 'training_type_id', 'photo', 'video', 'user_like', 'user_dislike', 'user_share', 'user_fav', 'user_view', 'highlight_number','sum_rating','log_rating'];
+    protected $fillable = ['title', 'detail', 'training_type_id', 'photo', 'video', 'user_like', 'user_dislike', 'user_share', 'user_fav', 'user_view', 'highlight_number','sum_rating','log_rating','creator'];
     
 }

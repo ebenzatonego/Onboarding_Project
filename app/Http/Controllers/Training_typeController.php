@@ -117,4 +117,14 @@ class Training_typeController extends Controller
 
         return redirect('training_type')->with('flash_message', 'Training_type deleted!');
     }
+
+    function add_training_type($training_type){
+
+        $requestData = [];
+        $requestData['type_article'] = $training_type;
+        
+        $data = Training_type::create($requestData);
+
+        return $data ;
+    }
 }

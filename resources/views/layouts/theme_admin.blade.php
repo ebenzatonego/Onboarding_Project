@@ -188,45 +188,44 @@
                     </ul>
                 </li>
 
-                
-
                 <li>
-                    <a href="javascript:;" class="has-arrow">
+                    <a class="has-arrow">
                         <div class="parent-icon">
-                            <i class="fa-solid fa-books"></i>
+                            <i class="fa-regular fa-chart-mixed"></i>
                         </div>
                         <div class="menu-title">
                             Training
                         </div>
                     </a>
-                    
-                    <ul>
+                    <ul class="mm-collapse">
                         <li>
-                            
-                        </li>
-                        <ul class="mm-collapse mm-show" style="">
-                            <li class="mm-active">
-                                <a class="btn" href="{{ url('/manage_training') }}">
-                                    <i class="fa-regular fa-chart-mixed"></i> หลักสูตร
-                                </a>
-                                <ul class="mm-collapse mm-show" style="">
-                                    <li class="mm-active">
-                                        <a class="has-arrow" href="javascript:;">
-                                            <i class="bx bx-right-arrow-alt"></i>Level Two
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <li>
-                            <a class="btn" href="{{ url('/training_create') }}">
-                                <i class="fa-solid fa-file-plus"></i> เพิ่มข้อมูลหลักสูตร
+                            <a class="has-arrow" href="javascript:;">
+                                <i class="bx bx-right-arrow-alt"></i>หลักสูตร
                             </a>
+                            <ul class="mm-collapse">
+                                <li>
+                                    <a class="btn" href="{{ url('/manage_training') }}">
+                                        <i class="fa-regular fa-chart-mixed"></i> จัดการหลักสูตร
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="btn" href="{{ url('/training_create') }}">
+                                        <i class="fa-solid fa-file-plus"></i> เพิ่มข้อมูลหลักสูตร
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
-                            <a class="btn" href="#">
-                                <i class="fa-solid fa-calendar-lines-pen"></i> ตารางอบรม/สอบ
+                            <a class="has-arrow" href="javascript:;">
+                                <i class="fa-regular fa-chart-mixed"></i> ตารางอบรม/สอบ
                             </a>
+                            <ul class="mm-collapse">
+                                <li>
+                                    <a class="btn" href="#">
+                                        <i class="fa-solid fa-file-plus"></i> เพิ่มข้อมูล
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </li>

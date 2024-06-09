@@ -347,8 +347,11 @@
 
                             </div>
                             <div class="ms-2">
-                                <P style="font-size: 16px; font-weight: bold;margin-bottom: 10px;">
+                                <P style="font-size: 16px; font-weight: bold;margin-bottom: 2px;">
                                     {{ Auth::user()->name }}
+                                </P>
+                                <P style="font-size: 14px; font-weight: bold;margin-bottom: 10px;">
+                                    {{ Auth::user()->nickname }}
                                 </P>
                                 <P style="font-size: 12px; font-weight: bold;color: #383838;margin: 0;">
                                     รหัสตัวแทน : {{ Auth::user()->account }}

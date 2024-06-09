@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Models\Training;
 use App\Models\Training_type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TrainingController extends Controller
 {
@@ -147,5 +148,370 @@ class TrainingController extends Controller
 
     function manage_training(){
         return view('training.manage_training');
+    }
+
+    function give_rating_training($user_id,$training_id,$selectedRating){
+
+        $data_training = Training::where('id' , $training_id)->first();
+
+        // User Like
+        $new_user_like = array();
+        if( !empty($data_training->user_like) ){
+            $array = json_decode($data_training->user_like, true);
+            if (!in_array($user_id, $array)) {
+                // ถ้าไม่มี ให้เพิ่มค่า $user_id เข้าไป
+                $array[] = $user_id;
+            }
+            $new_user_like = json_encode($array);
+        }else{
+            array_push($new_user_like, $user_id);
+        }
+
+        $data_training->user_like = $new_user_like ;
+        $data_training->save();
+        // END User Like
+
+        // RATING
+        if( empty($data_training->log_rating) ){
+
+            $array_log[$user_id]['1']['status'] = 'Active';
+            $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+            $array_log[$user_id]['1']['rating'] = $selectedRating;
+
+        }else{
+
+            $array_log = json_decode($data_training->log_rating, true);
+
+            if (array_key_exists($user_id, $array_log)) {
+
+                // วนลูปเพื่อค้นหาและเปลี่ยนสถานะจาก 'Active' เป็น 'Canceled'
+                foreach ($array_log[$user_id] as $round => $details) {
+                    if (isset($details['status']) && $details['status'] === 'Active') {
+                        $array_log[$user_id][$round]['status'] = 'Canceled';
+                    }
+                }
+
+                // หากเท่ากันให้เพิ่ม key round และ time ใน key นั้น
+                $count_round_old = count($array_log[$user_id]);
+                $new_round = intval($count_round_old) + 1 ;
+
+                $array_log[$user_id][$new_round]['status'] = 'Active';
+                $array_log[$user_id][$new_round]['datetime'] = date("d/m/Y H:i");
+                $array_log[$user_id][$new_round]['rating'] = $selectedRating;
+            } else {
+                // หากไม่เท่ากันให้เพิ่ม key ใหม่โดยใช้ $user_id
+                $array_log[$user_id]['1']['status'] = 'Active';
+                $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+                $array_log[$user_id]['1']['rating'] = $selectedRating;
+            }
+
+        }
+
+        $jsonLog = json_encode($array_log);
+
+        DB::table('trainings')
+            ->where([ 
+                    ['id', $training_id],
+                ])
+            ->update([
+                    'log_rating' => $jsonLog,
+                ]);
+
+        $sum_rating = $this->sum_rating($training_id);
+        // END RATING
+
+        return $sum_rating;
+
+    }
+
+    function sum_rating($training_id){
+        $data_training = Training::where('id' , $training_id)->first();
+        $log_rating = $data_training->log_rating ;
+        $user_like = $data_training->user_like ;
+
+        $count_array_user_like = 0 ;
+        if( !empty($user_like) ){
+            $array_user_like = json_decode($user_like, true);
+            $count_array_user_like = count($array_user_like);
+        }
+
+        if( !empty($log_rating) ){
+            $array_log = json_decode($log_rating, true);
+
+            $total_active_rating = 0;
+
+            // วนลูปผ่านอาร์เรย์เพื่อค้นหาและบวกรวมค่า rating ที่มี status เป็น 'Active'
+            foreach ($array_log as $user_id => $rounds) {
+                foreach ($rounds as $round => $details) {
+                    if (isset($details['status']) && $details['status'] === 'Active') {
+                        $total_active_rating += (int)$details['rating'];
+                    }
+                }
+            }
+
+            $sum_rating = (int)$total_active_rating / (int)$count_array_user_like;
+
+            DB::table('trainings')
+            ->where([ 
+                    ['id', $training_id],
+                ])
+            ->update([
+                    'sum_rating' => $sum_rating,
+                ]);
+
+        }
+
+        return $sum_rating ;
+
+    }
+
+    function user_cancel_like($user_id,$training_id){
+        $data_training = Training::where('id' , $training_id)->first();
+        $new_user_like = array();
+
+        if( !empty($data_training->user_like) ){
+            $array = json_decode($data_training->user_like, true);
+
+            // เช็คว่าในอาร์เรย์มีค่า $user_id หรือไม่
+            if (($key = array_search($user_id, $array)) !== false) {
+                // ถ้ามี ให้ลบค่า $user_id ออกจากอาร์เรย์
+                unset($array[$key]);
+            }
+
+            // จัดเรียงค่าดัชนีใหม่ของอาร์เรย์
+            $array = array_values($array);
+
+            $new_user_like = json_encode($array);
+
+            $data_training->user_like = $new_user_like ;
+            $data_training->save();
+
+        }
+
+        // RATING
+        if( !empty($data_training->log_rating) ){
+
+            $array_log = json_decode($data_training->log_rating, true);
+
+            if (array_key_exists($user_id, $array_log)) {
+
+                // วนลูปเพื่อค้นหาและเปลี่ยนสถานะจาก 'Active' เป็น 'Canceled'
+                foreach ($array_log[$user_id] as $round => $details) {
+                    if (isset($details['status']) && $details['status'] === 'Active') {
+                        $array_log[$user_id][$round]['status'] = 'Canceled';
+                    }
+                }
+            }
+
+            $jsonLog = json_encode($array_log);
+
+            DB::table('trainings')
+                ->where([ 
+                        ['id', $training_id],
+                    ])
+                ->update([
+                        'log_rating' => $jsonLog,
+                    ]);
+
+            }
+
+            $sum_rating = $this->sum_rating($training_id);
+
+        return $sum_rating;
+    }
+
+    function submit_reasons_dislike($user_id,$training_id,$reasons_dislike){
+
+        $data_training = Training::where('id' , $training_id)->first();
+        $array_log = array();
+
+        if( empty($data_training->user_dislike) ){
+
+            $array_log[$user_id]['1']['status'] = 'Active';
+            $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+            $array_log[$user_id]['1']['reasons'] = $reasons_dislike;
+
+        }else{
+
+            $array_log = json_decode($data_training->user_dislike, true);
+
+            if (array_key_exists($user_id, $array_log)) {
+
+                // วนลูปเพื่อค้นหาและเปลี่ยนสถานะจาก 'Active' เป็น 'Canceled'
+                foreach ($array_log[$user_id] as $round => $details) {
+                    if (isset($details['status']) && $details['status'] === 'Active') {
+                        $array_log[$user_id][$round]['status'] = 'Canceled';
+                    }
+                }
+
+                // หากเท่ากันให้เพิ่ม key round และ time ใน key นั้น
+                $count_round_old = count($array_log[$user_id]);
+                $new_round = intval($count_round_old) + 1 ;
+
+                $array_log[$user_id][$new_round]['status'] = 'Active';
+                $array_log[$user_id][$new_round]['datetime'] = date("d/m/Y H:i");
+                $array_log[$user_id][$new_round]['reasons'] = $reasons_dislike;
+            } else {
+                // หากไม่เท่ากันให้เพิ่ม key ใหม่โดยใช้ $user_id
+                $array_log[$user_id]['1']['status'] = 'Active';
+                $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+                $array_log[$user_id]['1']['reasons'] = $reasons_dislike;
+            }
+
+        }
+
+        $jsonLog = json_encode($array_log);
+
+        DB::table('trainings')
+            ->where([ 
+                    ['id', $training_id],
+                ])
+            ->update([
+                    'user_dislike' => $jsonLog,
+                ]);
+    }
+
+    function user_cancel_dislike($user_id,$training_id){
+
+        $data_training = Training::where('id' , $training_id)->first();
+        $array_log = array();
+
+        if( !empty($data_training->user_dislike) ){
+
+            $array_log = json_decode($data_training->user_dislike, true);
+
+            if (array_key_exists($user_id, $array_log)) {
+
+                // วนลูปเพื่อค้นหาและเปลี่ยนสถานะจาก 'Active' เป็น 'Canceled'
+                foreach ($array_log[$user_id] as $round => $details) {
+                    if (isset($details['status']) && $details['status'] === 'Active') {
+                        $array_log[$user_id][$round]['status'] = 'Canceled';
+                    }
+                }
+            } 
+
+        }
+
+        $jsonLog = json_encode($array_log);
+
+        DB::table('trainings')
+            ->where([ 
+                    ['id', $training_id],
+                ])
+            ->update([
+                    'user_dislike' => $jsonLog,
+                ]);
+
+    }
+
+    function user_click_fav_btn($user_id,$training_id,$type){
+
+        $data_training = Training::where('id' , $training_id)->first();
+        $array_log = array();
+
+        if($type == 'Yes'){
+
+            if( empty($data_training->user_fav) ){
+
+                $array_log[$user_id]['1']['status'] = 'Active';
+                $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+
+            }else{
+
+                $array_log = json_decode($data_training->user_fav, true);
+
+                if (array_key_exists($user_id, $array_log)) {
+
+                    // วนลูปเพื่อค้นหาและเปลี่ยนสถานะจาก 'Active' เป็น 'Canceled'
+                    foreach ($array_log[$user_id] as $round => $details) {
+                        if (isset($details['status']) && $details['status'] === 'Active') {
+                            $array_log[$user_id][$round]['status'] = 'Canceled';
+                        }
+                    }
+
+                    // หากเท่ากันให้เพิ่ม key round และ time ใน key นั้น
+                    $count_round_old = count($array_log[$user_id]);
+                    $new_round = intval($count_round_old) + 1 ;
+
+                    $array_log[$user_id][$new_round]['status'] = 'Active';
+                    $array_log[$user_id][$new_round]['datetime'] = date("d/m/Y H:i");
+                } else {
+                    // หากไม่เท่ากันให้เพิ่ม key ใหม่โดยใช้ $user_id
+                    $array_log[$user_id]['1']['status'] = 'Active';
+                    $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+                }
+
+            }
+
+        }
+        else if($type == 'No'){
+            if( !empty($data_training->user_fav) ){
+
+                $array_log = json_decode($data_training->user_fav, true);
+
+                if (array_key_exists($user_id, $array_log)) {
+
+                    // วนลูปเพื่อค้นหาและเปลี่ยนสถานะจาก 'Active' เป็น 'Canceled'
+                    foreach ($array_log[$user_id] as $round => $details) {
+                        if (isset($details['status']) && $details['status'] === 'Active') {
+                            $array_log[$user_id][$round]['status'] = 'Canceled';
+                        }
+                    }
+                }
+
+            }
+        }
+
+        $jsonLog = json_encode($array_log);
+
+        DB::table('trainings')
+            ->where([ 
+                    ['id', $training_id],
+                ])
+            ->update([
+                    'user_fav' => $jsonLog,
+                ]);
+
+        return 'success' ;
+
+    }
+
+    function update_user_view($user_id,$training_id){
+        $data_training = Training::where('id' , $training_id)->first();
+        $array_log = array();
+
+        if( empty($data_training->user_view) ){
+
+            $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+
+        }else{
+
+            $array_log = json_decode($data_training->user_view, true);
+
+            if (array_key_exists($user_id, $array_log)) {
+
+                // หากเท่ากันให้เพิ่ม key round และ time ใน key นั้น
+                $count_round_old = count($array_log[$user_id]);
+                $new_round = intval($count_round_old) + 1 ;
+
+                $array_log[$user_id][$new_round]['datetime'] = date("d/m/Y H:i");
+            } else {
+                // หากไม่เท่ากันให้เพิ่ม key ใหม่โดยใช้ $user_id
+                $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+            }
+
+        }
+
+        $jsonLog = json_encode($array_log);
+
+        DB::table('trainings')
+            ->where([ 
+                    ['id', $training_id],
+                ])
+            ->update([
+                    'user_view' => $jsonLog,
+                ]);
+
+        return 'success' ;
     }
 }

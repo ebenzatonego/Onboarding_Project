@@ -61,8 +61,14 @@ Route::get('/change_status_content_popup/{click_id}', 'AdminController@change_st
 Route::get('/update_countTime_content_popup/{user_id}/{countTime}', 'AdminController@update_countTime_content_popup');
 
 // training
-
 Route::get('/add_training_type/{training_type}', 'Training_typeController@add_training_type');
+Route::get('/give_rating_training/{user_id}/{training_id}/{selectedRating}', 'TrainingController@give_rating_training');
+Route::get('/user_cancel_like/{user_id}/{training_id}', 'TrainingController@user_cancel_like');
+Route::get('/submit_reasons_dislike/{user_id}/{training_id}/{reasons_dislike}', 'TrainingController@submit_reasons_dislike');
+Route::get('/user_cancel_dislike/{user_id}/{training_id}', 'TrainingController@user_cancel_dislike');
+Route::get('/user_click_fav_btn/{user_id}/{training_id}/{type}', 'TrainingController@user_click_fav_btn');
+Route::get('/update_user_view/{user_id}/{training_id}', 'TrainingController@update_user_view');
+
 
 // Calendar
 Route::get('/get_data_for_calendar', 'AdminController@get_data_for_calendar');

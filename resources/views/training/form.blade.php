@@ -642,6 +642,43 @@ img {
                             {!! $errors->first('detail', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>
+                    <div class="row mb-3">
+                        <label for="status" class="col-sm-2 col-form-label">
+                            เปิดใช้งานทันที
+                        </label>
+                        <div class="col-sm-10" style="position: relative;">
+                            <label class="switch">
+                                <input id="check_status" class="cb" type="checkbox">
+                                <span class="toggle" onclick="click_check_status();">
+                                    <span class="left">off</span>
+                                    <span class="right">on</span>
+                                </span>
+                            </label>
+                            <input class="form-control d-none" name="status" type="text" id="status" value="" readonly="">
+                            
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="status" class="col-sm-2 col-form-label">
+                            เวลาแสดงผล
+                        </label>
+                        <div class="col-sm-10" style="position: relative;">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label class="col-form-label mb-2">
+                                        เริ่มต้น <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="datetime-local" name="datetime_start" id="datetime_start" class="form-control" required onchange="check_data_for_submit();">
+                                </div>
+                                <div class="col-6">
+                                    <label class="col-form-label mb-2">
+                                        สิ้นสุด <span class="text-danger">(สามารถเว้นว่างได้ หากไม่มีกำหนดสิ้นสุด)</span>
+                                    </label>
+                                    <input type="datetime-local" name="datetime_end" id="datetime_end" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row mb-3 d-none">
                         <label for="creator" class="col-sm-2 col-form-label">
                             Creator User Id
@@ -915,8 +952,9 @@ img {
         let training_type_id = document.querySelector('#training_type_id').value;
         let title = document.querySelector('#title').value;
         let select_photo = document.querySelector('#select_photo').value;
+        let datetime_start = document.querySelector('#datetime_start').value;
 
-        if (training_type_id && title && select_photo) {
+        if (training_type_id && title && select_photo && datetime_start) {
             btn_submit.classList.remove('disabled');
         }
         else{
@@ -1011,6 +1049,37 @@ upload.addEventListener('change', (e) => {
         reader.readAsDataURL(e.target.files[0]);
     }
 });
+
+function click_check_status() {
+    let check_status = document.querySelector('#check_status').checked ;
+        // console.log(check_status);
+    let status = document.querySelector('#status') ;
+    let datetime_start = document.querySelector('#datetime_start');
+
+    if(!check_status){
+        status.value = 'Yes';
+
+        let now = new Date();
+        let year = now.getFullYear();
+        let month = String(now.getMonth() + 1).padStart(2, '0');
+        let day = String(now.getDate()).padStart(2, '0');
+        let hours = String(now.getHours()).padStart(2, '0');
+        let minutes = String(now.getMinutes()).padStart(2, '0');
+
+        // Format the current date and time to YYYY-MM-DDTHH:MM
+        let currentDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
+
+        datetime_start.value = currentDateTime;
+        datetime_start.setAttribute('readonly', 'true');
+
+    }else{
+        status.value = '';
+        datetime_start.value = '';
+        datetime_start.removeAttribute("readonly");
+    }
+
+    check_data_for_submit();
+}
 
 </script>
 

@@ -117,6 +117,8 @@ Route::middleware(['auth', 'role:Super-admin,Admin,member'])->group(function () 
 
     // News
     Route::get('/news_index', 'NewsController@index');
+    Route::get('/training_show/{id}', 'TrainingController@show');
+    Route::get('/training', 'TrainingController@index');
 
 });
 

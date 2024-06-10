@@ -47,7 +47,7 @@
     <!-- fullcalendar -->
     <link href="{{ asset('/theme/plugins/fullcalendar/css/main.min.css') }}" rel="stylesheet" />
 
-    <title>Admin - The AZ Sale Onboarding</title>
+    <title>Admin - AGENCY JOURNEY</title>
 
 </head>
 

@@ -1,7 +1,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Franchise builder 2024</title>
+    <title>AGENCY JOURNEY</title>
 
     <!-- Favicons -->
     <link href="{{ url('/img/logo/Logo Main.png') }}" rel="icon">

@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Onboarding Project</title>
+    <title>AGENCY JOURNEY</title>
 
     <!-- Favicons -->
-    <link href="{{ url('/img/logo/logo-login.png') }}" rel="icon">
-    <link href="{{ url('/img/logo/logo-login.png') }}" rel="apple-touch-icon">
+    <link href="{{ url('/img/logo/Logo Main.png') }}" rel="icon">
+    <link href="{{ url('/img/logo/Logo Main.png') }}" rel="apple-touch-icon">
 
     <!-- loader-->
     <link href="{{ asset('/theme/css/pace.min.css') }}" rel="stylesheet" />

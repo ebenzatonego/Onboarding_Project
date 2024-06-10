@@ -1,6 +1,5 @@
 @extends('layouts.theme_user')
 
-@include('profile.edit_profile_modal')
 
 <style>
     .card {
@@ -328,6 +327,8 @@
     }
 </style>
 @section('content')
+@include('profile.edit_profile_modal')
+
 <div class="container">
     <div class="main-body">
         <div class="row">
@@ -1153,14 +1154,14 @@
                     img.src = readerTarget.result;
                     img.classList.add("picture__img");
 
-                    pictureImage.innerHTML = "";
-                    pictureImage.appendChild(img);
+                    // pictureImage.innerHTML = "";
+                    // pictureImage.appendChild(img);
                 });
 
                 reader.readAsDataURL(file);
                 document.querySelector('#btn_submit_change_profile').disabled = false;
             } else {
-                pictureImage.innerHTML = pictureImageTxt;
+                // pictureImage.innerHTML = pictureImageTxt;
                 document.querySelector('#btn_submit_change_profile').disabled = true;
             }
         });

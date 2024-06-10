@@ -75,7 +75,7 @@
     }
 </style>
 
-@if(Auth::user()->id == 1)
+@if(Auth::user()->id == '1')
 <br><br><br><br><br><br><br><br>
 <!-- Modal Share social media-->
 <button id="btn_modal_Share_social_media" type="button" class="btn btn-primary d-" data-toggle="modal" data-target="#Share_social_media">

@@ -146,6 +146,10 @@ class TrainingController extends Controller
         return redirect('training')->with('flash_message', 'Training deleted!');
     }
 
+    function sub_training($type){
+        return view('training.sub_training', compact('type'));
+    }
+
     function manage_training(){
         return view('training.manage_training');
     }
@@ -510,6 +514,48 @@ class TrainingController extends Controller
                 ])
             ->update([
                     'user_view' => $jsonLog,
+                ]);
+
+        return 'success' ;
+    }
+
+    function update_countTime_trainingVideo($user_id,$countTime,$training_id){
+        $data_training = Training::where('id' , $training_id)->first();
+        $array_log = array();
+
+        if( empty($data_training->log_video) ){
+
+            $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+            $array_log[$user_id]['1']['countTime'] = $countTime;
+
+        }else{
+
+            $array_log = json_decode($data_training->log_video, true);
+
+            if (array_key_exists($user_id, $array_log)) {
+
+                // หากเท่ากันให้เพิ่ม key round และ time ใน key นั้น
+                $count_round_old = count($array_log[$user_id]);
+                $new_round = intval($count_round_old) + 1 ;
+
+                $array_log[$user_id][$new_round]['datetime'] = date("d/m/Y H:i");
+                $array_log[$user_id][$new_round]['countTime'] = $countTime;
+            } else {
+                // หากไม่เท่ากันให้เพิ่ม key ใหม่โดยใช้ $user_id
+                $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+                $array_log[$user_id]['1']['countTime'] = $countTime;
+            }
+
+        }
+
+        $jsonLog = json_encode($array_log);
+
+        DB::table('trainings')
+            ->where([ 
+                    ['id', $training_id],
+                ])
+            ->update([
+                    'log_video' => $jsonLog,
                 ]);
 
         return 'success' ;

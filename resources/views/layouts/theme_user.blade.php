@@ -4,8 +4,8 @@
     <title>The Franchise builder 2024</title>
 
     <!-- Favicons -->
-    <link href="{{ url('/img/logo/logo-login.png') }}" rel="icon">
-    <link href="{{ url('/img/logo/logo-login.png') }}" rel="apple-touch-icon">
+    <link href="{{ url('/img/logo/Logo Main.png') }}" rel="icon">
+    <link href="{{ url('/img/logo/Logo Main.png') }}" rel="apple-touch-icon">
 
     <!-- loader-->
     <link href="{{ asset('/theme/css/pace.min.css') }}" rel="stylesheet" />
@@ -212,9 +212,13 @@
         -moz-border-radius: 5px;
         -khtml-border-radius: 5px;
     }
+
 </style>
 
 <header>
+
+    @include ('Share_social')
+    
     <!-- Modal Happy birthday-->
     <button id="btn_modal_Happy_birthday" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#happybirthday"></button>
     <div class="modal fade" id="happybirthday" tabindex="-1" role="dialog" aria-labelledby="happybirthdayTitle" aria-hidden="true">
@@ -266,10 +270,10 @@
                     </li>
                 </ul> -->
                 <div class="d-flex align-items-center">
-                    <img src="{{ url('/img/logo/logo.png') }}" style="width:39px;height:37px">
+                    <img src="{{ url('/img/logo/Logo Main.png') }}" style="width:39px;height:37px">
                     <div class="ms-3 ">
-                        <p class="m-0" style="font-size: 16;font-weight: bolder;">Allianz Journey</p>
-                        <p class="m-0" style="font-size: 8px;">ALLIANZ ON-BOARDING WEB</p>
+                        <p class="m-0" style="font-size: 16;font-weight: bolder;">AGENCY JOURNEY</p>
+                        <p class="m-0" style="font-size: 8px;">ALLIANZ ON BOARDING</p>
                     </div>
                 </div>
             </div>
@@ -282,7 +286,7 @@
 
             <div class="top-menu ms-auto">
                 <ul class="navbar-nav align-items-center">
-                    <li class="nav-item mobile-search-icon">
+                    <li id="li_search_theme_user" class="nav-item mobile-search-icon d-none">
                         <a class="nav-link" href="#">	
                         <i class="fa-solid fa-magnifying-glass text-color-obd"></i>
                         </a>
@@ -348,7 +352,7 @@
     <div class="row justify-content-center mx-2 div-navbar-botttom">
         <div class="col text-center text-truncate col-navbar d-flex justify-content-center">
             <div class=" mx-2 pt-2 pb-1 mb-2">
-                <a href="{{ url('/home') }}">
+                <a href="{{ url('/page_training') }}">
                     <i class="fa-regular fa-graduation-cap fa-flip-horizontal"></i>
                     <p class="text-truncate mt-1 mb-0">
                         Training
@@ -359,7 +363,7 @@
 
         <div class="col text-center text-truncate col-navbar d-flex justify-content-center">
             <div class=" mx-2 pt-2 pb-1 mb-2">
-                <a href="{{ url('/trainning') }}" class="">
+                <a href="{{ url('/product') }}" class="">
                     <i class="fa-regular fa-clipboard-list"></i>
                     <p class="text-truncate mt-1 mb-0">
                         Product
@@ -369,7 +373,7 @@
         </div>
         <div class="col text-center text-truncate col-navbar d-flex justify-content-center">
             <div class="navbar-bottom-active mx-2 pt-2 pb-1 mb-2">
-                <a href="{{ url('/news') }}">
+                <a href="{{ url('/home') }}">
                     <i class="fa-regular fa-house"></i>
                     <p class="text-truncate mt-1 mb-0">
                         Home
@@ -379,7 +383,7 @@
         </div>
         <div class="col text-center text-truncate col-navbar d-flex justify-content-center">
             <div class=" mx-2 pt-2 pb-1 mb-2">
-                <a href="{{ url('/product') }}">
+                <a href="{{ url('/news') }}">
                     <i class="fa-regular fa-newspaper"></i>
                     <p class="text-truncate mt-1 mb-0">
                         News
@@ -389,8 +393,8 @@
         </div>
         <div class="col text-center text-truncate col-navbar d-flex justify-content-center">
             <div class=" mx-2 pt-2 pb-1 mb-2">
-                <a href="{{ url('/product') }}">
-                    <i class="fa-regular fa-wrench-simple fa-rotate-by" style="--fa-rotate-angle: 320deg;""></i>
+                <a href="{{ url('/career_paths') }}">
+                    <i class="fa-regular fa-wrench-simple fa-rotate-by" style="--fa-rotate-angle: 320deg;"></i>
                     <p class=" text-truncate mt-1 mb-0">
                         Career Path
                     </p>
@@ -399,6 +403,12 @@
         </div>
     </div>
 </div>
+
+<script>
+    function change_active_menu_theme_user(type) {
+        console.log(type);
+    }
+</script>
 
 
 <div id="navbar-botttom" class="d-none" style="z-index: 9999999999999999;">

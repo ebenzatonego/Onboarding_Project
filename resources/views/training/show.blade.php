@@ -180,6 +180,7 @@
 
 
 </style>
+
 <div class="container p-0 conteiner-detail-training">
     <div class="row">
         <div class="col-lg-5 col-md-5 p-0" style="position: relative;">
@@ -591,26 +592,32 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
-        var video = document.getElementById('trainingVideo');
-        video.addEventListener('loadedmetadata', function() {
-            var duration = video.duration;
-            var hours = Math.floor(duration / 3600);
-            var minutes = Math.floor((duration % 3600) / 60);
-            var seconds = Math.floor(duration % 60);
 
-            var formattedDuration = "";
-            if (hours > 0) {
-                formattedDuration += hours + " ชั่วโมง ";
-            }
-            if (minutes > 0) {
-                formattedDuration += minutes + " นาที ";
-            }
-            if (seconds > 0 || (hours === 0 && minutes === 0)) { // เพื่อให้แสดงวินาทีเสมอถ้าไม่มีชั่วโมงและนาที
-                formattedDuration += seconds + " วินาที";
-            }
+        change_active_menu_theme_user('training');
 
-            document.getElementById('videoDuration').innerText = formattedDuration;
-        });
+        if(document.getElementById('trainingVideo')){
+            var video = document.getElementById('trainingVideo');
+            video.addEventListener('loadedmetadata', function() {
+                var duration = video.duration;
+                var hours = Math.floor(duration / 3600);
+                var minutes = Math.floor((duration % 3600) / 60);
+                var seconds = Math.floor(duration % 60);
+
+                var formattedDuration = "";
+                if (hours > 0) {
+                    formattedDuration += hours + " ชั่วโมง ";
+                }
+                if (minutes > 0) {
+                    formattedDuration += minutes + " นาที ";
+                }
+                if (seconds > 0 || (hours === 0 && minutes === 0)) { // เพื่อให้แสดงวินาทีเสมอถ้าไม่มีชั่วโมงและนาที
+                    formattedDuration += seconds + " วินาที";
+                }
+
+                document.getElementById('videoDuration').innerText = formattedDuration;
+            });
+        }
+
     });
 </script>
 
@@ -812,6 +819,58 @@
             .then(result => {
                 // console.log(result);
             });
+    }
+</script>
+
+<!-- นับเวลาวิดีโอ -->
+<script>
+    if(document.getElementById('trainingVideo')){
+
+        const video = document.getElementById('trainingVideo');
+        let countTime = 0;
+        let interval;
+
+        // ฟังก์ชั่นเพื่อเริ่มนับเวลา
+        function startCountTime() {
+            interval = setInterval(() => {
+                countTime += 1;
+                // console.log('Elapsed time:', countTime);
+            }, 1000); // เพิ่มค่าทีละ 1 วินาที
+        }
+
+        // ฟังก์ชั่นเพื่อหยุดนับเวลา
+        function stopCountTime() {
+            clearInterval(interval);
+        }
+
+        // จับเหตุการณ์เมื่อวิดีโอเริ่มเล่น
+        video.addEventListener('play', () => {
+            startCountTime();
+        });
+
+        // จับเหตุการณ์เมื่อวิดีโอหยุด
+        video.addEventListener('pause', () => {
+            stopCountTime();
+        });
+
+        // จับเหตุการณ์เมื่อวิดีโอสิ้นสุดการเล่น
+        video.addEventListener('ended', () => {
+            stopCountTime();
+        });
+
+        // ก่อนปิดหน้าหรือเปลี่ยนหน้า
+        window.addEventListener('beforeunload', function(e) {
+            // console.log(countTime);
+            let training_id = "{{ $training->id }}";
+
+            if(countTime > 0){
+                fetch("{{ url('/') }}/api/update_countTime_trainingVideo/" + "{{ Auth::user()->id }}" + "/" + countTime + "/" + training_id)
+                    .then(response => response.text())
+                    .then(result => {
+                        // console.log(result);
+                    });
+            }
+        });
     }
 </script>
 @endsection

@@ -560,4 +560,11 @@ class TrainingController extends Controller
 
         return 'success' ;
     }
+
+    function preview_training($id){
+
+        $data_training = Training::where('id' , $id)->first();
+        return view('training.preview_training', compact('data_training'));
+        
+    }
 }

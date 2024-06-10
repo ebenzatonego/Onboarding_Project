@@ -107,6 +107,7 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
     Route::resource('training', 'TrainingController');
     Route::get('/manage_training', 'TrainingController@manage_training');
     Route::get('/training_create', 'TrainingController@create');
+    Route::get('/preview_training/{id}', 'TrainingController@preview_training');
     
     Route::resource('news', 'NewsController');
 

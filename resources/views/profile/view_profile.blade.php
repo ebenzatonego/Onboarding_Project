@@ -600,12 +600,12 @@
                             <img src="{{ url('/img/icon/profile.png') }}" alt="" class="img-leader">
                         </div>
                         <div>
-                            <p class="mb-0 ms-3" style="color: #003781; font-size: 14px;font-weight: bolder;">{{ $upper_al->name }}</p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">ชื่อเล่น: <span class="text-color-obd">{{ $upper_al->nickname }}</span></p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">รหัสตัวเเทน : <span class="text-color-obd">{{ $upper_al->account }}</span></p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">ชื่อหน่วยงาน/AO : <span class="text-color-obd">{{ $upper_al->organization_name }}</span></p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">โทร : <a href="tel:088-567-8901" class="text-color-obd">{{ $upper_al->phone }}</a></p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">อีเมล : <a href="mailto:Apitchaya@gmail.com"><u>{{ $upper_al->emial }}</u></a></p>
+                            <p class="mb-0 ms-3" style="color: #003781; font-size: 14px;font-weight: bolder;">{{ $upper_al->name ? $upper_al->name : '-'}}</p>
+                            <p class="mb-0 ms-3" style="font-size: 12px;">ชื่อเล่น: <span class="text-color-obd">{{ $upper_al->nickname ? $upper_al->nickname : '-' }}</span></p>
+                            <p class="mb-0 ms-3" style="font-size: 12px;">รหัสตัวเเทน : <span class="text-color-obd">{{ $upper_al->account ? $upper_al->account : '-' }}</span></p>
+                            <p class="mb-0 ms-3" style="font-size: 12px;">ชื่อหน่วยงาน/AO : <span class="text-color-obd">{{ $upper_al->organization_name ? $upper_al->organization_name : '-' }}</span></p>
+                            <p class="mb-0 ms-3" style="font-size: 12px;">โทร : <a href="tel:088-567-8901" class="text-color-obd">{{ $upper_al->phone ? $upper_al->phone : '-' }}</a></p>
+                            <p class="mb-0 ms-3" style="font-size: 12px;">อีเมล : <a href="mailto:Apitchaya@gmail.com"><u>{{ $upper_al->emial ? $upper_al->emial : '-' }}</u></a></p>
                         </div>
                     </div>
                     <br>
@@ -822,12 +822,12 @@
                         </div>
                     </div>
                     <div class="bg-white mt-3" style="padding:10px;border-radius: 10px;background: rgba(255, 255, 255, 0.50);box-shadow: 0px 2px 20px 0px rgba(200, 200, 200, 0.50);">
-                        <p class="mb-0 detail-profile"><b>รหัสตัวเเทน :</b> {{ Auth::user()->account }}</p>
-                        <p class="mb-0 detail-profile"><b>รหัสหน่วยงาน :</b> {{ Auth::user()->organization_code }}</p>
-                        <p class="mb-0 detail-profile"><b>ชื่อหน่วยงาน :</b> {{ Auth::user()->organization_name }}</p>
-                        <p class="mb-0 detail-profile"><b>รหัสสาขา/สำนักงาน :</b> {{ Auth::user()->branch_code }}</p>
-                        <p class="mb-0 detail-profile"><b>ชื่อสาขา/สำนักงาน :</b> {{ Auth::user()->branch_name }}</p>
-                        <p class="mb-0 detail-profile"><b>รหัสกลุ่ม :</b> {{ Auth::user()->group_code }}</p>
+                        <p class="mb-0 detail-profile"><b>รหัสตัวเเทน :</b> {{ Auth::user()->account ?  Auth::user()->account : '-'}}</p>
+                        <p class="mb-0 detail-profile"><b>รหัสหน่วยงาน :</b> {{ Auth::user()->organization_code ? Auth::user()->organization_code : '-'}}</p>
+                        <p class="mb-0 detail-profile"><b>ชื่อหน่วยงาน :</b> {{ Auth::user()->organization_name ? Auth::user()->organization_name : '-'}}</p>
+                        <p class="mb-0 detail-profile"><b>รหัสสาขา/สำนักงาน :</b> {{ Auth::user()->branch_code ?  Auth::user()->branch_code : '-'}}</p>
+                        <p class="mb-0 detail-profile"><b>ชื่อสาขา/สำนักงาน :</b> {{ Auth::user()->branch_name ? Auth::user()->branch_name : '-'}}</p>
+                        <p class="mb-0 detail-profile"><b>รหัสกลุ่ม :</b> {{ Auth::user()->group_code ? Auth::user()->group_code : '-'}}</p>
                     </div>
 
                     <div class="mt-3 me-1 ms-2 d-flex align-items-end">

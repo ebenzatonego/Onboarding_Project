@@ -18,7 +18,7 @@
     <link href="{{ asset('/theme/css/icons.css') }}" rel="stylesheet">
 
     <!-- fontawesome icon -->
-    <link href="https://kit-pro.fontawesome.com/releases/v6.2.1/css/pro.min.css" rel="stylesheet">
+    <link href="https://kit-pro.fontawesome.com/releases/v6.4.2/css/pro.min.css" rel="stylesheet">
 
     <!--  OwlCarousel -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">

@@ -257,7 +257,6 @@
                         $array = json_decode($training->user_fav, true);
                         $user_id = Auth::user()->id ;
                         if (array_key_exists($user_id, $array)) {
-                            // วนลูปเพื่อค้นหาและเปลี่ยนสถานะจาก 'Active' เป็น 'Canceled'
                             foreach ($array[$user_id] as $round => $details) {
                                 if (isset($details['status']) && $details['status'] === 'Active') {
                                     $check_fav = 'active';

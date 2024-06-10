@@ -147,6 +147,7 @@ class TrainingController extends Controller
     }
 
     function sub_training($type){
+
         return view('training.sub_training', compact('type'));
     }
 
@@ -565,6 +566,28 @@ class TrainingController extends Controller
 
         $data_training = Training::where('id' , $id)->first();
         return view('training.preview_training', compact('data_training'));
-        
+
+    }
+
+    function get_data_Training($type){
+
+        $data = [];
+
+        if($type == 'all'){
+            // $data['data_training'] = Training::orderBy('id' , 'DESC')->get();
+
+            $data['data_training'] = DB::table('trainings')
+                ->join('training_types', 'training_types.id', '=', 'trainings.training_type_id')
+                ->select('trainings.*', 'training_types.type_article')
+                ->orderBy('trainings.id' , 'DESC')
+                ->get();
+        }
+        else{
+            $data['data_training'] = Training::where('training_type_id', $type)->orderBy('id' , 'DESC')->get();
+            $data_Training_type = Training_type::where('id', $type)->first();
+            $data['type_article'] = $data_Training_type->type_article ;
+        }
+
+        return $data;
     }
 }

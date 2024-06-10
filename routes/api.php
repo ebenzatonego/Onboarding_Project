@@ -69,6 +69,7 @@ Route::get('/user_cancel_dislike/{user_id}/{training_id}', 'TrainingController@u
 Route::get('/user_click_fav_btn/{user_id}/{training_id}/{type}', 'TrainingController@user_click_fav_btn');
 Route::get('/update_user_view/{user_id}/{training_id}', 'TrainingController@update_user_view');
 Route::get('/update_countTime_trainingVideo/{user_id}/{countTime}/{training_id}', 'TrainingController@update_countTime_trainingVideo');
+Route::get('/get_data_Training/{type}', 'TrainingController@get_data_Training');
 
 
 // Calendar

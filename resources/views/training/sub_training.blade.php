@@ -197,35 +197,17 @@
                 </style>
 
                 <p id="p_training_types" class="my-3" style="color: #0E2B81;font-size: 16px;">
-                    หลักสูตรทั้งหมด
+                    <!--  -->
                 </p>
 
-                <div class="container-course ">
-                    <a href="{{ url('/training_show/11') }}" class="course-item bookmark">
-                        <img src="{{ url('/img/icon/ad.png') }}">
-                        <div class="ms-3">
-                            <p class="title-course">
-                                หลักสูตรฝึกอบรมการพัฒนาทักษะการเชิงกลยุทธ์ 505
-                            </p>
-                            <p class="detail-course">
-                                การพัฒนาทักษะการสื่อสารและสร้างความสัมพันธ์ที่ดีกับลูกค้า ของพนักงานขายสินค้าและบริกของพนักงานขายสินค้าและบริกของพนักงานขายสินค้าและบริก
-                            </p>
-                            <div class="category-course">
-                                <span id="span_type_of_training">#หลักสูตรแนะนำ</span>
-                            </div>
-                        </div>
-                        <div class="fav-course">
-                            <svg width="17" height="22" viewBox="0 0 17 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M16.0002 0H1.07715C0.524864 0 0.0771484 0.447716 0.0771484 1V20.3889C0.0771484 21.1306 0.856276 21.6141 1.52095 21.285L8.09489 18.0293C8.37455 17.8908 8.70283 17.8908 8.98248 18.0293L15.5564 21.285C16.2211 21.6141 17.0002 21.1306 17.0002 20.3888V1C17.0002 0.447715 16.5525 0 16.0002 0Z" fill="#FFB600"/>
-                                <path d="M6.80604 7.04096L3.85769 7.45107L3.80547 7.46126C3.72641 7.4814 3.65435 7.5213 3.59663 7.57689C3.53891 7.63248 3.4976 7.70178 3.47692 7.7777C3.45625 7.85362 3.45694 7.93344 3.47894 8.00902C3.50094 8.0846 3.54345 8.15322 3.60213 8.20788L5.73807 10.2026L5.23436 13.0201L5.22835 13.0689C5.22351 13.1473 5.24049 13.2256 5.27754 13.2957C5.3146 13.3657 5.3704 13.4251 5.43923 13.4677C5.50807 13.5103 5.58746 13.5345 5.66928 13.538C5.75111 13.5415 5.83242 13.524 5.9049 13.4874L8.54178 12.1573L11.1727 13.4874L11.2189 13.5078C11.2951 13.5366 11.378 13.5455 11.4591 13.5334C11.5401 13.5214 11.6163 13.4888 11.6799 13.4392C11.7435 13.3896 11.7922 13.3246 11.8209 13.2509C11.8497 13.1773 11.8576 13.0976 11.8437 13.0201L11.3395 10.2026L13.4763 8.20744L13.5124 8.16975C13.5639 8.10891 13.5976 8.03606 13.6102 7.95862C13.6228 7.88118 13.6138 7.80193 13.5841 7.72893C13.5543 7.65593 13.505 7.5918 13.441 7.54307C13.377 7.49433 13.3007 7.46274 13.2199 7.45151L10.2715 7.04096L8.95354 4.47834C8.9154 4.40409 8.85636 4.34157 8.7831 4.29785C8.70984 4.25413 8.62529 4.23096 8.53901 4.23096C8.45273 4.23096 8.36818 4.25413 8.29492 4.29785C8.22166 4.34157 8.16262 4.40409 8.12448 4.47834L6.80604 7.04096Z" fill="#8C6400"/>
-                            </svg>
-                        </div>
-                    </a>
+                <div id="div_content" class="container-course ">
+                    <!-- data -->
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js'></script>
 <script>
@@ -275,8 +257,105 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
 
+        let type = "{{ $type }}";
+
         change_active_menu_theme_user('Training');
+        get_data_Training(type);
 
     });
+
+    function get_data_Training(type){
+
+        fetch("{{ url('/') }}/api/get_data_Training/" + type )
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                if(type == 'all'){
+                    document.querySelector('#p_training_types').innerHTML = 'หลักสูตรทั้งหมด';
+                }
+                else{
+                    document.querySelector('#p_training_types').innerHTML = result['type_article'];
+                }
+
+                let div_content = document.querySelector('#div_content');
+
+                if(result['data_training']){
+                    for (let i = 0; i < result['data_training'].length; i++) {
+
+                        let textWithoutHtml = ``;
+                        if(result['data_training'][i].detail){
+                            textWithoutHtml = result['data_training'][i].detail.replace(/(<([^>]+)>)/gi, "");
+                        }
+
+                        // Check bookmark
+                        let check_fav = ``;
+                        let user_id = "{{ Auth::user()->id }}";
+                        let user_fav_text  = result['data_training'][i].user_fav ;
+                            // console.log(user_fav_text );
+
+                        if(user_fav_text){
+                            let user_fav;
+                            try {
+                                user_fav = JSON.parse(user_fav_text);
+                            } catch (error) {
+                                console.error("Error parsing user_fav:", error);
+                            }
+
+                            if (user_fav && user_fav.hasOwnProperty(user_id)) {
+                                let rounds = user_fav[user_id];
+
+                                for (let round in rounds) {
+                                    if (rounds.hasOwnProperty(round)) {
+                                        if (rounds[round]['status'] === 'Active') {
+                                            check_fav = 'bookmark';
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        let type_article = `` ;
+                        if(type == 'all'){
+                            type_article = result['data_training'][i].type_article;
+                        }
+                        else{
+                            type_article = result['type_article'] ;
+                        }
+
+                        let html = `
+                            <a href="{{ url('/training_show') }}/`+result['data_training'][i].id+`" class="course-item `+check_fav+`">
+                                <img src="`+result['data_training'][i].photo+`">
+                                <div class="ms-3">
+                                    <p class="title-course">
+                                        `+result['data_training'][i].title+`
+                                    </p>
+                                    <p class="detail-course">
+                                        `+textWithoutHtml+`
+                                    </p>
+                                    <div class="category-course">
+                                        <span id="span_type_of_training">
+                                            #`+type_article+`
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="fav-course">
+                                    <svg width="17" height="22" viewBox="0 0 17 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16.0002 0H1.07715C0.524864 0 0.0771484 0.447716 0.0771484 1V20.3889C0.0771484 21.1306 0.856276 21.6141 1.52095 21.285L8.09489 18.0293C8.37455 17.8908 8.70283 17.8908 8.98248 18.0293L15.5564 21.285C16.2211 21.6141 17.0002 21.1306 17.0002 20.3888V1C17.0002 0.447715 16.5525 0 16.0002 0Z" fill="#FFB600"/>
+                                        <path d="M6.80604 7.04096L3.85769 7.45107L3.80547 7.46126C3.72641 7.4814 3.65435 7.5213 3.59663 7.57689C3.53891 7.63248 3.4976 7.70178 3.47692 7.7777C3.45625 7.85362 3.45694 7.93344 3.47894 8.00902C3.50094 8.0846 3.54345 8.15322 3.60213 8.20788L5.73807 10.2026L5.23436 13.0201L5.22835 13.0689C5.22351 13.1473 5.24049 13.2256 5.27754 13.2957C5.3146 13.3657 5.3704 13.4251 5.43923 13.4677C5.50807 13.5103 5.58746 13.5345 5.66928 13.538C5.75111 13.5415 5.83242 13.524 5.9049 13.4874L8.54178 12.1573L11.1727 13.4874L11.2189 13.5078C11.2951 13.5366 11.378 13.5455 11.4591 13.5334C11.5401 13.5214 11.6163 13.4888 11.6799 13.4392C11.7435 13.3896 11.7922 13.3246 11.8209 13.2509C11.8497 13.1773 11.8576 13.0976 11.8437 13.0201L11.3395 10.2026L13.4763 8.20744L13.5124 8.16975C13.5639 8.10891 13.5976 8.03606 13.6102 7.95862C13.6228 7.88118 13.6138 7.80193 13.5841 7.72893C13.5543 7.65593 13.505 7.5918 13.441 7.54307C13.377 7.49433 13.3007 7.46274 13.2199 7.45151L10.2715 7.04096L8.95354 4.47834C8.9154 4.40409 8.85636 4.34157 8.7831 4.29785C8.70984 4.25413 8.62529 4.23096 8.53901 4.23096C8.45273 4.23096 8.36818 4.25413 8.29492 4.29785C8.22166 4.34157 8.16262 4.40409 8.12448 4.47834L6.80604 7.04096Z" fill="#8C6400"/>
+                                    </svg>
+                                </div>
+                            </a>
+                        `;
+
+                        div_content.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+
+                    }
+                }
+
+            });
+
+    }
 </script>
 @endsection

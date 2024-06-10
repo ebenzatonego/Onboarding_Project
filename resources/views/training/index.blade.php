@@ -192,19 +192,21 @@
 
                     }
                 </style>
-                <div class="all-coures w-100 d-flex justify-content-evenly align-items-center">
-                    <div>
-                        <p style="font-size: 14px;margin-bottom: 0;">หลักสูตร</p>
-                        <p style="font-size: 18px;font-weight: bolder;margin-bottom: 0;">ทั้งหมด</p>
+                <a href="{{ url('/sub_training/all') }}">
+                    <div class="all-coures w-100 d-flex justify-content-evenly align-items-center">
+                        <div>
+                            <p style="font-size: 14px;margin-bottom: 0;">หลักสูตร</p>
+                            <p style="font-size: 18px;font-weight: bolder;margin-bottom: 0;">ทั้งหมด</p>
+                        </div>
+                        <div>
+                            <img src="{{ url('/img/icon/icon-all-training.png') }}" alt="" width="71">
+                        </div>
+                        <div>
+                            <span style="font-size: 24px;font-weight: bolder;">60</span>
+                            <span id style="font-size:14 px;">หลักสูตร</span>
+                        </div>
                     </div>
-                    <div>
-                        <img src="{{ url('/img/icon/icon-all-training.png') }}" alt="" width="71">
-                    </div>
-                    <div>
-                        <span style="font-size: 24px;font-weight: bolder;">60</span>
-                        <span id style="font-size:14 px;">หลักสูตร</span>
-                    </div>
-                </div>
+                </a>
                 <!-- <div class="more-coures">
                     <div class="item">
                         <div class="w-100">
@@ -750,6 +752,10 @@
 <input type="text" id="appointment_year" name="year" placeholder="YYYY" class="d-non">
 
 <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        change_active_menu_theme_user('Training')
+    });
+
     // ดึงข้อมูลวันที่ปัจจุบัน
     let today = new Date();
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];

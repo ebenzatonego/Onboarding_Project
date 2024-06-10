@@ -1166,65 +1166,22 @@
         });
     });
 
-    // const printDocument = (domElement) => {
-    //     html2canvas(domElement, {
-    //         backgroundColor: "rgba(0,0,0,0)"
-    //     }).then((canvas) => {
-    //         const image = canvas.toDataURL('image/png');
-    //         const a = document.createElement('a');
-    //         a.setAttribute('download', 'Member Card {{Auth::user()->name}}.png');
-    //         a.setAttribute('href', image);
-    //         a.click();
-    //     });
-    // };
-
-    // document.getElementById('btnDownload').addEventListener('click', () => {
-    //     const domElement = document.getElementById('card_profile_download');
-    //     printDocument(domElement);
-    // });
-
-    const loadImage = (src) => {
-    return new Promise((resolve, reject) => {
-        const img = new Image();
-        img.crossOrigin = "Anonymous";
-        img.onload = () => resolve(img);
-        img.onerror = (err) => reject(err);
-        img.src = src;
-    });
-};
-
-const printDocument = async (domElement) => {
-    try {
-        // ดึง URL ของรูปภาพจาก Firebase
-        const photoUrl = "{{ Auth::user()->photo }}";
-        // โหลดรูปภาพจาก URL
-        const img = await loadImage(photoUrl);
-
-        // ใช้ html2canvas เพื่อจับภาพหน้าจอของ domElement
+    const printDocument = (domElement) => {
         html2canvas(domElement, {
             backgroundColor: "rgba(0,0,0,0)"
         }).then((canvas) => {
-            const ctx = canvas.getContext('2d');
-            // วาดรูปภาพจาก Firebase ลงใน canvas
-            ctx.drawImage(img, 0, 0, img.width, img.height, 10, 10, 50, 50); // ปรับตำแหน่งและขนาดตามความเหมาะสม
-
             const image = canvas.toDataURL('image/png');
             const a = document.createElement('a');
-            a.setAttribute('download', `Member Card {{Auth::user()->name}}.png`);
+            a.setAttribute('download', 'Member Card {{Auth::user()->name}}.png');
             a.setAttribute('href', image);
             a.click();
         });
-    } catch (err) {
-        console.error("Error loading image from Firebase:", err);
-    }
-};
+    };
 
-// เรียกใช้ฟังก์ชันเมื่อกดปุ่มดาวน์โหลด
-document.getElementById('btnDownload').addEventListener('click', () => {
-    const domElement = document.getElementById('card_profile');
-    printDocument(domElement);
-});
-
+    document.getElementById('btnDownload').addEventListener('click', () => {
+        const domElement = document.getElementById('card_profile_download');
+        printDocument(domElement);
+    });
 </script>
 
 

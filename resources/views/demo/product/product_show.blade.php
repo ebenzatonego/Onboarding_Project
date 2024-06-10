@@ -4,27 +4,21 @@
 <style>
     @media screen and (max-width: 500px) {
 
-        .conteiner-detail-news,
-        .conteiner-detail-news .row div {
+        .conteiner-detail-product,
+        .conteiner-detail-product .row div {
             padding: 0;
 
         }
+        
     }
 
     @media only screen and (max-width: 767px) {
-        .title-news {
-            padding-left: 24px;
+        .title-product {
+            padding-left: 24px !important;
         }
 
         .btn-share-group {
-            padding: 24px;
-        }
-
-        .rating-group {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding-right: 24px;
+            padding: 24px !important;
         }
     }
 
@@ -32,14 +26,6 @@
     @media screen and (min-width: 767px) {
         .btn-share-group {
             padding: 24px 0 24px 0;
-        }
-
-        .update_at {
-            padding: 15px 0;
-        }
-
-        .rating-group {
-            display: block;
         }
     }
 
@@ -91,11 +77,11 @@
         -moz-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     }
 
-    .btn-bookmark-news.active svg .bookmark-bg {
+    .btn-bookmark-product.active svg .bookmark-bg {
         fill: #EDB529;
     }
 
-    .btn-bookmark-news.active svg .bookmark-icon {
+    .btn-bookmark-product.active svg .bookmark-icon {
         fill: #FBFBFB;
     }
 
@@ -194,16 +180,8 @@
         font-size: 14px;
         margin: 0;
     }
-
-    .update_at {
-        color: #999;
-        font-size: 12px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-    }
 </style>
-<div class="container p-0 conteiner-detail-news">
+<div class="container p-0 conteiner-detail-product">
     <div class="row">
         <div class="col-lg-5 col-md-5 p-0" style="position: relative;">
             <button class="btn btn-back-all-course">
@@ -231,39 +209,35 @@
                         <i class="fa-solid fa-share m-0"></i>
                     </button>
                 </div>
-                <div class=" px-2 py-0 d-flex align-items-start btn-bookmark-news cursor-pointer" onclick="action_btnlike_dislike(this.className)">
+                <div class=" px-2 py-0 d-flex align-items-start btn-bookmark-product cursor-pointer" onclick="action_btnlike_dislike(this.className)">
                     <svg width="33" height="42" viewBox="0 0 33 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path class="bookmark-bg" d="M31.3077 0H1C0.447715 0 0 0.447716 0 1V40.3889C0 41.1306 0.779123 41.6141 1.44379 41.285L15.71 34.2198C15.9897 34.0813 16.318 34.0813 16.5976 34.2198L30.8639 41.285C31.5286 41.6141 32.3077 41.1306 32.3077 40.3889V1C32.3077 0.447715 31.86 0 31.3077 0Z" fill="#CDCDCD" />
                         <path class="bookmark-icon" d="M12.8462 13.4417L7.21748 14.2246L7.11779 14.2441C6.96687 14.2825 6.82929 14.3587 6.7191 14.4648C6.6089 14.571 6.53004 14.7033 6.49057 14.8482C6.4511 14.9931 6.45243 15.1455 6.49442 15.2898C6.53642 15.4341 6.61757 15.5651 6.7296 15.6695L10.8073 19.4775L9.84567 24.8564L9.8342 24.9495C9.82496 25.0993 9.85737 25.2487 9.92811 25.3825C9.99885 25.5163 10.1054 25.6296 10.2368 25.7109C10.3682 25.7922 10.5198 25.8385 10.676 25.8451C10.8322 25.8518 10.9874 25.8184 11.1258 25.7486L16.1598 23.2093L21.1824 25.7486L21.2707 25.7875C21.4163 25.8425 21.5745 25.8594 21.7292 25.8364C21.8839 25.8134 22.0294 25.7513 22.1508 25.6565C22.2722 25.5618 22.3651 25.4377 22.4201 25.2971C22.475 25.1565 22.49 25.0044 22.4634 24.8564L21.5009 19.4775L25.5804 15.6686L25.6492 15.5967C25.7475 15.4805 25.812 15.3414 25.836 15.1936C25.86 15.0458 25.8428 14.8945 25.786 14.7551C25.7293 14.6157 25.635 14.4933 25.5129 14.4003C25.3907 14.3072 25.2451 14.2469 25.0907 14.2255L19.4621 13.4417L16.9459 8.54942C16.8731 8.40768 16.7604 8.28832 16.6205 8.20485C16.4807 8.12138 16.3193 8.07715 16.1546 8.07715C15.9898 8.07715 15.8284 8.12138 15.6886 8.20485C15.5487 8.28832 15.436 8.40768 15.3632 8.54942L12.8462 13.4417Z" fill="#FBFBFB" />
                     </svg>
                 </div>
             </div>
-            <div class="title-news">
+            <div class="title-product">
                 <div>
-                    <p class="mb-2" style="color: #003781;font-size: 20px;font-style: normal;font-weight: 600;line-height: normal;">หลักสูตรการพัฒนาทักษะการขายเชิงกลยุทธ์ 505</p>
+                    <p class="mb-2" style="color: #003781;font-size: 20px;font-style: normal;font-weight: 600;line-height: normal;">ประกันสุขภาพ ปลดล็อค ดับเบิล แคร์</p>
                 </div>
-                <div class="hastag-news">
+                <div class="hastag-product">
+                    <span>เตรียมด้านสุขภาพ</span>
                     <span>#หลักสูตร Unit Links</span>
                 </div>
-                <div class="rating-group">
-                    <div class="rating-news mt-2 ">
-                        <span style="color: #EDB529;font-size: 14px;font-style: normal;font-weight: 600;line-height: normal;margin-right: 5px;">4.5</span>
-                        <i data-star="4.5" class="star-rating"></i>
-                    </div>
-                    <div class=" d-flex align-items-center">
-                        <span class="update_at">Update : 30/05/2024 | 5.36 PM</span>
-                    </div>
+                <div class="rating-product mt-2">
+                    <span style="color: #EDB529;font-size: 14px;font-style: normal;font-weight: 600;line-height: normal;margin-right: 5px;">4.5</span>
+                    <i data-star="4.5" class="star-rating"></i>
                 </div>
             </div>
         </div>
         <style>
-            .hastag-news {
+            .hastag-product {
                 display: flex;
                 flex-wrap: wrap;
                 gap: 5px;
             }
 
-            .hastag-news span {
+            .hastag-product span {
                 border: #0E2B81 1px solid;
                 padding: 0 10px;
                 color: #0E2B81;
@@ -311,135 +285,70 @@
                 width: var(--rating-width);
             }
 
-            .group-img {
-                flex: 0 0 20%;
-                max-width: 20%;
-                position: relative;
-
-                cursor: pointer;
+            .btn-download-pdf {
+                color: #fff;
+                background-color: #003781;
+                border-radius: 25px;
+                -webkit-border-radius: 25px;
+                -moz-border-radius: 25px;
+                -ms-border-radius: 25px;
+                -o-border-radius: 25px;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
             }
+            .btn-download-pdf:hover {
+                color: #fff;
 
-            .img-news {
-                width: 100%;
-                aspect-ratio: 1/1;
-                object-fit: cover;
-                filter: blur(1px) grayscale(100%);
-            }
-
-            .img-news.active {
-                filter: blur(0) grayscale(0) !important;
-
-            }
-            .img-news.active +.icon-preview{
-               display: none !important;
-
-            }
-            .preview-img {
-                width: 100%;
-            }
-
-            .icon-preview {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                color: #fff !important;
-                font-size: 33px;
-                pointer-events: none; /* ปิดการใช้งาน hitbox */
             }
         </style>
         <div class="col-lg-7 col-md-7 px-4 mb-5">
-             <!-- if ถ้ามีเวลาเข้าร่วม -->
-             <div class="d-flex my-2">
-                <i class="fa-light fa-calendar-days me-2" style="color: #0E2B81;font-size:18px"></i> <span style="color: #0E2B81;font-size: 12px;font-style: normal;font-weight: 600;line-height: normal;">Friday 19 April 2024  10:30 - 12:30 น. </span>
-            </div>
-            <!-- endif -->
-             
-            <!-- if ถ้ามี รายละเอียดการเข้าอบรม -->
-            <div class="my-3">
-                <div class="d-flex ">
-                    <i class="fa-light fa-location-dot me-2"></i>
-                    <div>
-                        <p class="m-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum magni reprehenderit, itaqu</p>
-                        <a href="https://www.google.com/maps/dir//test" id="link-to-copy" style="color: #0872FF;font-size: 10px;font-style: normal;font-weight: 600;line-height: normal;text-decoration-line: underline;">https://www.google.com/maps/dir//test</a>
-                        <i style="color: #9E9E9E;" class="fa-regular fa-copy mx-2"  onclick="copyLink()"></i>
-                    </div>
-                    <div>
-
-                    </div>
-                </div>
-            </div>
-            <!-- endif -->
-            <div class="detail-news">
+            <div class="detail-product">
                 <p class="mt-2">
-                    การพัฒนาทักษะการขาย (Selling Skill) ให้กับนักขายมืออาชีพขั้นสูง จะช่วยทำให้พนักงานมีความมั่นใจในการขายสินค้าและบริการของตัวเองเพิ่มมากขึ้น เช่น.....     - การนำเสนอขายด้วยเครื่องมือในรูปแบบต่างๆ     - การเจรจาต่อรองอย่างเหนือชั้น     - การปิดการขายให้ลูกค้าเห็นคุณค่าด้วยตัวเอง การเรียนรู้ในรูปแบบ Blended Learning เชิงปฏิบัติการจริง ด้วยการฝึกฝนทักษะต่างๆ ด้วยตัวเอง ทำให้ผู้เรียน ได้ปรับปรุง แก้ไข แนวทางและเทคนิคการขายของตัวเองได้ทันที     - VDO (Self-Learning)     - Practices in Classroom     - Show & Share ซึ่งกันและกัน
-                    รายละเอียดของหลักสูตรฝึกอบรมหลักการขายเชิงกลยุทธ์ (Strategic Selling) สนุกกับ คำสำคัญ ของงานขาย หัวใจสำคัญของการขายให้โดนใจ ทักษะพื้นฐานของการขาย คุณสมบัติของนักขายมืออาชีพ กิจกรรม: กำหนดแนวทางการขายเชิงกลยุทธ์ด้วย Canvasเทคนิคการนำเสนอด้วยเครื่องมือในรูปแบบต่างๆ (Presentation) การนำเสนอให้สอดคล้องคุณลักษณะของบุคคล (DISC) การนำเสนอด้วย Presentation Tools Kit การนำเสนอในรูปแบบ Pitching & Storytelling Role Playing: การฝึกฝนเทคนิคการนำเสนอให้โดนใจ เทคนิคการเจรจาต่อรองอย่างเหนือชั้น (Negotiation) หลักการเจรจาต่อรองอย่างมีคุณภาพ การกำหนดจุดประสงค์ให้ชัดเจน การประเมินทางเลือกของการเจรจา (BATNA) การบริหารจัดการให้การเจรจามีคุณภาพ (ZOPA) การเตรียมความพร้อมก่อนการเจรจาต่อรอง Role Playing: การฝึกฝนเทคนิคการเจรจาต่อรองอย่างสร้างสรรค์เทคนิคการปิดการขายให้ลูกค้าเห็นคุณค่า (Value Proposition)  
+                    ประกันสุขภาพแบบเหมาจ่าย มีหลายแผนให้เลือก ตั้งแต่ 8-30 ล้านบาทต่อปี เพิ่มความคุ้มครอง 2 เท่าเมื่อป่วยเป็นโรคร้าย พร้อมค่าวัคซีน/ตรวจสุขภาพประจำปี
+                     
+                    ให้ความคุ้มครองโดย
+                    บมจ. อลิอันซ์ อยุธยา ประกันชีวิต
+                     
+                     คำนวณเบี้ยประกัน
+                    ประกันสุขภาพ แผนแพลทินัม (80MB) และแผนบียอนด์ แพลทินัม (100MB)
+                    ประกันสุขภาพคุ้มครองครบทุกด้าน ค่ารักษาพยาบาล นอน/ไม่นอน รพ.  คลอดบุตร ค่าทันตกรรม วัคซีน ตรวจสุขภาพ สายตา สูงสุด 100 ล้านบาทต่อปี
+                     
+                     คำนวณเบี้ยประกัน
+                    ประกันสุขภาพ เฟิร์สคลาส @บีดีเอ็มเอส
+                    ประกันสุขภาพคุ้มครองครบวงจร สูงสุด 120 ล้านบาทต่อปีที่ รพ. ในเครือ BDMS ค่ารักษา นอน/ไม่นอน รพ.  คลอดบุตร ค่าทันตกรรม วัคซีน ตรวจสุขภาพ สายตา
+                     
+                     คำนวณเบี้ยประกัน
+                    ประกันสุขภาพเหมา ๆ
+                    ประกันสุขภาพ ที่คุณเลือกความคุ้มครองได้ในราคาที่พอใจ ดูแลค่ารักษา ทั้งแบบนอน รพ. ไม่นอน รพ. ชดเชยรายวัน อุบัติเหตุ
+                     
+                    ประกันอัลติเมต เฮลท์
+                    ประกันสุขภาพเหมาจ่าย คุ้ม ครบ ทั้งชีวิตสุขภาพ และอุบัติเหตุ
+                     
+                    ให้ความคุ้มครองโดย
+                    บมจ. อลิอันซ์ อยุธยา ประกันชีวิต
+                    ประกันสุขภาพ ปลดล็อค สบายกระเป๋า
+                    ประกันสุขภาพจ่ายเบี้ยเบาๆ ไม่ถึงหมื่น ให้ความคุ้มครองสูงสุด 1 ล้านบาทต่อปี จ่ายค่ารักษาให้ตามจริง เมื่อนอน รพ. ค่าล้างไต เคมีบำบัด ฉายแสง
+                     
+                    ให้ความคุ้มครองโดย 
+                    บมจ. อลิอันซ์ อยุธยา ประกันชีวิต
+                     
                 </p>
+                <button class="btn w-100 btn-download-pdf my-5">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="27" viewBox="0 0 23 27" fill="none">
+                        <path d="M6.70089 10.082C6.59278 10.082 6.44864 10.082 6.23242 10.1157V12.4086C6.4126 12.4086 6.52071 12.4086 6.66485 12.4086C7.09729 12.4086 7.38557 12.2737 7.56575 12.004C7.7099 11.8017 7.78197 11.5319 7.78197 11.1947C7.78197 10.4192 7.42161 10.082 6.70089 10.082Z" fill="white"/>
+                        <path d="M3.38594 10.082C3.27784 10.082 3.13369 10.082 3.09766 10.082V11.0262C3.13369 11.0262 3.27784 11.0599 3.34991 11.0599C4.07063 11.0599 4.1427 10.7901 4.1427 10.5541C4.1427 10.4192 4.1427 10.082 3.38594 10.082Z" fill="white"/>
+                        <path d="M13.4765 9.20462C13.4765 8.49653 12.8639 7.95703 12.1431 7.95703H1.69271C0.935951 7.95703 0.359375 8.53025 0.359375 9.20462V13.3183C0.359375 14.0264 0.971987 14.5659 1.69271 14.5659H12.1431C12.8999 14.5659 13.4765 13.9927 13.4765 13.3183V9.20462ZM4.50351 11.4638C4.17919 11.6998 3.78279 11.8009 3.27829 11.8009C3.20622 11.8009 3.09811 11.8009 3.09811 11.8009V13.2171H2.23325V9.44065L2.41343 9.40693C2.77379 9.33949 3.13415 9.30577 3.42243 9.30577C3.92694 9.30577 4.32333 9.40693 4.57558 9.60924C4.86387 9.84527 5.04405 10.115 5.04405 10.4859C5.00802 10.9243 4.86387 11.2277 4.50351 11.4638ZM8.21522 12.509C7.85486 12.9137 7.31432 13.1497 6.5936 13.1497C6.37738 13.1497 6.05306 13.116 5.58459 13.0823L5.47648 13.0485V9.44065L5.58459 9.40693C6.16117 9.33949 6.52153 9.30577 6.73774 9.30577C7.42243 9.30577 7.92693 9.50808 8.25125 9.87899C8.53954 10.1825 8.64765 10.6208 8.64765 11.1266C8.64765 11.7335 8.50351 12.1718 8.21522 12.509ZM11.6026 10.115H9.87287V10.8231H11.4585V11.6324H9.87287V13.2171H8.97197V9.40693H11.6026V10.115Z" fill="white"/>
+                        <path d="M14.198 0V0.0337186H4.5764C3.81964 0.0337186 3.20703 0.573215 3.20703 1.24759V7.31693H4.32415V1.88824C4.32415 1.41618 4.72054 1.04528 5.22505 1.04528H14.198V6.94602C14.198 7.62039 14.8106 8.22733 15.5313 8.22733H21.8376V22.6926C21.8376 23.1646 21.4412 23.5356 20.9367 23.5356H16.9007C16.8647 23.5693 16.8647 23.603 16.8286 23.6367L16.0719 24.5471H21.5854C22.3421 24.5471 22.9187 23.9739 22.9187 23.2658V8.19361L14.198 0Z" fill="white"/>
+                        <path d="M9.26108 23.5693H5.22505C4.72054 23.5693 4.32415 23.1984 4.32415 22.7263V15.1396H3.20703V23.2995C3.20703 24.0076 3.81964 24.5808 4.5764 24.5808H10.0899L9.33315 23.6704C9.33315 23.6367 9.29711 23.603 9.26108 23.5693Z" fill="white"/>
+                        <path d="M15.9999 22.7938H14.5585V18.1406C14.5585 17.8371 14.3062 17.5674 13.9819 17.5674H12.1801C11.8558 17.5674 11.5675 17.8371 11.5675 18.1406V22.7938H10.1261C9.83777 22.7938 9.65759 23.0972 9.83777 23.2995L12.7567 26.8737C12.9008 27.0423 13.1891 27.0423 13.3333 26.8737L16.2522 23.2995C16.4684 23.0972 16.2882 22.7938 15.9999 22.7938Z" fill="white"/>
+                    </svg>
+                    ดาวน์โหลด PDF
 
-                <img src="{{url('img/icon/preview-img2.png')}}" class="preview-img" alt="">
-                <div class="row mb-3 row-cols-auto g-2 justify-content-start mt-3">
-                    <div class="group-img ">
-                        <img src="{{url('img/icon/preview-img.png')}}" class="img-news border rounded active" alt="">
-                        <i class="fa-light fa-eye icon-preview"></i>
-                    </div>
-                    <div class="group-img">
-                        <img src="{{url('img/icon/preview-img2.png')}}" class="img-news border rounded" alt="">
-                        <i class="fa-light fa-eye icon-preview"></i>
-                    </div>
-                    <div class="group-img">
-                        <img src="{{url('img/icon/preview-img2.png')}}" class="img-news border rounded" alt="">
-                        <i class="fa-light fa-eye icon-preview"></i>
-                    </div>
-                    <div class="group-img">
-                        <img src="{{url('img/icon/preview-img2.png')}}" class="img-news border rounded" alt="">
-                        <i class="fa-light fa-eye icon-preview"></i>
-                    </div>
-                    <div class="group-img">
-                        <img src="{{url('img/icon/preview-img2.png')}}" class="img-news border rounded" alt="">
-                        <i class="fa-light fa-eye icon-preview"></i>
-                    </div>
-                    <div class="group-img">
-                        <img src="{{url('img/icon/preview-img2.png')}}" class="img-news border rounded" alt="">
-                        <i class="fa-light fa-eye icon-preview"></i>
-                    </div>
-                    <div class="group-img">
-                        <img src="{{url('img/icon/preview-img2.png')}}" class="img-news border rounded" alt="">
-                        <i class="fa-light fa-eye icon-preview"></i>
-                    </div>
-                    <div class="group-img">
-                        <img src="{{url('img/icon/preview-img2.png')}}" class="img-news border rounded" alt="">
-                        <i class="fa-light fa-eye icon-preview"></i>
-                    </div>
-                </div>
-
-                <script>
-                    const imgNewsElements = document.querySelectorAll('.img-news');
-
-                    imgNewsElements.forEach(imgNews => {
-                    imgNews.addEventListener('click', function handleClick() {
-                        // Remove the 'active' class from all previously clicked images
-                        imgNewsElements.forEach(otherImg => otherImg.classList.remove('active'));
-
-                        // Add the 'active' class to the clicked image
-                        this.classList.add('active');
-
-                        // Update the 'src' attribute of the preview image
-                        const previewImg = document.querySelector('.preview-img');
-                        previewImg.src = this.src;
-                    });
-                    });
-
-                </script>
-                <div class="d-flex justify-content-end w-100" style="color: #989898;">
-                    <i class="fa-regular fa-clock me-2"></i>
-                    <span id="">30 นาที</span>
-                </div>
-
-                <div class="d-flex justify-content-center w-100 mt-0">
-                    <video src="https://www.franchisebuilder2024.com/video/The%20Franchise%20Builder_Final.mp4" controls loop muted style="width:100%;border-radius: 10px; max-width: 700px;" class="video-preview mt-2"></video>
-                </div>
-
+                </button>
                 <div class="w-100 mt-3">
+
                     <p class="mb-0" style="color: #989898;font-size: 14px;font-style: normal;font-weight: 500;line-height: normal;">ถูกใจหลักสูตรนี้?</p>
 
                     <div class="d-flex justify-content-end ">
@@ -459,7 +368,7 @@
                             <i class="fa-solid fa-share m-0"></i>
                         </button>
 
-                        <div class=" px-2 py-0 d-flex align-items-start btn-bookmark-news cursor-pointer" onclick="action_btnlike_dislike(this.className)">
+                        <div class=" px-2 py-0 d-flex align-items-start btn-bookmark-product cursor-pointer" onclick="action_btnlike_dislike(this.className)">
                             <svg width="33" height="42" viewBox="0 0 33 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path class="bookmark-bg" d="M31.3077 0H1C0.447715 0 0 0.447716 0 1V40.3889C0 41.1306 0.779123 41.6141 1.44379 41.285L15.71 34.2198C15.9897 34.0813 16.318 34.0813 16.5976 34.2198L30.8639 41.285C31.5286 41.6141 32.3077 41.1306 32.3077 40.3889V1C32.3077 0.447715 31.86 0 31.3077 0Z" fill="#CDCDCD" />
                                 <path class="bookmark-icon" d="M12.8462 13.4417L7.21748 14.2246L7.11779 14.2441C6.96687 14.2825 6.82929 14.3587 6.7191 14.4648C6.6089 14.571 6.53004 14.7033 6.49057 14.8482C6.4511 14.9931 6.45243 15.1455 6.49442 15.2898C6.53642 15.4341 6.61757 15.5651 6.7296 15.6695L10.8073 19.4775L9.84567 24.8564L9.8342 24.9495C9.82496 25.0993 9.85737 25.2487 9.92811 25.3825C9.99885 25.5163 10.1054 25.6296 10.2368 25.7109C10.3682 25.7922 10.5198 25.8385 10.676 25.8451C10.8322 25.8518 10.9874 25.8184 11.1258 25.7486L16.1598 23.2093L21.1824 25.7486L21.2707 25.7875C21.4163 25.8425 21.5745 25.8594 21.7292 25.8364C21.8839 25.8134 22.0294 25.7513 22.1508 25.6565C22.2722 25.5618 22.3651 25.4377 22.4201 25.2971C22.475 25.1565 22.49 25.0044 22.4634 24.8564L21.5009 19.4775L25.5804 15.6686L25.6492 15.5967C25.7475 15.4805 25.812 15.3414 25.836 15.1936C25.86 15.0458 25.8428 14.8945 25.786 14.7551C25.7293 14.6157 25.635 14.4933 25.5129 14.4003C25.3907 14.3072 25.2451 14.2469 25.0907 14.2255L19.4621 13.4417L16.9459 8.54942C16.8731 8.40768 16.7604 8.28832 16.6205 8.20485C16.4807 8.12138 16.3193 8.07715 16.1546 8.07715C15.9898 8.07715 15.8284 8.12138 15.6886 8.20485C15.5487 8.28832 15.436 8.40768 15.3632 8.54942L12.8462 13.4417Z" fill="#FBFBFB" />
@@ -479,7 +388,7 @@
 </div>
 
 <style>
-    .modal-vote-news {
+    .modal-vote-product {
         background-color: #3D467F !important;
         margin: 0 20px;
         border-radius: 10px !important;
@@ -542,7 +451,7 @@
         line-height: normal;
     }
 
-    .btn-vote-news {
+    .btn-vote-product {
         border-radius: 50px;
         -webkit-border-radius: 50px;
         -moz-border-radius: 50px;
@@ -551,7 +460,7 @@
         font-weight: bolder;
     }
 
-    .btn-vote-news:disabled {
+    .btn-vote-product:disabled {
         background-color: #A3A3A3 !important;
         color: #57759C !important;
     }
@@ -562,7 +471,7 @@
 </button> -->
 <div class="modal fade" id="rating" tabindex="-1" role="dialog" aria-labelledby="rating" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content modal-vote-news">
+        <div class="modal-content modal-vote-product">
             <p class="text-white text-center mb-5 font-20">ให้คะแนนผลิตภัณฑ์นี้</p>
             <div class="w-100 d-flex justify-content-center">
 
@@ -615,23 +524,23 @@
             </div>
 
             <div class="w-100 px-5 mt-3">
-                <button class="btn w-100 bg-white btn-vote-news" data-dismiss="modal" aria-label="Close" onclick="getRating()">ให้คะแนน</button>
+                <button class="btn w-100 bg-white btn-vote-product" data-dismiss="modal" aria-label="Close" onclick="getRating()">ให้คะแนน</button>
             </div>
         </div>
     </div>
 </div>
 
 
-<div class="modal fade" id="dislike_news" tabindex="-1" role="dialog" aria-labelledby="rating" aria-hidden="true">
+<div class="modal fade" id="dislike_product" tabindex="-1" role="dialog" aria-labelledby="rating" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content modal-vote-news">
+        <div class="modal-content modal-vote-product">
             <p class="text-white text-center mb-5 font-20">ให้เหตุผลที่ไม่ชอบผลิตภัณฑ์นี้</p>
             <div class="w-100 d-flex justify-content-center px-4 mb-2">
                 <textarea class="form-control" id="reasons_dislike" placeholder="กรอกเหตุผลที่ไม่ชอบผลิตภัณฑ์นี้" rows="5" style="border-radius: 10px;" oninput="check_reasons_dislike()"></textarea>
             </div>
 
             <div class="w-100 px-4 mt-4">
-                <button class="btn w-100 bg-white btn-vote-news" id="btn_submit_reasons_dislike" disabled onclick="submit_reasons_dislike();">ให้คะแนน</button>
+                <button class="btn w-100 bg-white btn-vote-product" id="btn_submit_reasons_dislike" disabled onclick="submit_reasons_dislike();">ให้คะแนน</button>
             </div>
         </div>
     </div>
@@ -680,11 +589,11 @@
             });
 
             if (!className.includes('active')) {
-                $('#dislike_news').modal('show');
+                $('#dislike_product').modal('show');
             }
 
         } else {
-            document.querySelectorAll('.btn-bookmark-news').forEach(function(element) {
+            document.querySelectorAll('.btn-bookmark-product').forEach(function(element) {
                 element.classList.toggle('active');
             });
             document.querySelectorAll('.btn-bookmark').forEach(function(element) {
@@ -731,7 +640,7 @@
         alert(
             document.querySelector('#reasons_dislike').value
         );
-        $('#dislike_news').modal('hide');
+        $('#dislike_product').modal('hide');
 
     }
 

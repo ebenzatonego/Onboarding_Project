@@ -70,6 +70,7 @@ Route::get('/user_click_fav_btn/{user_id}/{training_id}/{type}', 'TrainingContro
 Route::get('/update_user_view/{user_id}/{training_id}', 'TrainingController@update_user_view');
 Route::get('/update_countTime_trainingVideo/{user_id}/{countTime}/{training_id}', 'TrainingController@update_countTime_trainingVideo');
 Route::get('/get_data_Training/{type}', 'TrainingController@get_data_Training');
+Route::get('/change_Highlight/{training_id}/{number}', 'TrainingController@change_Highlight');
 
 
 // Calendar

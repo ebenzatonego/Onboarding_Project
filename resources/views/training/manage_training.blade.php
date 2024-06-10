@@ -180,6 +180,33 @@
           box-shadow: inset 0px 0px 0px 30px #7ac142
       }
   }
+
+  .detail-course{
+      color: #000;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 5px;
+
+  }
+
+  @keyframes bounce-twice {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-30px);
+    }
+    60% {
+      transform: translateY(-15px);
+    }
+  }
+
+  .i_Highlight {
+    animation: bounce-twice 2s;
+  }
 </style>
 
 <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -192,25 +219,229 @@
 		</div>
 		<div class="btn-group">
 			<span class="btn btn-warning" data-toggle="modal" data-target="#Modal_manage_menu">
-				<i class="fa-solid fa-list-ol"></i> การจัดการเมนู
+				<i class="fa-solid fa-list-ol"></i> การจัดการเมนูหลักสูตร
 			</span>
 		</div>
-    <div class="btn-group">
-      <span class="btn btn-info" data-toggle="modal" data-target="#Modal_manage_Highlight">
-        <i class="fa-solid fa-stars"></i> การจัดการ Highlight
-      </span>
-    </div>
 	</div>
 </div>
 
 <hr>
 
+<div class="card border-top border-0 border-4 border-danger">
+  <div class="card-body p-5">
+    <div class="card-title d-flex align-items-center">
+      <h5 id="h5_training_types" class="mb-0 text-danger">
+        <!--  -->
+      </h5>
+    </div>
+    <hr>
+    <div id="div_content" class="row">
+      <!-- data -->
+    </div>
+  </div>
+</div>
 
 <script>
 
 	document.addEventListener('DOMContentLoaded', function () {
-        // get_data_video_intro_all();
-    });
+        get_data_Training('all');
+  });
+
+  function get_data_Training(type){
+    fetch("{{ url('/') }}/api/get_data_Training/" + type )
+      .then(response => response.json())
+      .then(result => {
+          console.log(result);
+
+          if(type == 'all'){
+              document.querySelector('#h5_training_types').innerHTML = 'หลักสูตรทั้งหมด';
+          }
+          else{
+              document.querySelector('#h5_training_types').innerHTML = result['type_article'];
+          }
+
+          let div_content = document.querySelector('#div_content');
+              div_content.innerHTML = '';
+
+          if(result['data_training']){
+              for (let i = 0; i < result['data_training'].length; i++) {
+
+                  let textWithoutHtml = `<br><br><br>`;
+                  if(result['data_training'][i].detail){
+                      textWithoutHtml = result['data_training'][i].detail.replace(/(<([^>]+)>)/gi, "");
+                  }
+
+                  let type_article = `` ;
+                  if(type == 'all'){
+                      type_article = result['data_training'][i].type_article;
+                  }
+                  else{
+                      type_article = result['type_article'] ;
+                  }
+
+                  let html_Highlight = `<span id="span_Highlight_id_`+result['data_training'][i].id+`" class="float-end">..</span>`;
+                  if(result['data_training'][i].highlight_number){
+                    html_Highlight = `
+                      <span id="span_Highlight_id_`+result['data_training'][i].id+`">
+                        <i class="i_Highlight fa-solid fa-circle-`+result['data_training'][i].highlight_number+` font-24 float-end text-success"></i>
+                      </span>
+                      `;
+                  }
+
+                  let sum_datetime_start = ``;
+                  if(result['data_training'][i].datetime_start){
+                    let datetime_start = result['data_training'][i].datetime_start;
+                    // แยกวันที่และเวลา
+                    let [date_datetime_start, time_datetime_start] = datetime_start.split(' ');
+                    // แยกส่วนของวันที่
+                    let [year_datetime_start, month_datetime_start, day_datetime_start] = date_datetime_start.split('-');
+                    // แปลงรูปแบบวันที่เป็น วัน/เดือน/ปี
+                    let formatted_date_start = `${day_datetime_start}/${month_datetime_start}/${year_datetime_start}`;
+                    // แยกส่วนของเวลา (เฉพาะ HH:MM:SS)
+                    let [hour, minute, second] = time_datetime_start.split('.')[0].split(':');
+                    let formatted_time_start = `${hour}:${minute}`;
+
+                    sum_datetime_start = formatted_date_start+` `+formatted_time_start+` น.` ;
+                  }
+
+                  let sum_datetime_end = `-`;
+                  if(result['data_training'][i].datetime_end){
+                    let datetime_end = result['data_training'][i].datetime_end;
+                    // แยกวันที่และเวลา
+                    let [date_datetime_end, time_datetime_end] = datetime_end.split(' ');
+                    // แยกส่วนของวันที่
+                    let [year_datetime_end, month_datetime_end, day_datetime_end] = date_datetime_end.split('-');
+                    // แปลงรูปแบบวันที่เป็น วัน/เดือน/ปี
+                    let formatted_date_end = `${day_datetime_end}/${month_datetime_end}/${year_datetime_end}`;
+                    // แยกส่วนของเวลา (เฉพาะ HH:MM:SS)
+                    let [hour, minute, second] = time_datetime_end.split('.')[0].split(':');
+                    let formatted_time_end = `${hour}:${minute}`;
+
+                    sum_datetime_end = formatted_date_end+` `+formatted_time_end+` น.`;
+                  }
+
+                  let html = `
+                      <div class="col-12 col-md-3">
+                        <div class="card">
+                          <img src="`+result['data_training'][i].photo+`" class="card-img-top">
+                          <div class="card-body">
+                            <h5 class="card-title">
+                              `+result['data_training'][i].title+`
+                            </h5>
+                            <p class="card-text text-info">
+                              #`+type_article+`
+                            </p>
+                            <p class="card-text">
+                              <b>เริ่ม : </b>`+sum_datetime_start+`
+                              <br>
+                              <b>สิ้นสุด : </b>`+sum_datetime_end+`
+                            </p>
+                            <p class="detail-course">
+                              `+textWithoutHtml+`
+                            </p>
+                            <hr>
+                            <span>
+                              <b>Highlight</b>
+                              `+html_Highlight+`
+                            </span>
+                            <center class="mt-4 mb-2">
+                              <a href="{{ url('/preview_training') }}/`+result['data_training'][i].id+`" class="btn btn-sm btn-info">
+                                ดูข้อมูล
+                              </a>
+                              <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Highlight</button>
+                                <ul class="dropdown-menu" style="margin: 0px;">
+                                  <li>
+                                    <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '1')">
+                                      ลำดับที่ 1
+                                    </span>
+                                  </li>
+                                  <li>
+                                    <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '2')">
+                                      ลำดับที่ 2
+                                    </span>
+                                  </li>
+                                  <li>
+                                    <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '3')">
+                                      ลำดับที่ 3
+                                    </span>
+                                  </li>
+                                  <li>
+                                    <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '4')">
+                                      ลำดับที่ 4
+                                    </span>
+                                  </li>
+                                  <li>
+                                    <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '5')">
+                                      ลำดับที่ 5
+                                    </span>
+                                  </li>
+                                </ul>
+                              </div>
+                            </center>
+                          </div>
+                        </div>
+                      </div>
+                  `;
+
+                  div_content.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+
+              }
+          }
+
+      });
+  }
+
+  function change_Highlight(training_id , number){
+    // console.log(training_id);
+    // console.log(number);
+
+    fetch("{{ url('/') }}/api/change_Highlight/" + training_id  + "/" + number)
+      .then(response => response.json())
+      .then(result => {
+          // console.log(result);
+
+          if(result['old_id']){
+            let span_Highlight_old_id = document.querySelector('#span_Highlight_id_'+result['old_id']);
+
+            if(result['old_id_change_to']){
+                span_Highlight_old_id.innerHTML = `
+                  <span id="span_Highlight_id_`+result['old_id']+`">
+                    <i class="i_Highlight fa-solid fa-circle-`+result['old_id_change_to']+` font-24 float-end text-success"></i>
+                  </span>
+                `;
+
+                let icon_1 = document.getElementById('span_Highlight_id_'+result['old_id']);
+                    icon_1.classList.remove('i_Highlight');
+                    // void icon_1.offsetWidth; // Trigger reflow
+                    setTimeout(() => {
+                      icon_1.classList.add('i_Highlight');
+                    }, 500);
+                  }
+            else{
+              span_Highlight_old_id.innerHTML = `
+                <span id="span_Highlight_id_`+result['old_id']+`" class="float-end">..</span>
+              `;
+            }
+          }
+
+          let select = document.querySelector('#span_Highlight_id_'+training_id);
+          select.innerHTML = `
+            <span id="span_Highlight_id_`+training_id+`">
+              <i class="i_Highlight fa-solid fa-circle-`+number+` font-24 float-end text-success"></i>
+            </span>
+          `;
+
+          let icon_2 = document.getElementById('span_Highlight_id_'+training_id);
+              icon_2.classList.remove('i_Highlight');
+              // void icon_2.offsetWidth; // Trigger reflow
+              setTimeout(() => {
+                icon_2.classList.add('i_Highlight');
+              }, 500);
+
+      });
+  }
+
 
 </script>
 

@@ -29,12 +29,8 @@
                 </a>
             </div>
             <div class="col-lg-12 mt-3">
-                <div class="owl-carousel carousel-fav-course owl-theme">
+                <div id="div_content_highlight_number" class="owl-carousel carousel-fav-course owl-theme">
                     <!-- Loop highlight of training_types -->
-                    <div class="item">
-                        <img src="{{ url('/img/icon/ad.png') }}">
-                    </div>
-                    <!-- END Loop highlight of training_types -->
                 </div>
             </div>
             <div class="col-lg-12 mt-3">
@@ -210,49 +206,6 @@
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js'></script>
-<script>
-    $('.carousel-menu-course').owlCarousel({
-        // stagePadding:20,
-        loop: false,
-        autoWidth: true,
-        
-        nav: false,    
-        dots: false,
-        responsive: {
-            0: {
-                margin: 20,
-                items: 6
-            },
-            600: {
-                margin: 20,
-                items: 3
-            },
-            1000: {
-                margin: 40,
-                items: 1
-            }
-        }
-    })
-
-    $('.carousel-fav-course').owlCarousel({
-        // stagePadding:20,
-        loop: false,
-        autoWidth: true,
-        margin: 10,
-        nav: false,
-        responsive: {
-            0: {
-                items: 1
-            },
-            600: {
-                items: 3
-            },
-            1000: {
-                items: 1
-            }
-        }
-    })
-</script>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -269,7 +222,7 @@
         fetch("{{ url('/') }}/api/get_data_Training/" + type )
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
+                console.log(result);
 
                 if(type == 'all'){
                     document.querySelector('#p_training_types').innerHTML = 'หลักสูตรทั้งหมด';
@@ -351,7 +304,63 @@
 
                         div_content.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
 
+                        // highlight_number
+                        if(result['data_training'][i].highlight_number){
+                            let div_content_highlight_number = document.querySelector('#div_content_highlight_number');
+
+                            let html_highlight_number = `
+                                <div class="item">
+                                    <img src="`+result['data_training'][i].photo+`">
+                                </div>
+                            `;
+
+                            div_content_highlight_number.insertAdjacentHTML('beforeend', html_highlight_number); // แทรกล่างสุด
+
+                        }
                     }
+
+                    $('.carousel-menu-course').owlCarousel({
+                        // stagePadding:20,
+                        loop: false,
+                        autoWidth: true,
+                        
+                        nav: false,    
+                        dots: false,
+                        responsive: {
+                            0: {
+                                margin: 20,
+                                items: 6
+                            },
+                            600: {
+                                margin: 20,
+                                items: 3
+                            },
+                            1000: {
+                                margin: 40,
+                                items: 1
+                            }
+                        }
+                    })
+
+                    $('.carousel-fav-course').owlCarousel({
+                        // stagePadding:20,
+                        loop: false,
+                        autoWidth: true,
+                        margin: 10,
+                        nav: false,
+                        responsive: {
+                            0: {
+                                items: 1
+                            },
+                            600: {
+                                items: 3
+                            },
+                            1000: {
+                                items: 1
+                            }
+                        }
+                    })
+
                 }
 
             });

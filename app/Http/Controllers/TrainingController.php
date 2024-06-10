@@ -579,15 +579,60 @@ class TrainingController extends Controller
             $data['data_training'] = DB::table('trainings')
                 ->join('training_types', 'training_types.id', '=', 'trainings.training_type_id')
                 ->select('trainings.*', 'training_types.type_article')
-                ->orderBy('trainings.id' , 'DESC')
+                ->orderByRaw("CASE 
+                        WHEN highlight_number IS NOT NULL THEN 1
+                        ELSE 2
+                        END, 
+                        highlight_number ASC, 
+                        id DESC")
                 ->get();
         }
         else{
-            $data['data_training'] = Training::where('training_type_id', $type)->orderBy('id' , 'DESC')->get();
+            $data['data_training'] = Training::where('training_type_id', $type)
+                ->orderBy('id' , 'DESC')
+                ->get();
             $data_Training_type = Training_type::where('id', $type)->first();
             $data['type_article'] = $data_Training_type->type_article ;
         }
 
         return $data;
+    }
+
+    function change_Highlight($training_id , $number){
+
+        $data = [];
+
+        $Highlight_number_old = Training::where('highlight_number', $number)->first();
+        $Highlight_number_select = Training::where('id', $training_id)->first();
+
+        if( !empty($Highlight_number_select->highlight_number) ){
+            $data['old_id_change_to'] = $Highlight_number_select->highlight_number;
+        }
+        else{
+            $data['old_id_change_to'] = null;
+        }
+
+        if( !empty($Highlight_number_old->id) ){
+            $data['old_id'] = $Highlight_number_old->id;
+
+            DB::table('trainings')
+                ->where([ 
+                        ['id', $data['old_id']],
+                    ])
+                ->update([
+                        'highlight_number' => $data['old_id_change_to'],
+                    ]);
+        }
+
+        DB::table('trainings')
+            ->where([ 
+                    ['id', $training_id],
+                ])
+            ->update([
+                    'highlight_number' => $number,
+                ]);
+
+        return $data;
+
     }
 }

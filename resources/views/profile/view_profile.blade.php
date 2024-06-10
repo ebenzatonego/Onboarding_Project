@@ -379,15 +379,15 @@
                             <div>
                                 <p class="m-0">
                                     <span style="font-size: 10;font-weight: bolder;color: #373737;">เลขที่ใบอนุญาต : </span>
-                                    <span style="font-size: 10;font-weight: bolder;color: #0E2B81;">{{ Auth::user()->license }}</span>
+                                    <span style="font-size: 10;font-weight: bolder;color: #0E2B81;">{{ Auth::user()->license ?  Auth::user()->license: '-'}}</span>
                                 </p>
                                 <p class="m-0">
                                     <span style="font-size: 10;font-weight: bolder;color: #373737;">วันที่เริ่มต้น : </span>
-                                    <span style="font-size: 10;font-weight: bolder;color: #0E2B81;">{{ thaidate("j M Y" , strtotime(Auth::user()->license_start)) }} </span>
+                                    <span style="font-size: 10;font-weight: bolder;color: #0E2B81;">{{ thaidate("j M Y" , strtotime(Auth::user()->license_start)) ? thaidate("j M Y" , strtotime(Auth::user()->license_start)) : '-'}} </span>
                                 </p>
                                 <p class="m-0">
                                     <span style="font-size: 10;font-weight: bolder;color: #373737;">วันที่หมดอายุ : </span>
-                                    <span style="font-size: 10;font-weight: bolder;color: #0E2B81;">{{ thaidate("j M Y" , strtotime(Auth::user()->license_expire)) }} </span>
+                                    <span style="font-size: 10;font-weight: bolder;color: #0E2B81;">{{ thaidate("j M Y" , strtotime(Auth::user()->license_expire)) ? thaidate("j M Y" , strtotime(Auth::user()->license_expire)) : '-'}} </span>
 
                                 </p>
                             </div>
@@ -834,27 +834,27 @@
                         <div class="w-100">
                             <p class="detail-profile">
                                 เลขที่ใบอนุญาต :
-                                <span style="color: #003781;">{{ Auth::user()->license }}</span>
+                                <span style="color: #003781;">{{ Auth::user()->license ? Auth::user()->license : '-'}}</span>
                             </p>
                             <p class="detail-profile">
                                 วันออกใบอนุญาต :
-                                <span style="color: #003781;">{{ Auth::user()->license_start }}</span>
+                                <span style="color: #003781;">{{ Auth::user()->license_start ? Auth::user()->license_start : '-'}}</span>
                             </p>
                             <p class="detail-profile">
                                 วันหมดอายุใบอนุญาต :
-                                <span style="color: #003781;">{{ Auth::user()->license_expire }}</span>
+                                <span style="color: #003781;">{{ Auth::user()->license_expire ? Auth::user()->license_expire : '-'}}</span>
                             </p>
                             <p class="detail-profile">
                                 เลขที่ใบอนุญาต IC License :
-                                <span style="color: #003781;">{{ Auth::user()->ic_license }}</span>
+                                <span style="color: #003781;">{{ Auth::user()->ic_license ? Auth::user()->ic_license : '-'}}</span>
                             </p>
                             <p class="detail-profile">
                                 วันออกใบอนุญาต IC License :
-                                <span style="color: #003781;">{{ Auth::user()->ic_license_start }}</span>
+                                <span style="color: #003781;">{{ Auth::user()->ic_license_start ? Auth::user()->ic_license_start : '-'}}</span>
                             </p>
                             <p class="detail-profile">
                                 วันหมดอายุใบอนุญาต IC License :
-                                <span style="color: #003781;">{{ Auth::user()->ic_license_expire }}</span>
+                                <span style="color: #003781;">{{ Auth::user()->ic_license_expire ? Auth::user()->ic_license_expire : '-'}}</span>
                             </p>
 
                             @if(Auth::user()->clm == "1")
@@ -941,10 +941,10 @@
                                     <img src="{{url('img/icon/icon-book.png')}}" width="20" alt="">
                                     <div class="ms-2">
                                         <p class="mb-0" style="color: #373737;font-size: 10px;font-style: normal;font-weight: 400;line-height: normal;">
-                                            Mobile: <a style="color: #373737;font-size: 10px;font-style: normal;font-weight: 400;line-height: normal;" href="tel:{{ Auth::user()->phone }}">{{ Auth::user()->phone }}</a>
+                                            Mobile: <a style="color: #373737;font-size: 10px;font-style: normal;font-weight: 400;line-height: normal;" href="tel:{{ Auth::user()->phone }}">{{ Auth::user()->phone ? Auth::user()->phone : '-'}}</a>
                                         </p>
                                         <p class="mb-0">
-                                            <a style="color: #373737;font-size: 10px;font-style: normal;font-weight: 400;line-height: normal;" href="mailto:{{ Auth::user()->email }}">{{ Auth::user()->email }}
+                                            <a style="color: #373737;font-size: 10px;font-style: normal;font-weight: 400;line-height: normal;" href="mailto:{{ Auth::user()->email }}">{{ Auth::user()->email ? Auth::user()->email : '-'}}
                                         </p>
                                     </div>
                                 </div>

@@ -3,21 +3,18 @@
     .card-Share_social {
       width: 100%;
       display: flex;
-
-      height: fit-content;
-      display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 25px 25px;
-      gap: 20px;
+      justify-content: space-evenly;
       box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.055);
-      
+      margin: 20px 0;
     }
 
     /* for all social containers*/
     .socialContainer {
-      width: 52px;
-      height: 52px;
+      min-width: 52px !important;
+      min-height: 52px !important;
+      max-width: 52px !important;
+      max-height: 52px !important;
       border-radius: 50%;
       background-color: #CECECE;
       display: flex;
@@ -85,6 +82,17 @@
       border-radius: 20px;
       color: #243286;
     }
+    
+    .modal-share-social {
+        background-color: #3D467F !important;
+        margin: 0 20px;
+        border-radius: 10px !important;
+        -webkit-border-radius: 10px !important;
+        -moz-border-radius: 10px !important;
+        -ms-border-radius: 10px !important;
+        -o-border-radius: 10px !important;
+        padding: 40px 0;
+    }
 </style>
 
 @if(Auth::user()->id == '1')
@@ -96,7 +104,7 @@
 @endif
 <div class="modal fade" id="Share_social_media" tabindex="-1" role="dialog" aria-labelledby="happybirthdayTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content modal-profile d-flex justify-content-center">
+        <div class="modal-content modal-share-social d-flex justify-content-center m-0">
             <p style="color: #FFF;text-align: center;font-size: 20px;font-style: normal;font-weight: 400;line-height: normal;">แชร์เนื้อหานี้</p>
             <div class="card-Share_social">
               	<a class="socialContainer containerLine" href="https://social-plugins.line.me/lineit/share?url=https://www.youtube.com/watch?v=fa-c2fY_tOQ" target="_blank">
@@ -113,10 +121,6 @@
               
               	<a class="socialContainer containerWhatsapp" href="https://api.whatsapp.com/send?text=https://www.youtube.com/watch?v=fa-c2fY_tOQ" target="_blank">
                 <i class="fa-brands fa-whatsapp socialSvg"></i>
-              	</a>
-
-                <a class="socialContainer containerDiscord" href="https://discord.com/channels/@me?url=https://www.youtube.com/watch?v=fa-c2fY_tOQ" target="_blank">
-                <i class="fa-brands fa-discord socialSvg"></i>
               	</a>
             </div>             
             <div class="px-5 mt-3">

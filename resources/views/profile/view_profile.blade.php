@@ -404,15 +404,14 @@
                         <div style=" position: absolute;bottom: -12px; display: flex;">
                             <div class="alert-license-expire me-3">
                                 <div>
-                                    <i class="fa-solid fa-triangle-exclamation"></i>
                                     <span class="ms-1">หมดอายุภายใน <span id="">90</span> วัน</span>
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-end align-items-end">
-                                <button type="button" class="" data-toggle="modal" data-target="#modal_show_all_detail" style="border: #003781 1px solid;background-color: #fff;padding: 3px 20px ;border-radius: 50px;">
-                                    <i class="fa-solid fa-chevron-down"></i>
-                                </button>
-                            </div>
+                        </div>
+                        <div style="position: absolute;bottom: -25px;left: 50%;transform: translate(-50%, -50%);">
+                            <button type="button" class="" data-toggle="modal" data-target="#modal_show_all_detail" style="border:none !important;background: #7FA3D4;padding: 5px 5px ;border-radius: 50px;color:#fff">
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
                         </div>
 
 

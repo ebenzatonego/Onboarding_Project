@@ -25,18 +25,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 
     <!-- font -->
-    
-    </head>
+
+</head>
 <style>
     video::-webkit-media-controls-timeline {
         display: none;
     }
+
     video::-webkit-media-controls-current-time-display,
     video::-webkit-media-controls-time-remaining-display {
         display: none;
     }
 
-   body,
+    body,
     html {
         background-color: #fff !important;
         margin: 0 !important;
@@ -126,6 +127,7 @@
         color: #252323;
         font-size: 22px;
     }
+
     .div-navbar-top .navbar .navbar-nav .nav-link {
         padding-right: 0.8rem;
         padding-left: 0.8rem;
@@ -165,22 +167,44 @@
         -ms-border-radius: 10px;
         -o-border-radius: 10px;
         max-width: 100px;
-    min-width: 50px;
+        min-width: 50px;
     }
 
     .navbar-bottom-active * {
         color: rgb(0, 55, 129) !important;
     }
 
-    .text-color-obd{
+    .text-color-obd {
         color: #0E2B81 !important;
-    } @media only screen and (min-width: 744px){
-         .div-navbar-botttom .col-navbar{
-        max-width: 150px;
     }
+
+    @media only screen and (min-width: 744px) {
+        .div-navbar-botttom .col-navbar {
+            max-width: 150px;
+        }
 
     }
 
+    @media only screen and (max-width:416px) {
+        .div-navbar-top .navbar {
+            padding: 0 10px !important;
+        }
+
+        .div-navbar-top .navbar .navbar-nav .nav-link {
+            font-size: 18px;
+        }
+        .top-menu-left div img{
+            width: 34px !important;
+            height: 32px !important;
+        }
+        .name-project{
+        font-size: 14 !important;
+    }
+    }
+    .name-project{
+        font-size: 16;
+        font-weight: bolder;
+    }
     .btn-submit-login {
         width: 100%;
         border-radius: 50px;
@@ -212,13 +236,12 @@
         -moz-border-radius: 5px;
         -khtml-border-radius: 5px;
     }
-
 </style>
 
 <header>
 
     @include ('Share_social')
-    
+
     <!-- Modal Happy birthday-->
     <button id="btn_modal_Happy_birthday" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#happybirthday"></button>
     <div class="modal fade" id="happybirthday" tabindex="-1" role="dialog" aria-labelledby="happybirthdayTitle" aria-hidden="true">
@@ -271,9 +294,9 @@
                 </ul> -->
                 <div class="d-flex align-items-center">
                     <img src="{{ url('/img/logo/Logo Main.png') }}" style="width:39px;height:37px">
-                    <div class="ms-3 ">
-                        <p class="m-0" style="font-size: 16;font-weight: bolder;">AGENCY JOURNEY</p>
-                        <p class="m-0" style="font-size: 8px;">ALLIANZ ON BOARDING</p>
+                    <div class="ms-2 ">
+                        <p class="m-0 name-project" >AGENCY JOURNEY</p>
+                        <p class="m-0"  style="font-size: 8px;">ALLIANZ ON BOARDING</p>
                     </div>
                 </div>
             </div>
@@ -286,24 +309,24 @@
 
             <div class="top-menu ms-auto">
                 <ul class="navbar-nav align-items-center">
-                    <li id="li_search_theme_user" class="nav-item mobile-search-icon d-none">
-                        <a class="nav-link" href="#">	
-                        <i class="fa-solid fa-magnifying-glass text-color-obd"></i>
+                    <li id="li_search_theme_user" class="nav-item mobile-search-icon d-nones">
+                        <a class="nav-link" href="#">
+                            <i class="fa-solid fa-magnifying-glass text-color-obd"></i>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">	
-                        <i class="fa-regular fa-bookmark text-color-obd"></i>
+                        <a class="nav-link dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-regular fa-bookmark text-color-obd"></i>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> 
-                        <span class="alert-count d-none"></span>
-                        <i class="fa-regular fa-calendar text-color-obd"></i>
+                        <a class="nav-link dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="alert-count d-none"></span>
+                            <i class="fa-regular fa-calendar text-color-obd"></i>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> 
+                        <a class="nav-link dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <span class="alert-count"></span>
                             <i class="fa-regular fa-bell text-color-obd"></i>
                         </a>
@@ -351,7 +374,7 @@
 <div id="navbar-botttom" class="container" style="z-index: 99998;">
     <div class="row justify-content-center mx-2 div-navbar-botttom">
         <div class="col text-center text-truncate col-navbar d-flex justify-content-center">
-            <div class=" mx-2 pt-2 pb-1 mb-2">
+            <div class=" mx-2 pt-2 pb-1 mb-2" id="menu_theme_user_Training">
                 <a href="{{ url('/page_training') }}">
                     <i class="fa-regular fa-graduation-cap fa-flip-horizontal"></i>
                     <p class="text-truncate mt-1 mb-0">
@@ -362,7 +385,7 @@
         </div>
 
         <div class="col text-center text-truncate col-navbar d-flex justify-content-center">
-            <div class=" mx-2 pt-2 pb-1 mb-2">
+            <div class=" mx-2 pt-2 pb-1 mb-2" id="menu_theme_user_Product">
                 <a href="{{ url('/product') }}" class="">
                     <i class="fa-regular fa-clipboard-list"></i>
                     <p class="text-truncate mt-1 mb-0">
@@ -372,7 +395,7 @@
             </div>
         </div>
         <div class="col text-center text-truncate col-navbar d-flex justify-content-center">
-            <div class="navbar-bottom-active mx-2 pt-2 pb-1 mb-2">
+            <div class=" mx-2 pt-2 pb-1 mb-2" id="menu_theme_user_Home">
                 <a href="{{ url('/home') }}">
                     <i class="fa-regular fa-house"></i>
                     <p class="text-truncate mt-1 mb-0">
@@ -382,7 +405,7 @@
             </div>
         </div>
         <div class="col text-center text-truncate col-navbar d-flex justify-content-center">
-            <div class=" mx-2 pt-2 pb-1 mb-2">
+            <div class=" mx-2 pt-2 pb-1 mb-2" id="menu_theme_user_News">
                 <a href="{{ url('/news') }}">
                     <i class="fa-regular fa-newspaper"></i>
                     <p class="text-truncate mt-1 mb-0">
@@ -392,7 +415,7 @@
             </div>
         </div>
         <div class="col text-center text-truncate col-navbar d-flex justify-content-center">
-            <div class=" mx-2 pt-2 pb-1 mb-2">
+            <div class=" mx-2 pt-2 pb-1 mb-2" id="menu_theme_user_Career_Path">
                 <a href="{{ url('/career_paths') }}">
                     <i class="fa-regular fa-wrench-simple fa-rotate-by" style="--fa-rotate-angle: 320deg;"></i>
                     <p class=" text-truncate mt-1 mb-0">
@@ -407,6 +430,7 @@
 <script>
     function change_active_menu_theme_user(type) {
         console.log(type);
+        document.querySelector('#menu_theme_user_'+type).classList.add('navbar-bottom-active')
     }
 </script>
 
@@ -542,9 +566,9 @@
 
 
 <script>
-    $(".mobile-search-icon").on("click", function () {
-		$(".search-bar").addClass("full-search-bar");
-	});
+    $(".mobile-search-icon").on("click", function() {
+        $(".search-bar").addClass("full-search-bar");
+    });
 </script>
 
 <script>
@@ -555,13 +579,13 @@
         check_current_rank();
     });
 
-    function check_current_rank(){
+    function check_current_rank() {
 
-        let current_rank = "{{ Auth::user()->current_rank }}" ;
-        let last_rank = "{{ Auth::user()->last_rank }}" ;
-        let check_video_congratulation = "{{ Auth::user()->check_video_congratulation }}" ;
-        let check_content_popup = "{{ Auth::user()->check_content_popup }}" ;
-        let check_birthday = "{{ Auth::user()->check_birthday }}" ;
+        let current_rank = "{{ Auth::user()->current_rank }}";
+        let last_rank = "{{ Auth::user()->last_rank }}";
+        let check_video_congratulation = "{{ Auth::user()->check_video_congratulation }}";
+        let check_content_popup = "{{ Auth::user()->check_content_popup }}";
+        let check_birthday = "{{ Auth::user()->check_birthday }}";
 
         let birthday = "{{ Auth::user()->birthday }}";
         // แยกวันและเดือนจาก birthday
@@ -572,20 +596,18 @@
         let currentDay = String(today.getDate()).padStart(2, '0');
         let currentMonth = String(today.getMonth() + 1).padStart(2, '0');
 
-        if(current_rank != last_rank && last_rank && !check_video_congratulation){
-            window.location.href = "{{ url('/show_video_congrats') }}?from="+"{{ url()->full() }}";
-        }
-        else{
+        if (current_rank != last_rank && last_rank && !check_video_congratulation) {
+            window.location.href = "{{ url('/show_video_congrats') }}?from=" + "{{ url()->full() }}";
+        } else {
 
             fetch("{{ url('/') }}/api/get_active_content_popup")
                 .then(response => response.text())
                 .then(result => {
                     // console.log(result);
-                    if(!check_content_popup && result == "Yes"){
+                    if (!check_content_popup && result == "Yes") {
                         // SHOW CONTENT POPUP
                         show_content_popup_for_theme_user();
-                    }
-                    else if (day === currentDay && month === currentMonth && !check_birthday){
+                    } else if (day === currentDay && month === currentMonth && !check_birthday) {
                         // ตรวจสอบวันและเดือน
                         // console.log("วันนี้เป็นวันเกิด!");
                         document.querySelector('#btn_modal_Happy_birthday').click();
@@ -598,48 +620,47 @@
                     }
                 });
         }
-        
+
     }
 
-    function show_content_popup_for_theme_user(){
+    function show_content_popup_for_theme_user() {
         fetch("{{ url('/') }}/api/theme_user_get_content_popup")
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
 
-                if(result.length > 0){
+                if (result.length > 0) {
                     let div_for_content_popup = document.querySelector('#div_for_content_popup');
 
-                    let html_photo_or_video = `` ;
-                    if(result[0].type == "photo"){
+                    let html_photo_or_video = ``;
+                    if (result[0].type == "photo") {
                         html_photo_or_video = `
-                            <img src="`+result[0].photo+`" class="mt-4" alt="" style="width: 80%;border-radius: 10px;">
+                            <img src="` + result[0].photo + `" class="mt-4" alt="" style="width: 80%;border-radius: 10px;">
                         `;
-                    }
-                    else if(result[0].type == "video"){
+                    } else if (result[0].type == "video") {
                         html_photo_or_video = `
-                            <video src="`+result[0].video+`" controls autoplay loop muted style="width:80%;border-radius: 10px; max-width: 628px;" class="video-preview"></video>
+                            <video src="` + result[0].video + `" controls autoplay loop muted style="width:80%;border-radius: 10px; max-width: 628px;" class="video-preview"></video>
                         `;
                     }
 
                     let text_detail = ``;
-                    if(result[0].detail){
-                        text_detail = result[0].detail ;
+                    if (result[0].detail) {
+                        text_detail = result[0].detail;
                     }
 
                     let html = `
                         <div class="px-3" >
                             <p id="content_title" class="text-white text-center mb-0" style="font-size: 17px;font-style: normal;font-weight: 700;line-height: normal;margin-top:-5px">
-                                `+result[0].title+`
+                                ` + result[0].title + `
                             </p>
                         </div>
                      
                         <div id="content_photo_or_video" class="w-100 d-flex justify-content-center ">
-                            `+html_photo_or_video+`
+                            ` + html_photo_or_video + `
                         </div>
                         <div class="text-center mt-4 px-3" >
                             <div id="content_detail" class="text-white mb-0 mt-3 px-3">
-                                `+text_detail+`
+                                ` + text_detail + `
                             </div>
                         </div>
                     `;
@@ -655,7 +676,7 @@
     function close_show_content_popup() {
 
         // บันทึกเวลาการดู Content Popup
-        check_click_close_content_popup = "Yes" ;
+        check_click_close_content_popup = "Yes";
         stopCountTime_show_content_popup();
 
         fetch("{{ url('/') }}/api/update_countTime_content_popup/" + "{{ Auth::user()->id }}" + "/" + countTime_show_content_popup)
@@ -705,7 +726,7 @@
     // ก่อนปิดหน้าหรือเปลี่ยนหน้า
     window.addEventListener('beforeunload', function(e) {
 
-        if(countTime_show_content_popup > 0 && check_click_close_content_popup == "No"){
+        if (countTime_show_content_popup > 0 && check_click_close_content_popup == "No") {
             // console.log(">>>>>>>>>>>" + countTime_show_content_popup);
             fetch("{{ url('/') }}/api/update_countTime_content_popup/" + "{{ Auth::user()->id }}" + "/" + countTime_show_content_popup)
                 .then(response => response.text())
@@ -715,7 +736,6 @@
         }
 
     });
-
 </script>
 
 
@@ -733,17 +753,17 @@
         appId: "1:886771711607:web:6ce7ba6fb159414ba65072"
     };
     firebase.initializeApp(firebaseConfig);
-  
+
     var storage = firebase.storage();
 
     function formatDate_for_firebase(date) {
         let day = String(date.getDate()).padStart(2, '0');
         let month = String(date.getMonth() + 1).padStart(2, '0'); // เดือนนับจาก 0, ต้องบวก 1
         let year = date.getFullYear();
-        
+
         let hours = String(date.getHours()).padStart(2, '0');
         let minutes = String(date.getMinutes()).padStart(2, '0');
-        
+
         return `${day}-${month}-${year}__${hours}:${minutes}`;
     }
 </script>

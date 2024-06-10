@@ -1130,7 +1130,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
 
-        change_active_menu_theme_user('home')
+        change_active_menu_theme_user('Home')
         document.querySelector('#li_search_theme_user').classList.add('d-none');
 
         const inputFile = document.querySelector("#picture_profile_input");

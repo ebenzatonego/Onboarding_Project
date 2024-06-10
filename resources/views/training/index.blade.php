@@ -797,7 +797,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
 
-        change_active_menu_theme_user('training');
+        change_active_menu_theme_user('Training');
 
     });
 </script>

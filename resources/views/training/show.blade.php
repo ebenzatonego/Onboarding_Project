@@ -593,7 +593,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
 
-        change_active_menu_theme_user('training');
+        change_active_menu_theme_user('Training');
 
         if(document.getElementById('trainingVideo')){
             var video = document.getElementById('trainingVideo');

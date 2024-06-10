@@ -138,38 +138,38 @@
                 <div class="fav-course">
                     <div class="col-6">
                         <div class="w-100">
-                            <a href="" class="long-item">
+                            <a href="{{ url('/sub_training/1') }}" class="long-item">
                                 <img src="{{ url('/img/icon/long-content-1.png') }}" alt="">
                                 <div class="count-training">
-                                    <span id="" style="font-size: 24px;font-weight: bolder;color: #fff;">15</span>
+                                    <span id="" style="font-size: 24px;font-weight: bolder;color: #fff;">11</span>
                                     <span class="ms-1" style="color: #fff;">หลักสูตร</span>
                                 </div>
                             </a>
-                            <div class="square-item mt-3">
+                            <a href="{{ url('/sub_training/2') }}" class="square-item mt-3">
                                 <img src="{{ url('/img/icon/square-content-1.png') }}" alt="">
                                 <div class="count-training">
-                                    <span id="" style="font-size: 24px;font-weight: bolder;color: #003781;">15</span>
+                                    <span id="" style="font-size: 24px;font-weight: bolder;color: #003781;">12</span>
                                     <span class="ms-1" style="color: #003781;">หลักสูตร</span>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="w-100">
-                            <div class="square-item">
+                            <a href="{{ url('/sub_training/3') }}" class="square-item">
                                 <img src="{{ url('/img/icon/square-content-2.png') }}" alt="">
                                 <div class="count-training">
-                                    <span id="" style="font-size: 24px;font-weight: bolder;color: #003781;">15</span>
+                                    <span id="" style="font-size: 24px;font-weight: bolder;color: #003781;">13</span>
                                     <span class="ms-1" style="color: #003781;">หลักสูตร</span>
                                 </div>
-                            </div>
-                            <div class="long-item mt-3">
+                            </a>
+                            <a href="{{ url('/sub_training/4') }}" class="long-item mt-3">
                                 <img src="{{ url('/img/icon/long-content-2.png') }}" alt="">
                                 <div class="count-training">
-                                    <span id="" style="font-size: 24px;font-weight: bolder;color: #fff;">15</span>
+                                    <span id="" style="font-size: 24px;font-weight: bolder;color: #fff;">14</span>
                                     <span class="ms-1" style="color: #fff;">หลักสูตร</span>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>

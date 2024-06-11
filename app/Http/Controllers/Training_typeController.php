@@ -127,7 +127,12 @@ class Training_typeController extends Controller
         $max_number_menu = $data_old->max('number_menu');
         // หาค่าเรคคอร์ดที่มี number_menu มากที่สุด
         $max_number_menu_record = $data_old->sortByDesc('number_menu')->first();
-        $max_number_menu_value = $max_number_menu_record->number_menu;
+
+        if( !empty($max_number_menu_record->number_menu) ){
+            $max_number_menu_value = $max_number_menu_record->number_menu;
+        }else{
+            $max_number_menu_value = 0 ;
+        }
 
         $data = [];
         $data['type_article'] = $requestData['add_training_type'];

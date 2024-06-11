@@ -203,7 +203,7 @@
         fetch("{{ url('/') }}/api/get_data_Training/" + type )
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 if(type == 'all'){
                     document.querySelector('#p_training_types').innerHTML = 'หลักสูตรทั้งหมด';
@@ -285,18 +285,35 @@
 
                         div_content.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
 
-                        // highlight_number
-                        if(result['data_training'][i].highlight_number){
-                            let div_content_highlight_number = document.querySelector('#div_content_highlight_number');
+                        if(type == 'all'){
+                            // highlight_number ALL
+                            if(result['data_training'][i].highlight_number){
+                                let div_content_highlight_number = document.querySelector('#div_content_highlight_number');
 
-                            let html_highlight_number = `
-                                <div class="item">
-                                    <img src="`+result['data_training'][i].photo+`">
-                                </div>
-                            `;
+                                let html_highlight_number = `
+                                    <div class="item">
+                                        <img src="`+result['data_training'][i].photo+`">
+                                    </div>
+                                `;
 
-                            div_content_highlight_number.insertAdjacentHTML('beforeend', html_highlight_number); // แทรกล่างสุด
+                                div_content_highlight_number.insertAdjacentHTML('beforeend', html_highlight_number); // แทรกล่างสุด
 
+                            }
+                        }
+                        else{
+                            // highlight_of_type
+                            if(result['data_training'][i].highlight_of_type){
+                                let div_content_highlight_number = document.querySelector('#div_content_highlight_number');
+
+                                let html_highlight_number = `
+                                    <div class="item">
+                                        <img src="`+result['data_training'][i].photo+`">
+                                    </div>
+                                `;
+
+                                div_content_highlight_number.insertAdjacentHTML('beforeend', html_highlight_number); // แทรกล่างสุด
+
+                            }
                         }
                     }
 
@@ -330,7 +347,7 @@
         fetch("{{ url('/') }}/api/get_data_Training_type")
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 if(result){
 

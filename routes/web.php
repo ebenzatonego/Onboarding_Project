@@ -20,6 +20,10 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+// No Login
+Route::get('/share_training/{id}', 'TrainingController@share_training');
+
+
 // LOGIN
 Route::middleware(['auth',])->group(function () {
 
@@ -129,6 +133,8 @@ Route::middleware(['auth', 'role:Super-admin,Admin,member'])->group(function () 
 
     // News
     Route::get('/news_index', 'NewsController@index');
+
+    // training
     Route::get('/training_show/{id}', 'TrainingController@show');
     Route::get('/page_training', 'TrainingController@index');
     Route::get('/sub_training/{type}', 'TrainingController@sub_training');

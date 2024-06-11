@@ -9,6 +9,7 @@ use App\Models\Training;
 use App\Models\Training_type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class TrainingController extends Controller
 {
@@ -93,6 +94,18 @@ class TrainingController extends Controller
         $training = Training::findOrFail($id);
 
         return view('training.show', compact('training'));
+    }
+
+    public function share_training($id)
+    {
+        if(Auth::check()){
+            return redirect('/training_show/'.$id);
+        }
+        else{
+            $training = Training::findOrFail($id);
+
+            return view('training.share_training', compact('training'));
+        }
     }
 
     /**
@@ -589,7 +602,13 @@ class TrainingController extends Controller
         }
         else{
             $data['data_training'] = Training::where('training_type_id', $type)
-                ->orderBy('id' , 'DESC')
+                // ->orderBy('id' , 'DESC')
+                ->orderByRaw("CASE 
+                        WHEN highlight_of_type IS NOT NULL THEN 1
+                        ELSE 2
+                        END, 
+                        highlight_of_type ASC, 
+                        id DESC")
                 ->get();
             $data_Training_type = Training_type::where('id', $type)->first();
             $data['type_article'] = $data_Training_type->type_article ;

@@ -245,7 +245,7 @@
                             <i class="fa-solid fa-thumbs-down"></i>
                         </div>
                     </button>
-                    <button class="btn btn-share me-1"  >
+                    <button class="btn btn-share me-1"  onclick="click_share_training();">
                         <i class="fa-solid fa-share m-0"></i>
                     </button>
                 </div>
@@ -870,6 +870,27 @@
                     });
             }
         });
+    }
+
+
+    function click_share_training(){
+        let training_id = "{{ $training->id }}";
+
+        let tag_a_share_line = document.querySelector('#tag_a_share_line');
+        let tag_a_share_facebook = document.querySelector('#tag_a_share_facebook');
+        let tag_a_share_twitter = document.querySelector('#tag_a_share_twitter');
+        let tag_a_share_whatsapp = document.querySelector('#tag_a_share_whatsapp');
+        let input_for_copy = document.querySelector('#input_for_copy_Share_social_media');
+
+        let url = "{{ url('/') }}/" + "share_training/" + training_id ;
+
+        tag_a_share_line.setAttribute('href' , 'https://social-plugins.line.me/lineit/share?url=' + url);
+        tag_a_share_facebook.setAttribute('href' , 'https://www.facebook.com/sharer/sharer.php?u=' + url);
+        tag_a_share_twitter.setAttribute('href' , 'https://twitter.com/intent/tweet?url=' + url);
+        tag_a_share_whatsapp.setAttribute('href' , 'https://api.whatsapp.com/send?text=' + url);
+        input_for_copy.value = url ;
+
+        document.querySelector('#btn_modal_Share_social_media').click();
     }
 </script>
 @endsection

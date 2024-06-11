@@ -96,9 +96,8 @@
 </style>
 
 @if(Auth::user()->id == '1')
-<br><br><br><br><br><br><br><br>
 <!-- Modal Share social media-->
-<button id="btn_modal_Share_social_media" type="button" class="btn btn-primary d-" data-toggle="modal" data-target="#Share_social_media">
+<button id="btn_modal_Share_social_media" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#Share_social_media">
     Share social media
 </button>
 @endif
@@ -107,24 +106,24 @@
         <div class="modal-content modal-share-social d-flex justify-content-center m-0">
             <p style="color: #FFF;text-align: center;font-size: 20px;font-style: normal;font-weight: 400;line-height: normal;">แชร์เนื้อหานี้</p>
             <div class="card-Share_social">
-              	<a class="socialContainer containerLine" href="https://social-plugins.line.me/lineit/share?url=https://www.youtube.com/watch?v=fa-c2fY_tOQ" target="_blank">
+              	<a id="tag_a_share_line" class="socialContainer containerLine" target="_blank">
                 <i class="fa-brands fa-line socialSvg"></i>
                 </a>
               
-              	<a class="socialContainer containerFacebook" href="https://www.facebook.com/sharer/sharer.php?u=https://www.youtube.com/watch?v=fa-c2fY_tOQ" target="_blank">
+              	<a id="tag_a_share_facebook" class="socialContainer containerFacebook" target="_blank">
                 <i class="fa-brands fa-facebook socialSvg"></i>
                 </a>
                 
-              	<a class="socialContainer containerTwitter" href="https://twitter.com/intent/tweet?url=https://www.youtube.com/watch?v=fa-c2fY_tOQ" target="_blank">
+              	<a id="tag_a_share_twitter" class="socialContainer containerTwitter" target="_blank">
                 <i class="fa-brands fa-x-twitter socialSvg"></i>
               	</a>
               
-              	<a class="socialContainer containerWhatsapp" href="https://api.whatsapp.com/send?text=https://www.youtube.com/watch?v=fa-c2fY_tOQ" target="_blank">
+              	<a id="tag_a_share_whatsapp" class="socialContainer containerWhatsapp" target="_blank">
                 <i class="fa-brands fa-whatsapp socialSvg"></i>
               	</a>
             </div>             
             <div class="px-5 mt-3">
-
+              <input type="text" class="d-none" id="input_for_copy_Share_social_media">
               <button class="share-button copy btn w-100" onclick="copy_Share_social_media()">
                   Copy Link
               </button>
@@ -133,7 +132,7 @@
 
             <script>
                 function copy_Share_social_media() {
-                    const url = "https://www.youtube.com/watch?v=fa-c2fY_tOQ";
+                    const url = document.querySelector('#input_for_copy_Share_social_media').value;
                     navigator.clipboard.writeText(url).then(function() {
                         alert('Link copied to clipboard');
                     }, function(err) {

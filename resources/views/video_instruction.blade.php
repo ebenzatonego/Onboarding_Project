@@ -284,6 +284,7 @@
 
     .btn-submit-login {
         width: 100%;
+        max-width: 377px;
         border-radius: 50px;
         -webkit-border-radius: 50px;
         -moz-border-radius: 50px;
@@ -305,7 +306,6 @@
     }
 
     .shine {
-        font-size: 2em;
         font-weight: 900;
         color: rgba(21, 30, 52, 0.3);
         background: #222 -webkit-gradient(linear, left top, right top, from(#222), to(#222), color-stop(0.5, #fff)) 0 0 no-repeat;
@@ -336,6 +336,7 @@
             text-align: center;
             padding: 0;
             margin: 15px 0;
+          
         }
     }
 
@@ -348,6 +349,7 @@
             text-align: center;
             padding: 0;
             margin: 15px 0;
+          
         }
     }
 </style>
@@ -372,17 +374,18 @@
         </div>
         <div class="authentication-bottom">
             <div class="shape"></div>
-            <div class="text-center px-5 h-100 d-flex align-items-center justify-content-center">
+            <div class="text-center px-5 w-100 h-100 d-flex align-items-center justify-content-center" >
 
-                <div>
+                <div style="  white-space: nowrap !important;overflow: hidden !important;text-overflow: ellipsis !important;width: 100% !important;">
 
                     <p style="font-size: 20px;margin: 5px;color: #fff;">ยินดีต้อนรับ !</p>
                     <!-- <p style="font-size: 25px;margin: 15px 0 15px 0;">
         <b>{{Auth::user()->name}}</b>
-    </p> -->
+    </p> -->        
+   
                     <div class="shine username">
                         {{Auth::user()->name}}
-                    </div>
+                    </div> 
                     <p class="m-0 text-white">เข้าสู่เว็บ Allianz Journey</p>
                     <p class="text-white">แหล่งรวมความรู้และข่าวสารอัพเดตจาก Allianz</p>
 

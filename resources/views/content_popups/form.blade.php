@@ -470,19 +470,19 @@ img {
                     </div>
                     <hr>
                     <div class="row mb-3">
-                        <label for="title" class="col-sm-3 col-form-label">
+                        <label for="title" class="col-sm-2 col-form-label">
                             ชื่อ
                         </label>
-                        <div class="col-sm-9">
+                        <div class="col-sm-10">
                             <input class="form-control" name="title" type="text" id="title" value="{{ isset($video_welcome_page->title) ? $video_welcome_page->title : ''}}" placeholder="เพิ่มชื่อ" oninput="check_data_for_submit();">
                             {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="type" class="col-sm-3 col-form-label">
+                        <label for="type" class="col-sm-2 col-form-label">
                             เลือกประเภท
                         </label>
-                        <div class="col-sm-9">
+                        <div class="col-sm-10">
                             <div class="radio-inputs">
                                 <label onclick="change_type_content('photo');">
                                     <input checked="" class="radio-input" type="radio" name="type" value="photo">
@@ -568,10 +568,10 @@ img {
                         }
                     </script>
                     <div id="div_type_photo" class="row mb-3">
-                        <label for="photo" class="col-sm-3 col-form-label">
+                        <label for="photo" class="col-sm-2 col-form-label">
                             รูปภาพ
                         </label>
-                        <div class="col-sm-9" >
+                        <div class="col-sm-10" >
                             <label id="upload_photo_content" for="photo" class="container_upload" type="button" onclick="document.querySelector('#select_photo').click();">
                                 <div class="upload_section">
                                     <div class="text-center">
@@ -627,10 +627,10 @@ img {
                         </div>
                     </div>
                     <div id="div_type_video" class="row mb-3 d-none">
-                        <label for="video" class="col-sm-3 col-form-label">
+                        <label for="video" class="col-sm-2 col-form-label">
                             วิดีโอ
                         </label>
-                        <div class="col-sm-9">
+                        <div class="col-sm-10">
                             <label id="upload_video_cover" for="photo_cover" class="container_upload" style="  border: #db2d2e 3px solid;" type="button" onclick="document.querySelector('#select_video').click();">
                                 <div class="upload_section" style="color: #db2d2e;">
                                     <div class="text-center">
@@ -652,28 +652,28 @@ img {
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="detail" class="col-sm-3 col-form-label">
+                        <label for="detail" class="col-sm-2 col-form-label">
                             รายละเอียด
                         </label>
-                        <div class="col-sm-9">
+                        <div class="col-sm-10">
                             <textarea class="form-control" rows="5" name="detail" type="textarea" id="detail" placeholder="เพิ่มรายละเอียดเนื้อหา">{{ isset($content_popup->detail) ? $content_popup->detail : ''}}</textarea>
                             {!! $errors->first('detail', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>
                     <div class="row mb-3 d-none">
-                        <label for="user_id" class="col-sm-3 col-form-label">
+                        <label for="user_id" class="col-sm-2 col-form-label">
                             User Id
                         </label>
-                        <div class="col-sm-9">
+                        <div class="col-sm-10">
                             <input class="form-control" name="user_id" type="text" id="user_id" value="{{ Auth::user()->id }}" readonly>
                             {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="status" class="col-sm-3 col-form-label">
+                        <label for="status" class="col-sm-2 col-form-label">
                             เปิดใช้งาน
                         </label>
-                        <div class="col-sm-9" style="position: relative;">
+                        <div class="col-sm-10" style="position: relative;">
                             <label class="switch">
                                 <input id="check_status" class="cb" type="checkbox">
                                 <span class="toggle" onclick="click_check_status();">
@@ -687,10 +687,10 @@ img {
                         </div>
                     </div>
                     <div id="div_reset_content_popup" class="row mb-3 d-none">
-                        <label for="status" class="col-sm-3 col-form-label">
+                        <label for="status" class="col-sm-2 col-form-label">
                             รีเซ็ตการแจ้งเตือน
                         </label>
-                        <div class="col-sm-9" style="position: relative;">
+                        <div class="col-sm-10" style="position: relative;">
                             <div class="checkbox-wrapper-46 mt-2">
                                 <input type="checkbox" name="reset_check_content_popup" id="cbx-46" class="inp-cbx" />
                                 <label for="cbx-46" class="cbx">
@@ -707,18 +707,18 @@ img {
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="" class="col-sm-3 col-form-label">
+                        <label for="" class="col-sm-2 col-form-label">
                             ผู้สร้างวิดีโอ
                         </label>
-                        <div class="col-sm-9" style="position: relative;">
+                        <div class="col-sm-10" style="position: relative;">
                             <h6 style="position: absolute;top:7px;">
                                 <u>{{ Auth::user()->name }}</u>
                             </h6>
                         </div>
                     </div>
                     <div class="row">
-                        <label class="col-sm-3 col-form-label"></label>
-                        <div class="col-sm-9">
+                        <label class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-10">
                             <input id="btn_submit_content_popup" class="btn btn-info px-5 d-none" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
                             <span id="btn_submit" class="btn btn-primary px-5 disabled" onclick="upload_to_firebase();" >
                                 สร้างเนื้อหา

@@ -386,8 +386,16 @@
                         }
 
                         let name = ``;
+                        let name_sp;
                         if(result[i].type_article){
-                            name = result[i].type_article.split('หลักสูตร')[1];
+                            name_sp = result[i].type_article.split('หลักสูตร')[1];
+
+                            if(result[i].type_article.split('หลักสูตร')[1]){
+                                name = result[i].type_article.split('หลักสูตร')[1];
+                            }
+                            else{
+                                name = result[i].type_article.split('หลักสูตร')[0]
+                            }
                         }
 
                         let icon = "{{ url('/img/icon/icon-training.png') }}";

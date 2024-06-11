@@ -485,7 +485,7 @@ img {
                             <p class="mb-2 mt-3 text-center">ปรับขนาดภาพ</p>
                             <!-- leftbox -->
                             <div class="box-2 w-100 h-100">
-                                <div id="icon_crop" class="result w-100"></div>
+                                <div id="icon_crop" class="result_icon w-100"></div>
                             </div>
                         </div>
                     </div>
@@ -505,6 +505,7 @@ img {
             </div>
             <script>
                 function crop_img_icon(e){
+                    let result_icon = document.querySelector('.result_icon')
                     let input = document.getElementById('select_icon_training_type');
                     let image = document.createElement('img');
                     let cropper;
@@ -554,7 +555,7 @@ img {
                         } else if (FileReader) {
                             reader = new FileReader();
                             reader.onload = function (e) {
-                                done(reader.result);
+                                done(reader.result_icon);
                             };
                             reader.readAsDataURL(file);
                         }

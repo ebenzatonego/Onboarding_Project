@@ -118,12 +118,23 @@ class Training_typeController extends Controller
         return redirect('training_type')->with('flash_message', 'Training_type deleted!');
     }
 
-    function add_training_type($training_type){
+    function add_training_type(Request $request)
+    {
+        $requestData = $request->all();
 
-        $requestData = [];
-        $requestData['type_article'] = $training_type;
+        $data_old = Training_type::get();
+        // หาค่าที่มากที่สุดในคอลัมน์ number_menu
+        $max_number_menu = $data_old->max('number_menu');
+        // หาค่าเรคคอร์ดที่มี number_menu มากที่สุด
+        $max_number_menu_record = $data_old->sortByDesc('number_menu')->first();
+        $max_number_menu_value = $max_number_menu_record->number_menu;
+
+        $data = [];
+        $data['type_article'] = $requestData['add_training_type'];
+        $data['icon'] = $requestData['downloadURL'];
+        $data['number_menu'] = (int)$max_number_menu_value + 1;
         
-        $data = Training_type::create($requestData);
+        $data = Training_type::create($data);
 
         return $data ;
     }

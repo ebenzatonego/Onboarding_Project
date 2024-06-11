@@ -209,6 +209,23 @@
   }
 </style>
 
+<!-- MODAL การจัดการเมนูหลักสูตร -->
+<div class="modal fade" id="modal_menu_management" tabindex="-1" aria-labelledby="Label_menu_management" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="Label_menu_management">การจัดการเมนูหลักสูตร</h5>
+        <button type="button" class="btn" data-dismiss="modal" aria-label="Close">
+          <i class="fa-solid fa-circle-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
 	<div class="breadcrumb-title pe-3">การจัดการหลักสูตร</div>
 	<div class="ms-auto">
@@ -218,7 +235,7 @@
 			</a>
 		</div>
 		<div class="btn-group">
-			<span class="btn btn-warning" data-toggle="modal" data-target="#Modal_manage_menu">
+			<span class="btn btn-warning" data-toggle="modal" data-target="#modal_menu_management">
 				<i class="fa-solid fa-list-ol"></i> การจัดการเมนูหลักสูตร
 			</span>
 		</div>

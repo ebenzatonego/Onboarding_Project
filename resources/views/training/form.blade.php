@@ -469,13 +469,123 @@ img {
                 </h5>
             </div>
             <div class="modal-body">
-                <input class="form-control" type="text" id="add_training_type" value="" placeholder="ชื่อประเภทหลักสูตร">
+                <input class="form-control" type="text" id="add_training_type" value="" placeholder="ชื่อประเภทหลักสูตร" onchange="check_submit_training_type();">
+                <br>
+                <label>icon <span class="text-danger">(ไฟล์ PNG ขนาด 1:1)</span></label>
+                <br>
+                <span class="btn btn-sm btn-primary mt-2" onclick="click_select_icon_training_type();">
+                    เลือกรูปภาพ
+                </span>
+
+                <input type="file" class="form-control d-none" accept="image/png" name="select_icon_training_type" id="select_icon_training_type" onchange="crop_select_icon_training_type();">
+
+                <div id="div_crop_icon_training_type" class="row p-1 d-none">
+                    <div class="col-lg-6 d-flex justify-content-center align-items-center" style="border: #2260ff 2px solid;border-radius: 10px;">
+                        <div class="w-100 ">
+                            <p class="mb-2 mt-3 text-center">ปรับขนาดภาพ</p>
+                            <!-- leftbox -->
+                            <div class="box-2 w-100 h-100">
+                                <div id="icon_crop" class="result w-100"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 d-flex justify-content-center align-items-center" style="border: #2260ff 2px solid;border-radius: 10px;">
+                        <div>
+                            <p class="mb-2 mt-3 text-center">ผลลัพธ์</p>
+                          <!--rightbox-->
+                            <div class="box-2 img-result ">
+                                <!-- result of crop -->
+                                <img class="w-100 h-100" src="" alt="" id="Preview_icon_crop">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <script>
+                function crop_img_icon(e){
+                    let input = document.getElementById('select_icon_training_type');
+                    let image = document.createElement('img');
+                    let cropper;
+                    let preview_icon_crop = document.querySelector('#Preview_icon_crop');
+
+                    let files = e.target.files;
+                    let done = function (url) {
+                        input.value = '';
+                        image.src = url;
+                        document.getElementById('icon_crop').innerHTML = '';
+                        document.getElementById('icon_crop').appendChild(image);
+                        // cropper = new Cropper(image, {
+                        //     aspectRatio: 1 / 1, // Change this to the desired aspect ratio
+                        //     viewMode: 3,
+                        //     preview: '#Preview_icon_crop'
+                        // });
+                        cropper = new Cropper(image, {
+                            dragMode: 'move',
+                            aspectRatio: 1 / 1 ,
+                            autoCropArea: 1,
+                            center: false,
+                            cropBoxMovable: true,
+                            cropBoxResizable: true,
+                            maxCropBoxHeight: 300,
+                            viewMode: 2,
+                            guides: false,
+                            ready: function(event) {
+                                this.cropper = cropper;
+                            },crop: function(event) {
+                              let imgSrc = this.cropper.getCroppedCanvas({
+                                    width: 1080,
+                                    height: 1080// input value
+                                }).toDataURL("image/png");
+                                preview_icon_crop.src = imgSrc;
+                            }
+                        });
+                    };
+                    let reader;
+                    let file;
+                    let url;
+
+                    if (files && files.length > 0) {
+                        file = files[0];
+
+                        if (URL) {
+                            done(URL.createObjectURL(file));
+                        } else if (FileReader) {
+                            reader = new FileReader();
+                            reader.onload = function (e) {
+                                done(reader.result);
+                            };
+                            reader.readAsDataURL(file);
+                        }
+                    }
+                }
+
+                var input_img_icon = document.getElementById('select_icon_training_type');
+                input_img_icon.addEventListener('change', function (e) {
+                    crop_img_icon(e);
+                    check_submit_training_type();
+                });
+
+                function crop_select_icon_training_type(){
+                    document.querySelector('#div_crop_icon_training_type').classList.remove('d-none');
+                }
+
+                function click_select_icon_training_type(){
+                    // console.log('click_select_icon_training_type');
+                    document.querySelector('#div_crop_icon_training_type').classList.add('d-none');
+
+                    let preview_icon_crop = document.querySelector('#Preview_icon_crop');
+                        preview_icon_crop.src = '';
+                    let icon_crop = document.querySelector('#icon_crop');
+                        icon_crop.innerHTML = "";
+                    document.querySelector('#select_icon_training_type').click();
+                }
+            </script>
+
             <div class="text-center mt-3 mb-3">
                 <button id="btn_close_modal_add_type_training_type" type="button" class="btn btn-secondary" data-dismiss="modal">
                     ยกเลิก
                 </button>
-                <button type="button" class="btn btn-primary" onclick="cf_add_training_type();">
+                <button id="btn_cf_add_training_type" type="button" class="btn btn-primary" onclick="cf_add_training_type();" disabled>
                     ยืนยัน
                 </button>
             </div>
@@ -484,27 +594,88 @@ img {
 </div>
 
 <script>
-    function cf_add_training_type() {
+
+    function check_submit_training_type(){
+
+        let preview_icon_crop = document.querySelector('#Preview_icon_crop');
         let add_training_type = document.querySelector('#add_training_type');
 
-        fetch("{{ url('/') }}/api/add_training_type/" + add_training_type.value)
-            .then(response => response.json())
-            .then(result => {
-                // console.log(result);
+        if(add_training_type.value && preview_icon_crop.src){
+            document.querySelector('#btn_cf_add_training_type').disabled = false;
+        }else{
+            document.querySelector('#btn_cf_add_training_type').disabled = true;
+        }
+    }
 
-                if(result){
-                    let type_article = document.querySelector('#type_article');
+    function cf_add_training_type() {
+        let add_training_type = document.querySelector('#add_training_type')
 
-                    let option = document.createElement("option");
-                        option.text = result.type_article;
-                        option.value = result.id;
-                        option.selected = true;
-                    type_article.add(option);
+        // ดึง Base64 string จาก <img> element
+        let imgElement = document.querySelector('#Preview_icon_crop');
+        let base64String = imgElement.src.split(',')[1]; // ลบ "data:image/png;base64," ออก
 
-                    document.querySelector('#training_type_id').value = result.id ;
-                    document.querySelector('#btn_close_modal_add_type_training_type').click(); 
-                }
-        });
+        // แปลง Base64 เป็น Blob
+        let contentType = 'image/png'; // ตั้งค่าประเภทของรูปภาพ เช่น 'image/png' หรือ 'image/jpeg'
+        let blob = base64ToBlob(base64String, contentType);
+
+        // ตั้งค่า path และชื่อไฟล์ใน Firebase Storage
+        let date_now = new Date();
+        let Date_for_firebase = formatDate_for_firebase(date_now);
+        let name_file = Date_for_firebase + '-' + add_training_type.value ;
+        let storageRef = storage.ref('/training/image/icon_type/' + name_file);
+
+        // อัพโหลด Blob ไปยัง Firebase Storage
+        let uploadTask = storageRef.put(blob);
+
+        uploadTask.on('state_changed', 
+            function(snapshot) {
+                // ติดตามความคืบหน้าของการอัพโหลด (optional)
+            }, 
+            function(error) {
+                // กรณีเกิดข้อผิดพลาดในการอัพโหลด
+                console.error('Upload failed:', error);
+            }, 
+            function() {
+                // เมื่ออัพโหลดสำเร็จ
+                uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+                    // ทำอะไรกับ URL ที่ได้รับเช่นการแสดงผลหรือบันทึกลงฐานข้อมูล
+                    // console.log('File available at', downloadURL);
+                    document.querySelector('#photo').value = downloadURL ;
+
+                    let data_arr = {
+                        "add_training_type" : add_training_type.value,
+                        "downloadURL" : downloadURL,
+                    };
+
+                    fetch("{{ url('/') }}/api/add_training_type", {
+                        method: 'post',
+                        body: JSON.stringify(data_arr),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then(function (response){
+                        return response.json();
+                    }).then(function(data){
+                        // console.log(data);
+                        if(data){
+                            let type_article = document.querySelector('#type_article');
+
+                            let option = document.createElement("option");
+                                option.text = data.type_article;
+                                option.value = data.id;
+                                option.selected = true;
+                            type_article.add(option);
+
+                            document.querySelector('#training_type_id').value = data.id ;
+                            document.querySelector('#btn_close_modal_add_type_training_type').click(); 
+                        }
+                    }).catch(function(error){
+                        // console.error(error);
+                    });
+                    
+                });
+            }
+        );
 
     }
 </script>

@@ -579,7 +579,7 @@
                                 <div class="content-appointment training-schedule">
                                     <div>
                                         <p class="title-appointment">อบรมพนักงานใหม่</p>
-                                        <p class="detail-appointment">หลักสูตร Star Blue</p>
+                                        <p class="detail-appointment">หลักสูตร Blue Star</p>
                                     </div>
                                 </div>
                             </div>
@@ -592,7 +592,7 @@
                                 <div class="content-appointment exam-schedule ">
                                     <div>
                                         <p class="title-appointment">อบรมพนักงานใหม่</p>
-                                        <p class="detail-appointment">หลักสูตร Star Blue</p>
+                                        <p class="detail-appointment">หลักสูตร Blue Star</p>
                                     </div>
                                 </div>
                             </div>

@@ -1138,7 +1138,7 @@ img {
 
 </script>
 
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/it3wr70h0x8n8ixo26tfdkanx1em4csx7o7f4fu4de0xxnpz/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 
 <script>
    tinymce.init({

@@ -292,7 +292,9 @@
 
                                 let html_highlight_number = `
                                     <div class="item">
-                                        <img src="`+result['data_training'][i].photo+`">
+                                        <a href="{{ url('/training_show') }}/`+result['data_training'][i].id+`">
+                                            <img src="`+result['data_training'][i].photo+`">
+                                        </a>
                                     </div>
                                 `;
 
@@ -307,7 +309,9 @@
 
                                 let html_highlight_number = `
                                     <div class="item">
-                                        <img src="`+result['data_training'][i].photo+`">
+                                        <a href="{{ url('/training_show') }}/`+result['data_training'][i].id+`">
+                                            <img src="`+result['data_training'][i].photo+`">
+                                        </a>
                                     </div>
                                 `;
 

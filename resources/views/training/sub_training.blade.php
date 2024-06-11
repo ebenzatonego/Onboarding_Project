@@ -37,7 +37,7 @@
 
                 <style>
                     .carousel-menu-course .item {
-                        width: 63px;
+                        width: 68px;
                         display: flex;
                         justify-content: center;
                     }

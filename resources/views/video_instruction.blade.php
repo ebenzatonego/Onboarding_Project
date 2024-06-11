@@ -308,8 +308,8 @@
         font-size: 2em;
         font-weight: 900;
         color: rgba(21, 30, 52, 0.3);
-        background: #222 -webkit-gradient(linear, left top,right top,from(#222), to(#222),color-stop(0.5, #fff)) 0 0 no-repeat;
-        background-image: -webkit-linear-gradient(-40deg,transparent 0%,transparent 40%,#fff 50%,transparent 60%, transparent 100%);
+        background: #222 -webkit-gradient(linear, left top, right top, from(#222), to(#222), color-stop(0.5, #fff)) 0 0 no-repeat;
+        background-image: -webkit-linear-gradient(-40deg, transparent 0%, transparent 40%, #fff 50%, transparent 60%, transparent 100%);
         -webkit-background-clip: text;
         -webkit-background-size: 50px;
         -webkit-animation: zezzz;
@@ -324,6 +324,30 @@
 
         100% {
             background-position: 265px;
+        }
+    }
+
+    @media screen and (min-width: 660px) {
+
+        /*adjust*/
+        .username {
+            font-size: 25px;
+            line-height: 1;
+            text-align: center;
+            padding: 0;
+            margin: 15px 0;
+        }
+    }
+
+    @media screen and (max-width: 660px) {
+
+        /*adjust*/
+        .username {
+            font-size: min(20em, 8vw);
+            line-height: 1;
+            text-align: center;
+            padding: 0;
+            margin: 15px 0;
         }
     }
 </style>
@@ -356,7 +380,7 @@
                     <!-- <p style="font-size: 25px;margin: 15px 0 15px 0;">
         <b>{{Auth::user()->name}}</b>
     </p> -->
-                    <div style="font-size: 25px;margin: 15px 0 15px 0;" class="shine">
+                    <div class="shine username">
                         {{Auth::user()->name}}
                     </div>
                     <p class="m-0 text-white">เข้าสู่เว็บ Allianz Journey</p>

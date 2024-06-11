@@ -343,7 +343,7 @@
 
         /*adjust*/
         .username {
-            font-size: min(20em, 8vw);
+            font-size: min(15em, 6vw);
             line-height: 1;
             text-align: center;
             padding: 0;

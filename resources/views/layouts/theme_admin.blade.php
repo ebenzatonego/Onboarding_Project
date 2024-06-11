@@ -390,6 +390,7 @@
     <link href="{{ asset('/theme/plugins/datatable/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" />
     <!-- fullcalendar -->
     <script src="{{ asset('/theme/plugins/fullcalendar/js/main.min.js') }}"></script>
+    <script src='https://cdn..cloud/1/qagffr3pkuv17a8on1afax661irst1hbr4e6tbv888sz91jc/tinymce/4/tinymce.min.js'></script>
 
     <script>
         

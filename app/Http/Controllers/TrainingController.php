@@ -624,6 +624,10 @@ class TrainingController extends Controller
                     ]);
         }
 
+        if($number == 'ว่าง'){
+            $number = null ;
+        }
+
         DB::table('trainings')
             ->where([ 
                     ['id', $training_id],

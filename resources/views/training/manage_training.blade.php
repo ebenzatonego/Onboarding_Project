@@ -352,6 +352,11 @@
                                 <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Highlight</button>
                                 <ul class="dropdown-menu" style="margin: 0px;">
                                   <li>
+                                    <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , 'ว่าง')">
+                                      ว่าง
+                                    </span>
+                                  </li>
+                                  <li>
                                     <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '1')">
                                       ลำดับที่ 1
                                     </span>

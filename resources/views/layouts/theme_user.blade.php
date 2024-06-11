@@ -745,12 +745,13 @@
 <script>
     // Initialize Firebase
     var firebaseConfig = {
-        apiKey: "AIzaSyDdaRHU9RfAmLP9NHVnwvbEqBThNbwfs14",
-        authDomain: "test-storage-63113.firebaseapp.com",
-        projectId: "test-storage-63113",
-        storageBucket: "test-storage-63113.appspot.com",
-        messagingSenderId: "886771711607",
-        appId: "1:886771711607:web:6ce7ba6fb159414ba65072"
+        apiKey: "{{ env('FIREBASE_APIKEY') }}",
+        authDomain: "{{ env('FIREBASE_AUTH_DOMAIN') }}",
+        projectId: "{{ env('FIREBASE_PROJECT_ID') }}",
+        storageBucket: "{{ env('FIREBASE_STORAGE_BUCKET') }}",
+        messagingSenderId: "{{ env('FIREBASE_MESSAGING_SENDER_ID') }}",
+        appId: "{{ env('FIREBASE_APPID') }}",
+        measurementId: "{{ env('FIREBASE_MEASUREMENTID') }}"
     };
     firebase.initializeApp(firebaseConfig);
 

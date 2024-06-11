@@ -617,43 +617,80 @@ class TrainingController extends Controller
         return $data;
     }
 
-    function change_Highlight($training_id , $number){
+    function change_Highlight($training_id , $number , $type){
 
         $data = [];
 
-        $Highlight_number_old = Training::where('highlight_number', $number)->first();
-        $Highlight_number_select = Training::where('id', $training_id)->first();
+        if($type == 'all'){
+            $Highlight_number_old = Training::where('highlight_number', $number)->first();
+            $Highlight_number_select = Training::where('id', $training_id)->first();
 
-        if( !empty($Highlight_number_select->highlight_number) ){
-            $data['old_id_change_to'] = $Highlight_number_select->highlight_number;
-        }
-        else{
-            $data['old_id_change_to'] = null;
-        }
+            if( !empty($Highlight_number_select->highlight_number) ){
+                $data['old_id_change_to'] = $Highlight_number_select->highlight_number;
+            }
+            else{
+                $data['old_id_change_to'] = null;
+            }
 
-        if( !empty($Highlight_number_old->id) ){
-            $data['old_id'] = $Highlight_number_old->id;
+            if( !empty($Highlight_number_old->id) ){
+                $data['old_id'] = $Highlight_number_old->id;
+
+                DB::table('trainings')
+                    ->where([ 
+                            ['id', $data['old_id']],
+                        ])
+                    ->update([
+                            'highlight_number' => $data['old_id_change_to'],
+                        ]);
+            }
+
+            if($number == 'ว่าง'){
+                $number = null ;
+            }
 
             DB::table('trainings')
                 ->where([ 
-                        ['id', $data['old_id']],
+                        ['id', $training_id],
                     ])
                 ->update([
-                        'highlight_number' => $data['old_id_change_to'],
+                        'highlight_number' => $number,
                     ]);
         }
+        else{
+            $Highlight_number_old = Training::where('training_type_id' , $type)->where('highlight_of_type', $number)->first();
+            $Highlight_number_select = Training::where('id', $training_id)->first();
 
-        if($number == 'ว่าง'){
-            $number = null ;
+            if( !empty($Highlight_number_select->highlight_of_type) ){
+                $data['old_id_change_to'] = $Highlight_number_select->highlight_of_type;
+            }
+            else{
+                $data['old_id_change_to'] = null;
+            }
+
+            if( !empty($Highlight_number_old->id) ){
+                $data['old_id'] = $Highlight_number_old->id;
+
+                DB::table('trainings')
+                    ->where([ 
+                            ['id', $data['old_id']],
+                        ])
+                    ->update([
+                            'highlight_of_type' => $data['old_id_change_to'],
+                        ]);
+            }
+
+            if($number == 'ว่าง'){
+                $number = null ;
+            }
+
+            DB::table('trainings')
+                ->where([ 
+                        ['id', $training_id],
+                    ])
+                ->update([
+                        'highlight_of_type' => $number,
+                    ]);
         }
-
-        DB::table('trainings')
-            ->where([ 
-                    ['id', $training_id],
-                ])
-            ->update([
-                    'highlight_number' => $number,
-                ]);
 
         return $data;
 

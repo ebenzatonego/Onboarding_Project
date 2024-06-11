@@ -226,40 +226,63 @@
               <li class="nav-item" role="presentation">
                 <a class="nav-link active" data-bs-toggle="pill" href="#success-pills-home" role="tab" aria-selected="true">
                   <div class="d-flex align-items-center">
-                    <div class="tab-icon"><i class="bx bxs-home font-18 me-1"></i>
+                    <div class="tab-icon">
+                      <i class="fa-regular fa-stars font-18 me-1"></i>
                     </div>
-                    <div class="tab-title">Home</div>
+                    <div class="tab-title">4 Menu Highlight</div>
                   </div>
                 </a>
               </li>
               <li class="nav-item" role="presentation">
                 <a class="nav-link" data-bs-toggle="pill" href="#success-pills-profile" role="tab" aria-selected="false">
                   <div class="d-flex align-items-center">
-                    <div class="tab-icon"><i class="bx bxs-user-pin font-18 me-1"></i>
+                    <div class="tab-icon">
+                      <i class="fa-solid fa-square-list font-18 me-1"></i>
                     </div>
-                    <div class="tab-title">Profile</div>
-                  </div>
-                </a>
-              </li>
-              <li class="nav-item" role="presentation">
-                <a class="nav-link" data-bs-toggle="pill" href="#success-pills-contact" role="tab" aria-selected="false">
-                  <div class="d-flex align-items-center">
-                    <div class="tab-icon"><i class="bx bxs-microphone font-18 me-1"></i>
-                    </div>
-                    <div class="tab-title">Contact</div>
+                    <div class="tab-title">Menu Icon</div>
                   </div>
                 </a>
               </li>
             </ul>
+            <hr>
             <div class="tab-content">
+
+              <!-- 4 Menu Highlight -->
               <div class="tab-pane fade show active" id="pills-home" role="tabpanel">
-                <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi.</p>
+                <br>
+                <div class="row mt-3 mb-2">
+                  <div class="col-2">
+                    <i class="fa-solid fa-circle-1 font-24"></i>
+                  </div>
+                  <div class="col-10">
+                    4 Menu Highligh
+                  </div>
+                </div>
               </div>
+
+              <!-- Number Menu -->
               <div class="tab-pane fade" id="success-pills-profile" role="tabpanel">
-                <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
-              </div>
-              <div class="tab-pane fade" id="success-pills-contact" role="tabpanel">
-                <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</p>
+                <br>
+                <div class="row mt-3 mb-2">
+                  <div class="col-2">
+                    <i class="fa-solid fa-circle-1 font-24"></i>
+                  </div>
+                  <div class="col-8">
+                    หลักสูตร
+                  </div>
+                  <div class="col-2">
+                    <div class="btn-group" role="group">
+                      <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Number Menu</button>
+                      <ul class="dropdown-menu" style="margin: 0px;">
+                        <li>
+                          <span class="dropdown-item btn" onclick="change_number_menu_type('`+result['data_training'][i].id+`' , '1' , '`+type+`')">
+                            ลำดับที่ 1
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -271,6 +294,11 @@
 
 <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
 	<div class="breadcrumb-title pe-3">การจัดการหลักสูตร</div>
+  <div class="ps-3">
+    <select id="select_show_training_by_type" class="form-select" onchange="change_show_training_by_type();">
+      <option value="all" selected>หลักสูตรทั้งหมด</option>
+    </select>
+  </div>
 	<div class="ms-auto">
 		<div class="btn-group">
 			<a href="{{ url('/training_create') }}" class="btn btn-success">
@@ -305,13 +333,14 @@
 
 	document.addEventListener('DOMContentLoaded', function () {
         get_data_Training('all');
+        get_data_Training_type();
   });
 
   function get_data_Training(type){
     fetch("{{ url('/') }}/api/get_data_Training/" + type )
       .then(response => response.json())
       .then(result => {
-          console.log(result);
+          // console.log(result);
 
           if(type == 'all'){
               document.querySelector('#h5_training_types').innerHTML = 'หลักสูตรทั้งหมด';
@@ -331,6 +360,7 @@
                       textWithoutHtml = result['data_training'][i].detail.replace(/(<([^>]+)>)/gi, "");
                   }
 
+                  // type_article
                   let type_article = `` ;
                   if(type == 'all'){
                       type_article = result['data_training'][i].type_article;
@@ -339,13 +369,26 @@
                       type_article = result['type_article'] ;
                   }
 
-                  let html_Highlight = `<span id="span_Highlight_id_`+result['data_training'][i].id+`" class="float-end">..</span>`;
-                  if(result['data_training'][i].highlight_number){
-                    html_Highlight = `
-                      <span id="span_Highlight_id_`+result['data_training'][i].id+`">
-                        <i class="i_Highlight fa-solid fa-circle-`+result['data_training'][i].highlight_number+` font-24 float-end text-success"></i>
-                      </span>
-                      `;
+                  // Highlight
+                  let html_Highlight ;
+                  if(type == 'all'){
+                    html_Highlight = `<span id="span_Highlight_id_`+result['data_training'][i].id+`" class="float-end">..</span>`;
+                    if(result['data_training'][i].highlight_number){
+                      html_Highlight = `
+                        <span id="span_Highlight_id_`+result['data_training'][i].id+`">
+                          <i class="i_Highlight fa-solid fa-circle-`+result['data_training'][i].highlight_number+` font-24 float-end text-success"></i>
+                        </span>
+                        `;
+                    }
+                  }else{
+                    html_Highlight = `<span id="span_Highlight_id_`+result['data_training'][i].id+`" class="float-end">..</span>`;
+                    if(result['data_training'][i].highlight_of_type){
+                      html_Highlight = `
+                        <span id="span_Highlight_id_`+result['data_training'][i].id+`">
+                          <i class="i_Highlight fa-solid fa-circle-`+result['data_training'][i].highlight_of_type+` font-24 float-end text-success"></i>
+                        </span>
+                        `;
+                    }
                   }
 
                   let sum_datetime_start = ``;
@@ -380,9 +423,23 @@
                     sum_datetime_end = formatted_date_end+` `+formatted_time_end+` น.`;
                   }
 
+                  // status
+                  let html_status = `
+                      <span class="btn btn-sm btn-danger" style="position:absolute;top:1%;right: 1%;">
+                        Inactive
+                      </span>
+                  `;
+                  if(result['data_training'][i].status == 'Yes'){
+                    html_status = `
+                      <span class="btn btn-sm btn-success" style="position:absolute;top:1%;right: 1%;">
+                        Active
+                      </span>`;
+                  }
+
                   let html = `
                       <div class="col-12 col-md-3">
-                        <div class="card">
+                        <div class="card" style="position:relative;">
+                          `+html_status+`
                           <img src="`+result['data_training'][i].photo+`" class="card-img-top">
                           <div class="card-body">
                             <h5 class="card-title">
@@ -412,32 +469,32 @@
                                 <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Highlight</button>
                                 <ul class="dropdown-menu" style="margin: 0px;">
                                   <li>
-                                    <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , 'ว่าง')">
+                                    <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , 'ว่าง' , '`+type+`')">
                                       ว่าง
                                     </span>
                                   </li>
                                   <li>
-                                    <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '1')">
+                                    <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '1' , '`+type+`')">
                                       ลำดับที่ 1
                                     </span>
                                   </li>
                                   <li>
-                                    <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '2')">
+                                    <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '2' , '`+type+`')">
                                       ลำดับที่ 2
                                     </span>
                                   </li>
                                   <li>
-                                    <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '3')">
+                                    <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '3' , '`+type+`')">
                                       ลำดับที่ 3
                                     </span>
                                   </li>
                                   <li>
-                                    <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '4')">
+                                    <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '4' , '`+type+`')">
                                       ลำดับที่ 4
                                     </span>
                                   </li>
                                   <li>
-                                    <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '5')">
+                                    <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '5' , '`+type+`')">
                                       ลำดับที่ 5
                                     </span>
                                   </li>
@@ -457,11 +514,11 @@
       });
   }
 
-  function change_Highlight(training_id , number){
+  function change_Highlight(training_id , number , type){
     // console.log(training_id);
     // console.log(number);
 
-    fetch("{{ url('/') }}/api/change_Highlight/" + training_id  + "/" + number)
+    fetch("{{ url('/') }}/api/change_Highlight/" + training_id  + "/" + number + "/" + type)
       .then(response => response.json())
       .then(result => {
           // console.log(result);
@@ -507,6 +564,32 @@
       });
   }
 
+
+  function get_data_Training_type(){
+
+    let select_show_training_by_type = document.querySelector('#select_show_training_by_type');
+
+    fetch("{{ url('/') }}/api/get_data_Training_type")
+      .then(response => response.json())
+      .then(result => {
+          // console.log(result);
+
+          if(result){
+            for(let item of result){
+                let option = document.createElement("option");
+                option.text = item.type_article;
+                option.value = item.id;
+                select_show_training_by_type.add(option);             
+            } 
+          }
+    });
+
+  }
+
+  function change_show_training_by_type(){
+    let select_training_id = document.querySelector('#select_show_training_by_type').value ;
+    get_data_Training(select_training_id)
+  }
 
 </script>
 

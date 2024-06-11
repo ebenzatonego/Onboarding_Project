@@ -138,4 +138,9 @@ class Training_typeController extends Controller
 
         return $data ;
     }
+
+    function get_data_Training_type(){
+        $data = Training_type::orderBy('number_menu', 'ASC')->get();
+        return $data ;
+    }
 }

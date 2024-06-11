@@ -72,6 +72,7 @@ Route::get('/update_user_view/{user_id}/{training_id}', 'TrainingController@upda
 Route::get('/update_countTime_trainingVideo/{user_id}/{countTime}/{training_id}', 'TrainingController@update_countTime_trainingVideo');
 Route::get('/get_data_Training/{type}', 'TrainingController@get_data_Training');
 Route::get('/change_Highlight/{training_id}/{number}', 'TrainingController@change_Highlight');
+Route::get('/get_data_Training_type', 'Training_typeController@get_data_Training_type');
 
 
 // Calendar

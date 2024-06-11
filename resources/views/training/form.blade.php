@@ -1151,7 +1151,7 @@ img {
       { value: 'First.Name', title: 'First Name' },
       { value: 'Email', title: 'Email' },
     ],
-    ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+    ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("it3wr70h0x8n8ixo26tfdkanx1em4csx7o7f4fu4de0xxnpz")),
   });
 </script>
 

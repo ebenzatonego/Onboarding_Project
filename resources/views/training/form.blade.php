@@ -1148,26 +1148,30 @@ img {
             console.error( error );
         } );
 </script> -->
+<style>
+    div.ck-editor__editable {
+      min-height: 300px;
+    }
+
+    .ck-powered-by{
+        display: none;
+    }
+</style>
 <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/super-build/ckeditor.js"></script>
 <script>
      CKEDITOR.ClassicEditor.create(document.getElementById("detail"), {
                 // https://ckeditor.com/docs/ckeditor5/latest/features/toolbar/toolbar.html#extended-toolbar-configuration-format
                 toolbar: {
                     items: [
-                        'exportPDF','exportWord', '|',
-                        'findAndReplace', 'selectAll', '|',
+                        'undo', 'redo', '|',
+                        'findAndReplace', '|',
                         'heading', '|',
-                        'bold', 'italic', 'strikethrough', 'underline', 'code', 'subscript', 'superscript', 'removeFormat', '|',
+                        'alignment', 'bold', 'italic', 'strikethrough', 'underline', 'subscript', 'superscript', 'removeFormat', '|',
                         'bulletedList', 'numberedList', 'todoList', '|',
                         'outdent', 'indent', '|',
-                        'undo', 'redo',
-                        '-',
-                        'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', 'highlight', '|',
-                        'alignment', '|',
-                        'link', 'uploadImage', 'blockQuote', 'insertTable', 'mediaEmbed', 'codeBlock', 'htmlEmbed', '|',
-                        'specialCharacters', 'horizontalLine', 'pageBreak', '|',
-                        'textPartLanguage', '|',
-                        'sourceEditing'
+                        'fontSize', 'fontColor', 'highlight', '|',
+                        'link', '|',
+                        'specialCharacters', 'horizontalLine', '|','exportPDF','exportWord', 
                     ],
                     shouldNotGroupWhenFull: true
                 },
@@ -1194,21 +1198,6 @@ img {
                 },
                 // https://ckeditor.com/docs/ckeditor5/latest/features/editor-placeholder.html#using-the-editor-configuration
                 placeholder: '',
-                // https://ckeditor.com/docs/ckeditor5/latest/features/font.html#configuring-the-font-family-feature
-                fontFamily: {
-                    options: [
-                        'default',
-                        'Arial, Helvetica, sans-serif',
-                        'Courier New, Courier, monospace',
-                        'Georgia, serif',
-                        'Lucida Sans Unicode, Lucida Grande, sans-serif',
-                        'Tahoma, Geneva, sans-serif',
-                        'Times New Roman, Times, serif',
-                        'Trebuchet MS, Helvetica, sans-serif',
-                        'Verdana, Geneva, sans-serif'
-                    ],
-                    supportAllValues: true
-                },
                 // https://ckeditor.com/docs/ckeditor5/latest/features/font.html#configuring-the-font-size-feature
                 fontSize: {
                     options: [ 10, 12, 14, 'default', 18, 20, 22 ],

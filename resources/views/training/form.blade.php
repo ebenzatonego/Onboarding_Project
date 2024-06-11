@@ -493,9 +493,11 @@ img {
                         <div>
                             <p class="mb-2 mt-3 text-center">ผลลัพธ์</p>
                           <!--rightbox-->
-                            <div class="box-2 img-result d-flex justify-content-center align-items-center">
+                            <div class="box-2 img-result">
                                 <!-- result of crop -->
-                                <img style="width: 40%;height: 40%;background-color: #003781;" src="" alt="" id="Preview_icon_crop">
+                                <div class="d-flex justify-content-center align-items-center" style="background-color: #003781;border-radius: 50%;width: 140px;height: 140px;">
+                                    <img style="width: 70px;height: 70px;" src="" alt="" id="Preview_icon_crop">
+                                </div>
                             </div>
                         </div>
                     </div>

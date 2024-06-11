@@ -1138,14 +1138,9 @@ img {
 
 </script>
 
-
-<!-- ใส่ใน view ของคุณ -->
-<textarea name="editor1" id="editor1" rows="10" cols="80">
-    This is my textarea to be replaced with CKEditor.
-</textarea>
 <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
 <script>
-    CKEDITOR.replace('editor1');
+    CKEDITOR.replace('detail');
 </script>
 
 

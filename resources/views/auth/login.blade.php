@@ -78,7 +78,7 @@
             flex-wrap: wrap;
             margin-right: -15px;
             margin-left: -15px;
-            height: 100vh;
+            height: 70vh;
             justify-content: center;
 
         }

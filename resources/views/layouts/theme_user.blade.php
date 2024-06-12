@@ -320,7 +320,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle-nocaret position-relative" href="{{ url('/demo/calendar') }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <span class="alert-count d-none"></span>
                             <i class="fa-regular fa-calendar text-color-obd"></i>
                         </a>
@@ -386,7 +386,7 @@
 
         <div class="col text-center text-truncate col-navbar d-flex justify-content-center">
             <div class=" mx-2 pt-2 pb-1 mb-2" id="menu_theme_user_Product">
-                <a href="{{ url('/product') }}" class="">
+                <a href="{{ url('/demo/product_index') }}" class="">
                     <i class="fa-regular fa-clipboard-list"></i>
                     <p class="text-truncate mt-1 mb-0">
                         Product
@@ -406,7 +406,7 @@
         </div>
         <div class="col text-center text-truncate col-navbar d-flex justify-content-center">
             <div class=" mx-2 pt-2 pb-1 mb-2" id="menu_theme_user_News">
-                <a href="{{ url('/news') }}">
+                <a href="{{ url('/demo/news_index') }}">
                     <i class="fa-regular fa-newspaper"></i>
                     <p class="text-truncate mt-1 mb-0">
                         News

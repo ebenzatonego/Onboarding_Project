@@ -4,12 +4,11 @@
 <style>
     @media screen and (max-width: 500px) {
 
-        .conteiner-detail-news,
-        .conteiner-detail-news .row div {
-            padding: 0;
-
+        .btn-share-group {
+            padding: 24px;
         }
     }
+
 
     @media only screen and (max-width: 767px) {
         .title-news {
@@ -330,10 +329,12 @@
                 filter: blur(0) grayscale(0) !important;
 
             }
-            .img-news.active +.icon-preview{
-               display: none !important;
+
+            .img-news.active+.icon-preview {
+                display: none !important;
 
             }
+
             .preview-img {
                 width: 100%;
             }
@@ -345,16 +346,17 @@
                 transform: translate(-50%, -50%);
                 color: #fff !important;
                 font-size: 33px;
-                pointer-events: none; /* ปิดการใช้งาน hitbox */
+                pointer-events: none;
+                /* ปิดการใช้งาน hitbox */
             }
         </style>
         <div class="col-lg-7 col-md-7 px-4 mb-5">
-             <!-- if ถ้ามีเวลาเข้าร่วม -->
-             <div class="d-flex my-2">
-                <i class="fa-light fa-calendar-days me-2" style="color: #0E2B81;font-size:18px"></i> <span style="color: #0E2B81;font-size: 12px;font-style: normal;font-weight: 600;line-height: normal;">Friday 19 April 2024  10:30 - 12:30 น. </span>
+            <!-- if ถ้ามีเวลาเข้าร่วม -->
+            <div class="d-flex my-2">
+                <i class="fa-light fa-calendar-days me-2" style="color: #0E2B81;font-size:18px"></i> <span style="color: #0E2B81;font-size: 12px;font-style: normal;font-weight: 600;line-height: normal;">Friday 19 April 2024 10:30 - 12:30 น. </span>
             </div>
             <!-- endif -->
-             
+
             <!-- if ถ้ามี รายละเอียดการเข้าอบรม -->
             <div class="my-3">
                 <div class="d-flex ">
@@ -362,7 +364,7 @@
                     <div>
                         <p class="m-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum magni reprehenderit, itaqu</p>
                         <a href="https://www.google.com/maps/dir//test" id="link-to-copy" style="color: #0872FF;font-size: 10px;font-style: normal;font-weight: 600;line-height: normal;text-decoration-line: underline;">https://www.google.com/maps/dir//test</a>
-                        <i style="color: #9E9E9E;" class="fa-regular fa-copy mx-2"  onclick="copyLink()"></i>
+                        <i style="color: #9E9E9E;" class="fa-regular fa-copy mx-2" onclick="copyLink()"></i>
                     </div>
                     <div>
 
@@ -416,19 +418,18 @@
                     const imgNewsElements = document.querySelectorAll('.img-news');
 
                     imgNewsElements.forEach(imgNews => {
-                    imgNews.addEventListener('click', function handleClick() {
-                        // Remove the 'active' class from all previously clicked images
-                        imgNewsElements.forEach(otherImg => otherImg.classList.remove('active'));
+                        imgNews.addEventListener('click', function handleClick() {
+                            // Remove the 'active' class from all previously clicked images
+                            imgNewsElements.forEach(otherImg => otherImg.classList.remove('active'));
 
-                        // Add the 'active' class to the clicked image
-                        this.classList.add('active');
+                            // Add the 'active' class to the clicked image
+                            this.classList.add('active');
 
-                        // Update the 'src' attribute of the preview image
-                        const previewImg = document.querySelector('.preview-img');
-                        previewImg.src = this.src;
+                            // Update the 'src' attribute of the preview image
+                            const previewImg = document.querySelector('.preview-img');
+                            previewImg.src = this.src;
+                        });
                     });
-                    });
-
                 </script>
                 <div class="d-flex justify-content-end w-100" style="color: #989898;">
                     <i class="fa-regular fa-clock me-2"></i>

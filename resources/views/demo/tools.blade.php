@@ -385,7 +385,7 @@
             <a class="nav-link menu-tools" id="pills-tutorials-tab" data-toggle="pill" href="#pills-tutorials" role="tab" aria-controls="pills-tutorials" aria-selected="false">Tutorials</a>
         </li>
     </ul>
-    <div class="tab-content" id="pills-tabContent">
+    <div class="tab-content mb-5" id="pills-tabContent">
         <div class="tab-pane fade show active" id="pills-conpany" role="tabpanel" aria-labelledby="pills-home-tab"> 1 </div>
         <div class="tab-pane fade" id="pills-tools" role="tabpanel" aria-labelledby="pills-tools-tab">
             <p class="title-tools">เครื่องมือบริษัท</p>

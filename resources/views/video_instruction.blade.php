@@ -359,6 +359,10 @@
         .logo{
             scale: 0.8;
         }
+        .video-preview{
+            margin-top: 0 !important;
+            width: 85% !important;
+        }
     }
 </style>
 <div class="col-12 p-0 d-flex justify-content-center">

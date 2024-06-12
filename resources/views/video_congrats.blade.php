@@ -361,7 +361,7 @@
 
         }
     }
-    @media screen and (max-width: 750px) {
+    @media screen and (max-height: 750px) {
         .content-congrats{
             scale: .8;
         }
@@ -414,11 +414,11 @@
 
                     <p class="m-0 text-white">จาก ตำแหน่ง</p>
                     <div style="font-size: 18px;margin: 5px 0 5px 0;" class="shine username">
-                        {{ Auth::user()->last_rank }} asd
+                        {{ Auth::user()->last_rank }} 
                     </div>
                     <p class="m-0 text-white">สู่ ตำแหน่ง</p>
                     <div style="font-size: 18px;margin: 5px 0 5px 0;" class="shine username">
-                        {{ Auth::user()->current_rank }} asd
+                        {{ Auth::user()->current_rank }} 
                     </div>
 
                     <button type="submit" id="btn_dont_show_congrats" class="btn-submit-login" disabled>

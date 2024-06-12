@@ -38,7 +38,7 @@
         }
 
         .section-authentication-signin {
-            height: 100vh;
+            height: 100dvh;
         }
     }
 
@@ -78,7 +78,7 @@
             flex-wrap: wrap;
             margin-right: -15px;
             margin-left: -15px;
-            height: 100vh;
+            height: 100dvh;
             justify-content: center;
 
         }
@@ -565,7 +565,7 @@
         </div>
         <div class="authentication-bottom col-lg-6">
             <div class="shape"></div>
-            <form id="form_login" class="text-center px-5 d-flex align-items-center justify-content-center" method="POST" action="{{ route('login') }}" autocomplete="off">
+            <form id="form_login" class="text-center px-5 h-100 d-flex align-items-center justify-content-center" method="POST" action="{{ route('login') }}" autocomplete="off">
                 @csrf
                 <div style="max-width: 740px;">
 

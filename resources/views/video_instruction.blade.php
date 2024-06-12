@@ -400,7 +400,7 @@
                     <div class="shine username">
                         {{Auth::user()->name}}
                     </div> 
-                    <p class="m-0 text-white">เข้าสู่เว็บ Allianz Journey</p>
+                    <p class="m-0 text-white">เข้าสู่เว็บ Agency Journey</p>
                     <p class="text-white">แหล่งรวมความรู้และข่าวสารอัพเดตจาก Allianz</p>
 
 

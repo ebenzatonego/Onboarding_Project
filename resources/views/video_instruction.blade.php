@@ -7,6 +7,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.js" integrity="sha512-Zt7blzhYHCLHjU0c+e4ldn5kGAbwLKTSOTERgqSNyTB50wWSI21z0q6bn/dEIuqf6HiFzKJ6cfj2osRhklb4Og==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css" integrity="sha512-hvNR0F/e2J7zPPfLC9auFe3/SE0yG4aJCOd/qxew74NN7eyiSKjr7xJJMu1Jy2wf7FXITpWS1E/RY8yzuXN7VA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
+     body{
+        height: 100dvh !important;
+    }
     @media (max-width: 992px) {
         .authentication-top {
             position: absolute;
@@ -43,7 +46,7 @@
         }
 
         .section-authentication-signin {
-            height: 100vh;
+            height: 100dvh;
         }
     }
 
@@ -61,7 +64,7 @@
             flex-wrap: wrap;
             margin-right: -15px;
             margin-left: -15px;
-            height: 100vh;
+            height: 100dvh;
             justify-content: center;
 
         }

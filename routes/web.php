@@ -66,14 +66,14 @@ Route::middleware(['auth',])->group(function () {
         return view('demo/training/training_show');
     });
 
-    Route::get('/demo/new_index', function () {
-        return view('demo/new/new_index');
+    Route::get('/demo/news_index', function () {
+        return view('demo/news/news_index');
     });
     Route::get('/demo/calendar', function () {
         return view('demo/calendar');
     });
-    Route::get('/demo/new_show', function () {
-        return view('demo/new/new_show');
+    Route::get('/demo/news_show', function () {
+        return view('demo/news/news_show');
     });
 
     Route::get('/demo/product_index', function () {

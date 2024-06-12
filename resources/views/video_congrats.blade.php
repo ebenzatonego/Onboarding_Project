@@ -7,6 +7,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.js" integrity="sha512-Zt7blzhYHCLHjU0c+e4ldn5kGAbwLKTSOTERgqSNyTB50wWSI21z0q6bn/dEIuqf6HiFzKJ6cfj2osRhklb4Og==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css" integrity="sha512-hvNR0F/e2J7zPPfLC9auFe3/SE0yG4aJCOd/qxew74NN7eyiSKjr7xJJMu1Jy2wf7FXITpWS1E/RY8yzuXN7VA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
+  body {
+        height: 100dvh !important;
+    }
+
     @media (max-width: 992px) {
         .authentication-top {
             position: absolute;
@@ -43,7 +47,7 @@
         }
 
         .section-authentication-signin {
-            height: 100vh;
+            height: 100dvh;
         }
     }
 
@@ -61,7 +65,7 @@
             flex-wrap: wrap;
             margin-right: -15px;
             margin-left: -15px;
-            height: 100vh;
+            height: 100dvh;
             justify-content: center;
 
         }
@@ -247,7 +251,7 @@
         right: -50px;
         transform: translate(-50%, -50%);
         background-color: tran;
-
+        z-index: -1;
         height: 100px;
         width: 100px;
         border-radius: 50px 0 50px 0;
@@ -284,6 +288,7 @@
 
     .btn-submit-login {
         width: 100%;
+        max-width: 377px;
         border-radius: 50px;
         -webkit-border-radius: 50px;
         -moz-border-radius: 50px;
@@ -305,26 +310,20 @@
     }
 
     .shine {
-        font-size: 2em;
         font-weight: 900;
-        color: rgba(21, 30, 52, 0.3);
-        background: #222 -webkit-gradient(linear,
-                left top,
-                right top,
-                from(#222),
-                to(#222),
-                color-stop(0.5, #fff)) 0 0 no-repeat;
-        background-image: -webkit-linear-gradient(-40deg,
-                transparent 0%,
-                transparent 40%,
-                #fff 50%,
-                transparent 60%,
-                transparent 100%);
+        color: rgb(255, 238, 85, .3);
+        background: #FFEE55 -webkit-gradient(linear, left top, right top, from(#FFEE55), to(#FFEE55), color-stop(0.5, #fff)) 0 0 no-repeat;
+        background-image: -webkit-linear-gradient(-40deg, transparent 0%, transparent 40%, #fff 50%, transparent 60%, transparent 100%);
         -webkit-background-clip: text;
         -webkit-background-size: 50px;
         -webkit-animation: zezzz;
         -webkit-animation-duration: 5.5s;
         -webkit-animation-iteration-count: infinite;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 10px 0 !important;
     }
 
     @-webkit-keyframes zezzz {
@@ -336,21 +335,63 @@
             background-position: 265px;
         }
     }
+
+    @media screen and (min-width: 660px) {
+
+        /*adjust*/
+        .username {
+            font-size: 25px;
+            line-height: 1;
+            text-align: center;
+            padding: 0;
+            margin: 15px 0;
+
+        }
+    }
+
+    @media screen and (max-width: 660px) {
+
+        /*adjust*/
+        .username {
+            font-size: min(15em, 6vw);
+            line-height: 1;
+            text-align: center;
+            padding: 0;
+            margin: 15px 0;
+
+        }
+    }
+    @media screen and (max-width: 750px) {
+        .content-congrats{
+            scale: .8;
+        }
+    }
+    @media screen and (max-height: 835px) {
+        .logo {
+            scale: 0.8;
+        }
+
+        .video-preview {
+            margin-top: 0 !important;
+            width: 90% !important;
+        }
+    }
 </style>
-<div class="col-12 p-0">
+<div class="col-12 p-0 d-flex justify-content-center">
     <div class="wrapper" style="position: relative;">
         <div class="section-authentication-signin d-flex align-items-center justify-content-center my-0">
         </div>
 
         <div class="authentication-top ">
             <div class="text-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="90" height="83" viewBox="0 0 90 83" fill="none">
-                    <path d="M88.8385 69.9348L84.1851 61.2992H79.6212H75.0126H36.3538C34.922 61.2992 33.6245 60.5385 32.9086 59.3305C32.1926 58.1224 32.1479 56.6011 32.8191 55.3482L40.336 41.4776H26.3312H21.7226H17.1587L1.81151 69.9348C0.334965 72.6642 0.424453 75.841 1.99049 78.4809C3.69076 81.2997 6.73335 83 10.1339 83H80.5161C83.9166 83 86.9592 81.2997 88.6595 78.4809C90.2255 75.841 90.2703 72.6642 88.8385 69.9348Z" fill="#243286" />
-                    <path d="M53.6252 4.83235C52.0144 1.8345 48.8376 0 45.3028 0C41.768 0 38.5912 1.8345 36.9804 4.83235L21.499 33.4685H26.0629H30.6268H47.0478C48.4796 33.4685 49.7772 34.2291 50.4931 35.4372C51.209 36.6453 51.2537 38.1666 50.5826 39.4194L43.0656 53.29H70.5831H75.147H79.7109L53.6252 4.83235Z" fill="#243286" />
-                </svg>
-                <p style="font-size: 32px;font-weight: bolder;margin: 0;">Allianz Journey</p>
-                <p style="font-size: 10px;font-weight: bold;margin: 0;">ALLIANZ ON-BOARDING WEB</p>
-
+                <div class="logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="90" height="83" viewBox="0 0 90 83" fill="none">
+                        <path d="M88.8385 69.9348L84.1851 61.2992H79.6212H75.0126H36.3538C34.922 61.2992 33.6245 60.5385 32.9086 59.3305C32.1926 58.1224 32.1479 56.6011 32.8191 55.3482L40.336 41.4776H26.3312H21.7226H17.1587L1.81151 69.9348C0.334965 72.6642 0.424453 75.841 1.99049 78.4809C3.69076 81.2997 6.73335 83 10.1339 83H80.5161C83.9166 83 86.9592 81.2997 88.6595 78.4809C90.2255 75.841 90.2703 72.6642 88.8385 69.9348Z" fill="#243286" />
+                        <path d="M53.6252 4.83235C52.0144 1.8345 48.8376 0 45.3028 0C41.768 0 38.5912 1.8345 36.9804 4.83235L21.499 33.4685H26.0629H30.6268H47.0478C48.4796 33.4685 49.7772 34.2291 50.4931 35.4372C51.209 36.6453 51.2537 38.1666 50.5826 39.4194L43.0656 53.29H70.5831H75.147H79.7109L53.6252 4.83235Z" fill="#243286" />
+                    </svg>
+                    <p class="AllianzNeo" style="color:#0E2B81;font-size: 32px;font-weight: bolder;margin: 10px 0 0 0;">AGENCY JOURNEY</p>
+                    <p class="AllianzNeo" style="color:#0E2B81;font-size: 10px;font-weight: bold;margin: 0;">ALLIANZ ON-BOARDING WEB</p>
+                </div>
                 <div class="d-flex-justify-content-center w-100 p-3">
                     <video id="tag_video_congrats" src="" controls autoplay loop muted style="width:100%;border-radius: 10px; max-width: 628px;" class="video-preview"></video>
                 </div>
@@ -358,25 +399,26 @@
         </div>
         <div class="authentication-bottom">
             <div class="shape"></div>
-            <div class="text-center px-5 h-100 d-flex align-items-center justify-content-center">
 
-                <div>
+            <div class="text-center px-5 w-100 h-100 d-flex align-items-center justify-content-center">
+
+                <div class="content-congrats" style="  white-space: nowrap !important;overflow: hidden !important;text-overflow: ellipsis !important;width: 100% !important;">
 
                     <p style="font-size: 20px;margin: 5px;color: #fff;">
                         ยินดีกับการเลื่อนตำแหน่ง!
                     </p>
 
-                    <div style="font-size: 25px;margin: 15px 0 15px 0;" class="shine">
+                    <div class="shine username">
                         {{Auth::user()->name}}
                     </div>
-                    
+
                     <p class="m-0 text-white">จาก ตำแหน่ง</p>
-                    <div style="font-size: 18px;margin: 5px 0 5px 0;" class="shine">
-                        {{ Auth::user()->last_rank }}
+                    <div style="font-size: 18px;margin: 5px 0 5px 0;" class="shine username">
+                        {{ Auth::user()->last_rank }} asd
                     </div>
                     <p class="m-0 text-white">สู่ ตำแหน่ง</p>
-                    <div style="font-size: 18px;margin: 5px 0 5px 0;" class="shine">
-                        {{ Auth::user()->current_rank }}
+                    <div style="font-size: 18px;margin: 5px 0 5px 0;" class="shine username">
+                        {{ Auth::user()->current_rank }} asd
                     </div>
 
                     <button type="submit" id="btn_dont_show_congrats" class="btn-submit-login" disabled>
@@ -392,6 +434,7 @@
         </div>
     </div>
 </div>
+
 
 <script>
     var button_skip_Clicked = false;
@@ -466,7 +509,7 @@
     }
 
     function get_video_congrats() {
-        fetch("{{ url('/') }}/api/get_video_congrats" +"/"+ "{{ Auth::user()->id }}")
+        fetch("{{ url('/') }}/api/get_video_congrats" + "/" + "{{ Auth::user()->id }}")
             .then(response => response.text())
             .then(result => {
                 // console.log(result);

@@ -7,9 +7,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.js" integrity="sha512-Zt7blzhYHCLHjU0c+e4ldn5kGAbwLKTSOTERgqSNyTB50wWSI21z0q6bn/dEIuqf6HiFzKJ6cfj2osRhklb4Og==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css" integrity="sha512-hvNR0F/e2J7zPPfLC9auFe3/SE0yG4aJCOd/qxew74NN7eyiSKjr7xJJMu1Jy2wf7FXITpWS1E/RY8yzuXN7VA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
-     body{
+    body {
         height: 100dvh !important;
     }
+
     @media (max-width: 992px) {
         .authentication-top {
             position: absolute;
@@ -250,7 +251,7 @@
         right: -50px;
         transform: translate(-50%, -50%);
         background-color: tran;
-
+        z-index: -1;
         height: 100px;
         width: 100px;
         border-radius: 50px 0 50px 0;
@@ -310,7 +311,7 @@
 
     .shine {
         font-weight: 900;
-        color: rgb(255, 238, 85 ,.3);
+        color: rgb(255, 238, 85, .3);
         background: #FFEE55 -webkit-gradient(linear, left top, right top, from(#FFEE55), to(#FFEE55), color-stop(0.5, #fff)) 0 0 no-repeat;
         background-image: -webkit-linear-gradient(-40deg, transparent 0%, transparent 40%, #fff 50%, transparent 60%, transparent 100%);
         -webkit-background-clip: text;
@@ -322,7 +323,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin:  10px 0 !important;
+        margin: 10px 0 !important;
     }
 
     @-webkit-keyframes zezzz {
@@ -344,7 +345,7 @@
             text-align: center;
             padding: 0;
             margin: 15px 0;
-          
+
         }
     }
 
@@ -357,14 +358,16 @@
             text-align: center;
             padding: 0;
             margin: 15px 0;
-          
+
         }
     }
+
     @media screen and (max-height: 835px) {
-        .logo{
+        .logo {
             scale: 0.8;
         }
-        .video-preview{
+
+        .video-preview {
             margin-top: 0 !important;
             width: 90% !important;
         }
@@ -393,18 +396,18 @@
         </div>
         <div class="authentication-bottom">
             <div class="shape"></div>
-            <div class="text-center px-5 w-100 h-100 d-flex align-items-center justify-content-center" >
+            <div class="text-center px-5 w-100 h-100 d-flex align-items-center justify-content-center">
 
                 <div style="  white-space: nowrap !important;overflow: hidden !important;text-overflow: ellipsis !important;width: 100% !important;">
 
                     <p style="font-size: 20px;margin: 5px;color: #fff;">ยินดีต้อนรับ !</p>
                     <!-- <p style="font-size: 25px;margin: 15px 0 15px 0;">
         <b>{{Auth::user()->name}}</b>
-    </p> -->        
-   
+    </p> -->
+
                     <div class="shine username">
                         {{Auth::user()->name}}
-                    </div> 
+                    </div>
                     <p class="m-0 text-white">เข้าสู่เว็บ Agency Journey</p>
                     <p class="text-white">แหล่งรวมความรู้และข่าวสารอัพเดตจาก Allianz</p>
 

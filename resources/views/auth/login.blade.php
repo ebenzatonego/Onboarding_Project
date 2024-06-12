@@ -383,6 +383,7 @@
         width: 100px;
         border-radius: 50px 0 50px 0;
         box-shadow: 0 50px 0 0 #5d6ed7;
+        z-index: -1;
     }
 
     .top-section {

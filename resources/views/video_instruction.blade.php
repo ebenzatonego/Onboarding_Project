@@ -318,6 +318,11 @@
         -webkit-animation: zezzz;
         -webkit-animation-duration: 5.5s;
         -webkit-animation-iteration-count: infinite;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin:  10px 0 !important;
     }
 
     @-webkit-keyframes zezzz {

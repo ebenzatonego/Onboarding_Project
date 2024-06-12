@@ -579,7 +579,7 @@
 
 
                     <div class="group-input-login">
-                        <input id="account" type="text" class="input-login-new" name="account" autofocus placeholder="กรุณากรอกชื่อ/อีเมลของคุณ" required oninput="check_login()" autocomplete="account">
+                        <input id="account" type="text" class="input-login-new" name="account" autofocus placeholder="กรุณากรอกรหัสตัวแทน" required oninput="check_login()" autocomplete="account">
                         <i class="fa-thin fa-circle-user icon-login-new"></i>
                     </div>
 

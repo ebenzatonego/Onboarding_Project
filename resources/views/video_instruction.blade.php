@@ -311,8 +311,8 @@
     .shine {
         font-weight: 900;
         color: rgb(255, 238, 85 ,.3);
-        background: #FFEE55 -webkit-gradient(linear, left top, right top, from(#FFEE55), to(#FFEE55), color-stop(0.5, #000)) 0 0 no-repeat;
-        background-image: -webkit-linear-gradient(-40deg, transparent 0%, transparent 40%, #000 50%, transparent 60%, transparent 100%);
+        background: #FFEE55 -webkit-gradient(linear, left top, right top, from(#FFEE55), to(#FFEE55), color-stop(0.5, #fff)) 0 0 no-repeat;
+        background-image: -webkit-linear-gradient(-40deg, transparent 0%, transparent 40%, #fff 50%, transparent 60%, transparent 100%);
         -webkit-background-clip: text;
         -webkit-background-size: 50px;
         -webkit-animation: zezzz;

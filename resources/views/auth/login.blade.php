@@ -48,9 +48,6 @@
             scale: .7 !important;
         }
 
-        .btn-submit-login {
-            margin: 5px 0 !important;
-        }
 
         .authentication-top {
             min-height: 25% !important

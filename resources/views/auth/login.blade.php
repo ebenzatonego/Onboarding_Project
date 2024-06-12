@@ -565,7 +565,7 @@
         </div>
         <div class="authentication-bottom col-lg-6">
             <div class="shape"></div>
-            <form id="form_login" class="text-center px-5 h-100 d-flex align-items-center justify-content-center" method="POST" action="{{ route('login') }}" autocomplete="off">
+            <form id="form_login" class="text-center px-5 d-flex align-items-center justify-content-center" method="POST" action="{{ route('login') }}" autocomplete="off">
                 @csrf
                 <div style="max-width: 740px;">
 

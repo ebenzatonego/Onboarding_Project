@@ -537,6 +537,7 @@
         margin-top: 40px;
         margin-bottom: 30px;
         font-size: 16px;
+        background-color: #fff;
     }
 
     .btn-submit-login:disabled {

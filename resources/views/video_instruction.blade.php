@@ -361,7 +361,7 @@
         }
         .video-preview{
             margin-top: 0 !important;
-            width: 85% !important;
+            width: 90% !important;
         }
     }
 </style>

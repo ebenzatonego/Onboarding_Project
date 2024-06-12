@@ -52,9 +52,9 @@ Route::middleware(['auth',])->group(function () {
 
     Route::get('/show_video_congrats', 'Video_congratsController@show_video_congrats');
 
-    Route::get('/profile', function () {
-        return view('profile/view_profile');
-    });
+    // Route::get('/profile', function () {
+    //     return view('profile/view_profile');
+    // });
 
     Route::get('/demo/training', function () {
         return view('demo/training/training');

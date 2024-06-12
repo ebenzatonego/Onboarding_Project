@@ -24,26 +24,26 @@
       transition-duration: .3s;
     }
     /* instagram*/
-    .containerLine:hover {
+    .containerLine {
       background-color: #00b900;
       transition-duration: .3s;
     }
     /* twitter*/
-    .containerFacebook:hover {
+    .containerFacebook {
       background-color: 	#1877F2;
       transition-duration: .3s;
     }
     /* linkdin*/
-    .containerTwitter:hover {
+    .containerTwitter {
       background-color: 	#000;
       transition-duration: .3s;
     }
     /* Whatsapp*/
-    .containerWhatsapp:hover {
+    .containerWhatsapp {
       background-color: #25D366;
       transition-duration: .3s;
     }
-    .containerDiscord:hover {
+    .containerDiscord {
       background-color: #7289da;
       transition-duration: .3s;
     }

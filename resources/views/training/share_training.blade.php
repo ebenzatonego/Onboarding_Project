@@ -184,11 +184,6 @@
 <div class="container p-0 conteiner-detail-training">
     <div class="row">
         <div class="col-lg-5 col-md-5 p-0" style="position: relative;">
-            <a href="{{ url('/training') }}" class="btn btn-back-all-course">
-                <i class="fa-solid fa-arrow-left"></i>
-                <span>กลับหน้ารวมหลักสูตร</span>
-            </a>
-
             <img src="{{ $training->photo }}" alt="" style="width: 100%;">
             <div class="d-flex justify-content-between">
 

@@ -248,7 +248,7 @@
             <div class="tab-content">
 
               <!-- 4 Menu Highlight -->
-              <div class="tab-pane fade show active" id="pills-home" role="tabpanel">
+              <div class="tab-pane fade show active" id="success-pills-home" role="tabpanel">
                 <br>
                 <div class="row mt-3 mb-2">
                   <div class="col-2">

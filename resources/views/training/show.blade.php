@@ -393,7 +393,7 @@
                                 <i class="fa-solid fa-thumbs-down"></i>
                             </div>
                         </button>
-                        <button class="btn btn-share me-1"  >
+                        <button class="btn btn-share me-1" onclick="click_share_training();">
                             <i class="fa-solid fa-share m-0"></i>
                         </button>
 

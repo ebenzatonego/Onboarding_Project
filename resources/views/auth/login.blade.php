@@ -2,6 +2,9 @@
 
 @section('content')
 <style>
+    body{
+        height: 100dvh !important;
+    }
     @media (max-width: 992px) {
         .authentication-top {
             position: absolute;

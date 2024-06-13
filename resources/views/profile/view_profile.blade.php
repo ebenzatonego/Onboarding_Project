@@ -361,7 +361,7 @@
                                     ตำแหน่ง : {{ Auth::user()->position }}
                                 </P>
                                 <P style="font-size: 12px; font-weight: bold;color: #383838;margin: 0;">
-                                    ชื่อหน่วยงาน/AO : {{ Auth::user()->organization_name }}
+                                    ชื่อหน่วยงาน : {{ Auth::user()->organization_name }}
                                 </P>
 
                                 <!-- @if(Auth::user()->role == "Super-admin" || Auth::user()->role == "Admin")
@@ -904,7 +904,7 @@
                                 @if( empty(Auth::user()->photo) )
                                 <img src="{{ url('/img/icon/profile.png') }}" alt="profile user" class="rounded-circle p-1 img-profile-user" width="50" height="50">
                                 @else
-                                <img id="profile_base_64" src="{{ Auth::user()->photo }}" alt="profile user" class="rounded-circle img-profile-user" width="50" height="50">
+                                <img id="profile_base_64" src="{{ $base64Image }}" alt="profile user" class="rounded-circle img-profile-user" width="50" height="50">
                                 @endif
                             </div>
                             <div class="w-100 mt-2 ">

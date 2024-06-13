@@ -22,27 +22,28 @@ class ProfileController extends Controller
         $group_manager = Contact_group_manager::where('account' , $users->account_group_manager)->first();
         $area_supervisor = Contact_area_supervisor::where('account' , $users->account_area_supervisor)->first();
 
-        // $url = Auth::user()->photo;
+        $base64Image = '';
 
-        // // ใช้ Guzzle HTTP Client เพื่อดึงข้อมูลของรูปภาพ
-        // $client = new Client();
-        // $response = $client->get($url);
+        if( !empty(Auth::user()->photo) ){
+            $url = Auth::user()->photo;
 
-        // $base64Image = '';
-        // // ตรวจสอบว่าได้รับ response ที่ถูกต้องหรือไม่
-        // if ($response->getStatusCode() == 200) {
-        //     // ดึงเนื้อหาของรูปภาพ
-        //     $imageContent = $response->getBody()->getContents();
+            // ใช้ Guzzle HTTP Client เพื่อดึงข้อมูลของรูปภาพ
+            $client = new Client();
+            $response = $client->get($url);
 
-        //     // แปลงรูปภาพเป็น Base64
-        //     $base64 = base64_encode($imageContent);
+            // ตรวจสอบว่าได้รับ response ที่ถูกต้องหรือไม่
+            if ($response->getStatusCode() == 200) {
+                // ดึงเนื้อหาของรูปภาพ
+                $imageContent = $response->getBody()->getContents();
 
-        //     // สร้าง Data URL
-        //     $base64Image = 'data:image/jpeg;base64,' . $base64;
-        // }
+                // แปลงรูปภาพเป็น Base64
+                $base64 = base64_encode($imageContent);
 
-        // base64Image
+                // สร้าง Data URL
+                $base64Image = 'data:image/jpeg;base64,' . $base64;
+            }
+        }
 
-        return view('profile/view_profile', compact('users','upper_al','group_manager','area_supervisor'));
+        return view('profile/view_profile', compact('users','upper_al','group_manager','area_supervisor','base64Image'));
     }
 }

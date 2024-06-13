@@ -416,10 +416,10 @@
         </div>
         <div class="col text-center text-truncate col-navbar d-flex justify-content-center">
             <div class=" mx-2 pt-2 pb-1 mb-2" id="menu_theme_user_Career_Path">
-                <a href="#">
+                <a href="{{ url('/demo/tools') }}">
                     <i class="fa-regular fa-wrench-simple fa-rotate-by" style="--fa-rotate-angle: 320deg;"></i>
                     <p class=" text-truncate mt-1 mb-0">
-                        Career Path
+                        Tools
                     </p>
                 </a>
             </div>

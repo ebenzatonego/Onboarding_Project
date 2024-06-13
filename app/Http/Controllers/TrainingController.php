@@ -45,7 +45,23 @@ class TrainingController extends Controller
             $training = Training::latest()->paginate($perPage);
         }
 
-        return view('training.index', compact('training'));
+        $photo_menu_highlight_1 = Training_type::where('check_highlight' , '1')
+            ->select('photo_menu','id')
+            ->first();
+
+        $photo_menu_highlight_2 = Training_type::where('check_highlight' , '2')
+            ->select('photo_menu','id')
+            ->first();
+
+        $photo_menu_highlight_3 = Training_type::where('check_highlight' , '3')
+            ->select('photo_menu','id')
+            ->first();
+
+        $photo_menu_highlight_4 = Training_type::where('check_highlight' , '4')
+            ->select('photo_menu','id')
+            ->first();
+
+        return view('training.index', compact('training','photo_menu_highlight_1','photo_menu_highlight_2','photo_menu_highlight_3','photo_menu_highlight_4'));
     }
 
     /**

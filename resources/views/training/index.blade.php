@@ -138,17 +138,47 @@
                 <div class="fav-course">
                     <div class="col-6">
                         <div class="w-100">
-                            <a href="{{ url('/sub_training/1') }}" class="long-item">
-                                <img src="{{ url('/img/icon/long-content-1.png') }}" alt="">
+                            @if(!empty($photo_menu_highlight_1->id))
+                            <a href="{{ url('/sub_training') . '/' . $photo_menu_highlight_1->id }}" class="long-item mt-3">
+                            @else
+                            <a href="{{ url('/sub_training/all') }}" class="long-item mt-3">
+                            @endif
+                                @if( !empty($photo_menu_highlight_1) )
+                                    <img src="{{ $photo_menu_highlight_1->photo_menu }}" >
+                                @else
+                                    <div>
+                                        <p style="font-size: 14px;margin-bottom: 2;">หลักสูตร</p>
+                                        <p style="font-size: 18px;font-weight: bolder;margin-bottom: 0;">ทั้งหมด</p>
+                                    </div>
+                                @endif
                                 <div class="count-training">
-                                    <span id="" style="font-size: 24px;font-weight: bolder;color: #fff;">11</span>
+                                    @if(!empty($photo_menu_highlight_1->id))
+                                    <span id="count_training_highlight_1" style="font-size: 24px;font-weight: bolder;color: #fff;"></span>
+                                    @else
+                                    <span style="font-size: 24px;font-weight: bolder;color: #fff;">{{ count($training) }}</span>
+                                    @endif
                                     <span class="ms-1" style="color: #fff;">หลักสูตร</span>
                                 </div>
                             </a>
-                            <a href="{{ url('/sub_training/2') }}" class="square-item mt-3">
-                                <img src="{{ url('/img/icon/square-content-1.png') }}" alt="">
+                            @if(!empty($photo_menu_highlight_2->id))
+                            <a href="{{ url('/sub_training') . '/' . $photo_menu_highlight_2->id }}" class="square-item mt-3">
+                            @else
+                            <a href="{{ url('/sub_training/all') }}" class="square-item mt-3">
+                            @endif
+                                @if( !empty($photo_menu_highlight_2) )
+                                    <img src="{{ $photo_menu_highlight_2->photo_menu }}">
+                                @else
+                                    <div>
+                                        <p style="font-size: 14px;margin-bottom: 2;">หลักสูตร</p>
+                                        <p style="font-size: 18px;font-weight: bolder;margin-bottom: 0;">ทั้งหมด</p>
+                                    </div>
+                                @endif
                                 <div class="count-training">
-                                    <span id="" style="font-size: 24px;font-weight: bolder;color: #003781;">12</span>
+                                    @if(!empty($photo_menu_highlight_2->id))
+                                    <span id="count_training_highlight_2" style="font-size: 24px;font-weight: bolder;color: #fff;"></span>
+                                    @else
+                                    <span style="font-size: 24px;font-weight: bolder;color: #fff;">{{ count($training) }}</span>
+                                    @endif
                                     <span class="ms-1" style="color: #003781;">หลักสูตร</span>
                                 </div>
                             </a>
@@ -156,23 +186,72 @@
                     </div>
                     <div class="col-6">
                         <div class="w-100">
-                            <a href="{{ url('/sub_training/3') }}" class="square-item">
-                                <img src="{{ url('/img/icon/square-content-2.png') }}" alt="">
+                            @if(!empty($photo_menu_highlight_3->id))
+                            <a href="{{ url('/sub_training') . '/' . $photo_menu_highlight_3->id }}" class="square-item mt-3">
+                            @else
+                            <a href="{{ url('/sub_training/all') }}" class="square-item mt-3">
+                            @endif
+                                @if( !empty($photo_menu_highlight_3) )
+                                    <img src="{{ $photo_menu_highlight_3->photo_menu }}">
+                                @else
+                                    <div>
+                                        <p style="font-size: 14px;margin-bottom: 2;">หลักสูตร</p>
+                                        <p style="font-size: 18px;font-weight: bolder;margin-bottom: 0;">ทั้งหมด</p>
+                                    </div>
+                                @endif
                                 <div class="count-training">
-                                    <span id="" style="font-size: 24px;font-weight: bolder;color: #003781;">13</span>
+                                    @if(!empty($photo_menu_highlight_3->id))
+                                    <span id="count_training_highlight_3" style="font-size: 24px;font-weight: bolder;color: #fff;"></span>
+                                    @else
+                                    <span style="font-size: 24px;font-weight: bolder;color: #fff;">{{ count($training) }}</span>
+                                    @endif
                                     <span class="ms-1" style="color: #003781;">หลักสูตร</span>
                                 </div>
                             </a>
-                            <a href="{{ url('/sub_training/4') }}" class="long-item mt-3">
-                                <img src="{{ url('/img/icon/long-content-2.png') }}" alt="">
+                            @if(!empty($photo_menu_highlight_4->id))
+                            <a href="{{ url('/sub_training') . '/' . $photo_menu_highlight_4->id }}" class="long-item mt-3">
+                            @else
+                            <a href="{{ url('/sub_training/all') }}" class="long-item mt-3">
+                            @endif
+                                @if( !empty($photo_menu_highlight_4) )
+                                    <img src="{{ $photo_menu_highlight_4->photo_menu }}">
+                                @else
+                                    <div>
+                                        <p style="font-size: 14px;margin-bottom: 2;">หลักสูตร</p>
+                                        <p style="font-size: 18px;font-weight: bolder;margin-bottom: 0;">ทั้งหมด</p>
+                                    </div>
+                                @endif
                                 <div class="count-training">
-                                    <span id="" style="font-size: 24px;font-weight: bolder;color: #fff;">14</span>
+                                    @if(!empty($photo_menu_highlight_4->id))
+                                    <span id="count_training_highlight_4" style="font-size: 24px;font-weight: bolder;color: #fff;"></span>
+                                    @else
+                                    <span style="font-size: 24px;font-weight: bolder;color: #fff;">{{ count($training) }}</span>
+                                    @endif
                                     <span class="ms-1" style="color: #fff;">หลักสูตร</span>
                                 </div>
                             </a>
                         </div>
                     </div>
                 </div>
+
+                <script>
+                    function get_count_training_highlight(){
+
+                        for (let i = 1; i < 5; i++) {
+                            fetch("{{ url('/') }}/api/get_count_training_highlight/" + i)
+                              .then(response => response.text())
+                              .then(result => {
+                                    console.log(i)
+                                    console.log(result);
+
+                                    if(document.querySelector('#count_training_highlight_'+i)){
+                                        document.querySelector('#count_training_highlight_'+i).innerHTML = result ;
+                                    }
+                            });
+                        }
+
+                    }
+                </script>
 
                 <style>
                     .all-coures {
@@ -202,7 +281,7 @@
                             <img src="{{ url('/img/icon/icon-all-training.png') }}" alt="" width="71">
                         </div>
                         <div>
-                            <span style="font-size: 24px;font-weight: bolder;">60</span>
+                            <span style="font-size: 24px;font-weight: bolder;">{{ count($training) }}</span>
                             <span id style="font-size:14 px;">หลักสูตร</span>
                         </div>
                     </div>
@@ -753,7 +832,8 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        change_active_menu_theme_user('Training')
+        change_active_menu_theme_user('Training');
+        get_count_training_highlight();
     });
 
     // ดึงข้อมูลวันที่ปัจจุบัน

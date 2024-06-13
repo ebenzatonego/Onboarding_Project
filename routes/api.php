@@ -77,6 +77,7 @@ Route::get('/get_data_Training_type', 'Training_typeController@get_data_Training
 Route::get('/get_photo_Training_type/{id}', 'Training_typeController@get_photo_Training_type');
 Route::get('/change_number_menu_type/{type_id}/{number}', 'Training_typeController@change_number_menu_type');
 Route::post('/update_Menu_Highlight', 'Training_typeController@update_Menu_Highlight');
+Route::get('/get_count_training_highlight/{number}', 'Training_typeController@get_count_training_highlight');
 
 
 // Calendar

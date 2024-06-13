@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
+use App\Models\Training;
 use App\Models\Training_type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -219,5 +220,19 @@ class Training_typeController extends Controller
                 ]);
 
         return 'success';
+    }
+
+    function get_count_training_highlight($number){
+
+        $data = Training_type::where('check_highlight', $number)->first();
+
+        $count = 0 ;
+        if( !empty($data->id) ){
+            $data_Training = Training::where('training_type_id', $data->id)->get();
+            $count = count($data_Training);
+        }
+
+        return $count ;
+
     }
 }

@@ -23,27 +23,7 @@ class TrainingController extends Controller
         $keyword = $request->get('search');
         $perPage = 25;
 
-        if (!empty($keyword)) {
-            $training = Training::where('name_article', 'LIKE', "%$keyword%")
-                ->orWhere('type_article', 'LIKE', "%$keyword%")
-                ->orWhere('start_date', 'LIKE', "%$keyword%")
-                ->orWhere('end_date', 'LIKE', "%$keyword%")
-                ->orWhere('start_time', 'LIKE', "%$keyword%")
-                ->orWhere('end_time', 'LIKE', "%$keyword%")
-                ->orWhere('check_all_day_start', 'LIKE', "%$keyword%")
-                ->orWhere('check_all_day_end', 'LIKE', "%$keyword%")
-                ->orWhere('detail', 'LIKE', "%$keyword%")
-                ->orWhere('photo', 'LIKE', "%$keyword%")
-                ->orWhere('link_video', 'LIKE', "%$keyword%")
-                ->orWhere('link_lms', 'LIKE', "%$keyword%")
-                ->orWhere('like', 'LIKE', "%$keyword%")
-                ->orWhere('fav', 'LIKE', "%$keyword%")
-                ->orWhere('share', 'LIKE', "%$keyword%")
-                ->orWhere('user_view', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
-        } else {
-            $training = Training::latest()->paginate($perPage);
-        }
+        $training = Training::where('status' , 'Yes')->latest()->paginate($perPage);
 
         $photo_menu_highlight_1 = Training_type::where('check_highlight' , '1')
             ->select('photo_menu','id')

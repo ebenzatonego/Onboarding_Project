@@ -228,7 +228,7 @@ class Training_typeController extends Controller
 
         $count = 0 ;
         if( !empty($data->id) ){
-            $data_Training = Training::where('training_type_id', $data->id)->get();
+            $data_Training = Training::where('training_type_id', $data->id)->where('status' , 'Yes')->get();
             $count = count($data_Training);
         }
 

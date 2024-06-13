@@ -200,7 +200,7 @@
 
     function get_data_Training(type){
 
-        fetch("{{ url('/') }}/api/get_data_Training/" + type )
+        fetch("{{ url('/') }}/api/get_data_Training_for_index/" + type )
             .then(response => response.json())
             .then(result => {
                 // console.log(result);

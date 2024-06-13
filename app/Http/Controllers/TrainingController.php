@@ -617,6 +617,43 @@ class TrainingController extends Controller
         return $data;
     }
 
+    function get_data_Training_for_index($type){
+
+        $data = [];
+
+        if($type == 'all'){
+            // $data['data_training'] = Training::orderBy('id' , 'DESC')->get();
+
+            $data['data_training'] = DB::table('trainings')
+                ->join('training_types', 'training_types.id', '=', 'trainings.training_type_id')
+                ->select('trainings.*', 'training_types.type_article')
+                ->where('trainings.status' , 'Yes')
+                ->orderByRaw("CASE 
+                        WHEN highlight_number IS NOT NULL THEN 1
+                        ELSE 2
+                        END, 
+                        highlight_number ASC, 
+                        id DESC")
+                ->get();
+        }
+        else{
+            $data['data_training'] = Training::where('training_type_id', $type)
+                ->where('status' , 'Yes')
+                // ->orderBy('id' , 'DESC')
+                ->orderByRaw("CASE 
+                        WHEN highlight_of_type IS NOT NULL THEN 1
+                        ELSE 2
+                        END, 
+                        highlight_of_type ASC, 
+                        id DESC")
+                ->get();
+            $data_Training_type = Training_type::where('id', $type)->first();
+            $data['type_article'] = $data_Training_type->type_article ;
+        }
+
+        return $data;
+    }
+
     function change_Highlight($training_id , $number , $type){
 
         $data = [];

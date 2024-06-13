@@ -71,6 +71,7 @@ Route::get('/user_click_fav_btn/{user_id}/{training_id}/{type}', 'TrainingContro
 Route::get('/update_user_view/{user_id}/{training_id}', 'TrainingController@update_user_view');
 Route::get('/update_countTime_trainingVideo/{user_id}/{countTime}/{training_id}', 'TrainingController@update_countTime_trainingVideo');
 Route::get('/get_data_Training/{type}', 'TrainingController@get_data_Training');
+Route::get('/get_data_Training_for_index/{type}', 'TrainingController@get_data_Training_for_index');
 Route::get('/change_Highlight/{training_id}/{number}/{type}', 'TrainingController@change_Highlight');
 Route::get('/get_data_Training_type', 'Training_typeController@get_data_Training_type');
 

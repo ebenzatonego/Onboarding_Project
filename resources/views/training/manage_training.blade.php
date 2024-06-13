@@ -234,6 +234,78 @@
     align-items: center;
   }
 
+  .long-item {
+        /* aspect-ratio:  11/ 16; */
+        /* width: 159px; */
+        position: relative;
+        width: 95%;
+        height: 214px;
+        background-color: #003781;
+        color: #fff;
+        margin: 5px;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .long-item img {
+        display: block;
+        object-fit: contain;
+        height: 100%;
+        width: 100%;
+    }
+
+    .square-item img {
+        display: block;
+        object-fit: contain;
+        height: 100%;
+        width: 100%;
+    }
+
+    .square-item {
+        /* aspect-ratio:  1/ 1; */
+        /* width: 159px; */
+        position: relative;
+        width: 95%;
+        height: 159px;
+        background-color: #CADCFF;
+        color: #003781;
+        margin: 5px;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    .long-item .count-training {
+        position: absolute;
+        bottom: 15px;
+
+    }
+
+    .square-item .count-training {
+        position: absolute;
+        bottom: 10px;
+
+    }
+
+    .fav-course {
+        width: 100%;
+        flex-direction: row;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
 </style>
 
 <!-- MODAL การจัดการเมนูหลักสูตร -->
@@ -279,10 +351,126 @@
                 <br>
                 <div class="row mt-3 mb-2">
                   <div class="col-5">
-                    <i class="fa-solid fa-circle-1 font-24"></i>
+                    <div class="fav-course">
+                      <div class="col-6">
+                          <div class="w-100">
+                              <div class="long-item btn">
+                                <img id="perview_Menu_Highlight_1" src="{{ url('/img/icon/long-content-1.png') }}" alt="">
+                                <div class="count-training">
+                                    <span style="font-size: 24px;font-weight: bolder;color: #fff;">
+                                      ...
+                                    </span>
+                                    <span class="ms-1" style="color: #fff;">หลักสูตร</span>
+                                </div>
+                              </div>
+                              <div class="square-item mt-3 btn">
+                                <img id="perview_Menu_Highlight_2" src="{{ url('/img/icon/square-content-1.png') }}" alt="">
+                                <div class="count-training">
+                                    <span style="font-size: 24px;font-weight: bolder;color: #003781;">
+                                      ...
+                                    </span>
+                                    <span class="ms-1" style="color: #003781;">หลักสูตร</span>
+                                </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-6">
+                          <div class="w-100">
+                              <div class="square-item btn">
+                                <img id="perview_Menu_Highlight_3" src="{{ url('/img/icon/square-content-2.png') }}" alt="">
+                                <div class="count-training">
+                                    <span id="" style="font-size: 24px;font-weight: bolder;color: #003781;">
+                                      ...
+                                    </span>
+                                    <span class="ms-1" style="color: #003781;">หลักสูตร</span>
+                                </div>
+                              </div>
+                              <div class="long-item mt-3 btn">
+                                <img id="perview_Menu_Highlight_4" src="{{ url('/img/icon/long-content-2.png') }}" alt="">
+                                <div class="count-training">
+                                    <span id="" style="font-size: 24px;font-weight: bolder;color: #fff;">
+                                      ...
+                                    </span>
+                                    <span class="ms-1" style="color: #fff;">หลักสูตร</span>
+                                </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
                   </div>
                   <div class="col-7">
-                    4 Menu Highligh
+                    <div class="card">
+                      <div class="card-body">
+                        <ul class="nav nav-tabs nav-primary" role="tablist">
+                          <li id="li_menu_of_1" class="nav-item" role="presentation">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#menu_of_1" role="tab" aria-selected="true">
+                              <div class="d-flex align-items-center">
+                                <div class="tab-icon">
+                                  <i class="fa-solid fa-circle-1 font-18 me-1" style="color:#003781!important;"></i>
+                                </div>
+                                <div class="tab-title" style="color:#003781!important;">
+                                  Menu 1
+                                </div>
+                              </div>
+                            </a>
+                          </li>
+                          <li id="li_menu_of_2" class="nav-item" role="presentation">
+                            <a class="nav-link" data-bs-toggle="tab" href="#menu_of_2" role="tab" aria-selected="false">
+                              <div class="d-flex align-items-center">
+                                <div class="tab-icon">
+                                  <i class="fa-solid fa-circle-2 font-18 me-1" style="color:#809FDB!important;"></i>
+                                </div>
+                                <div class="tab-title" style="color:#809FDB!important;">
+                                  Menu 2
+                                </div>
+                              </div>
+                            </a>
+                          </li>
+                          <li id="li_menu_of_3" class="nav-item" role="presentation">
+                            <a class="nav-link" data-bs-toggle="tab" href="#menu_of_3" role="tab" aria-selected="true">
+                              <div class="d-flex align-items-center">
+                                <div class="tab-icon">
+                                  <i class="fa-solid fa-circle-3 font-18 me-1" style="color:#003781!important;"></i>
+                                </div>
+                                <div class="tab-title" style="color:#003781!important;">
+                                  Menu 3
+                                </div>
+                              </div>
+                            </a>
+                          </li>
+                          <li id="li_menu_of_4" class="nav-item" role="presentation">
+                            <a class="nav-link" data-bs-toggle="tab" href="#menu_of_4" role="tab" aria-selected="false">
+                              <div class="d-flex align-items-center">
+                                <div class="tab-icon">
+                                  <i class="fa-solid fa-circle-4 font-18 me-1" style="color:#809FDB!important;"></i>
+                                </div>
+                                <div class="tab-title" style="color:#809FDB!important;">
+                                  Menu 4
+                                </div>
+                              </div>
+                            </a>
+                          </li>
+                        </ul>
+                        <div class="tab-content py-3">
+                          <div class="tab-pane fade show active" id="menu_of_1" role="tabpanel">
+                            <div class="row">
+                              <div class="col-12">
+
+                              </div>
+                            </div>
+                          </div>
+                          <div class="tab-pane fade" id="menu_of_2" role="tabpanel">
+                            2
+                          </div>
+                          <div class="tab-pane fade" id="menu_of_3" role="tabpanel">
+                            3
+                          </div>
+                          <div class="tab-pane fade" id="menu_of_4" role="tabpanel">
+                            4
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

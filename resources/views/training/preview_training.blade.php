@@ -185,14 +185,15 @@
                         }
 
                         .btn-share-group {
-                            padding: 24px;
+                            padding: 24px 0 24px 0 !important;
+
                         }
                     }
 
 
                     @media screen and (min-width: 767px) {
                         .btn-share-group {
-                            padding: 24px 0 24px 0;
+                            padding: 24px 0 24px 0 !important;
                         }
                     }
 
@@ -356,7 +357,7 @@
                                 <span>กลับหน้ารวมหลักสูตร</span>
                             </button>
 
-                            <img src="{{ url('/img/icon/ad2.png') }}" alt="" style="width: 100%;">
+                            <img src="{{ $data_training->photo }}" alt="" style="width: 100%;">
                             
                             <div class="px-4 d-flex justify-content-between">
 
@@ -386,14 +387,14 @@
                             </div>
                             <div class="title-training px-4">
                                 <div>
-                                    <p class="mb-2" style="color: #003781;font-size: 20px;font-style: normal;font-weight: 600;line-height: normal;">หลักสูตรการพัฒนาทักษะการขายเชิงกลยุทธ์ 505</p>
+                                    <p class="mb-2" style="color: #003781;font-size: 20px;font-style: normal;font-weight: 600;line-height: normal;">{{$data_training->title}}</p>
                                 </div>
                                 <div class="hastag-training">
                                     <span>#หลักสูตร Unit Links</span>
                                 </div>
                                 <div class="rating-training mt-2">
-                                    <span style="color: #EDB529;font-size: 14px;font-style: normal;font-weight: 600;line-height: normal;margin-right: 5px;">4.5</span>
-                                    <i data-star="4.5" class="star-rating"></i>
+                                    <span style="color: #EDB529;font-size: 14px;font-style: normal;font-weight: 600;line-height: normal;margin-right: 5px;">{{$data_training->sum_rating ? $data_training->sum_rating : '0'}}</span>
+                                    <i data-star="{{$data_training->sum_rating ? $data_training->sum_rating : '0'}}" class="star-rating"></i>
                                 </div>
                             </div>
                         </div>
@@ -467,12 +468,25 @@
                             }
                         </style>
                         <div class="col-12 px-4 mb-5">
-
-
                             <!-- if ถ้ามีเวลาเข้าร่วม -->
-                            <div class="d-flex my-2">
-                                <i class="fa-light fa-calendar-days me-2" style="color: #0E2B81;font-size:18px"></i> <span style="color: #0E2B81;font-size: 12px;font-style: normal;font-weight: 600;line-height: normal;">Friday 19 April 2024 10:30 - 12:30 น. </span>
-                            </div>
+                            @if(!empty($data_training->datetime_start))
+                                <div class="d-flex align-items-center my-2">
+                                    <i class="fa-light fa-calendar-days me-2" style="color: #0E2B81;font-size:18px"></i> <span style="color: #0E2B81;font-size: 12px;font-style: normal;font-weight: 600;line-height: normal;">
+                                        <!-- Friday 19 April 2024 10:30 - 12:30 น.  -->
+
+                                        {{ \Carbon\Carbon::parse($data_training->datetime_start)->format('l d M Y H:i')}}
+
+                                        @if(!empty($data_training->datetime_end))
+                                            
+                                            @if(\Carbon\Carbon::parse($data_training->datetime_start)->format('l d M Y') == \Carbon\Carbon::parse($data_training->datetime_end)->format('l d M Y'))
+                                               - {{ \Carbon\Carbon::parse($data_training->datetime_end)->format('H:i') }}
+                                            @else
+                                               <br> {{ \Carbon\Carbon::parse($data_training->datetime_end)->format('l d M Y H:i') }}
+                                            @endif
+                                        @endif
+                                    </span>
+                                </div>
+                            @endif
                             <!-- endif -->
 
                             <!-- if ถ้ามีลิงค์เข้าร่วมสอบ -->
@@ -506,8 +520,7 @@
                             <!-- endif -->
                             <div class="detail-training">
                                 <p class="mt-2">
-                                    การพัฒนาทักษะการขาย (Selling Skill) ให้กับนักขายมืออาชีพขั้นสูง จะช่วยทำให้พนักงานมีความมั่นใจในการขายสินค้าและบริการของตัวเองเพิ่มมากขึ้น เช่น.....     - การนำเสนอขายด้วยเครื่องมือในรูปแบบต่างๆ     - การเจรจาต่อรองอย่างเหนือชั้น     - การปิดการขายให้ลูกค้าเห็นคุณค่าด้วยตัวเอง การเรียนรู้ในรูปแบบ Blended Learning เชิงปฏิบัติการจริง ด้วยการฝึกฝนทักษะต่างๆ ด้วยตัวเอง ทำให้ผู้เรียน ได้ปรับปรุง แก้ไข แนวทางและเทคนิคการขายของตัวเองได้ทันที     - VDO (Self-Learning)     - Practices in Classroom     - Show & Share ซึ่งกันและกัน
-                                    รายละเอียดของหลักสูตรฝึกอบรมหลักการขายเชิงกลยุทธ์ (Strategic Selling) สนุกกับ คำสำคัญ ของงานขาย หัวใจสำคัญของการขายให้โดนใจ ทักษะพื้นฐานของการขาย คุณสมบัติของนักขายมืออาชีพ กิจกรรม: กำหนดแนวทางการขายเชิงกลยุทธ์ด้วย Canvasเทคนิคการนำเสนอด้วยเครื่องมือในรูปแบบต่างๆ (Presentation) การนำเสนอให้สอดคล้องคุณลักษณะของบุคคล (DISC) การนำเสนอด้วย Presentation Tools Kit การนำเสนอในรูปแบบ Pitching & Storytelling Role Playing: การฝึกฝนเทคนิคการนำเสนอให้โดนใจ เทคนิคการเจรจาต่อรองอย่างเหนือชั้น (Negotiation) หลักการเจรจาต่อรองอย่างมีคุณภาพ การกำหนดจุดประสงค์ให้ชัดเจน การประเมินทางเลือกของการเจรจา (BATNA) การบริหารจัดการให้การเจรจามีคุณภาพ (ZOPA) การเตรียมความพร้อมก่อนการเจรจาต่อรอง Role Playing: การฝึกฝนเทคนิคการเจรจาต่อรองอย่างสร้างสรรค์เทคนิคการปิดการขายให้ลูกค้าเห็นคุณค่า (Value Proposition)  
+                                    {!!$data_training->detail!!}
                                 </p>
                                 <div class="d-flex justify-content-end w-100" style="color: #989898;">
                                     <i class="fa-regular fa-clock me-2"></i>
@@ -515,11 +528,11 @@
                                 </div>
 
                                 <div class="d-flex justify-content-center w-100 mt-3">
-                                    <video src="https://www.franchisebuilder2024.com/video/The%20Franchise%20Builder_Final.mp4" controls loop muted style="width:100%;border-radius: 10px; max-width: 700px;" class="video-preview"></video>
+                                    <video src="{{$data_training->video}}" controls loop muted style="width:100%;border-radius: 10px; max-width: 700px;" class="video-preview"></video>
                                 </div>
 
                                 <div class="w-100 mt-3">
-                                    <p class="mb-0" style="color: #989898;font-size: 14px;font-style: normal;font-weight: 500;line-height: normal;">ถูกใจหลักสูตรนี้?</p>
+                                    <p class="mb-2 mt-3" style="color: #989898;font-size: 14px;font-style: normal;font-weight: 500;line-height: normal;">ถูกใจหลักสูตรนี้?</p>
 
                                     <div class="d-flex justify-content-end ">
                                         <button class="btn btn-like  me-1" onclick="action_btnlike_dislike(this.className)">
@@ -671,5 +684,11 @@
 
     </div>
 </div>
-
+<script>
+     document.querySelectorAll('.star-rating').forEach(el => {
+        const rating = parseFloat(el.getAttribute('data-star'));
+        el.style.setProperty('--rating', (rating / 5) * 100 + '%');
+        el.style.setProperty('--rating-width', `${(rating / 5) * 100}%`);
+    });
+</script>
 @endsection

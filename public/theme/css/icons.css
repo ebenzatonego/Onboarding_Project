@@ -36,12 +36,19 @@ File: icons.css
 	font-style: normal;
 	src: url('../fonts/AllianzNeo.ttf') format('truetype');
 }
-.AllianzNeo{
+
+@font-face {
+	font-family: 'New_AllianzNeo';
+	font-weight: normal;
+	font-style: normal;
+	src: url('../fonts/New_AllianzNeo.ttf') format('truetype');
+}
+/* .AllianzNeo{
 	font-family: AllianzNeo !important;
 
-}
+} */
 *:not(i) {
-	font-family: Kanit;
+	font-family: New_AllianzNeo;
 	letter-spacing: 0px !important;
 	line-height: 1.2em;
 }

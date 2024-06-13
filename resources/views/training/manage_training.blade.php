@@ -1,6 +1,11 @@
 @extends('layouts.theme_admin')
 
 @section('content')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js" integrity="sha512-9KkIqdfN7ipEW6B6k+Aq20PV31bjODg4AA52W+tYtAE0jE0kMx49bjJ3FgvS56wzmyfMUHbQ4Km2b7l9+Y/+Eg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.css" integrity="sha512-bs9fAcCAeaDfA4A+NiShWR886eClUcBtqhipoY5DM60Y1V3BbVQlabthUBal5bq8Z8nnxxiyb1wfGX2n76N1Mw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.js" integrity="sha512-Zt7blzhYHCLHjU0c+e4ldn5kGAbwLKTSOTERgqSNyTB50wWSI21z0q6bn/dEIuqf6HiFzKJ6cfj2osRhklb4Og==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css" integrity="sha512-hvNR0F/e2J7zPPfLC9auFe3/SE0yG4aJCOd/qxew74NN7eyiSKjr7xJJMu1Jy2wf7FXITpWS1E/RY8yzuXN7VA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
 
 <style>
 .toggle-wrapper {
@@ -306,6 +311,15 @@
         flex-wrap: wrap;
     }
 
+    .result_icon img {
+      max-width: 80%;
+    }
+
+    .box-2 {
+        padding: 0.5em;
+        /* width: calc(100%/2 - 1em); */
+    }
+
 </style>
 
 <!-- MODAL การจัดการเมนูหลักสูตร -->
@@ -354,45 +368,65 @@
                     <div class="fav-course">
                       <div class="col-6">
                           <div class="w-100">
-                              <div class="long-item btn">
-                                <img id="perview_Menu_Highlight_1" src="{{ url('/img/icon/long-content-1.png') }}" alt="">
+                              <div class="long-item" style="position:relative;">
+                                @if( !empty($photo_menu_highlight_1) )
+                                  <img id="perview_Menu_Highlight_1" src="{{ $photo_menu_highlight_1->photo_menu }}" alt="">
+                                @else
+                                  <img id="perview_Menu_Highlight_1" src="{{ url('/img/icon/long_empty.png') }}" alt="">
+                                @endif
                                 <div class="count-training">
                                     <span style="font-size: 24px;font-weight: bolder;color: #fff;">
                                       ...
                                     </span>
                                     <span class="ms-1" style="color: #fff;">หลักสูตร</span>
                                 </div>
+                                <i class="fa-duotone fa-circle-1 font-24" style="position: absolute;top:2%;right: 2%;"></i>
                               </div>
-                              <div class="square-item mt-3 btn">
-                                <img id="perview_Menu_Highlight_2" src="{{ url('/img/icon/square-content-1.png') }}" alt="">
+                              <div class="square-item mt-3" style="position:relative;">
+                                @if( !empty($photo_menu_highlight_2) )
+                                  <img id="perview_Menu_Highlight_2" src="{{ $photo_menu_highlight_2->photo_menu }}" alt="">
+                                @else
+                                  <img id="perview_Menu_Highlight_2" src="{{ url('/img/icon/square_empty.png') }}" alt="">
+                                @endif
                                 <div class="count-training">
                                     <span style="font-size: 24px;font-weight: bolder;color: #003781;">
                                       ...
                                     </span>
                                     <span class="ms-1" style="color: #003781;">หลักสูตร</span>
                                 </div>
+                                <i class="fa-duotone fa-circle-2 font-24" style="position: absolute;top:2%;right: 2%;"></i>
                               </div>
                           </div>
                       </div>
                       <div class="col-6">
                           <div class="w-100">
-                              <div class="square-item btn">
-                                <img id="perview_Menu_Highlight_3" src="{{ url('/img/icon/square-content-2.png') }}" alt="">
+                              <div class="square-item" style="position:relative;">
+                                @if( !empty($photo_menu_highlight_3) )
+                                  <img id="perview_Menu_Highlight_3" src="{{ $photo_menu_highlight_3->photo_menu }}" alt="">
+                                @else
+                                  <img id="perview_Menu_Highlight_3" src="{{ url('/img/icon/square_empty.png') }}" alt="">
+                                @endif
                                 <div class="count-training">
                                     <span id="" style="font-size: 24px;font-weight: bolder;color: #003781;">
                                       ...
                                     </span>
                                     <span class="ms-1" style="color: #003781;">หลักสูตร</span>
                                 </div>
+                                <i class="fa-duotone fa-circle-3 font-24" style="position: absolute;top:2%;right: 2%;"></i>
                               </div>
-                              <div class="long-item mt-3 btn">
-                                <img id="perview_Menu_Highlight_4" src="{{ url('/img/icon/long-content-2.png') }}" alt="">
+                              <div class="long-item mt-3" style="position:relative;">
+                                @if( !empty($photo_menu_highlight_4) )
+                                  <img id="perview_Menu_Highlight_4" src="{{ $photo_menu_highlight_4->photo_menu }}" alt="">
+                                @else
+                                  <img id="perview_Menu_Highlight_4" src="{{ url('/img/icon/long_empty.png') }}" alt="">
+                                @endif
                                 <div class="count-training">
                                     <span id="" style="font-size: 24px;font-weight: bolder;color: #fff;">
                                       ...
                                     </span>
                                     <span class="ms-1" style="color: #fff;">หลักสูตร</span>
                                 </div>
+                                <i class="fa-duotone fa-circle-4 font-24" style="position: absolute;top:2%;right: 2%;"></i>
                               </div>
                           </div>
                       </div>
@@ -452,21 +486,349 @@
                           </li>
                         </ul>
                         <div class="tab-content py-3">
+                          <!-- menu_of_1 -->
                           <div class="tab-pane fade show active" id="menu_of_1" role="tabpanel">
                             <div class="row">
-                              <div class="col-12">
 
+                              <div class="col-12">
+                                <div class="input-group mb-3">
+                                  <label class="input-group-text">เลือกหลักสูตร</label>
+                                  <select class="form-select" id="select_change_Menu_Highlight_1" onchange="sclect_new_Menu_Highlight('1');">
+                                    {{ $check_menu_1 = null }}
+                                    @foreach($data_Training_type as $item_1)
+                                      @if($item_1->check_highlight == "1")
+                                        {{ $check_menu_1 = 'Yes' }}
+                                        <option selected value="{{ $item_1->id }}">
+                                          {{ $item_1->type_article }}
+                                        </option>
+                                      @else
+                                        <option value="{{ $item_1->id }}">
+                                          {{ $item_1->type_article }}
+                                        </option>
+                                      @endif
+                                    @endforeach
+
+                                    @if( empty($check_menu_1) )
+                                      <option selected value="">
+                                          เลือกหลักสูตร
+                                      </option>
+                                    @endif
+                                  </select>
+                                </div>
+                                <hr>
                               </div>
+                              <div class="col-12">
+                                <label class="mb-2">รูปภาพปัจจุบัน</label>
+                                <br>
+                                @if( !empty($photo_menu_highlight_1) )
+                                  <div id="preview_photo_menu_1">
+                                    <img style="width:30%;" src="{{ $photo_menu_highlight_1->photo_menu }}">
+                                  </div>
+                                @else
+                                  <div id="preview_photo_menu_1">
+                                    <p class="text-danger">ไม่มีรูปภาพ</p>
+                                  </div>
+                                @endif
+                                <hr>
+                              </div>
+                              <div class="col-12 mt-3">
+
+                                <span class="btn btn-sm btn-primary mt-2" onclick="click_select_Menu_Highlight('1');">
+                                    เลือกรูปภาพ
+                                </span>
+
+                                <input type="file" class="form-control d-none" accept="image/png" name="select_Menu_Highlight_1" id="select_Menu_Highlight_1" onchange="crop_select_Menu_Highlight('1');">
+
+                                <div id="div_crop_Menu_Highlight_1" class="row p-1 d-none">
+                                  <div class="col-lg-6 d-flex justify-content-center align-items-center" style="border: #2260ff 2px solid;border-radius: 10px;">
+                                      <div class="w-100 ">
+                                          <p class="mb-2 mt-3 text-center">ปรับขนาดภาพ</p>
+                                          <!-- leftbox -->
+                                          <div class="box-2 w-100 h-100">
+                                              <div id="icon_crop_1" class="result_icon w-100"></div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-lg-6 d-flex justify-content-center align-items-center" style="border: #2260ff 2px solid;border-radius: 10px;">
+                                      <div>
+                                          <p class="mb-2 mt-3 text-center">ผลลัพธ์</p>
+                                        <!--rightbox-->
+                                          <div class="box-2 img-result">
+                                              <!-- result of crop -->
+                                              <div class="d-flex justify-content-center align-items-center" style="background-color: #003781;width: 95%;height: 214px;">
+                                                  <img alt="" id="Preview_Menu_Highlight_crop_1">
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-12 mt-3">
+                                <hr>
+                                <button id="btn_cf_change_Menu_Highlight_1" class="btn btn-sm btn-success float-end" onclick="cf_change_Menu_Highlight('1');" disabled>
+                                  ยืนยันการเปลี่ยนแปลง
+                                </button>
+                              </div>
+
                             </div>
                           </div>
+                          <!-- menu_of_2 -->
                           <div class="tab-pane fade" id="menu_of_2" role="tabpanel">
-                            2
+                            <div class="row">
+
+                              <div class="col-12">
+                                <div class="input-group mb-3">
+                                  <label class="input-group-text">เลือกหลักสูตร</label>
+                                  <select class="form-select" id="select_change_Menu_Highlight_2" onchange="sclect_new_Menu_Highlight('2');">
+                                    {{ $check_menu_2 = null }}
+                                    @foreach($data_Training_type as $item_2)
+                                      @if($item_2->check_highlight == "2")
+                                        {{ $check_menu_2 = 'Yes' }}
+                                        <option selected value="{{ $item_2->id }}">
+                                          {{ $item_2->type_article }}
+                                        </option>
+                                      @else
+                                        <option value="{{ $item_2->id }}">
+                                          {{ $item_2->type_article }}
+                                        </option>
+                                      @endif
+                                    @endforeach
+
+                                    @if( empty($check_menu_2) )
+                                      <option selected value="">
+                                          เลือกหลักสูตร
+                                      </option>
+                                    @endif
+                                  </select>
+                                </div>
+                                <hr>
+                              </div>
+                              <div class="col-12">
+                                <label class="mb-2">รูปภาพปัจจุบัน</label>
+                                <br>
+                                @if( !empty($photo_menu_highlight_2) )
+                                  <div id="preview_photo_menu_2">
+                                    <img style="width:30%;" src="{{ $photo_menu_highlight_2->photo_menu }}">
+                                  </div>
+                                @else
+                                  <div id="preview_photo_menu_2">
+                                    <p class="text-danger">ไม่มีรูปภาพ</p>
+                                  </div>
+                                @endif
+                                <hr>
+                              </div>
+                              <div class="col-12 mt-3">
+
+                                <span class="btn btn-sm btn-primary mt-2" onclick="click_select_Menu_Highlight('2');">
+                                    เลือกรูปภาพ
+                                </span>
+
+                                <input type="file" class="form-control d-none" accept="image/png" name="select_Menu_Highlight_2" id="select_Menu_Highlight_2" onchange="crop_select_Menu_Highlight('2');">
+
+                                <div id="div_crop_Menu_Highlight_2" class="row p-1 d-none">
+                                  <div class="col-lg-6 d-flex justify-content-center align-items-center" style="border: #2260ff 2px solid;border-radius: 10px;">
+                                      <div class="w-100 ">
+                                          <p class="mb-2 mt-3 text-center">ปรับขนาดภาพ</p>
+                                          <!-- leftbox -->
+                                          <div class="box-2 w-100 h-100">
+                                              <div id="icon_crop_2" class="result_icon w-100"></div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-lg-6 d-flex justify-content-center align-items-center" style="border: #2260ff 2px solid;border-radius: 10px;">
+                                      <div>
+                                          <p class="mb-2 mt-3 text-center">ผลลัพธ์</p>
+                                        <!--rightbox-->
+                                          <div class="box-2 img-result">
+                                              <!-- result of crop -->
+                                              <div class="d-flex justify-content-center align-items-center" style="background-color: #003781;width: 95%;height: 214px;">
+                                                  <img alt="" id="Preview_Menu_Highlight_crop_2">
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-12 mt-3">
+                                <hr>
+                                <button id="btn_cf_change_Menu_Highlight_2" class="btn btn-sm btn-success float-end" onclick="cf_change_Menu_Highlight('2');" disabled>
+                                  ยืนยันการเปลี่ยนแปลง
+                                </button>
+                              </div>
+
+                            </div>
                           </div>
+                          <!-- menu_of_3 -->
                           <div class="tab-pane fade" id="menu_of_3" role="tabpanel">
-                            3
+                            <div class="row">
+
+                              <div class="col-12">
+                                <div class="input-group mb-3">
+                                  <label class="input-group-text">เลือกหลักสูตร</label>
+                                  <select class="form-select" id="select_change_Menu_Highlight_3" onchange="sclect_new_Menu_Highlight('3');">
+                                    {{ $check_menu_3 = null }}
+                                    @foreach($data_Training_type as $item_3)
+                                      @if($item_3->check_highlight == "3")
+                                        {{ $check_menu_3 = 'Yes' }}
+                                        <option selected value="{{ $item_3->id }}">
+                                          {{ $item_3->type_article }}
+                                        </option>
+                                      @else
+                                        <option value="{{ $item_3->id }}">
+                                          {{ $item_3->type_article }}
+                                        </option>
+                                      @endif
+                                    @endforeach
+
+                                    @if( empty($check_menu_3) )
+                                      <option selected value="">
+                                          เลือกหลักสูตร
+                                      </option>
+                                    @endif
+                                  </select>
+                                </div>
+                                <hr>
+                              </div>
+                              <div class="col-12">
+                                <label class="mb-2">รูปภาพปัจจุบัน</label>
+                                <br>
+                                @if( !empty($photo_menu_highlight_3) )
+                                  <div id="preview_photo_menu_3">
+                                    <img style="width:30%;" src="{{ $photo_menu_highlight_3->photo_menu }}">
+                                  </div>
+                                @else
+                                  <div id="preview_photo_menu_3">
+                                    <p class="text-danger">ไม่มีรูปภาพ</p>
+                                  </div>
+                                @endif
+                                <hr>
+                              </div>
+                              <div class="col-12 mt-3">
+
+                                <span class="btn btn-sm btn-primary mt-2" onclick="click_select_Menu_Highlight('3');">
+                                    เลือกรูปภาพ
+                                </span>
+
+                                <input type="file" class="form-control d-none" accept="image/png" name="select_Menu_Highlight_3" id="select_Menu_Highlight_3" onchange="crop_select_Menu_Highlight('3');">
+
+                                <div id="div_crop_Menu_Highlight_3" class="row p-1 d-none">
+                                  <div class="col-lg-6 d-flex justify-content-center align-items-center" style="border: #2260ff 2px solid;border-radius: 10px;">
+                                      <div class="w-100 ">
+                                          <p class="mb-2 mt-3 text-center">ปรับขนาดภาพ</p>
+                                          <!-- leftbox -->
+                                          <div class="box-2 w-100 h-100">
+                                              <div id="icon_crop_3" class="result_icon w-100"></div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-lg-6 d-flex justify-content-center align-items-center" style="border: #2260ff 2px solid;border-radius: 10px;">
+                                      <div>
+                                          <p class="mb-2 mt-3 text-center">ผลลัพธ์</p>
+                                        <!--rightbox-->
+                                          <div class="box-2 img-result">
+                                              <!-- result of crop -->
+                                              <div class="d-flex justify-content-center align-items-center" style="background-color: #003781;width: 95%;height: 214px;">
+                                                  <img alt="" id="Preview_Menu_Highlight_crop_3">
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-12 mt-3">
+                                <hr>
+                                <button id="btn_cf_change_Menu_Highlight_3" class="btn btn-sm btn-success float-end" onclick="cf_change_Menu_Highlight('3');" disabled>
+                                  ยืนยันการเปลี่ยนแปลง
+                                </button>
+                              </div>
+
+                            </div>
                           </div>
+                          <!-- menu_of_4 -->
                           <div class="tab-pane fade" id="menu_of_4" role="tabpanel">
-                            4
+                            <div class="row">
+
+                              <div class="col-12">
+                                <div class="input-group mb-3">
+                                  <label class="input-group-text">เลือกหลักสูตร</label>
+                                  <select class="form-select" id="select_change_Menu_Highlight_4" onchange="sclect_new_Menu_Highlight('4');">
+                                    {{ $check_menu_4 = null }}
+                                    @foreach($data_Training_type as $item_4)
+                                      @if($item_4->check_highlight == "4")
+                                        {{ $check_menu_4 = 'Yes' }}
+                                        <option selected value="{{ $item_4->id }}">
+                                          {{ $item_4->type_article }}
+                                        </option>
+                                      @else
+                                        <option value="{{ $item_4->id }}">
+                                          {{ $item_4->type_article }}
+                                        </option>
+                                      @endif
+                                    @endforeach
+
+                                    @if( empty($check_menu_4) )
+                                      <option selected value="">
+                                          เลือกหลักสูตร
+                                      </option>
+                                    @endif
+                                  </select>
+                                </div>
+                                <hr>
+                              </div>
+                              <div class="col-12">
+                                <label class="mb-2">รูปภาพปัจจุบัน</label>
+                                <br>
+                                @if( !empty($photo_menu_highlight_4) )
+                                  <div id="preview_photo_menu_4">
+                                    <img style="width:30%;" src="{{ $photo_menu_highlight_4->photo_menu }}">
+                                  </div>
+                                @else
+                                  <div id="preview_photo_menu_4">
+                                    <p class="text-danger">ไม่มีรูปภาพ</p>
+                                  </div>
+                                @endif
+                                <hr>
+                              </div>
+                              <div class="col-12 mt-3">
+
+                                <span class="btn btn-sm btn-primary mt-2" onclick="click_select_Menu_Highlight('4');">
+                                    เลือกรูปภาพ
+                                </span>
+
+                                <input type="file" class="form-control d-none" accept="image/png" name="select_Menu_Highlight_4" id="select_Menu_Highlight_4" onchange="crop_select_Menu_Highlight('4');">
+
+                                <div id="div_crop_Menu_Highlight_4" class="row p-1 d-none">
+                                  <div class="col-lg-6 d-flex justify-content-center align-items-center" style="border: #2260ff 2px solid;border-radius: 10px;">
+                                      <div class="w-100 ">
+                                          <p class="mb-2 mt-3 text-center">ปรับขนาดภาพ</p>
+                                          <!-- leftbox -->
+                                          <div class="box-2 w-100 h-100">
+                                              <div id="icon_crop_4" class="result_icon w-100"></div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-lg-6 d-flex justify-content-center align-items-center" style="border: #2260ff 2px solid;border-radius: 10px;">
+                                      <div>
+                                          <p class="mb-2 mt-3 text-center">ผลลัพธ์</p>
+                                        <!--rightbox-->
+                                          <div class="box-2 img-result">
+                                              <!-- result of crop -->
+                                              <div class="d-flex justify-content-center align-items-center" style="background-color: #003781;width: 95%;height: 214px;">
+                                                  <img alt="" id="Preview_Menu_Highlight_crop_4">
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-12 mt-3">
+                                <hr>
+                                <button id="btn_cf_change_Menu_Highlight_4" class="btn btn-sm btn-success float-end" onclick="cf_change_Menu_Highlight('4');" disabled>
+                                  ยืนยันการเปลี่ยนแปลง
+                                </button>
+                              </div>
+
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -865,5 +1227,299 @@
 
 </script>
 
+
+<!-- Crop Menu_Highlight -->
+<script>
+  function click_select_Menu_Highlight(type_number){
+    // console.log('click_select_Menu_Highlight');
+    document.querySelector('#div_crop_Menu_Highlight_'+type_number).classList.add('d-none');
+
+    let preview_icon_crop = document.querySelector('#Preview_Menu_Highlight_crop_'+type_number);
+        preview_icon_crop.src = '';
+    let icon_crop = document.querySelector('#icon_crop_'+type_number);
+        icon_crop.innerHTML = "";
+    document.querySelector('#select_Menu_Highlight_'+type_number).click();
+  }
+  function crop_select_Menu_Highlight(type_number){
+      document.querySelector('#div_crop_Menu_Highlight_'+type_number).classList.remove('d-none');
+  }
+
+  var input_img_icon_1 = document.getElementById('select_Menu_Highlight_1');
+  input_img_icon_1.addEventListener('change', function (e) {
+      crop_img_icon(e ,'1');
+  });
+
+  var input_img_icon_2 = document.getElementById('select_Menu_Highlight_2');
+  input_img_icon_2.addEventListener('change', function (e) {
+      crop_img_icon(e,'2');
+  });
+
+  var input_img_icon_3 = document.getElementById('select_Menu_Highlight_3');
+  input_img_icon_3.addEventListener('change', function (e) {
+      crop_img_icon(e,'3');
+  });
+
+  var input_img_icon_4 = document.getElementById('select_Menu_Highlight_4');
+  input_img_icon_4.addEventListener('change', function (e) {
+      crop_img_icon(e,'4');
+  });
+
+  function crop_img_icon(e , type_number){
+    let result_icon = document.querySelector('.result_icon')
+    let input = document.getElementById('select_Menu_Highlight_'+type_number);
+    let image = document.createElement('img');
+    let cropper;
+    let preview_icon_crop = document.querySelector('#Preview_Menu_Highlight_crop_'+type_number);
+
+    let files = e.target.files;
+    let done = function (url) {
+        input.value = '';
+        image.src = url;
+        document.getElementById('icon_crop_'+type_number).innerHTML = '';
+        document.getElementById('icon_crop_'+type_number).appendChild(image);
+        // cropper = new Cropper(image, {
+        //     aspectRatio: 1 / 1, // Change this to the desired aspect ratio
+        //     viewMode: 3,
+        //     preview: '#Preview_icon_crop'
+        // });
+        cropper = new Cropper(image, {
+            dragMode: 'move',
+            aspectRatio: 3 / 4 ,
+            autoCropArea: 1,
+            center: false,
+            cropBoxMovable: true,
+            cropBoxResizable: true,
+            maxCropBoxHeight: 300,
+            viewMode: 2,
+            guides: false,
+            ready: function(event) {
+                this.cropper = cropper;
+            },crop: function(event) {
+              let imgSrc = this.cropper.getCroppedCanvas({
+                    width: 512,
+                    height: 681// input value
+                }).toDataURL("image/png");
+                preview_icon_crop.src = imgSrc;
+            }
+        });
+    };
+    let reader;
+    let file;
+    let url;
+
+    if (files && files.length > 0) {
+        file = files[0];
+
+        if (URL) {
+            done(URL.createObjectURL(file));
+            check_submit_change_Menu_Highlight(type_number);
+        } else if (FileReader) {
+            reader = new FileReader();
+            reader.onload = function (e) {
+                done(reader.result_icon);
+            };
+            reader.readAsDataURL(file);
+            check_submit_change_Menu_Highlight(type_number);
+        }
+    }
+
+  }
+
+  function check_submit_change_Menu_Highlight(type){
+
+      let training_type = document.querySelector('#select_change_Menu_Highlight_'+type);
+      let select_Menu_Highlight = document.querySelector('#Preview_Menu_Highlight_crop_'+type);
+      
+      let check_photo = false;
+      if(document.querySelector('#preview_photo_menu_'+type+ ' img')){
+        let imgElement = document.querySelector('#preview_photo_menu_'+type+ ' img');
+        if(imgElement.src){
+          check_photo = true ;
+        }
+      }
+
+      // console.log(training_type.value);
+      // console.log(select_Menu_Highlight.src);
+      // console.log(check_photo);
+
+      if( training_type.value ){
+          if(select_Menu_Highlight.src || check_photo){
+            document.querySelector('#btn_cf_change_Menu_Highlight_'+type).disabled = false;
+          }else{
+            document.querySelector('#btn_cf_change_Menu_Highlight_'+type).disabled = true;
+          }
+      }else{
+          document.querySelector('#btn_cf_change_Menu_Highlight_'+type).disabled = true;
+      }
+  }
+
+  function cf_change_Menu_Highlight(type) {
+      // let select_Menu_Highlight = document.querySelector('#select_Menu_Highlight_'+type)
+      let select_change_Menu_Highlight = document.querySelector('#select_change_Menu_Highlight_'+type)
+
+      // ดึง Base64 string จาก <img> element
+      let imgElement ;
+      let check_imgElement = document.querySelector('#Preview_Menu_Highlight_crop_'+type);
+
+      // console.log(select_Menu_Highlight.value);
+
+      if (check_imgElement.src) {
+          imgElement = document.querySelector('#Preview_Menu_Highlight_crop_'+type);
+          let base64String = imgElement.src.split(',')[1]; // ลบ "data:image/png;base64," ออก
+
+          // แปลง Base64 เป็น Blob
+          let contentType = 'image/png'; // ตั้งค่าประเภทของรูปภาพ เช่น 'image/png' หรือ 'image/jpeg'
+          let blob = base64ToBlob(base64String, contentType);
+
+          // ตั้งค่า path และชื่อไฟล์ใน Firebase Storage
+          let date_now = new Date();
+          let Date_for_firebase = formatDate_for_firebase(date_now);
+          let name_file = Date_for_firebase + '-' + select_change_Menu_Highlight.value ;
+          let storageRef = storage.ref('/training/image/photo_menu/' + name_file);
+
+          // อัพโหลด Blob ไปยัง Firebase Storage
+          let uploadTask = storageRef.put(blob);
+
+          uploadTask.on('state_changed', 
+              function(snapshot) {
+                  // ติดตามความคืบหน้าของการอัพโหลด (optional)
+              }, 
+              function(error) {
+                  // กรณีเกิดข้อผิดพลาดในการอัพโหลด
+                  console.error('Upload failed:', error);
+              }, 
+              function() {
+                  // เมื่ออัพโหลดสำเร็จ
+                  uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+                      // ทำอะไรกับ URL ที่ได้รับเช่นการแสดงผลหรือบันทึกลงฐานข้อมูล
+                      // console.log('File available at', downloadURL);
+                      // downloadURL
+                      let data_arr = {
+                          "training_type_id" : select_change_Menu_Highlight.value,
+                          "number" : type,
+                          "downloadURL" : downloadURL,
+                      };
+
+                      fetch("{{ url('/') }}/api/update_Menu_Highlight", {
+                          method: 'post',
+                          body: JSON.stringify(data_arr),
+                          headers: {
+                              'Content-Type': 'application/json'
+                          }
+                      }).then(function (response){
+                          return response.text();
+                      }).then(function(data){
+                          // console.log(data);
+                          if(data == 'success'){
+                            let perview_Menu_Highlight = document.querySelector('#perview_Menu_Highlight_'+type);
+                                perview_Menu_Highlight.setAttribute('src' , downloadURL);
+
+                            let preview_photo_menu = document.querySelector('#preview_photo_menu_'+type);
+                                preview_photo_menu.innerHTML = `<img style="width:30%;" src="`+downloadURL+`">`;
+
+                            document.querySelector('#select_Menu_Highlight_'+type).value = null;
+                            document.querySelector('#icon_crop_'+type).innerHTML = '';
+                            
+                            let preview_Menu_Highlight_crop = document.querySelector('#Preview_Menu_Highlight_crop_'+type);
+                                preview_Menu_Highlight_crop.removeAttribute('src');
+
+                            document.querySelector('#div_crop_Menu_Highlight_'+type).classList.add('d-none');
+
+                          }
+                      }).catch(function(error){
+                          // console.error(error);
+                      });
+
+                  });
+              }
+          );
+      } else {
+          imgElement = document.querySelector('#preview_photo_menu_'+type+ ' img');
+
+          let data_arr = {
+              "training_type_id" : select_change_Menu_Highlight.value,
+              "number" : type,
+              "downloadURL" : imgElement.src,
+          };
+
+          fetch("{{ url('/') }}/api/update_Menu_Highlight", {
+              method: 'post',
+              body: JSON.stringify(data_arr),
+              headers: {
+                  'Content-Type': 'application/json'
+              }
+          }).then(function (response){
+              return response.text();
+          }).then(function(data){
+              // console.log(data);
+              if(data == 'success'){
+                let perview_Menu_Highlight = document.querySelector('#perview_Menu_Highlight_'+type);
+                    perview_Menu_Highlight.setAttribute('src' , imgElement.src);
+
+                let preview_photo_menu = document.querySelector('#preview_photo_menu_'+type);
+                    preview_photo_menu.innerHTML = `<img style="width:30%;" src="`+imgElement.src+`">`;
+
+                document.querySelector('#select_Menu_Highlight_'+type).value = null;
+                document.querySelector('#icon_crop_'+type).innerHTML = '';
+                
+                let preview_Menu_Highlight_crop = document.querySelector('#Preview_Menu_Highlight_crop_'+type);
+                    preview_Menu_Highlight_crop.removeAttribute('src');
+
+                document.querySelector('#div_crop_Menu_Highlight_'+type).classList.add('d-none');
+
+              }
+          }).catch(function(error){
+              // console.error(error);
+          });
+      }
+
+  }
+
+  // ฟังก์ชันที่ใช้ในการแปลง Base64 เป็น Blob
+  function base64ToBlob(base64, contentType) {
+      const byteCharacters = atob(base64);
+      const byteArrays = [];
+
+      for (let offset = 0; offset < byteCharacters.length; offset += 512) {
+          const slice = byteCharacters.slice(offset, offset + 512);
+
+          const byteNumbers = new Array(slice.length);
+          for (let i = 0; i < slice.length; i++) {
+              byteNumbers[i] = slice.charCodeAt(i);
+          }
+
+          const byteArray = new Uint8Array(byteNumbers);
+          byteArrays.push(byteArray);
+      }
+
+      return new Blob(byteArrays, { type: contentType });
+  }
+
+  function sclect_new_Menu_Highlight(type){
+
+    let id = document.querySelector('#select_change_Menu_Highlight_'+type).value;
+    fetch("{{ url('/') }}/api/get_photo_Training_type/"+ id)
+      .then(response => response.json())
+      .then(result => {
+          // console.log(result);
+
+          if(result){
+            document.querySelector('#preview_photo_menu_'+type).innerHTML = "";
+            let html ;
+            if(result.photo_menu){
+              html = `
+                <img style="width:30%;" src="`+result.photo_menu+`" alt="">
+              `;
+            }else{
+              html = `<p class="text-danger">ไม่มีรูปภาพ</p>`;
+            }
+
+            document.querySelector('#preview_photo_menu_'+type).innerHTML = html;
+
+            check_submit_change_Menu_Highlight(type);
+          }
+    });
+  }
+</script>
 
 @endsection

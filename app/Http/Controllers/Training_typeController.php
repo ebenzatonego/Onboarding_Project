@@ -151,6 +151,11 @@ class Training_typeController extends Controller
         return $data ;
     }
 
+    function get_photo_Training_type($id){
+        $data = Training_type::where('id', $id)->first();
+        return $data ;
+    }
+
     function change_number_menu_type($type_id, $number){
 
         $number_old = Training_type::where('number_menu', $number)->first();
@@ -183,6 +188,34 @@ class Training_typeController extends Controller
                 ])
             ->update([
                     'number_menu' => $number,
+                ]);
+
+        return 'success';
+    }
+
+    function update_Menu_Highlight(Request $request)
+    {
+        $requestData = $request->all();
+
+        $check_data_old = Training_type::where('check_highlight', $requestData['number'])->first();
+
+        if( !empty($check_data_old->id) ){
+            DB::table('training_types')
+                ->where([ 
+                        ['id', $check_data_old->id],
+                    ])
+                ->update([
+                        'check_highlight' => null,
+                    ]);
+        }
+
+        DB::table('training_types')
+            ->where([ 
+                    ['id', $requestData['training_type_id']],
+                ])
+            ->update([
+                    'check_highlight' => $requestData['number'],
+                    'photo_menu' => $requestData['downloadURL'],
                 ]);
 
         return 'success';

@@ -165,7 +165,32 @@ class TrainingController extends Controller
     }
 
     function manage_training(){
-        return view('training.manage_training');
+
+        $data_Training_type = Training_type::orderByRaw("CASE 
+                        WHEN check_highlight IS NOT NULL THEN 1
+                        ELSE 2
+                        END, 
+                        check_highlight ASC, 
+                        id ASC")
+                    ->get();
+
+        $photo_menu_highlight_1 = Training_type::where('check_highlight' , '1')
+            ->select('photo_menu')
+            ->first();
+
+        $photo_menu_highlight_2 = Training_type::where('check_highlight' , '2')
+            ->select('photo_menu')
+            ->first();
+
+        $photo_menu_highlight_3 = Training_type::where('check_highlight' , '3')
+            ->select('photo_menu')
+            ->first();
+
+        $photo_menu_highlight_4 = Training_type::where('check_highlight' , '4')
+            ->select('photo_menu')
+            ->first();
+
+        return view('training.manage_training', compact('data_Training_type','photo_menu_highlight_1','photo_menu_highlight_2','photo_menu_highlight_3','photo_menu_highlight_4'));
     }
 
     function give_rating_training($user_id,$training_id,$selectedRating){

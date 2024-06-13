@@ -207,6 +207,33 @@
   .i_Highlight {
     animation: bounce-twice 2s;
   }
+
+  .icon-menu-course {
+      width: 40px;
+      height: 40px;
+      background-color: #003781;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .icon-menu-course img{
+      width: 20px!important;
+      height: 20px!important;
+      object-fit: contain!important;
+  }
+
+  .center-vertical {
+    display: flex;
+    align-items: center;
+  }
+
 </style>
 
 <!-- MODAL การจัดการเมนูหลักสูตร -->
@@ -251,10 +278,10 @@
               <div class="tab-pane fade show active" id="success-pills-home" role="tabpanel">
                 <br>
                 <div class="row mt-3 mb-2">
-                  <div class="col-2">
+                  <div class="col-5">
                     <i class="fa-solid fa-circle-1 font-24"></i>
                   </div>
-                  <div class="col-10">
+                  <div class="col-7">
                     4 Menu Highligh
                   </div>
                 </div>
@@ -262,26 +289,8 @@
 
               <!-- Number Menu -->
               <div class="tab-pane fade" id="success-pills-profile" role="tabpanel">
-                <br>
-                <div class="row mt-3 mb-2">
-                  <div class="col-2">
-                    <i class="fa-solid fa-circle-1 font-24"></i>
-                  </div>
-                  <div class="col-8">
-                    หลักสูตร
-                  </div>
-                  <div class="col-2">
-                    <div class="btn-group" role="group">
-                      <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Number Menu</button>
-                      <ul class="dropdown-menu" style="margin: 0px;">
-                        <li>
-                          <span class="dropdown-item btn" onclick="change_number_menu_type('`+result['data_training'][i].id+`' , '1' , '`+type+`')">
-                            ลำดับที่ 1
-                          </span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
+                <div id="content_number_menu_type" class="row mt-3 mb-2">
+                  <!--  -->
                 </div>
               </div>
             </div>
@@ -334,6 +343,7 @@
 	document.addEventListener('DOMContentLoaded', function () {
         get_data_Training('all');
         get_data_Training_type();
+        get_data_number_menu_type();
   });
 
   function get_data_Training(type){
@@ -589,6 +599,80 @@
   function change_show_training_by_type(){
     let select_training_id = document.querySelector('#select_show_training_by_type').value ;
     get_data_Training(select_training_id)
+  }
+
+  function get_data_number_menu_type(){
+
+    let content_number_menu_type = document.querySelector('#content_number_menu_type');
+        content_number_menu_type.innerHTML = '';
+
+        fetch("{{ url('/') }}/api/get_data_Training_type")
+          .then(response => response.json())
+          .then(result => {
+              // console.log(result);
+
+              if(result){
+
+                for (let i = 0; i < result.length; i++) {
+
+                  let html_list_number = `` ;
+                  for (let ix = 0; ix < result.length; ix++) {
+
+                    let count = ix + 1 ;
+                    list_number = `
+                      <li>
+                        <span class="dropdown-item btn" onclick="change_number_menu_type('`+result[i].id+`' , '`+count+`')">
+                          ลำดับที่ `+count+`
+                        </span>
+                      </li>
+                    `;
+
+                    html_list_number = html_list_number + list_number ;
+
+                  }
+
+                  let html = `
+                    <div class="col-1 center-vertical mb-3">
+                      <i class="fa-solid fa-circle-`+result[i].number_menu+` font-24 text-info"></i>
+                    </div>
+                    <div class="col-1 mb-3">
+                      <div class="icon-menu-course">
+                          <img src="`+result[i].icon+`">
+                      </div>
+                    </div>
+                    <div class="col-8 center-vertical mb-3">
+                      `+result[i].type_article+`
+                    </div>
+                    <div class="col-2 center-vertical mb-3">
+                      <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Number Menu</button>
+                        <ul class="dropdown-menu" style="margin: 0px;">
+                          `+html_list_number+`
+                        </ul>
+                      </div>
+                    </div>
+                    <hr>
+                  `;
+
+                  content_number_menu_type.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+
+                }
+
+              }
+        });
+  }
+
+  function change_number_menu_type(type_id , number){
+
+    fetch("{{ url('/') }}/api/change_number_menu_type/"+ type_id + "/" + number)
+          .then(response => response.text())
+          .then(result => {
+              // console.log(result);
+              if(result == 'success'){
+                get_data_number_menu_type();
+              }
+    });
+
   }
 
 </script>

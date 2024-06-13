@@ -7,6 +7,8 @@ use App\Http\Requests;
 
 use App\Models\Training_type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class Training_typeController extends Controller
 {
@@ -147,5 +149,42 @@ class Training_typeController extends Controller
     function get_data_Training_type(){
         $data = Training_type::orderBy('number_menu', 'ASC')->get();
         return $data ;
+    }
+
+    function change_number_menu_type($type_id, $number){
+
+        $number_old = Training_type::where('number_menu', $number)->first();
+        $number_select = Training_type::where('id', $type_id)->first();
+
+        $data = [];
+
+        if( !empty($number_select->id) ){
+            $data['old_change_to'] = $number_select->number_menu;
+        }
+        else{
+            $data['old_change_to'] = null;
+        }
+
+        if( !empty($number_old->id) ){
+            $data['old_id'] = $number_old->id;
+
+            DB::table('training_types')
+                ->where([ 
+                        ['id', $data['old_id']],
+                    ])
+                ->update([
+                        'number_menu' => $data['old_change_to'],
+                    ]);
+        }
+
+        DB::table('training_types')
+            ->where([ 
+                    ['id', $type_id],
+                ])
+            ->update([
+                    'number_menu' => $number,
+                ]);
+
+        return 'success';
     }
 }

@@ -275,7 +275,7 @@
                     <button type="submit" class="btn-submit-login mt-2" data-dismiss="modal" onclick="close_show_content_popup()">
                         ปิด
                     </button>
-                    <div class="d-flex align-items-center justify-content-center">
+                    <div class="d-flex align-items-center justify-content-center d-none">
                         <input name="check_dont_content_popup" id="check_dont_content_popup" class="form-check-input font-20 m-0 p-o" type="checkbox" value="" aria-label="Checkbox for following text input">
                         <label for="check_dont_content_popup" class="ms-2 h-100 mt-1" style="color: #989898;">ไม่แสดงหน้านี้อีก</label>
                     </div>

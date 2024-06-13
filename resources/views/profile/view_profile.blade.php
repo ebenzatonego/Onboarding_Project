@@ -904,7 +904,7 @@
                                 @if( empty(Auth::user()->photo) )
                                 <img src="{{ url('/img/icon/profile.png') }}" alt="profile user" class="rounded-circle p-1 img-profile-user" width="50" height="50">
                                 @else
-                                <img id="profile_base_64" src="{{ $base64Image }}" alt="profile user" class="rounded-circle img-profile-user" width="50" height="50">
+                                <img id="profile_base_64" src="" alt="profile user" class="rounded-circle img-profile-user" width="50" height="50">
                                 @endif
                             </div>
                             <div class="w-100 mt-2 ">

@@ -431,7 +431,7 @@
 
                             <div class="d-flex justify-content-center mt-3">
                                 <button class="btn-more-job px-5" data-toggle="modal" data-target="#modal_my_goal">
-                                    ดูเส้นทางอาชีพเพิ่มเติม
+                                    ทำแบบทดสอบเป้าหมาย
                                 </button>
                             </div>
 

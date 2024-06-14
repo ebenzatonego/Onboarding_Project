@@ -812,7 +812,7 @@ img {
                             รายละเอียด
                         </label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" rows="5" name="detail" type="textarea" id="detail" placeholder="เพิ่มรายละเอียดเนื้อหา">{{ isset($content_popup->detail) ? $content_popup->detail : ''}}</textarea>
+                            <textarea class="form-control" rows="5" name="detail" type="textarea" id="detail" placeholder="เพิ่มรายละเอียดเนื้อหา">{{ isset($video_welcome_page->detail) ? $video_welcome_page->detail : ''}}</textarea>
                             {!! $errors->first('detail', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>

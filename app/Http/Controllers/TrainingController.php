@@ -598,8 +598,16 @@ class TrainingController extends Controller
 
     function preview_training($id){
 
-        $data_training = Training::where('id' , $id)->first();
-        return view('training.preview_training', compact('data_training'));
+        // $data_training = Training::where('id' , $id)->first();
+        $data_training = DB::table('trainings')
+                ->join('training_types', 'training_types.id', '=', 'trainings.training_type_id')
+                ->where('trainings.id' , $id)
+                ->select('trainings.*', 'training_types.type_article')
+                ->first();
+
+        $type_article = Training_type::get();
+
+        return view('training.preview_training', compact('data_training','type_article'));
 
     }
 

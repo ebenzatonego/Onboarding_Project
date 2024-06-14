@@ -241,8 +241,8 @@
                             fetch("{{ url('/') }}/api/get_count_training_highlight/" + i)
                               .then(response => response.text())
                               .then(result => {
-                                    console.log(i)
-                                    console.log(result);
+                                    // console.log(i)
+                                    // console.log(result);
 
                                     if(document.querySelector('#count_training_highlight_'+i)){
                                         document.querySelector('#count_training_highlight_'+i).innerHTML = result ;

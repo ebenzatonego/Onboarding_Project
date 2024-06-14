@@ -235,4 +235,16 @@ class Training_typeController extends Controller
         return $count ;
 
     }
+
+    function delete_training_type($training_type_id){
+        $data = Training_type::where('id', $training_type_id)->first();
+        Training::where('training_type_id', $training_type_id)->delete();
+
+        if( !empty($data->id) ){
+            $data->delete();
+        }
+
+        return 'success';
+
+    }
 }

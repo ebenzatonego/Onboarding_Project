@@ -322,13 +322,48 @@
 
 </style>
 
+<!-- Modal ลบประเภทหลักสูตร -->
+<!-- Button trigger modal -->
+<button id="btn_Modal_delete_training_type" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#Modal_delete_training_type">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="Modal_delete_training_type" tabindex="-1" aria-labelledby="Label_delete_training_type" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="mt-3 mb-2 text-center">
+          <img src="{{ url('/img/icon/problem (1).png') }}" style="width: 60%;">
+          <br>
+          <h4 class="mt-3">
+            ยืนยันการลบ
+            <br>
+            <b><span id="modal_delete_name_training_type"></span></b>
+          </h4>
+          <p class="text-danger"><u>เมื่อกดยืนยัน หลักสูตรทั้งหมดที่เป็นประเภทนี้จะถูกลบด้วย</u></p>
+        </div>
+        <hr>
+        <center>
+          <button id="btn_close_Modal_delete_training_type" type="button" class="btn btn-secondary" data-dismiss="modal" style="width:40%;">
+            ปิด
+          </button>
+          <button id="btn_cf_delete_training_type" type="button" class="btn btn-danger" style="width:40%;">
+            ยืนยันการลบ
+          </button>
+        </center>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- MODAL การจัดการเมนูหลักสูตร -->
 <div class="modal fade" id="modal_menu_management" tabindex="-1" aria-labelledby="Label_menu_management" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="Label_menu_management">การจัดการเมนูหลักสูตร</h5>
-        <button type="button" class="btn" data-dismiss="modal" aria-label="Close">
+        <button id="btn_close_modal_menu_management" type="button" class="btn" data-dismiss="modal" aria-label="Close">
           <i class="fa-solid fa-circle-xmark"></i>
         </button>
       </div>
@@ -1190,16 +1225,19 @@
                           <img src="`+result[i].icon+`">
                       </div>
                     </div>
-                    <div class="col-8 center-vertical mb-3">
+                    <div class="col-7 center-vertical mb-3">
                       `+result[i].type_article+`
                     </div>
-                    <div class="col-2 center-vertical mb-3">
+                    <div class="col-3 center-vertical mb-3">
                       <div class="btn-group" role="group">
                         <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Number Menu</button>
                         <ul class="dropdown-menu" style="margin: 0px;">
                           `+html_list_number+`
                         </ul>
                       </div>
+                      <button type="button" class="btn btn-sm btn-danger mx-2" onclick="click_delete_name_training_type('`+result[i].id+`' , '`+result[i].type_article+`')">
+                        <i class="fa-solid fa-trash-can"></i> ลบ
+                      </button>
                     </div>
                     <hr>
                   `;
@@ -1210,6 +1248,31 @@
 
               }
         });
+  }
+
+  function click_delete_name_training_type(training_type_id , type_article){
+
+    let btn = document.querySelector('#btn_cf_delete_training_type');
+    let name_training_type = document.querySelector('#modal_delete_name_training_type');
+        name_training_type.innerHTML = type_article ;
+
+        btn.setAttribute('onclick' , "cf_delete_training_type('"+training_type_id+"')");
+        
+        document.querySelector('#btn_close_modal_menu_management').click();
+        document.querySelector('#btn_Modal_delete_training_type').click();
+  }
+
+  function cf_delete_training_type(training_type_id){
+    fetch("{{ url('/') }}/api/delete_training_type/"+ training_type_id)
+          .then(response => response.text())
+          .then(result => {
+              // console.log(result);
+
+            if(result == 'success'){
+              document.querySelector('#btn_close_Modal_delete_training_type').click();
+              get_data_number_menu_type();
+            }
+    });
   }
 
   function change_number_menu_type(type_id , number){

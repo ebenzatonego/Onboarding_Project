@@ -295,4 +295,22 @@ class Training_typeController extends Controller
         return 'success';
 
     }
+
+    function get_list_number_menu_of_appointment(){
+
+        $data = [];
+
+        $data_menu = Training_type::where('number_menu_of_appointment','!=',null)
+            ->orderBy('number_menu_of_appointment', 'ASC')
+            ->get();
+
+        $data_all = Training_type::where('number_menu_of_appointment',null)
+            ->orderBy('id', 'ASC')
+            ->get();
+
+        $data['menu'] = $data_menu;
+        $data['all'] = $data_all;
+
+        return $data ;
+    }
 }

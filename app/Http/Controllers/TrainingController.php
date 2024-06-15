@@ -10,6 +10,7 @@ use App\Models\Training_type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Favorite;
 
 class TrainingController extends Controller
 {
@@ -288,7 +289,12 @@ class TrainingController extends Controller
                 }
             }
 
-            $sum_rating = (int)$total_active_rating / (int)$count_array_user_like;
+            if($count_array_user_like == 0){
+                $sum_rating = 0 ;
+            }
+            else{
+                $sum_rating = (int)$total_active_rating / (int)$count_array_user_like;
+            }
 
             DB::table('trainings')
             ->where([ 
@@ -448,6 +454,8 @@ class TrainingController extends Controller
         $data_training = Training::where('id' , $training_id)->first();
         $array_log = array();
 
+        $data_for_table_fav = [];
+
         if($type == 'Yes'){
 
             if( empty($data_training->user_fav) ){
@@ -482,6 +490,34 @@ class TrainingController extends Controller
 
             }
 
+            // เพิ่มข้อมูลในตาราง FAV
+            $check_table_fav = Favorite::where('type','หลักสูตร')
+                ->where('training_id',$training_id)
+                ->where('user_id',$user_id)
+                ->first();
+
+            if( !empty($check_table_fav->id) ){
+                if($check_table_fav->status != 'Yes'){
+                    DB::table('favorites')
+                        ->where([ 
+                                ['id', $check_table_fav->id],
+                            ])
+                        ->update([
+                                'status' => 'Yes',
+                            ]);
+                }
+            }
+            else{
+                $data_for_table_fav['type'] = 'หลักสูตร';
+                $data_for_table_fav['user_id'] = $user_id;
+                $data_for_table_fav['status'] = 'Yes';
+                $data_for_table_fav['training_id'] = $training_id;
+
+                Favorite::create($data_for_table_fav);
+            }
+            // END เพิ่มข้อมูลในตาราง FAV
+
+
         }
         else if($type == 'No'){
             if( !empty($data_training->user_fav) ){
@@ -499,6 +535,25 @@ class TrainingController extends Controller
                 }
 
             }
+
+            // เพิ่มข้อมูลในตาราง FAV
+            $check_table_fav = Favorite::where('type','หลักสูตร')
+                ->where('training_id',$training_id)
+                ->where('user_id',$user_id)
+                ->first();
+
+            if( !empty($check_table_fav->id) ){
+                if($check_table_fav->status == 'Yes'){
+                    DB::table('favorites')
+                        ->where([ 
+                                ['id', $check_table_fav->id],
+                            ])
+                        ->update([
+                                'status' => null,
+                            ]);
+                }
+            }
+            // END เพิ่มข้อมูลในตาราง FAV
         }
 
         $jsonLog = json_encode($array_log);

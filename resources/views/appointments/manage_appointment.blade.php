@@ -549,7 +549,7 @@
         fetch("{{ url('/') }}/api/get_data_number_menu_of_appointment")
           .then(response => response.json())
           .then(result => {
-              console.log(result);
+              // console.log(result);
 
               if(result){
 

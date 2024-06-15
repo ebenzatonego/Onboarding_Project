@@ -789,4 +789,47 @@ class AdminController extends Controller
         return $upper_al ;
     }
 
+    function save_log_share($user_id, $type_table, $type_social, $id){
+
+        $data = DB::table($type_table)->where('id', $id)->first();
+
+        if( empty($data->user_share) ){
+
+            $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+            $array_log[$user_id]['1']['social'] = $type_social;
+
+        }else{
+
+            $array_log = json_decode($data->user_share, true);
+
+            if (array_key_exists($user_id, $array_log)) {
+
+                // หากเท่ากันให้เพิ่ม key round และ time ใน key นั้น
+                $count_round_old = count($array_log[$user_id]);
+                $new_round = intval($count_round_old) + 1 ;
+
+                $array_log[$user_id][$new_round]['datetime'] = date("d/m/Y H:i");
+                $array_log[$user_id][$new_round]['social'] = $type_social;
+            } else {
+                // หากไม่เท่ากันให้เพิ่ม key ใหม่โดยใช้ $user_id
+                $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+                $array_log[$user_id]['1']['social'] = $type_social;
+            }
+
+        }
+
+        $jsonLog = json_encode($array_log);
+
+        DB::table($type_table)
+            ->where([ 
+                    ['id', $id],
+                ])
+            ->update([
+                    'user_share' => $jsonLog,
+                ]);
+
+        return 'success' ;
+
+    }
+
 }

@@ -128,7 +128,8 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
     Route::resource('appointments', 'AppointmentsController');
     Route::get('/manage_appointment', 'AppointmentsController@manage_appointment');
     Route::get('/appointment_create', 'AppointmentsController@create');
-    
+    Route::get('/show_appointment_train/{id}', 'AppointmentsController@show_appointment_train');
+
     // News
     Route::resource('news', 'NewsController');
 

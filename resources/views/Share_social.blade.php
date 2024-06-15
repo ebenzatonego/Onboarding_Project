@@ -134,9 +134,27 @@
                 function copy_Share_social_media() {
                     const url = document.querySelector('#input_for_copy_Share_social_media').value;
                     navigator.clipboard.writeText(url).then(function() {
-                        alert('Link copied to clipboard');
+                        // alert('Link copied to clipboard');
+                        $('#modalCopySuccess').modal('show');
+
+                        setTimeout(() => {
+                        $('#modalCopySuccess').modal('hide');
+                            
+                        }, 2000);
                     }, function(err) {
                         console.error('Could not copy text: ', err);
+                    });
+                }
+
+                function save_log_share(type_table , type_social , id){
+                  console.log(type_table);
+                  console.log(type_social);
+                  console.log(id);
+
+                  fetch("{{ url('/') }}/api/save_log_share/" + "{{ Auth::user()->id }}" + "/" + type_table + "/" + type_social + "/" + id)
+                    .then(response => response.text())
+                    .then(result => {
+                        // console.log(result);
                     });
                 }
             </script>

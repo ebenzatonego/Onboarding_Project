@@ -542,28 +542,55 @@
                         <button class="btn btn-toggle-traning-appointment">แนะนำ</button>
                         <button class="btn btn-toggle-traning-appointment">Blue Star</button>
                         <button class="btn btn-toggle-traning-appointment">Unit Links</button> -->
-
-                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <ul id="list_number_menu_of_appointment" class="nav nav-pills mb-3 d-flex justify-content-center" id="pills-tab" role="tablist">
                             <li class="nav-item me-2 dropdown">
                                 <a class="nav-link dropdown-toggle btn-toggle-traning-appointment" data-toggle="pill" href="#" role="tap" aria-haspopup="true" aria-expanded="false" onclick="document.querySelector('#dropdowntest').classList.add('show')">ทั้งหมด</a>
                                 <div class="dropdown-menu" id="dropdowntest">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Separated link</a>
+                                    <!--  -->
                                 </div>
                             </li>
-                            <li class="nav-item me-2">
-                                <a class="nav-link btn-toggle-traning-appointment" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false" onclick="document.querySelector('#dropdowntest').classList.remove('show')">แนะนำ</a>
-                            </li>
-                            <li class="nav-item me-2">
-                                <a class="nav-link btn-toggle-traning-appointment" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false" onclick="document.querySelector('#dropdowntest').classList.remove('show')">Blue Star</a>
-                            </li>
-                            <li class="nav-item me-2">
-                                <a class="nav-link btn-toggle-traning-appointment" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false" onclick="document.querySelector('#dropdowntest').classList.remove('show')">Unit Links</a>
-                            </li>
                         </ul>
+
+<script>
+    function get_list_number_menu_of_appointment(){
+        fetch("{{ url('/') }}/api/get_list_number_menu_of_appointment")
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                if(result){
+
+                    // 3 MENU
+                    let ul_list = document.querySelector('#list_number_menu_of_appointment');
+                    for (let i = 0; i < result['menu'].length; i++) {
+                        
+                        let type_article = result['menu'][i].type_article.replace("หลักสูตร","");
+
+                        let html = `
+                            <li class="nav-item me-2">
+                                <a class="nav-link btn-toggle-traning-appointment" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false" onclick="document.querySelector('#dropdowntest').classList.remove('show')">`+type_article+`</a>
+                            </li>
+                        `;
+
+                        ul_list.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+                    }
+
+                    // Menu all
+                    let dropdowntest = document.querySelector('#dropdowntest');
+                    for (let ii = 0; ii < result['all'].length; ii++) {
+                        
+                        let type_article_item = result['all'][ii].type_article.replace("หลักสูตร","");
+
+                        let html_item = `
+                            <a class="dropdown-item">`+type_article_item+`</a>
+                        `;
+
+                        dropdowntest.insertAdjacentHTML('beforeend', html_item); // แทรกล่างสุด
+                    }
+                }
+            });
+    }
+</script>
+
                         <style>
                             .name-date-appointment {
                                 font-size: 14px;
@@ -834,6 +861,7 @@
     document.addEventListener("DOMContentLoaded", function() {
         change_active_menu_theme_user('Training');
         get_count_training_highlight();
+        get_list_number_menu_of_appointment();
     });
 
     // ดึงข้อมูลวันที่ปัจจุบัน

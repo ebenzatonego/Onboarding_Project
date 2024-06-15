@@ -79,11 +79,24 @@ Route::get('/change_number_menu_type/{type_id}/{number}', 'Training_typeControll
 Route::post('/update_Menu_Highlight', 'Training_typeController@update_Menu_Highlight');
 Route::get('/get_count_training_highlight/{number}', 'Training_typeController@get_count_training_highlight');
 Route::get('/delete_training_type/{training_type_id}', 'Training_typeController@delete_training_type');
+Route::get('/get_list_number_menu_of_appointment', 'Training_typeController@get_list_number_menu_of_appointment');
+
 
 // appointment
 Route::get('/get_data_appointment/{type}', 'AppointmentsController@get_data_appointment');
 Route::get('/get_data_number_menu_of_appointment/', 'Training_typeController@get_data_number_menu_of_appointment');
 Route::get('/change_number_menu_of_appointment/{type_id}/{number}', 'Training_typeController@change_number_menu_of_appointment');
+Route::get('/give_rating_appointment/{user_id}/{appointment_id}/{selectedRating}', 'AppointmentsController@give_rating_appointment');
+Route::get('/user_cancel_like_appointment/{user_id}/{appointment_id}', 'AppointmentsController@user_cancel_like_appointment');
+Route::get('/submit_reasons_dislike_appointment/{user_id}/{appointment_id}/{reasons_dislike}', 'AppointmentsController@submit_reasons_dislike_appointment');
+Route::get('/user_cancel_dislike_appointment/{user_id}/{_appointmentid}', 'AppointmentsController@user_cancel_dislike_appointment');
+Route::get('/user_click_fav_btn_appointment/{user_id}/{appointment_id}/{type}', 'AppointmentsController@user_click_fav_btn_appointment');
+Route::get('/update_user_view_appointment/{user_id}/{appointment_id}', 'AppointmentsController@update_user_view_appointment');
+
+
+// Share
+Route::get('/save_log_share/{user_id}/{type_table}/{type_social}/{id}', 'AdminController@save_log_share');
+
 
 // Calendar
 Route::get('/get_data_for_calendar', 'AdminController@get_data_for_calendar');

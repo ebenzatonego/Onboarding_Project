@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Training;
 use App\Models\Appointment_area;
+use App\Models\Favorite;
 
 class AppointmentsController extends Controller
 {
@@ -172,6 +173,11 @@ class AppointmentsController extends Controller
         return view('appointments.manage_appointment', compact('data_Training_type','photo_menu_highlight_1','photo_menu_highlight_2','photo_menu_highlight_3','photo_menu_highlight_4'));
     }
 
+    function show_appointment_train($id){
+        $appointment = Appointment::findOrFail($id);
+        return view('appointments.show_appointment_train', compact('appointment'));
+    }
+
     function get_data_appointment($type){
 
         $data = [];
@@ -195,4 +201,425 @@ class AppointmentsController extends Controller
 
         return $data;
     }
+
+    function give_rating_appointment($user_id,$appointment_id,$selectedRating){
+
+        $data_appointment = Appointment::where('id' , $appointment_id)->first();
+
+        // User Like
+        $new_user_like = array();
+        if( !empty($data_appointment->user_like) ){
+            $array = json_decode($data_appointment->user_like, true);
+            if (!in_array($user_id, $array)) {
+                // ถ้าไม่มี ให้เพิ่มค่า $user_id เข้าไป
+                $array[] = $user_id;
+            }
+            $new_user_like = json_encode($array);
+        }else{
+            array_push($new_user_like, $user_id);
+        }
+
+        $data_appointment->user_like = $new_user_like ;
+        $data_appointment->save();
+        // END User Like
+
+        // RATING
+        if( empty($data_appointment->log_rating) ){
+
+            $array_log[$user_id]['1']['status'] = 'Active';
+            $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+            $array_log[$user_id]['1']['rating'] = $selectedRating;
+
+        }else{
+
+            $array_log = json_decode($data_appointment->log_rating, true);
+
+            if (array_key_exists($user_id, $array_log)) {
+
+                // วนลูปเพื่อค้นหาและเปลี่ยนสถานะจาก 'Active' เป็น 'Canceled'
+                foreach ($array_log[$user_id] as $round => $details) {
+                    if (isset($details['status']) && $details['status'] === 'Active') {
+                        $array_log[$user_id][$round]['status'] = 'Canceled';
+                    }
+                }
+
+                // หากเท่ากันให้เพิ่ม key round และ time ใน key นั้น
+                $count_round_old = count($array_log[$user_id]);
+                $new_round = intval($count_round_old) + 1 ;
+
+                $array_log[$user_id][$new_round]['status'] = 'Active';
+                $array_log[$user_id][$new_round]['datetime'] = date("d/m/Y H:i");
+                $array_log[$user_id][$new_round]['rating'] = $selectedRating;
+            } else {
+                // หากไม่เท่ากันให้เพิ่ม key ใหม่โดยใช้ $user_id
+                $array_log[$user_id]['1']['status'] = 'Active';
+                $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+                $array_log[$user_id]['1']['rating'] = $selectedRating;
+            }
+
+        }
+
+        $jsonLog = json_encode($array_log);
+
+        DB::table('appointments')
+            ->where([ 
+                    ['id', $appointment_id],
+                ])
+            ->update([
+                    'log_rating' => $jsonLog,
+                ]);
+
+        $sum_rating = $this->sum_rating($appointment_id);
+        // END RATING
+
+        return $sum_rating;
+
+    }
+
+    function sum_rating($appointment_id){
+        $data_appointment = Appointment::where('id' , $appointment_id)->first();
+        $log_rating = $data_appointment->log_rating ;
+        $user_like = $data_appointment->user_like ;
+
+        $count_array_user_like = 0 ;
+        if( !empty($user_like) ){
+            $array_user_like = json_decode($user_like, true);
+            $count_array_user_like = count($array_user_like);
+        }
+
+        if( !empty($log_rating) ){
+            $array_log = json_decode($log_rating, true);
+
+            $total_active_rating = 0;
+
+            // วนลูปผ่านอาร์เรย์เพื่อค้นหาและบวกรวมค่า rating ที่มี status เป็น 'Active'
+            foreach ($array_log as $user_id => $rounds) {
+                foreach ($rounds as $round => $details) {
+                    if (isset($details['status']) && $details['status'] === 'Active') {
+                        $total_active_rating += (int)$details['rating'];
+                    }
+                }
+            }
+
+            if($count_array_user_like == 0){
+                $sum_rating = 0 ;
+            }
+            else{
+                $sum_rating = (int)$total_active_rating / (int)$count_array_user_like;
+            }
+
+            DB::table('appointments')
+            ->where([ 
+                    ['id', $appointment_id],
+                ])
+            ->update([
+                    'sum_rating' => $sum_rating,
+                ]);
+
+        }
+
+        return $sum_rating ;
+
+    }
+
+    function user_cancel_like_appointment($user_id,$appointment_id){
+        $data_appointment = Appointment::where('id' , $appointment_id)->first();
+        $new_user_like = array();
+
+        if( !empty($data_appointment->user_like) ){
+            $array = json_decode($data_appointment->user_like, true);
+
+            // เช็คว่าในอาร์เรย์มีค่า $user_id หรือไม่
+            if (($key = array_search($user_id, $array)) !== false) {
+                // ถ้ามี ให้ลบค่า $user_id ออกจากอาร์เรย์
+                unset($array[$key]);
+            }
+
+            // จัดเรียงค่าดัชนีใหม่ของอาร์เรย์
+            $array = array_values($array);
+
+            $new_user_like = json_encode($array);
+
+            $data_appointment->user_like = $new_user_like ;
+            $data_appointment->save();
+
+        }
+
+        // RATING
+        if( !empty($data_appointment->log_rating) ){
+
+            $array_log = json_decode($data_appointment->log_rating, true);
+
+            if (array_key_exists($user_id, $array_log)) {
+
+                // วนลูปเพื่อค้นหาและเปลี่ยนสถานะจาก 'Active' เป็น 'Canceled'
+                foreach ($array_log[$user_id] as $round => $details) {
+                    if (isset($details['status']) && $details['status'] === 'Active') {
+                        $array_log[$user_id][$round]['status'] = 'Canceled';
+                    }
+                }
+            }
+
+            $jsonLog = json_encode($array_log);
+
+            DB::table('appointments')
+                ->where([ 
+                        ['id', $appointment_id],
+                    ])
+                ->update([
+                        'log_rating' => $jsonLog,
+                    ]);
+
+            }
+
+            $sum_rating = $this->sum_rating($appointment_id);
+
+        return $sum_rating;
+
+    }
+
+    function submit_reasons_dislike_appointment($user_id,$appointment_id,$reasons_dislike){
+
+        $data_appointment = Appointment::where('id' , $appointment_id)->first();
+        $array_log = array();
+
+        if( empty($data_appointment->user_dislike) ){
+
+            $array_log[$user_id]['1']['status'] = 'Active';
+            $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+            $array_log[$user_id]['1']['reasons'] = $reasons_dislike;
+
+        }else{
+
+            $array_log = json_decode($data_appointment->user_dislike, true);
+
+            if (array_key_exists($user_id, $array_log)) {
+
+                // วนลูปเพื่อค้นหาและเปลี่ยนสถานะจาก 'Active' เป็น 'Canceled'
+                foreach ($array_log[$user_id] as $round => $details) {
+                    if (isset($details['status']) && $details['status'] === 'Active') {
+                        $array_log[$user_id][$round]['status'] = 'Canceled';
+                    }
+                }
+
+                // หากเท่ากันให้เพิ่ม key round และ time ใน key นั้น
+                $count_round_old = count($array_log[$user_id]);
+                $new_round = intval($count_round_old) + 1 ;
+
+                $array_log[$user_id][$new_round]['status'] = 'Active';
+                $array_log[$user_id][$new_round]['datetime'] = date("d/m/Y H:i");
+                $array_log[$user_id][$new_round]['reasons'] = $reasons_dislike;
+            } else {
+                // หากไม่เท่ากันให้เพิ่ม key ใหม่โดยใช้ $user_id
+                $array_log[$user_id]['1']['status'] = 'Active';
+                $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+                $array_log[$user_id]['1']['reasons'] = $reasons_dislike;
+            }
+
+        }
+
+        $jsonLog = json_encode($array_log);
+
+        DB::table('appointments')
+            ->where([ 
+                    ['id', $appointment_id],
+                ])
+            ->update([
+                    'user_dislike' => $jsonLog,
+                ]);
+
+    }
+
+    function user_cancel_dislike_appointment($user_id,$appointment_id){
+
+        $data_appointment = Appointment::where('id' , $appointment_id)->first();
+        $array_log = array();
+
+        if( !empty($data_appointment->user_dislike) ){
+
+            $array_log = json_decode($data_appointment->user_dislike, true);
+
+            if (array_key_exists($user_id, $array_log)) {
+
+                // วนลูปเพื่อค้นหาและเปลี่ยนสถานะจาก 'Active' เป็น 'Canceled'
+                foreach ($array_log[$user_id] as $round => $details) {
+                    if (isset($details['status']) && $details['status'] === 'Active') {
+                        $array_log[$user_id][$round]['status'] = 'Canceled';
+                    }
+                }
+            } 
+
+        }
+
+        $jsonLog = json_encode($array_log);
+
+        DB::table('appointments')
+            ->where([ 
+                    ['id', $appointment_id],
+                ])
+            ->update([
+                    'user_dislike' => $jsonLog,
+                ]);
+    }
+
+    function user_click_fav_btn_appointment($user_id,$appointment_id,$type){
+
+        $data_appointment = Appointment::where('id' , $appointment_id)->first();
+        $array_log = array();
+
+        $data_for_table_fav = [];
+
+        if($type == 'Yes'){
+
+            if( empty($data_appointment->user_fav) ){
+
+                $array_log[$user_id]['1']['status'] = 'Active';
+                $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+
+            }else{
+
+                $array_log = json_decode($data_appointment->user_fav, true);
+
+                if (array_key_exists($user_id, $array_log)) {
+
+                    // วนลูปเพื่อค้นหาและเปลี่ยนสถานะจาก 'Active' เป็น 'Canceled'
+                    foreach ($array_log[$user_id] as $round => $details) {
+                        if (isset($details['status']) && $details['status'] === 'Active') {
+                            $array_log[$user_id][$round]['status'] = 'Canceled';
+                        }
+                    }
+
+                    // หากเท่ากันให้เพิ่ม key round และ time ใน key นั้น
+                    $count_round_old = count($array_log[$user_id]);
+                    $new_round = intval($count_round_old) + 1 ;
+
+                    $array_log[$user_id][$new_round]['status'] = 'Active';
+                    $array_log[$user_id][$new_round]['datetime'] = date("d/m/Y H:i");
+                } else {
+                    // หากไม่เท่ากันให้เพิ่ม key ใหม่โดยใช้ $user_id
+                    $array_log[$user_id]['1']['status'] = 'Active';
+                    $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+                }
+
+            }
+
+            // เพิ่มข้อมูลในตาราง FAV
+            $check_table_fav = Favorite::where('type','อบรม/สอบ')
+                ->where('appointment_id',$appointment_id)
+                ->where('user_id',$user_id)
+                ->first();
+
+            if( !empty($check_table_fav->id) ){
+                if($check_table_fav->status != 'Yes'){
+                    DB::table('favorites')
+                        ->where([ 
+                                ['id', $check_table_fav->id],
+                            ])
+                        ->update([
+                                'status' => 'Yes',
+                            ]);
+                }
+            }
+            else{
+                $data_for_table_fav['type'] = 'อบรม/สอบ';
+                $data_for_table_fav['user_id'] = $user_id;
+                $data_for_table_fav['status'] = 'Yes';
+                $data_for_table_fav['appointment_id'] = $appointment_id;
+
+                Favorite::create($data_for_table_fav);
+            }
+            // END เพิ่มข้อมูลในตาราง FAV
+
+
+        }
+        else if($type == 'No'){
+            if( !empty($data_appointment->user_fav) ){
+
+                $array_log = json_decode($data_appointment->user_fav, true);
+
+                if (array_key_exists($user_id, $array_log)) {
+
+                    // วนลูปเพื่อค้นหาและเปลี่ยนสถานะจาก 'Active' เป็น 'Canceled'
+                    foreach ($array_log[$user_id] as $round => $details) {
+                        if (isset($details['status']) && $details['status'] === 'Active') {
+                            $array_log[$user_id][$round]['status'] = 'Canceled';
+                        }
+                    }
+                }
+
+            }
+
+            // เพิ่มข้อมูลในตาราง FAV
+            $check_table_fav = Favorite::where('type','อบรม/สอบ')
+                ->where('appointment_id',$appointment_id)
+                ->where('user_id',$user_id)
+                ->first();
+
+            if( !empty($check_table_fav->id) ){
+                if($check_table_fav->status == 'Yes'){
+                    DB::table('favorites')
+                        ->where([ 
+                                ['id', $check_table_fav->id],
+                            ])
+                        ->update([
+                                'status' => null,
+                            ]);
+                }
+            }
+            // END เพิ่มข้อมูลในตาราง FAV
+        }
+
+        $jsonLog = json_encode($array_log);
+
+        DB::table('appointments')
+            ->where([ 
+                    ['id', $appointment_id],
+                ])
+            ->update([
+                    'user_fav' => $jsonLog,
+                ]);
+
+        return 'success' ;
+
+    }
+
+    function update_user_view_appointment($user_id,$appointment_id){
+        $data_appointment = Appointment::where('id' , $appointment_id)->first();
+        $array_log = array();
+
+        if( empty($data_appointment->user_view) ){
+
+            $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+
+        }else{
+
+            $array_log = json_decode($data_appointment->user_view, true);
+
+            if (array_key_exists($user_id, $array_log)) {
+
+                // หากเท่ากันให้เพิ่ม key round และ time ใน key นั้น
+                $count_round_old = count($array_log[$user_id]);
+                $new_round = intval($count_round_old) + 1 ;
+
+                $array_log[$user_id][$new_round]['datetime'] = date("d/m/Y H:i");
+            } else {
+                // หากไม่เท่ากันให้เพิ่ม key ใหม่โดยใช้ $user_id
+                $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+            }
+
+        }
+
+        $jsonLog = json_encode($array_log);
+
+        DB::table('appointments')
+            ->where([ 
+                    ['id', $appointment_id],
+                ])
+            ->update([
+                    'user_view' => $jsonLog,
+                ]);
+
+        return 'success' ;
+    }
+
 }

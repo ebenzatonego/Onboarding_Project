@@ -189,7 +189,7 @@
                 <span>กลับหน้ารวมหลักสูตร</span>
             </a>
 
-            <img src="{{ $training->photo }}" alt="" style="width: 100%;">
+            <img src="{{ $appointment->photo }}" alt="" style="width: 100%;">
             <div class="d-flex justify-content-between">
 
                 <div class="py-3 px-4 w-100 d-flex btn-share-group">
@@ -198,8 +198,8 @@
                         $check_disabled_not_like = '';
                         $count_user_like = '0';
 
-                        if( !empty($training->user_like) ){
-                            $array = json_decode($training->user_like, true);
+                        if( !empty($appointment->user_like) ){
+                            $array = json_decode($appointment->user_like, true);
                             $count_user_like = count($array);
                             if (in_array(Auth::user()->id, $array)) {
                                 $check_like = 'active';
@@ -210,8 +210,8 @@
                         $check_dislike = '';
                         $check_disabled_not_dislike = '';
 
-                        if( !empty($training->user_dislike) ){
-                            $array = json_decode($training->user_dislike, true);
+                        if( !empty($appointment->user_dislike) ){
+                            $array = json_decode($appointment->user_dislike, true);
 
                             if (array_key_exists(Auth::user()->id, $array)) {
 
@@ -253,8 +253,8 @@
                 @php
                     $check_fav = '';
 
-                    if( !empty($training->user_fav) ){
-                        $array = json_decode($training->user_fav, true);
+                    if( !empty($appointment->user_fav) ){
+                        $array = json_decode($appointment->user_fav, true);
                         $user_id = Auth::user()->id ;
                         if (array_key_exists($user_id, $array)) {
                             foreach ($array[$user_id] as $round => $details) {
@@ -276,18 +276,18 @@
             </div>
             <div class="px-4 title-training">
                 <div>
-                    <p class="mb-2" style="color: #003781;font-size: 20px;font-style: normal;font-weight: 600;line-height: normal;">{{ $training->title }}</p>
+                    <p class="mb-2" style="color: #003781;font-size: 20px;font-style: normal;font-weight: 600;line-height: normal;">{{ $appointment->title }}</p>
                 </div>
                 <div class="hastag-training">
                     @php
-                        $Training_type = App\Models\Training_type::where('id' ,$training->training_type_id)->first();
+                        $appointment_type = App\Models\Training_type::where('id' ,$appointment->training_type_id)->first();
                     @endphp
-                    <span>#{{ $Training_type->type_article }}</span>
+                    <span>#{{ $appointment_type->type_article }}</span>
                 </div>
-                @if( !empty($training->sum_rating) )
+                @if( !empty($appointment->sum_rating) )
                 <div class="rating-training mt-2">
-                    <span id="sum_rating_span" style="color: #EDB529;font-size: 14px;font-style: normal;font-weight: 600;line-height: normal;margin-right: 5px;">{{ $training->sum_rating }}</span>
-                    <i id="sum_rating_i" data-star="{{ $training->sum_rating }}" class="star-rating"></i>
+                    <span id="sum_rating_span" style="color: #EDB529;font-size: 14px;font-style: normal;font-weight: 600;line-height: normal;margin-right: 5px;">{{ $appointment->sum_rating }}</span>
+                    <i id="sum_rating_i" data-star="{{ $appointment->sum_rating }}" class="star-rating"></i>
                 </div>
                 @endif
             </div>
@@ -361,21 +361,54 @@
             }
         </style>
         <div class="col-lg-7 col-md-7 px-4 mb-5">
-    
-            <div class="detail-training">
-                <p class="mt-2">
-                    {!! $training->detail !!}
-                </p>
+            
+            <!-- if ถ้ามีเวลาเข้าร่วม -->
+            <div class="d-flex align-items-center my-2 mt-3">
+                <i class="fa-light fa-calendar-days me-2" style="color: #0E2B81;font-size:18px"></i>
+                <span id="text_date_start" style="color: #0E2B81;font-size: 12px;font-style: normal;font-weight: 600;">
+                    <!--  -->
+                </span>
+            </div>
+            <!-- endif -->
 
-                @if( !empty($training->video))
-                <div class="d-flex justify-content-end w-100 mt-4 mb--2" style="color: #989898;">
-                    <i class="fa-regular fa-clock me-2"></i>
-                    <span id="videoDuration"></span>
+            <!-- if ถ้ามีลิงค์เข้าร่วมสอบ -->
+                <a href="{{ $appointment->link_out }}" target="bank" class="btn w-100 btn-join-meet my-2">
+                    <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M23 0H3.19412V3.19419H4.47192V1.27768H21.7222V15.9709H8.05806V17.2486H23V0ZM3.83302 8.30489C3.32468 8.30489 2.83716 8.10297 2.47771 7.74356C2.11826 7.38414 1.91632 6.89667 1.91632 6.38838C1.91632 5.88008 2.11826 5.39261 2.47771 5.0332C2.83716 4.67378 3.32468 4.47186 3.83302 4.47186C4.34136 4.47186 4.82887 4.67378 5.18833 5.0332C5.54778 5.39261 5.74972 5.88008 5.74972 6.38838C5.74972 6.89667 5.54778 7.38414 5.18833 7.74356C4.82887 8.10297 4.34136 8.30489 3.83302 8.30489ZM2.53541 9.58895C1.70548 9.58895 1.04869 9.96203 0.618715 10.5383C0.216846 11.0781 0.0468979 11.7457 0.008564 12.3621C-0.028986 12.9945 0.057169 13.6282 0.262207 14.2276C0.453876 14.7833 0.7778 15.3583 1.27742 15.7525V22.0399C1.27696 22.2807 1.36715 22.5128 1.53005 22.6901C1.69296 22.8674 1.91664 22.9768 2.1566 22.9967C2.39657 23.0166 2.63522 22.9454 2.8251 22.7974C3.01497 22.6493 3.14215 22.4352 3.18134 22.1977L4.00552 17.2486H4.19591L5.12743 22.2162C5.17166 22.4507 5.30177 22.6602 5.49232 22.8038C5.68286 22.9474 5.92013 23.0148 6.15772 22.9927C6.39531 22.9707 6.61613 22.8608 6.77699 22.6846C6.93785 22.5084 7.02719 22.2785 7.02751 22.0399V12.9256C7.15528 13.1202 7.28136 13.3159 7.40574 13.5127L7.45558 13.5913L7.46836 13.6117L7.47155 13.6175C7.55766 13.7557 7.67758 13.8697 7.82 13.9487C7.96242 14.0278 8.12263 14.0692 8.28551 14.0691H11.48C11.7342 14.0691 11.9779 13.9682 12.1577 13.7885C12.3374 13.6087 12.4384 13.365 12.4384 13.1109C12.4384 12.8567 12.3374 12.613 12.1577 12.4333C11.9779 12.2536 11.7342 12.1526 11.48 12.1526H8.81132C8.65607 11.9124 8.45162 11.6007 8.23695 11.2876C8.01334 10.9612 7.76672 10.6156 7.54694 10.3447C7.44024 10.2125 7.32077 10.0745 7.20066 9.96139C7.14188 9.90582 7.0601 9.83363 6.96043 9.76974C6.78454 9.6543 6.5792 9.59177 6.36881 9.58959L2.53541 9.58895Z" fill="white"/>
+                    </svg>
+                    <!-- if ตารางสอบ -->
+                    เข้าร่วมสอบ
+                    <!--  else-->
+                    <!-- เข้าร่วมอบรม -->
+                    <!-- endif -->
+                </a>
+            <!-- endif -->
+
+            <!-- if ถ้ามี รายละเอียดการเข้าอบรม -->
+            <div class="my-3">
+                <p style="color: #003781;font-size: 15px;font-style: normal;font-weight: 600;line-height: normal;">รายละเอียดการเข้าอบรม</p>
+                <div class="d-flex ">
+                    <i class="fa-light fa-location-dot me-2"></i>
+                    <div>
+                        <p class="m-0">
+                            {!! $appointment->location_detail !!}
+                        </p>
+                        <a href="{{ $appointment->link_map }}" target="bank" id="link-to-copy" style="color: #0872FF;font-size: 10px;font-style: normal;font-weight: 600;line-height: normal;text-decoration-line: underline;">
+                            {{ $appointment->link_map }}
+                        </a>
+                        <i style="color: #9E9E9E;" class="fa-regular fa-copy mx-2"  onclick="copyLink_map()"></i>
+                    </div>
+                    <div>
+
+                    </div>
                 </div>
-                <div class="d-flex justify-content-center w-100">
-                    <video id="trainingVideo" src="{{ $training->video }}" controls loop muted style="width:100%;border-radius: 10px; max-width: 700px;margin-top:5px!important;" class="video-preview"></video>
-                </div>
-                @endif
+            </div>
+            <!-- endif -->
+
+            <div class="detail-training">
+                <p class="mt-4">
+                    {!! $appointment->detail !!}
+                </p>
 
                 <div class="w-100 mt-4">
                     <p class="mb-0" style="color: #989898;font-size: 14px;font-style: normal;font-weight: 500;line-height: normal;">ถูกใจหลักสูตรนี้?</p>
@@ -551,7 +584,7 @@
             </div>
             
             <div class="w-100 px-5 mt-3">
-                <button class="btn w-100 bg-white btn-vote-training" data-dismiss="modal" aria-label="Close" onclick="getRating('{{ $training->id }}')">ให้คะแนน</button>
+                <button class="btn w-100 bg-white btn-vote-training" data-dismiss="modal" aria-label="Close" onclick="getRating('{{ $appointment->id }}')">ให้คะแนน</button>
             </div>
         </div>
     </div>
@@ -591,41 +624,10 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
-
-        change_active_menu_theme_user('Training');
-
-        if(document.getElementById('trainingVideo')){
-            var video = document.getElementById('trainingVideo');
-            video.addEventListener('loadedmetadata', function() {
-                var duration = video.duration;
-                var hours = Math.floor(duration / 3600);
-                var minutes = Math.floor((duration % 3600) / 60);
-                var seconds = Math.floor(duration % 60);
-
-                var formattedDuration = "";
-                if (hours > 0) {
-                    formattedDuration += hours + " ชั่วโมง ";
-                }
-                if (minutes > 0) {
-                    formattedDuration += minutes + " นาที ";
-                }
-                if (seconds > 0 || (hours === 0 && minutes === 0)) { // เพื่อให้แสดงวินาทีเสมอถ้าไม่มีชั่วโมงและนาที
-                    formattedDuration += seconds + " วินาที";
-                }
-
-                document.getElementById('videoDuration').innerText = formattedDuration;
-            });
-        }
-
-    });
-</script>
-
-
-
-<script>
-    document.addEventListener('DOMContentLoaded', (event) => {
         create_star_rating();
         update_user_view();
+        change_active_menu_theme_user('Training');
+        create_text_date_start();
     });
 
     function create_star_rating(){
@@ -637,9 +639,9 @@
     }
 
     function update_user_view(){
-        let training_id = "{{ $training->id }}";
+        let appointment_id = "{{ $appointment->id }}";
 
-        fetch("{{ url('/') }}/api/update_user_view/" + "{{ Auth::user()->id }}" + "/" + training_id)
+        fetch("{{ url('/') }}/api/update_user_view_appointment/" + "{{ Auth::user()->id }}" + "/" + appointment_id)
             .then(response => response.text())
             .then(result => {
                 // console.log(result);
@@ -717,15 +719,15 @@
             document.querySelectorAll('.btn-bookmark-training').forEach(function(element) {element.classList.toggle('active');});
             document.querySelectorAll('.btn-bookmark').forEach(function(element) {element.classList.toggle('active');});
 
-            let training_id = "{{ $training->id }}";
+            let appointment_id = "{{ $appointment->id }}";
 
             if (!className.includes('active')) {
                 // console.log('FAV');
-                user_click_fav_btn('Yes' , training_id);
+                user_click_fav_btn('Yes' , appointment_id);
             }
             else{
                 // console.log('ยกเลิก FAV');
-                user_click_fav_btn('No' , training_id);
+                user_click_fav_btn('No' , appointment_id);
             }
         }
     }
@@ -742,7 +744,7 @@
 
         }
     }
-    function getRating(training_id) {
+    function getRating(appointment_id) {
         const ratingInputs = document.querySelectorAll('input[name="rating"]');
         let selectedRating = 0;
         for (const input of ratingInputs) {
@@ -752,10 +754,10 @@
             }
         }
 
-        // console.log("training_id >> " + training_id);
+        // console.log("appointment_id >> " + appointment_id);
         // console.log(selectedRating);
 
-        fetch("{{ url('/') }}/api/give_rating_training/" + "{{ Auth::user()->id }}" + "/" + training_id + "/" + selectedRating)
+        fetch("{{ url('/') }}/api/give_rating_appointment/" + "{{ Auth::user()->id }}" + "/" + appointment_id + "/" + selectedRating)
             .then(response => response.text())
             .then(result => {
                 // console.log(result);
@@ -771,9 +773,9 @@
 
     function user_cancel_like(){
 
-        let training_id = "{{ $training->id }}";
-        // console.log(training_id);
-        fetch("{{ url('/') }}/api/user_cancel_like/" + "{{ Auth::user()->id }}" + "/" + training_id)
+        let appointment_id = "{{ $appointment->id }}";
+        // console.log(appointment_id);
+        fetch("{{ url('/') }}/api/user_cancel_like_appointment/" + "{{ Auth::user()->id }}" + "/" + appointment_id)
             .then(response => response.text())
             .then(result => {
                 // console.log(result);
@@ -787,9 +789,9 @@
     }
 
     function user_cancel_dislike(){
-        let training_id = "{{ $training->id }}";
-        // console.log(training_id);
-        fetch("{{ url('/') }}/api/user_cancel_dislike/" + "{{ Auth::user()->id }}" + "/" + training_id)
+        let appointment_id = "{{ $appointment->id }}";
+        // console.log(appointment_id);
+        fetch("{{ url('/') }}/api/user_cancel_dislike_appointment/" + "{{ Auth::user()->id }}" + "/" + appointment_id)
             .then(response => response.text())
             .then(result => {
                 // console.log(result);
@@ -799,9 +801,9 @@
     function submit_reasons_dislike(){
 
         let reasons_dislike = document.querySelector('#reasons_dislike').value
-        let training_id = "{{ $training->id }}";
-        // console.log(training_id);
-        fetch("{{ url('/') }}/api/submit_reasons_dislike/" + "{{ Auth::user()->id }}" + "/" + training_id + "/" + reasons_dislike)
+        let appointment_id = "{{ $appointment->id }}";
+        // console.log(appointment_id);
+        fetch("{{ url('/') }}/api/submit_reasons_dislike_appointment/" + "{{ Auth::user()->id }}" + "/" + appointment_id + "/" + reasons_dislike)
             .then(response => response.text())
             .then(result => {
                 // console.log(result);
@@ -811,9 +813,9 @@
         
     }
 
-    function user_click_fav_btn(type , training_id){
+    function user_click_fav_btn(type , appointment_id){
 
-        fetch("{{ url('/') }}/api/user_click_fav_btn/" + "{{ Auth::user()->id }}" + "/" + training_id + "/" + type)
+        fetch("{{ url('/') }}/api/user_click_fav_btn_appointment/" + "{{ Auth::user()->id }}" + "/" + appointment_id + "/" + type)
             .then(response => response.text())
             .then(result => {
                 // console.log(result);
@@ -821,60 +823,10 @@
     }
 </script>
 
-<!-- นับเวลาวิดีโอ -->
 <script>
-    if(document.getElementById('trainingVideo')){
-
-        const video = document.getElementById('trainingVideo');
-        let countTime = 0;
-        let interval;
-
-        // ฟังก์ชั่นเพื่อเริ่มนับเวลา
-        function startCountTime() {
-            interval = setInterval(() => {
-                countTime += 1;
-                // console.log('Elapsed time:', countTime);
-            }, 1000); // เพิ่มค่าทีละ 1 วินาที
-        }
-
-        // ฟังก์ชั่นเพื่อหยุดนับเวลา
-        function stopCountTime() {
-            clearInterval(interval);
-        }
-
-        // จับเหตุการณ์เมื่อวิดีโอเริ่มเล่น
-        video.addEventListener('play', () => {
-            startCountTime();
-        });
-
-        // จับเหตุการณ์เมื่อวิดีโอหยุด
-        video.addEventListener('pause', () => {
-            stopCountTime();
-        });
-
-        // จับเหตุการณ์เมื่อวิดีโอสิ้นสุดการเล่น
-        video.addEventListener('ended', () => {
-            stopCountTime();
-        });
-
-        // ก่อนปิดหน้าหรือเปลี่ยนหน้า
-        window.addEventListener('beforeunload', function(e) {
-            // console.log(countTime);
-            let training_id = "{{ $training->id }}";
-
-            if(countTime > 0){
-                fetch("{{ url('/') }}/api/update_countTime_trainingVideo/" + "{{ Auth::user()->id }}" + "/" + countTime + "/" + training_id)
-                    .then(response => response.text())
-                    .then(result => {
-                        // console.log(result);
-                    });
-            }
-        });
-    }
-
-
+    
     function click_share_training(){
-        let training_id = "{{ $training->id }}";
+        let appointment_id = "{{ $appointment->id }}";
 
         let tag_a_share_line = document.querySelector('#tag_a_share_line');
         let tag_a_share_facebook = document.querySelector('#tag_a_share_facebook');
@@ -882,7 +834,7 @@
         let tag_a_share_whatsapp = document.querySelector('#tag_a_share_whatsapp');
         let input_for_copy = document.querySelector('#input_for_copy_Share_social_media');
 
-        let url = "{{ url('/') }}/" + "share_training/" + training_id ;
+        let url = "{{ url('/') }}/" + "share_appointment/" + appointment_id ;
 
         tag_a_share_line.setAttribute('href' , 'https://social-plugins.line.me/lineit/share?url=' + url);
         tag_a_share_facebook.setAttribute('href' , 'https://www.facebook.com/sharer/sharer.php?u=' + url);
@@ -890,13 +842,79 @@
         tag_a_share_whatsapp.setAttribute('href' , 'https://api.whatsapp.com/send?text=' + url);
         input_for_copy.value = url ;
 
-        tag_a_share_line.setAttribute('onclick' , "save_log_share('trainings' , 'line' , '"+training_id+"')");
-        tag_a_share_facebook.setAttribute('onclick' , "save_log_share('trainings' , 'facebook' , '"+training_id+"')");
-        tag_a_share_twitter.setAttribute('onclick' , "save_log_share('trainings' , 'twitte' , '"+training_id+"')");
-        tag_a_share_whatsapp.setAttribute('onclick' , "save_log_share('trainings' , 'whatsapp' , '"+training_id+"')");
-        input_for_copy.setAttribute('onclick' , "save_log_share('trainings' , 'copy' , '"+training_id+"')")
+        tag_a_share_line.setAttribute('onclick' , "save_log_share('appointments' , 'line' , '"+appointment_id+"')");
+        tag_a_share_facebook.setAttribute('onclick' , "save_log_share('appointments' , 'facebook' , '"+appointment_id+"')");
+        tag_a_share_twitter.setAttribute('onclick' , "save_log_share('appointments' , 'twitte' , '"+appointment_id+"')");
+        tag_a_share_whatsapp.setAttribute('onclick' , "save_log_share('appointments' , 'whatsapp' , '"+appointment_id+"')");
+        input_for_copy.setAttribute('onclick' , "save_log_share('appointments' , 'copy' , '"+appointment_id+"')")
 
         document.querySelector('#btn_modal_Share_social_media').click();
+    }
+
+    function copyLink_map() {
+        let link = document.getElementById('link-to-copy').href;
+        let tempTextarea = document.createElement('textarea');
+        tempTextarea.value = link;
+
+        document.body.appendChild(tempTextarea);
+
+        tempTextarea.select();
+
+        document.execCommand('copy');
+
+        document.body.removeChild(tempTextarea);
+
+        $('#modalCopySuccess').modal('show');
+
+        setTimeout(() => {
+        $('#modalCopySuccess').modal('hide');
+            
+        }, 2000);
+    }
+
+    function create_text_date_start(){
+
+        // Friday 19 April 2024 10:30 น. - Friday 19 April 2024 12:30 น.
+        let text_date_start = document.querySelector('#text_date_start');
+
+        let all_day = "{{ $appointment->all_day }}";
+        let date_start = "{{ $appointment->date_start }}";
+        let time_start = "{{ $appointment->time_start }}";
+        let date_end = "{{ $appointment->date_end }}";
+        let time_end = "{{ $appointment->time_end }}";
+
+        if (all_day === 'Yes') {
+            // Case 1: all_day = Yes
+            let formattedDate = formatDate_for_appointment(date_start);
+            text_date_start.innerHTML = formattedDate;
+        } else if (!all_day && date_start === date_end) {
+            // Case 2: all_day = null and date_start equals date_end
+            let formattedDate = formatDate_for_appointment(date_start);
+            let formattedTime = formatTime_for_appointment(time_start) + ' - ' + formatTime_for_appointment(time_end);
+            text_date_start.innerHTML = formattedDate + ' ' + formattedTime;
+        } else if (!all_day && date_start !== date_end) {
+            // Case 3: all_day = null and date_start not equals date_end
+            let formattedStartDate = formatDate_for_appointment(date_start);
+            let formattedEndDate = formatDate_for_appointment(date_end);
+            let formattedStartTime = formatTime_for_appointment(time_start);
+            let formattedEndTime = formatTime_for_appointment(time_end);
+            text_date_start.innerHTML = `${formattedStartDate} ${formattedStartTime} - ${formattedEndDate} ${formattedEndTime}`;
+        }
+
+    }
+
+    function formatDate_for_appointment(dateString) {
+        let date = new Date(dateString);
+        let options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+        return date.toLocaleDateString('en-US', options);
+    }
+
+    function formatTime_for_appointment(timeString) {
+        // Assuming timeString is in HH:mm format
+        let [hours, minutes] = timeString.split(':');
+        let period = hours >= 12 ? 'น.' : 'น.';
+        hours = hours % 12 || 12; // Convert hours to 12-hour format
+        return `${hours}:${minutes} ${period}`;
     }
 </script>
 @endsection

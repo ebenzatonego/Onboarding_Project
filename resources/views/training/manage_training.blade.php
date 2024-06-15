@@ -914,10 +914,10 @@
 
 <hr>
 
-<div class="card border-top border-0 border-4 border-danger">
+<div class="card border-top border-0 border-4 border-primary">
   <div class="card-body p-5">
     <div class="card-title d-flex align-items-center">
-      <h5 id="h5_training_types" class="mb-0 text-danger">
+      <h5 id="h5_training_types" class="mb-0 text-primary">
         <!--  -->
       </h5>
     </div>

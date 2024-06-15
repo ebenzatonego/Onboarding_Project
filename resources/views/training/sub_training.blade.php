@@ -23,7 +23,7 @@
         background: #003781;
     }
 </style>
-<div class="container">
+<div class="container container-content">
     <div class="main-body">
         <div class="row">
             <div class="mt-2">
@@ -31,12 +31,12 @@
                     <i class="fa-regular fa-chevron-left me-3"></i> <span class="mt-1">กลับหน้ารวมหลักสูตร/อมรม/สอบ</span>
                 </a>
             </div>
-            <div class="col-lg-12 mt-3">
+            <div class="col-lg-12 mt-3 top-content">
                 <div id="div_content_highlight_number" class="owl-carousel carousel-fav-course owl-theme">
                     <!-- Loop highlight of training_types -->
                 </div>
             </div>
-            <div class="col-lg-12 mt-3">
+            <div class="col-lg-12 mt-3 bottom-content">
 
                 <style>
                     .carousel-menu-course .item {
@@ -101,6 +101,14 @@
                         
 
                     }
+                    @media (max-width: 575px) {
+                       .container-content ,.content-section ,.bottom-content ,.top-content{
+                        padding-right: 0;
+                       }
+                       .bottom-course{
+                        padding-right: calc(var(--bs-gutter-x, .75rem)) ;
+                       
+                    }}
                     @media (max-width: 770px) {
                         .course-item{
                             width: 100% !important;
@@ -171,13 +179,14 @@
                         right: 0px;
                     }
                 </style>
-
-                <p id="p_training_types" class="my-3" style="color: #0E2B81;font-size: 16px;">
-                    <!--  -->
-                </p>
-
-                <div id="div_content" class="container-course ">
-                    <!-- data -->
+                <div class="bottom-course">
+                    <p id="p_training_types" class="my-3" style="color: #0E2B81;font-size: 16px;">
+                        <!--  -->
+                    </p>
+    
+                    <div id="div_content" class="container-course ">
+                        <!-- data -->
+                    </div>
                 </div>
             </div>
         </div>

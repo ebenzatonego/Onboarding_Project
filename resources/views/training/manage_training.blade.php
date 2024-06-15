@@ -585,13 +585,13 @@
                                       </div>
                                   </div>
                                   <div class="col-lg-6 d-flex justify-content-center align-items-center" style="border: #2260ff 2px solid;border-radius: 10px;">
-                                      <div>
+                                      <div class="w-100">
                                           <p class="mb-2 mt-3 text-center">ผลลัพธ์</p>
                                         <!--rightbox-->
-                                          <div class="box-2 img-result">
+                                          <div class="box-2 img-result d-flex justify-content-center">
                                               <!-- result of crop -->
-                                              <div class="d-flex justify-content-center align-items-center" style="background-color: #003781;width: 95%;height: 214px;">
-                                                  <img alt="" id="Preview_Menu_Highlight_crop_1">
+                                              <div class="long-item w-100" style="background-color: #003781;max-width: 200px;height: 250px;">
+                                                  <img alt="" id="Preview_Menu_Highlight_crop_1" style="display: block;">
                                               </div>
                                           </div>
                                       </div>
@@ -671,14 +671,19 @@
                                       </div>
                                   </div>
                                   <div class="col-lg-6 d-flex justify-content-center align-items-center" style="border: #2260ff 2px solid;border-radius: 10px;">
-                                      <div>
+                                      <div class="w-100">
                                           <p class="mb-2 mt-3 text-center">ผลลัพธ์</p>
                                         <!--rightbox-->
-                                          <div class="box-2 img-result">
+                                          <div class="box-2 img-result ">
                                               <!-- result of crop -->
-                                              <div class="d-flex justify-content-center align-items-center" style="background-color: #003781;width: 95%;height: 214px;">
+                                              <!-- <div class="square-item d-flex justify-content-center align-items-center" style="background-color: #003781;aspect-ratio1:1; height: 214px;">
                                                   <img alt="" id="Preview_Menu_Highlight_crop_2">
-                                              </div>
+                                              </div> -->
+
+                                              <div class="square-item mt-3">
+                                                <img alt="" id="Preview_Menu_Highlight_crop_2">
+
+                                            </div>
                                           </div>
                                       </div>
                                   </div>
@@ -757,12 +762,12 @@
                                       </div>
                                   </div>
                                   <div class="col-lg-6 d-flex justify-content-center align-items-center" style="border: #2260ff 2px solid;border-radius: 10px;">
-                                      <div>
+                                      <div class="w-100">
                                           <p class="mb-2 mt-3 text-center">ผลลัพธ์</p>
                                         <!--rightbox-->
-                                          <div class="box-2 img-result">
+                                          <div class="box-2 img-result  d-flex justify-content-center">
                                               <!-- result of crop -->
-                                              <div class="d-flex justify-content-center align-items-center" style="background-color: #003781;width: 95%;height: 214px;">
+                                               <div class="long-item w-100" style="background-color: #003781;max-width: 200px;height: 250px;">
                                                   <img alt="" id="Preview_Menu_Highlight_crop_3">
                                               </div>
                                           </div>
@@ -843,14 +848,14 @@
                                       </div>
                                   </div>
                                   <div class="col-lg-6 d-flex justify-content-center align-items-center" style="border: #2260ff 2px solid;border-radius: 10px;">
-                                      <div>
+                                    <div class="w-100">
                                           <p class="mb-2 mt-3 text-center">ผลลัพธ์</p>
                                         <!--rightbox-->
-                                          <div class="box-2 img-result">
-                                              <!-- result of crop -->
-                                              <div class="d-flex justify-content-center align-items-center" style="background-color: #003781;width: 95%;height: 214px;">
-                                                  <img alt="" id="Preview_Menu_Highlight_crop_4">
-                                              </div>
+                                          <div class="box-2 img-result ">
+                                              <div class="square-item mt-3">
+                                                <img alt="" id="Preview_Menu_Highlight_crop_4">
+
+                                            </div>
                                           </div>
                                       </div>
                                   </div>

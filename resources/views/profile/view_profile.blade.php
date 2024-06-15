@@ -800,7 +800,7 @@
 </style>
 <!-- Modal ข้อมูลส่วนตัวทั้งหมด-->
 <div class="modal fade px-2" id="modal_show_all_detail" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered " role="document">
+    <div class="modal-dialog modal-dialog-centered d-flex justify-content-center" role="document">
         <div class="modal-content bg-transparent" style="border: none;max-width: 396px;">
             <div class="modal-body pt-0" style="border-radius: 10px;background: #F0F5FF;">
                 <div id="card_profile_detail" class="show">
@@ -882,7 +882,7 @@
 
 
                     <button type="button" class="btn-close-modal-detail" data-dismiss="modal">
-                        <i class="fa-solid fa-xmark"></i>&nbsp;
+                        <i class="fa-solid fa-xmark"></i>
                     </button>
                 </div>
 
@@ -894,7 +894,7 @@
     </div>
 </div>
 <div class="modal fade px-2" id="modal_show_card_profile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered " role="document">
+    <div class="modal-dialog modal-dialog-centered d-flex justify-content-center" role="document">
         <div class="modal-content bg-transparent" style="border: none;max-width: 396px;">
             <div id="card_profile_download" class="modal-body pt-0" style="border-radius: 10px;background: #F0F5FF;">
                 <div id="card_profile">

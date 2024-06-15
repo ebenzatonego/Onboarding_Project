@@ -152,6 +152,17 @@ class Training_typeController extends Controller
         return $data ;
     }
 
+    function get_data_number_menu_of_appointment(){
+        $data = Training_type::orderByRaw("CASE 
+                        WHEN number_menu_of_appointment IS NOT NULL THEN 1
+                        ELSE 2
+                        END, 
+                        number_menu_of_appointment ASC, 
+                        id DESC")
+                    ->get();
+        return $data ;
+    }
+
     function get_photo_Training_type($id){
         $data = Training_type::where('id', $id)->first();
         return $data ;
@@ -189,6 +200,43 @@ class Training_typeController extends Controller
                 ])
             ->update([
                     'number_menu' => $number,
+                ]);
+
+        return 'success';
+    }
+
+    function change_number_menu_of_appointment($type_id, $number){
+
+        $number_old = Training_type::where('number_menu_of_appointment', $number)->first();
+        $number_select = Training_type::where('id', $type_id)->first();
+
+        $data = [];
+
+        if( !empty($number_select->id) ){
+            $data['old_change_to'] = $number_select->number_menu_of_appointment;
+        }
+        else{
+            $data['old_change_to'] = null;
+        }
+
+        if( !empty($number_old->id) ){
+            $data['old_id'] = $number_old->id;
+
+            DB::table('training_types')
+                ->where([ 
+                        ['id', $data['old_id']],
+                    ])
+                ->update([
+                        'number_menu_of_appointment' => $data['old_change_to'],
+                    ]);
+        }
+
+        DB::table('training_types')
+            ->where([ 
+                    ['id', $type_id],
+                ])
+            ->update([
+                    'number_menu_of_appointment' => $number,
                 ]);
 
         return 'success';

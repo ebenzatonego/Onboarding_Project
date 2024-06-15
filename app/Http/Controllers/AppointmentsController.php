@@ -7,6 +7,11 @@ use App\Http\Requests;
 
 use App\Models\Appointment;
 use Illuminate\Http\Request;
+use App\Models\Training_type;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Training;
+use App\Models\Appointment_area;
 
 class AppointmentsController extends Controller
 {
@@ -54,7 +59,9 @@ class AppointmentsController extends Controller
      */
     public function create()
     {
-        return view('appointments.create');
+        $type_article = Training_type::get();
+        $appointment_area = Appointment_area::orderBy('area','ASC')->get();
+        return view('appointments.create', compact('type_article','appointment_area'));
     }
 
     /**
@@ -71,7 +78,8 @@ class AppointmentsController extends Controller
         
         Appointment::create($requestData);
 
-        return redirect('appointments')->with('flash_message', 'Appointment added!');
+        return redirect('/manage_appointment');
+        // return redirect('appointments')->with('flash_message', 'Appointment added!');
     }
 
     /**
@@ -133,5 +141,58 @@ class AppointmentsController extends Controller
         Appointment::destroy($id);
 
         return redirect('appointments')->with('flash_message', 'Appointment deleted!');
+    }
+
+    function manage_appointment(){
+
+        $data_Training_type = Training_type::orderByRaw("CASE 
+                        WHEN check_highlight IS NOT NULL THEN 1
+                        ELSE 2
+                        END, 
+                        check_highlight ASC, 
+                        id ASC")
+                    ->get();
+
+        $photo_menu_highlight_1 = Training_type::where('check_highlight' , '1')
+            ->select('photo_menu')
+            ->first();
+
+        $photo_menu_highlight_2 = Training_type::where('check_highlight' , '2')
+            ->select('photo_menu')
+            ->first();
+
+        $photo_menu_highlight_3 = Training_type::where('check_highlight' , '3')
+            ->select('photo_menu')
+            ->first();
+
+        $photo_menu_highlight_4 = Training_type::where('check_highlight' , '4')
+            ->select('photo_menu')
+            ->first();
+
+        return view('appointments.manage_appointment', compact('data_Training_type','photo_menu_highlight_1','photo_menu_highlight_2','photo_menu_highlight_3','photo_menu_highlight_4'));
+    }
+
+    function get_data_appointment($type){
+
+        $data = [];
+
+        if($type == 'all'){
+            // $data['data_appointments'] = Appointment::orderBy('id' , 'DESC')->get();
+
+            $data['data_appointments'] = DB::table('appointments')
+                ->join('training_types', 'training_types.id', '=', 'appointments.training_type_id')
+                ->select('appointments.*', 'training_types.type_article')
+                ->orderBy("id", "DESC")
+                ->get();
+        }
+        else{
+            $data['data_appointments'] = Appointment::where('training_type_id', $type)
+                ->orderBy("id", "DESC")
+                ->get();
+            $data_Training_type = Training_type::where('id', $type)->first();
+            $data['type_article'] = $data_Training_type->type_article ;
+        }
+
+        return $data;
     }
 }

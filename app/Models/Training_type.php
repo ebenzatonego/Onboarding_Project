@@ -25,7 +25,7 @@ class Training_type extends Model
      *
      * @var array
      */
-    protected $fillable = ['type_article', 'number_menu', 'check_highlight','photo_menu','icon'];
+    protected $fillable = ['type_article', 'number_menu', 'check_highlight','photo_menu','icon','number_menu_of_appointment'];
 
     
 }

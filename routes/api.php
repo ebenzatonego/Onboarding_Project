@@ -80,6 +80,10 @@ Route::post('/update_Menu_Highlight', 'Training_typeController@update_Menu_Highl
 Route::get('/get_count_training_highlight/{number}', 'Training_typeController@get_count_training_highlight');
 Route::get('/delete_training_type/{training_type_id}', 'Training_typeController@delete_training_type');
 
+// appointment
+Route::get('/get_data_appointment/{type}', 'AppointmentsController@get_data_appointment');
+Route::get('/get_data_number_menu_of_appointment/', 'Training_typeController@get_data_number_menu_of_appointment');
+Route::get('/change_number_menu_of_appointment/{type_id}/{number}', 'Training_typeController@change_number_menu_of_appointment');
 
 // Calendar
 Route::get('/get_data_for_calendar', 'AdminController@get_data_for_calendar');

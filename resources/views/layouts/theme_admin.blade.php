@@ -221,8 +221,13 @@
                             </a>
                             <ul class="mm-collapse">
                                 <li>
-                                    <a class="btn" href="#">
-                                        <i class="fa-solid fa-file-plus"></i> เพิ่มข้อมูล
+                                    <a class="btn" href="{{ url('/manage_appointment') }}">
+                                        <i class="fa-solid fa-calendar-days"></i> จัดการตาราง ฯ
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="btn" href="{{ url('/appointment_create') }}">
+                                        <i class="fa-solid fa-calendar-plus"></i> เพิ่มข้อมูล
                                     </a>
                                 </li>
                             </ul>

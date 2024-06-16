@@ -22,10 +22,13 @@
     .owl-theme .owl-dots .owl-dot:hover span {
         background: #003781;
     }
+    .row-content{
+        margin-right: 0 !important;
+    }
 </style>
 <div class="container container-content">
     <div class="main-body">
-        <div class="row">
+        <div class="row row-content">
             <div class="mt-2">
                 <a href="{{ url('/page_training') }}" class="d-flex align-items-center" style="color: #003781; font-size: 18px; font-weight: bolder;">
                     <i class="fa-regular fa-chevron-left me-3"></i> <span class="mt-1">กลับหน้ารวมหลักสูตร/อมรม/สอบ</span>
@@ -83,7 +86,10 @@
                     <!-- Loop training_types -->
                 </div>
                 <style>
-                    
+                    .container-course {
+                        display: flex;
+                        flex-wrap: wrap;
+                    }
                     .course-item{
                         position: relative;
                         padding: 10px;

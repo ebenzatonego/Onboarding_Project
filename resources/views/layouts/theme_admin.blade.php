@@ -236,23 +236,58 @@
                 </li>
 
                 <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon">
+                            <i class="fa-solid fa-newspaper"></i>
+                        </div>
+                        <div class="menu-title">
+                            ข่าว
+                        </div>
+                    </a>
+                    <ul>
+                        <li>
+                            <a class="btn" href="#">
+                                <i class="fa-solid fa-memo-circle-info"></i> การจัดการข่าว
+                            </a>
+                        </li>
+                        <li>
+                            <a class="btn" href="{{ url('/news/create') }}">
+                                <i class="fa-solid fa-plus"></i> เพิ่มข่าว
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon">
+                            <i class="fa-solid fa-calendar-circle-user"></i>
+                        </div>
+                        <div class="menu-title">
+                            กิจกรรม
+                        </div>
+                    </a>
+                    <ul>
+                        <li>
+                            <a class="btn" href="#">
+                                <i class="fa-solid fa-calendar-circle-exclamation"></i> การจัดการกิจกรรม
+                            </a>
+                        </li>
+                        <li>
+                            <a class="btn" href="{{ url('/activitys/create') }}">
+                                <i class="fa-solid fa-calendar-plus"></i> เพิ่มกิจกรรม
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
                     <a href="#" class="">
                         <div class="parent-icon">
                             <i class="fa-solid fa-passport"></i>
                         </div>
                         <div class="menu-title">
                             Company Profile
-                        </div>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="{{ url('/news/create') }}" class="">
-                        <div class="parent-icon">
-                            <i class="fa-solid fa-newspaper"></i>
-                        </div>
-                        <div class="menu-title">
-                            News
                         </div>
                     </a>
                 </li>

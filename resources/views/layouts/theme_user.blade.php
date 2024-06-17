@@ -406,7 +406,7 @@
         </div>
         <div class="col text-center text-truncate col-navbar d-flex justify-content-center">
             <div class=" mx-2 pt-2 pb-1 mb-2" id="menu_theme_user_News">
-                <a href="{{ url('/demo/news_index') }}">
+                <a href="{{ url('/news') }}">
                     <i class="fa-regular fa-newspaper"></i>
                     <p class="text-truncate mt-1 mb-0">
                         News
@@ -435,7 +435,7 @@
 </script>
 
 
-<div id="navbar-botttom" class="d-none" style="z-index: 9999999999999999;">
+<!-- <div id="navbar-botttom" class="d-none" style="z-index: 9999999999999999;">
     <div class="container">
         <div class="row justify-content-evenly mx-2">
             <div class="col text-center text-truncate col-navbar mheebar">
@@ -487,30 +487,13 @@
                         </p>
                 </a>
             </div>
-            <!-- <div class="col text-center text-truncate col-navbar mheebar">
-                <a href="{{ url('/product') }}">
-                    <i class="fa-solid fa-calendar-days text-white""></i>
-                    <p class="text-truncate" style="font-size: 11px; text-overflow: unset; color: #fff; filter: none;">
-                        Calendar
-                    </p>
-                </a>
-            </div> -->
-            <!-- <div class="col text-center text-truncate col-navbar mheebar">
-                <a href="{{ url('/profile') }}">
-                    <i class="fa-solid fa-user text-white""></i>
-                    <p class="text-truncate" style="font-size: 11px; text-overflow: unset; color: #fff; filter: none;">
-                        Profile
-                    </p>
-                </a>
-            </div> -->
-
         </div>
     </div>
-</div>
+</div> -->
 
 
 <!-- เมนู 5 อัน วงกลม -->
-<div id="navbar-botttom" style="z-index: 9999999999999999;" class="d-none">
+<!-- <div id="navbar-botttom" style="z-index: 9999999999999999;" class="d-none">
     <div class="container">
         <div class="row justify-content-evenly mx-2">
             <div class="col text-center text-truncate col-navbar mheebar">
@@ -556,7 +539,7 @@
 
         </div>
     </div>
-</div>
+</div> -->
 
 <!--app JS-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>

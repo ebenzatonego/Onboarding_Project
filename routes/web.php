@@ -133,6 +133,10 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
     // News
     Route::resource('news', 'NewsController');
 
+    // Activitys
+    Route::resource('activitys', 'ActivitysController');
+
+
 });
 
 // member
@@ -160,7 +164,6 @@ Route::resource('tools_apps', 'Tools_appsController');
 Route::resource('tools_contacts', 'Tools_contactsController');
 Route::resource('tools_tutorials', 'Tools_tutorialsController');
 Route::resource('news_types', 'News_typesController');
-Route::resource('activitys', 'ActivitysController');
 Route::resource('activity_types', 'Activity_typesController');
 Route::resource('product_types', 'Product_typesController');
 Route::resource('products', 'ProductsController');

@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 use App\Models\Activity;
 use Illuminate\Http\Request;
+use App\Models\Activity_type;
 
 class ActivitysController extends Controller
 {
@@ -54,8 +55,9 @@ class ActivitysController extends Controller
      * @return \Illuminate\View\View
      */
     public function create()
-    {
-        return view('activitys.create');
+    {   
+        $data_activity_type = Activity_type::orderBy('name_type' , 'ASC')->get();
+        return view('activitys.create', compact('data_activity_type'));
     }
 
     /**
@@ -69,6 +71,22 @@ class ActivitysController extends Controller
     {
         
         $requestData = $request->all();
+
+        if( !empty($requestData['activity_type_id']) ){
+            $check_activity_type = Activity_type::where('name_type' , $requestData['activity_type_id'])->first();
+
+            if( empty($check_activity_type->id) ){
+
+                $data_create = [];
+                $data_create['name_type'] = $requestData['activity_type_id'];
+                $new_data_type = Activity_type::create($data_create);
+
+                $requestData['activity_type_id'] = $new_data_type->id ;
+            }
+            else{
+                $requestData['activity_type_id'] = $check_activity_type->id ;
+            }
+        }
         
         Activity::create($requestData);
 

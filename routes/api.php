@@ -84,6 +84,7 @@ Route::get('/get_list_number_menu_of_appointment', 'Training_typeController@get_
 
 // appointment
 Route::get('/get_data_appointment/{type}', 'AppointmentsController@get_data_appointment');
+Route::get('/get_data_appointment_now/{training_type_id}/{month}/{year}/{type_appointment}', 'AppointmentsController@get_data_appointment_now');
 Route::get('/get_data_number_menu_of_appointment/', 'Training_typeController@get_data_number_menu_of_appointment');
 Route::get('/change_number_menu_of_appointment/{type_id}/{number}', 'Training_typeController@change_number_menu_of_appointment');
 Route::get('/give_rating_appointment/{user_id}/{appointment_id}/{selectedRating}', 'AppointmentsController@give_rating_appointment');
@@ -92,6 +93,7 @@ Route::get('/submit_reasons_dislike_appointment/{user_id}/{appointment_id}/{reas
 Route::get('/user_cancel_dislike_appointment/{user_id}/{_appointmentid}', 'AppointmentsController@user_cancel_dislike_appointment');
 Route::get('/user_click_fav_btn_appointment/{user_id}/{appointment_id}/{type}', 'AppointmentsController@user_click_fav_btn_appointment');
 Route::get('/update_user_view_appointment/{user_id}/{appointment_id}', 'AppointmentsController@update_user_view_appointment');
+Route::get('/get_list_quiz_area', 'AppointmentsController@get_list_quiz_area');
 
 
 // Share

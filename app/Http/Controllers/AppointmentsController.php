@@ -622,4 +622,44 @@ class AppointmentsController extends Controller
         return 'success' ;
     }
 
+    function get_data_appointment_now($training_type_id, $month, $year , $type_appointment){
+
+        if($training_type_id == 'all'){
+            $data = DB::table('appointments')
+                ->join('training_types', 'training_types.id', '=', 'appointments.training_type_id')
+                ->select('appointments.*', 'training_types.type_article')
+                ->where('appointments.type', $type_appointment)
+                ->whereYear('date_start', $year)
+                ->whereMonth('date_start', $month)
+                ->orderBy('date_start', 'ASC')
+                ->orderBy('time_start', 'ASC')
+                ->get();
+        }
+        else{
+            $data = DB::table('appointments')
+                ->join('training_types', 'training_types.id', '=', 'appointments.training_type_id')
+                ->select('appointments.*', 'training_types.type_article')
+                ->where('appointments.type', $type_appointment)
+                ->where('training_types.id', $training_type_id)
+                ->whereYear('date_start', $year)
+                ->whereMonth('date_start', $month)
+                ->orderBy('date_start', 'ASC')
+                ->orderBy('time_start', 'ASC')
+                ->get();
+        }
+
+        return $data ;
+
+    }
+
+    function get_list_quiz_area(){
+
+        $data = DB::table('appointment_areas')
+                ->orderBy('area', 'ASC')
+                ->orderBy('sub_area', 'ASC')
+                ->get();
+
+        return $data ;
+
+    }
 }

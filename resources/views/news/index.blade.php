@@ -240,68 +240,14 @@ box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
                 <div class="row">
                     <div class="col-lg-12 mt-3">
                         <div class="owl-carousel carousel-fav-course owl-theme">
-                            <div class="item">
-                                <div class="position-relative">
-                                    <div class="container-img">
-                                        <img src="{{ url('/img/icon/square_empty.png') }}">
-                                    </div>
-                                    <div class="position-absolute detail-on-img w-100">
-                                        <div>
-                                            <div class="d-flex align-items-center " style="margin-bottom: 10px;">
-                                                <h1 class="m-0 text-white me-3" style="font-weight: bolder;">13</h1>
-                                                <div>
-                                                    <p class="m-0">วันเสาร์</p>
-                                                    <p class="m-0">เมษายนต์ 2567</p>
-                                                </div>
-                                            </div>
-                                            <p class="" style="margin-bottom: 10px;">เชิญชวนสรงน้ำพระมหาสงกรานต์</p>
-                                            <p class="m-0" style="font-size: 12px;">เริ่มเวลา 08.00 น.</p>
-                                            <p class="m-0" style="font-size: 12px;">สถานที่ centralworld</p>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="item">
+                                <img src="{{ url('/img/icon/ad.png') }}">
                             </div>
                             <div class="item">
-                                <div class="position-relative">
-                                    <div class="container-img">
-                                        <img src="{{ url('/img/icon/square_empty.png') }}">
-                                    </div>
-                                    <div class="position-absolute detail-on-img w-100">
-                                        <div>
-                                            <div class="d-flex align-items-center " style="margin-bottom: 10px;">
-                                                <h1 class="m-0 text-white me-3" style="font-weight: bolder;">13</h1>
-                                                <div>
-                                                    <p class="m-0">วันเสาร์</p>
-                                                    <p class="m-0">เมษายนต์ 2567</p>
-                                                </div>
-                                            </div>
-                                            <p class="" style="margin-bottom: 10px;">เชิญชวนสรงน้ำพระมหาสงกรานต์</p>
-                                            <p class="m-0" style="font-size: 12px;">เริ่มเวลา 08.00 น.</p>
-                                            <p class="m-0" style="font-size: 12px;">สถานที่ centralworld</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                <img src="{{ url('/img/icon/ad.png') }}">
                             </div>
                             <div class="item">
-                                <div class="position-relative">
-                                    <div class="container-img">
-                                        <img src="{{ url('/img/icon/square_empty.png') }}">
-                                    </div>
-                                    <div class="position-absolute detail-on-img w-100">
-                                        <div>
-                                            <div class="d-flex align-items-center " style="margin-bottom: 10px;">
-                                                <h1 class="m-0 text-white me-3" style="font-weight: bolder;">13</h1>
-                                                <div>
-                                                    <p class="m-0">วันเสาร์</p>
-                                                    <p class="m-0">เมษายนต์ 2567</p>
-                                                </div>
-                                            </div>
-                                            <p class="" style="margin-bottom: 10px;">เชิญชวนสรงน้ำพระมหาสงกรานต์</p>
-                                            <p class="m-0" style="font-size: 12px;">เริ่มเวลา 08.00 น.</p>
-                                            <p class="m-0" style="font-size: 12px;">สถานที่ centralworld</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                <img src="{{ url('/img/icon/ad.png') }}">
                             </div>
                         </div>
                     </div>
@@ -386,13 +332,67 @@ box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
                     <div class="col-lg-12 my-3">
                         <div class="owl-carousel carousel-fav-course owl-theme">
                             <div class="item">
-                                <img src="{{ url('/img/icon/event.png') }}">
+                                <div class="position-relative">
+                                    <div class="container-img">
+                                        <img src="{{ url('/img/icon/square_empty.png') }}">
+                                    </div>
+                                    <div class="position-absolute detail-on-img w-100">
+                                        <div>
+                                            <div class="d-flex align-items-center " style="margin-bottom: 10px;">
+                                                <h1 class="m-0 text-white me-3" style="font-weight: bolder;">13</h1>
+                                                <div>
+                                                    <p class="m-0">วันเสาร์</p>
+                                                    <p class="m-0">เมษายนต์ 2567</p>
+                                                </div>
+                                            </div>
+                                            <p class="" style="margin-bottom: 10px;">เชิญชวนสรงน้ำพระมหาสงกรานต์</p>
+                                            <p class="m-0" style="font-size: 12px;">เริ่มเวลา 08.00 น.</p>
+                                            <p class="m-0" style="font-size: 12px;">สถานที่ centralworld</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="item">
-                                <img src="{{ url('/img/icon/event.png') }}">
+                                <div class="position-relative">
+                                    <div class="container-img">
+                                        <img src="{{ url('/img/icon/square_empty.png') }}">
+                                    </div>
+                                    <div class="position-absolute detail-on-img w-100">
+                                        <div>
+                                            <div class="d-flex align-items-center " style="margin-bottom: 10px;">
+                                                <h1 class="m-0 text-white me-3" style="font-weight: bolder;">13</h1>
+                                                <div>
+                                                    <p class="m-0">วันเสาร์</p>
+                                                    <p class="m-0">เมษายนต์ 2567</p>
+                                                </div>
+                                            </div>
+                                            <p class="" style="margin-bottom: 10px;">เชิญชวนสรงน้ำพระมหาสงกรานต์</p>
+                                            <p class="m-0" style="font-size: 12px;">เริ่มเวลา 08.00 น.</p>
+                                            <p class="m-0" style="font-size: 12px;">สถานที่ centralworld</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="item">
-                                <img src="{{ url('/img/icon/event.png') }}">
+                                <div class="position-relative">
+                                    <div class="container-img">
+                                        <img src="{{ url('/img/icon/square_empty.png') }}">
+                                    </div>
+                                    <div class="position-absolute detail-on-img w-100">
+                                        <div>
+                                            <div class="d-flex align-items-center " style="margin-bottom: 10px;">
+                                                <h1 class="m-0 text-white me-3" style="font-weight: bolder;">13</h1>
+                                                <div>
+                                                    <p class="m-0">วันเสาร์</p>
+                                                    <p class="m-0">เมษายนต์ 2567</p>
+                                                </div>
+                                            </div>
+                                            <p class="" style="margin-bottom: 10px;">เชิญชวนสรงน้ำพระมหาสงกรานต์</p>
+                                            <p class="m-0" style="font-size: 12px;">เริ่มเวลา 08.00 น.</p>
+                                            <p class="m-0" style="font-size: 12px;">สถานที่ centralworld</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

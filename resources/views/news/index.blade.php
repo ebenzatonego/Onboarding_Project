@@ -209,9 +209,13 @@ box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
         left: 50%;
         transform: translate(-50%, -50%);
         padding: 0 10px 0 25px;
+        
+    }
+    .detail-on-img p {
         white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  width: 100%;
     }
 </style>
 

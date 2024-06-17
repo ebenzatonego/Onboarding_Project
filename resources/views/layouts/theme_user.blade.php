@@ -320,7 +320,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle-nocaret position-relative" href="{{ url('/demo/calendar') }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle-nocaret position-relative" href="{{ url('/calendars') }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <span class="alert-count d-none"></span>
                             <i class="fa-regular fa-calendar text-color-obd"></i>
                         </a>

@@ -525,7 +525,7 @@
                 <span class="ms-3">My Calendar / Reminder</span>
             </div>
             <button class="btn-add-schedule" data-bs-toggle="modal" data-bs-target="#modal_add_carlendar">
-                + Add Schedule
+                + เพิ่มข้อมูล
             </button>
         </div>
         <div class="d-flex justify-content-center flex-wrap mt-2">
@@ -941,7 +941,7 @@
         <div class="modal-content" style="border-radius: 8.214px;position: relative;">
             <button type="button" class="btn-close" style="position: absolute;  top: 30px;  right: 10px;  transform: translate(-50%, -50%);" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-header border-bottom-0 mt-3">
-                <h5 class="modal-title text-center w-100 " id="modal-title" style="color:#6E7781">Add Event</h5>
+                <h5 class="modal-title text-center w-100 " id="modal-title" style="color:#6E7781">เพิ่มข้อมูล</h5>
             </div>
             <form id="form_calendar">
                 <div class="modal-body px-5 pb-0">
@@ -949,15 +949,15 @@
                         วันสิ้นสุดกิจกรรมควรมากกว่าวันที่เริ่มกิจกรรม
                     </div>
                     <div class="row mb-3">
-                        <label for="title" class="col-3 col-form-label">ชื่อโน็ต</label>
+                        <label for="title" class="col-3 col-form-label">ชื่อโน้ต</label>
                         <div class="col-9">
-                            <input style="border-radius: 50px;" type="text" class="form-control" id="title" placeholder="กรอกชื่อโน็ต" required>
+                            <input style="border-radius: 50px;" type="text" class="form-control" id="title" placeholder="กรอกชื่อโน้ต" required>
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="title" class="col-3 col-form-label">แท็ก</label>
+                        <label for="title" class="col-3 col-form-label">แฮชแท็ก</label>
                         <div class="col-9">
-                            <input style="border-radius: 50px;" type="text" class="form-control" list="data_list_type" id="type_memo" placeholder="กรอกแท็ก" required>
+                            <input style="border-radius: 50px;" type="text" class="form-control" list="data_list_type" id="type_memo" placeholder="กรอกแฮชแท็ก" required>
                             <datalist id="data_list_type">
                                 @foreach($tag_calendars as $item)
                                 <option value="{{$item->type}}"></option>

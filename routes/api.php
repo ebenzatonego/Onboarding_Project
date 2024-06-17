@@ -95,6 +95,9 @@ Route::get('/user_click_fav_btn_appointment/{user_id}/{appointment_id}/{type}', 
 Route::get('/update_user_view_appointment/{user_id}/{appointment_id}', 'AppointmentsController@update_user_view_appointment');
 Route::get('/get_list_quiz_area', 'AppointmentsController@get_list_quiz_area');
 
+// activity
+Route::get('/update_user_view_activity/{user_id}/{activity_id}', 'ActivitysController@update_user_view_activity');
+
 
 // Share
 Route::get('/save_log_share/{user_id}/{type_table}/{type_social}/{id}', 'AdminController@save_log_share');

@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Models\Activity;
 use Illuminate\Http\Request;
 use App\Models\Activity_type;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class ActivitysController extends Controller
 {
@@ -152,5 +154,44 @@ class ActivitysController extends Controller
         Activity::destroy($id);
 
         return redirect('activitys')->with('flash_message', 'Activity deleted!');
+    }
+
+    function update_user_view_activity($user_id,$activity_id){
+        $data_activity = Activity::where('id' , $activity_id)->first();
+        $array_log = array();
+
+        if( empty($data_activity->user_view) ){
+
+            $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+
+        }else{
+
+            $array_log = json_decode($data_activity->user_view, true);
+
+            if (array_key_exists($user_id, $array_log)) {
+
+                // หากเท่ากันให้เพิ่ม key round และ time ใน key นั้น
+                $count_round_old = count($array_log[$user_id]);
+                $new_round = intval($count_round_old) + 1 ;
+
+                $array_log[$user_id][$new_round]['datetime'] = date("d/m/Y H:i");
+            } else {
+                // หากไม่เท่ากันให้เพิ่ม key ใหม่โดยใช้ $user_id
+                $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+            }
+
+        }
+
+        $jsonLog = json_encode($array_log);
+
+        DB::table('activitys')
+            ->where([ 
+                    ['id', $activity_id],
+                ])
+            ->update([
+                    'user_view' => $jsonLog,
+                ]);
+
+        return 'success' ;
     }
 }

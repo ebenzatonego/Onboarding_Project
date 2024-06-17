@@ -135,6 +135,7 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
 
     // Activitys
     Route::resource('activitys', 'ActivitysController');
+    Route::get('activitys_show/{id}', 'ActivitysController@show');
 
 
 });

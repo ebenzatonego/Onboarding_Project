@@ -102,4 +102,5 @@ Route::get('/save_log_share/{user_id}/{type_table}/{type_social}/{id}', 'AdminCo
 
 // Calendar
 Route::get('/get_data_for_calendar', 'AdminController@get_data_for_calendar');
+Route::post('/add_calendar', 'CalendarsController@add_calendar');
 

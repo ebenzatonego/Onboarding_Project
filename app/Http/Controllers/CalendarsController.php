@@ -7,6 +7,9 @@ use App\Http\Requests;
 
 use App\Models\Calendar;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+
 
 class CalendarsController extends Controller
 {
@@ -19,6 +22,9 @@ class CalendarsController extends Controller
     {
         $keyword = $request->get('search');
         $perPage = 25;
+
+        $user_id = Auth::user()->id;
+        $tag_calendars = Calendar::where('user_id', $user_id)->get('type');
 
         if (!empty($keyword)) {
             $calendars = Calendar::where('title', 'LIKE', "%$keyword%")
@@ -37,7 +43,7 @@ class CalendarsController extends Controller
             $calendars = Calendar::latest()->paginate($perPage);
         }
 
-        return view('calendars.index', compact('calendars'));
+        return view('calendars.index', compact('calendars','tag_calendars'));
     }
 
     /**
@@ -126,5 +132,16 @@ class CalendarsController extends Controller
         Calendar::destroy($id);
 
         return redirect('calendars')->with('flash_message', 'Calendar deleted!');
+    }
+
+    public function add_calendar(Request $request)
+    {
+        $requestData = $request->all();
+
+        $calendar = Calendar::create($requestData);
+
+
+        // Return response
+        return response()->json($calendar);
     }
 }

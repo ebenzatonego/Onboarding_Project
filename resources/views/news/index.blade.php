@@ -8,6 +8,24 @@
 
     }
 
+    .container-img::after {
+        /* box-shadow: inset 3px 3px 10px 0 #000000; */
+        content: '';
+        display: block;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        -webkit-box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
+-moz-box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
+box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
+        border-radius: 15px !important;
+        -webkit-border-radius: 15px !important;
+        -moz-border-radius: 15px !important;
+        -ms-border-radius: 15px !important;
+        -o-border-radius: 15px !important;
+    }
+
     .carousel-fav-course .item img {
         width: 100%;
         height: 100%;
@@ -184,6 +202,17 @@
             width: 49% !important;
         }
     }
+
+    .detail-on-img {
+        position: absolute;
+        bottom: -10%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 0 10px 0 25px;
+        white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+    }
 </style>
 
 <div class="tab-content container mt-2" id="pills-tabContent">
@@ -208,13 +237,67 @@
                     <div class="col-lg-12 mt-3">
                         <div class="owl-carousel carousel-fav-course owl-theme">
                             <div class="item">
-                                <img src="{{ url('/img/icon/ad.png') }}">
+                                <div class="position-relative">
+                                    <div class="container-img">
+                                        <img src="{{ url('/img/icon/square_empty.png') }}">
+                                    </div>
+                                    <div class="position-absolute detail-on-img w-100">
+                                        <div>
+                                            <div class="d-flex align-items-center " style="margin-bottom: 10px;">
+                                                <h1 class="m-0 text-white me-3" style="font-weight: bolder;">13</h1>
+                                                <div>
+                                                    <p class="m-0">วันเสาร์</p>
+                                                    <p class="m-0">เมษายนต์ 2567</p>
+                                                </div>
+                                            </div>
+                                            <p class="" style="margin-bottom: 10px;">เชิญชวนสรงน้ำพระมหาสงกรานต์</p>
+                                            <p class="m-0" style="font-size: 12px;">เริ่มเวลา 08.00 น.</p>
+                                            <p class="m-0" style="font-size: 12px;">สถานที่ centralworld</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="item">
-                                <img src="{{ url('/img/icon/ad.png') }}">
+                                <div class="position-relative">
+                                    <div class="container-img">
+                                        <img src="{{ url('/img/icon/square_empty.png') }}">
+                                    </div>
+                                    <div class="position-absolute detail-on-img w-100">
+                                        <div>
+                                            <div class="d-flex align-items-center " style="margin-bottom: 10px;">
+                                                <h1 class="m-0 text-white me-3" style="font-weight: bolder;">13</h1>
+                                                <div>
+                                                    <p class="m-0">วันเสาร์</p>
+                                                    <p class="m-0">เมษายนต์ 2567</p>
+                                                </div>
+                                            </div>
+                                            <p class="" style="margin-bottom: 10px;">เชิญชวนสรงน้ำพระมหาสงกรานต์</p>
+                                            <p class="m-0" style="font-size: 12px;">เริ่มเวลา 08.00 น.</p>
+                                            <p class="m-0" style="font-size: 12px;">สถานที่ centralworld</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="item">
-                                <img src="{{ url('/img/icon/ad.png') }}">
+                                <div class="position-relative">
+                                    <div class="container-img">
+                                        <img src="{{ url('/img/icon/square_empty.png') }}">
+                                    </div>
+                                    <div class="position-absolute detail-on-img w-100">
+                                        <div>
+                                            <div class="d-flex align-items-center " style="margin-bottom: 10px;">
+                                                <h1 class="m-0 text-white me-3" style="font-weight: bolder;">13</h1>
+                                                <div>
+                                                    <p class="m-0">วันเสาร์</p>
+                                                    <p class="m-0">เมษายนต์ 2567</p>
+                                                </div>
+                                            </div>
+                                            <p class="" style="margin-bottom: 10px;">เชิญชวนสรงน้ำพระมหาสงกรานต์</p>
+                                            <p class="m-0" style="font-size: 12px;">เริ่มเวลา 08.00 น.</p>
+                                            <p class="m-0" style="font-size: 12px;">สถานที่ centralworld</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -313,12 +396,12 @@
 
                         @php
                             $data_activity_type = App\Models\Activity_type::orderByRaw("CASE 
-                                    WHEN number_menu IS NOT NULL THEN 1
-                                    ELSE 2
-                                    END, 
-                                    number_menu ASC, 
-                                    id DESC")
-                                ->get();
+                            WHEN number_menu IS NOT NULL THEN 1
+                            ELSE 2
+                            END, 
+                            number_menu ASC, 
+                            id DESC")
+                            ->get();
                         @endphp
 
                         <div class="owl-carousel carousel-menu-course owl-theme">

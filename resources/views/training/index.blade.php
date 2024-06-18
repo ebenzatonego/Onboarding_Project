@@ -140,114 +140,114 @@
                         <div class="w-100">
                             @if(!empty($photo_menu_highlight_1->id))
                             <a href="{{ url('/sub_training') . '/' . $photo_menu_highlight_1->id }}" class="long-item mt-3">
-                            @else
-                            <a href="{{ url('/sub_training/all') }}" class="long-item mt-3">
-                            @endif
-                                @if( !empty($photo_menu_highlight_1) )
-                                    <img src="{{ $photo_menu_highlight_1->photo_menu }}" >
                                 @else
+                                <a href="{{ url('/sub_training/all') }}" class="long-item mt-3">
+                                    @endif
+                                    @if( !empty($photo_menu_highlight_1) )
+                                    <img src="{{ $photo_menu_highlight_1->photo_menu }}">
+                                    @else
                                     <div>
                                         <p style="font-size: 14px;margin-bottom: 2;">หลักสูตร</p>
                                         <p style="font-size: 18px;font-weight: bolder;margin-bottom: 0;">ทั้งหมด</p>
                                     </div>
-                                @endif
-                                <div class="count-training">
-                                    @if(!empty($photo_menu_highlight_1->id))
-                                    <span id="count_training_highlight_1" style="font-size: 24px;font-weight: bolder;color: #fff;"></span>
-                                    @else
-                                    <span style="font-size: 24px;font-weight: bolder;color: #fff;">{{ count($training) }}</span>
                                     @endif
-                                    <span class="ms-1" style="color: #fff;">หลักสูตร</span>
-                                </div>
-                            </a>
-                            @if(!empty($photo_menu_highlight_2->id))
-                            <a href="{{ url('/sub_training') . '/' . $photo_menu_highlight_2->id }}" class="square-item mt-3">
-                            @else
-                            <a href="{{ url('/sub_training/all') }}" class="square-item mt-3">
-                            @endif
-                                @if( !empty($photo_menu_highlight_2) )
-                                    <img src="{{ $photo_menu_highlight_2->photo_menu }}">
-                                @else
-                                    <div>
-                                        <p style="font-size: 14px;margin-bottom: 2;">หลักสูตร</p>
-                                        <p style="font-size: 18px;font-weight: bolder;margin-bottom: 0;">ทั้งหมด</p>
+                                    <div class="count-training">
+                                        @if(!empty($photo_menu_highlight_1->id))
+                                        <span id="count_training_highlight_1" style="font-size: 24px;font-weight: bolder;color: #fff;"></span>
+                                        @else
+                                        <span style="font-size: 24px;font-weight: bolder;color: #fff;">{{ count($training) }}</span>
+                                        @endif
+                                        <span class="ms-1" style="color: #fff;">หลักสูตร</span>
                                     </div>
-                                @endif
-                                <div class="count-training">
-                                    @if(!empty($photo_menu_highlight_2->id))
-                                    <span id="count_training_highlight_2" style="font-size: 24px;font-weight: bolder;color: #fff;"></span>
+                                </a>
+                                @if(!empty($photo_menu_highlight_2->id))
+                                <a href="{{ url('/sub_training') . '/' . $photo_menu_highlight_2->id }}" class="square-item mt-3">
                                     @else
-                                    <span style="font-size: 24px;font-weight: bolder;color: #fff;">{{ count($training) }}</span>
-                                    @endif
-                                    <span class="ms-1" style="color: #003781;">หลักสูตร</span>
-                                </div>
-                            </a>
+                                    <a href="{{ url('/sub_training/all') }}" class="square-item mt-3">
+                                        @endif
+                                        @if( !empty($photo_menu_highlight_2) )
+                                        <img src="{{ $photo_menu_highlight_2->photo_menu }}">
+                                        @else
+                                        <div>
+                                            <p style="font-size: 14px;margin-bottom: 2;">หลักสูตร</p>
+                                            <p style="font-size: 18px;font-weight: bolder;margin-bottom: 0;">ทั้งหมด</p>
+                                        </div>
+                                        @endif
+                                        <div class="count-training">
+                                            @if(!empty($photo_menu_highlight_2->id))
+                                            <span id="count_training_highlight_2" style="font-size: 24px;font-weight: bolder;color: #fff;"></span>
+                                            @else
+                                            <span style="font-size: 24px;font-weight: bolder;color: #fff;">{{ count($training) }}</span>
+                                            @endif
+                                            <span class="ms-1" style="color: #003781;">หลักสูตร</span>
+                                        </div>
+                                    </a>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="w-100">
                             @if(!empty($photo_menu_highlight_3->id))
                             <a href="{{ url('/sub_training') . '/' . $photo_menu_highlight_3->id }}" class="square-item mt-3">
-                            @else
-                            <a href="{{ url('/sub_training/all') }}" class="square-item mt-3">
-                            @endif
-                                @if( !empty($photo_menu_highlight_3) )
+                                @else
+                                <a href="{{ url('/sub_training/all') }}" class="square-item mt-3">
+                                    @endif
+                                    @if( !empty($photo_menu_highlight_3) )
                                     <img src="{{ $photo_menu_highlight_3->photo_menu }}">
-                                @else
+                                    @else
                                     <div>
                                         <p style="font-size: 14px;margin-bottom: 2;">หลักสูตร</p>
                                         <p style="font-size: 18px;font-weight: bolder;margin-bottom: 0;">ทั้งหมด</p>
                                     </div>
-                                @endif
-                                <div class="count-training">
-                                    @if(!empty($photo_menu_highlight_3->id))
-                                    <span id="count_training_highlight_3" style="font-size: 24px;font-weight: bolder;color: #fff;"></span>
-                                    @else
-                                    <span style="font-size: 24px;font-weight: bolder;color: #fff;">{{ count($training) }}</span>
                                     @endif
-                                    <span class="ms-1" style="color: #003781;">หลักสูตร</span>
-                                </div>
-                            </a>
-                            @if(!empty($photo_menu_highlight_4->id))
-                            <a href="{{ url('/sub_training') . '/' . $photo_menu_highlight_4->id }}" class="long-item mt-3">
-                            @else
-                            <a href="{{ url('/sub_training/all') }}" class="long-item mt-3">
-                            @endif
-                                @if( !empty($photo_menu_highlight_4) )
-                                    <img src="{{ $photo_menu_highlight_4->photo_menu }}">
-                                @else
-                                    <div>
-                                        <p style="font-size: 14px;margin-bottom: 2;">หลักสูตร</p>
-                                        <p style="font-size: 18px;font-weight: bolder;margin-bottom: 0;">ทั้งหมด</p>
+                                    <div class="count-training">
+                                        @if(!empty($photo_menu_highlight_3->id))
+                                        <span id="count_training_highlight_3" style="font-size: 24px;font-weight: bolder;color: #fff;"></span>
+                                        @else
+                                        <span style="font-size: 24px;font-weight: bolder;color: #fff;">{{ count($training) }}</span>
+                                        @endif
+                                        <span class="ms-1" style="color: #003781;">หลักสูตร</span>
                                     </div>
-                                @endif
-                                <div class="count-training">
-                                    @if(!empty($photo_menu_highlight_4->id))
-                                    <span id="count_training_highlight_4" style="font-size: 24px;font-weight: bolder;color: #fff;"></span>
+                                </a>
+                                @if(!empty($photo_menu_highlight_4->id))
+                                <a href="{{ url('/sub_training') . '/' . $photo_menu_highlight_4->id }}" class="long-item mt-3">
                                     @else
-                                    <span style="font-size: 24px;font-weight: bolder;color: #fff;">{{ count($training) }}</span>
-                                    @endif
-                                    <span class="ms-1" style="color: #fff;">หลักสูตร</span>
-                                </div>
-                            </a>
+                                    <a href="{{ url('/sub_training/all') }}" class="long-item mt-3">
+                                        @endif
+                                        @if( !empty($photo_menu_highlight_4) )
+                                        <img src="{{ $photo_menu_highlight_4->photo_menu }}">
+                                        @else
+                                        <div>
+                                            <p style="font-size: 14px;margin-bottom: 2;">หลักสูตร</p>
+                                            <p style="font-size: 18px;font-weight: bolder;margin-bottom: 0;">ทั้งหมด</p>
+                                        </div>
+                                        @endif
+                                        <div class="count-training">
+                                            @if(!empty($photo_menu_highlight_4->id))
+                                            <span id="count_training_highlight_4" style="font-size: 24px;font-weight: bolder;color: #fff;"></span>
+                                            @else
+                                            <span style="font-size: 24px;font-weight: bolder;color: #fff;">{{ count($training) }}</span>
+                                            @endif
+                                            <span class="ms-1" style="color: #fff;">หลักสูตร</span>
+                                        </div>
+                                    </a>
                         </div>
                     </div>
                 </div>
 
                 <script>
-                    function get_count_training_highlight(){
+                    function get_count_training_highlight() {
 
                         for (let i = 1; i < 5; i++) {
                             fetch("{{ url('/') }}/api/get_count_training_highlight/" + i)
-                              .then(response => response.text())
-                              .then(result => {
+                                .then(response => response.text())
+                                .then(result => {
                                     // console.log(i)
                                     // console.log(result);
 
-                                    if(document.querySelector('#count_training_highlight_'+i)){
-                                        document.querySelector('#count_training_highlight_'+i).innerHTML = result ;
+                                    if (document.querySelector('#count_training_highlight_' + i)) {
+                                        document.querySelector('#count_training_highlight_' + i).innerHTML = result;
                                     }
-                            });
+                                });
                         }
 
                     }
@@ -382,11 +382,11 @@
                     /* box-shadow: 0 0 1px 0 rgba(24, 94, 224, 0.15), 0 6px 12px 0 rgba(24, 94, 224, 0.15); */
                     padding: 0.2rem;
                     border-radius: 99px;
-                    z-index: 4;
+                    z-index:1;
                 }
 
                 .tabs * {
-                    z-index: 5;
+                    z-index: 2;
                 }
 
                 .container input[type="radio"] {
@@ -485,12 +485,13 @@
                     color: #fff !important;
                     background-color: #003781 !important;
                 }
+               
             </style>
-            <div id="for_appointment" class="col-lg-7 mt-4">
+            <div id="for_appointment" class="col-lg-7 mt-4" style="z-index: 5;position: relative;">
                 <a href="#for_appointment" class="d-none" id="btn_a_div_for_appointment"></a>
-                <div class="tabs">
+                <div class="tabs" style="z-index: 5;">
                     <input type="radio" id="radio-1" name="tabs_traning_appointment" checked="">
-                    <label class="tab" for="radio-1" onclick="document.querySelector('#content_training_schedule').classList.toggle('d-none');document.querySelector('#content_exam_schedule').classList.toggle('d-none');document.querySelector('#btn_a_div_for_appointment').click();">
+                    <label class="tab" for="radio-1" onclick="show_schedule('อบรม')">
                         <svg width="27" height="24" viewBox="0 0 27 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect class="stroke-svg" x="0.5" y="0.5" width="26" height="19" rx="2.5" fill="none" />
                             <rect class="fill-svg" x="6" y="23" width="15" height="1" rx="0.5" />
@@ -504,7 +505,7 @@
                         <span>ตารางอบรม</span>
                     </label>
                     <input type="radio" id="radio-2" name="tabs_traning_appointment">
-                    <label class="tab" for="radio-2" onclick="document.querySelector('#content_training_schedule').classList.toggle('d-none');document.querySelector('#content_exam_schedule').classList.toggle('d-none');document.querySelector('#btn_a_div_for_appointment').click();">
+                    <label class="tab" for="radio-2" onclick="show_schedule('สอบ')">
                         <svg width="27" height="24" viewBox="0 0 27 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect class="stroke-svg" x="0.5" y="0.5" width="26" height="19" rx="2.5" fill="none" />
                             <rect class="fill-svg" x="6" y="23" width="15" height="1" rx="0.5" />
@@ -519,19 +520,19 @@
                     </label>
                     <span class="glider"></span>
                 </div>
-                <div class="card py-4 px-2" style="margin-top: -15px;z-index: 0;" id="content_training_schedule">
+                <div class="card py-4 px-2" style="margin-top: -15px;" id="content_training_schedule">
                     <div class="d-flex w-100 justify-content-between align-items-center my-3 px-2">
-                        <a class=" m-0 p-0" onclick="goBack();get_data_appointment_now('อบรม');">
+                        <a class=" m-0 p-0" onclick="goBack('อบรม');get_data_appointment_now('อบรม');">
                             <i class="fa-regular fa-chevron-left" style="font-size: 14px;color:#848CA1;"></i>
                         </a>
 
                         <span id="displayDate_appointment" style="font-size: 14px;color:#848CA1;"></span>
 
-                        <a class=" m-0 p-0" onclick="goNext();get_data_appointment_now('อบรม');">
+                        <a class=" m-0 p-0" onclick="goNext('อบรม');get_data_appointment_now('อบรม');">
                             <i class="fa-solid fa-chevron-right" style="font-size: 14px;color:#848CA1;"></i>
                         </a>
                     </div>
-                    <div class="dropdown">
+                    <div class="dropdown mx-2">
                         <!-- <button class="btn dropdown-toggle btn-toggle-traning-appointment active" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="document.querySelector('#dropdownMenuButton').classList.toggle('active')">
                             ทั้งหมด
                         </button>
@@ -540,192 +541,202 @@
                             <a class="dropdown-item" href="#">Another action</a>
                             <a class="dropdown-item" href="#">Something else here</a>
                         </div> -->
+
                         <!-- <button class="btn btn-toggle-traning-appointment">แนะนำ</button>
                         <button class="btn btn-toggle-traning-appointment">Blue Star</button>
                         <button class="btn btn-toggle-traning-appointment">Unit Links</button> -->
 
-                        <ul id="list_number_menu_of_appointment" class="nav nav-pills mb-3 d-flex justify-content-center" id="pills-tab" role="tablist">
+                   
+
+
+
+                        <ul id="list_number_menu_of_appointment" class="nav nav-pills mb-3 d-flex justify-content-center dropdown show" role="tablist">
                             <li class="nav-item me-2 dropdown">
-                                <a id="text_show_type_select" class="nav-link dropdown-toggle btn-toggle-traning-appointment active" data-toggle="pill" href="#" role="tap" aria-haspopup="true" aria-expanded="false" onclick="document.querySelector('#dropdowntest').classList.add('show')">ทั้งหมด</a>
-                                <div class="dropdown-menu" id="dropdowntest">
+
+                                <a class="btn  dropdown-toggle  btn-toggle-traning-appointment active" href="#" role="button" id="text_show_type_select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    ทั้งหมด
+                                </a>
+                                <div class="dropdown-menu"  aria-labelledby="dropdownMenuLink" id="dropdowntest" >
                                     <!--  -->
                                 </div>
                             </li>
                         </ul>
+                        <script>
+                            // ตารางอบรม
+                            var now_view_training_type = 'all';
 
-<script>
+                            function get_data_appointment_now(type_appointment) {
 
-    // ตารางอบรม
-    var now_view_training_type = 'all';
-    function get_data_appointment_now(type_appointment){
+                                let now_view_month = document.querySelector('#appointment_month');
+                                let now_view_year = document.querySelector('#appointment_year');
 
-        let now_view_month = document.querySelector('#appointment_month');
-        let now_view_year = document.querySelector('#appointment_year');
-        
-        // console.log(now_view_training_type);
-        // console.log(now_view_month.value);
-        // console.log(now_view_year.value);
+                                // console.log(now_view_training_type);
+                                // console.log(now_view_month.value);
+                                // console.log(now_view_year.value);
 
-        fetch("{{ url('/') }}/api/get_data_appointment_now/" + now_view_training_type + "/" + now_view_month.value + "/" + now_view_year.value + "/" + type_appointment)
-            .then(response => response.json())
-            .then(result => {
-                // console.log(result);
+                                fetch("{{ url('/') }}/api/get_data_appointment_now/" + now_view_training_type + "/" + now_view_month.value + "/" + now_view_year.value + "/" + type_appointment)
+                                    .then(response => response.json())
+                                    .then(result => {
+                                        // console.log(result);
 
-                if(result){
+                                        if (result) {
 
-                    let content_appointment = document.querySelector('#content_appointment');
-                        content_appointment.innerHTML = '';
+                                            let content_appointment = document.querySelector('#content_appointment');
+                                            content_appointment.innerHTML = '';
 
-                    let date_update = '' ;
-                    for (let i = 0; i < result.length; i++) {
-                        
-                        if(date_update != result[i].date_start){
-                            date_update = result[i].date_start;
+                                            let date_update = '';
+                                            for (let i = 0; i < result.length; i++) {
 
-                            let formatDate_show = formatDate(result[i].date_start);
-                            let show_date = formatDate_show.split(',');
+                                                if (date_update != result[i].date_start) {
+                                                    date_update = result[i].date_start;
 
-                            let html_datetime = `
+                                                    let formatDate_show = formatDate(result[i].date_start);
+                                                    let show_date = formatDate_show.split(',');
+
+                                                    let html_datetime = `
                                 <div class="d-flex w-100 align-items-center mt-3">
-                                    <div class="name-date-appointment">`+show_date[0]+`</div>
-                                    <div class="day-appointment">`+show_date[1]+`</div>
+                                    <div class="name-date-appointment">` + show_date[0] + `</div>
+                                    <div class="day-appointment">` + show_date[1] + `</div>
                                 </div>
                             `;
 
-                            content_appointment.insertAdjacentHTML('beforeend', html_datetime); // แทรกล่างสุด
+                                                    content_appointment.insertAdjacentHTML('beforeend', html_datetime); // แทรกล่างสุด
 
-                        }
+                                                }
 
 
-                        let show_time = ``;
-                        if( result[i].time_start && result[i].time_end ){
+                                                let show_time = ``;
+                                                if (result[i].time_start && result[i].time_end) {
 
-                            let timeStart12 = formatTime24to12(result[i].time_start);
-                            let timeEnd12 = formatTime24to12(result[i].time_end);
+                                                    let timeStart12 = formatTime24to12(result[i].time_start);
+                                                    let timeEnd12 = formatTime24to12(result[i].time_end);
 
-                            show_time = `
-                                <p class="time-start">`+timeStart12+`</p>
-                                <p class="time-end">`+timeEnd12+`</p>
+                                                    show_time = `
+                                <p class="time-start">` + timeStart12 + `</p>
+                                <p class="time-end">` + timeEnd12 + `</p>
                             `;
-                        }
-                        else if(result[i].time_start && !result[i].time_end){
-                            let timeStart12 = formatTime24to12(result[i].time_start);
+                                                } else if (result[i].time_start && !result[i].time_end) {
+                                                    let timeStart12 = formatTime24to12(result[i].time_start);
 
-                            show_time = `
-                                <p class="time-start">`+timeStart12+`</p>
+                                                    show_time = `
+                                <p class="time-start">` + timeStart12 + `</p>
                             `;
-                        }
-                        else if(!result[i].time_start && !result[i].time_end){
-                            show_time = `
+                                                } else if (!result[i].time_start && !result[i].time_end) {
+                                                    show_time = `
                                 <p class="time-start">All Day &nbsp;</p>
                             `;
-                        }
+                                                }
 
-                        let html = `
+                                                let html = `
                             <div class="d-flex w-100 align-items-center mt-2">
                                 <div>
-                                    `+show_time+`
+                                    ` + show_time + `
                                 </div>
                                 <div class="content-appointment training-schedule">
                                     <div>
-                                        <p class="title-appointment">`+result[i].title+`</p>
-                                        <p class="detail-appointment">`+result[i].type_article+`</p>
+                                        <p class="title-appointment">` + result[i].title + `</p>
+                                        <p class="detail-appointment">` + result[i].type_article + `</p>
                                     </div>
                                 </div>
                             </div>
                         `;
 
-                        content_appointment.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+                                                content_appointment.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
 
-                    }
+                                            }
 
-                    document.querySelector('#btn_a_div_for_appointment').click();
+                                            document.querySelector('#btn_a_div_for_appointment').click();
 
-                }
+                                        }
 
-            });
+                                    });
 
-    }
+                            }
 
-    function formatTime24to12(time24) {
-        const [hour, minute, second] = time24.split(':');
-        let hour12 = hour % 12 || 12; // Convert hour to 12-hour format, with 0 -> 12
-        let period = hour < 12 ? 'AM' : 'PM'; // Determine AM/PM
-        return `${hour12}:${minute} ${period}`;
-    }
+                            function formatTime24to12(time24) {
+                                const [hour, minute, second] = time24.split(':');
+                                let hour12 = hour % 12 || 12; // Convert hour to 12-hour format, with 0 -> 12
+                                let period = hour < 12 ? 'AM' : 'PM'; // Determine AM/PM
+                                return `${hour12}:${minute} ${period}`;
+                            }
 
-    function formatDate(dateString) {
-        // Create a new Date object from the dateString
-        const date = new Date(dateString);
-        
-        // Create an options object to format the date
-        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                            function formatDate(dateString) {
+                                // Create a new Date object from the dateString
+                                const date = new Date(dateString);
 
-        // Format the date using Intl.DateTimeFormat
-        return new Intl.DateTimeFormat('en-UK', options).format(date);
-    }
+                                // Create an options object to format the date
+                                const options = {
+                                    weekday: 'long',
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric'
+                                };
+
+                                // Format the date using Intl.DateTimeFormat
+                                return new Intl.DateTimeFormat('en-UK', options).format(date);
+                            }
 
 
-    function change_now_view_type(type_article , typemenu , text_type_article){
-        document.querySelector('#dropdowntest').classList.remove('show');
-        now_view_training_type = type_article ;
+                            function change_now_view_type(type_article, typemenu, text_type_article) {
+                                document.querySelector('#dropdowntest').classList.remove('show');
+                                now_view_training_type = type_article;
 
-        if(typemenu == 'menu_all'){
-            document.querySelector('#text_show_type_select').innerHTML = text_type_article ;
-        }
+                                if (typemenu == 'menu_all') {
+                                    document.querySelector('#text_show_type_select').innerHTML = text_type_article;
+                                }
 
-        get_data_appointment_now('อบรม');
-    }
+                                get_data_appointment_now('อบรม');
+                            }
 
-    function get_list_number_menu_of_appointment(){
-        fetch("{{ url('/') }}/api/get_list_number_menu_of_appointment")
-            .then(response => response.json())
-            .then(result => {
-                // console.log(result);
-                if(result){
+                            function get_list_number_menu_of_appointment() {
+                                fetch("{{ url('/') }}/api/get_list_number_menu_of_appointment")
+                                    .then(response => response.json())
+                                    .then(result => {
+                                        // console.log(result);
+                                        if (result) {
 
-                    // 3 MENU
-                    let ul_list = document.querySelector('#list_number_menu_of_appointment');
-                    for (let i = 0; i < result['menu'].length; i++) {
-                        
-                        let type_article = result['menu'][i].type_article.replace("หลักสูตร","");
-                            type_article = type_article.replace(" ","");
+                                            // 3 MENU
+                                            let ul_list = document.querySelector('#list_number_menu_of_appointment');
+                                            for (let i = 0; i < result['menu'].length; i++) {
 
-                        let html = `
+                                                let type_article = result['menu'][i].type_article.replace("หลักสูตร", "");
+                                                type_article = type_article.replace(" ", "");
+
+                                                let html = `
                             <li class="nav-item me-2">
-                                <a class="nav-link btn-toggle-traning-appointment" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false" onclick="change_now_view_type('`+result['menu'][i].id+`', null, null)">`+type_article+`</a>
+                                <a class="nav-link btn-toggle-traning-appointment" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false" onclick="change_now_view_type('` + result['menu'][i].id + `', null, null)">` + type_article + `</a>
                             </li>
                         `;
 
-                        ul_list.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
-                    }
+                                                ul_list.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+                                            }
 
-                    // Menu all
-                    let dropdowntest = document.querySelector('#dropdowntest');
+                                            // Menu all
+                                            let dropdowntest = document.querySelector('#dropdowntest');
 
-                    let html_item_all = `
+                                            let html_item_all = `
                         <a class="dropdown-item" onclick="change_now_view_type('all','menu_all','ทั้งหมด')">
                             ทั้งหมด
                         </a>
                     `;
 
-                    dropdowntest.insertAdjacentHTML('beforeend', html_item_all); // แทรกล่างสุด
+                                            dropdowntest.insertAdjacentHTML('beforeend', html_item_all); // แทรกล่างสุด
 
-                    for (let ii = 0; ii < result['all'].length; ii++) {
-                        
-                        let type_article_item = result['all'][ii].type_article.replace("หลักสูตร","");
-                            type_article_item = type_article_item.replace(" ","");
+                                            for (let ii = 0; ii < result['all'].length; ii++) {
 
-                        let html_item = `
-                            <a class="dropdown-item" onclick="change_now_view_type('`+result['menu'][ii].id+`','menu_all','`+type_article_item+`')">`+type_article_item+`</a>
+                                                let type_article_item = result['all'][ii].type_article.replace("หลักสูตร", "");
+                                                type_article_item = type_article_item.replace(" ", "");
+
+                                                let html_item = `
+                            <a class="dropdown-item" onclick="change_now_view_type('` + result['menu'][ii].id + `','menu_all','` + type_article_item + `')">` + type_article_item + `</a>
                         `;
 
-                        dropdowntest.insertAdjacentHTML('beforeend', html_item); // แทรกล่างสุด
-                    }
-                }
-            });
-    }
-</script>
+                                                dropdowntest.insertAdjacentHTML('beforeend', html_item); // แทรกล่างสุด
+                                            }
+                                        }
+                                    });
+                            }
+                        </script>
 
                         <style>
                             .name-date-appointment {
@@ -878,7 +889,6 @@
                     }
                 </style>
                 <div id="content_exam_schedule" class="d-none">
-
                     <div class="card py-4 px-2" style="margin-top: -15px;z-index: 0;">
 
                         <h6 style="color: #243287;text-align: center;margin-top: 10px;">
@@ -887,10 +897,55 @@
                         <div id="div_content_quiz_area">
 
                         </div>
-
                     </div>
+                </div>
 
+                <div class="card py-4 px-2 d-none" style="margin-top: -15px;z-index: 0;" id="content_training_exam">
+                    <div class="d-flex w-100 justify-content-between align-items-center my-3 px-2">
+                        <a class=" m-0 p-0" onclick="goBack('สอบ')">
+                            <i class="fa-regular fa-chevron-left" style="font-size: 14px;color:#848CA1;"></i>
+                        </a>
 
+                        <span id="displayDate_exam" style="font-size: 14px;color:#848CA1;"></span>
+
+                        <a class=" m-0 p-0" onclick="goNext('สอบ')">
+                            <i class="fa-solid fa-chevron-right" style="font-size: 14px;color:#848CA1;"></i>
+                        </a>
+                    </div>
+                    <div class="dropdown mx-2">
+                        <div class="appointment">
+                            <div class="d-flex w-100 align-items-center">
+                                <div class="name-date-appointment">Wednesday</div>
+                                <div class="day-appointment">25 April 2024</div>
+                            </div>
+                            <div class="d-flex w-100 align-items-center mt-2">
+                                <div>
+                                    <p class="time-start">16:00 pm</p>
+                                    <p class="time-end">16:45 pm</p>
+                                </div>
+                                <div class="content-appointment training-schedule">
+                                    <div>
+                                        <p class="title-appointment">อบรมพนักงานใหม่</p>
+                                        <p class="detail-appointment">หลักสูตร Star Blue</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex w-100 align-items-center mt-2">
+                                <div>
+                                    <p class="time-start">16:00 pm</p>
+                                    <p class="time-end">16:45 pm</p>
+                                </div>
+                                <div class="content-appointment exam-schedule ">
+                                    <div>
+                                        <p class="title-appointment">อบรมพนักงานใหม่</p>
+                                        <p class="detail-appointment">หลักสูตร Star Blue</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -901,6 +956,8 @@
 <input type="text" id="appointment_month" name="month" placeholder="MM" class="d-none">
 <input type="text" id="appointment_year" name="year" placeholder="YYYY" class="d-none">
 
+<input type="text" id="exam_month" name="month" placeholder="MM" class="d-none">
+<input type="text" id="exam_year" name="year" placeholder="YYYY" class="d-none">
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         change_active_menu_theme_user('Training');
@@ -924,63 +981,92 @@
         document.getElementById('appointment_year').value = currentYear;
         document.getElementById('displayDate_appointment').textContent = `${monthName} ${currentYear}`;
     }
+    function updateDisplayExam(date) {
+        const currentYear = date.getFullYear();
+        const currentMonth = (date.getMonth() + 1).toString().padStart(2, '0'); // เดือนใน JavaScript นับจาก 0
+        const monthName = monthNames[date.getMonth()];
 
+        document.getElementById('exam_month').value = currentMonth;
+        document.getElementById('exam_year').value = currentYear;
+        document.getElementById('displayDate_exam').textContent = `${monthName} ${currentYear}`;
+    }
     // แสดงผลเดือนและปีปัจจุบันในแท็ก p ทันทีเมื่อโหลดหน้าเว็บ
     updateDisplay(today);
+    updateDisplayExam(today);
 
     // ฟังก์ชั่นสำหรับปุ่ม ย้อนกลับ
-    function goBack() {
+    function goBack(type) {
         today.setMonth(today.getMonth() - 1);
-        updateDisplay(today);
+        
+        if (type == 'อบรม') {
+            updateDisplay(today);
+        } else {
+            updateDisplayExam(today);
+        }
     }
 
     // ฟังก์ชั่นสำหรับปุ่ม ถัดไป
-    function goNext() {
+    function goNext(type) {
         today.setMonth(today.getMonth() + 1);
-        updateDisplay(today);
+        if (type == 'อบรม') {
+            updateDisplay(today);
+        } else {
+            updateDisplayExam(today);
+        }
     }
+    function show_schedule(type) {
+        if (type == 'อบรม') {
+            document.querySelector('#content_training_schedule').classList.remove('d-none');
+            document.querySelector('#content_exam_schedule').classList.add('d-none');
+        document.querySelector('#content_training_exam').classList.add('d-none');
 
-    function create_list_quiz_area(){
+            document.querySelector('#btn_a_div_for_appointment').click();
+        } else {
+            document.querySelector('#content_training_schedule').classList.add('d-none');
+            document.querySelector('#content_exam_schedule').classList.remove('d-none');
+        document.querySelector('#content_training_exam').classList.add('d-none');
+
+            document.querySelector('#btn_a_div_for_appointment').click();
+        }
+    }
+    function create_list_quiz_area() {
 
         let div_content_quiz_area = document.querySelector('#div_content_quiz_area');
-            div_content_quiz_area.innerHTML = '';
+        div_content_quiz_area.innerHTML = '';
 
         fetch("{{ url('/') }}/api/get_list_quiz_area")
             .then(response => response.json())
             .then(result => {
                 console.log(result);
 
-                if(result){
+                if (result) {
 
-                    let update_area ;
-                    let update_round = 0 ;
+                    let update_area;
+                    let update_round = 0;
                     for (let i = 0; i < result.length; i++) {
 
-                        if(update_area != result[i].area){
-                            update_area = result[i].area ;
-                            update_round = update_round + 1 ;
+                        if (update_area != result[i].area) {
+                            update_area = result[i].area;
+                            update_round = update_round + 1;
 
                             let html = `
-                                <div class="px-3">
-                                    <div class="card">
-                                        <div>
-                                            <h5 class="mb-0">
-                                                <button class="btn btn-select-region collapsed" data-toggle="collapse" data-target="#collapse_`+update_round+`" aria-expanded="true" aria-controls="collapse_`+update_round+`">
-                                                    `+result[i].area+`
-                                                    <div class="icon-arrow">
-                                                        &nbsp;
-                                                        <i class="fa-solid fa-arrow-right "></i>
-                                                    </div>
-                                                </button>
-                                            </h5>
 
-                                            <div id="collapse_`+update_round+`" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                                                <div id="div_content_collapse_`+update_round+`" class="card-body">
-                                                    <a class="d-block text-center my-2" onclick="show_content_appointment_quiz('`+result[i].id+`');">
-                                                        `+result[i].sub_area+`
-                                                    </a>
-                                                </div>
+                                <div class="card mx-3">
+                                    <a class="mb-0" onclick="goto_bottom()">
+                                        <div  class="btn btn-select-region collapsed" data-toggle="collapse" data-target="#collapse_` + update_round + `" aria-expanded="true" aria-controls="collapse_` + update_round + `">
+                                            ` + result[i].area + `
+                                            <div class="icon-arrow">
+                                                &nbsp;
+                                                <i class="fa-solid fa-arrow-right "></i>
                                             </div>
+                                        </div>
+                                    </a>
+
+                                    <div id="collapse_` + update_round + `" class="collapse" aria-labelledby="headingOne" data-parent="#div_content_quiz_area">
+                                        <div id="div_content_collapse_` + update_round + `" class="card-body">
+                                            <a class="d-block text-center my-2 cursor-pointer" onclick="show_content_appointment_quiz('` + result[i].id + `');">
+                                                ` + result[i].sub_area + `
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -988,13 +1074,12 @@
 
                             div_content_quiz_area.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
 
-                        }
-                        else{
-                            let div_content_collapse = document.querySelector('#div_content_collapse_'+update_round);
+                        } else {
+                            let div_content_collapse = document.querySelector('#div_content_collapse_' + update_round);
 
                             let html_sub = `
-                                <a class="d-block text-center my-2" onclick="show_content_appointment_quiz('`+result[i].id+`');">
-                                    `+result[i].sub_area+`
+                                <a class="d-block text-center my-2 cursor-pointer" onclick="show_content_appointment_quiz('` + result[i].id + `');">
+                                    ` + result[i].sub_area + `
                                 </a>
                             `;
 
@@ -1007,9 +1092,19 @@
             });
 
     }
-
-    function show_content_appointment_quiz(area_id){
+    function goto_bottom(params) {
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth' // ทำให้การเลื่อนเป็นแบบนุ่มนวล
+        });
+    }
+    function show_content_appointment_quiz(area_id) {
         console.log("Select ID >> " + area_id)
+
+        document.querySelector('#content_training_schedule').classList.add('d-none');
+        document.querySelector('#content_exam_schedule').classList.add('d-none');
+        document.querySelector('#content_training_exam').classList.remove('d-none');
+
         // get_data_appointment_now_quiz(area_id);
     }
 
@@ -1018,7 +1113,7 @@
 
     //     let now_view_month = document.querySelector('#appointment_month');
     //     let now_view_year = document.querySelector('#appointment_year');
-        
+
     //     // console.log(now_view_month.value);
     //     // console.log(now_view_year.value);
 
@@ -1034,7 +1129,7 @@
 
     //                 let date_update = '' ;
     //                 for (let i = 0; i < result.length; i++) {
-                        
+
     //                     if(date_update != result[i].date_start){
     //                         date_update = result[i].date_start;
 

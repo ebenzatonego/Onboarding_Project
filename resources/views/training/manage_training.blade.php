@@ -322,6 +322,31 @@
 
 </style>
 
+<!-- Modal confirm deletion -->
+<div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="passwordModalLabel">ยืนยันการลบเนื้อหา ?</h5>
+        <button type="button" class="btn close" data-dismiss="modal" aria-label="Close" onclick="$('#passwordModal').modal('hide');">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>กรุณากรอกรหัสผ่านของคุณเพื่อยืนยันการลบ</p>
+        <input type="password" id="passwordInput" class="form-control" />
+        <hr>
+        <center>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width:30%;" onclick="$('#passwordModal').modal('hide');">
+              ปิด
+          </button>
+          <button type="button" id="confirmButton" class="btn btn-primary" style="width:30%;">ยืนยัน</button>
+        </center>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Modal ลบประเภทหลักสูตร -->
 <!-- Button trigger modal -->
 <button id="btn_Modal_delete_training_type" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#Modal_delete_training_type">
@@ -1130,25 +1155,29 @@
 
   function confirmDelete(event, form) {
       event.preventDefault();
-      var password = prompt("Please enter your password to confirm deletion:");
-      if (password != null) {
-          $.ajax({
-              url: '{{ url('/confirm-password') }}',
-              method: 'POST',
-              data: {
-                  _token: '{{ csrf_token() }}',
-                  password: password
-              },
-              success: function(response) {
-                  if (response.valid) {
-                      form.submit();
-                  } else {
-                      alert("Incorrect password.");
+      $('#passwordModal').modal('show');
+
+      $('#confirmButton').off('click').on('click', function() {
+          var password = $('#passwordInput').val();
+          if (password != "") {
+              $.ajax({
+                  url: '{{ url('/confirm-password') }}',
+                  method: 'POST',
+                  data: {
+                      _token: '{{ csrf_token() }}',
+                      password: password
+                  },
+                  success: function(response) {
+                      if (response.valid) {
+                          form.submit();
+                      } else {
+                          alert("Incorrect password.");
+                          $('#passwordModal').modal('hide');
+                      }
                   }
-              }
-          });
-      }
-      return false;
+              });
+          }
+      });
   }
 
   function change_Highlight(training_id , number , type){

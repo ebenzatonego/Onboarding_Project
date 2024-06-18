@@ -303,28 +303,7 @@
         background: #4B90E2 !important;
     }
 
-    .modal-profile {
-        background-color: #3D467F !important;
-        margin: 0 20px;
-        border-radius: 10px !important;
-        -webkit-border-radius: 10px !important;
-        -moz-border-radius: 10px !important;
-        -ms-border-radius: 10px !important;
-        -o-border-radius: 10px !important;
-        padding: 40px 0;
-    }
-
-    .btn-detail-profile {
-        position: absolute;
-        top: 0px;
-        right: 0;
-        font-size: 21px;
-
-    }
-
-    .btn-detail-profile:hover {
-        cursor: pointer;
-    }
+   
 </style>
 @section('content')
 @include('profile.edit_profile_modal')

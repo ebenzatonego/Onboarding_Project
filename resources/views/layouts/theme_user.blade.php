@@ -235,11 +235,45 @@
         border-radius: 5px;
         -moz-border-radius: 5px;
         -khtml-border-radius: 5px;
+    } .modal-profile {
+        background-color: #3D467F !important;
+        margin: 0 20px;
+        border-radius: 10px !important;
+        -webkit-border-radius: 10px !important;
+        -moz-border-radius: 10px !important;
+        -ms-border-radius: 10px !important;
+        -o-border-radius: 10px !important;
+        padding: 40px 0;
+    }
+
+    .btn-detail-profile {
+        position: absolute;
+        top: 0px;
+        right: 0;
+        font-size: 21px;
+
+    }
+
+    .btn-detail-profile:hover {
+        cursor: pointer;
+    }
+    .btn-submit-profile {
+        border-radius: 50px;
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        -ms-border-radius: 50px;
+        -o-border-radius: 50px;
+        font-weight: bolder;
+    }
+
+    .btn-submit-profile:disabled {
+        background-color: #A3A3A3 !important;
+        color: #57759C !important;
     }
 </style>
 
 <header>
-
+    
     @include ('Share_social')
 
     <!-- Modal Happy birthday-->

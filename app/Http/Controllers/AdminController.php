@@ -194,6 +194,7 @@ class AdminController extends Controller
         $requestData = $request->all();
 
         $users = User::where('id',$requestData['id'])->first();
+        $account = $users->account ;
 
         foreach ($requestData as $key => $value) {
             if ($key != 'id') { // ยกเว้น id ไม่ต้องอัปเดต
@@ -201,6 +202,29 @@ class AdminController extends Controller
             }
         }
         $users->save();
+
+        $check_upper_al = Contact_upper_al::where('account' , $account)->first();
+        $check_group_manager = Contact_group_manager::where('account' , $account)->first();
+
+        // Update upper_al
+        if( !empty($check_upper_al->id) ){
+            foreach ($requestData as $key_1 => $value_1) {
+                if ($key_1 != 'id') { // ยกเว้น id ไม่ต้องอัปเดต
+                    $check_upper_al->$key_1 = $value_1;
+                }
+            }
+            $check_upper_al->save();
+        }
+
+        // Update group_manager
+        if( !empty($check_group_manager->id) ){
+            foreach ($requestData as $key_2 => $value_2) {
+                if ($key_2 != 'id') { // ยกเว้น id ไม่ต้องอัปเดต
+                    $check_group_manager->$key_2 = $value_2;
+                }
+            }
+            $check_group_manager->save();
+        }
 
         return "success" ;
 

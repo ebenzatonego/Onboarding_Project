@@ -162,7 +162,7 @@
                         </li>
                         <li>
                             <a class="btn" href="{{ url('/list_admin') }}">
-                                <i class="fa-sharp fa-solid fa-user-tie"></i> Admin
+                                <i class="fa-sharp fa-solid fa-user-tie"></i> Admin & Staff
                             </a>
                         </li>
                         <li>

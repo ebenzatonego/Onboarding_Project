@@ -382,7 +382,7 @@
                     /* box-shadow: 0 0 1px 0 rgba(24, 94, 224, 0.15), 0 6px 12px 0 rgba(24, 94, 224, 0.15); */
                     padding: 0.2rem;
                     border-radius: 99px;
-                    z-index:1;
+                    z-index: 1;
                 }
 
                 .tabs * {
@@ -485,7 +485,6 @@
                     color: #fff !important;
                     background-color: #003781 !important;
                 }
-               
             </style>
             <div id="for_appointment" class="col-lg-7 mt-4" style="z-index: 5;position: relative;">
                 <a href="#for_appointment" class="d-none" id="btn_a_div_for_appointment"></a>
@@ -546,7 +545,7 @@
                         <button class="btn btn-toggle-traning-appointment">Blue Star</button>
                         <button class="btn btn-toggle-traning-appointment">Unit Links</button> -->
 
-                   
+
 
 
                         <ul id="list_number_menu_of_appointment" class="nav nav-pills mb-3 d-flex justify-content-center dropdown show" role="tablist">
@@ -555,12 +554,28 @@
                                 <a class="btn  dropdown-toggle nav-link btn-toggle-traning-appointment active" href="#" role="button" id="text_show_type_select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="document.querySelector('#dropdowntest').classList.add('show')">
                                     ทั้งหมด
                                 </a>
-                                <div class="dropdown-menu"  aria-labelledby="dropdownMenuLink" id="dropdowntest" >
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="dropdowntest">
                                     <!--  -->
                                 </div>
                             </li>
+
                         </ul>
+
+
                         <script>
+                            function removeActiveClass() {
+                                const buttons = document.querySelectorAll('.btn-toggle-traning-appointment');
+                                buttons.forEach(button => button.classList.remove('active'));
+                            }
+
+                            // Add event listeners to all buttons
+                            const buttons = document.querySelectorAll('.btn-toggle-traning-appointment');
+                            buttons.forEach(button => {
+                                button.addEventListener('click', function() {
+                                    removeActiveClass(); // Remove active class from all buttons
+                                    this.classList.add('active'); // Add active class to the clicked button
+                                });
+                            });
                             // ตารางอบรม
                             var now_view_training_type = 'all';
 
@@ -980,6 +995,7 @@
         document.getElementById('appointment_year').value = currentYear;
         document.getElementById('displayDate_appointment').textContent = `${monthName} ${currentYear}`;
     }
+
     function updateDisplayExam(date) {
         const currentYear = date.getFullYear();
         const currentMonth = (date.getMonth() + 1).toString().padStart(2, '0'); // เดือนใน JavaScript นับจาก 0
@@ -996,7 +1012,7 @@
     // ฟังก์ชั่นสำหรับปุ่ม ย้อนกลับ
     function goBack(type) {
         today.setMonth(today.getMonth() - 1);
-        
+
         if (type == 'อบรม') {
             updateDisplay(today);
         } else {
@@ -1013,21 +1029,23 @@
             updateDisplayExam(today);
         }
     }
+
     function show_schedule(type) {
         if (type == 'อบรม') {
             document.querySelector('#content_training_schedule').classList.remove('d-none');
             document.querySelector('#content_exam_schedule').classList.add('d-none');
-        document.querySelector('#content_training_exam').classList.add('d-none');
+            document.querySelector('#content_training_exam').classList.add('d-none');
 
             document.querySelector('#btn_a_div_for_appointment').click();
         } else {
             document.querySelector('#content_training_schedule').classList.add('d-none');
             document.querySelector('#content_exam_schedule').classList.remove('d-none');
-        document.querySelector('#content_training_exam').classList.add('d-none');
+            document.querySelector('#content_training_exam').classList.add('d-none');
 
             document.querySelector('#btn_a_div_for_appointment').click();
         }
     }
+
     function create_list_quiz_area() {
 
         let div_content_quiz_area = document.querySelector('#div_content_quiz_area');
@@ -1091,12 +1109,14 @@
             });
 
     }
+
     function goto_bottom(params) {
         window.scrollTo({
             top: document.body.scrollHeight,
             behavior: 'smooth' // ทำให้การเลื่อนเป็นแบบนุ่มนวล
         });
     }
+
     function show_content_appointment_quiz(area_id) {
         console.log("Select ID >> " + area_id)
 

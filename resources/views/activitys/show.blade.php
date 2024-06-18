@@ -184,9 +184,9 @@
 <div class="container p-0 conteiner-detail-training">
     <div class="row">
         <div class="col-lg-5 col-md-5 p-0" style="position: relative;">
-            <a href="{{ url('/training') }}" class="btn btn-back-all-course">
+            <a href="{{ url('/page_activitys') }}" class="btn btn-back-all-course">
                 <i class="fa-solid fa-arrow-left"></i>
-                <span>กลับหน้ารวมหลักสูตร</span>
+                <span>กลับหน้ารวมกิจกรรม</span>
             </a>
 
             <img src="{{ $activity->photo }}" alt="" style="width: 100%;">
@@ -425,8 +425,8 @@
 
                     </div>
                     <div class="mt-5">
-                        <a href="{{ url('/training') }}">
-                            <i class="fa-solid fa-chevron-left"></i> กลับหน้ารวมหลักสูตร
+                        <a href="{{ url('/page_activitys') }}">
+                            <i class="fa-solid fa-chevron-left"></i> กลับหน้ารวมกิจกรรม
                         </a>
                     </div>
                 </div>
@@ -612,7 +612,7 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         create_star_rating();
         update_user_view();
-        change_active_menu_theme_user('Training');
+        change_active_menu_theme_user('News');
         create_text_date_start();
     });
 

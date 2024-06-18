@@ -150,12 +150,16 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
 Route::middleware(['auth', 'role:Super-admin,Admin,Staff,member'])->group(function () {
 
     // News
-    Route::get('/news_index', 'NewsController@index');
+    Route::get('page_news', 'NewsController@index');
 
     // training
     Route::get('/training_show/{id}', 'TrainingController@show');
     Route::get('/page_training', 'TrainingController@index');
     Route::get('/sub_training/{type}', 'TrainingController@sub_training');
+
+    // activitys
+    Route::get('page_activitys', 'ActivitysController@index');
+    Route::get('activitys_show/{id}', 'ActivitysController@show');
 
 });
 

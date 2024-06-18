@@ -246,7 +246,7 @@
         fetch("{{ url('/') }}/api/get_last_update_users")
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 setTimeout(() => {
                     if(result){

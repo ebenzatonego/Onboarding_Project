@@ -794,6 +794,7 @@ class AdminController extends Controller
     function get_list_admin(){
         $user_admin = User::where('role' , 'Super-admin')
             ->orWhere('role' , 'Admin')
+            ->orWhere('role' , 'Staff')
             ->get();
         return $user_admin ;
     }

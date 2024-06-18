@@ -32,6 +32,9 @@
 							รายชื่อแอดมิน
 						</h5>
 					</div>
+					<button id="btn_view_Staff" style="width: 15%;" class="mx-1 btn btn-sm btn-outline-warning float-end" onclick="select_view('Staff');">
+						Staff
+					</button>
 					<button id="btn_view_Admin" style="width: 15%;" class="mx-1 btn btn-sm btn-outline-info float-end" onclick="select_view('Admin');">
 						Admin
 					</button>
@@ -50,10 +53,12 @@
 		    	document.querySelector('#btn_view_all').classList.remove('btn-primary');
 		    	document.querySelector('#btn_view_Super_admin').classList.remove('btn-success');
 		    	document.querySelector('#btn_view_Admin').classList.remove('btn-info');
+		    	document.querySelector('#btn_view_Staff').classList.remove('btn-warning');
 
 		    	document.querySelector('#btn_view_all').classList.add('btn-outline-primary');
 		    	document.querySelector('#btn_view_Super_admin').classList.add('btn-outline-success');
 		    	document.querySelector('#btn_view_Admin').classList.add('btn-outline-info');
+		    	document.querySelector('#btn_view_Staff').classList.add('btn-outline-warning');
 
 		    	if(type == 'all'){
 		    		document.querySelector('#btn_view_all').classList.add('btn-primary');
@@ -91,6 +96,21 @@
 					let list_Admin = document.querySelectorAll('tr[role="'+type+'"]');
 						list_Admin.forEach(list_Admin => {
 						    list_Admin.classList.remove('d-none');
+						})
+		    	}
+
+		    	else if(type == 'Staff'){
+		    		document.querySelector('#btn_view_Staff').classList.add('btn-warning');
+		    		document.querySelector('#btn_view_Staff').classList.remove('btn-outline-warning');
+
+		    		let list_admin = document.querySelectorAll('.list_admin');
+						list_admin.forEach(list_admin => {
+						    list_admin.classList.add('d-none');
+						})
+
+					let list_Staff = document.querySelectorAll('tr[role="'+type+'"]');
+						list_Staff.forEach(list_Staff => {
+						    list_Staff.classList.remove('d-none');
 						})
 		    	}
 		    }

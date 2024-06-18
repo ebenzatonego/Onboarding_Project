@@ -494,7 +494,8 @@
 
                             $ranks = ['ag', 'um', 'sum', 'dm', 'sdm', 'apv', 'vp', 'svp', 'esvp'];
                             $foundCurrentRank = false;
-                
+                            $set_center = 0 ;
+                            $count_set_center = 0 ;
                             @endphp
                             <p style="font-size: 14px; font-weight: bolder;color: #000;" class="m-0 my-1">ตำแหน่งของคุณ</p>
                             <div class="nav-menu sw sw-theme-dots sw-justified" id="div_menu_view">
@@ -503,11 +504,15 @@
                                 <ul class="nav d-flex justify-content-center owl-carousel owl-theme" role="group" aria-label="First group">
                                     @foreach($ranks as $rank)
                                     @php
+
+                                    $count_set_center = (int)$count_set_center + 1 ;
+
                                     // ตรวจสอบว่าเป็นแรงค์ปัจจุบันหรือไม่
                                     $isCurrentRank = $rank === $currentRank;
 
                                     if ($isCurrentRank) {
-                                    $foundCurrentRank = true;
+                                        $foundCurrentRank = true;
+                                        $set_center = $count_set_center ;
                                     }
 
                                     $navItemClass = $isCurrentRank || !$foundCurrentRank ? 'active' : 'inactive';
@@ -1179,12 +1184,16 @@
     //     });
     // })
 
-    $('.owl-carousel').owlCarousel({
+    let carousel_menu = $('.owl-carousel').owlCarousel({
         items: 6,
         loop: false,
         nav: false,
 
     })
+
+    carousel_menu.trigger('to.owl.carousel', ["{{ $set_center }}", 300, true]);
+
+    console.log("{{ $set_center }}")
 </script>
 <script type="text/javascript">
     $(document).ready(function() {

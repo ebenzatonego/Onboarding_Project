@@ -423,14 +423,16 @@
                             }
                         @endphp
 
-                        @if( $Dateinterval->days <= 90 && !empty($Dateinterval->days) )
-                        <div class="" style=" position: absolute;bottom: -12px; display: flex;">
-                            <div class="alert-license-expire me-3">
-                                <div>
-                                    <span class="ms-1">หมดอายุภายใน <span id="">{{ $Dateinterval->days }}</span> วัน</span>
+                        @if( !empty($Dateinterval->days) )
+                            @if($Dateinterval->days <= 90)
+                            <div class="" style=" position: absolute;bottom: -12px; display: flex;">
+                                <div class="alert-license-expire me-3">
+                                    <div>
+                                        <span class="ms-1">หมดอายุภายใน <span id="">{{ $Dateinterval->days }}</span> วัน</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            @endif
                         @endif
                         <div style="position: absolute;bottom: -25px;left: 50%;transform: translate(-50%, -50%);">
                             <button type="button" class="" data-toggle="modal" data-target="#modal_show_all_detail" style="border:none !important;background: #7FA3D4;padding: 5px 5px ;border-radius: 50px;color:#fff">

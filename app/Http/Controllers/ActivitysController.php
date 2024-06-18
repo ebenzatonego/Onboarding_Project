@@ -194,4 +194,31 @@ class ActivitysController extends Controller
 
         return 'success' ;
     }
+
+    function get_data_activitys($activity_type_id){
+
+        if($activity_type_id == 'all'){
+            $data_activity = Activity::orderByRaw("CASE 
+                            WHEN highlight_number IS NOT NULL THEN 1
+                            ELSE 2
+                            END, 
+                            highlight_number ASC, 
+                            id DESC")
+                        ->get();
+
+        }
+        else{
+            $data_activity = Activity::orderByRaw("CASE 
+                            WHEN highlight_of_type IS NOT NULL THEN 1
+                            ELSE 2
+                            END, 
+                            highlight_of_type ASC, 
+                            id DESC")
+                        ->where('activity_type_id' , $activity_type_id)
+                        ->get();
+        }
+
+        return $data_activity ;
+
+    }
 }

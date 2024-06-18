@@ -445,7 +445,7 @@
 
         get_video_congrats();
 
-        var countdownNumber = 10;
+        var countdownNumber = 5;
         var countdownElement = document.getElementById('text_countdown');
         var buttonElement = document.getElementById('btn_dont_show_congrats');
 

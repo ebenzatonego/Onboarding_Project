@@ -330,70 +330,8 @@ box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
             <div class="main-body">
                 <div class="row">
                     <div class="col-lg-12 my-3">
-                        <div class="owl-carousel carousel-fav-course owl-theme">
-                            <div class="item">
-                                <div class="position-relative">
-                                    <div class="container-img">
-                                        <img src="{{ url('/img/icon/square_empty.png') }}">
-                                    </div>
-                                    <div class="position-absolute detail-on-img w-100">
-                                        <div>
-                                            <div class="d-flex align-items-center " style="margin-bottom: 10px;">
-                                                <h1 class="m-0 text-white me-3" style="font-weight: bolder;">13</h1>
-                                                <div>
-                                                    <p class="m-0">วันเสาร์</p>
-                                                    <p class="m-0">เมษายนต์ 2567</p>
-                                                </div>
-                                            </div>
-                                            <p class="" style="margin-bottom: 10px;">เชิญชวนสรงน้ำพระมหาสงกรานต์</p>
-                                            <p class="m-0" style="font-size: 12px;">เริ่มเวลา 08.00 น.</p>
-                                            <p class="m-0" style="font-size: 12px;">สถานที่ centralworld</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="position-relative">
-                                    <div class="container-img">
-                                        <img src="{{ url('/img/icon/square_empty.png') }}">
-                                    </div>
-                                    <div class="position-absolute detail-on-img w-100">
-                                        <div>
-                                            <div class="d-flex align-items-center " style="margin-bottom: 10px;">
-                                                <h1 class="m-0 text-white me-3" style="font-weight: bolder;">13</h1>
-                                                <div>
-                                                    <p class="m-0">วันเสาร์</p>
-                                                    <p class="m-0">เมษายนต์ 2567</p>
-                                                </div>
-                                            </div>
-                                            <p class="" style="margin-bottom: 10px;">เชิญชวนสรงน้ำพระมหาสงกรานต์</p>
-                                            <p class="m-0" style="font-size: 12px;">เริ่มเวลา 08.00 น.</p>
-                                            <p class="m-0" style="font-size: 12px;">สถานที่ centralworld</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="position-relative">
-                                    <div class="container-img">
-                                        <img src="{{ url('/img/icon/square_empty.png') }}">
-                                    </div>
-                                    <div class="position-absolute detail-on-img w-100">
-                                        <div>
-                                            <div class="d-flex align-items-center " style="margin-bottom: 10px;">
-                                                <h1 class="m-0 text-white me-3" style="font-weight: bolder;">13</h1>
-                                                <div>
-                                                    <p class="m-0">วันเสาร์</p>
-                                                    <p class="m-0">เมษายนต์ 2567</p>
-                                                </div>
-                                            </div>
-                                            <p class="" style="margin-bottom: 10px;">เชิญชวนสรงน้ำพระมหาสงกรานต์</p>
-                                            <p class="m-0" style="font-size: 12px;">เริ่มเวลา 08.00 น.</p>
-                                            <p class="m-0" style="font-size: 12px;">สถานที่ centralworld</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div id="div_content_highlight_number" class="owl-carousel carousel-fav-course owl-theme">
+                            <!--  -->
                         </div>
                     </div>
                     <div class="col-lg-12 mt-3">
@@ -409,13 +347,13 @@ box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
                         @endphp
 
                         <div class="owl-carousel carousel-menu-course owl-theme">
-                            <div class="item ">
+                            <div class="item" onclick="get_data_activitys('all');">
                                 <div class="menu-course text-center active">
                                     <p class="mb-0">ทั้งหมด</p>
                                 </div>
                             </div>
                             @foreach($data_activity_type as $item_type)
-                            <div class="item">
+                            <div class="item" onclick="get_data_activitys('{{ $item_type->id }}');">
                                 <div class="menu-course text-center">
                                     <p class="mb-0">{{ $item_type->name_type }}</p>
                                 </div>
@@ -475,7 +413,108 @@ box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         change_active_menu_theme_user('News');
+        get_data_activitys('all');
     });
+
+    function get_data_activitys(activity_type_id){
+        fetch("{{ url('/') }}/api/get_data_activitys/" + activity_type_id )
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+
+                if(result){
+
+                    for (let i = 0; i < result.length; i++) {
+
+
+                        let time_start = ``;
+                        if(result[i].time_start){
+                            let time_start_sp = result[i].time_start.split(':');
+                            time_start = time_start_sp[0] +':'+ time_start_sp[1];
+                        }
+
+                        let text_day ;
+                        let day ;
+                        let year_month;
+                        if(result[i].date_start){
+                            let date = new Date(result[0].date_start);
+    
+                            // หาและตั้งค่าวัน
+                            let days = ["วันอาทิตย์", "วันจันทร์", "วันอังคาร", "วันพุธ", "วันพฤหัสบดี", "วันศุกร์", "วันเสาร์"];
+                            text_day = days[date.getDay()];
+                            
+                            // ตั้งค่าวันที่
+                            day = date.getDate();
+                            
+                            // หาและตั้งค่าเดือนและปีในรูปแบบ พ.ศ.
+                            let months = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
+                            let month = months[date.getMonth()];
+                            let year = date.getFullYear() + 543; // แปลงจาก ค.ศ. เป็น พ.ศ.
+                            year_month = `${month} ${year}`;
+                        }
+
+                        if(activity_type_id == 'all'){
+                            // highlight_number ALL
+                            if(result[i].highlight_number){
+                                let div_content_highlight_number = document.querySelector('#div_content_highlight_number');
+
+                                let html_highlight_number = `
+                                    <div class="item">
+                                        <div class="position-relative">
+                                            <div class="container-img">
+                                                <img src="`+result[i].photo+`">
+                                            </div>
+                                            <div class="position-absolute detail-on-img w-100">
+                                                <div>
+                                                    <div class="d-flex align-items-center " style="margin-bottom: 10px;">
+                                                        <h1 class="m-0 text-white me-3" style="font-weight: bolder;">`+day+`</h1>
+                                                        <div>
+                                                            <p class="m-0">`+text_day+`</p>
+                                                            <p class="m-0">`+year_month+`</p>
+                                                        </div>
+                                                    </div>
+                                                    <p class="" style="margin-bottom: 10px;">`+result[i].title+`</p>
+                                                    <p class="m-0" style="font-size: 12px;">เริ่ม `+time_start+`</p>
+                                                    <p class="m-0" style="font-size: 12px;">สถานที่ `+result[i].location_detail+`</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `;
+
+                                div_content_highlight_number.insertAdjacentHTML('beforeend', html_highlight_number); // แทรกล่างสุด
+
+                            }
+                        }
+                        else{
+                            // highlight_of_type
+                            
+                        }
+
+                    }
+
+                    $('.carousel-fav-course').owlCarousel({
+                        // stagePadding:20,
+                        loop: false,
+                        autoWidth: true,
+                        margin: 10,
+                        nav: false,
+                        responsive: {
+                            0: {
+                                items: 1
+                            },
+                            600: {
+                                items: 3
+                            },
+                            1000: {
+                                items: 1
+                            }
+                        }
+                    })
+
+                }
+        });
+    }
 </script>
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
@@ -505,26 +544,7 @@ box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
         }
     })
 
-    $('.carousel-fav-course').owlCarousel({
-        // stagePadding:20,
-        loop: false,
-        autoWidth: true,
-        margin: 10,
-        nav: false,
-        responsive: {
-            0: {
-                items: 1
-            },
-            600: {
-                items: 3
-            },
-            1000: {
-                items: 1
-            }
-        }
-    })
-
-
+    
     $('a[data-toggle="pill"]').on('shown.bs.tab', function(e) {
         e.target // newly activated tab
         e.relatedTarget // previous active tab

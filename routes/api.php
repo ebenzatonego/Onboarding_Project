@@ -97,6 +97,7 @@ Route::get('/get_list_quiz_area', 'AppointmentsController@get_list_quiz_area');
 
 // activity
 Route::get('/update_user_view_activity/{user_id}/{activity_id}', 'ActivitysController@update_user_view_activity');
+Route::get('/get_data_activitys/{activity_type_id}', 'ActivitysController@get_data_activitys');
 
 
 // Share

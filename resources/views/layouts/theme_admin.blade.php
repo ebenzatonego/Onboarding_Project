@@ -68,6 +68,31 @@
 
 <body>
 
+    <!-- Modal confirm deletion -->
+    <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="passwordModalLabel">ยืนยันการลบเนื้อหา ?</h5>
+            <button type="button" class="btn close" data-dismiss="modal" aria-label="Close" onclick="$('#passwordModal').modal('hide');">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>กรุณากรอกรหัสผ่านของคุณเพื่อยืนยันการลบ</p>
+            <input type="password" id="passwordInput" class="form-control" />
+            <hr>
+            <center>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width:30%;" onclick="$('#passwordModal').modal('hide');">
+                  ปิด
+              </button>
+              <button type="button" id="confirmButton" class="btn btn-primary" style="width:30%;">ยืนยัน</button>
+            </center>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Button trigger modal -->
     <button type="button" id="btn_modal_pass_lock" class="d-none" data-toggle="modal" data-target="#modal_pass_lock"></button>
     <!-- Modal -->
@@ -414,6 +439,7 @@
     @if( $full_url != url("/log_web") )
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     @endif
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
     <script src="{{asset('/theme/plugins/simplebar/js/simplebar.min.js')}}"></script>
     <script src="{{asset('/theme/plugins/metismenu/js/metisMenu.min.js')}}"></script>
@@ -455,6 +481,33 @@
                 }
             });
 
+        }
+
+        function confirmDelete(event, form) {
+            event.preventDefault();
+            $('#passwordModal').modal('show');
+
+            $('#confirmButton').off('click').on('click', function() {
+                var password = $('#passwordInput').val();
+                if (password != "") {
+                    $.ajax({
+                        url: '{{ url('/confirm-password') }}',
+                        method: 'POST',
+                        data: {
+                            _token: '{{ csrf_token() }}',
+                            password: password
+                        },
+                        success: function(response) {
+                            if (response.valid) {
+                                form.submit();
+                            } else {
+                                alert("รหัสผ่านของคุณไม่ถูกต้อง");
+                                $('#passwordModal').modal('hide');
+                            }
+                        }
+                    });
+                }
+            });
         }
 
     </script>

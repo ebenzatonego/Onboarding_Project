@@ -532,6 +532,60 @@ img {
     display: none;
 }
 
+/*-----*/
+:focus {
+  outline: 0;
+  border-color: #2260ff;
+  box-shadow: 0 0 0 4px #b5c9fc;
+}
+
+.mydict div {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+  justify-content: center;
+}
+
+.mydict input[type="radio"] {
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.mydict input[type="radio"]:checked + span {
+  box-shadow: 0 0 0 0.0625em #0043ed;
+  background-color: #dee7ff;
+  z-index: 1;
+  color: #0043ed;
+}
+
+.mydict label span {
+  display: block;
+  cursor: pointer;
+  background-color: #fff;
+  padding: 0.375em .75em;
+  position: relative;
+  margin-left: .0625em;
+  box-shadow: 0 0 0 0.0625em #b5bfd9;
+  letter-spacing: .05em;
+  color: #3e4963;
+  text-align: center;
+  transition: background-color .5s ease;
+}
+
+.mydict label:first-child span {
+  border-radius: .375em 0 0 .375em;
+}
+
+.mydict label:last-child span {
+  border-radius: 0 .375em .375em 0;
+}
+
+
 </style>
 
 <div class="row">
@@ -783,11 +837,40 @@ img {
                               </label>
                             </div>
                             <div id="div_not_show_all_member" class="mt-3 d-none">
-                                <textarea class="form-control" rows="5" type="textarea" name=""  id="" placeholder="เพิ่ม Account [เพิ่มหลาย Account คั่นด้วยเครื่องหมาย , (จุลภาค)]"></textarea>
+                                <div class="float-start mydict mb-2">
+                                    <div  onclick="check_select_show_for();">
+                                        <label>
+                                            <input type="radio" name="radio_show_for" checked="" value="individual">
+                                            <span>เลือกรายบุคคล</span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="radio_show_for" value="rank">
+                                            <span>เลือกจาก rank</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <textarea class="form-control mt-3" rows="5" type="textarea" name="show_individual" id="show_individual" placeholder="เพิ่ม Account [เพิ่มหลาย Account คั่นด้วยเครื่องหมาย , (จุลภาค)]"></textarea>
+
+                                <select class="form-select mt-3 d-none" id="show_rank" name="show_rank">
+                                    <option>sxsxs</option>
+                                </select>
                             </div>
                         </div>
                     </div>
                     <script>
+
+                        function check_select_show_for(){
+                            let radio_show_for = document.querySelectorAll('input[name="radio_show_for"]');
+                            let radio_show_for_value = "" ;
+                                radio_show_for.forEach(radio_show_for => {
+                                    if(radio_show_for.checked){
+                                        radio_show_for_value = radio_show_for.value;
+                                    }
+                                })
+
+                                console.log(radio_show_for_value);
+                        }
+
                         function change_select_show_all_member(){
                             let check_show_all_member = document.querySelector('#check_show_all_member');
                             if(check_show_all_member.checked){

@@ -689,7 +689,8 @@
 
 
                             function change_now_view_type(type_article, typemenu, text_type_article) {
-                                document.querySelector('#dropdowntest').classList.remove('show');
+
+                                // document.querySelector('#dropdowntest').classList.remove('show');
                                 now_view_training_type = type_article;
 
                                 if (typemenu == 'menu_all') {
@@ -739,7 +740,7 @@
                                                 type_article_item = type_article_item.replace(" ", "");
 
                                                 let html_item = `
-                            <a class="dropdown-item" onclick="change_now_view_type('` + result['menu'][ii].id + `','menu_all','` + type_article_item + `')">` + type_article_item + `</a>
+                            <a class="dropdown-item" onclick="change_now_view_type('` + result['all'][ii].id + `','menu_all','` + type_article_item + `')">` + type_article_item + `</a>
                         `;
 
                                                 dropdowntest.insertAdjacentHTML('beforeend', html_item); // แทรกล่างสุด

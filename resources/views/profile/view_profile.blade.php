@@ -172,6 +172,10 @@
         cursor: not-allowed;
     }
 
+    .owl-item .nav-link.inactive::before {
+        background: #999 !important;
+    }
+
     .sw-theme-dots>.nav .nav-link {
         position: relative;
         margin-top: 20px;
@@ -181,7 +185,7 @@
         content: " ";
         position: absolute;
         display: block;
-        top: -5px;
+        top: -7px;
         left: 0;
         right: 0;
         margin-left: auto;
@@ -214,6 +218,7 @@
         background-color: #4183B2;
 
     }
+
 
     .nav-item.level-now::before {
         background: #f5f5f5 !important;
@@ -250,10 +255,10 @@
 
     .owl-item,
     .owl-stage-outer {
-        padding-top: 5px;
+        padding-top: 7px;
     }
 
-    .owl-item:nth-child(2) {
+    /* .owl-item:nth-child(2) {
         margin-top: -1px;
         border: #A1A1A1 solid 1px;
         border-right: none !important;
@@ -288,12 +293,12 @@
         -moz-border-radius: 0 10px 10px 0;
         -ms-border-radius: 0 10px 10px 0;
         -o-border-radius: 0 10px 10px 0;
-    }
+    } */
 
     .title-level {
         font-size: 9px;
         position: absolute;
-        top: -12px;
+        top: -15px;
         left: 50%;
         transform: translate(-50%, -50%);
     }
@@ -303,7 +308,27 @@
         background: #4B90E2 !important;
     }
 
-   
+    .current-rank .fa-briefcase-blank {
+        scale: 1.5;
+        margin-top: 2px !important;
+    }
+    .current-rank .title-level{
+        margin-top: -7px !important;
+
+    }
+
+    .current-rank .title-level *{
+        font-size: 14px;
+        margin-left: 2px;
+    }
+
+    /* .title-level {
+        margin-top: -2px !important;
+
+    } */
+    .nav-link{
+        position: relative !important;
+    }
 </style>
 @section('content')
 @include('profile.edit_profile_modal')
@@ -436,50 +461,90 @@
                                     ดูเส้นทางฝึกฝนเพิ่มเติม
                                 </button>
                             </div>
+                            @php
+                            $currentRank = Auth::user()->current_rank;
+
+                            $ranks = ['AG', 'UM', 'SUM', 'DM', 'SDM', 'APV', 'VP', 'SVP', 'ESVP'];
+                            $foundCurrentRank = false;
+                
+                            @endphp
                             <p style="font-size: 14px; font-weight: bolder;color: #000;" class="m-0 my-1">ตำแหน่งของคุณ</p>
                             <div class="nav-menu sw sw-theme-dots sw-justified" id="div_menu_view">
+
+
                                 <ul class="nav d-flex justify-content-center owl-carousel owl-theme" role="group" aria-label="First group">
+                                    @foreach($ranks as $rank)
+                                    @php
+                                    // ตรวจสอบว่าเป็นแรงค์ปัจจุบันหรือไม่
+                                    $isCurrentRank = $rank === $currentRank;
+
+                                    if ($isCurrentRank) {
+                                    $foundCurrentRank = true;
+                                    }
+
+                                    $navItemClass = $isCurrentRank || !$foundCurrentRank ? 'active' : 'inactive';
+                                    @endphp
+
+                                    <li class="nav-item {{ $isCurrentRank ? 'current-rank' : $navItemClass }}">
+                                        @if($isCurrentRank)
+                                        <!-- <p style="position: absolute;top: 45%;left: 0%;transform: translate(-50%, -50%);color: #56B3F7;font-size: 1em;-webkit-text-stroke: .3px white;font-weight: lighter;">AL</p> -->
+                                        @endif
+                                        <a class="nav-link {{ $navItemClass }} position-relative" href="#step-{{ $loop->index + 1 }}">
+                                            <span class="title-level">
+                                                @if($isCurrentRank)
+                                                <i class="fa-solid fa-crown" style="color: #ffc107;"></i>
+                                                <br>
+                                                @endif
+                                                <span>{{ $rank }}</span>
+                                            </span>
+                                            <i class="fa-solid fa-briefcase-blank"></i>
+                                        </a>
+                                    </li>
+                                    @endforeach
+                                </ul>
+
+                                <!-- <ul class="nav d-flex justify-content-center owl-carousel owl-theme" role="group" aria-label="First group">
                                     <li class="nav-item  active">
-                                        <a class="nav-link inactive active" href="#step-1">
+                                        <a class="nav-link active" href="#step-1">
                                             <span class="title-level">AG</span>
                                             <i class="fa-solid fa-briefcase-blank"></i>
                                         </a>
                                     </li>
                                     <li class="nav-item active">
-                                        <a class="nav-link inactive active" href="#step-2">
+                                        <a class="nav-link  active" href="#step-2">
                                             <span class="title-level">UM</span>
 
                                             <i class="fa-solid fa-briefcase-blank"></i>
                                         </a>
                                     </li>
                                     <li class="nav-item active">
-                                        <a class="nav-link inactive active" href="#step-3">
+                                        <a class="nav-link  active" href="#step-3">
                                             <span class="title-level">SUM</span>
 
                                             <i class="fa-solid fa-briefcase-blank"></i>
                                         </a>
                                     </li>
-                                    <!-- class active ใน nav-item ไม่ต้องใส่ใน level ปัจจุบัน-->
-                                    <li class="nav-item ">
+                                    class active ใน nav-item ไม่ต้องใส่ใน level ปัจจุบัน
+                                    <li class="nav-item current-rank ">
                                         <p style="position: absolute;top: 45%;left: 0%;transform: translate(-50%, -50%);color: #56B3F7;font-size: 1em;-webkit-text-stroke: .3px white;font-weight: lighter;">AL</p>
-                                        <a class="nav-link inactive active" href="#step-4">
-                                            <span class="title-level">DM</span>
-
+                                        <a class="nav-link  active" href="#step-4">
+                                            <span class="title-level">
+                                                <i class="fa-solid fa-crown" style="color: #ffc107;"></i>
+                                                <br>
+                                                DM
+                                            </span>
                                             <i class="fa-solid fa-briefcase-blank"></i>
                                         </a>
                                     </li>
                                     <li class="nav-item ">
                                         <a class="nav-link inactive" href="#step-4">
                                             <span class="title-level">SDM</span>
-
                                             <i class="fa-solid fa-briefcase-blank"></i>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link inactive" href="#step-4">
-                                            <span class="title-level" style="top:-15px">
-                                                <i class="fa-solid fa-crown" style="color: #ffc107;"></i>
-                                                <br>
+                                            <span class="title-level">
                                                 APV
                                             </span>
 
@@ -488,9 +553,7 @@
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link inactive" href="#step-4">
-                                            <span class="title-level" style="top:-15px">
-                                                <i class="fa-solid fa-crown" style="color: #ffc107;"></i>
-                                                <br>
+                                            <span class="title-level">
                                                 VP
                                             </span>
 
@@ -500,9 +563,7 @@
                                     <li class="nav-item">
                                         <a class="nav-link inactive" href="#step-4">
 
-                                            <span class="title-level" style="top:-15px">
-                                                <i class="fa-solid fa-crown" style="color: #ffc107;"></i>
-                                                <br>
+                                            <span class="title-level">
                                                 SVP
                                             </span>
 
@@ -511,16 +572,14 @@
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link inactive" href="#step-4">
-                                            <span class="title-level" style="top:-15px">
-                                                <i class="fa-solid fa-crown" style="color: #ffc107;"></i>
-                                                <br>
+                                            <span class="title-level">
                                                 ESVP
                                             </span>
 
                                             <i class="fa-solid fa-briefcase-blank"></i>
                                         </a>
                                     </li>
-                                </ul>
+                                </ul> -->
                             </div>
                             <style>
                                 .btn-more-job {
@@ -1162,7 +1221,6 @@
         const domElement = document.getElementById('card_profile_download');
         printDocument(domElement);
     });
-
 </script>
 
 

@@ -175,6 +175,11 @@
                 			<span style="font-size:14px;" class="badge badge-pill bg-info">Admin</span>
                 		`;
                 	}
+                	else if(result[i].role == "Staff"){
+						html_admin = `
+                			<span style="font-size:14px;" class="badge badge-pill bg-warning">Staff</span>
+                		`;
+                	}
 
                 	let nickname = `-`;
                 	let email = `-`;

@@ -77,7 +77,8 @@ class AdminController extends Controller
             if( !empty($check_user->account) ){
 
                 foreach ($data_arr as $key => $value) {
-                    if ($key != 'account') { // ยกเว้น account ไม่ต้องอัปเดต
+                    if ($key != 'account' && $key != 'phone' && $key != 'email' && $key != 'nickname') {
+                        // ยกเว้น account, phone, email และ nickname ไม่ต้องอัปเดต
                         $check_user->$key = $value;
                     }
                 }

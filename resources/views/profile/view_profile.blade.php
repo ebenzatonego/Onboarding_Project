@@ -630,7 +630,7 @@
 
                 </div>
 
-                @if(in_array(Auth::user()->role, ['Super-admin', 'Admin', 'Staff']))
+                @if(in_array(Auth::user()->role, ['Super-admin', 'Admin']))
                 <center>
                     <a href="{{ url('/welcome_admin') }}" class="btn btn-sm btn-info mb-3" style="width:80%;">
                         For <b>{{ Auth::user()->role }}</b>

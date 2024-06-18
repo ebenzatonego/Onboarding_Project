@@ -8,6 +8,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -49,6 +50,14 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->only('account', 'password');
+
+        // ดึงข้อมูลผู้ใช้ตาม account
+        $user = User::where('account', $credentials['account'])->first();
+
+        // ตรวจสอบว่าผู้ใช้มีสถานะ status_login เป็น 'Active' หรือไม่
+        if ($user && $user->status_login != 'Active') {
+            return redirect('login')->with('error', 'Login failed, your account is not active.')->with('alert', 'ไม่สามารถเข้าสู่ระบบได้ กรุณาติดต่อเจ้าหน้าที่');
+        }
 
         if (Auth::attempt($credentials)) {
             // Authentication passed...

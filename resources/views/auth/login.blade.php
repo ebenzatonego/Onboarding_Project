@@ -554,6 +554,13 @@
 
     #form_login {}
 </style>
+
+@if(session('alert'))
+    <script>
+        alert("{{ session('alert') }}");
+    </script>
+@endif
+    
 <div class="col-12 p-0 d-flex justify-content-center">
     <div class="wrapper" style="position: relative;">
         <div class="section-authentication-signin d-flex align-items-center justify-content-center my-0">

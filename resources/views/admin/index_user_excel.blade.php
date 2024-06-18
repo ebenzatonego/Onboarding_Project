@@ -117,6 +117,9 @@
                     <b>Admin : <span id="count_admin"></span></b>
                 </div>
                 <div class="col">
+                    <b>Staff : <span id="count_staff"></span></b>
+                </div>
+                <div class="col">
                     <b>Member : <span id="count_user"></span></b>
                 </div>
                 <div class="col">
@@ -243,7 +246,7 @@
         fetch("{{ url('/') }}/api/get_last_update_users")
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
+                console.log(result);
 
                 setTimeout(() => {
                     if(result){
@@ -263,6 +266,7 @@
 
                         document.querySelector('#count_admin').innerHTML = result.count_admin.toLocaleString();
                         document.querySelector('#count_user').innerHTML = result.count_user.toLocaleString();
+                        document.querySelector('#count_staff').innerHTML = result.count_staff.toLocaleString();
                         document.querySelector('#count_upper_al').innerHTML = result.count_upper_al.toLocaleString();
                         document.querySelector('#count_group_manager').innerHTML = result.count_group_manager.toLocaleString();
                         document.querySelector('#count_area_supervisor').innerHTML = result.count_area_supervisor.toLocaleString();

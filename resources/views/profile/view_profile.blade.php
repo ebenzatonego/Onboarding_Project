@@ -462,9 +462,16 @@
                                 </button>
                             </div>
                             @php
-                            $currentRank = Auth::user()->current_rank;
+                            if( !empty(Auth::user()->current_rank) ){
+                                $currentRank = Auth::user()->current_rank;
+                            }
+                            else{
+                                $currentRank = 'AG';
+                            }
 
-                            $ranks = ['AG', 'UM', 'SUM', 'DM', 'SDM', 'APV', 'VP', 'SVP', 'ESVP'];
+                            $currentRank = strtolower( $currentRank );
+
+                            $ranks = ['ag', 'um', 'sum', 'dm', 'sdm', 'apv', 'vp', 'svp', 'esvp'];
                             $foundCurrentRank = false;
                 
                             @endphp
@@ -495,7 +502,7 @@
                                                 <i class="fa-solid fa-crown" style="color: #ffc107;"></i>
                                                 <br>
                                                 @endif
-                                                <span>{{ $rank }}</span>
+                                                <span style="text-transform: uppercase;">{{ $rank }}</span>
                                             </span>
                                             <i class="fa-solid fa-briefcase-blank"></i>
                                         </a>

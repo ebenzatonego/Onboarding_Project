@@ -153,7 +153,8 @@ class TrainingController extends Controller
     {
         Training::destroy($id);
 
-        return redirect('training')->with('flash_message', 'Training deleted!');
+        return redirect('/manage_training');
+        // return redirect('training')->with('flash_message', 'Training deleted!');
     }
 
     function sub_training($type){

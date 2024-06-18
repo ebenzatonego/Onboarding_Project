@@ -54,6 +54,8 @@ class User extends Authenticatable
         'check_birthday',
         'elite_agency',
         'nickname',
+        'agent_status',
+        'status_login'
     ];
 
     /**

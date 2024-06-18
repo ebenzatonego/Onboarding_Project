@@ -20,6 +20,18 @@ use App\Models\Log_excel_user;
 
 class AdminController extends Controller
 {
+    public function confirmPassword(Request $request)
+    {
+        $user = Auth::user();
+        $password = $request->input('password');
+
+        if (Hash::check($password, $user->password)) {
+            return response()->json(['valid' => true]);
+        } else {
+            return response()->json(['valid' => false]);
+        }
+    }
+
     function create_user_member(Request $request)
     {
         $requestData = $request->all();
@@ -740,8 +752,9 @@ class AdminController extends Controller
         $user_admin = User::where('role' , 'Super-admin')
             ->orWhere('role' , 'Admin')
             ->get();
-        $user_member = User::where('role' , '!=' , 'Super-admin')
-            ->where('role' , '!=' , 'Admin')
+        $user_staff = User::where('role' , 'Staff')
+            ->get();
+        $user_member = User::where('role' , 'member')
             ->get();
         $upper_al = Contact_upper_al::get();
         $group_manager = Contact_group_manager::get();
@@ -749,6 +762,7 @@ class AdminController extends Controller
         
         $return['last_update'] = $data->updated_at;
         $return['count_admin'] = count($user_admin);
+        $return['count_staff'] = count($user_staff);
         $return['count_user'] = count($user_member);
         $return['count_upper_al'] = count($upper_al);
         $return['count_group_manager'] = count($group_manager);

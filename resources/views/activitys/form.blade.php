@@ -769,6 +769,43 @@ img {
                     </div>
                     <div class="row mb-3">
                         <label for="" class="col-sm-2 col-form-label">
+                            เลือกการแสดงผล<span class="text-danger">*</span>
+                        </label>
+                        <div class="col-sm-6" >
+                            <div class="checkbox-wrapper-46 mt-4">
+                              <input type="text" id="show_all_member" name="show_all_member" class="d-none" value="Yes">
+                              <input checked type="checkbox" id="check_show_all_member" class="inp-cbx" onclick="change_select_show_all_member();">
+                              <label for="check_show_all_member" class="cbx"
+                                ><span>
+                                  <svg viewBox="0 0 12 10" height="10px" width="12px">
+                                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline></svg></span
+                                ><span>เห็นทุกคน</span>
+                              </label>
+                            </div>
+                            <div id="div_not_show_all_member" class="mt-3 d-none">
+                                <textarea class="form-control" rows="5" type="textarea" name=""  id="" placeholder="เพิ่ม Account [เพิ่มหลาย Account คั่นด้วยเครื่องหมาย , (จุลภาค)]"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        function change_select_show_all_member(){
+                            let check_show_all_member = document.querySelector('#check_show_all_member');
+                            if(check_show_all_member.checked){
+                                // console.log('Yes');
+                                document.querySelector('#show_all_member').value = 'Yes';
+
+                                document.querySelector('#div_not_show_all_member').classList.add('d-none');
+                            }
+                            else{
+                                // console.log('No');
+                                document.querySelector('#show_all_member').value = '';
+                                document.querySelector('#div_not_show_all_member').classList.remove('d-none');
+                            }
+                            check_data_for_submit();
+                        }
+                    </script>
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-2 col-form-label">
                             ผู้สร้าง
                         </label>
                         <div class="col-sm-10" style="position: relative;">

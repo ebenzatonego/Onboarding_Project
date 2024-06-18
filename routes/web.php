@@ -16,12 +16,15 @@ use Illuminate\Support\Facades\Route;
 // -- ROLE -- //
 // Super-admin
 // Admin
+// Staff
 // member
 
 Auth::routes();
 
 // No Login
 Route::get('/share_training/{id}', 'TrainingController@share_training');
+
+Route::post('/confirm-password', 'AdminController@confirmPassword');
 
 
 // LOGIN
@@ -140,8 +143,8 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
 
 });
 
-// member
-Route::middleware(['auth', 'role:Super-admin,Admin,member'])->group(function () {
+// member & Staff
+Route::middleware(['auth', 'role:Super-admin,Admin,Staff,member'])->group(function () {
 
     // News
     Route::get('/news_index', 'NewsController@index');

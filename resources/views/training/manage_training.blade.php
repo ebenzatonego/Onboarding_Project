@@ -933,6 +933,8 @@
   </div>
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script>
 
 	document.addEventListener('DOMContentLoaded', function () {
@@ -1105,6 +1107,13 @@
                                   </li>
                                 </ul>
                               </div>
+                              <form method="POST" action="{{ url('/training') }}/`+result['data_training'][i].id+`" accept-charset="UTF-8" style="display:inline" onsubmit="return confirmDelete(event, this)">
+                                  {{ method_field('DELETE') }}
+                                  {{ csrf_field() }}
+                                  <button type="submit" class="btn btn-danger btn-sm text-center" title="Delete Tools_tutorial">
+                                      &nbsp;<i class="fa-solid fa-trash-can"></i>
+                                  </button>
+                              </form>
                             </center>
                           </div>
                         </div>
@@ -1117,6 +1126,29 @@
           }
 
       });
+  }
+
+  function confirmDelete(event, form) {
+      event.preventDefault();
+      var password = prompt("Please enter your password to confirm deletion:");
+      if (password != null) {
+          $.ajax({
+              url: '{{ url('/confirm-password') }}',
+              method: 'POST',
+              data: {
+                  _token: '{{ csrf_token() }}',
+                  password: password
+              },
+              success: function(response) {
+                  if (response.valid) {
+                      form.submit();
+                  } else {
+                      alert("Incorrect password.");
+                  }
+              }
+          });
+      }
+      return false;
   }
 
   function change_Highlight(training_id , number , type){

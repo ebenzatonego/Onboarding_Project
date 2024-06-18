@@ -423,7 +423,7 @@
                             }
                         @endphp
 
-                        @if( $Dateinterval->days <= 90 )
+                        @if( $Dateinterval->days <= 90 && !empty($Dateinterval->days) )
                         <div class="" style=" position: absolute;bottom: -12px; display: flex;">
                             <div class="alert-license-expire me-3">
                                 <div>

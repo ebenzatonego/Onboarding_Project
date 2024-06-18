@@ -838,13 +838,13 @@ img {
                             </div>
                             <div id="div_not_show_all_member" class="mt-3 d-none">
                                 <div class="float-start mydict mb-2">
-                                    <div  onclick="check_select_show_for();">
+                                    <div >
                                         <label>
-                                            <input type="radio" name="radio_show_for" checked="" value="individual">
+                                            <input type="radio" name="radio_show_for" checked="" value="individual" onchange="check_select_show_for();">
                                             <span>เลือกรายบุคคล</span>
                                         </label>
                                         <label>
-                                            <input type="radio" name="radio_show_for" value="rank">
+                                            <input type="radio" name="radio_show_for" value="rank" onchange="check_select_show_for();">
                                             <span>เลือกจาก rank</span>
                                         </label>
                                     </div>

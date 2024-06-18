@@ -245,7 +245,7 @@
                             <i class="fa-solid fa-thumbs-down"></i>
                         </div>
                     </button>
-                    <button class="btn btn-share me-1"  onclick="click_share_training();">
+                    <button class="btn btn-share me-1"  onclick="click_share_activity();">
                         <i class="fa-solid fa-share m-0"></i>
                     </button>
                 </div>
@@ -412,7 +412,7 @@
                                 <i class="fa-solid fa-thumbs-down"></i>
                             </div>
                         </button>
-                        <button class="btn btn-share me-1" onclick="click_share_training();">
+                        <button class="btn btn-share me-1" onclick="click_share_activity();">
                             <i class="fa-solid fa-share m-0"></i>
                         </button>
 
@@ -811,7 +811,7 @@
 
 <script>
     
-    function click_share_training(){
+    function click_share_activity(){
         let activity_id = "{{ $activity->id }}";
 
         let tag_a_share_line = document.querySelector('#tag_a_share_line');

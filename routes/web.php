@@ -23,6 +23,7 @@ Auth::routes();
 
 // No Login
 Route::get('/share_training/{id}', 'TrainingController@share_training');
+Route::get('/share_activity/{id}', 'ActivitysController@share_activity');
 
 Route::post('/confirm-password', 'AdminController@confirmPassword');
 

@@ -575,7 +575,7 @@
                             });
                             // ตารางอบรม
                             var now_view_training_type = 'all';
-
+                            var first_get_appointment = true ;
                             function get_data_appointment_now(type_appointment) {
 
                                 let now_view_month = document.querySelector('#appointment_month');
@@ -588,7 +588,7 @@
                                 fetch("{{ url('/') }}/api/get_data_appointment_now/" + now_view_training_type + "/" + now_view_month.value + "/" + now_view_year.value + "/" + type_appointment)
                                     .then(response => response.json())
                                     .then(result => {
-                                        console.log(result);
+                                        // console.log(result);
 
                                         if (result) {
 
@@ -658,7 +658,11 @@
 
                                             }
 
-                                            document.querySelector('#btn_a_div_for_appointment').click();
+                                            if(!first_get_appointment){
+                                                document.querySelector('#btn_a_div_for_appointment').click();
+                                            }else{
+                                                first_get_appointment = false;
+                                            }
 
                                         }
 
@@ -916,48 +920,19 @@
 
                 <div class="card py-4 px-2 d-none" style="margin-top: -15px;z-index: 0;" id="content_training_exam">
                     <div class="d-flex w-100 justify-content-between align-items-center my-3 px-2">
-                        <a class=" m-0 p-0" onclick="goBack('สอบ')">
+                        <a class=" m-0 p-0" onclick="goBack('สอบ');get_data_appointment_now_quiz(now_view_quiz_area_id);">
                             <i class="fa-regular fa-chevron-left" style="font-size: 14px;color:#848CA1;"></i>
                         </a>
 
                         <span id="displayDate_exam" style="font-size: 14px;color:#848CA1;"></span>
 
-                        <a class=" m-0 p-0" onclick="goNext('สอบ')">
+                        <a class=" m-0 p-0" onclick="goNext('สอบ');get_data_appointment_now_quiz(now_view_quiz_area_id);">
                             <i class="fa-solid fa-chevron-right" style="font-size: 14px;color:#848CA1;"></i>
                         </a>
                     </div>
                     <div class="dropdown mx-2">
-                        <div class="appointment">
-                            <div class="d-flex w-100 align-items-center">
-                                <div class="name-date-appointment">Wednesday</div>
-                                <div class="day-appointment">25 April 2024</div>
-                            </div>
-                            <div class="d-flex w-100 align-items-center mt-2">
-                                <div>
-                                    <p class="time-start">16:00 pm</p>
-                                    <p class="time-end">16:45 pm</p>
-                                </div>
-                                <div class="content-appointment training-schedule">
-                                    <div>
-                                        <p class="title-appointment">อบรมพนักงานใหม่</p>
-                                        <p class="detail-appointment">หลักสูตร Star Blue</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="d-flex w-100 align-items-center mt-2">
-                                <div>
-                                    <p class="time-start">16:00 pm</p>
-                                    <p class="time-end">16:45 pm</p>
-                                </div>
-                                <div class="content-appointment exam-schedule ">
-                                    <div>
-                                        <p class="title-appointment">อบรมพนักงานใหม่</p>
-                                        <p class="detail-appointment">หลักสูตร Star Blue</p>
-                                    </div>
-                                </div>
-                            </div>
-
+                        <div class="appointment" id="content_appointment_quiz">
+                            <!-- ข้อมูลตารางสอบ -->
                         </div>
                     </div>
                 </div>
@@ -1054,7 +1029,7 @@
         fetch("{{ url('/') }}/api/get_list_quiz_area")
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 if (result) {
 
@@ -1066,28 +1041,49 @@
                             update_area = result[i].area;
                             update_round = update_round + 1;
 
-                            let html = `
+                            let html;
 
-                                <div class="card mx-3">
-                                    <a class="mb-0" onclick="goto_bottom()">
-                                        <div  class="btn btn-select-region collapsed" data-toggle="collapse" data-target="#collapse_` + update_round + `" aria-expanded="true" aria-controls="collapse_` + update_round + `">
-                                            ` + result[i].area + `
-                                            <div class="icon-arrow">
-                                                &nbsp;
-                                                <i class="fa-solid fa-arrow-right "></i>
+                            if(result[i].area == "กรุงเทพ"){
+                                // console.log('กรุงเทพ');
+                                html = `
+                                    <div class="card mx-3" onclick="show_content_appointment_quiz('` + result[i].id + `');">
+                                        <a class="mb-0" onclick="goto_bottom()">
+                                            <div  class="btn btn-select-region collapsed" data-toggle="collapse" data-target="#collapse_` + update_round + `" aria-expanded="true" aria-controls="collapse_` + update_round + `">
+                                                ` + result[i].area + `
+                                                <div class="icon-arrow">
+                                                    &nbsp;
+                                                    <i class="fa-solid fa-arrow-right "></i>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                `;
+                            }else{
+
+                                html = `
+
+                                    <div class="card mx-3">
+                                        <a class="mb-0" onclick="goto_bottom()">
+                                            <div  class="btn btn-select-region collapsed" data-toggle="collapse" data-target="#collapse_` + update_round + `" aria-expanded="true" aria-controls="collapse_` + update_round + `">
+                                                ` + result[i].area + `
+                                                <div class="icon-arrow">
+                                                    &nbsp;
+                                                    <i class="fa-solid fa-arrow-right "></i>
+                                                </div>
+                                            </div>
+                                        </a>
+
+                                        <div id="collapse_` + update_round + `" class="collapse" aria-labelledby="headingOne" data-parent="#div_content_quiz_area">
+                                            <div id="div_content_collapse_` + update_round + `" class="card-body">
+                                                <a class="d-block text-center my-2 cursor-pointer" onclick="show_content_appointment_quiz('` + result[i].id + `');">
+                                                    ` + result[i].sub_area + `
+                                                </a>
                                             </div>
                                         </div>
-                                    </a>
-
-                                    <div id="collapse_` + update_round + `" class="collapse" aria-labelledby="headingOne" data-parent="#div_content_quiz_area">
-                                        <div id="div_content_collapse_` + update_round + `" class="card-body">
-                                            <a class="d-block text-center my-2 cursor-pointer" onclick="show_content_appointment_quiz('` + result[i].id + `');">
-                                                ` + result[i].sub_area + `
-                                            </a>
-                                        </div>
                                     </div>
-                                </div>
-                            `;
+                                `;
+                            }
+
 
                             div_content_quiz_area.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
 
@@ -1124,98 +1120,99 @@
         document.querySelector('#content_exam_schedule').classList.add('d-none');
         document.querySelector('#content_training_exam').classList.remove('d-none');
 
-        // get_data_appointment_now_quiz(area_id);
+        get_data_appointment_now_quiz(area_id);
     }
 
     // ตารางสอบ
-    // function get_data_appointment_now_quiz(area_id){
+    var now_view_quiz_area_id ;
+    function get_data_appointment_now_quiz(area_id){
 
-    //     let now_view_month = document.querySelector('#appointment_month');
-    //     let now_view_year = document.querySelector('#appointment_year');
+        now_view_quiz_area_id = area_id ;
+        let exam_month = document.querySelector('#exam_month');
+        let exam_year = document.querySelector('#exam_year');
 
-    //     // console.log(now_view_month.value);
-    //     // console.log(now_view_year.value);
+        // console.log(now_view_month.value);
+        // console.log(now_view_year.value);
 
-    //     fetch("{{ url('/') }}/api/get_data_appointment_now_quiz/" + now_view_month.value + "/" + now_view_year.value + "/" + area_id)
-    //         .then(response => response.json())
-    //         .then(result => {
-    //             // console.log(result);
+        fetch("{{ url('/') }}/api/get_data_appointment_now_quiz/" + exam_month.value + "/" + exam_year.value + "/" + area_id)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
 
-    //             if(result){
+                if(result){
+                    let content_appointment_quiz = document.querySelector('#content_appointment_quiz');
+                        content_appointment_quiz.innerHTML = "";
 
-    //                 let content_appointment = document.querySelector('#content_appointment');
-    //                     content_appointment.innerHTML = '';
+                    let date_update = '';
+                    for (let i = 0; i < result.length; i++) {
 
-    //                 let date_update = '' ;
-    //                 for (let i = 0; i < result.length; i++) {
+                        if (date_update != result[i].date_start) {
+                            date_update = result[i].date_start;
 
-    //                     if(date_update != result[i].date_start){
-    //                         date_update = result[i].date_start;
+                            let formatDate_show = formatDate(result[i].date_start);
+                            let show_date = formatDate_show.split(',');
 
-    //                         let formatDate_show = formatDate(result[i].date_start);
-    //                         let show_date = formatDate_show.split(',');
+                            let html_datetime = `
+                                <div class="d-flex w-100 align-items-center mt-3">
+                                    <div class="name-date-appointment">` + show_date[0] + `</div>
+                                    <div class="day-appointment">` + show_date[1] + `</div>
+                                </div>
+                            `;
 
-    //                         let html_datetime = `
-    //                             <div class="d-flex w-100 align-items-center mt-3">
-    //                                 <div class="name-date-appointment">`+show_date[0]+`</div>
-    //                                 <div class="day-appointment">`+show_date[1]+`</div>
-    //                             </div>
-    //                         `;
+                            content_appointment_quiz.insertAdjacentHTML('beforeend', html_datetime); // แทรกล่างสุด
 
-    //                         content_appointment.insertAdjacentHTML('beforeend', html_datetime); // แทรกล่างสุด
-
-    //                     }
+                        }
 
 
-    //                     let show_time = ``;
-    //                     if( result[i].time_start && result[i].time_end ){
+                        let show_time = ``;
+                        if (result[i].time_start && result[i].time_end) {
 
-    //                         let timeStart12 = formatTime24to12(result[i].time_start);
-    //                         let timeEnd12 = formatTime24to12(result[i].time_end);
+                            let timeStart12 = formatTime24to12(result[i].time_start);
+                            let timeEnd12 = formatTime24to12(result[i].time_end);
 
-    //                         show_time = `
-    //                             <p class="time-start">`+timeStart12+`</p>
-    //                             <p class="time-end">`+timeEnd12+`</p>
-    //                         `;
-    //                     }
-    //                     else if(result[i].time_start && !result[i].time_end){
-    //                         let timeStart12 = formatTime24to12(result[i].time_start);
+                            show_time = `
+                                <p class="time-start">` + timeStart12 + `</p>
+                                <p class="time-end">` + timeEnd12 + `</p>
+                            `;
+                        } else if (result[i].time_start && !result[i].time_end) {
+                            let timeStart12 = formatTime24to12(result[i].time_start);
 
-    //                         show_time = `
-    //                             <p class="time-start">`+timeStart12+`</p>
-    //                         `;
-    //                     }
-    //                     else if(!result[i].time_start && !result[i].time_end){
-    //                         show_time = `
-    //                             <p class="time-start">All Day &nbsp;</p>
-    //                         `;
-    //                     }
+                            show_time = `
+                                <p class="time-start">` + timeStart12 + `</p>
+                            `;
+                        } else if (!result[i].time_start && !result[i].time_end) {
+                            show_time = `
+                                <p class="time-start">All Day &nbsp;</p>
+                            `;
+                        }
 
-    //                     let html = `
-    //                         <div class="d-flex w-100 align-items-center mt-2">
-    //                             <div>
-    //                                 `+show_time+`
-    //                             </div>
-    //                             <div class="content-appointment training-schedule">
-    //                                 <div>
-    //                                     <p class="title-appointment">`+result[i].title+`</p>
-    //                                     <p class="detail-appointment">`+result[i].type_article+`</p>
-    //                                 </div>
-    //                             </div>
-    //                         </div>
-    //                     `;
+                        let html = `
+                            <a href="{{ url('/show_appointment_train') }}/`+result[i].id+`">
+                            <div class="d-flex w-100 align-items-center mt-2">
+                                <div>
+                                    ` + show_time + `
+                                </div>
+                                <div class="content-appointment exam-schedule">
+                                    <div>
+                                        <p class="title-appointment">` + result[i].title + `</p>
+                                        <p class="detail-appointment">` + result[i].type_article + `</p>
+                                    </div>
+                                </div>
+                            </div>
+                            </a>
+                        `;
 
-    //                     content_appointment.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+                        content_appointment_quiz.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
 
-    //                 }
+                    }
 
-    //                 document.querySelector('#btn_a_div_for_appointment').click();
+                    // document.querySelector('#btn_a_div_for_appointment').click();
 
-    //             }
+                }
 
-    //         });
+            });
 
-    // }
+    }
 </script>
 
 <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>

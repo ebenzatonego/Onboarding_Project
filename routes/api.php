@@ -97,10 +97,17 @@ Route::get('/user_cancel_dislike_appointment/{user_id}/{_appointmentid}', 'Appoi
 Route::get('/user_click_fav_btn_appointment/{user_id}/{appointment_id}/{type}', 'AppointmentsController@user_click_fav_btn_appointment');
 Route::get('/update_user_view_appointment/{user_id}/{appointment_id}', 'AppointmentsController@update_user_view_appointment');
 Route::get('/get_list_quiz_area', 'AppointmentsController@get_list_quiz_area');
+Route::get('/get_data_appointment_now_quiz/{month}/{year}/{area_id}', 'AppointmentsController@get_data_appointment_now_quiz');
+
 
 // activity
 Route::get('/update_user_view_activity/{user_id}/{activity_id}', 'ActivitysController@update_user_view_activity');
 Route::get('/get_data_activitys/{activity_type_id}', 'ActivitysController@get_data_activitys');
+Route::get('/give_rating_activity/{user_id}/{activity_id}/{selectedRating}', 'ActivitysController@give_rating_activity');
+Route::get('/user_cancel_like_activity/{user_id}/{activity_id}', 'ActivitysController@user_cancel_like_activity');
+Route::get('/submit_reasons_dislike_activity/{user_id}/{activity_id}/{reasons_dislike}', 'ActivitysController@submit_reasons_dislike_activity');
+Route::get('/user_cancel_dislike_activity/{user_id}/{activity_id}', 'ActivitysController@user_cancel_dislike_activity');
+Route::get('/user_click_fav_btn_activity/{user_id}/{activity_id}/{type}', 'ActivitysController@user_click_fav_btn_activity');
 
 
 // Share

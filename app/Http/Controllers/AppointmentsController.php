@@ -629,6 +629,7 @@ class AppointmentsController extends Controller
                 ->join('training_types', 'training_types.id', '=', 'appointments.training_type_id')
                 ->select('appointments.*', 'training_types.type_article')
                 ->where('appointments.type', $type_appointment)
+                ->where('appointments.status', 'Yes')
                 ->whereYear('date_start', $year)
                 ->whereMonth('date_start', $month)
                 ->orderBy('date_start', 'ASC')
@@ -640,6 +641,7 @@ class AppointmentsController extends Controller
                 ->join('training_types', 'training_types.id', '=', 'appointments.training_type_id')
                 ->select('appointments.*', 'training_types.type_article')
                 ->where('appointments.type', $type_appointment)
+                ->where('appointments.status', 'Yes')
                 ->where('training_types.id', $training_type_id)
                 ->whereYear('date_start', $year)
                 ->whereMonth('date_start', $month)
@@ -647,6 +649,24 @@ class AppointmentsController extends Controller
                 ->orderBy('time_start', 'ASC')
                 ->get();
         }
+
+        return $data ;
+
+    }
+
+    function get_data_appointment_now_quiz($month, $year , $area_id){
+
+        $data = DB::table('appointments')
+            ->join('training_types', 'training_types.id', '=', 'appointments.training_type_id')
+            ->select('appointments.*', 'training_types.type_article')
+            ->where('appointments.appointment_area_id', $area_id)
+            ->where('appointments.type', 'สอบ')
+            ->where('appointments.status', 'Yes')
+            ->whereYear('date_start', $year)
+            ->whereMonth('date_start', $month)
+            ->orderBy('date_start', 'ASC')
+            ->orderBy('time_start', 'ASC')
+            ->get();
 
         return $data ;
 

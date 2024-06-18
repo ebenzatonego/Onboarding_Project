@@ -31,6 +31,9 @@ Route::post('/create_log_excel_users', 'AdminController@create_log_excel_users')
 Route::get('/get_log_excel_users', 'AdminController@get_log_excel_users');
 Route::get('/get_list_admin', 'AdminController@get_list_admin');
 Route::get('/get_list_upper_al', 'AdminController@get_list_upper_al');
+Route::get('/get_list_member', 'AdminController@get_list_member');
+Route::get('/get_group_manager', 'AdminController@get_group_manager');
+Route::get('/get_area_supervisor', 'AdminController@get_area_supervisor');
 
 // Video INTRO
 Route::get('/change_status_video_intro/{click_id}', 'AdminController@change_status_video_intro');

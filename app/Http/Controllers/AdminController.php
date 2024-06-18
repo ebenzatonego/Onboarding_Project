@@ -295,7 +295,15 @@ class AdminController extends Controller
     function list_upper_al(){
         return view('admin.list_upper_al');
     }
-
+    function member(){
+        return view('admin.member');
+    }   
+    function group_manager(){
+        return view('admin.group_manager');
+    }   
+    function area_supervisor(){
+        return view('admin.area_supervisor');
+    }
     function skip_video_welcome($user_id , $skip_video_welcome){
 
         if($skip_video_welcome == "No"){
@@ -829,6 +837,18 @@ class AdminController extends Controller
         return $upper_al ;
     }
 
+    function get_list_member(){
+        $member = User::where('role','member')->get();
+        return $member ;
+    }
+    function get_group_manager(){
+        $group_manager = Contact_group_manager::get();
+        return $group_manager ;
+    }
+    function get_area_supervisor(){
+        $area_supervisor = Contact_area_supervisor::get();
+        return $area_supervisor ;
+    }
     function save_log_share($user_id, $type_table, $type_social, $id){
 
         $data = DB::table($type_table)->where('id', $id)->first();

@@ -191,7 +191,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="btn" href="#">
+                            <a class="btn" href="{{ url('/member') }}">
                                 <i class="fa-solid fa-address-card"></i> Member
                             </a>
                         </li>
@@ -201,12 +201,12 @@
                             </a>
                         </li>
                         <li>
-                            <a class="btn" href="#">
+                            <a class="btn" href="{{ url('/group_manager') }}">
                                 <i class="fa-solid fa-people-roof"></i> Group Manager
                             </a>
                         </li>
                         <li>
-                            <a class="btn" href="#">
+                            <a class="btn" href="area_supervisor">
                                 <i class="fa-solid fa-users-rectangle"></i> Area Supervisor
                             </a>
                         </li>

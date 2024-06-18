@@ -549,11 +549,10 @@
                    
 
 
-
                         <ul id="list_number_menu_of_appointment" class="nav nav-pills mb-3 d-flex justify-content-center dropdown show" role="tablist">
                             <li class="nav-item me-2 dropdown">
 
-                                <a class="btn  dropdown-toggle  btn-toggle-traning-appointment active" href="#" role="button" id="text_show_type_select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="btn  dropdown-toggle nav-link btn-toggle-traning-appointment active" href="#" role="button" id="text_show_type_select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="document.querySelector('#dropdowntest').classList.add('show')">
                                     ทั้งหมด
                                 </a>
                                 <div class="dropdown-menu"  aria-labelledby="dropdownMenuLink" id="dropdowntest" >

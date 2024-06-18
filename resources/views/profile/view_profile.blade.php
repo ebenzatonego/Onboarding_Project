@@ -406,13 +406,32 @@
                                 </form>
                             </div>
                         </div>
-                        <div style=" position: absolute;bottom: -12px; display: flex;">
+                        @php
+                            if( !empty(Auth::user()->license_expire) ){
+                                // วันที่หมดอายุ
+                                $license_expire = Auth::user()->license_expire;
+
+                                // วันที่ปัจจุบัน
+                                $current_date = date("Y-m-d");
+
+                                // แปลงวันที่หมดอายุและวันที่ปัจจุบันเป็นวัตถุ DateTime
+                                $expire_date = new DateTime($license_expire);
+                                $today_date = new DateTime($current_date);
+
+                                // คำนวณความแตกต่างระหว่างสองวันที่
+                                $Dateinterval = $today_date->diff($expire_date);
+                            }
+                        @endphp
+
+                        @if( $Dateinterval->days <= 90 )
+                        <div class="" style=" position: absolute;bottom: -12px; display: flex;">
                             <div class="alert-license-expire me-3">
                                 <div>
-                                    <span class="ms-1">หมดอายุภายใน <span id="">90</span> วัน</span>
+                                    <span class="ms-1">หมดอายุภายใน <span id="">{{ $Dateinterval->days }}</span> วัน</span>
                                 </div>
                             </div>
                         </div>
+                        @endif
                         <div style="position: absolute;bottom: -25px;left: 50%;transform: translate(-50%, -50%);">
                             <button type="button" class="" data-toggle="modal" data-target="#modal_show_all_detail" style="border:none !important;background: #7FA3D4;padding: 5px 5px ;border-radius: 50px;color:#fff">
                                 <i class="fa-solid fa-chevron-down"></i>

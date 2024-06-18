@@ -134,14 +134,12 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
     Route::resource('appointments', 'AppointmentsController');
     Route::get('/manage_appointment', 'AppointmentsController@manage_appointment');
     Route::get('/appointment_create', 'AppointmentsController@create');
-    Route::get('/show_appointment_train/{id}', 'AppointmentsController@show_appointment_train');
 
     // News
     Route::resource('news', 'NewsController');
 
     // Activitys
     Route::resource('activitys', 'ActivitysController');
-    Route::get('activitys_show/{id}', 'ActivitysController@show');
 
 
 });
@@ -156,6 +154,9 @@ Route::middleware(['auth', 'role:Super-admin,Admin,Staff,member'])->group(functi
     Route::get('/training_show/{id}', 'TrainingController@show');
     Route::get('/page_training', 'TrainingController@index');
     Route::get('/sub_training/{type}', 'TrainingController@sub_training');
+
+    // Appointments
+    Route::get('/show_appointment_train/{id}', 'AppointmentsController@show_appointment_train');
 
     // activitys
     Route::get('page_activitys', 'ActivitysController@index');

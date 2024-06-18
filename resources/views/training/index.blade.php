@@ -588,7 +588,7 @@
                                 fetch("{{ url('/') }}/api/get_data_appointment_now/" + now_view_training_type + "/" + now_view_month.value + "/" + now_view_year.value + "/" + type_appointment)
                                     .then(response => response.json())
                                     .then(result => {
-                                        // console.log(result);
+                                        console.log(result);
 
                                         if (result) {
 
@@ -639,6 +639,7 @@
                                                 }
 
                                                 let html = `
+                            <a href="{{ url('/show_appointment_train') }}/`+result[i].id+`">
                             <div class="d-flex w-100 align-items-center mt-2">
                                 <div>
                                     ` + show_time + `
@@ -650,6 +651,7 @@
                                     </div>
                                 </div>
                             </div>
+                            </a>
                         `;
 
                                                 content_appointment.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด

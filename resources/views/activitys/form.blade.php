@@ -851,8 +851,15 @@ img {
                                 </div>
                                 <textarea class="form-control mt-3" rows="5" type="textarea" name="show_individual" id="show_individual" placeholder="เพิ่ม Account [เพิ่มหลาย Account คั่นด้วยเครื่องหมาย , (จุลภาค)]"></textarea>
 
+                                @php
+                                    $ranks = ['AG', 'UM', 'SUM', 'DM', 'SDM', 'APV', 'VP', 'SVP', 'ESVP'];
+                                @endphp
+
                                 <select class="form-select mt-3 d-none" id="show_rank" name="show_rank">
-                                    <option>sxsxs</option>
+                                    <option value="">เลือกระดับ</option>
+                                    @foreach($ranks as $item)
+                                    <option value="{{ $item }}">{{ $item }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -868,7 +875,18 @@ img {
                                     }
                                 })
 
-                                console.log(radio_show_for_value);
+                                // console.log(radio_show_for_value);
+
+                                if(radio_show_for_value == "individual"){
+                                    document.querySelector('#show_rank').value = "";
+                                    document.querySelector('#show_rank').classList.add('d-none');
+                                    document.querySelector('#show_individual').classList.remove('d-none');
+                                }
+                                else if(radio_show_for_value == "rank"){
+                                    document.querySelector('#show_individual').value = "";
+                                    document.querySelector('#show_individual').classList.add('d-none');
+                                    document.querySelector('#show_rank').classList.remove('d-none');
+                                }
                         }
 
                         function change_select_show_all_member(){
@@ -877,6 +895,8 @@ img {
                                 // console.log('Yes');
                                 document.querySelector('#show_all_member').value = 'Yes';
 
+                                document.querySelector('#show_individual').value = "";
+                                document.querySelector('#show_rank').value = "";
                                 document.querySelector('#div_not_show_all_member').classList.add('d-none');
                             }
                             else{

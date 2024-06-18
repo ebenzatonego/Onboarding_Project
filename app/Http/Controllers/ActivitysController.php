@@ -196,7 +196,7 @@ class ActivitysController extends Controller
     }
 
     function get_data_activitys($activity_type_id){
-
+        
         if($activity_type_id == 'all'){
             $data_activity = Activity::orderByRaw("CASE 
                             WHEN highlight_number IS NOT NULL THEN 1

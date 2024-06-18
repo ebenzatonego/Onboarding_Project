@@ -426,69 +426,31 @@ box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
 
                     for (let i = 0; i < result.length; i++) {
 
-
-                        let time_start = ``;
-                        if(result[i].time_start){
-                            let time_start_sp = result[i].time_start.split(':');
-                            time_start = time_start_sp[0] +':'+ time_start_sp[1];
-                        }
-
-                        let text_day ;
-                        let day ;
-                        let year_month;
-                        if(result[i].date_start){
-                            let date = new Date(result[0].date_start);
-    
-                            // หาและตั้งค่าวัน
-                            let days = ["วันอาทิตย์", "วันจันทร์", "วันอังคาร", "วันพุธ", "วันพฤหัสบดี", "วันศุกร์", "วันเสาร์"];
-                            text_day = days[date.getDay()];
-                            
-                            // ตั้งค่าวันที่
-                            day = date.getDate();
-                            
-                            // หาและตั้งค่าเดือนและปีในรูปแบบ พ.ศ.
-                            let months = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
-                            let month = months[date.getMonth()];
-                            let year = date.getFullYear() + 543; // แปลงจาก ค.ศ. เป็น พ.ศ.
-                            year_month = `${month} ${year}`;
-                        }
-
-                        if(activity_type_id == 'all'){
-                            // highlight_number ALL
-                            if(result[i].highlight_number){
-                                let div_content_highlight_number = document.querySelector('#div_content_highlight_number');
-
-                                let html_highlight_number = `
-                                    <div class="item">
-                                        <div class="position-relative">
-                                            <div class="container-img">
-                                                <img src="`+result[i].photo+`">
-                                            </div>
-                                            <div class="position-absolute detail-on-img w-100">
-                                                <div>
-                                                    <div class="d-flex align-items-center " style="margin-bottom: 10px;">
-                                                        <h1 class="m-0 text-white me-3" style="font-weight: bolder;">`+day+`</h1>
-                                                        <div>
-                                                            <p class="m-0">`+text_day+`</p>
-                                                            <p class="m-0">`+year_month+`</p>
-                                                        </div>
-                                                    </div>
-                                                    <p class="" style="margin-bottom: 10px;">`+result[i].title+`</p>
-                                                    <p class="m-0" style="font-size: 12px;">เริ่ม `+time_start+`</p>
-                                                    <p class="m-0" style="font-size: 12px;">สถานที่ `+result[i].location_detail+`</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                `;
-
-                                div_content_highlight_number.insertAdjacentHTML('beforeend', html_highlight_number); // แทรกล่างสุด
-
-                            }
+                        // เช็คการแสดงผล show_all_member
+                        if( result[i].show_all_member == 'Yes' ){
+                            create_html_for_activitys(activity_type_id , result[i]);
                         }
                         else{
-                            // highlight_of_type
-                            
+                            if(result[i].show_individual){
+                                let account_user = "{{ Auth::user()->account }}";
+                                let text_show_individual = result[i].show_individual ;
+
+                                let individualArray = text_show_individual.split(',');
+
+                                // ตรวจสอบว่ามี account_user อยู่ใน array หรือไม่
+                                let isUserInArray = individualArray.includes(account_user);
+
+                                // แสดงผล
+                                if (isUserInArray) {
+                                    // console.log(`มี`);
+                                    create_html_for_activitys(activity_type_id , result[i]);
+                                }
+                            }
+                            else if(result[i].show_rank){
+                                if(result[i].show_rank == "{{ Auth::user()->current_rank }}"){
+                                    create_html_for_activitys(activity_type_id , result[i]);
+                                }
+                            }
                         }
 
                     }
@@ -514,6 +476,80 @@ box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
 
                 }
         });
+    }
+
+    function create_html_for_activitys(activity_type_id,result){
+
+        console.log(result);
+
+        let text_day = '' ;
+        let day = '' ;
+        let year_month = '';
+
+        let time_start = ``;
+        let html_time_start = ``;
+        if(result.time_start){
+            let time_start_sp = result.time_start.split(':');
+            time_start = time_start_sp[0] +':'+ time_start_sp[1];
+            html_time_start = `
+                <p class="m-0" style="font-size: 12px;">เริ่ม `+time_start+` น.</p>
+            `;
+        }
+
+        if(result.date_start){
+            let date = new Date(result.date_start);
+
+            // หาและตั้งค่าวัน
+            let days = ["วันอาทิตย์", "วันจันทร์", "วันอังคาร", "วันพุธ", "วันพฤหัสบดี", "วันศุกร์", "วันเสาร์"];
+            text_day = days[date.getDay()];
+            
+            // ตั้งค่าวันที่
+            day = date.getDate();
+            
+            // หาและตั้งค่าเดือนและปีในรูปแบบ พ.ศ.
+            let months = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
+            let month = months[date.getMonth()];
+            let year = date.getFullYear() + 543; // แปลงจาก ค.ศ. เป็น พ.ศ.
+            year_month = `${month} ${year}`;
+        }
+
+        if(activity_type_id == 'all'){
+            // highlight_number ALL
+            if(result.highlight_number){
+                let div_content_highlight_number = document.querySelector('#div_content_highlight_number');
+
+                let html_highlight_number = `
+                    <div class="item">
+                        <div class="position-relative">
+                            <div class="container-img">
+                                <img src="`+result.photo+`">
+                            </div>
+                            <div class="position-absolute detail-on-img w-100">
+                                <div>
+                                    <div class="d-flex align-items-center " style="margin-bottom: 10px;">
+                                        <h1 class="m-0 text-white me-3" style="font-weight: bolder;">`+day+`</h1>
+                                        <div>
+                                            <p class="m-0">`+text_day+`</p>
+                                            <p class="m-0">`+year_month+`</p>
+                                        </div>
+                                    </div>
+                                    <p class="" style="margin-bottom: 10px;">`+result.title+`</p>
+                                    `+html_time_start+`
+                                    <p class="m-0" style="font-size: 12px;">สถานที่ `+result.location_detail+`</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                div_content_highlight_number.insertAdjacentHTML('beforeend', html_highlight_number); // แทรกล่างสุด
+
+            }
+        }
+        else{
+            // highlight_of_type
+            
+        }
     }
 </script>
 

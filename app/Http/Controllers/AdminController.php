@@ -28,12 +28,14 @@ class AdminController extends Controller
 
         if (!empty($check_user->id)) {
             return response()->json([
+                'status_code' => 200,
                 'status' => 'success',
                 'message' => 'User found.',
                 'account' => $check_user->account
             ], 200); // HTTP status code 200: OK
         } else {
             return response()->json([
+                'status_code' => 404,
                 'status' => 'error',
                 'message' => 'User not found.'
             ], 404); // HTTP status code 404: Not Found

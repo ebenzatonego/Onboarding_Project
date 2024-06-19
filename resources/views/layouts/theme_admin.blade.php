@@ -141,6 +141,16 @@
 
                 @if(Auth::check())
                     @if(Auth::user()->role == "Super-admin")
+
+                    <li class="mm-active">
+                        <a  href="{{url('/calendar_admin')}}" aria-expanded="true">
+                            <div class="parent-icon">
+                                <i class="fa-solid fa-calendar-days"></i>
+                            </div>
+                            <div class="menu-title">Calendar</div>
+                        </a>
+                    </li>
+
                     <li>
                         <a href="javascript:;" class="has-arrow">
                             <div class="parent-icon">
@@ -387,11 +397,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{url('/calendar_admin')}}">
-                                    <i class="fa-solid fa-calendar-days text-white"></i>
-                                </a>
-                            </li>
+                            
                         </ul>
                     </div>
 

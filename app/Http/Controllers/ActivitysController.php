@@ -217,6 +217,7 @@ class ActivitysController extends Controller
                             END, 
                             highlight_number ASC, 
                             id DESC")
+                        ->where('status' , 'Yes')
                         ->get();
 
         }
@@ -227,6 +228,7 @@ class ActivitysController extends Controller
                             END, 
                             highlight_of_type ASC, 
                             id DESC")
+                        ->where('status' , 'Yes')
                         ->where('activity_type_id' , $activity_type_id)
                         ->get();
         }

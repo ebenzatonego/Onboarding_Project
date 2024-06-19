@@ -280,7 +280,7 @@
 
                 @if(Auth::check())
                     @if(Auth::user()->role == "Super-admin")
-                    <li class="d-none">
+                    <li class="">
                         <a href="javascript:;" class="has-arrow">
                             <div class="parent-icon">
                                 <i class="fa-solid fa-newspaper"></i>

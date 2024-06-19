@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 use App\Models\News;
 use Illuminate\Http\Request;
+use App\Models\News_type;
 
 class NewsController extends Controller
 {
@@ -46,7 +47,8 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('news.create');
+        $news_type = News_type::get();
+        return view('news.create', compact('news_type'));
     }
 
     /**
@@ -60,6 +62,22 @@ class NewsController extends Controller
     {
         
         $requestData = $request->all();
+
+        if( !empty($requestData['news_type_id']) ){
+            $check_news_type = News_type::where('name_type' , $requestData['news_type_id'])->first();
+
+            if( empty($check_news_type->id) ){
+
+                $data_create = [];
+                $data_create['name_type'] = $requestData['news_type_id'];
+                $new_data_type = News_type::create($data_create);
+
+                $requestData['news_type_id'] = $new_data_type->id ;
+            }
+            else{
+                $requestData['news_type_id'] = $check_news_type->id ;
+            }
+        }
         
         News::create($requestData);
 

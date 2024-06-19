@@ -1,7 +1,12 @@
 @extends('layouts.theme_admin')
 
 @section('content')
-
+<style>
+	#div_content{
+		height: 73dvh;
+		overflow: auto;
+	}
+</style>
 <div class="row">
 	<div class="col-8">
 		<!--end breadcrumb-->

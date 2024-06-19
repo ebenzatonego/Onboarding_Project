@@ -728,7 +728,7 @@
         var data_arr_events = [];
         document.querySelector('#p_view_content_all').classList.add('d-none');
 
-        fetch("{{ url('/') }}/api/get_data_for_calendar_for_user")
+        fetch("{{ url('/') }}/api/get_data_for_calendar_for_user" + "/" + "{{ Auth::user()->id }}")
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
@@ -1129,6 +1129,7 @@
             // API UPLOAD IMG //
             let formData = new FormData();
             let data_calendar = {
+                "user_id": "{{ Auth::user()->id }}",
                 "title": document.querySelector('#title').value,
                 "type_memo": document.querySelector('#type_memo').value,
                 "date_start": document.querySelector('#date_start').value,
@@ -1139,6 +1140,7 @@
                 "all_day": all_day,
             }
 
+            formData.append('user_id', data_calendar.user_id);
             formData.append('title', data_calendar.title);
             formData.append('type_memo', data_calendar.type_memo);
             formData.append('date_start', data_calendar.date_start);

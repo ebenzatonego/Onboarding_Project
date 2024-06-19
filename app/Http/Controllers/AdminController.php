@@ -334,10 +334,8 @@ class AdminController extends Controller
         return $data;
     }
 
-    function get_data_for_calendar_for_user(){
+    function get_data_for_calendar_for_user($user_id){
 
-        $user = Auth::user();
-        $user_id = $user->id ;
         // favorites join appointments (ตารางอบรม / สอบ)
         $data_appointments = DB::table('favorites')
             ->join('appointments', 'appointments.id', '=', 'favorites.appointment_id')
@@ -398,6 +396,10 @@ class AdminController extends Controller
             }
             return $a->date_start <=> $b->date_start;
         });
+
+        if (empty($data)) {
+            return [];
+        }
 
         return $data ;
 

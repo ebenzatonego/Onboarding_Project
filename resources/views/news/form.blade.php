@@ -437,8 +437,8 @@
 <style>
     .file-upload-box {
         position: relative;
-        width: 250px;
-        height: 250px;
+        width: 180px;
+        height: 180px;
         border: 2px dashed #ccc;
         border-radius: 10px;
         /* text-align: center; */
@@ -785,7 +785,7 @@
                                                 $class_div_news_photo='d-none' ; 
                                             } 
                                         @endphp 
-                                        <div class="p-1 me-1" style="width: 250px;">
+                                        <div class="p-1 me-1" style="width: 180px;">
                                             <div id="img_news_photo_{{ $i }}" class="file-upload-box upload-id-card {{ $class_div_news_photo }}" onclick="document.querySelector('#news_photo').click();">
                                                 <div class="upload-text text-center">
                                                     <span>

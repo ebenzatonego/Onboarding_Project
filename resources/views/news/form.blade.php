@@ -776,6 +776,7 @@
                             <!-- Photo Gallery -->
                             <div class="" id="nav_news_photo" role="tabpanel">
                                 <input class="d-none" type="file" id="news_photo" name="news_photo[]" accept="image/*" multiple onchange="on_select_file_input('news_photo');">
+                                <input class="d-none" type="text" id="photo_gallery" name="photo_gallery">
                                 <div class="flex-wrap" style="flex-wrap: wrap;display: flex;">
                                     @for($i=1; $i < 21; $i++) 
                                         @php 
@@ -1115,6 +1116,108 @@
 </script>
 
 <script>
+    function checkFiles_photo_gallery() {
+        const input = document.getElementById('news_photo');
+
+        if (input.files.length > 0) {
+            // console.log(`You have selected ${input.files.length} file(s).`);
+            getImageSources();
+        } else {
+            // console.log('No files selected.');
+            setTimeout(() => {
+                document.querySelector('#btn_submit_form').click();
+            }, 800);
+        }
+
+    }
+
+    function getImageSources() {
+            // Select all img elements with class 'get-img-firebase'
+        const imgElements = document.querySelectorAll('.get-img-firebase');
+        const srcArray = [];
+
+        // Loop through the NodeList and push the src to the array
+        imgElements.forEach(img => {
+            srcArray.push(img.src);
+        });
+
+        // Log the array to see the result
+        // console.log(srcArray);
+
+        let length_check_last = srcArray.length - 1 ;
+        let check_last = '' ;
+
+        for (let i = 0; i < srcArray.length; i++) {
+            if(length_check_last == i){
+                // console.log('รอบสุดท้าย');
+                check_last = 'รอบสุดท้าย' ;
+            }
+            else{
+                // console.log('ต่อ');
+                check_last = 'ต่อ' ;
+            }
+            uploadBlobToFirebase(srcArray[i], check_last, i)
+        }
+
+        return srcArray;
+    }
+
+    var new_link ;
+
+    async function uploadBlobToFirebase(blobUrl, check_last, round) {
+
+        round = parseInt(round) + 1 ;
+        try {
+            const response = await fetch(blobUrl);
+            const blob = await response.blob();
+
+            let title = document.querySelector('#title').value;
+            let date_now = new Date();
+            let Date_for_firebase = formatDate_for_firebase(date_now);
+            let name_file = Date_for_firebase + '-' + title + '-' + round;
+            let storageRef = storage.ref('/news/image/photo_gallery/'+title+'/' + name_file);
+
+            let uploadTask = storageRef.put(blob);
+
+            uploadTask.on('state_changed',
+                function(snapshot) {
+                    // ติดตามความคืบหน้าของการอัพโหลด (optional)
+                },
+                function(error) {
+                    // กรณีเกิดข้อผิดพลาดในการอัพโหลด
+                    console.error('Upload failed:', error);
+                },
+                function() {
+                    // เมื่ออัพโหลดสำเร็จ
+                    uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+
+                        let old_link = document.querySelector('#photo_gallery') ;
+
+                        if(old_link.value){
+                            new_link = old_link.value + "," + downloadURL ;
+                        }
+                        else{
+                            new_link = downloadURL ;
+                        }
+
+                        document.querySelector('#photo_gallery').value = new_link;
+
+                        if(check_last == 'รอบสุดท้าย'){
+
+                            document.querySelector('#news_photo').value = null;
+
+                            setTimeout(() => {
+                                document.querySelector('#btn_submit_form').click();
+                            }, 800);
+                        }
+                    });
+                }
+            );
+        } catch (error) {
+            console.error('Error fetching the Blob:', error);
+        }
+    }
+
     function upload_to_firebase() {
 
         let select_photo = document.querySelector('#select_photo').value;
@@ -1187,9 +1290,10 @@
                                     document.querySelector('#photo_cover').value = downloadURL;
                                     document.querySelector('#select_photo').value = null;
 
-                                    setTimeout(() => {
-                                        document.querySelector('#btn_submit_form').click();
-                                    }, 800);
+                                    checkFiles_photo_gallery();
+                                    // setTimeout(() => {
+                                    //     document.querySelector('#btn_submit_form').click();
+                                    // }, 800);
                                 });
                             }
                         );
@@ -1230,9 +1334,10 @@
                         document.querySelector('#video').value = downloadURL;
                         document.querySelector('#select_video').value = null;
 
-                        setTimeout(() => {
-                            document.querySelector('#btn_submit_form').click();
-                        }, 800);
+                        checkFiles_photo_gallery();
+                        // setTimeout(() => {
+                        //     document.querySelector('#btn_submit_form').click();
+                        // }, 800);
 
                         // ตัวอย่างการแสดง URL บนหน้าเว็บ
                         // alert('File uploaded successfully. URL: ' + downloadURL);
@@ -1276,9 +1381,10 @@
                         document.querySelector('#photo_cover').value = downloadURL;
                         document.querySelector('#select_photo').value = null;
 
-                        setTimeout(() => {
-                            document.querySelector('#btn_submit_form').click();
-                        }, 800);
+                        checkFiles_photo_gallery();
+                        // setTimeout(() => {
+                        //     document.querySelector('#btn_submit_form').click();
+                        // }, 800);
                     });
                 }
             );

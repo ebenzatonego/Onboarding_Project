@@ -112,6 +112,16 @@ Route::get('/submit_reasons_dislike_activity/{user_id}/{activity_id}/{reasons_di
 Route::get('/user_cancel_dislike_activity/{user_id}/{activity_id}', 'ActivitysController@user_cancel_dislike_activity');
 Route::get('/user_click_fav_btn_activity/{user_id}/{activity_id}/{type}', 'ActivitysController@user_click_fav_btn_activity');
 
+// News
+Route::get('/get_data_news/{news_type_id}', 'NewsController@get_data_news');
+Route::get('/update_user_view_news/{user_id}/{news_id}', 'NewsController@update_user_view_news');
+Route::get('/give_rating_news/{user_id}/{news_id}/{selectedRating}', 'NewsController@give_rating_news');
+Route::get('/user_cancel_like_news/{user_id}/{news_id}', 'NewsController@user_cancel_like_news');
+Route::get('/user_cancel_dislike_news/{user_id}/{news_id}', 'NewsController@user_cancel_dislike_news');
+Route::get('/submit_reasons_dislike_news/{user_id}/{news_id}/{reasons_dislike}', 'NewsController@submit_reasons_dislike_news');
+Route::get('/user_click_fav_btn_news/{user_id}/{news_id}/{type}', 'NewsController@user_click_fav_btn_news');
+Route::get('/update_countTime_newsVideo/{user_id}/{countTime}/{news_id}', 'NewsController@update_countTime_newsVideo');
+
 
 // Share
 Route::get('/save_log_share/{user_id}/{type_table}/{type_social}/{id}', 'AdminController@save_log_share');

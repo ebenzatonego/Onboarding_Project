@@ -184,9 +184,14 @@
 <div class="container p-0 conteiner-detail-training">
     <div class="row">
         <div class="col-lg-5 col-md-5 p-0" style="position: relative;">
-            <a href="{{ url('/training') }}" class="btn btn-back-all-course">
+            <!-- <a href="{{ url('/training') }}" class="btn btn-back-all-course">
                 <i class="fa-solid fa-arrow-left"></i>
                 <span>กลับหน้ารวมหลักสูตร</span>
+            </a> -->
+
+            <a class="btn btn-back-all-course" onclick="window.history.back();">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>ย้อนกลับ</span>
             </a>
 
             <img src="{{ $appointment->photo }}" alt="" style="width: 100%;">
@@ -439,8 +444,11 @@
 
                     </div>
                     <div class="mt-5">
-                        <a href="{{ url('/training') }}">
+                        <!-- <a href="{{ url('/training') }}">
                             <i class="fa-solid fa-chevron-left"></i> กลับหน้ารวมหลักสูตร
+                        </a> -->
+                        <a onclick="window.history.back();">
+                            <i class="fa-solid fa-chevron-left"></i> ย้อนกลับ
                         </a>
                     </div>
                 </div>
@@ -833,6 +841,7 @@
         let tag_a_share_twitter = document.querySelector('#tag_a_share_twitter');
         let tag_a_share_whatsapp = document.querySelector('#tag_a_share_whatsapp');
         let input_for_copy = document.querySelector('#input_for_copy_Share_social_media');
+        let btn_for_copy_Share = document.querySelector('#btn_for_copy_Share');
 
         let url = "{{ url('/') }}/" + "share_appointment/" + appointment_id ;
 
@@ -846,7 +855,9 @@
         tag_a_share_facebook.setAttribute('onclick' , "save_log_share('appointments' , 'facebook' , '"+appointment_id+"')");
         tag_a_share_twitter.setAttribute('onclick' , "save_log_share('appointments' , 'twitte' , '"+appointment_id+"')");
         tag_a_share_whatsapp.setAttribute('onclick' , "save_log_share('appointments' , 'whatsapp' , '"+appointment_id+"')");
-        input_for_copy.setAttribute('onclick' , "save_log_share('appointments' , 'copy' , '"+appointment_id+"')")
+        input_for_copy.setAttribute('onclick' , "save_log_share('appointments' , 'copy' , '"+appointment_id+"')");
+        btn_for_copy_Share.setAttribute('onclick' , "copy_Share_social_media();save_log_share('appointments' , 'copy' , '"+appointment_id+"')");
+        
 
         document.querySelector('#btn_modal_Share_social_media').click();
     }

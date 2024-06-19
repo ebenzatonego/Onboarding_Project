@@ -24,6 +24,7 @@ Auth::routes();
 // No Login
 Route::get('/share_training/{id}', 'TrainingController@share_training');
 Route::get('/share_activity/{id}', 'ActivitysController@share_activity');
+Route::get('/share_news/{id}', 'NewsController@share_news');
 
 Route::post('/confirm-password', 'AdminController@confirmPassword');
 
@@ -138,6 +139,7 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
 
     // News
     Route::resource('news', 'NewsController');
+    Route::get('/manage_news', 'NewsController@manage_news');
 
     // Activitys
     Route::resource('activitys', 'ActivitysController');
@@ -150,6 +152,7 @@ Route::middleware(['auth', 'role:Super-admin,Admin,Staff,member'])->group(functi
 
     // News
     Route::get('page_news', 'NewsController@index');
+    Route::get('news_show/{id}', 'NewsController@show');
 
     // training
     Route::get('/training_show/{id}', 'TrainingController@show');

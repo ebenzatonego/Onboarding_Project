@@ -124,7 +124,7 @@
             </div>             
             <div class="px-5 mt-3">
               <input type="text" class="d-none" id="input_for_copy_Share_social_media">
-              <button class="share-button copy btn w-100" onclick="copy_Share_social_media()">
+              <button id="btn_for_copy_Share" class="share-button copy btn w-100">
                   Copy Link
               </button>
             </div>
@@ -147,9 +147,9 @@
                 }
 
                 function save_log_share(type_table , type_social , id){
-                  console.log(type_table);
-                  console.log(type_social);
-                  console.log(id);
+                  // console.log(type_table);
+                  // console.log(type_social);
+                  // console.log(id);
 
                   fetch("{{ url('/') }}/api/save_log_share/" + "{{ Auth::user()->id }}" + "/" + type_table + "/" + type_social + "/" + id)
                     .then(response => response.text())

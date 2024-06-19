@@ -579,7 +579,7 @@
 
 
 
-                    <div class="appointment">
+                    <div class="appointment" id="content_event_calendar">
                         <div class="d-flex w-100 align-items-center">
                             <div class="name-date-appointment">Wednesday</div>
                             <div class="day-appointment">25 April 2024</div>
@@ -1035,76 +1035,147 @@
         const myModal = new bootstrap.Modal(document.getElementById('form'));
         const close = document.querySelector('.btn-close');
 
-
-
-
-        var data_arr_events = [];
-        get_data_for_calendar();
-
+        get_data_for_calendar_for_user();
 
     });
 
-    function get_data_for_calendar() {
+    var data_arr_events = [];
 
-        // fetch("{{ url('/') }}/api/get_data_for_calendar")
-        //     .then(response => response.json())
-        //     .then(result => {
-        //         console.log(result);
+    function get_data_for_calendar_for_user() {
 
-        //         for (let i = 0; i < result.length; i++) {
-        //             // สร้างข้อมูลใหม่ที่ต้องการเพิ่ม
+        fetch("{{ url('/') }}/api/get_data_for_calendar_for_user")
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
 
-        //             let newEvent ;
-        //             if(result[i].link_lms){
-        //                 newEvent = {
-        //                     title: result[i].name_article,
-        //                     url: result[i].link_lms,
-        //                     start: result[i].start_date
-        //                 };
-        //             }
-        //             else{
-        //                 newEvent = {
-        //                     title: result[i].name_article,
-        //                     start: result[i].start_date
-        //                 };
-        //             }
+                if(result){
+                    let content_event_calendar = document.querySelector('#content_event_calendar');
+                        content_event_calendar.innerHTML = "";
+                    let date_update = '';
 
-        //             // เพิ่มข้อมูลใหม่เข้าไปในอาร์เรย์ data_arr_events
-        //             data_arr_events.push(newEvent);
-        //         }
+                    for (let i = 0; i < result.length; i++) {
+                        // สร้างข้อมูลใหม่ที่ต้องการเพิ่ม
 
-        //     });
+                        let key ;
+                        let class_color = ``;
+                        let bg_color = ``;
+                        let hashtag = ``;
 
-        data_arr_events = [{
-                title: 'Go To Home',
-                url: "{{ url('/home') }}",
-                start: '2024-06-01'
-            },
-            {
-                title: 'Long Event',
-                start: '2024-06-07',
-                end: '2024-06-10',
-                backgroundColor: '#00BF2D'
-            },
-            {
-                title: 'Meeting',
-                start: '2024-06-12T10:30:00',
-                end: '2024-06-12T12:30:00'
-            },
-            {
-                title: 'Lunch',
-                start: '2024-06-12T12:00:00'
-            },
-            {
-                title: 'Dinner',
-                start: '2024-06-12T20:00:00'
-            },
-            {
-                title: 'Birthday Party',
-                start: '2024-06-13T07:00:00',
-                backgroundColor: 'red'
-            }
-        ];
+                        if(result[i].type == "อบรม/สอบ"){
+                            key = result[i].type_appointments;
+                        }
+                        else{
+                            key = result[i].type;
+                        }
+
+                        if(key == 'อบรม'){
+                            bg_color = `#78CBE5`;
+                            class_color = `blue`;
+                            hashtag = `<i class="fa-regular fa-circle-dot"></i> อบรม` + `  ` + `#` + result[i].type_article;
+                        }
+                        else if(key == 'สอบ'){
+                            bg_color = `#FFBF44`;
+                            class_color = `yellow`;
+                            hashtag = `<i class="fa-regular fa-circle-dot"></i> สอบ` + `  ` + `#` + result[i].type_article;
+                        }
+                        else if(key == 'กิจกรรม'){
+                            bg_color = `#BD91FF`;
+                            class_color = `purple`;
+                            hashtag = `<i class="fa-regular fa-circle-dot"></i> กิจกรรม` + `  ` + `#` + result[i].name_type;
+                        }
+                        else if(key == 'นัดลูกค้า'){
+                            bg_color = `#E54141`;
+                            class_color = `red`;
+                            hashtag = `<i class="fa-regular fa-circle-dot"></i> นัดลูกค้า` + `  ` + `#` + result[i].type_memo;
+                        }
+                        else if(key == 'ส่วนตัว'){
+                            bg_color = `#8FC14E`;
+                            class_color = `green`;
+                            hashtag = `<i class="fa-regular fa-circle-dot"></i> ส่วนตัว` + `  ` + `#` + result[i].type_memo;
+                        }
+
+                        let newEvent = {
+                            title: result[i].title,
+                            backgroundColor: bg_color,
+                        };
+
+                        if(result[i].all_day == 'Yes'){
+                            newEvent.start = result[i].date_start;
+                        }else{
+                            if(result[i].date_start == result[i].date_end){
+                                newEvent.start = result[i].date_start+'T'+result[i].time_start;
+                                newEvent.end = result[i].date_start+'T'+result[i].time_end;
+                            }
+                            else{
+                                newEvent.start = result[i].date_start;
+                                newEvent.end = result[i].date_end;
+                            }
+                        }
+
+                        // เพิ่มข้อมูลใหม่เข้าไปในอาร์เรย์ data_arr_events
+                        data_arr_events.push(newEvent);
+
+                        if (date_update != result[i].date_start) {
+                            date_update = result[i].date_start;
+
+                            let formatDate_show = formatDate(result[i].date_start);
+                            let show_date = formatDate_show.split(',');
+
+                            let html_datetime = `
+                                <div class="d-flex w-100 align-items-center mt-3">
+                                    <div class="name-date-appointment">` + show_date[0] + `</div>
+                                    <div class="day-appointment">` + show_date[1] + `</div>
+                                </div>
+                            `;
+
+                            content_event_calendar.insertAdjacentHTML('beforeend', html_datetime); // แทรกล่างสุด
+
+                        }
+
+                        let show_time = ``;
+                        if (result[i].time_start && result[i].time_end) {
+
+                            let timeStart12 = formatTime24to12(result[i].time_start);
+                            let timeEnd12 = formatTime24to12(result[i].time_end);
+
+                            show_time = `
+                                <p class="time-start">` + timeStart12 + `</p>
+                                <p class="time-end">` + timeEnd12 + `</p>
+                            `;
+                        } else if (result[i].time_start && !result[i].time_end) {
+                            let timeStart12 = formatTime24to12(result[i].time_start);
+
+                            show_time = `
+                                <p class="time-start">` + timeStart12 + `</p>
+                            `;
+                        } else if (!result[i].time_start && !result[i].time_end) {
+                            show_time = `
+                                <p class="time-start">All Day &nbsp;</p>
+                            `;
+                        }
+
+                        let html = `
+                            <div class="d-flex w-100 align-items-center mt-2">
+                                <div>
+                                    `+show_time+`
+                                </div>
+                                <div class="content-appointment `+class_color+` ">
+                                    <div>
+                                        <p class="title-appointment">`+result[i].title+`</p>
+                                        <p class="detail-appointment">`+hashtag+`</p>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+
+                        content_event_calendar.insertAdjacentHTML('beforeend', html);
+
+                    }
+
+                }
+
+
+            });
 
         setTimeout(() => {
             create_calendar(data_arr_events);
@@ -1150,6 +1221,30 @@
         updateTitle();
 
     }
+
+    function formatTime24to12(time24) {
+        const [hour, minute, second] = time24.split(':');
+        let hour12 = hour % 12 || 12; // Convert hour to 12-hour format, with 0 -> 12
+        let period = hour < 12 ? 'AM' : 'PM'; // Determine AM/PM
+        return `${hour12}:${minute} ${period}`;
+    }
+
+    function formatDate(dateString) {
+        // Create a new Date object from the dateString
+        const date = new Date(dateString);
+
+        // Create an options object to format the date
+        const options = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        };
+
+        // Format the date using Intl.DateTimeFormat
+        return new Intl.DateTimeFormat('en-UK', options).format(date);
+    }
+
 </script>
 <script>
     document.getElementById('prev-pc').addEventListener('click', function() {

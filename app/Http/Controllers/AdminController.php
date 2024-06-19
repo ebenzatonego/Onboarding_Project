@@ -314,6 +314,70 @@ class AdminController extends Controller
         return $data;
     }
 
+    function get_data_for_calendar_for_user(){
+
+        // favorites join appointments (ตารางอบรม / สอบ)
+        $data_appointments = DB::table('favorites')
+            ->join('appointments', 'appointments.id', '=', 'favorites.appointment_id')
+            ->leftJoin('training_types', 'training_types.id', '=', 'appointments.training_type_id')
+            ->select('favorites.*',
+                    'training_types.type_article',
+                    'appointments.title',
+                    'appointments.type as type_appointments',
+                    'appointments.all_day',
+                    'appointments.date_start',
+                    'appointments.date_end',
+                    'appointments.time_start',
+                    'appointments.time_end',
+                )
+            ->orderBy('appointments.date_start' , 'ASC')
+            ->orderBy('appointments.time_start' , 'ASC')
+            ->get();
+
+        // favorites join appointments (ตารางอบรม / สอบ)
+        $data_activitys = DB::table('favorites')
+            ->join('activitys', 'activitys.id', '=', 'favorites.activity_id')
+            ->leftJoin('activity_types', 'activity_types.id', '=', 'activitys.activity_type_id')
+            ->select('favorites.*',
+                    'activity_types.name_type',
+                    'activitys.title',
+                    'activitys.all_day',
+                    'activitys.date_start',
+                    'activitys.date_end',
+                    'activitys.time_start',
+                    'activitys.time_end',
+                )
+            ->orderBy('activitys.date_start' , 'ASC')
+            ->orderBy('activitys.time_start' , 'ASC')
+            ->get();
+
+        // MEMO
+        $data_calendars = DB::table('calendars')
+            ->orderBy('calendars.date_start' , 'ASC')
+            ->orderBy('calendars.time_start' , 'ASC')
+            ->get();
+
+        // $data = [];
+        // แปลงคอลเลกชันให้อยู่ในรูปแบบของอาร์เรย์
+        $data_appointments = $data_appointments->toArray();
+        $data_activitys = $data_activitys->toArray();
+        $data_calendars = $data_calendars->toArray();
+
+        // รวมคอลเลกชันเข้าด้วยกัน
+        $data = array_merge($data_appointments, $data_activitys, $data_calendars);
+
+        // เรียงลำดับข้อมูลตาม date_start และ time_start
+        usort($data, function($a, $b) {
+            if ($a->date_start == $b->date_start) {
+                return $a->time_start <=> $b->time_start;
+            }
+            return $a->date_start <=> $b->date_start;
+        });
+
+        return $data ;
+
+    }
+
     function index_user_excel(){
         return view('admin.index_user_excel');
     }

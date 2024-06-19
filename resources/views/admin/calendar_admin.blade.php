@@ -49,9 +49,9 @@
 				<div class="col">
 					<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
 						<div class="ms-auto">
-							<button id="btn_view_primary" type="button" class="btn btn-sm btn-primary" onclick="change_select_view('primary');">
+							<!-- <button id="btn_view_primary" type="button" class="btn btn-sm btn-primary" onclick="change_select_view('primary');">
 								ทั้งหมด
-							</button>
+							</button> -->
 							<button id="btn_view_info" type="button" class="btn btn-sm btn-outline-info" onclick="change_select_view('info');">
 								กิจกรรม
 							</button>
@@ -67,12 +67,12 @@
 					<script>
 						function change_select_view(type){
 
-							document.querySelector('#btn_view_primary').classList.remove('btn-primary');
+							// document.querySelector('#btn_view_primary').classList.remove('btn-primary');
 							document.querySelector('#btn_view_info').classList.remove('btn-info');
 							document.querySelector('#btn_view_success').classList.remove('btn-success');
 							document.querySelector('#btn_view_warning').classList.remove('btn-warning');
 
-							document.querySelector('#btn_view_primary').classList.add('btn-outline-primary');
+							// document.querySelector('#btn_view_primary').classList.add('btn-outline-primary');
 							document.querySelector('#btn_view_info').classList.add('btn-outline-info');
 							document.querySelector('#btn_view_success').classList.add('btn-outline-success');
 							document.querySelector('#btn_view_warning').classList.add('btn-outline-warning');
@@ -289,7 +289,7 @@
 												<p style="font-size:14px;" class="mb-0 text-white">`+hashtag+`</p>
 												<h5 class="my-1 text-white">`+item.title+`</h5>
 											</div>
-											<div class="text-white ms-auto" style="font-size: 20px;">
+											<div class="text-white ms-auto d-none" style="font-size: 20px;">
 												<i class="fa-solid fa-pen-to-square"></i>
 											</div>
 										</div>
@@ -355,6 +355,10 @@
 
 		});
 		calendar.render();
+		
+		setTimeout(() => {
+			change_select_view('info');
+        }, 200);
 	}
 
 	function formatThaiDate(dateString) {

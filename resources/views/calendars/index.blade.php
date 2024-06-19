@@ -554,6 +554,8 @@
                 <span id="title-fc-year"></span>
             </div>
             <div id='calendar'></div>
+            <input type="text" id="now_view_month" value="" class="d-none">
+            <input type="text" id="now_view_year" value="" class="d-none">
         </div>
         <div class="position-relative my-3 d-none" id="icon_show_my_calender">
             <hr>
@@ -568,7 +570,7 @@
         </div>
         <div class="container-calender">
             <div class="card-calender h-100">
-                <div class="card p-3 h-100 position-relative card-calender">
+                <div class="card p-3 h-100 position-relative card-calender" style="position: relative;">
                     <a class="btn-show-all-calender" onclick="document.querySelector('#my_calendar').classList.toggle('d-none');document.querySelector('#icon_show_my_calender').classList.toggle('d-none');document.querySelector('.appointment').classList.toggle('show')">
                         <svg xmlns="http://www.w3.org/2000/svg" width="39" height="39" viewBox="0 0 39 39" fill="none">
                             <circle cx="19.5" cy="19.5" r="19.5" fill="#D9D9D9" />
@@ -577,329 +579,10 @@
                     </a>
                     <p class="mt-4 text-center" style="color: #003781;font-size: 15px;font-style: normal;font-weight: 600;line-height: normal;">My Calendar / Reminder</p>
 
-
+                    <p id="p_view_content_all" class="mt-4 text-center d-none" style="color: #003781;font-size: 14px;position: absolute;top: -2%;right: 8%;" onclick="select_show_content_by_data_Month();">ดูทั้งหมด</p>
 
                     <div class="appointment" id="content_event_calendar">
-                        <div class="d-flex w-100 align-items-center">
-                            <div class="name-date-appointment">Wednesday</div>
-                            <div class="day-appointment">25 April 2024</div>
-                        </div>
-                        <div class="d-flex w-100 align-items-center mt-2">
-                            <div>
-                                <p class="time-start">16:00 pm</p>
-                                <p class="time-end">16:45 pm</p>
-                            </div>
-                            <div class="content-appointment red">
-                                <div>
-                                    <p class="title-appointment">อบรมการพัฒนาความคิดด้านการขาย</p>
-                                    <p class="detail-appointment">#นัดลูกค้า </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex w-100 align-items-center mt-2">
-                            <div>
-                                <p class="time-start">16:00 pm</p>
-                                <p class="time-end">16:45 pm</p>
-                            </div>
-                            <div class="content-appointment blue ">
-                                <div>
-                                    <p class="title-appointment">อบรมพนักงานใหม่</p>
-                                    <p class="detail-appointment">หลักสูตร Star Blue</p>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="d-flex w-100 align-items-center mt-2">
-                            <div>
-                                <p class="time-start">16:00 pm</p>
-                                <p class="time-end">16:45 pm</p>
-                            </div>
-                            <div class="content-appointment blue ">
-                                <div>
-                                    <p class="title-appointment">อบรมพนักงานใหม่</p>
-                                    <p class="detail-appointment">หลักสูตร Star Blue</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex w-100 align-items-center mt-2">
-                            <div>
-                                <p class="time-start">16:00 pm</p>
-                                <p class="time-end">16:45 pm</p>
-                            </div>
-                            <div class="content-appointment yellow ">
-                                <div>
-                                    <p class="title-appointment">อบรมพนักงานใหม่</p>
-                                    <p class="detail-appointment">หลักสูตร Star Blue</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex w-100 align-items-center mt-2">
-                            <div>
-                                <p class="time-start">16:00 pm</p>
-                                <p class="time-end">16:45 pm</p>
-                            </div>
-                            <div class="content-appointment purple ">
-                                <div>
-                                    <p class="title-appointment">อบรมพนักงานใหม่</p>
-                                    <p class="detail-appointment">หลักสูตร Star Blue</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex w-100 align-items-center mt-2">
-                            <div>
-                                <p class="time-start">16:00 pm</p>
-                                <p class="time-end">16:45 pm</p>
-                            </div>
-                            <div class="content-appointment green ">
-                                <div>
-                                    <p class="title-appointment">อบรมพนักงานใหม่</p>
-                                    <p class="detail-appointment">หลักสูตร Star Blue</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex w-100 align-items-center mt-2">
-                            <div>
-                                <p class="time-start">16:00 pm</p>
-                                <p class="time-end">16:45 pm</p>
-                            </div>
-                            <div class="content-appointment red">
-                                <div>
-                                    <p class="title-appointment">อบรมการพัฒนาความคิดด้านการขาย</p>
-                                    <p class="detail-appointment">#นัดลูกค้า </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex w-100 align-items-center mt-2">
-                            <div>
-                                <p class="time-start">16:00 pm</p>
-                                <p class="time-end">16:45 pm</p>
-                            </div>
-                            <div class="content-appointment blue ">
-                                <div>
-                                    <p class="title-appointment">อบรมพนักงานใหม่</p>
-                                    <p class="detail-appointment">หลักสูตร Star Blue</p>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="d-flex w-100 align-items-center mt-2">
-                            <div>
-                                <p class="time-start">16:00 pm</p>
-                                <p class="time-end">16:45 pm</p>
-                            </div>
-                            <div class="content-appointment blue ">
-                                <div>
-                                    <p class="title-appointment">อบรมพนักงานใหม่</p>
-                                    <p class="detail-appointment">หลักสูตร Star Blue</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex w-100 align-items-center mt-2">
-                            <div>
-                                <p class="time-start">16:00 pm</p>
-                                <p class="time-end">16:45 pm</p>
-                            </div>
-                            <div class="content-appointment yellow ">
-                                <div>
-                                    <p class="title-appointment">อบรมพนักงานใหม่</p>
-                                    <p class="detail-appointment">หลักสูตร Star Blue</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex w-100 align-items-center mt-2">
-                            <div>
-                                <p class="time-start">16:00 pm</p>
-                                <p class="time-end">16:45 pm</p>
-                            </div>
-                            <div class="content-appointment purple ">
-                                <div>
-                                    <p class="title-appointment">อบรมพนักงานใหม่</p>
-                                    <p class="detail-appointment">หลักสูตร Star Blue</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex w-100 align-items-center mt-2">
-                            <div>
-                                <p class="time-start">16:00 pm</p>
-                                <p class="time-end">16:45 pm</p>
-                            </div>
-                            <div class="content-appointment green ">
-                                <div>
-                                    <p class="title-appointment">อบรมพนักงานใหม่</p>
-                                    <p class="detail-appointment">หลักสูตร Star Blue</p>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="d-flex w-100 align-items-center mt-2">
-                            <div>
-                                <p class="time-start">16:00 pm</p>
-                                <p class="time-end">16:45 pm</p>
-                            </div>
-                            <div class="content-appointment red">
-                                <div>
-                                    <p class="title-appointment">อบรมการพัฒนาความคิดด้านการขาย</p>
-                                    <p class="detail-appointment">#นัดลูกค้า </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex w-100 align-items-center mt-2">
-                            <div>
-                                <p class="time-start">16:00 pm</p>
-                                <p class="time-end">16:45 pm</p>
-                            </div>
-                            <div class="content-appointment blue ">
-                                <div>
-                                    <p class="title-appointment">อบรมพนักงานใหม่</p>
-                                    <p class="detail-appointment">หลักสูตร Star Blue</p>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="d-flex w-100 align-items-center mt-2">
-                            <div>
-                                <p class="time-start">16:00 pm</p>
-                                <p class="time-end">16:45 pm</p>
-                            </div>
-                            <div class="content-appointment blue ">
-                                <div>
-                                    <p class="title-appointment">อบรมพนักงานใหม่</p>
-                                    <p class="detail-appointment">หลักสูตร Star Blue</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex w-100 align-items-center mt-2">
-                            <div>
-                                <p class="time-start">16:00 pm</p>
-                                <p class="time-end">16:45 pm</p>
-                            </div>
-                            <div class="content-appointment yellow ">
-                                <div>
-                                    <p class="title-appointment">อบรมพนักงานใหม่</p>
-                                    <p class="detail-appointment">หลักสูตร Star Blue</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex w-100 align-items-center mt-2">
-                            <div>
-                                <p class="time-start">16:00 pm</p>
-                                <p class="time-end">16:45 pm</p>
-                            </div>
-                            <div class="content-appointment purple ">
-                                <div>
-                                    <p class="title-appointment">อบรมพนักงานใหม่</p>
-                                    <p class="detail-appointment">หลักสูตร Star Blue</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex w-100 align-items-center mt-2">
-                            <div>
-                                <p class="time-start">16:00 pm</p>
-                                <p class="time-end">16:45 pm</p>
-                            </div>
-                            <div class="content-appointment green ">
-                                <div>
-                                    <p class="title-appointment">อบรมพนักงานใหม่</p>
-                                    <p class="detail-appointment">หลักสูตร Star Blue</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex w-100 align-items-center mt-2">
-                            <div>
-                                <p class="time-start">16:00 pm</p>
-                                <p class="time-end">16:45 pm</p>
-                            </div>
-                            <div class="content-appointment red">
-                                <div>
-                                    <p class="title-appointment">อบรมการพัฒนาความคิดด้านการขาย</p>
-                                    <p class="detail-appointment">#นัดลูกค้า </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex w-100 align-items-center mt-2">
-                            <div>
-                                <p class="time-start">16:00 pm</p>
-                                <p class="time-end">16:45 pm</p>
-                            </div>
-                            <div class="content-appointment blue ">
-                                <div>
-                                    <p class="title-appointment">อบรมพนักงานใหม่</p>
-                                    <p class="detail-appointment">หลักสูตร Star Blue</p>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="d-flex w-100 align-items-center mt-2">
-                            <div>
-                                <p class="time-start">16:00 pm</p>
-                                <p class="time-end">16:45 pm</p>
-                            </div>
-                            <div class="content-appointment blue ">
-                                <div>
-                                    <p class="title-appointment">อบรมพนักงานใหม่</p>
-                                    <p class="detail-appointment">หลักสูตร Star Blue</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex w-100 align-items-center mt-2">
-                            <div>
-                                <p class="time-start">16:00 pm</p>
-                                <p class="time-end">16:45 pm</p>
-                            </div>
-                            <div class="content-appointment yellow ">
-                                <div>
-                                    <p class="title-appointment">อบรมพนักงานใหม่</p>
-                                    <p class="detail-appointment">หลักสูตร Star Blue</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex w-100 align-items-center mt-2">
-                            <div>
-                                <p class="time-start">16:00 pm</p>
-                                <p class="time-end">16:45 pm</p>
-                            </div>
-                            <div class="content-appointment purple ">
-                                <div>
-                                    <p class="title-appointment">อบรมพนักงานใหม่</p>
-                                    <p class="detail-appointment">หลักสูตร Star Blue</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex w-100 align-items-center mt-2">
-                            <div>
-                                <p class="time-start">16:00 pm</p>
-                                <p class="time-end">16:45 pm</p>
-                            </div>
-                            <div class="content-appointment green ">
-                                <div>
-                                    <p class="title-appointment">อบรมพนักงานใหม่</p>
-                                    <p class="detail-appointment">หลักสูตร Star Blue</p>
-                                </div>
-                            </div>
-                        </div>
+                        <!-- content_event_calendar -->
                     </div>
                 </div>
             </div>
@@ -1039,9 +722,11 @@
 
     });
 
-    var data_arr_events = [];
 
     function get_data_for_calendar_for_user() {
+
+        var data_arr_events = [];
+        document.querySelector('#p_view_content_all').classList.add('d-none');
 
         fetch("{{ url('/') }}/api/get_data_for_calendar_for_user")
             .then(response => response.json())
@@ -1060,6 +745,7 @@
                         let class_color = ``;
                         let bg_color = ``;
                         let hashtag = ``;
+                        let link_url;
 
                         if(result[i].type == "อบรม/สอบ"){
                             key = result[i].type_appointments;
@@ -1072,16 +758,19 @@
                             bg_color = `#78CBE5`;
                             class_color = `blue`;
                             hashtag = `<i class="fa-regular fa-circle-dot"></i> อบรม` + `  ` + `#` + result[i].type_article;
+                            link_url = `{{ url('/show_appointment_train') }}/`+ result[i].appointment_id;
                         }
                         else if(key == 'สอบ'){
                             bg_color = `#FFBF44`;
                             class_color = `yellow`;
                             hashtag = `<i class="fa-regular fa-circle-dot"></i> สอบ` + `  ` + `#` + result[i].type_article;
+                            link_url = `{{ url('/show_appointment_train') }}/`+ result[i].appointment_id;
                         }
                         else if(key == 'กิจกรรม'){
                             bg_color = `#BD91FF`;
                             class_color = `purple`;
                             hashtag = `<i class="fa-regular fa-circle-dot"></i> กิจกรรม` + `  ` + `#` + result[i].name_type;
+                            link_url = `{{ url('/activitys_show') }}/`+ result[i].activity_id;
                         }
                         else if(key == 'นัดลูกค้า'){
                             bg_color = `#E54141`;
@@ -1117,21 +806,30 @@
 
                         // เช็คเดือน
                         let dateStart = result[i].date_start;
-                        // แยกเอาเฉพาะเดือน
-                        let monthFromDateStart = dateStart.split('-')[1];
-                        // รับค่าเดือนปัจจุบัน (ผลลัพธ์จะเป็น 0-11 ต้องบวก 1)
-                        let currentDate = new Date();
-                        let currentMonth = String(currentDate.getMonth() + 1).padStart(2, '0'); 
 
-                        // ตรวจสอบว่าเดือนจากวันที่เท่ากับเดือนปัจจุบันหรือไม่
-                        let class_show_div = ``;
-                        if (monthFromDateStart === currentMonth) {
-                            // console.log("เดือนจากวันที่ตรงกับเดือนปัจจุบัน");
-                            class_show_div = ``;
+                        // แยกเอาปีและเดือน
+                        let [yearFromDateStart, monthFromDateStart] = dateStart.split('-').slice(0, 2);
+
+                        // รวมปีและเดือนในรูปแบบ "MM-YYYY"
+                        let month_year = `${monthFromDateStart}-${yearFromDateStart}`;
+
+                        // รับค่าเดือนและปีปัจจุบัน
+                        let currentDate = new Date();
+                        let currentYear = currentDate.getFullYear();
+                        let currentMonth = String(currentDate.getMonth() + 1).padStart(2, '0');
+
+                        // ตรวจสอบว่าปีและเดือนจากวันที่เท่ากับปีและเดือนปัจจุบันหรือไม่
+                        let class_show_div = '';
+                        if (yearFromDateStart === String(currentYear) && monthFromDateStart === currentMonth) {
+                            // console.log("ปีและเดือนจากวันที่ตรงกับปีและเดือนปัจจุบัน");
+                            class_show_div = '';
                         } else {
-                            // console.log("เดือนจากวันที่ไม่ตรงกับเดือนปัจจุบัน");
-                            class_show_div = `d-none`;
+                            // console.log("ปีและเดือนจากวันที่ไม่ตรงกับปีและเดือนปัจจุบัน");
+                            class_show_div = 'd-none';
                         }
+
+                        // console.log(month_year);
+
 
                         if (date_update != result[i].date_start) {
                             date_update = result[i].date_start;
@@ -1140,7 +838,7 @@
                             let show_date = formatDate_show.split(',');
 
                             let html_datetime = `
-                                <div data_Month="`+monthFromDateStart+`" data_date="`+result[i].date_start+`" class="item_of_event d-flex w-100 align-items-center mt-3 `+class_show_div+`">
+                                <div data_Month="`+month_year+`" data_date="`+result[i].date_start+`" class="item_of_event d-flex w-100 align-items-center mt-3 `+class_show_div+`">
                                     <div class="name-date-appointment">` + show_date[0] + `</div>
                                     <div class="day-appointment">` + show_date[1] + `</div>
                                 </div>
@@ -1172,8 +870,16 @@
                             `;
                         }
 
+                        let tag_a_1 = ``;
+                        let tag_a_2 = ``;
+                        if(link_url){
+                            tag_a_1 = `<a href="`+link_url+`">`;
+                            tag_a_2 = `</a>`;
+                        }
+
                         let html = `
-                            <div title="`+result[i].title+`" data_Month="`+monthFromDateStart+`" data_date="`+result[i].date_start+`" class="item_of_event d-flex w-100 align-items-center mt-2 `+class_show_div+`">
+                            `+tag_a_1+`
+                            <div title="`+result[i].title+`" data_Month="`+month_year+`" data_date="`+result[i].date_start+`" class="item_of_event d-flex w-100 align-items-center mt-2 `+class_show_div+`">
                                 <div>
                                     `+show_time+`
                                 </div>
@@ -1184,6 +890,7 @@
                                     </div>
                                 </div>
                             </div>
+                            `+tag_a_2+`
                         `;
 
                         content_event_calendar.insertAdjacentHTML('beforeend', html);
@@ -1215,6 +922,7 @@
             eventClick: function(info) {
                 // console.log(info);
                 select_show_content_by_eventClick(info);
+                document.querySelector('#p_view_content_all').classList.remove('d-none');
             },
             dateClick: function(info) {
                 let clickedDate = new Date(info.date);
@@ -1228,7 +936,10 @@
 
                 let formattedDate = year + '-' + month + '-' + day;
 
-                console.log('คลิกวันที่: ' + formattedDate);
+                // console.log('คลิกวันที่: ' + formattedDate);
+
+                select_show_content_by_dateClick(formattedDate);
+                document.querySelector('#p_view_content_all').classList.remove('d-none');
             },
             headerToolbar: {
                 left: 'prev,next',
@@ -1299,6 +1010,41 @@
             })
     }
 
+    function select_show_content_by_dateClick(formattedDate){
+        // console.log(formattedDate);
+
+        let item_of_event = document.querySelectorAll('.item_of_event');
+            item_of_event.forEach(item_of_event => {
+                item_of_event.classList.add('d-none');
+            })
+
+        let div_data_date = document.querySelectorAll('[data_date="'+formattedDate+'"]');
+            div_data_date.forEach(div_data_date => {
+                div_data_date.classList.remove('d-none');
+            })
+    }
+
+    function select_show_content_by_data_Month(){
+
+        document.querySelector('#p_view_content_all').classList.add('d-none');
+
+        let now_view_month = document.querySelector('#now_view_month').value;
+        let now_view_year = document.querySelector('#now_view_year').value;
+
+        let month_year = now_view_month + '-' + now_view_year ;
+        // console.log(month_year);
+
+        let item_of_event = document.querySelectorAll('.item_of_event');
+            item_of_event.forEach(item_of_event => {
+                item_of_event.classList.add('d-none');
+            })
+
+        let div_data_date = document.querySelectorAll('[data_Month="'+month_year+'"]');
+            div_data_date.forEach(div_data_date => {
+                div_data_date.classList.remove('d-none');
+            })
+    }
+
 </script>
 <script>
     document.getElementById('prev-pc').addEventListener('click', function() {
@@ -1337,6 +1083,16 @@
             document.getElementById('title-fc').innerHTML = newText;
             document.getElementById('title-fc-month').innerHTML = `${month}`;
             document.getElementById('title-fc-year').innerHTML = `${year}`;
+
+            const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+            let index = monthNames.findIndex(m => m === month.substring(0, 3));
+            let now_month = String(index + 1).padStart(2, '0'); // เพิ่มเลข 1 เพื่อให้เป็นเลขเดือน 2 หลัก
+
+            document.getElementById('now_view_month').value = now_month;
+            document.getElementById('now_view_year').value = year;
+
+            select_show_content_by_data_Month();
 
         }, 100);
     }
@@ -1402,7 +1158,9 @@
 
                 form_calendar.reset();
                 $('#modal_add_carlendar').modal('hide');
-                console.log(data);
+                // console.log(data);
+                get_data_for_calendar_for_user()
+
             }).catch(function(error) {
                 // console.error(error);
             });

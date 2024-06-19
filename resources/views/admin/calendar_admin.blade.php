@@ -3,7 +3,7 @@
 @section('content')
 <style>
 	#div_content{
-		height: 73dvh;
+		max-height: 73dvh;
 		overflow: auto;
 	}
 </style>

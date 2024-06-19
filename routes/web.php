@@ -163,11 +163,13 @@ Route::middleware(['auth', 'role:Super-admin,Admin,Staff,member'])->group(functi
     Route::get('page_activitys', 'ActivitysController@index');
     Route::get('activitys_show/{id}', 'ActivitysController@show');
 
+    // calendars
+    Route::resource('calendars', 'CalendarsController');
+
 });
 
 // Route::resource('training_type', 'Training_typeController');
 
-Route::resource('calendars', 'CalendarsController');
 Route::resource('favorites', 'FavoritesController');
 Route::resource('log_video_trainings', 'Log_video_trainingsController');
 Route::resource('log_video_news', 'Log_video_newsController');

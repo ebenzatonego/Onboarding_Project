@@ -17,6 +17,8 @@ use App\Models\Contact_group_manager;
 use App\Models\Contact_area_supervisor;
 use Carbon\Carbon;
 use App\Models\Log_excel_user;
+use App\Models\Activity_type;
+use App\Models\Activity;
 
 class AdminController extends Controller
 {
@@ -277,9 +279,37 @@ class AdminController extends Controller
 
     function get_data_for_calendar(){
         
-        $data = Training::where('type_article' , 'ตารางอบรม')
-            ->orWhere('type_article' , 'ตารางสอบ')
+        // กิจกรรม
+        $data_activitys = DB::table('activitys')
+            ->join('activity_types', 'activity_types.id', '=', 'activitys.activity_type_id')
+            ->select('activitys.*', 'activity_types.name_type')
+            ->orderBy('activitys.date_start' , 'ASC')
+            ->orderBy('activitys.time_start' , 'ASC')
             ->get();
+
+        // ตารางอบรม
+        $data_train = DB::table('appointments')
+            ->join('training_types', 'training_types.id', '=', 'appointments.training_type_id')
+            ->where('type' , 'อบรม')
+            ->select('appointments.*', 'training_types.type_article')
+            ->orderBy('appointments.date_start' , 'ASC')
+            ->orderBy('appointments.time_start' , 'ASC')
+            ->get();
+
+        // ตารางสอบ
+        $data_quiz = DB::table('appointments')
+            ->join('training_types', 'training_types.id', '=', 'appointments.training_type_id')
+            ->leftJoin('appointment_areas', 'appointment_areas.id', '=', 'appointments.appointment_area_id')
+            ->where('type' , 'สอบ')
+            ->select('appointments.*', 'training_types.type_article', 'appointment_areas.area', 'appointment_areas.sub_area')
+            ->orderBy('appointments.date_start' , 'ASC')
+            ->orderBy('appointments.time_start' , 'ASC')
+            ->get();
+
+        $data = [];
+        $data['activitys'] = $data_activitys;
+        $data['train'] = $data_train;
+        $data['quiz'] = $data_quiz;
 
         return $data;
     }

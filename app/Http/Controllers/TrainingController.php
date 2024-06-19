@@ -75,7 +75,12 @@ class TrainingController extends Controller
         Training::create($requestData);
 
         // return redirect('training_create/article')->with('flash_message', 'Training added!');
-        return redirect('/manage_training');
+        if(Auth::user()->role == 'Admin'){
+            return redirect('/calendar_admin');
+        }
+        else if(Auth::user()->role == 'Super-admin'){
+            return redirect('/manage_training');
+        }
         
     }
 

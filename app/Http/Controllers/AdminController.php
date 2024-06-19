@@ -336,10 +336,13 @@ class AdminController extends Controller
 
     function get_data_for_calendar_for_user(){
 
+        $user = Auth::user();
+        $user_id = $user->id ;
         // favorites join appointments (ตารางอบรม / สอบ)
         $data_appointments = DB::table('favorites')
             ->join('appointments', 'appointments.id', '=', 'favorites.appointment_id')
             ->leftJoin('training_types', 'training_types.id', '=', 'appointments.training_type_id')
+            ->where('user_id' ,$user_id)
             ->select('favorites.*',
                     'training_types.type_article',
                     'appointments.title',
@@ -358,6 +361,7 @@ class AdminController extends Controller
         $data_activitys = DB::table('favorites')
             ->join('activitys', 'activitys.id', '=', 'favorites.activity_id')
             ->leftJoin('activity_types', 'activity_types.id', '=', 'activitys.activity_type_id')
+            ->where('user_id' ,$user_id)
             ->select('favorites.*',
                     'activity_types.name_type',
                     'activitys.title',
@@ -373,6 +377,7 @@ class AdminController extends Controller
 
         // MEMO
         $data_calendars = DB::table('calendars')
+            ->where('user_id' ,$user_id)
             ->orderBy('calendars.date_start' , 'ASC')
             ->orderBy('calendars.time_start' , 'ASC')
             ->get();

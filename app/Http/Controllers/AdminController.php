@@ -30,7 +30,7 @@ class AdminController extends Controller
             return response()->json([
                 'status' => 'success',
                 'message' => 'User found.',
-                'user_id' => $check_user->id
+                'account' => $check_user->account
             ], 200); // HTTP status code 200: OK
         } else {
             return response()->json([

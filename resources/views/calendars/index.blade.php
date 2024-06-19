@@ -880,7 +880,7 @@
                         let html = `
                             `+tag_a_1+`
                             <div title="`+result[i].title+`" data_Month="`+month_year+`" data_date="`+result[i].date_start+`" class="item_of_event d-flex w-100 align-items-center mt-2 `+class_show_div+`">
-                                <div>
+                                <div style="min-width: 50px;">
                                     `+show_time+`
                                 </div>
                                 <div class="content-appointment `+class_color+` ">

@@ -316,7 +316,7 @@
                         </ul>
                     </li>
 
-                    <li>
+                    <li class="d-none">
                         <a href="#" class="">
                             <div class="parent-icon">
                                 <i class="fa-solid fa-passport"></i>
@@ -327,7 +327,7 @@
                         </a>
                     </li>
 
-                    <li>
+                    <li class="d-none">
                         <a href="#" class="">
                             <div class="parent-icon">
                                 <i class="fa-solid fa-layer-group"></i>
@@ -338,7 +338,7 @@
                         </a>
                     </li>
 
-                    <li>
+                    <li class="d-none">
                         <a href="#" class="">
                             <div class="parent-icon">
                                 <i class="fa-solid fa-list-timeline"></i>

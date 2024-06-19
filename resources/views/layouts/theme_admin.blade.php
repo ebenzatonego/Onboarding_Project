@@ -142,7 +142,7 @@
                 @if(Auth::check())
                     @if(Auth::user()->role == "Super-admin")
 
-                    <li class="mm-active">
+                    <li>
                         <a  href="{{url('/calendar_admin')}}" aria-expanded="true">
                             <div class="parent-icon">
                                 <i class="fa-solid fa-calendar-days"></i>

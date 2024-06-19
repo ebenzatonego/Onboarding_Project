@@ -1115,6 +1115,24 @@
                         // เพิ่มข้อมูลใหม่เข้าไปในอาร์เรย์ data_arr_events
                         data_arr_events.push(newEvent);
 
+                        // เช็คเดือน
+                        let dateStart = result[i].date_start;
+                        // แยกเอาเฉพาะเดือน
+                        let monthFromDateStart = dateStart.split('-')[1];
+                        // รับค่าเดือนปัจจุบัน (ผลลัพธ์จะเป็น 0-11 ต้องบวก 1)
+                        let currentDate = new Date();
+                        let currentMonth = String(currentDate.getMonth() + 1).padStart(2, '0'); 
+
+                        // ตรวจสอบว่าเดือนจากวันที่เท่ากับเดือนปัจจุบันหรือไม่
+                        let class_show_div = ``;
+                        if (monthFromDateStart === currentMonth) {
+                            // console.log("เดือนจากวันที่ตรงกับเดือนปัจจุบัน");
+                            class_show_div = ``;
+                        } else {
+                            // console.log("เดือนจากวันที่ไม่ตรงกับเดือนปัจจุบัน");
+                            class_show_div = `d-none`;
+                        }
+
                         if (date_update != result[i].date_start) {
                             date_update = result[i].date_start;
 
@@ -1122,7 +1140,7 @@
                             let show_date = formatDate_show.split(',');
 
                             let html_datetime = `
-                                <div class="d-flex w-100 align-items-center mt-3">
+                                <div data_Month="`+monthFromDateStart+`" data_date="`+result[i].date_start+`" class="item_of_event d-flex w-100 align-items-center mt-3 `+class_show_div+`">
                                     <div class="name-date-appointment">` + show_date[0] + `</div>
                                     <div class="day-appointment">` + show_date[1] + `</div>
                                 </div>
@@ -1155,7 +1173,7 @@
                         }
 
                         let html = `
-                            <div class="d-flex w-100 align-items-center mt-2">
+                            <div title="`+result[i].title+`" data_Month="`+monthFromDateStart+`" data_date="`+result[i].date_start+`" class="item_of_event d-flex w-100 align-items-center mt-2 `+class_show_div+`">
                                 <div>
                                     `+show_time+`
                                 </div>
@@ -1192,11 +1210,25 @@
         const formattedDate = `${year}-${month}-${day}`;
         // console.log(formattedDate);
 
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            // เปิดลิงก์ในแท็บใหม่
+        let calendarEl = document.getElementById('calendar');
+        let calendar = new FullCalendar.Calendar(calendarEl, {
             eventClick: function(info) {
-                console.log(info.event.startStr);
+                // console.log(info);
+                select_show_content_by_eventClick(info);
+            },
+            dateClick: function(info) {
+                let clickedDate = new Date(info.date);
+                
+                // ปรับวันที่ตามโซนเวลา UTC+7
+                clickedDate.setHours(clickedDate.getHours() + 7);
+                
+                let year = clickedDate.getFullYear();
+                let month = String(clickedDate.getMonth() + 1).padStart(2, '0'); // เดือนนับจาก 0-11 ต้องบวก 1 และ padStart เพื่อให้ได้สองหลัก
+                let day = String(clickedDate.getDate()).padStart(2, '0'); // padStart เพื่อให้ได้สองหลัก
+
+                let formattedDate = year + '-' + month + '-' + day;
+
+                console.log('คลิกวันที่: ' + formattedDate);
             },
             headerToolbar: {
                 left: 'prev,next',
@@ -1243,6 +1275,28 @@
 
         // Format the date using Intl.DateTimeFormat
         return new Intl.DateTimeFormat('en-UK', options).format(date);
+    }
+
+    function select_show_content_by_eventClick(info){
+        // console.log(info);
+        // console.log(info.event.title);
+
+        let item_of_event = document.querySelectorAll('.item_of_event');
+            item_of_event.forEach(item_of_event => {
+                item_of_event.classList.add('d-none');
+            })
+
+        let title = document.querySelectorAll('[title="'+info.event.title+'"]');
+            title.forEach(title => {
+                // console.log(title);
+                let data_date = title.getAttribute('data_date');
+                title.classList.remove('d-none');
+
+                let div_data_date = document.querySelectorAll('[data_date="'+data_date+'"]');
+                    div_data_date.forEach(div_data_date => {
+                        div_data_date.classList.remove('d-none');
+                    })
+            })
     }
 
 </script>

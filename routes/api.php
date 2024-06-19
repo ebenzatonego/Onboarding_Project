@@ -18,6 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// FHC
+Route::get('/verify_account/{account}', 'AdminController@verify_account');
+
 Route::get('/check_pdpa/{account}', 'AdminController@check_pdpa');
 Route::get('/update_pdpa/{account}', 'AdminController@update_pdpa');
 Route::post('/edit_profile', 'AdminController@edit_profile');

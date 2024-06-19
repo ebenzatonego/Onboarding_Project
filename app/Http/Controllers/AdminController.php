@@ -22,6 +22,24 @@ use App\Models\Activity;
 
 class AdminController extends Controller
 {
+
+    public function verify_account($account){
+        $check_user = User::where('account' , $account)->first();
+
+        if (!empty($check_user->id)) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'User found.',
+                'user_id' => $check_user->id
+            ], 200); // HTTP status code 200: OK
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'User not found.'
+            ], 404); // HTTP status code 404: Not Found
+        }
+    }
+
     public function confirmPassword(Request $request)
     {
         $user = Auth::user();

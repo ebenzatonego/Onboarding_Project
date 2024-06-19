@@ -536,13 +536,13 @@
 
     .file-upload-box:hover .infoImg {
         color: #0a58ca;
-        transform: translateY(100px);
+        transform: translateY(55px);
     }
 
     .clear-button {
         position: absolute;
-        top: 10px;
-        right: 10px;
+        top: 20px;
+        right: 20px;
         background-color: #ff3f4d;
         border-radius: 50%;
         width: 30px;
@@ -868,17 +868,15 @@
             let html_img = `
                 <img class="file-preview get-img-firebase" src="`+URL.createObjectURL(file)+`" alt="ภาพตัวอย่าง" >
                 <div class="infoImg">
-                    <div class="row">
-                        <div class="col-10">
+                    <div class="row pt-2">
+                        <div class="col-9">
                             <span class="imgSize">`+fileSize+`</span>
                         </div>
-                        <div class="col-2">
+                        <div class="col-3">
                             <i class="fa-solid fa-circle-xmark fa-xl" onclick="drop_img('`+name_input+`' , '`+file.name+`' ,'`+count+`');"></i>
                         </div>
                         <div class="col-12">
-                            <p class="m-0">
-                                <p class="m-0 imgName">`+file.name+`</p>
-                            </p>
+                            <p class="mb-2 imgName">`+file.name+`</p>   
                         </div>
                     </div>
                 </div>

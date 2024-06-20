@@ -1362,9 +1362,18 @@
         //     viewMode: 3,
         //     preview: '#Preview_icon_crop'
         // });
+
+        let text_aspectRatio ;
+        if(type_number == '1' || type_number == '3'){
+          text_aspectRatio == 3 / 4 ;
+        }
+        else if(type_number == '2' || type_number == '4'){
+          text_aspectRatio == 1 / 1 ;
+        }
+
         cropper = new Cropper(image, {
             dragMode: 'move',
-            aspectRatio: 3 / 4 ,
+            aspectRatio: text_aspectRatio ,
             autoCropArea: 1,
             center: false,
             cropBoxMovable: true,

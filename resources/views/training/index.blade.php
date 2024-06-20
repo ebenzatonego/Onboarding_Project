@@ -175,9 +175,9 @@
                                         @endif
                                         <div class="count-training">
                                             @if(!empty($photo_menu_highlight_2->id))
-                                            <span id="count_training_highlight_2" style="font-size: 24px;font-weight: bolder;color: #fff;"></span>
+                                            <span id="count_training_highlight_2" style="font-size: 24px;font-weight: bolder;color: #003781;"></span>
                                             @else
-                                            <span style="font-size: 24px;font-weight: bolder;color: #fff;">{{ count($training) }}</span>
+                                            <span style="font-size: 24px;font-weight: bolder;color: #003781;">{{ count($training) }}</span>
                                             @endif
                                             <span class="ms-1" style="color: #003781;">หลักสูตร</span>
                                         </div>
@@ -201,9 +201,9 @@
                                     @endif
                                     <div class="count-training">
                                         @if(!empty($photo_menu_highlight_3->id))
-                                        <span id="count_training_highlight_3" style="font-size: 24px;font-weight: bolder;color: #fff;"></span>
+                                        <span id="count_training_highlight_3" style="font-size: 24px;font-weight: bolder;color: #003781;"></span>
                                         @else
-                                        <span style="font-size: 24px;font-weight: bolder;color: #fff;">{{ count($training) }}</span>
+                                        <span style="font-size: 24px;font-weight: bolder;color: #003781;">{{ count($training) }}</span>
                                         @endif
                                         <span class="ms-1" style="color: #003781;">หลักสูตร</span>
                                     </div>

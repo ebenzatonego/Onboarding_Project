@@ -20,7 +20,7 @@ class ProfileController extends Controller
         $users = User::where('id' , $user_id)->first();
         $upper_al = Contact_upper_al::where('account' , $users->account_upper_al)->first();
         $group_manager = Contact_group_manager::where('account' , $users->account_group_manager)->first();
-        $area_supervisor = Contact_area_supervisor::where('account' , $users->account_area_supervisor)->first();
+        $area_supervisor = Contact_area_supervisor::where('area' , $users->area)->first();
 
         $base64Image = '';
 

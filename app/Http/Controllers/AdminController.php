@@ -193,12 +193,12 @@ class AdminController extends Controller
                 }
             }
 
-            $area_supervisor = Contact_area_supervisor::where('account',$data_arr['account'])->first();
+            $area_supervisor = Contact_area_supervisor::where('area',$data_arr['area'])->first();
 
-            if( !empty($area_supervisor->account) ){
+            if( !empty($area_supervisor->area) ){
                 foreach ($data_arr as $key => $value) {
-                    if ($key != 'account') { // ยกเว้น account ไม่ต้องอัปเดต
-                        $area_supervisor->$key = $value;
+                    if ($key != 'area') { // ยกเว้น area ไม่ต้องอัปเดต
+                        $area_supervisor->$key = $area;
                     }
                 }
                 $area_supervisor->save();

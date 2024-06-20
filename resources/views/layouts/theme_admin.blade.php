@@ -228,7 +228,7 @@
                 @endif
 
                 <li>
-                    <a class="has-arrow">
+                    <a href="javascript:;" class="has-arrow">
                         <div class="parent-icon">
                             <i class="fa-regular fa-chart-mixed"></i>
                         </div>
@@ -242,15 +242,11 @@
                                 <i class="bx bx-right-arrow-alt"></i>หลักสูตร
                             </a>
                             <ul class="mm-collapse">
-                                @if(Auth::check())
-                                    @if(Auth::user()->role == "Super-admin")
-                                    <li>
-                                        <a class="btn" href="{{ url('/manage_training') }}">
-                                            <i class="fa-regular fa-chart-mixed"></i> จัดการหลักสูตร
-                                        </a>
-                                    </li>
-                                    @endif
-                                @endif
+                                <li>
+                                    <a class="btn" href="{{ url('/manage_training') }}">
+                                        <i class="fa-regular fa-chart-mixed"></i> จัดการหลักสูตร
+                                    </a>
+                                </li>
                                 <li>
                                     <a class="btn" href="{{ url('/training_create') }}">
                                         <i class="fa-solid fa-file-plus"></i> เพิ่มข้อมูลหลักสูตร
@@ -327,25 +323,26 @@
                     </li>
 
                     <li class="d-none">
-                        <a href="#" class="">
+                        <a href="javascript:;" class="has-arrow">
                             <div class="parent-icon">
-                                <i class="fa-solid fa-passport"></i>
-                            </div>
-                            <div class="menu-title">
-                                Company Profile
-                            </div>
-                        </a>
-                    </li>
-
-                    <li class="d-none">
-                        <a href="#" class="">
-                            <div class="parent-icon">
-                                <i class="fa-solid fa-layer-group"></i>
+                                <i class="fa-solid fa-cart-shopping"></i>
                             </div>
                             <div class="menu-title">
                                 Product
                             </div>
                         </a>
+                        <ul>
+                            <li>
+                                <a class="btn" href="#">
+                                    <i class="fa-solid fa-cart-circle-exclamation"></i> การจัดการผลิตภัณฑ์
+                                </a>
+                            </li>
+                            <li>
+                                <a class="btn" href="{{ url('/products/create') }}">
+                                    <i class="fa-solid fa-cart-plus"></i> เพิ่มผลิตภัณฑ์
+                                </a>
+                            </li>
+                        </ul>
                     </li>
 
                     <li class="d-none">
@@ -358,6 +355,18 @@
                             </div>
                         </a>
                     </li>
+
+                    <li class="d-none">
+                        <a href="#" class="">
+                            <div class="parent-icon">
+                                <i class="fa-solid fa-passport"></i>
+                            </div>
+                            <div class="menu-title">
+                                Company Profile
+                            </div>
+                        </a>
+                    </li>
+
                     @endif
                 @endif
 

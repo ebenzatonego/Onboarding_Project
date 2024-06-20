@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\Product_type;
 
 class ProductsController extends Controller
 {
@@ -50,7 +51,8 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        $type_products = Product_type::get();
+        return view('products.create', compact('type_products'));
     }
 
     /**

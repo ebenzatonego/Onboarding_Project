@@ -909,11 +909,15 @@
 				<i class="fa-solid fa-layer-plus"></i> เพิ่มหลักสูตรใหม่
 			</a>
 		</div>
-		<div class="btn-group">
-			<span class="btn btn-warning" data-toggle="modal" data-target="#modal_menu_management">
-				<i class="fa-solid fa-list-ol"></i> การจัดการเมนูหลักสูตร
-			</span>
-		</div>
+    @if(Auth::check())
+      @if(Auth::user()->role == "Super-admin")
+  		<div class="btn-group">
+  			<span class="btn btn-warning" data-toggle="modal" data-target="#modal_menu_management">
+  				<i class="fa-solid fa-list-ol"></i> การจัดการเมนูหลักสูตร
+  			</span>
+  		</div>
+      @endif
+    @endif
 	</div>
 </div>
 
@@ -1070,41 +1074,45 @@
                               <a href="{{ url('/preview_training') }}/`+result['data_training'][i].id+`" class="btn btn-sm btn-info">
                                 ดูข้อมูล
                               </a>
-                              <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Highlight</button>
-                                <ul class="dropdown-menu" style="margin: 0px;">
-                                  <li>
-                                    <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , 'ว่าง' , '`+type+`')">
-                                      ว่าง
-                                    </span>
-                                  </li>
-                                  <li>
-                                    <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '1' , '`+type+`')">
-                                      ลำดับที่ 1
-                                    </span>
-                                  </li>
-                                  <li>
-                                    <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '2' , '`+type+`')">
-                                      ลำดับที่ 2
-                                    </span>
-                                  </li>
-                                  <li>
-                                    <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '3' , '`+type+`')">
-                                      ลำดับที่ 3
-                                    </span>
-                                  </li>
-                                  <li>
-                                    <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '4' , '`+type+`')">
-                                      ลำดับที่ 4
-                                    </span>
-                                  </li>
-                                  <li>
-                                    <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '5' , '`+type+`')">
-                                      ลำดับที่ 5
-                                    </span>
-                                  </li>
-                                </ul>
-                              </div>
+                              @if(Auth::check())
+                                @if(Auth::user()->role == "Super-admin")
+                                <div class="btn-group" role="group">
+                                  <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Highlight</button>
+                                  <ul class="dropdown-menu" style="margin: 0px;">
+                                    <li>
+                                      <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , 'ว่าง' , '`+type+`')">
+                                        ว่าง
+                                      </span>
+                                    </li>
+                                    <li>
+                                      <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '1' , '`+type+`')">
+                                        ลำดับที่ 1
+                                      </span>
+                                    </li>
+                                    <li>
+                                      <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '2' , '`+type+`')">
+                                        ลำดับที่ 2
+                                      </span>
+                                    </li>
+                                    <li>
+                                      <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '3' , '`+type+`')">
+                                        ลำดับที่ 3
+                                      </span>
+                                    </li>
+                                    <li>
+                                      <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '4' , '`+type+`')">
+                                        ลำดับที่ 4
+                                      </span>
+                                    </li>
+                                    <li>
+                                      <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '5' , '`+type+`')">
+                                        ลำดับที่ 5
+                                      </span>
+                                    </li>
+                                  </ul>
+                                </div>
+                                @endif
+                              @endif
                               <form method="POST" action="{{ url('/training') }}/`+result['data_training'][i].id+`" accept-charset="UTF-8" style="display:inline" onsubmit="return confirmDelete(event, this)">
                                   {{ method_field('DELETE') }}
                                   {{ csrf_field() }}

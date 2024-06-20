@@ -701,7 +701,7 @@
                     <br>
                     @endif
 
-                    @if( !empty($users->account_area_supervisor) )
+                    @if( !empty($users->area) )
                     <p style="color: #003781;font-size: 16px;font-weight: bolder;">ผู้ดูเเลพื้นที่</p>
                     <div class="d-flex ">
                         <div>

@@ -144,6 +144,8 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
     // Activitys
     Route::resource('activitys', 'ActivitysController');
 
+    // Products
+    Route::resource('products', 'ProductsController');
 
 });
 
@@ -184,7 +186,6 @@ Route::resource('tools_tutorials', 'Tools_tutorialsController');
 Route::resource('news_types', 'News_typesController');
 Route::resource('activity_types', 'Activity_typesController');
 Route::resource('product_types', 'Product_typesController');
-Route::resource('products', 'ProductsController');
 Route::resource('notis', 'NotisController');
 Route::resource('appointment_areas', 'Appointment_areasController');
 Route::resource('career_paths', 'Career_pathsController');

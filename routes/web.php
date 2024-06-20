@@ -87,7 +87,9 @@ Route::middleware(['auth',])->group(function () {
     Route::get('/demo/product_show', function () {
         return view('demo/product/product_show');
     });
-
+    Route::get('/demo/product_fav', function () {
+        return view('demo/product/product_fav');
+    });
     Route::get('/demo/tools', function () {
         return view('demo/tools');
     });

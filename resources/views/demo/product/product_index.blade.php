@@ -55,6 +55,10 @@
         color: #FFFFFF;
         background-color: #003781;
     }
+    .btn-product.disabled{
+        pointer-events: none;
+        opacity: 0.5;
+    }
 </style>
 <div class="container mb-5">
     <div class="main-body">

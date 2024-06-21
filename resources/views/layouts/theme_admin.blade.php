@@ -345,6 +345,29 @@
                         </ul>
                     </li>
 
+                    <li>
+                        <a href="javascript:;" class="has-arrow">
+                            <div class="parent-icon">
+                                <i class="fa-solid fa-wrench"></i>
+                            </div>
+                            <div class="menu-title">
+                                Tools
+                            </div>
+                        </a>
+                        <ul>
+                            <li>
+                                <a class="btn" href="{{ url('//tools/create_applications') }}">
+                                    <i class="fa-solid fa-mobile-screen-button"></i> แอปพลิเคชัน
+                                </a>
+                            </li>
+                            <li>
+                                <a class="btn" href="{{ url('/tools_contacts/create') }}">
+                                    <i class="fa-solid fa-address-book"></i> ติดต่อ
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li class="d-none">
                         <a href="#" class="">
                             <div class="parent-icon">

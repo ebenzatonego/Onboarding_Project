@@ -135,6 +135,9 @@ Route::get('/user_click_fav_btn_product/{user_id}/{product_id}/{type}', 'Product
 Route::get('/user_click_pdf_btn/{user_id}/{product_id}', 'ProductsController@user_click_pdf_btn');
 Route::get('/get_data_product_fav/{user_id}', 'ProductsController@get_data_product_fav');
 
+// Tools contact
+Route::get('/get_data_show_tools_contact', 'Tools_contactsController@get_data_show_tools_contact');
+
 
 // Share
 Route::get('/save_log_share/{user_id}/{type_table}/{type_social}/{id}', 'AdminController@save_log_share');

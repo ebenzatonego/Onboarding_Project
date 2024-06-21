@@ -152,6 +152,9 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
     Route::resource('products', 'ProductsController');
     Route::get('/manage_products', 'ProductsController@manage_products');
 
+    // Tools Contacts
+    Route::resource('tools_contacts', 'Tools_contactsController');
+
 });
 
 // member & Staff
@@ -178,6 +181,9 @@ Route::middleware(['auth', 'role:Super-admin,Admin,Staff,member'])->group(functi
     Route::get('/product_show/{id}', 'ProductsController@show');
     Route::get('/page_products_fav', 'ProductsController@page_products_fav');
 
+    // Tools
+    Route::get('/tools', 'Tools_appsController@index');
+
 
     // calendars
     Route::resource('calendars', 'CalendarsController');
@@ -192,7 +198,6 @@ Route::resource('log_video_news', 'Log_video_newsController');
 Route::resource('log_video_tools_tutorials', 'Log_video_tools_tutorialsController');
 Route::resource('logs', 'LogsController');
 Route::resource('tools_apps', 'Tools_appsController');
-Route::resource('tools_contacts', 'Tools_contactsController');
 Route::resource('tools_tutorials', 'Tools_tutorialsController');
 Route::resource('news_types', 'News_typesController');
 Route::resource('activity_types', 'Activity_typesController');

@@ -1,25 +1,36 @@
-<div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
-    <label for="name" class="control-label">{{ 'Name' }}</label>
-    <input class="form-control" name="name" type="text" id="name" value="{{ isset($tools_contact->name) ? $tools_contact->name : ''}}" >
-    {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
-</div>
-<div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
-    <label for="phone" class="control-label">{{ 'Phone' }}</label>
-    <input class="form-control" name="phone" type="text" id="phone" value="{{ isset($tools_contact->phone) ? $tools_contact->phone : ''}}" >
-    {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
-</div>
-<div class="form-group {{ $errors->has('mail') ? 'has-error' : ''}}">
-    <label for="mail" class="control-label">{{ 'Mail' }}</label>
-    <input class="form-control" name="mail" type="text" id="mail" value="{{ isset($tools_contact->mail) ? $tools_contact->mail : ''}}" >
-    {!! $errors->first('mail', '<p class="help-block">:message</p>') !!}
-</div>
-<div class="form-group {{ $errors->has('type') ? 'has-error' : ''}}">
-    <label for="type" class="control-label">{{ 'Type' }}</label>
-    <input class="form-control" name="type" type="text" id="type" value="{{ isset($tools_contact->type) ? $tools_contact->type : ''}}" >
-    {!! $errors->first('type', '<p class="help-block">:message</p>') !!}
-</div>
+<div class="card border-top border-0 border-4 border-primary">
+    <div class="card-body p-5">
+        <div class="card-title d-flex align-items-center">
+            <div>
+                <i class="fa-solid fa-address-book me-1 font-22 text-primary"></i>
+            </div>
+            <h5 class="mb-0 text-primary">Add Tools Contacts</h5>
+        </div>
+        <hr>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label for="phone" class="form-label">Phone</label>
+                <input class="form-control" name="phone" type="text" id="phone" value="{{ isset($tools_contact->phone) ? $tools_contact->phone : ''}}">
+            </div>
+            <div class="col-md-6">
+                <label for="mail" class="form-label">Email</label>
+                <input class="form-control" name="mail" type="text" id="mail" value="{{ isset($tools_contact->mail) ? $tools_contact->mail : ''}}">
+            </div>
+            <div class="col-md-12">
+                <label for="mail" class="form-label">หัวข้อ</label>
+                <input class="form-control" list="list_type" id="type" onchange="check_data_for_submit();" name="type">
+                <datalist id="list_type">
+                    @foreach($data_type as $item)
+                    <option data-value="{{$item->type}}">{{$item->type}}</option>
+                    @endforeach
+                </datalist>
+            </div>
 
-
-<div class="form-group">
-    <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
+            <div class="col-12">
+                <div class="form-group">
+                    <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

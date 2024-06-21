@@ -702,7 +702,7 @@
                     @endif
 
                     @if( !empty($users->area) )
-                    <p style="color: #003781;font-size: 16px;font-weight: bolder;">ผู้ดูเเลพื้นที่</p>
+                    <p style="color: #003781;font-size: 16px;font-weight: bolder;">Agency Executive</p>
                     <div class="d-flex ">
                         <div>
                             <img src="{{ url('/img/icon/profile.png') }}" alt="" class="img-leader">

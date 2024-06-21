@@ -40,7 +40,9 @@ class Tools_contactsController extends Controller
      */
     public function create()
     {
-        return view('tools_contacts.create');
+        $data_type = Tools_contact::groupBy('type')->select('type')->get();
+        
+        return view('tools_contacts.create', compact('data_type'));
     }
 
     /**
@@ -119,5 +121,10 @@ class Tools_contactsController extends Controller
         Tools_contact::destroy($id);
 
         return redirect('tools_contacts')->with('flash_message', 'Tools_contact deleted!');
+    }
+
+    function get_data_show_tools_contact(){
+        $data = Tools_contact::get();
+        return $data ;
     }
 }

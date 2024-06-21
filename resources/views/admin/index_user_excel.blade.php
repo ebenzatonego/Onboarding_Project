@@ -320,7 +320,7 @@
                         if (sheetsProcessed === totalSheets) {
                             upload_to_firebase();
                             document.querySelector('#div_loader_Excel').classList.add('d-none');
-                            document.querySelector('#text_load').innerHTML = '';
+                            // document.querySelector('#text_load').innerHTML = '';
                             document.querySelector('#div_success_Excel').classList.remove('d-none');
                         }
                     });

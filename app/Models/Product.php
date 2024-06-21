@@ -25,7 +25,5 @@ class Product extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'detail', 'photo', 'product_type_id', 'user_like', 'user_dislike', 'user_share', 'user_fav', 'user_view', 'sum_rating', 'log_rating', 'pdf_file', 'user_download_pdf', 'highlight_number'];
-
-    
+    protected $fillable = ['title', 'detail', 'photo', 'product_type_id', 'user_like', 'user_dislike', 'user_share', 'user_fav', 'user_view', 'sum_rating', 'log_rating', 'pdf_file', 'user_download_pdf', 'highlight_number','highlight_of_type','creator','status','datetime_start','datetime_end'];
 }

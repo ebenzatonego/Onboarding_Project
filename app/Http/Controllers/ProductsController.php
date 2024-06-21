@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\Product_type;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class ProductsController extends Controller
 {
@@ -42,6 +44,10 @@ class ProductsController extends Controller
         }
 
         return view('products.index', compact('products'));
+    }
+
+    function page_products_fav(){
+        return view('products.page_products_fav');
     }
 
     /**
@@ -131,5 +137,40 @@ class ProductsController extends Controller
         Product::destroy($id);
 
         return redirect('products')->with('flash_message', 'Product deleted!');
+    }
+
+    function get_data_product($products_type_id){
+
+        if($products_type_id == 'all'){
+            $data_products = DB::table('products')
+                ->join('product_types', 'product_types.id', '=', 'products.product_type_id')
+                ->where('products.status' , 'Yes')
+                ->select('products.*', 'product_types.name_type', 'product_types.color_code')
+                ->orderByRaw("CASE 
+                            WHEN products.highlight_number IS NOT NULL THEN 1
+                            ELSE 2
+                            END, 
+                            products.highlight_number ASC, 
+                            id DESC")
+                ->get();
+
+        }
+        else{
+            
+            $data_products = DB::table('products')
+                ->join('product_types', 'product_types.id', '=', 'products.product_type_id')
+                ->where('products.status' , 'Yes')
+                ->where('products.products_type_id' , $products_type_id)
+                ->select('products.*', 'product_types.name_type', 'product_types.color_code')
+                ->orderByRaw("CASE 
+                            WHEN products.highlight_of_type IS NOT NULL THEN 1
+                            ELSE 2
+                            END, 
+                            products.highlight_of_type ASC, 
+                            id DESC")
+                ->get();
+        }
+
+        return $data_products ;
     }
 }

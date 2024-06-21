@@ -170,6 +170,11 @@ Route::middleware(['auth', 'role:Super-admin,Admin,Staff,member'])->group(functi
     Route::get('page_activitys', 'ActivitysController@index');
     Route::get('activitys_show/{id}', 'ActivitysController@show');
 
+    // products
+    Route::get('/page_products', 'ProductsController@index');
+    Route::get('/page_products_fav', 'ProductsController@page_products_fav');
+
+
     // calendars
     Route::resource('calendars', 'CalendarsController');
 

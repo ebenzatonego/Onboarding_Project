@@ -836,9 +836,9 @@ img {
                                 ><span>เห็นทุกคน</span>
                               </label>
                             </div>
-                            <div id="div_not_show_all_member" class="mt-3 d-none">
-                                <div class="float-start mydict mb-2">
-                                    <div >
+                            <div id="div_not_show_all_member" class="mt-3 row d-none">
+                                <div class="col-12 mydict mb-2">
+                                    <div class="float-start">
                                         <label>
                                             <input type="radio" name="radio_show_for" checked="" value="individual" onchange="check_select_show_for();">
                                             <span>เลือกรายบุคคล</span>
@@ -849,13 +849,22 @@ img {
                                         </label>
                                     </div>
                                 </div>
-                                <textarea class="form-control mt-3" rows="5" type="textarea" name="show_individual" id="show_individual" placeholder="เพิ่ม Account [เพิ่มหลาย Account คั่นด้วยเครื่องหมาย , (จุลภาค)]"></textarea>
+                                <div id="div_show_for_account" class="col-12 mt-3">
+
+                                  <p>เพิ่มรหัสตัวแทนด้วยไฟล์ Excel</p>
+                                  <input class="form-control border-start-0" type="file" id="excelInput" accept=".xlsx, .xls" onclick="clear_textarea_input();">
+                                  <span class="btn btn-warning btn-sm px-5 mt-2" onclick="readExcel()">
+                                      Read Excel
+                                  </span>
+
+                                  <textarea class="form-control mt-3" rows="5" type="textarea" name="show_individual" id="show_individual" placeholder="เพิ่ม Account [เพิ่มหลาย Account คั่นด้วยเครื่องหมาย , (จุลภาค)]"></textarea>
+                                </div>
 
                                 @php
                                     $ranks = ['AG', 'UM', 'SUM', 'DM', 'SDM', 'APV', 'VP', 'SVP', 'ESVP'];
                                 @endphp
 
-                                <select class="form-select mt-3 d-none" id="show_rank" name="show_rank">
+                                <select class="col-12 form-select mt-3 d-none" id="show_rank" name="show_rank">
                                     <option value="">เลือกระดับ</option>
                                     @foreach($ranks as $item)
                                     <option value="{{ $item }}">{{ $item }}</option>
@@ -880,11 +889,12 @@ img {
                                 if(radio_show_for_value == "individual"){
                                     document.querySelector('#show_rank').value = "";
                                     document.querySelector('#show_rank').classList.add('d-none');
-                                    document.querySelector('#show_individual').classList.remove('d-none');
+                                    document.querySelector('#div_show_for_account').classList.remove('d-none');
                                 }
                                 else if(radio_show_for_value == "rank"){
                                     document.querySelector('#show_individual').value = "";
-                                    document.querySelector('#show_individual').classList.add('d-none');
+                                    document.querySelector('#excelInput').value = null ;
+                                    document.querySelector('#div_show_for_account').classList.add('d-none');
                                     document.querySelector('#show_rank').classList.remove('d-none');
                                 }
                         }
@@ -896,6 +906,7 @@ img {
                                 document.querySelector('#show_all_member').value = 'Yes';
 
                                 document.querySelector('#show_individual').value = "";
+                                document.querySelector('#excelInput').value = null ;
                                 document.querySelector('#show_rank').value = "";
                                 document.querySelector('#div_not_show_all_member').classList.add('d-none');
                             }
@@ -905,6 +916,55 @@ img {
                                 document.querySelector('#div_not_show_all_member').classList.remove('d-none');
                             }
                             check_data_for_submit();
+                        }
+
+                        function clear_textarea_input(){
+                          document.querySelector('#show_individual').value = "";
+                        }
+
+                        // EXCEL
+                        function readExcel() {
+
+                            let input = document.getElementById('excelInput');
+                            let file = input.files[0];
+
+                            if (file) {
+
+                                let reader = new FileReader();
+
+                                reader.onload = function(e) {
+                                    let data = e.target.result;
+                                    let workbook = XLSX.read(data, { type: 'binary' });
+
+                                    // เลือกชีทที่ต้องการ (0 คือชีทแรก)
+                                    let sheetName = workbook.SheetNames[0];
+                                    let sheet = workbook.Sheets[sheetName];
+
+                                    // แปลงข้อมูลในชีทเป็น JSON
+                                    let jsonData = XLSX.utils.sheet_to_json(sheet);
+
+                                    // ตรวจสอบข้อมูลในคอนโซล
+                                    // console.log(jsonData);
+
+                                    let sum_account ;
+                                    for (let i = 0; i < jsonData.length; i++) {
+                                      if(!sum_account){
+                                        sum_account = jsonData[i].account;
+                                      }else{
+                                        sum_account = sum_account + "," + jsonData[i].account;
+                                      }
+                                    }
+
+                                    document.querySelector('#show_individual').value = sum_account ;
+                                    document.querySelector('#excelInput').value = null ;
+                                    
+                                };
+
+                                reader.readAsBinaryString(file);
+
+                            } else {
+                                alert('กรุณาเลือกไฟล์ Excel');
+                            }
                         }
                     </script>
                     <div class="row mb-3">
@@ -937,6 +997,9 @@ img {
         </div>
     </div>
 </div>
+
+<!-- ใส่ลิงก์ไปยังไลบรารี XLSX -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
 
 <script>
     document.getElementById('select_photo').addEventListener('change', function(event) {

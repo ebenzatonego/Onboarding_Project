@@ -119,4 +119,31 @@ class Product_typesController extends Controller
 
         return redirect('product_types')->with('flash_message', 'Product_type deleted!');
     }
+
+    function add_product_type(Request $request)
+    {
+        $requestData = $request->all();
+
+        $data_old = Product_type::get();
+        // หาค่าที่มากที่สุดในคอลัมน์ number_menu
+        $max_number_menu = $data_old->max('number_menu');
+        // หาค่าเรคคอร์ดที่มี number_menu มากที่สุด
+        $max_number_menu_record = $data_old->sortByDesc('number_menu')->first();
+
+        if( !empty($max_number_menu_record->number_menu) ){
+            $max_number_menu_value = $max_number_menu_record->number_menu;
+        }else{
+            $max_number_menu_value = 0 ;
+        }
+
+        $data = [];
+        $data['name_type'] = $requestData['add_product_type'];
+        $data['icon'] = $requestData['downloadURL'];
+        $data['color_code'] = $requestData['add_product_color_code'];
+        $data['number_menu'] = (int)$max_number_menu_value + 1;
+        
+        $data = Product_type::create($data);
+
+        return $data ;
+    }
 }

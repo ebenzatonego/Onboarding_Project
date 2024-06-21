@@ -542,6 +542,271 @@ img {
 
 </style>
 
+
+<!-- Modal add_type_product_type -->
+<div class="modal fade" id="modal_add_type_product_type" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="Label_modal_add_type_product_type" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Label_modal_add_type_product_type">
+                    เพิ่มประเภทผลิตภัณฑ์
+                </h5>
+            </div>
+            <div class="modal-body">
+                <input class="form-control" type="text" id="add_product_type" value="" placeholder="ชื่อประเภทผลิตภัณฑ์" onchange="check_submit_product_type();">
+                <br>
+                <label>เลือกสี</label>
+                <div class="header-colors-indigators mt-2">
+                    <div class="row row-cols-auto g-3 justify-content-center">
+                        <div class="col">
+                            <div class="indigator" id="color_item_1"></div>
+                        </div>
+                        <div class="col">
+                            <div class="indigator" id="color_item_2"></div>
+                        </div>
+                        <div class="col">
+                            <div class="indigator" id="color_item_3"></div>
+                        </div>
+                        <div class="col">
+                            <div class="indigator" id="color_item_4"></div>
+                        </div>
+                        <div class="col">
+                            <div class="indigator" id="color_item_5"></div>
+                        </div>
+                        <div class="col">
+                            <div class="indigator" id="color_item_6"></div>
+                        </div>
+                        <div class="col">
+                            <i class="fas fa-sync-alt btn" style="float: right;" onclick="random_color();"></i>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <div class="col-4">
+                                    <div style="float: right;" class="indigator" id="color_item_Ex"></div>
+                                </div>
+                                <div class="col-8">
+                                    <input style="margin-top:5px;" type="text" class="form-control" id="add_product_color_code" name="add_product_color_code" placeholder="Color code" oninput="add_color_item_Ex();check_submit_product_type();">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <label>icon <span class="text-danger">(ไฟล์ PNG ขนาด 1:1)</span></label>
+                <br>
+                <span class="btn btn-sm btn-primary mt-2" onclick="click_select_icon_product_type();">
+                    เลือกรูปภาพ
+                </span>
+
+                <input type="file" class="form-control d-none" accept="image/png" name="select_icon_product_type" id="select_icon_product_type" onchange="crop_select_icon_product_type();">
+
+                <div id="div_crop_icon_product_type" class="row p-1 d-none">
+                    <div class="col-lg-6 d-flex justify-content-center align-items-center" style="border: #2260ff 2px solid;border-radius: 10px;">
+                        <div class="w-100 ">
+                            <p class="mb-2 mt-3 text-center">ปรับขนาดภาพ</p>
+                            <!-- leftbox -->
+                            <div class="box-2 w-100 h-100">
+                                <div id="icon_crop" class="result_icon w-100"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 d-flex justify-content-center align-items-center" style="border: #2260ff 2px solid;border-radius: 10px;">
+                        <div>
+                            <p class="mb-2 mt-3 text-center">ผลลัพธ์</p>
+                          <!--rightbox-->
+                            <div class="box-2 img-result">
+                                <!-- result of crop -->
+                                <div id="div_bg_Preview_icon_crop" class="d-flex justify-content-center align-items-center" style="background-color: #fff;border-radius: 50%;width: 140px;height: 140px;">
+                                    <img style="width: 70px;height: 70px;" src="" alt="" id="Preview_icon_crop">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                function crop_img_icon(e){
+                    let result_icon = document.querySelector('.result_icon')
+                    let input = document.getElementById('select_icon_product_type');
+                    let image = document.createElement('img');
+                    let cropper;
+                    let preview_icon_crop = document.querySelector('#Preview_icon_crop');
+
+                    let files = e.target.files;
+                    let done = function (url) {
+                        input.value = '';
+                        image.src = url;
+                        document.getElementById('icon_crop').innerHTML = '';
+                        document.getElementById('icon_crop').appendChild(image);
+                        // cropper = new Cropper(image, {
+                        //     aspectRatio: 1 / 1, // Change this to the desired aspect ratio
+                        //     viewMode: 3,
+                        //     preview: '#Preview_icon_crop'
+                        // });
+                        cropper = new Cropper(image, {
+                            dragMode: 'move',
+                            aspectRatio: 1 / 1 ,
+                            autoCropArea: 1,
+                            center: false,
+                            cropBoxMovable: true,
+                            cropBoxResizable: true,
+                            maxCropBoxHeight: 300,
+                            viewMode: 2,
+                            guides: false,
+                            ready: function(event) {
+                                this.cropper = cropper;
+                            },crop: function(event) {
+                              let imgSrc = this.cropper.getCroppedCanvas({
+                                    width: 1080,
+                                    height: 1080// input value
+                                }).toDataURL("image/png");
+                                preview_icon_crop.src = imgSrc;
+                            }
+                        });
+                    };
+                    let reader;
+                    let file;
+                    let url;
+
+                    if (files && files.length > 0) {
+                        file = files[0];
+
+                        if (URL) {
+                            done(URL.createObjectURL(file));
+                        } else if (FileReader) {
+                            reader = new FileReader();
+                            reader.onload = function (e) {
+                                done(reader.result_icon);
+                            };
+                            reader.readAsDataURL(file);
+                        }
+                    }
+                }
+
+                var input_img_icon = document.getElementById('select_icon_product_type');
+                input_img_icon.addEventListener('change', function (e) {
+                    crop_img_icon(e);
+                    check_submit_product_type();
+                });
+
+                function crop_select_icon_product_type(){
+                    document.querySelector('#div_crop_icon_product_type').classList.remove('d-none');
+                }
+
+                function click_select_icon_product_type(){
+                    // console.log('click_select_icon_product_type');
+                    document.querySelector('#div_crop_icon_product_type').classList.add('d-none');
+
+                    let preview_icon_crop = document.querySelector('#Preview_icon_crop');
+                        preview_icon_crop.src = '';
+                    let icon_crop = document.querySelector('#icon_crop');
+                        icon_crop.innerHTML = "";
+                    document.querySelector('#select_icon_product_type').click();
+                }
+            </script>
+
+            <div class="text-center mt-3 mb-3">
+                <button id="btn_close_modal_add_type_product_type" type="button" class="btn btn-secondary" data-dismiss="modal">
+                    ยกเลิก
+                </button>
+                <button id="btn_cf_add_product_type" type="button" class="btn btn-primary" onclick="cf_add_product_type();" disabled>
+                    ยืนยัน
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function check_submit_product_type(){
+
+        let preview_icon_crop = document.querySelector('#Preview_icon_crop');
+        let add_product_type = document.querySelector('#add_product_type');
+        let add_product_color_code = document.querySelector('#add_product_color_code');
+
+        if(add_product_type.value && preview_icon_crop.src && add_product_color_code){
+            document.querySelector('#btn_cf_add_product_type').disabled = false;
+        }else{
+            document.querySelector('#btn_cf_add_product_type').disabled = true;
+        }
+    }
+
+    function cf_add_product_type() {
+        let add_product_type = document.querySelector('#add_product_type')
+        let add_product_color_code = document.querySelector('#add_product_color_code')
+
+        // ดึง Base64 string จาก <img> element
+        let imgElement = document.querySelector('#Preview_icon_crop');
+        let base64String = imgElement.src.split(',')[1]; // ลบ "data:image/png;base64," ออก
+
+        // แปลง Base64 เป็น Blob
+        let contentType = 'image/png'; // ตั้งค่าประเภทของรูปภาพ เช่น 'image/png' หรือ 'image/jpeg'
+        let blob = base64ToBlob(base64String, contentType);
+
+        // ตั้งค่า path และชื่อไฟล์ใน Firebase Storage
+        let date_now = new Date();
+        let Date_for_firebase = formatDate_for_firebase(date_now);
+        let name_file = Date_for_firebase + '-' + add_product_type.value ;
+        let storageRef = storage.ref('/products/image/icon_type/' + name_file);
+
+        // อัพโหลด Blob ไปยัง Firebase Storage
+        let uploadTask = storageRef.put(blob);
+
+        uploadTask.on('state_changed', 
+            function(snapshot) {
+                // ติดตามความคืบหน้าของการอัพโหลด (optional)
+            }, 
+            function(error) {
+                // กรณีเกิดข้อผิดพลาดในการอัพโหลด
+                console.error('Upload failed:', error);
+            }, 
+            function() {
+                // เมื่ออัพโหลดสำเร็จ
+                uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+                    // ทำอะไรกับ URL ที่ได้รับเช่นการแสดงผลหรือบันทึกลงฐานข้อมูล
+                    // console.log('File available at', downloadURL);
+                    // document.querySelector('#photo').value = downloadURL ;
+
+                    let data_arr = {
+                        "add_product_type" : add_product_type.value,
+                        "add_product_color_code" : add_product_color_code.value,
+                        "downloadURL" : downloadURL,
+                    };
+
+                    fetch("{{ url('/') }}/api/add_product_type", {
+                        method: 'post',
+                        body: JSON.stringify(data_arr),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then(function (response){
+                        return response.json();
+                    }).then(function(data){
+                        // console.log(data);
+                        if(data){
+                            let name_type = document.querySelector('#name_type');
+
+                            let option = document.createElement("option");
+                                option.text = data.name_type;
+                                option.value = data.id;
+                                option.selected = true;
+                            name_type.add(option);
+
+                            document.querySelector('#product_type_id').value = data.id ;
+                            document.querySelector('#btn_close_modal_add_type_product_type').click(); 
+                        }
+                    }).catch(function(error){
+                        // console.error(error);
+                    });
+                    
+                });
+            }
+        );
+
+    }
+</script>
+
 <div class="row">
     <div class="col-12 mx-auto">
         <div class="card border-top border-0 border-4 border-product-create">
@@ -564,108 +829,31 @@ img {
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="type" class="col-sm-2 col-form-label">
-                            สอบ / อบรม<span class="text-danger">*</span>
+                        <label for="for_rank" class="col-sm-2 col-form-label">
+                            ประเภท<span class="text-danger">*</span>
                         </label>
-                        <div class="col-sm-10">
-                            <select class="form-select" name="type" type="text" id="type" value="" onchange="check_data_for_submit();">
-                                <option value="">เลือกประเภท</option>
-                                <option value="อบรม">อบรม</option>
-                                <option value="สอบ">สอบ</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="name_type" class="col-sm-2 col-form-label">
-                            ประเภทหลักสูตร<span class="text-danger">*</span>
-                        </label>
-                        <div class="col-sm-10">
-                            <select class="form-select" name="name_type" type="text" id="name_type" value="" onchange="document.querySelector('#training_type_id').value = document.querySelector('#name_type').value ;check_data_for_submit();">
+                        <div class="col-sm-7">
+                            <select class="form-select" name="name_type" type="text" id="name_type" value="{{ isset($training->name_type) ? $training->name_type : ''}}" onchange="document.querySelector('#product_type_id').value = document.querySelector('#name_type').value ;">
                                 <option value="">เลือกประเภท</option>
                                 @foreach($type_products as $item)
                                     <option value="{{ $item->id }}">{{ $item->name_type }}</option>
                                 @endforeach
                             </select>
-                            <input class="form-control d-none" name="training_type_id" type="text" id="training_type_id" value="" readonly>
+                            <input class="form-control d-none" name="product_type_id" type="text" id="product_type_id" value="" readonly>
+                        </div>
+                        <div class="col-sm-3">
+                            <span id="span_type_rank_add" class="btn btn-sm btn-secondary" style="margin-top: 4px;" data-toggle="modal" data-target="#modal_add_type_product_type" onclick="change_color();">
+                                เพิ่มประเภทผลิตภัณฑ์
+                            </span>
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="link_out" class="col-sm-2 col-form-label">
-                            ลิงก์เข้าร่วมสอบ<span class="text-danger">*</span>
+                        <label for="title" class="col-sm-2 col-form-label">
+                            PDF
                         </label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="link_out" type="text" id="link_out" value="" placeholder="เพิ่มลิงก์เข้าร่วมสอบ" oninput="check_data_for_submit();">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="" class="col-sm-2 col-form-label">
-                            วันที่ของกิจกรรม<span class="text-danger">*</span>
-                        </label>
-                        <div class="col-sm-6 mb-2">
-                            <label>วันเริ่ม</label>
-                            <input class="form-control" type="date" name="date_start"  id="date_start" value="" onchange="check_data_for_submit();">
-                            <div id="div_not_all_day" class="row d-none">
-                                <div class="col-sm-12 mt-2 mb-2">
-                                    <label>เวลาเริ่ม</label>
-                                    <input class="form-control" type="time" name="time_start"  id="time_start" value="" onchange="check_data_for_submit();">
-                                </div>
-                                <div class="col-sm-12 mt-3 mb-2">
-                                    <label>วันสิ้นสุด</label>
-                                    <input class="form-control" type="date" name="date_end"  id="date_end" value="" onchange="check_data_for_submit();">
-                                </div>
-                                <div class="col-sm-12 mt-2 mb-2">
-                                    <label>เวลาสิ้นสุด</label>
-                                    <input class="form-control" type="time" name="time_end"  id="time_end" value="" onchange="check_data_for_submit();">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4" >
-                            <div class="checkbox-wrapper-46 mt-4">
-                              <input type="text" id="all_day" name="all_day" class="d-none" value="Yes">
-                              <input checked type="checkbox" id="check_all_day" class="inp-cbx" onclick="change_select_all_day();">
-                              <label for="check_all_day" class="cbx"
-                                ><span>
-                                  <svg viewBox="0 0 12 10" height="10px" width="12px">
-                                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline></svg></span
-                                ><span>ทั้งวัน</span>
-                              </label>
-                            </div>
-                        </div>
-                    </div>
-                    <script>
-                        function change_select_all_day(){
-                            let check_all_day = document.querySelector('#check_all_day');
-                            if(check_all_day.checked){
-                                // console.log('Yes');
-                                document.querySelector('#time_start').value = '';
-                                document.querySelector('#date_end').value = '';
-                                document.querySelector('#time_end').value = '';
-                                document.querySelector('#all_day').value = 'Yes';
-
-                                document.querySelector('#div_not_all_day').classList.add('d-none');
-                            }
-                            else{
-                                // console.log('No');
-                                document.querySelector('#all_day').value = '';
-                                document.querySelector('#div_not_all_day').classList.remove('d-none');
-                            }
-                            check_data_for_submit();
-                        }
-                    </script>
-                    <div class="row mb-3">
-                        <label for="location_detail" class="col-sm-2 col-form-label">
-                            สถานที่<span class="text-danger">*</span>
-                        </label>
-                        <div class="col-sm-10 location_detail">
-                            <textarea class="form-control location_detail" rows="3" name="location_detail" type="textarea" id="location_detail" placeholder="เพิ่มรายละเอียดสถานที่"></textarea>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="link_map" class="col-sm-2 col-form-label">
-                            Google map<span class="text-danger">*</span>
-                        </label>
-                        <div class="col-sm-10">
-                            <input class="form-control" name="link_map" type="text" id="link_map" value="" placeholder="เพิ่มลิงก์ Google map" oninput="check_data_for_submit();">
+                            <input class="form-control" accept=".pdf" name="select_pdf_file" type="file" id="select_pdf_file" value=""  oninput="check_data_for_submit();">
+                            <input type="text" name="pdf_file" id="pdf_file" class="d-none">
                         </div>
                     </div>
                     <div id="div_type_photo" class="row mb-3">
@@ -848,7 +1036,7 @@ img {
         let date_now = new Date();
         let Date_for_firebase = formatDate_for_firebase(date_now);
         let name_file = Date_for_firebase + '-' + title ;
-        let storageRef = storage.ref('/appointment/image/' + name_file);
+        let storageRef = storage.ref('/products/image/' + name_file);
 
         // อัพโหลด Blob ไปยัง Firebase Storage
         let uploadTask = storageRef.put(blob);
@@ -869,13 +1057,64 @@ img {
                     document.querySelector('#photo').value = downloadURL ;
                     document.querySelector('#select_photo').value = null;
 
-                    setTimeout(() => {
-                        document.querySelector('#btn_submit_form').click();
-                    }, 800);
+                    let select_pdf_file = document.querySelector('#select_pdf_file')
+
+                    // ตรวจสอบว่ามีไฟล์ PDF หรือไม่
+                    if (select_pdf_file.files.length > 0) {
+                        console.log('มีไฟล์ถูกเลือก');
+                        upload_pdf_to_firebase();
+                    } else {
+                        // console.log('ไม่มีไฟล์ถูกเลือก');
+                        setTimeout(() => {
+                            document.querySelector('#btn_submit_form').click();
+                        }, 800);
+                    }
+
                 });
             }
         );
     
+    }
+
+    function upload_pdf_to_firebase(){
+
+        let select_pdf_file = document.querySelector('#select_pdf_file');
+        // console.log(type_value);
+        let file = select_pdf_file.files[0];
+        // ตั้งค่า path และชื่อไฟล์ใน Firebase Storage
+        let title = document.querySelector('#title').value;
+        let date_now = new Date();
+        let Date_for_firebase = formatDate_for_firebase(date_now);
+        let name_file = Date_for_firebase + '-' + title ;
+        let storageRef = storage.ref('/products/pdf/' + name_file);
+
+        // อัพโหลด Blob ไปยัง Firebase Storage
+        let uploadTask = storageRef.put(file);
+
+        uploadTask.on('state_changed', 
+            function(snapshot) {
+                // ติดตามความคืบหน้าของการอัพโหลด (optional)
+            }, 
+            function(error) {
+                // กรณีเกิดข้อผิดพลาดในการอัพโหลด
+                console.error('Upload failed:', error);
+            }, 
+            function() {
+                // เมื่ออัพโหลดสำเร็จ
+                uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+                    // ทำอะไรกับ URL ที่ได้รับเช่นการแสดงผลหรือบันทึกลงฐานข้อมูล
+                    // console.log('File available at', downloadURL);
+                    document.querySelector('#pdf_file').value = downloadURL ;
+                    document.querySelector('#select_pdf_file').value = null;
+
+                    setTimeout(() => {
+                        document.querySelector('#btn_submit_form').click();
+                    }, 800);
+
+                });
+            }
+        );
+
     }
 
     // ฟังก์ชันที่ใช้ในการแปลง Base64 เป็น Blob
@@ -911,43 +1150,18 @@ img {
 
         // console.log('check_data_for_submit');
         let btn_submit = document.querySelector('#btn_submit');
-        let check_all_day = document.querySelector('#check_all_day');
 
         let title = document.querySelector('#title').value;
-        let type = document.querySelector('#type').value;
-        let training_type_id = document.querySelector('#training_type_id').value;
-        let appointment_area_id = document.querySelector('#appointment_area_id').value;
-        let link_out = document.querySelector('#link_out').value;
-        let date_start = document.querySelector('#date_start').value;
-        let time_start = document.querySelector('#time_start').value;
-        let date_end = document.querySelector('#date_end').value;
-        let time_end = document.querySelector('#time_end').value;
-        // let location_detail = document.querySelector('#location_detail');
-        let link_map = document.querySelector('#link_map').value;
+        let product_type_id = document.querySelector('#product_type_id').value;
         let select_photo = document.querySelector('#select_photo').value;
         let datetime_start = document.querySelector('#datetime_start').value;
 
-        if(check_all_day.checked){
-
-          if (title && type && training_type_id && appointment_area_id && link_out && date_start && text_in_location_detail && link_map && select_photo && datetime_start) {
+        if (title && product_type_id && select_photo && datetime_start) {
               btn_submit.classList.remove('disabled');
           }
           else{
               btn_submit.classList.add('disabled');
           }
-
-        }
-        else{
-
-          if (title && type && training_type_id && appointment_area_id && link_out && date_start && time_start && date_end && time_end && text_in_location_detail && link_map && select_photo && datetime_start) {
-              btn_submit.classList.remove('disabled');
-          }
-          else{
-              btn_submit.classList.add('disabled');
-          }
-
-        }
-
 
     }
 
@@ -1099,147 +1313,6 @@ img {
             'CaseChange'
         ]
     });
-
-    CKEDITOR.ClassicEditor.create(document.getElementById("location_detail"), {
-        // https://ckeditor.com/docs/ckeditor5/latest/features/toolbar/toolbar.html#extended-toolbar-configuration-format
-        toolbar: {
-            items: [
-                'undo', 'redo', '|',
-                'findAndReplace', '|','link', '|',
-                'heading', '|','fontSize', '|',
-                'alignment', 'bold', 'italic', 'strikethrough', 'underline', 'subscript', 'superscript', 'removeFormat', '|',
-                'bulletedList', 'numberedList', 'todoList', '|',
-                'outdent', 'indent', '|',
-                'fontColor', 'highlight', '|',
-                'specialCharacters', 'horizontalLine', '|','exportPDF','exportWord', 
-            ],
-            shouldNotGroupWhenFull: true
-        },
-        // Changing the language of the interface requires loading the language file using the <script> tag.
-        // language: 'es',
-        list: {
-            properties: {
-                styles: true,
-                startIndex: true,
-                reversed: true
-            }
-        },
-        // https://ckeditor.com/docs/ckeditor5/latest/features/headings.html#configuration
-        heading: {
-            options: [
-                { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-                { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
-                { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
-                { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' },
-                { model: 'heading4', view: 'h4', title: 'Heading 4', class: 'ck-heading_heading4' },
-                { model: 'heading5', view: 'h5', title: 'Heading 5', class: 'ck-heading_heading5' },
-                { model: 'heading6', view: 'h6', title: 'Heading 6', class: 'ck-heading_heading6' }
-            ]
-        },
-        // https://ckeditor.com/docs/ckeditor5/latest/features/editor-placeholder.html#using-the-editor-configuration
-        placeholder: '',
-        // https://ckeditor.com/docs/ckeditor5/latest/features/font.html#configuring-the-font-size-feature
-        fontSize: {
-            options: [ 10, 12, 14, 'default', 18, 20, 22 ],
-            supportAllValues: true
-        },
-        // Be careful with the setting below. It instructs CKEditor to accept ALL HTML markup.
-        // https://ckeditor.com/docs/ckeditor5/latest/features/general-html-support.html#enabling-all-html-features
-        htmlSupport: {
-            allow: [
-                {
-                    name: /.*/,
-                    attributes: true,
-                    classes: true,
-                    styles: true
-                }
-            ]
-        },
-        // Be careful with enabling previews
-        // https://ckeditor.com/docs/ckeditor5/latest/features/html-embed.html#content-previews
-        htmlEmbed: {
-            showPreviews: true
-        },
-        // https://ckeditor.com/docs/ckeditor5/latest/features/link.html#custom-link-attributes-decorators
-        link: {
-            decorators: {
-                addTargetToExternalLinks: true,
-                defaultProtocol: 'https://',
-                // toggleDownloadable: {
-                //     mode: 'manual',
-                //     label: 'Downloadable',
-                //     attributes: {
-                //         download: 'file'
-                //     }
-                // }
-            }
-        },
-        // https://ckeditor.com/docs/ckeditor5/latest/features/mentions.html#configuration
-        mention: {
-            feeds: [
-                {
-                    marker: '@',
-                    feed: [
-                        '@apple', '@bears', '@brownie', '@cake', '@cake', '@candy', '@canes', '@chocolate', '@cookie', '@cotton', '@cream',
-                        '@cupcake', '@danish', '@donut', '@dragée', '@fruitcake', '@gingerbread', '@gummi', '@ice', '@jelly-o',
-                        '@liquorice', '@macaroon', '@marzipan', '@oat', '@pie', '@plum', '@pudding', '@sesame', '@snaps', '@soufflé',
-                        '@sugar', '@sweet', '@topping', '@wafer'
-                    ],
-                    minimumCharacters: 1
-                }
-            ]
-        },
-        // The "superbuild" contains more premium features that require additional configuration, disable them below.
-        // Do not turn them on unless you read the documentation and know how to configure them and setup the editor.
-        removePlugins: [
-            // These two are commercial, but you can try them out without registering to a trial.
-            // 'ExportPdf',
-            // 'ExportWord',
-            'AIAssistant',
-            'CKBox',
-            'CKFinder',
-            'EasyImage',
-            // This sample uses the Base64UploadAdapter to handle image uploads as it requires no configuration.
-            // https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/base64-upload-adapter.html
-            // Storing images as Base64 is usually a very bad idea.
-            // Replace it on production website with other solutions:
-            // https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/image-upload.html
-            // 'Base64UploadAdapter',
-            'MultiLevelList',
-            'RealTimeCollaborativeComments',
-            'RealTimeCollaborativeTrackChanges',
-            'RealTimeCollaborativeRevisionHistory',
-            'PresenceList',
-            'Comments',
-            'TrackChanges',
-            'TrackChangesData',
-            'RevisionHistory',
-            'Pagination',
-            'WProofreader',
-            // Careful, with the Mathtype plugin CKEditor will not load when loading this sample
-            // from a local file system (file://) - load this site via HTTP server if you enable MathType.
-            'MathType',
-            // The following features are part of the Productivity Pack and require additional license.
-            'SlashCommand',
-            'Template',
-            'DocumentOutline',
-            'FormatPainter',
-            'TableOfContents',
-            'PasteFromOfficeEnhanced',
-            'CaseChange'
-        ]
-    }).then(editor => {
-        // เพิ่ม event listener สำหรับการเปลี่ยนแปลงใน editor
-        editor.model.document.on('change:data', () => {
-            // console.log('Content has changed:', editor.getData());
-            text_in_location_detail = editor.getData() ;
-            check_data_for_submit();
-        });
-    }).catch(error => {
-        console.error('There was a problem initializing the editor:', error);
-    });
-
-    var text_in_location_detail ;
 </script>
 <!-- END CKEDITOR -->
 
@@ -1342,3 +1415,119 @@ function click_check_status() {
 
 </script>
 
+<!-- random_color -->
+<script>
+
+    function change_color()
+    {
+        let delayInMilliseconds = 500; //0.5 second
+
+        setTimeout(function() {
+            random_color();
+        }, delayInMilliseconds);
+
+    }
+
+    function random_color()
+    {
+        let letters = '0123456789ABCDEF'.split('');
+        let color = '#';
+
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        add_color_to_item(color)
+    }
+
+    function add_color_to_item(color)
+    {
+        let text_color = color.split('');
+
+        let color_1 = text_color[0] + text_color[1] + text_color[2] + text_color[3] + text_color[4] + "FF" ;
+        let color_2 = text_color[0] + text_color[1] + text_color[2] + text_color[3] + text_color[4] + "CC" ;
+        let color_3 = text_color[0] + text_color[1] + text_color[2] + text_color[3] + text_color[4] + "99" ;
+        let color_4 = text_color[0] + text_color[1] + text_color[2] + text_color[3] + text_color[4] + "77" ;
+        let color_5 = text_color[0] + text_color[1] + text_color[2] + text_color[3] + text_color[4] + "55" ;
+        let color_6 = text_color[0] + text_color[1] + text_color[2] + text_color[3] + text_color[4] + "33" ;
+        let color_7 = text_color[0] + text_color[1] + text_color[2] + text_color[3] + text_color[4] + "11" ;
+        let color_8 = text_color[0] + text_color[1] + text_color[2] + text_color[3] + text_color[4] + "00" ;
+
+        // 1
+        let color_item_1 = document.querySelector('#color_item_1');
+            let color_item_1_style = document.createAttribute("style");
+                color_item_1_style.value = "background-color:" + color_1 + " ;";
+                color_item_1.setAttributeNode(color_item_1_style);
+            let click_color_item_1 = document.createAttribute("onclick");
+                click_color_item_1.value = "add_input_color('" + color_1 + "')";
+                 color_item_1.setAttributeNode(click_color_item_1);
+
+        // 2
+        let color_item_2 = document.querySelector('#color_item_2');
+            let color_item_2_style = document.createAttribute("style");
+                color_item_2_style.value = "background-color:" + color_2 + " ;";
+                color_item_2.setAttributeNode(color_item_2_style);
+            let click_color_item_2 = document.createAttribute("onclick");
+                click_color_item_2.value = "add_input_color('" + color_2 + "')";
+                 color_item_2.setAttributeNode(click_color_item_2);
+
+        // 3
+        let color_item_3 = document.querySelector('#color_item_3');
+            let color_item_3_style = document.createAttribute("style");
+                color_item_3_style.value = "background-color:" + color_3 + " ;";
+                color_item_3.setAttributeNode(color_item_3_style);
+            let click_color_item_3 = document.createAttribute("onclick");
+                click_color_item_3.value = "add_input_color('" + color_3 + "')";
+                 color_item_3.setAttributeNode(click_color_item_3);
+
+        // 4
+        let color_item_4 = document.querySelector('#color_item_4');
+            let color_item_4_style = document.createAttribute("style");
+                color_item_4_style.value = "background-color:" + color_4 + " ;";
+                color_item_4.setAttributeNode(color_item_4_style);
+            let click_color_item_4 = document.createAttribute("onclick");
+                click_color_item_4.value = "add_input_color('" + color_4 + "')";
+                 color_item_4.setAttributeNode(click_color_item_4);
+
+        // 5
+        let color_item_5 = document.querySelector('#color_item_5');
+            let color_item_5_style = document.createAttribute("style");
+                color_item_5_style.value = "background-color:" + color_5 + " ;";
+                color_item_5.setAttributeNode(color_item_5_style);
+            let click_color_item_5 = document.createAttribute("onclick");
+                click_color_item_5.value = "add_input_color('" + color_5 + "')";
+                 color_item_5.setAttributeNode(click_color_item_5);
+
+        // 6
+        let color_item_6 = document.querySelector('#color_item_6');
+            let color_item_6_style = document.createAttribute("style");
+                color_item_6_style.value = "background-color:" + color_6 + " ;";
+                color_item_6.setAttributeNode(color_item_6_style);
+            let click_color_item_6 = document.createAttribute("onclick");
+                click_color_item_6.value = "add_input_color('" + color_6 + "')";
+                 color_item_6.setAttributeNode(click_color_item_6);
+
+    }
+
+    function add_input_color(color)
+    {
+        // console.log(color);
+        document.querySelector('#add_product_color_code').value = color;
+        add_color_item_Ex();
+    }
+
+    function add_color_item_Ex()
+    {
+        let add_product_color_code = document.querySelector('#add_product_color_code').value ;
+
+        let color_item_Ex = document.querySelector('#color_item_Ex');
+            let color_item_Ex_style = document.createAttribute("style");
+                color_item_Ex_style.value = "background-color:" + add_product_color_code + " ;";
+                color_item_Ex.setAttributeNode(color_item_Ex_style);
+            let click_color_item_Ex = document.createAttribute("onclick");
+                click_color_item_Ex.value = "add_input_color('" + add_product_color_code + "')";
+                 color_item_Ex.setAttributeNode(click_color_item_Ex);
+
+        let div_bg_Preview_icon_crop = document.querySelector('#div_bg_Preview_icon_crop');
+            div_bg_Preview_icon_crop.setAttribute('style' , 'background-color: '+add_product_color_code+';border-radius: 50%;width: 140px;height: 140px;')
+    }
+</script>

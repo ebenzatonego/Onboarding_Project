@@ -122,6 +122,10 @@ Route::get('/submit_reasons_dislike_news/{user_id}/{news_id}/{reasons_dislike}',
 Route::get('/user_click_fav_btn_news/{user_id}/{news_id}/{type}', 'NewsController@user_click_fav_btn_news');
 Route::get('/update_countTime_newsVideo/{user_id}/{countTime}/{news_id}', 'NewsController@update_countTime_newsVideo');
 
+// Product
+Route::post('/add_product_type', 'Product_typesController@add_product_type');
+Route::get('/get_data_product/{product_type_id}', 'ProductsController@get_data_product');
+
 
 // Share
 Route::get('/save_log_share/{user_id}/{type_table}/{type_social}/{id}', 'AdminController@save_log_share');

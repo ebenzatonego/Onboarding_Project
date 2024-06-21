@@ -420,7 +420,7 @@
 
         <div class="col text-center text-truncate col-navbar d-flex justify-content-center">
             <div class=" mx-2 pt-2 pb-1 mb-2" id="menu_theme_user_Product">
-                <a href="{{ url('/demo/product_index') }}" class="">
+                <a href="{{ url('/page_products') }}" class="">
                     <i class="fa-regular fa-clipboard-list"></i>
                     <p class="text-truncate mt-1 mb-0">
                         Product

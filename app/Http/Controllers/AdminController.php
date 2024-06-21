@@ -198,7 +198,7 @@ class AdminController extends Controller
             if( !empty($area_supervisor->area) ){
                 foreach ($data_arr as $key => $value) {
                     if ($key != 'area') { // ยกเว้น area ไม่ต้องอัปเดต
-                        $area_supervisor->$key = $area;
+                        $area_supervisor->$key = $value;
                     }
                 }
                 $area_supervisor->save();

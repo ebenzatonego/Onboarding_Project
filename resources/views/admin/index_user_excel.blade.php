@@ -372,13 +372,26 @@
         }).then(function(data){
             // console.log(data);
 
-            if(sheetName == "Area Supervisor" && data == "success"){
+            if(sheetName == "Member" && data == "success"){
+                check_create_users['Member'] = 'Yes';
+            }
 
+            if(sheetName == "Upper AL" && data == "success"){
+                check_create_users['AL'] = 'Yes';
+            }
+
+            if(sheetName == "Group Manager" && data == "success"){
+                check_create_users['Manager'] = 'Yes';
+            }
+
+            if(sheetName == "Area Supervisor" && data == "success"){
+                check_create_users['Supervisor'] = 'Yes';
+            }
+
+            if( check_create_users['Member'] == 'Yes' && check_create_users['AL'] == 'Yes' && check_create_users['Manager'] == 'Yes' && check_create_users['Supervisor'] == 'Yes' ){
                 // สร้าง log_excel_users
                 upload_to_firebase();
-                // เคลียร์ input
-                clearFileInput('excel');
-
+                
                 document.querySelector('#div_loader_Excel').classList.add('d-none');
                 document.querySelector('#text_load').innerHTML = '';
                 document.querySelector('#div_success_Excel').classList.remove('d-none');
@@ -388,6 +401,12 @@
             // console.error(error);
         });
     }
+
+    var check_create_users = [];
+        check_create_users['Member'];
+        check_create_users['AL'];
+        check_create_users['Manager'];
+        check_create_users['Supervisor'];
 
     function upload_to_firebase() {
 
@@ -434,6 +453,8 @@
                         return response.text();
                     }).then(function(data){
                         // console.log(data);
+                        // เคลียร์ input
+                        clearFileInput('excel');
                     }).catch(function(error){
                         // console.error(error);
                     });

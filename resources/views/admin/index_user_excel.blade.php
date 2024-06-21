@@ -279,6 +279,8 @@
             });
     }
 
+    var check_create_users ;
+
     // EXCEL
     function readExcel() {
 
@@ -300,20 +302,29 @@
                 let data = e.target.result;
                 let workbook = XLSX.read(data, { type: 'binary' });
 
-                // console.log(workbook.SheetNames);
-                let sheetName ;
-                let sheet ;
+                let sheetsProcessed = 0;
+                let totalSheets = workbook.SheetNames.length;
+                check_create_users = {
+                    'Member': 'No',
+                    'AL': 'No',
+                    'Manager': 'No',
+                    'Supervisor': 'No'
+                };
 
                 for (let i = 0; i < workbook.SheetNames.length; i++) {
-                    // เลือกชีทที่ต้องการ (0 คือชีทแรก)
-                    sheetName = workbook.SheetNames[i];
-                    // console.log(sheetName);
-                    sheet = workbook.Sheets[sheetName];
+                    let sheetName = workbook.SheetNames[i];
+                    let sheet = workbook.Sheets[sheetName];
 
-                    create_user(sheet , sheetName);
-                    
+                    create_user(sheet, sheetName).then(() => {
+                        sheetsProcessed++;
+                        if (sheetsProcessed === totalSheets) {
+                            upload_to_firebase();
+                            document.querySelector('#div_loader_Excel').classList.add('d-none');
+                            document.querySelector('#text_load').innerHTML = '';
+                            document.querySelector('#div_success_Excel').classList.remove('d-none');
+                        }
+                    });
                 }
-
             };
 
             reader.readAsBinaryString(file);
@@ -338,15 +349,20 @@
         document.querySelector('#div_success_Excel').classList.add('d-none');
     }
 
-    function create_user(sheet , sheetName){
+    // ฟังก์ชันสำหรับแบ่งข้อมูลเป็นชิ้นย่อย
+    function chunkArray(array, chunkSize) {
+        const results = [];
+        for (let i = 0; i < array.length; i += chunkSize) {
+            results.push(array.slice(i, i + chunkSize));
+        }
+        return results;
+    }
 
-        // แปลงข้อมูลในชีทเป็น JSON
+    async function create_user(sheet, sheetName) {
         let jsonData = XLSX.utils.sheet_to_json(sheet);
+        let chunkedData = chunkArray(jsonData, 100);
 
-        // ตรวจสอบข้อมูลในคอนโซล
-        // console.log(jsonData);
-        
-        let link_api ;
+        let link_api;
         if(sheetName == "Member"){
             link_api = "{{ url('/') }}/api/create_user_member/excel";
         }
@@ -360,53 +376,35 @@
             link_api = "{{ url('/') }}/api/create_user_area_supervisor/excel";
         }
 
-        // create_user member
-        fetch(link_api, {
-            method: 'post',
-            body: JSON.stringify(jsonData),
-            headers: {
-                'Content-Type': 'application/json'
+        for (let chunk of chunkedData) {
+            try {
+                let response = await fetch(link_api, {
+                    method: 'post',
+                    body: JSON.stringify(chunk),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                let data = await response.text();
+                if (data === "success") {
+                    if(sheetName == "Member"){
+                        check_create_users['Member'] = 'Yes';
+                    }
+                    if(sheetName == "Upper AL"){
+                        check_create_users['AL'] = 'Yes';
+                    }
+                    if(sheetName == "Group Manager"){
+                        check_create_users['Manager'] = 'Yes';
+                    }
+                    if(sheetName == "Area Supervisor"){
+                        check_create_users['Supervisor'] = 'Yes';
+                    }
+                }
+            } catch (error) {
+                // console.error(error);
             }
-        }).then(function (response){
-            return response.text();
-        }).then(function(data){
-            // console.log(data);
-
-            if(sheetName == "Member" && data == "success"){
-                check_create_users['Member'] = 'Yes';
-            }
-
-            if(sheetName == "Upper AL" && data == "success"){
-                check_create_users['AL'] = 'Yes';
-            }
-
-            if(sheetName == "Group Manager" && data == "success"){
-                check_create_users['Manager'] = 'Yes';
-            }
-
-            if(sheetName == "Area Supervisor" && data == "success"){
-                check_create_users['Supervisor'] = 'Yes';
-            }
-
-            if( check_create_users['Member'] == 'Yes' && check_create_users['AL'] == 'Yes' && check_create_users['Manager'] == 'Yes' && check_create_users['Supervisor'] == 'Yes' ){
-                // สร้าง log_excel_users
-                upload_to_firebase();
-                
-                document.querySelector('#div_loader_Excel').classList.add('d-none');
-                document.querySelector('#text_load').innerHTML = '';
-                document.querySelector('#div_success_Excel').classList.remove('d-none');
-            }
-
-        }).catch(function(error){
-            // console.error(error);
-        });
+        }
     }
-
-    var check_create_users = [];
-        check_create_users['Member'];
-        check_create_users['AL'];
-        check_create_users['Manager'];
-        check_create_users['Supervisor'];
 
     function upload_to_firebase() {
 

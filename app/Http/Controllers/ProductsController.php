@@ -50,6 +50,10 @@ class ProductsController extends Controller
         return view('products.page_products_fav');
     }
 
+    function manage_products(){
+        return view('products.manage_products');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -75,7 +79,8 @@ class ProductsController extends Controller
         
         Product::create($requestData);
 
-        return redirect('products')->with('flash_message', 'Product added!');
+        return redirect('/manage_products');
+        // return redirect('products')->with('flash_message', 'Product added!');
     }
 
     /**
@@ -160,7 +165,7 @@ class ProductsController extends Controller
             $data_products = DB::table('products')
                 ->join('product_types', 'product_types.id', '=', 'products.product_type_id')
                 ->where('products.status' , 'Yes')
-                ->where('products.products_type_id' , $products_type_id)
+                ->where('products.product_type_id' , $products_type_id)
                 ->select('products.*', 'product_types.name_type', 'product_types.color_code')
                 ->orderByRaw("CASE 
                             WHEN products.highlight_of_type IS NOT NULL THEN 1

@@ -146,4 +146,16 @@ class Product_typesController extends Controller
 
         return $data ;
     }
+
+    function get_data_type_product(){
+        $data_product_types = Product_type::orderByRaw("CASE 
+            WHEN number_menu IS NOT NULL THEN 1
+            ELSE 2
+            END, 
+            number_menu ASC, 
+            id DESC")
+        ->get();
+
+        return $data_product_types ;
+    }
 }

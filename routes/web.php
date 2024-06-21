@@ -148,6 +148,7 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
 
     // Products
     Route::resource('products', 'ProductsController');
+    Route::get('/manage_products', 'ProductsController@manage_products');
 
 });
 

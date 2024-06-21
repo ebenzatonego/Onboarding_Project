@@ -125,6 +125,7 @@ Route::get('/update_countTime_newsVideo/{user_id}/{countTime}/{news_id}', 'NewsC
 // Product
 Route::post('/add_product_type', 'Product_typesController@add_product_type');
 Route::get('/get_data_product/{product_type_id}', 'ProductsController@get_data_product');
+Route::get('/get_data_type_product', 'Product_typesController@get_data_type_product');
 
 
 // Share

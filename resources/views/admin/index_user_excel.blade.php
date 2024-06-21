@@ -98,6 +98,29 @@
         vertical-align: middle;
         padding: 10px; /* Optional: เพิ่มการเว้นวรรคในเซลล์ */
     }
+
+    /* สไตล์สำหรับแถบความคืบหน้า */
+    .progress-container {
+        width: 100%;
+        background-color: #f3f3f3;
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+        margin: 20px 0;
+    }
+    .progress-bar {
+        height: 15px;
+        width: 0;
+        background-color: #4caf50;
+        text-align: center;
+        line-height: 15px;
+        color: white;
+        transition: width 0.4s ease;
+    }
+    .progress-text {
+        text-align: center;
+        margin-top: 10px;
+    }
 </style>
 
 <div class="card">
@@ -213,10 +236,30 @@
                 </div>
 
             </div>
-
             <hr>
             <div id="div_loader_Excel" class="d-none" style="position: relative;">
                 @include ('hamster_loading')
+                <br>
+                <!-- Member -->
+                <div class="progress-container">
+                    <div id="progress_bar_Member" class="progress-bar"></div>
+                </div>
+                <div id="progress_text_Member" class="progress-text">Member: 0%</div>
+                <!-- UpperAL -->
+                <div class="progress-container">
+                    <div id="progress_bar_UpperAL" class="progress-bar"></div>
+                </div>
+                <div id="progress_text_UpperAL" class="progress-text">UpperAL: 0%</div>
+                <!-- GroupManager -->
+                <div class="progress-container">
+                    <div id="progress_bar_GroupManager" class="progress-bar"></div>
+                </div>
+                <div id="progress_text_GroupManager" class="progress-text">GroupManager: 0%</div>
+                <!-- AreaSupervisor -->
+                <div class="progress-container">
+                    <div id="progress_bar_AreaSupervisor" class="progress-bar"></div>
+                </div>
+                <div id="progress_text_AreaSupervisor" class="progress-text">AreaSupervisor: 0%</div>
             </div>
             <div  class="loading-container" class="col-12 mt-5">
                 <div id="div_success_Excel" class="contrainerCheckmark d-none">
@@ -304,6 +347,7 @@
 
                 let sheetsProcessed = 0;
                 let totalSheets = workbook.SheetNames.length;
+
                 check_create_users = {
                     'Member': 'No',
                     'AL': 'No',
@@ -317,6 +361,7 @@
 
                     create_user(sheet, sheetName).then(() => {
                         sheetsProcessed++;
+                        updateSheetProgress(sheetName, 100, 100); // Update to 100% when a sheet is processed
                         if (sheetsProcessed === totalSheets) {
                             upload_to_firebase();
                             document.querySelector('#div_loader_Excel').classList.add('d-none');
@@ -361,6 +406,7 @@
     async function create_user(sheet, sheetName) {
         let jsonData = XLSX.utils.sheet_to_json(sheet);
         let chunkedData = chunkArray(jsonData, 100);
+        let totalChunks = chunkedData.length;
 
         let link_api;
         if(sheetName == "Member"){
@@ -376,8 +422,9 @@
             link_api = "{{ url('/') }}/api/create_user_area_supervisor/excel";
         }
 
-        for (let chunk of chunkedData) {
+        for (let i = 0; i < totalChunks; i++) {
             try {
+                let chunk = chunkedData[i];
                 let response = await fetch(link_api, {
                     method: 'post',
                     body: JSON.stringify(chunk),
@@ -386,24 +433,59 @@
                     }
                 });
                 let data = await response.text();
+                let text_name ;
                 if (data === "success") {
                     if(sheetName == "Member"){
                         check_create_users['Member'] = 'Yes';
+                        text_name = "Member" ;
                     }
                     if(sheetName == "Upper AL"){
                         check_create_users['AL'] = 'Yes';
+                        text_name = "UpperAL" ;
                     }
                     if(sheetName == "Group Manager"){
                         check_create_users['Manager'] = 'Yes';
+                        text_name = "GroupManager" ;
                     }
                     if(sheetName == "Area Supervisor"){
                         check_create_users['Supervisor'] = 'Yes';
+                        text_name = "AreaSupervisor" ;
                     }
                 }
+                // อัพเดต % ความคืบหน้า
+                updateChunkProgress(text_name, i + 1, totalChunks);
             } catch (error) {
                 // console.error(error);
             }
         }
+    }
+
+    // ฟังก์ชันอัพเดต % ความคืบหน้า
+    function updateChunkProgress(text_name, processedChunks, totalChunks) {
+        let progress = (processedChunks / totalChunks) * 100;
+        document.querySelector(`#progress_bar_${text_name}`).style.width = `${progress}%`;
+        document.querySelector(`#progress_text_${text_name}`).innerText = `${text_name} : ${Math.round(progress)}%`;
+    }
+
+    // ฟังก์ชันอัพเดตความคืบหน้าของชีท
+    function updateSheetProgress(sheetName, processedSheets, totalSheets) {
+
+        let text_name ;
+        if(sheetName == "Member"){
+            text_name = "Member" ;
+        }
+        if(sheetName == "Upper AL"){
+            text_name = "UpperAL" ;
+        }
+        if(sheetName == "Group Manager"){
+            text_name = "GroupManager" ;
+        }
+        if(sheetName == "Area Supervisor"){
+            text_name = "AreaSupervisor" ;
+        }
+        let progress = (processedSheets / totalSheets) * 100;
+        document.querySelector(`#progress_bar_${text_name}`).style.width = `${progress}%`;
+        document.querySelector(`#progress_text_${text_name}`).innerText = `${text_name} : ${Math.round(progress)}%`;
     }
 
     function upload_to_firebase() {

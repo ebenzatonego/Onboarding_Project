@@ -23,8 +23,10 @@ Auth::routes();
 
 // No Login
 Route::get('/share_training/{id}', 'TrainingController@share_training');
+Route::get('/share_appointment/{id}', 'AppointmentsController@share_appointment');
 Route::get('/share_activity/{id}', 'ActivitysController@share_activity');
 Route::get('/share_news/{id}', 'NewsController@share_news');
+Route::get('/share_product/{id}', 'ProductsController@share_product');
 
 Route::post('/confirm-password', 'AdminController@confirmPassword');
 
@@ -173,6 +175,7 @@ Route::middleware(['auth', 'role:Super-admin,Admin,Staff,member'])->group(functi
 
     // products
     Route::get('/page_products', 'ProductsController@index');
+    Route::get('/product_show/{id}', 'ProductsController@show');
     Route::get('/page_products_fav', 'ProductsController@page_products_fav');
 
 

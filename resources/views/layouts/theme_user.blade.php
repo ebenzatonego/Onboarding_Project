@@ -343,7 +343,7 @@
 
             <div class="top-menu ms-auto">
                 <ul class="navbar-nav align-items-center">
-                    <li id="li_search_theme_user" class="nav-item mobile-search-icon d-nones">
+                    <li id="li_search_theme_user" class="nav-item mobile-search-icon d-none">
                         <a class="nav-link" href="#">
                             <i class="fa-solid fa-magnifying-glass text-color-obd"></i>
                         </a>
@@ -463,7 +463,7 @@
 
 <script>
     function change_active_menu_theme_user(type) {
-        console.log(type);
+        // console.log(type);
         document.querySelector('#menu_theme_user_'+type).classList.add('navbar-bottom-active')
     }
 </script>

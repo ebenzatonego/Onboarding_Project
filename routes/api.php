@@ -126,6 +126,14 @@ Route::get('/update_countTime_newsVideo/{user_id}/{countTime}/{news_id}', 'NewsC
 Route::post('/add_product_type', 'Product_typesController@add_product_type');
 Route::get('/get_data_product/{product_type_id}', 'ProductsController@get_data_product');
 Route::get('/get_data_type_product', 'Product_typesController@get_data_type_product');
+Route::get('/update_user_view_product/{user_id}/{product_id}', 'ProductsController@update_user_view_product');
+Route::get('/give_rating_product/{user_id}/{product_id}/{selectedRating}', 'ProductsController@give_rating_product');
+Route::get('/user_cancel_like_product/{user_id}/{product_id}', 'ProductsController@user_cancel_like_product');
+Route::get('/user_cancel_dislike_product/{user_id}/{product_id}', 'ProductsController@user_cancel_dislike_product');
+Route::get('/submit_reasons_dislike_product/{user_id}/{product_id}/{reasons_dislike}', 'ProductsController@submit_reasons_dislike_product');
+Route::get('/user_click_fav_btn_product/{user_id}/{product_id}/{type}', 'ProductsController@user_click_fav_btn_product');
+Route::get('/user_click_pdf_btn/{user_id}/{product_id}', 'ProductsController@user_click_pdf_btn');
+Route::get('/get_data_product_fav/{user_id}', 'ProductsController@get_data_product_fav');
 
 
 // Share

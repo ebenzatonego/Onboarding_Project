@@ -322,7 +322,7 @@
                         </ul>
                     </li>
 
-                    <li class="d-none">
+                    <li>
                         <a href="javascript:;" class="has-arrow">
                             <div class="parent-icon">
                                 <i class="fa-solid fa-cart-shopping"></i>
@@ -333,7 +333,7 @@
                         </a>
                         <ul>
                             <li>
-                                <a class="btn" href="#">
+                                <a class="btn" href="{{ url('/manage_products') }}">
                                     <i class="fa-solid fa-cart-circle-exclamation"></i> การจัดการผลิตภัณฑ์
                                 </a>
                             </li>

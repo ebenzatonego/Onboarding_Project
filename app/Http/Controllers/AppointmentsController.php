@@ -97,6 +97,18 @@ class AppointmentsController extends Controller
         return view('appointments.show', compact('appointment'));
     }
 
+    public function share_appointment($id)
+    {
+        if(Auth::check()){
+            return redirect('/show_appointment_train/'.$id);
+        }
+        else{
+            $appointment = Appointment::findOrFail($id);
+
+            return view('appointments.share_appointment', compact('appointment'));
+        }
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

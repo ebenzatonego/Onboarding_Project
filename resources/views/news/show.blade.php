@@ -335,8 +335,10 @@
                 </div>
                 @if( !empty($news->sum_rating) )
                 <div id="div_show_rating" class="rating-training mt-2">
-                    <span id="sum_rating_span" style="color: #EDB529;font-size: 14px;font-style: normal;font-weight: 600;line-height: normal;margin-right: 5px;">{{ $news->sum_rating }}</span>
-                    <i id="sum_rating_i" data-star="{{ $news->sum_rating }}" class="star-rating"></i>
+                    <span id="sum_rating_span" style="color: #EDB529;font-size: 14px;font-style: normal;font-weight: 600;line-height: normal;margin-right: 5px;">
+                        {{ number_format($news->sum_rating, 2) }}
+                    </span>
+                    <i id="sum_rating_i" data-star="{{ number_format($news->sum_rating, 2) }}" class="star-rating"></i>
                 </div>
                 @else
                 <div id="div_show_rating" class="rating-training mt-2 d-none">
@@ -880,10 +882,11 @@
             .then(response => response.text())
             .then(result => {
                 // console.log(result);
+                let formattedResult = parseFloat(result).toFixed(2);
                 let sum_rating_span = document.querySelector('#sum_rating_span');
                 let sum_rating_i = document.querySelector('#sum_rating_i');
-                    sum_rating_span.innerHTML = result ;
-                    sum_rating_i.setAttribute('data-star' , result);
+                    sum_rating_span.innerHTML = formattedResult ;
+                    sum_rating_i.setAttribute('data-star' , formattedResult);
 
                 document.querySelector('#div_show_rating').classList.remove('d-none');
 
@@ -904,10 +907,11 @@
             .then(response => response.text())
             .then(result => {
                 // console.log(result);
+                let formattedResult = parseFloat(result).toFixed(2);
                 let sum_rating_span = document.querySelector('#sum_rating_span');
                 let sum_rating_i = document.querySelector('#sum_rating_i');
-                    sum_rating_span.innerHTML = result ;
-                    sum_rating_i.setAttribute('data-star' , result);
+                    sum_rating_span.innerHTML = formattedResult ;
+                    sum_rating_i.setAttribute('data-star' , formattedResult);
 
                 document.querySelector('#div_show_rating').classList.remove('d-none');
 

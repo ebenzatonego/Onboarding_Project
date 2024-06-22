@@ -119,4 +119,9 @@ class News_typesController extends Controller
 
         return redirect('news_types')->with('flash_message', 'News_type deleted!');
     }
+
+    function get_data_News_type(){
+        $data = News_type::orderBy('number_menu', 'ASC')->get();
+        return $data ;
+    }
 }

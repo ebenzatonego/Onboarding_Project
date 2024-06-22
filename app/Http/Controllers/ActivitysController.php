@@ -171,7 +171,7 @@ class ActivitysController extends Controller
     {
         Activity::destroy($id);
 
-        return redirect('activitys')->with('flash_message', 'Activity deleted!');
+        return redirect('manage_activity')->with('flash_message', 'Activity deleted!');
     }
 
     function update_user_view_activity($user_id,$activity_id){
@@ -624,5 +624,26 @@ class ActivitysController extends Controller
         return 'success' ;
 
     }
+    function get_data_activity_admin($type){
 
+        $data = [];
+
+        if($type == 'all'){
+
+            $data['data_activity'] = DB::table('activitys')
+                ->join('activity_types', 'activity_types.id', '=', 'activitys.activity_type_id')
+                ->select('activitys.*', 'activity_types.name_type')
+                ->orderBy("id", "DESC")
+                ->get();
+        }
+        else{
+            $data['data_activity'] = Activity::where('activity_type_id', $type)
+                ->orderBy("id", "DESC")
+                ->get();
+            $data_New_type = Activity_type::where('id', $type)->first();
+            $data['name_type'] = $data_New_type->name_type ;
+        }
+
+        return $data;
+    }
 }

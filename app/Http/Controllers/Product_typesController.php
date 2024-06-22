@@ -158,4 +158,9 @@ class Product_typesController extends Controller
 
         return $data_product_types ;
     }
+
+    function get_data_product_type(){
+        $data = Product_type::orderBy('number_menu', 'ASC')->get();
+        return $data ;
+    }
 }

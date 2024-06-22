@@ -88,6 +88,7 @@ Route::get('/delete_training_type/{training_type_id}', 'Training_typeController@
 Route::get('/get_list_number_menu_of_appointment', 'Training_typeController@get_list_number_menu_of_appointment');
 
 
+
 // appointment
 Route::get('/get_data_appointment/{type}', 'AppointmentsController@get_data_appointment');
 Route::get('/get_data_appointment_now/{training_type_id}/{month}/{year}/{type_appointment}', 'AppointmentsController@get_data_appointment_now');
@@ -111,6 +112,9 @@ Route::get('/user_cancel_like_activity/{user_id}/{activity_id}', 'ActivitysContr
 Route::get('/submit_reasons_dislike_activity/{user_id}/{activity_id}/{reasons_dislike}', 'ActivitysController@submit_reasons_dislike_activity');
 Route::get('/user_cancel_dislike_activity/{user_id}/{activity_id}', 'ActivitysController@user_cancel_dislike_activity');
 Route::get('/user_click_fav_btn_activity/{user_id}/{activity_id}/{type}', 'ActivitysController@user_click_fav_btn_activity');
+Route::get('/get_data_activity_type', 'Activity_typesController@get_data_activity_type');
+Route::get('/get_data_activity_admin/{type}', 'ActivitysController@get_data_activity_admin');
+
 
 // News
 Route::get('/get_data_news/{news_type_id}', 'NewsController@get_data_news');
@@ -121,6 +125,8 @@ Route::get('/user_cancel_dislike_news/{user_id}/{news_id}', 'NewsController@user
 Route::get('/submit_reasons_dislike_news/{user_id}/{news_id}/{reasons_dislike}', 'NewsController@submit_reasons_dislike_news');
 Route::get('/user_click_fav_btn_news/{user_id}/{news_id}/{type}', 'NewsController@user_click_fav_btn_news');
 Route::get('/update_countTime_newsVideo/{user_id}/{countTime}/{news_id}', 'NewsController@update_countTime_newsVideo');
+Route::get('/get_data_News_type', 'News_typesController@get_data_News_type');
+Route::get('/get_data_news_admin/{type}', 'NewsController@get_data_news_admin');
 
 // Product
 Route::post('/add_product_type', 'Product_typesController@add_product_type');
@@ -134,6 +140,8 @@ Route::get('/submit_reasons_dislike_product/{user_id}/{product_id}/{reasons_disl
 Route::get('/user_click_fav_btn_product/{user_id}/{product_id}/{type}', 'ProductsController@user_click_fav_btn_product');
 Route::get('/user_click_pdf_btn/{user_id}/{product_id}', 'ProductsController@user_click_pdf_btn');
 Route::get('/get_data_product_fav/{user_id}', 'ProductsController@get_data_product_fav');
+Route::get('/get_data_product_type', 'Product_typesController@get_data_product_type');
+Route::get('/get_data_product_admin/{type}', 'ProductsController@get_data_product_admin');
 
 // Tools contact
 Route::get('/get_data_show_tools_contact', 'Tools_contactsController@get_data_show_tools_contact');

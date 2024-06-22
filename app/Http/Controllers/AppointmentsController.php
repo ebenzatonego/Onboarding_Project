@@ -153,7 +153,7 @@ class AppointmentsController extends Controller
     {
         Appointment::destroy($id);
 
-        return redirect('appointments')->with('flash_message', 'Appointment deleted!');
+        return redirect('manage_appointment')->with('flash_message', 'Appointment deleted!');
     }
 
     function manage_appointment(){

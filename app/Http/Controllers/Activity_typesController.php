@@ -119,4 +119,9 @@ class Activity_typesController extends Controller
 
         return redirect('activity_types')->with('flash_message', 'Activity_type deleted!');
     }
+
+    function get_data_activity_type(){
+        $data = Activity_type::orderBy('number_menu', 'ASC')->get();
+        return $data ;
+    }
 }

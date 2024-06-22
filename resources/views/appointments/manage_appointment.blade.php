@@ -501,6 +501,13 @@
                               <a href="{{ url('/preview_training') }}/`+result['data_appointments'][i].id+`" class="btn btn-sm btn-info">
                                 ดูข้อมูล
                               </a>
+                              <form method="POST" action="{{ url('/appointments') }}/`+result['data_appointments'][i].id+`" accept-charset="UTF-8" style="display:inline" onsubmit="return confirmDelete(event, this)">
+                                  {{ method_field('DELETE') }}
+                                  {{ csrf_field() }}
+                                  <button type="submit" class="btn btn-danger btn-sm text-center" title="Delete Tools_tutorial">
+                                      &nbsp;<i class="fa-solid fa-trash-can"></i>
+                                  </button>
+                              </form>
                             </center>
                           </div>
                         </div>

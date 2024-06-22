@@ -154,7 +154,7 @@ class ProductsController extends Controller
     {
         Product::destroy($id);
 
-        return redirect('products')->with('flash_message', 'Product deleted!');
+        return redirect('manage_products')->with('flash_message', 'Product deleted!');
     }
 
     function get_data_product($products_type_id){
@@ -665,5 +665,27 @@ class ProductsController extends Controller
 
         return $data ;
     }
+    function get_data_product_admin($type){
 
+        $data = [];
+
+        if($type == 'all'){
+            // $data['data_appointments'] = Appointment::orderBy('id' , 'DESC')->get();
+
+            $data['data_products'] = DB::table('products')
+                ->join('product_types', 'product_types.id', '=', 'products.product_type_id')
+                ->select('products.*', 'product_types.name_type')
+                ->orderBy("id", "DESC")
+                ->get();
+        }
+        else{
+            $data['data_products'] = Product::where('product_type_id', $type)
+                ->orderBy("id", "DESC")
+                ->get();
+            $data_New_type = Product_type::where('id', $type)->first();
+            $data['name_type'] = $data_New_type->name_type ;
+        }
+
+        return $data;
+    }
 }

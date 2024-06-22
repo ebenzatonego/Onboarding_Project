@@ -158,7 +158,7 @@ class NewsController extends Controller
     {
         News::destroy($id);
 
-        return redirect('news')->with('flash_message', 'News deleted!');
+        return redirect('manage_news')->with('flash_message', 'News deleted!');
     }
 
     function manage_news(){
@@ -661,5 +661,29 @@ class NewsController extends Controller
                 ]);
 
         return 'success' ;
+    }
+
+    function get_data_news_admin($type){
+
+        $data = [];
+
+        if($type == 'all'){
+            // $data['data_appointments'] = Appointment::orderBy('id' , 'DESC')->get();
+
+            $data['data_news'] = DB::table('news')
+                ->join('news_types', 'news_types.id', '=', 'news.news_type_id')
+                ->select('news.*', 'news_types.name_type')
+                ->orderBy("id", "DESC")
+                ->get();
+        }
+        else{
+            $data['data_news'] = News::where('news_type_id', $type)
+                ->orderBy("id", "DESC")
+                ->get();
+            $data_New_type = News_type::where('id', $type)->first();
+            $data['name_type'] = $data_New_type->name_type ;
+        }
+
+        return $data;
     }
 }

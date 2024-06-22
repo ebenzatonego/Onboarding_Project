@@ -310,7 +310,7 @@
                         </a>
                         <ul>
                             <li>
-                                <a class="btn" href="#">
+                                <a class="btn" href="{{ url('/manage_activity') }}">
                                     <i class="fa-solid fa-calendar-circle-exclamation"></i> การจัดการกิจกรรม
                                 </a>
                             </li>

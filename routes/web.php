@@ -147,6 +147,7 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
 
     // Activitys
     Route::resource('activitys', 'ActivitysController');
+    Route::get('/manage_activity', 'ActivitysController@manage_activity');
 
     // Products
     Route::resource('products', 'ProductsController');

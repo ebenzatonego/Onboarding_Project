@@ -1193,7 +1193,7 @@
 
     carousel_menu.trigger('to.owl.carousel', ["{{ $set_center }}", 300, true]);
 
-    console.log("{{ $set_center }}")
+    // console.log("{{ $set_center }}")
 </script>
 <script type="text/javascript">
     $(document).ready(function() {

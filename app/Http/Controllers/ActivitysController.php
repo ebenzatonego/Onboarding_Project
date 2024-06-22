@@ -64,6 +64,10 @@ class ActivitysController extends Controller
         }
     }
 
+    function manage_activity(){
+        return view('activitys.manage_activity');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -105,7 +109,8 @@ class ActivitysController extends Controller
         
         Activity::create($requestData);
 
-        return redirect('activitys')->with('flash_message', 'Activity added!');
+        return redirect('/manage_activity');
+        // return redirect('activitys')->with('flash_message', 'Activity added!');
     }
 
     /**

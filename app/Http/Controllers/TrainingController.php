@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Favorite;
+use App\Models\Log_delete_content;
 
 class TrainingController extends Controller
 {
@@ -158,6 +159,15 @@ class TrainingController extends Controller
      */
     public function destroy($id)
     {
+        $training = Training::where('id',$id)->first();
+        $user_id = Auth::user()->id ;
+
+        $data = [];
+        $data['type'] = 'หลักสูตร';
+        $data['user_id'] = $user_id;
+        $data['training_name'] = $training->title;
+
+        Log_delete_content::create($data);
         Training::destroy($id);
 
         return redirect('/manage_training');

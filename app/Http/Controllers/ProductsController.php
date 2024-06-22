@@ -11,6 +11,7 @@ use App\Models\Product_type;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Favorite;
+use App\Models\Log_delete_content;
 
 class ProductsController extends Controller
 {
@@ -152,6 +153,15 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
+        $product = Product::where('id',$id)->first();
+        $user_id = Auth::user()->id ;
+
+        $data = [];
+        $data['type'] = 'ผลิตภัณฑ์';
+        $data['user_id'] = $user_id;
+        $data['product_name'] = $product->title;
+
+        Log_delete_content::create($data);
         Product::destroy($id);
 
         return redirect('manage_products')->with('flash_message', 'Product deleted!');

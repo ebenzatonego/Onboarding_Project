@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Training;
 use App\Models\Appointment_area;
 use App\Models\Favorite;
+use App\Models\Log_delete_content;
 
 class AppointmentsController extends Controller
 {
@@ -151,6 +152,15 @@ class AppointmentsController extends Controller
      */
     public function destroy($id)
     {
+        $appointment = Appointment::where('id',$id)->first();
+        $user_id = Auth::user()->id ;
+
+        $data = [];
+        $data['type'] = 'อบรม/สอบ';
+        $data['user_id'] = $user_id;
+        $data['appointment_name'] = $appointment->title;
+
+        Log_delete_content::create($data);
         Appointment::destroy($id);
 
         return redirect('manage_appointment')->with('flash_message', 'Appointment deleted!');

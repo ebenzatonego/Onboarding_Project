@@ -11,6 +11,7 @@ use App\Models\Activity_type;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Favorite;
+use App\Models\Log_delete_content;
 
 class ActivitysController extends Controller
 {
@@ -169,6 +170,15 @@ class ActivitysController extends Controller
      */
     public function destroy($id)
     {
+        $activity = Activity::where('id',$id)->first();
+        $user_id = Auth::user()->id ;
+
+        $data = [];
+        $data['type'] = 'กิจกรรม';
+        $data['user_id'] = $user_id;
+        $data['activity_name'] = $activity->title;
+
+        Log_delete_content::create($data);
         Activity::destroy($id);
 
         return redirect('manage_activity')->with('flash_message', 'Activity deleted!');

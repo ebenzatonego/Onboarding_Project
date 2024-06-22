@@ -1,0 +1,32 @@
+{
+    "fields": [
+        {
+            "name": "type",
+            "type": "string"
+        },
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "news_name",
+            "type": "string"
+        },
+        {
+            "name": "training_name",
+            "type": "string"
+        },
+        {
+            "name": "product_name",
+            "type": "string"
+        },
+        {
+            "name": "appointment_name",
+            "type": "string"
+        },
+        {
+            "name": "activity_name",
+            "type": "string"
+        }
+    ]
+}

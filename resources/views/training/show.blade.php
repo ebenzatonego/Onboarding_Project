@@ -238,14 +238,14 @@
 
 
                     @endphp
-                    <button class="btn btn-like {{ $check_like }} me-1" {{ $check_disabled_not_dislike }} onclick="action_btnlike_dislike(this.className)">
+                    <button id="btn_like_item" class="btn btn-like {{ $check_like }} me-1" onclick="action_btnlike_dislike(this.className)">
                         <div class="icon-btn d-flex">
                             <i class="fa-solid fa-thumbs-up"></i>
                         </div>
                         <div id="show_count_user_like" class="d-flex align-items-center ms-1">{{ $count_user_like }}</div>
 
                     </button>
-                    <button class="btn btn-dislike {{ $check_dislike }} me-1" {{ $check_disabled_not_like }}  onclick="action_btnlike_dislike(this.className)">
+                    <button id="btn_dislike_item" class="btn btn-dislike {{ $check_dislike }} me-1"   onclick="action_btnlike_dislike(this.className)">
                         <div class="icon-btn">
                             <i class="fa-solid fa-thumbs-down"></i>
                         </div>
@@ -290,9 +290,14 @@
                     <span>#{{ $Training_type->type_article }}</span>
                 </div>
                 @if( !empty($training->sum_rating) )
-                <div class="rating-training mt-2">
+                <div id="div_show_rating" class="rating-training mt-2">
                     <span id="sum_rating_span" style="color: #EDB529;font-size: 14px;font-style: normal;font-weight: 600;line-height: normal;margin-right: 5px;">{{ $training->sum_rating }}</span>
                     <i id="sum_rating_i" data-star="{{ $training->sum_rating }}" class="star-rating"></i>
+                </div>
+                @else
+                <div id="div_show_rating" class="rating-training mt-2 d-none">
+                    <span id="sum_rating_span" style="color: #EDB529;font-size: 14px;font-style: normal;font-weight: 600;line-height: normal;margin-right: 5px;">0</span>
+                    <i id="sum_rating_i" data-star="0" class="star-rating"></i>
                 </div>
                 @endif
             </div>
@@ -386,14 +391,14 @@
                     <p class="mb-0" style="color: #989898;font-size: 14px;font-style: normal;font-weight: 500;line-height: normal;">ถูกใจหลักสูตรนี้?</p>
 
                     <div class="d-flex justify-content-end ">
-                        <button class="btn btn-like {{ $check_like }}  me-1" {{ $check_disabled_not_dislike }} onclick="action_btnlike_dislike(this.className)">
+                        <button class="btn btn-like {{ $check_like }}  me-1" onclick="action_btnlike_dislike(this.className)">
                             <div class="icon-btn d-flex">
                                 <i class="fa-solid fa-thumbs-up"></i>
                             </div>
                             <div id="show_count_user_like_2" class="d-flex align-items-center ms-1">{{ $count_user_like }}</div>
     
                         </button>
-                        <button class="btn btn-dislike {{ $check_dislike }} me-1" {{ $check_disabled_not_like }} onclick="action_btnlike_dislike(this.className)">
+                        <button class="btn btn-dislike {{ $check_dislike }} me-1" onclick="action_btnlike_dislike(this.className)">
                             <div class="icon-btn">
                                 <i class="fa-solid fa-thumbs-down"></i>
                             </div>
@@ -507,7 +512,7 @@
 <div class="modal fade" id="rating" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content modal-vote-training">
-            <p class="text-white text-center mb-5 font-20">ให้คะแนนผลิตภัณฑ์นี้</p>
+            <p class="text-white text-center mb-5 font-20">ให้คะแนนหลักสูตรนี้</p>
             <div class="w-100 d-flex justify-content-center">
                 
                 <div id="rating_input">
@@ -569,9 +574,9 @@
 <div class="modal fade" id="dislike_training" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content modal-vote-training">
-            <p class="text-white text-center mb-5 font-20">ให้เหตุผลที่ไม่ชอบผลิตภัณฑ์นี้</p>
+            <p class="text-white text-center mb-5 font-20">ให้เหตุผลที่ไม่ชอบหลักสูตรนี้</p>
             <div class="w-100 d-flex justify-content-center px-4 mb-2">
-                <textarea class="form-control" id="reasons_dislike" placeholder="กรอกเหตุผลที่ไม่ชอบผลิตภัณฑ์นี้" rows="5" style="border-radius: 10px;" oninput="check_reasons_dislike()"></textarea>
+                <textarea class="form-control" id="reasons_dislike" placeholder="กรอกเหตุผลที่ไม่ชอบหลักสูตรนี้" rows="5" style="border-radius: 10px;" oninput="check_reasons_dislike()"></textarea>
             </div>
             
             <div class="w-100 px-4 mt-4">
@@ -656,6 +661,12 @@
 
     var old_count_user_like = "{{ $count_user_like }}";
     var check_user_like = "{{ $check_like }}" ;
+    var check_user_dislike = "{{ $check_dislike }}";
+
+    var btn_like_item = document.querySelector('#btn_like_item');
+    var btn_dislike_item = document.querySelector('#btn_dislike_item');
+
+    var new_count = 0 ;
 
     function action_btnlike_dislike(className) {
 
@@ -663,38 +674,43 @@
             // console.log('btn-like');
             document.querySelectorAll('.btn-like').forEach(function(element) {element.classList.toggle('active');});
 
-            let new_count ;
-
             if (!className.includes('active')) {
                 $('#rating').modal('show');
 
                 if(check_user_like == 'active'){
+                    check_user_like = 'active' ;
                     new_count = parseInt(old_count_user_like) ;
                 }else{
+                    check_user_like = 'active' ;
                     new_count = parseInt(old_count_user_like) + 1 ;
                 }
 
-                document.querySelectorAll('.btn-dislike').forEach(
-                    function(element) {
-                        element.setAttribute('disabled' , '');
-                    }
-                );
+                // document.querySelectorAll('.btn-dislike').forEach(
+                //     function(element) {
+                //         element.setAttribute('disabled' , '');
+                //     }
+                // );
             }
             else{
                 if(check_user_like == 'active'){
+                    check_user_like = '' ;
                     new_count = parseInt(old_count_user_like) - 1 ;
                 }else{
+                    check_user_like = '' ;
                     new_count = parseInt(old_count_user_like) ;
                 }
                 // console.log('ยกเลิกไลก์');
                 user_cancel_like();
-                document.querySelectorAll('.btn-dislike').forEach(
-                    function(element) {
-                        element.removeAttribute('disabled');
-                    }
-                );
+
+                // document.querySelectorAll('.btn-dislike').forEach(
+                //     function(element) {
+                //         element.removeAttribute('disabled');
+                //     }
+                // );
 
             }
+
+            old_count_user_like = new_count ;
             document.querySelector('#show_count_user_like').innerHTML = new_count ;
             document.querySelector('#show_count_user_like_2').innerHTML = new_count ;
             
@@ -705,20 +721,26 @@
 
             if (!className.includes('active')) {
                 $('#dislike_training').modal('show');
-                document.querySelectorAll('.btn-like').forEach(
-                    function(element) {
-                        element.setAttribute('disabled' , '');
-                    }
-                );
+
+                check_user_dislike = 'active';
+
+                // document.querySelectorAll('.btn-like').forEach(
+                //     function(element) {
+                //         element.setAttribute('disabled' , '');
+                //     }
+                // );
             }
             else{
-                console.log('ยกเลิกไม่ถูกใจ');
+                // console.log('ยกเลิกไม่ถูกใจ');
                 user_cancel_dislike();
-                document.querySelectorAll('.btn-like').forEach(
-                    function(element) {
-                        element.removeAttribute('disabled');
-                    }
-                );
+                
+                check_user_dislike = '';
+
+                // document.querySelectorAll('.btn-like').forEach(
+                //     function(element) {
+                //         element.removeAttribute('disabled');
+                //     }
+                // );
             }
 
         }else{
@@ -772,7 +794,13 @@
                     sum_rating_span.innerHTML = result ;
                     sum_rating_i.setAttribute('data-star' , result);
 
+                document.querySelector('#div_show_rating').classList.remove('d-none');
+
                 create_star_rating();
+
+                if(check_user_dislike == 'active'){
+                    btn_dislike_item.click();
+                }
             });
 
     }
@@ -789,6 +817,8 @@
                 let sum_rating_i = document.querySelector('#sum_rating_i');
                     sum_rating_span.innerHTML = result ;
                     sum_rating_i.setAttribute('data-star' , result);
+
+                document.querySelector('#div_show_rating').classList.remove('d-none');
 
                 create_star_rating();
             });
@@ -816,6 +846,10 @@
             });
 
         $('#dislike_training').modal('hide');
+
+        if(check_user_like == 'active'){
+            btn_like_item.click();
+        }
         
     }
 

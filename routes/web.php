@@ -214,3 +214,4 @@ Route::resource('contact_group_managers', 'Contact_group_managersController');
 Route::resource('contact_upper_als', 'Contact_upper_alsController');
 
 Route::resource('log_excel_users', 'Log_excel_usersController');
+Route::resource('log_delete_content', 'Log_delete_contentController');

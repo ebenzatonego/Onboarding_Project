@@ -11,6 +11,7 @@ use App\Models\News_type;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Favorite;
+use App\Models\Log_delete_content;
 
 class NewsController extends Controller
 {
@@ -156,6 +157,15 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
+        $news = News::where('id',$id)->first();
+        $user_id = Auth::user()->id ;
+
+        $data = [];
+        $data['type'] = 'ข่าว';
+        $data['user_id'] = $user_id;
+        $data['news_name'] = $news->title;
+
+        Log_delete_content::create($data);
         News::destroy($id);
 
         return redirect('manage_news')->with('flash_message', 'News deleted!');

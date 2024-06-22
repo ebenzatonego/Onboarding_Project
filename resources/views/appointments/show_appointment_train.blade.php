@@ -293,9 +293,9 @@
                 @if( !empty($appointment->sum_rating) )
                 <div id="div_show_rating" class="rating-training mt-2">
                     <span id="sum_rating_span" style="color: #EDB529;font-size: 14px;font-style: normal;font-weight: 600;line-height: normal;margin-right: 5px;">
-                        {{ number_format($appointment->sum_rating, 2) }}
+                        {{ number_format($appointment->sum_rating, 1) }}
                     </span>
-                    <i id="sum_rating_i" data-star="{{ number_format($appointment->sum_rating, 2) }}" class="star-rating"></i>
+                    <i id="sum_rating_i" data-star="{{ number_format($appointment->sum_rating, 1) }}" class="star-rating"></i>
                 </div>
                 @else
                 <div id="div_show_rating" class="rating-training mt-2 d-none">
@@ -790,7 +790,7 @@
             .then(response => response.text())
             .then(result => {
                 // console.log(result);
-                let formattedResult = parseFloat(result).toFixed(2);
+                let formattedResult = parseFloat(result).toFixed(1);
                 let sum_rating_span = document.querySelector('#sum_rating_span');
                 let sum_rating_i = document.querySelector('#sum_rating_i');
                     sum_rating_span.innerHTML = formattedResult ;
@@ -815,7 +815,7 @@
             .then(response => response.text())
             .then(result => {
                 // console.log(result);
-                let formattedResult = parseFloat(result).toFixed(2);
+                let formattedResult = parseFloat(result).toFixed(1);
                 let sum_rating_span = document.querySelector('#sum_rating_span');
                 let sum_rating_i = document.querySelector('#sum_rating_i');
                     sum_rating_span.innerHTML = formattedResult ;

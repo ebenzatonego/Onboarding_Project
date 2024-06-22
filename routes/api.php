@@ -114,7 +114,7 @@ Route::get('/user_cancel_dislike_activity/{user_id}/{activity_id}', 'ActivitysCo
 Route::get('/user_click_fav_btn_activity/{user_id}/{activity_id}/{type}', 'ActivitysController@user_click_fav_btn_activity');
 Route::get('/get_data_activity_type', 'Activity_typesController@get_data_activity_type');
 Route::get('/get_data_activity_admin/{type}', 'ActivitysController@get_data_activity_admin');
-
+Route::get('/update_countTime_activityVideo/{user_id}/{countTime}/{activity_id}', 'ActivitysController@update_countTime_activityVideo');
 
 // News
 Route::get('/get_data_news/{news_type_id}', 'NewsController@get_data_news');

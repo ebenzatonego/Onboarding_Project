@@ -95,12 +95,10 @@
     }
 </style>
 
-@if(Auth::user()->id == '1')
 <!-- Modal Share social media-->
 <button id="btn_modal_Share_social_media" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#Share_social_media">
     Share social media
 </button>
-@endif
 <div class="modal fade" id="Share_social_media" tabindex="-1" role="dialog" aria-labelledby="happybirthdayTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content modal-share-social d-flex justify-content-center m-0">

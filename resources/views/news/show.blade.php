@@ -226,7 +226,7 @@
         <div class="col-lg-5 col-md-5 p-0" style="position: relative;">
             <!-- <a href="{{ url('/training') }}" class="btn btn-back-all-course">
                 <i class="fa-solid fa-arrow-left"></i>
-                <span>กลับหน้ารวมหลักสูตร</span>
+                <span>กลับหน้ารวมข่าว</span>
             </a> -->
 
             <a class="btn btn-back-all-course" onclick="window.history.back();">
@@ -426,16 +426,25 @@
                     @php
                         $urls = $news->photo_gallery;
                         $urlArray = explode(',', $urls);
+                        $check_photo_gallery_1 = 0 ;
                     @endphp
 
                     <img src="{{ $urlArray[0] }}" class="preview-img" alt="">
 
                     <div class="row mb-3 row-cols-auto g-2 justify-content-start mt-3">
                         @foreach($urlArray as $item_img)
-                        <div class="group-img ">
-                            <img src="{{ $item_img }}" class="img-news border rounded active" alt="">
-                            <i class="fa-light fa-eye icon-preview"></i>
-                        </div>
+                            @if( $check_photo_gallery_1 == 0 )
+                                <div class="group-img p-1">
+                                    <img src="{{ $item_img }}" class="img-news border rounded active" >
+                                    <i class="fa-light fa-eye icon-preview"></i>
+                                </div>
+                                @php $check_photo_gallery_1 = $check_photo_gallery_1 + 1 @endphp
+                            @else
+                                <div class="group-img p-1">
+                                    <img src="{{ $item_img }}" class="img-news border rounded" >
+                                    <i class="fa-light fa-eye icon-preview"></i>
+                                </div>
+                            @endif
                         @endforeach
                     </div>
 
@@ -470,7 +479,7 @@
                 @endif
 
                 <div class="w-100 mt-4">
-                    <p class="mb-0" style="color: #989898;font-size: 14px;font-style: normal;font-weight: 500;line-height: normal;">ถูกใจหลักสูตรนี้?</p>
+                    <p class="mb-0" style="color: #989898;font-size: 14px;font-style: normal;font-weight: 500;line-height: normal;">ถูกใจข่าวนี้?</p>
 
                     <div class="d-flex justify-content-end ">
                         <button class="btn btn-like {{ $check_like }}  me-1" {{ $check_disabled_not_dislike }} onclick="action_btnlike_dislike(this.className)">
@@ -499,7 +508,7 @@
                     </div>
                     <div class="mt-5">
                         <!-- <a href="{{ url('/training') }}">
-                            <i class="fa-solid fa-chevron-left"></i> กลับหน้ารวมหลักสูตร
+                            <i class="fa-solid fa-chevron-left"></i> กลับหน้ารวมข่าว
                         </a> -->
                         <a onclick="window.history.back();">
                             <i class="fa-solid fa-chevron-left"></i> ย้อนกลับ

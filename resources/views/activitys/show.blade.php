@@ -364,6 +364,46 @@
                 font-weight: 600;
                 line-height: normal;
             }
+
+            .group-img {
+                flex: 0 0 20%;
+                max-width: 20%;
+                position: relative;
+
+                cursor: pointer;
+            }
+
+            .img-news {
+                width: 100%;
+                aspect-ratio: 1/1;
+                object-fit: cover;
+                filter: grayscale(70%);
+            }
+
+            .img-news.active {
+                filter: blur(0) grayscale(0) !important;
+
+            }
+
+            .img-news.active+.icon-preview {
+                display: none !important;
+
+            }
+
+            .preview-img {
+                width: 100%;
+            }
+
+            .icon-preview {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: #fff !important;
+                font-size: 33px;
+                pointer-events: none;
+                /* ปิดการใช้งาน hitbox */
+            }
         </style>
         <div class="col-lg-7 col-md-7 px-4 mb-5">
             
@@ -401,8 +441,65 @@
                     {!! $activity->detail !!}
                 </p>
 
+                @if( !empty($activity->photo_gallery) )
+
+                    @php
+                        $urls = $activity->photo_gallery;
+                        $urlArray = explode(',', $urls);
+                        $check_photo_gallery_1 = 0 ;
+                    @endphp
+
+                    <img src="{{ $urlArray[0] }}" class="preview-img" alt="">
+
+                    <div class="row mb-3 row-cols-auto g-2 justify-content-start mt-3">
+                        @foreach($urlArray as $item_img)
+                            @if( $check_photo_gallery_1 == 0 )
+                                <div class="group-img p-1">
+                                    <img src="{{ $item_img }}" class="img-news border rounded active" >
+                                    <i class="fa-light fa-eye icon-preview"></i>
+                                </div>
+                                @php $check_photo_gallery_1 = $check_photo_gallery_1 + 1 @endphp
+                            @else
+                                <div class="group-img p-1">
+                                    <img src="{{ $item_img }}" class="img-news border rounded" >
+                                    <i class="fa-light fa-eye icon-preview"></i>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+
+                    <script>
+                        const imgNewsElements = document.querySelectorAll('.img-news');
+
+                        imgNewsElements.forEach(imgNews => {
+                            imgNews.addEventListener('click', function handleClick() {
+                                // Remove the 'active' class from all previously clicked images
+                                imgNewsElements.forEach(otherImg => otherImg.classList.remove('active'));
+
+                                // Add the 'active' class to the clicked image
+                                this.classList.add('active');
+
+                                // Update the 'src' attribute of the preview image
+                                const previewImg = document.querySelector('.preview-img');
+                                previewImg.src = this.src;
+                            });
+                        });
+                    </script>
+
+                @endif
+
+                @if( !empty($activity->video))
+                <div class="d-flex justify-content-end w-100 mt-4 mb--2" style="color: #989898;">
+                    <i class="fa-regular fa-clock me-2"></i>
+                    <span id="videoDuration"></span>
+                </div>
+                <div class="d-flex justify-content-center w-100">
+                    <video id="trainingVideo" src="{{ $activity->video }}" controls loop muted style="width:100%;border-radius: 10px; max-width: 700px;margin-top:5px!important;" class="video-preview"></video>
+                </div>
+                @endif
+
                 <div class="w-100 mt-4">
-                    <p class="mb-0" style="color: #989898;font-size: 14px;font-style: normal;font-weight: 500;line-height: normal;">ถูกใจหลักสูตรนี้?</p>
+                    <p class="mb-0" style="color: #989898;font-size: 14px;font-style: normal;font-weight: 500;line-height: normal;">ถูกใจกิจกรรมนี้?</p>
 
                     <div class="d-flex justify-content-end ">
                         <button class="btn btn-like {{ $check_like }}  me-1" {{ $check_disabled_not_dislike }} onclick="action_btnlike_dislike(this.className)">
@@ -615,6 +712,35 @@
   </div>
 </div>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+
+        if(document.getElementById('trainingVideo')){
+            var video = document.getElementById('trainingVideo');
+            video.addEventListener('loadedmetadata', function() {
+                var duration = video.duration;
+                var hours = Math.floor(duration / 3600);
+                var minutes = Math.floor((duration % 3600) / 60);
+                var seconds = Math.floor(duration % 60);
+
+                var formattedDuration = "";
+                if (hours > 0) {
+                    formattedDuration += hours + " ชั่วโมง ";
+                }
+                if (minutes > 0) {
+                    formattedDuration += minutes + " นาที ";
+                }
+                if (seconds > 0 || (hours === 0 && minutes === 0)) { // เพื่อให้แสดงวินาทีเสมอถ้าไม่มีชั่วโมงและนาที
+                    formattedDuration += seconds + " วินาที";
+                }
+
+                document.getElementById('videoDuration').innerText = formattedDuration;
+            });
+        }
+
+    });
+</script>
 
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
@@ -912,6 +1038,58 @@
         let period = hours >= 12 ? 'น.' : 'น.';
         hours = hours % 12 || 12; // Convert hours to 12-hour format
         return `${hours}:${minutes} ${period}`;
+    }
+</script>
+
+<!-- นับเวลาวิดีโอ -->
+<script>
+    if(document.getElementById('trainingVideo')){
+
+        const video = document.getElementById('trainingVideo');
+        let countTime = 0;
+        let interval;
+
+        // ฟังก์ชั่นเพื่อเริ่มนับเวลา
+        function startCountTime() {
+            interval = setInterval(() => {
+                countTime += 1;
+                // console.log('Elapsed time:', countTime);
+            }, 1000); // เพิ่มค่าทีละ 1 วินาที
+        }
+
+        // ฟังก์ชั่นเพื่อหยุดนับเวลา
+        function stopCountTime() {
+            clearInterval(interval);
+        }
+
+        // จับเหตุการณ์เมื่อวิดีโอเริ่มเล่น
+        video.addEventListener('play', () => {
+            startCountTime();
+        });
+
+        // จับเหตุการณ์เมื่อวิดีโอหยุด
+        video.addEventListener('pause', () => {
+            stopCountTime();
+        });
+
+        // จับเหตุการณ์เมื่อวิดีโอสิ้นสุดการเล่น
+        video.addEventListener('ended', () => {
+            stopCountTime();
+        });
+
+        // ก่อนปิดหน้าหรือเปลี่ยนหน้า
+        window.addEventListener('beforeunload', function(e) {
+            // console.log(countTime);
+            let activity_id = "{{ $activity->id }}";
+
+            if(countTime > 0){
+                fetch("{{ url('/') }}/api/update_countTime_activityVideo/" + "{{ Auth::user()->id }}" + "/" + countTime + "/" + activity_id)
+                    .then(response => response.text())
+                    .then(result => {
+                        // console.log(result);
+                    });
+            }
+        });
     }
 </script>
 @endsection

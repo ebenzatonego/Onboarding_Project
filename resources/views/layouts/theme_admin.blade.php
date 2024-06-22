@@ -328,7 +328,7 @@
                                 <i class="fa-solid fa-cart-shopping"></i>
                             </div>
                             <div class="menu-title">
-                                Product
+                                ผลิตภัณฑ์
                             </div>
                         </a>
                         <ul>

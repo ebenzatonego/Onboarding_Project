@@ -370,10 +370,10 @@
 <div class="container p-0 conteiner-detail-news">
     <ul class="nav nav-pills mb-3 d-flex justify-content-center" id="pills-tab" role="tablist">
         <li class="nav-item ">
-            <a class="nav-link menu-tools active" id="pills-conpany-tab" data-toggle="pill" href="#pills-conpany" role="tab" aria-controls="pills-conpany" aria-selected="true">ข้อมูลบริษัท</a>
+            <a class="nav-link menu-tools " id="pills-conpany-tab" data-toggle="pill" href="#pills-conpany" role="tab" aria-controls="pills-conpany" aria-selected="true">ข้อมูลบริษัท</a>
         </li>
         <li class="nav-item ">
-            <a class="nav-link menu-tools" id="pills-tools-tab" data-toggle="pill" href="#pills-tools" role="tab" aria-controls="pills-tools" aria-selected="false">Tools</a>
+            <a class="nav-link menu-tools active" id="pills-tools-tab" data-toggle="pill" href="#pills-tools" role="tab" aria-controls="pills-tools" aria-selected="false">Tools</a>
         </li>
         <li class="nav-item " onclick="show_tools_contact();">
             <a class="nav-link menu-tools" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">ติดต่อ</a>
@@ -386,8 +386,8 @@
         </li>
     </ul>
     <div class="tab-content mb-5" id="pills-tabContent">
-        <div class="tab-pane fade show active" id="pills-conpany" role="tabpanel" aria-labelledby="pills-home-tab"> 1 </div>
-        <div class="tab-pane fade" id="pills-tools" role="tabpanel" aria-labelledby="pills-tools-tab">
+        <div class="tab-pane fade " id="pills-conpany" role="tabpanel" aria-labelledby="pills-home-tab"> 1 </div>
+        <div class="tab-pane fade show active" id="pills-tools" role="tabpanel" aria-labelledby="pills-tools-tab">
             <p class="title-tools">เครื่องมือบริษัท</p>
 
             <div class="container-tap d-flex justify-content-center mb-4">

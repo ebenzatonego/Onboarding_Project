@@ -178,6 +178,7 @@
         .container-course {
             display: flex;
             justify-content: space-between;
+            flex-wrap: wrap;
         }
 
         .course-item {

@@ -196,6 +196,7 @@ box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
         .container-course {
             display: flex;
             justify-content: space-between;
+            flex-wrap: wrap;
         }
 
         .course-item {

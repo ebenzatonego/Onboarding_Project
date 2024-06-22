@@ -263,9 +263,10 @@
 
                             if (array_key_exists(Auth::user()->id, $array)) {
 
-                                // ตรวจสอบว่าใน key 1 มี status ที่เป็น 'Active' หรือไม่
+                                // ตรวจสอบว่าใน key $user_id มี status ที่เป็น 'Active' หรือไม่
                                 $has_active_status = false;
-                                foreach ($array[1] as $entry) {
+                                $user_id = Auth::user()->id ;
+                                foreach ($array[$user_id] as $entry) {
                                     if (isset($entry['status']) && $entry['status'] === 'Active') {
                                         $has_active_status = true;
                                         break;

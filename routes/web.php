@@ -156,6 +156,9 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
     // Tools Contacts
     Route::resource('tools_contacts', 'Tools_contactsController');
 
+    // Career Paths
+    Route::resource('career_paths', 'Career_pathsController');
+
 });
 
 // member & Staff
@@ -185,6 +188,8 @@ Route::middleware(['auth', 'role:Super-admin,Admin,Staff,member'])->group(functi
     // Tools
     Route::get('/tools', 'Tools_appsController@index');
 
+    // Career Paths
+    Route::get('/page_career_paths', 'Career_pathsController@index');
 
     // calendars
     Route::resource('calendars', 'CalendarsController');
@@ -205,7 +210,6 @@ Route::resource('activity_types', 'Activity_typesController');
 Route::resource('product_types', 'Product_typesController');
 Route::resource('notis', 'NotisController');
 Route::resource('appointment_areas', 'Appointment_areasController');
-Route::resource('career_paths', 'Career_pathsController');
 Route::resource('career_path_contents', 'Career_path_contentsController');
 Route::resource('my_goal_users', 'My_goal_usersController');
 Route::resource('my_goal_types', 'My_goal_typesController');

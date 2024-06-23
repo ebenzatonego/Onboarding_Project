@@ -105,7 +105,13 @@
         .bottom-content-career-path {
             padding: 0;
         } */
-
+.container-content{
+    padding: 0 0 74px 0;
+}
+.bottom-content-career-path{
+    padding: 0;
+}
+     
         .bottom-content-career-path {
             border-top: 1px solid #000;
         }
@@ -357,7 +363,7 @@
 </style>
 
 
-<div class="container container-career-path mb-5">
+<div class="container container-career-path mb-5 pt-3">
     <div class="row" id="select_lavel">
         <div class="col-md-6 col-12 pb-4 px-4">
             <div class="d-flex align-items-center justify-content-center w-100 ">

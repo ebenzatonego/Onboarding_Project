@@ -6,6 +6,7 @@
         height: 100dvh;
         overflow: hidden;
     } */
+    .row-content{margin: 0 !important;}
     .container-content {
         padding-top: 25px;
         padding-left: 0 !important;
@@ -366,7 +367,7 @@
         font-weight: 400;
         line-height: normal;
         margin-top: 20px;
-        max-height: 55dvh;
+        max-height: 45dvh;
         overflow: auto;
     }
 
@@ -1129,7 +1130,6 @@
                 </div>
             </div>
         </div>
-        <br><br><br><br><br>
         <div class="tab-pane fade show active" id="pills-tools" role="tabpanel" aria-labelledby="pills-tools-tab">
             <p class="title-tools">เครื่องมือบริษัท</p>
             <p></p>

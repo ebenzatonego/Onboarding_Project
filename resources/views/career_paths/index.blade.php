@@ -101,10 +101,10 @@
 
     @media only screen and (max-width: 500px) {
 
-        .container-career-path,
+        /* .container-career-path,
         .bottom-content-career-path {
             padding: 0;
-        }
+        } */
 
         .bottom-content-career-path {
             border-top: 1px solid #000;
@@ -359,7 +359,7 @@
 
 <div class="container container-career-path mb-5">
     <div class="row" id="select_lavel">
-        <div class="col-md-6 col-12 p-4">
+        <div class="col-md-6 col-12 pb-4 px-4">
             <div class="d-flex align-items-center justify-content-center w-100 ">
                 <div>
 

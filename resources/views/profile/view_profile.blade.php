@@ -643,7 +643,7 @@
                                 }
                             </style>
                             <div class="d-flex justify-content-center mt-3">
-                                <a class="btn-more-job px-5">
+                                <a href="{{ url('/page_career_paths') }}" class="btn-more-job px-5">
                                     ดูเส้นทางอาชีพเพิ่มเติม
                                 </a>
                             </div>

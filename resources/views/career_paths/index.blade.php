@@ -105,11 +105,10 @@
         .bottom-content-career-path {
             padding: 0;
         } */
-.container-content{
-    padding: 0 0 74px 0;
-}
+
 .bottom-content-career-path{
-    padding: 0;
+    padding: 0 0 74px 0;
+
 }
      
         .bottom-content-career-path {

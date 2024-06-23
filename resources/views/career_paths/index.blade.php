@@ -654,7 +654,7 @@
                 }
             </style>
             <div class="w-100" id="show_content">
-                <div class="d-flex justify-content-center p-5">
+                <div class="d-flex justify-content-center py-5 px-3">
                     <div class=" w-100 d-none" style="max-width: 900px;" id="category_career">
                         <a href="#" class="category-career-item w-100" onclick="select_career_path(1 , 'category')">
                             <svg class="me-3" xmlns="http://www.w3.org/2000/svg" width="36" height="40" viewBox="0 0 36 40" fill="none">

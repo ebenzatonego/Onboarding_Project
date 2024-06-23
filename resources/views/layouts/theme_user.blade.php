@@ -371,7 +371,7 @@
     </div>
 </header>
 <div class="container container-content my-4">
-    <div class="row-content">
+    <div class="row row-content">
 
         <div class="div-btn-back d-none">
             <!-- <button type="button" class="btn btn-sm btn-back  mt-3" onclick="goBack();">

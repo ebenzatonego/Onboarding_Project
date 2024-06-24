@@ -420,7 +420,7 @@
                 <div>
 
                     <div>
-                        <a class="btn-career-path"><i class="fa-solid fa-chevron-left me-3"></i> เส้นทางสายอาชีพ</a>
+                        <a class="btn-career-path"><i class="fa-solid fa-chevron-left me-3" onclick="window.history.back();"></i> เส้นทางสายอาชีพ</a>
                         <p class="mt-2 title-career-path" style="margin-left: 32px;">กดเพื่อเลือกเส้นทางที่สนใจ</p>
                     </div>
                     <div class="position-relative">
@@ -1163,7 +1163,7 @@
     }
 
     function back_btn() {
-        console.log(type_career);
+        // console.log(type_career);
 
         switch (type_career) {
             case 'select':

@@ -540,7 +540,7 @@
         <div class="col-12 bottom-content-career-path tt" style="max-width: 900px;">
             <div class="career-item" style="cursor: auto;">
                 <div class="w-100 content-career-path">
-                    <img id="photo_story_head" src="{{url('img/icon/square_empty.png')}}" style="width: 100%;object-fit: cover;height: 134px;filter: brightness(0.8);" alt="">
+                    <img id="photo_story_head" src="{{url('img/icon/square_empty.png')}}" style="width: 100%;object-fit: cover;height: 134px;filter: brightness(0.6);" alt="">
 
                     <div class="p-4 detail-career-path">
                         <div class="d-flex">
@@ -692,7 +692,7 @@
                         let html = `
                             <div class="career-item" onclick="select_career_path('`+name_rank+`_`+result[i].number_story+`' ,'select' , null);update_user_view('head', '`+result[i].id+`')">
                                 <div class="w-100 content-career-path">
-                                    <img src="`+photo_story+`" style="width: 100%;object-fit: cover;height: 150px;filter: brightness(0.8);" alt="">
+                                    <img src="`+photo_story+`" style="width: 100%;object-fit: cover;height: 150px;filter: brightness(0.6);" alt="">
                                     <div class="p-4 detail-career-path">
                                         <p class=" name-career-path mb-2">Story `+result[i].number_story+` : `+result[i].title_story+`</p>
                                         <p class="m-0 name-career-path"><i>`+result[i].description_story+`</i> </p>

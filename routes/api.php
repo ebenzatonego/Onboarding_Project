@@ -151,6 +151,8 @@ Route::post('/update_title_story_career_path', 'Career_pathsController@update_ti
 Route::get('/get_data_story_career_paths', 'Career_pathsController@get_data_story_career_paths');
 Route::get('/get_content_career_paths/{name_rank}/{number_story}', 'Career_path_contentsController@get_content_career_paths');
 Route::get('/create_html_content_career/{id}', 'Career_path_contentsController@create_html_content_career');
+Route::get('/update_user_view_career_paths_head/{user_id}/{id}', 'Career_pathsController@update_user_view_career_paths_head');
+Route::get('/update_user_view_career_paths_item/{user_id}/{id}', 'Career_path_contentsController@update_user_view_career_paths_item');
 
 
 // Share

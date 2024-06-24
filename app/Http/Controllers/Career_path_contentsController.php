@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Models\Career_path;
 use App\Models\Career_path_content;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class Career_path_contentsController extends Controller
 {
@@ -153,5 +155,45 @@ class Career_path_contentsController extends Controller
     function create_html_content_career($id){
         $data = Career_path_content::where('id', $id)->first();
         return $data ;
+    }
+
+    function update_user_view_career_paths_item($user_id,$id){
+        $data_career_paths = Career_path_content::where('id' , $id)->first();
+        $array_log = array();
+
+        if( empty($data_career_paths->user_view) ){
+
+            $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+
+        }else{
+
+            $array_log = json_decode($data_career_paths->user_view, true);
+
+            if (array_key_exists($user_id, $array_log)) {
+
+                // หากเท่ากันให้เพิ่ม key round และ time ใน key นั้น
+                $count_round_old = count($array_log[$user_id]);
+                $career_path_round = intval($count_round_old) + 1 ;
+
+                $array_log[$user_id][$career_path_round]['datetime'] = date("d/m/Y H:i");
+            } else {
+                // หากไม่เท่ากันให้เพิ่ม key ใหม่โดยใช้ $user_id
+                $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+            }
+
+        }
+
+        $jsonLog = json_encode($array_log);
+
+        DB::table('career_path_contents')
+            ->where([ 
+                    ['id', $id],
+                ])
+            ->update([
+                    'user_view' => $jsonLog,
+                ]);
+
+        return 'success' ;
+
     }
 }

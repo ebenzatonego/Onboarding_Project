@@ -1398,6 +1398,9 @@ img {
 
                                     document.querySelector('#show_individual').value = sum_account ;
                                     document.querySelector('#excelInput').value = null ;
+
+                                    check_data_for_submit();
+
                                     
                                 };
 
@@ -1406,6 +1409,7 @@ img {
                             } else {
                                 alert('กรุณาเลือกไฟล์ Excel');
                             }
+
                         }
                     </script>
                     <div class="row mb-3">

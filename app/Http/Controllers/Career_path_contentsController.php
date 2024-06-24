@@ -196,4 +196,87 @@ class Career_path_contentsController extends Controller
         return 'success' ;
 
     }
+
+    function user_download_pdf_career_path($user_id,$career_path_id){
+        $data_career_path = Career_path_content::where('id' , $career_path_id)->first();
+        $array_log = array();
+
+        if( empty($data_career_path->user_download_pdf) ){
+
+            $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+
+        }else{
+
+            $array_log = json_decode($data_career_path->user_download_pdf, true);
+
+            if (array_key_exists($user_id, $array_log)) {
+
+                // หากเท่ากันให้เพิ่ม key round และ time ใน key นั้น
+                $count_round_old = count($array_log[$user_id]);
+                $new_round = intval($count_round_old) + 1 ;
+
+                $array_log[$user_id][$new_round]['datetime'] = date("d/m/Y H:i");
+            } else {
+                // หากไม่เท่ากันให้เพิ่ม key ใหม่โดยใช้ $user_id
+                $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+            }
+
+        }
+
+        $jsonLog = json_encode($array_log);
+
+        DB::table('career_path_contents')
+            ->where([ 
+                    ['id', $career_path_id],
+                ])
+            ->update([
+                    'user_download_pdf' => $jsonLog,
+                ]);
+
+        return 'success' ;
+
+    }
+
+    function update_countTime_career_path($user_id,$countTime,$career_path_id){
+        $data_career_path = Career_path_content::where('id' , $career_path_id)->first();
+        $array_log = array();
+
+        if( empty($data_career_path->log_video) ){
+
+            $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+            $array_log[$user_id]['1']['countTime'] = $countTime;
+
+        }else{
+
+            $array_log = json_decode($data_career_path->log_video, true);
+
+            if (array_key_exists($user_id, $array_log)) {
+
+                // หากเท่ากันให้เพิ่ม key round และ time ใน key นั้น
+                $count_round_old = count($array_log[$user_id]);
+                $new_round = intval($count_round_old) + 1 ;
+
+                $array_log[$user_id][$new_round]['datetime'] = date("d/m/Y H:i");
+                $array_log[$user_id][$new_round]['countTime'] = $countTime;
+            } else {
+                // หากไม่เท่ากันให้เพิ่ม key ใหม่โดยใช้ $user_id
+                $array_log[$user_id]['1']['datetime'] = date("d/m/Y H:i");
+                $array_log[$user_id]['1']['countTime'] = $countTime;
+            }
+
+        }
+
+        $jsonLog = json_encode($array_log);
+
+        DB::table('career_path_contents')
+            ->where([ 
+                    ['id', $career_path_id],
+                ])
+            ->update([
+                    'log_video' => $jsonLog,
+                ]);
+
+        return 'success' ;
+
+    }
 }

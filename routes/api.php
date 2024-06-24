@@ -153,6 +153,8 @@ Route::get('/get_content_career_paths/{name_rank}/{number_story}', 'Career_path_
 Route::get('/create_html_content_career/{id}', 'Career_path_contentsController@create_html_content_career');
 Route::get('/update_user_view_career_paths_head/{user_id}/{id}', 'Career_pathsController@update_user_view_career_paths_head');
 Route::get('/update_user_view_career_paths_item/{user_id}/{id}', 'Career_path_contentsController@update_user_view_career_paths_item');
+Route::get('/user_download_pdf_career_path/{user_id}/{id}', 'Career_path_contentsController@user_download_pdf_career_path');
+Route::get('/update_countTime_career_path/{user_id}/{countTime}/{id}', 'Career_path_contentsController@update_countTime_career_path');
 
 
 // Share

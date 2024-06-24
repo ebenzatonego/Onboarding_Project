@@ -544,7 +544,7 @@
 
                     <div class="p-4 detail-career-path">
                         <div class="d-flex">
-                            <a class="mx-3" style="cursor: pointer;" onclick="back_btn()">
+                            <a id="tag_a_head" class="mx-3" style="cursor: pointer;" onclick="back_btn()">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="26" viewBox="0 0 14 26" fill="none">
                                     <path d="M13 1L1 13L13 25" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
@@ -710,6 +710,7 @@
             });
     }
 
+    var countTime = 0;
     var select_lavel ;
     var select_content ;
     var show_content ;
@@ -921,6 +922,8 @@
 
         let UpperCase_name_rank = name_rank.toUpperCase(); // ฟังก์ชันสำหรับแสดงตัวใหญ่
 
+        document.querySelector('#tag_a_head').setAttribute('onclick','back_btn();update_countTime_career_path("'+id+'")')
+
         fetch("{{ url('/') }}/api/create_html_content_career/" + id)
             .then(response => response.json())
             .then(result => {
@@ -955,7 +958,7 @@
                                     `+text_detail+`
                                 </div>
 
-                                <button class="btn-download-career-path">
+                                <button class="btn-download-career-path" onclick="update_user_download_pdf('`+result.pdf_file+`' , '`+result.id+`');">
                                     <svg class="me-3" xmlns="http://www.w3.org/2000/svg" width="23" height="27" viewBox="0 0 23 27" fill="none">
                                         <path d="M6.70089 10.082C6.59278 10.082 6.44864 10.082 6.23242 10.1157V12.4086C6.4126 12.4086 6.52071 12.4086 6.66485 12.4086C7.09729 12.4086 7.38557 12.2737 7.56575 12.004C7.7099 11.8017 7.78197 11.5319 7.78197 11.1947C7.78197 10.4192 7.42161 10.082 6.70089 10.082Z" fill="white" />
                                         <path d="M3.38594 10.082C3.27784 10.082 3.13369 10.082 3.09766 10.082V11.0262C3.13369 11.0262 3.27784 11.0599 3.34991 11.0599C4.07063 11.0599 4.1427 10.7901 4.1427 10.5541C4.1427 10.4192 4.1427 10.082 3.38594 10.082Z" fill="white" />
@@ -964,13 +967,10 @@
                                         <path d="M9.26108 23.5693H5.22505C4.72054 23.5693 4.32415 23.1984 4.32415 22.7263V15.1396H3.20703V23.2995C3.20703 24.0076 3.81964 24.5808 4.5764 24.5808H10.0899L9.33315 23.6704C9.33315 23.6367 9.29711 23.603 9.26108 23.5693Z" fill="white" />
                                         <path d="M15.9999 22.7938H14.5585V18.1406C14.5585 17.8371 14.3062 17.5674 13.9819 17.5674H12.1801C11.8558 17.5674 11.5675 17.8371 11.5675 18.1406V22.7938H10.1261C9.83777 22.7938 9.65759 23.0972 9.83777 23.2995L12.7567 26.8737C12.9008 27.0423 13.1891 27.0423 13.3333 26.8737L16.2522 23.2995C16.4684 23.0972 16.2882 22.7938 15.9999 22.7938Z" fill="white" />
                                     </svg>
-                                    <span>
-                                        <a href="`+result.pdf_file+`" id="downloadLink" class="text-white">
-                                            ดาวน์โหลด PDF
-                                        </a>
-                                    </span>
+                                    <span>ดาวน์โหลด PDF</span>
 
                                 </button>
+                                <a id="downloadLink" class="text-white d-none">ดาวน์โหลด PDF</a>
                             </div>
                         `;
                     }
@@ -1011,7 +1011,7 @@
                                     `+text_detail+`
                                 </div>
 
-                                <video id="tag_video_intro" src="`+result.video+`" controls muted style="width:100%;border-radius: 10px; max-width: 628px;" class="video-preview"></video>
+                                <video id="tag_video_id_`+result.id+`" src="`+result.video+`" controls muted style="width:100%;border-radius: 10px; max-width: 628px;" class="video-preview"></video>
                             </div>
                         `;
                     }
@@ -1076,6 +1076,57 @@
 
                     category_career.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
 
+                    if(document.getElementById('tag_video_id_'+result.id)){
+
+                        const video = document.getElementById('tag_video_id_'+result.id);
+                        
+                        let interval;
+
+                        // ฟังก์ชั่นเพื่อเริ่มนับเวลา
+                        function startCountTime() {
+                            interval = setInterval(() => {
+                                countTime += 1;
+                                // console.log('Elapsed time:', countTime);
+                            }, 1000); // เพิ่มค่าทีละ 1 วินาที
+                        }
+
+                        // ฟังก์ชั่นเพื่อหยุดนับเวลา
+                        function stopCountTime() {
+                            clearInterval(interval);
+                        }
+
+                        // จับเหตุการณ์เมื่อวิดีโอเริ่มเล่น
+                        video.addEventListener('play', () => {
+                            startCountTime();
+                        });
+
+                        // จับเหตุการณ์เมื่อวิดีโอหยุด
+                        video.addEventListener('pause', () => {
+                            stopCountTime();
+                        });
+
+                        // จับเหตุการณ์เมื่อวิดีโอสิ้นสุดการเล่น
+                        video.addEventListener('ended', () => {
+                            stopCountTime();
+                        });
+
+                        // ก่อนปิดหน้าหรือเปลี่ยนหน้า
+                        window.addEventListener('beforeunload', function(e) {
+                            // console.log(countTime);
+
+                            if(countTime > 0){
+                                fetch("{{ url('/') }}/api/update_countTime_career_path/" + "{{ Auth::user()->id }}" + "/" + countTime + "/" + result.id)
+                                    .then(response => response.text())
+                                    .then(result => {
+                                        // console.log(result);
+                                        if(result){
+                                            countTime = 0 ;
+                                        }
+                                    });
+                            }
+                        });
+                    }
+
                 }
 
                 const imgNewsElements = document.querySelectorAll('.img-news');
@@ -1098,8 +1149,21 @@
 
     }
 
+    function update_countTime_career_path(id){
+        if(countTime > 0){
+            fetch("{{ url('/') }}/api/update_countTime_career_path/" + "{{ Auth::user()->id }}" + "/" + countTime + "/" + id)
+                .then(response => response.text())
+                .then(result => {
+                    // console.log(result);
+                    if(result){
+                        countTime = 0 ;
+                    }
+                });
+        }
+    }
+
     function back_btn() {
-        // console.log(type_career);
+        console.log(type_career);
 
         switch (type_career) {
             case 'select':
@@ -1113,7 +1177,6 @@
                         content_career.classList.remove('d-none');
                     })
                 }
-
 
             break;
             case 'category':
@@ -1152,6 +1215,19 @@
                 });
         }
     }
+
+    function update_user_download_pdf(link , id){
+        fetch("{{ url('/') }}/api/user_download_pdf_career_path/" + "{{ Auth::user()->id }}" + "/" + id)
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+                if(result == 'success'){
+                    document.querySelector('#downloadLink').setAttribute('href' ,link);
+                    document.querySelector('#downloadLink').click();
+                }
+            });
+    }
+
 </script>
 
 <!-- <div class="container">

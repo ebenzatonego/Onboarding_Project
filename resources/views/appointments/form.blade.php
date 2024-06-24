@@ -766,17 +766,51 @@ img {
                                     <label class="col-form-label mb-2">
                                         เริ่มต้น <span class="text-danger">*</span>
                                     </label>
-                                    <input type="datetime-local" name="datetime_start" id="datetime_start" class="form-control" required onchange="check_data_for_submit();">
+                                    <input type="datetime-local" name="datetime_start" id="datetime_start" class="form-control" required onchange="check_data_for_submit();check_date_input_start();">
                                 </div>
                                 <div class="col-6">
                                     <label class="col-form-label mb-2">
                                         สิ้นสุด <span class="text-danger">(สามารถเว้นว่างได้ หากไม่มีกำหนดสิ้นสุด)</span>
                                     </label>
-                                    <input type="datetime-local" name="datetime_end" id="datetime_end" class="form-control">
+                                    <input type="datetime-local" name="datetime_end" id="datetime_end" class="form-control" onchange="check_datetime_end();">
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <script>
+                      function check_date_input_start() {
+                        let inputDateTime = document.getElementById('datetime_start').value;
+
+                        if (inputDateTime) {
+                          let inputDate = new Date(inputDateTime);
+                          let now = new Date();
+
+                          if (inputDate < now) {
+                            document.getElementById('check_status').checked = true;
+                            document.getElementById('status').value = 'Yes';
+                          } else {
+                            document.getElementById('check_status').checked = false;
+                            document.getElementById('status').value = '';
+                          }
+                        }
+                      }
+
+                      function check_datetime_end(){
+                            let datetime_start = document.querySelector('#datetime_start');
+                            let datetime_end = document.querySelector('#datetime_end');
+
+                            if (!datetime_start.value) {
+                              alert("กรุณาเพิ่มวันเริ่มต้น");
+                              datetime_end.value = '';
+                              return;
+                            }
+
+                            if (datetime_end.value && new Date(datetime_end.value) < new Date(datetime_start.value)) {
+                              alert("ไม่สามารถเลือกวันที่มาก่อนวันเริ่มต้นได้");
+                              datetime_end.value = '';
+                            }
+                        }
+                    </script>
                     <div class="row mb-3 d-none">
                         <label for="creator" class="col-sm-2 col-form-label">
                             Creator User Id

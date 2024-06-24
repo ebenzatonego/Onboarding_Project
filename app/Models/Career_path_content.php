@@ -25,7 +25,7 @@ class Career_path_content extends Model
      *
      * @var array
      */
-    protected $fillable = ['career_path_id', 'title', 'icon', 'read', 'recommend', 'detail', 'pdf_file', 'photo', 'video', 'number', 'user_download_pdf', 'user_view', 'log_video','photo_gallery','cretor'];
+    protected $fillable = ['career_path_id', 'title', 'icon', 'read', 'recommend', 'detail', 'pdf_file', 'photo', 'video', 'number', 'user_download_pdf', 'user_view', 'log_video','photo_gallery','creator'];
 
     
 }

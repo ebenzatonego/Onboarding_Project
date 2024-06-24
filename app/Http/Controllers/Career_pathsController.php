@@ -7,6 +7,8 @@ use App\Http\Requests;
 
 use App\Models\Career_path;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class Career_pathsController extends Controller
 {
@@ -121,5 +123,44 @@ class Career_pathsController extends Controller
         Career_path::destroy($id);
 
         return redirect('career_paths')->with('flash_message', 'Career_path deleted!');
+    }
+
+    function update_title_story_career_path(Request $request)
+    {
+        $requestData = $request->all();
+
+        if( !empty($requestData['photo_story']) ){
+
+            DB::table('career_paths')
+                ->where([ 
+                        ['name_rank', $requestData['name_rank']],
+                        ['number_story', $requestData['number_story']],
+                    ])
+                ->update([
+                        'title_story' => $requestData['title_story'],
+                        'description_story' => $requestData['description_story'],
+                        'photo_story' => $requestData['photo_story'],
+                    ]);
+        }
+        else{
+            DB::table('career_paths')
+                ->where([ 
+                        ['name_rank', $requestData['name_rank']],
+                        ['number_story', $requestData['number_story']],
+                    ])
+                ->update([
+                        'title_story' => $requestData['title_story'],
+                        'description_story' => $requestData['description_story'],
+                    ]);
+        }
+
+
+        return 'success' ;
+
+    }
+
+    function get_data_story_career_paths(){
+        $data = Career_path::get();
+        return $data;
     }
 }

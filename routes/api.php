@@ -146,6 +146,12 @@ Route::get('/get_data_product_admin/{type}', 'ProductsController@get_data_produc
 // Tools contact
 Route::get('/get_data_show_tools_contact', 'Tools_contactsController@get_data_show_tools_contact');
 
+// Career Paths
+Route::post('/update_title_story_career_path', 'Career_pathsController@update_title_story_career_path');
+Route::get('/get_data_story_career_paths', 'Career_pathsController@get_data_story_career_paths');
+Route::get('/get_content_career_paths/{name_rank}/{number_story}', 'Career_path_contentsController@get_content_career_paths');
+Route::get('/create_html_content_career/{id}', 'Career_path_contentsController@create_html_content_career');
+
 
 // Share
 Route::get('/save_log_share/{user_id}/{type_table}/{type_social}/{id}', 'AdminController@save_log_share');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
+use App\Models\Career_path;
 use App\Models\Career_path_content;
 use Illuminate\Http\Request;
 
@@ -128,5 +129,29 @@ class Career_path_contentsController extends Controller
         Career_path_content::destroy($id);
 
         return redirect('career_path_contents')->with('flash_message', 'Career_path_content deleted!');
+    }
+
+    function get_content_career_paths($name_rank, $number_story){
+
+        $check_data = Career_path::where('name_rank',$name_rank)
+            ->where('number_story',$number_story)
+            ->first();
+
+        $data = Career_path_content::where('career_path_id', $check_data->id)->get();
+
+        foreach ($data as $item) {
+            $item->title_story = $check_data->title_story ;
+            $item->number_story = $check_data->number_story ;
+            $item->description_story = $check_data->description_story ;
+            $item->photo_story = $check_data->photo_story ;
+        }
+
+
+        return $data ;
+    }
+
+    function create_html_content_career($id){
+        $data = Career_path_content::where('id', $id)->first();
+        return $data ;
     }
 }

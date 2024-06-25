@@ -86,7 +86,7 @@ Route::post('/update_Menu_Highlight', 'Training_typeController@update_Menu_Highl
 Route::get('/get_count_training_highlight/{number}', 'Training_typeController@get_count_training_highlight');
 Route::get('/delete_training_type/{training_type_id}', 'Training_typeController@delete_training_type');
 Route::get('/get_list_number_menu_of_appointment', 'Training_typeController@get_list_number_menu_of_appointment');
-
+Route::post('/save_data_edit_training', 'TrainingController@save_data_edit_training');
 
 
 // appointment

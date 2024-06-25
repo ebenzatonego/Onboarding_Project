@@ -1,7 +1,10 @@
 @extends('layouts.theme_admin')
 
 @section('content')
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js" integrity="sha512-9KkIqdfN7ipEW6B6k+Aq20PV31bjODg4AA52W+tYtAE0jE0kMx49bjJ3FgvS56wzmyfMUHbQ4Km2b7l9+Y/+Eg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.css" integrity="sha512-bs9fAcCAeaDfA4A+NiShWR886eClUcBtqhipoY5DM60Y1V3BbVQlabthUBal5bq8Z8nnxxiyb1wfGX2n76N1Mw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.js" integrity="sha512-Zt7blzhYHCLHjU0c+e4ldn5kGAbwLKTSOTERgqSNyTB50wWSI21z0q6bn/dEIuqf6HiFzKJ6cfj2osRhklb4Og==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css" integrity="sha512-hvNR0F/e2J7zPPfLC9auFe3/SE0yG4aJCOd/qxew74NN7eyiSKjr7xJJMu1Jy2wf7FXITpWS1E/RY8yzuXN7VA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
     .phone-frame {
         min-width: 375px;
@@ -221,7 +224,45 @@
   transform: rotateX(10deg) rotateY(0deg);
   color: #487bdb;
 }
+
+.img-container {
+  width: 100%;
+/*  height: 40vh;*/
+  margin-top: 10px;
+}
+#imageToCrop  {
+  max-width: 100%;
+  height: auto;
+}
+
 </style>
+
+<a id="goto_manage_training" href="{{ url('/manage_training') }}" class="d-none"></a>
+
+<!-- Modal for cropping -->
+<div class="modal fade" id="cropModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="cropModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header row">
+        <div class="col-3">
+          <h5 class="modal-title" id="cropModalLabel">Crop Image</h5>
+        </div>
+        <div class="col-9">
+          <div class="float-end">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="$('#cropModal').modal('hide');">Close</button>
+            <button type="button" class="btn btn-primary" id="cropAndSave">Crop and Save</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="img-container">
+          <img id="imageToCrop" src="" alt="Picture">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container-fluid">
 
     <div class="d-flex">
@@ -472,10 +513,10 @@
                         <div class="col-12 p-0" style="position: relative;">
                             <button class="btn btn-back-all-course">
                                 <i class="fa-solid fa-arrow-left"></i>
-                                <span>กลับหน้ารวมหลักสูตร</span>
+                                <span>ย้อนกลับ</span>
                             </button>
 
-                            <img src="{{ $data_training->photo }}" alt="" style="width: 100%;">
+                            <img id="preview_photo" src="{{ $data_training->photo }}" alt="" style="width: 100%;">
                             
                             <div class="px-4 d-flex justify-content-between">
 
@@ -512,10 +553,10 @@
                             </div>
                             <div class="title-training px-4">
                                 <div>
-                                    <p class="mb-2" style="color: #003781;font-size: 20px;font-style: normal;font-weight: 600;line-height: normal;">{{$data_training->title}}</p>
+                                    <p id="preview_title" class="mb-2" style="color: #003781;font-size: 20px;font-style: normal;font-weight: 600;line-height: normal;">{{$data_training->title}}</p>
                                 </div>
                                 <div class="hastag-training">
-                                    <span>#{{ $data_training->type_article }}</span>
+                                    <span id="preview_type_article">#{{ $data_training->type_article }}</span>
                                 </div>
                                 <div class="rating-training mt-2">
                                     <span style="color: #EDB529;font-size: 14px;font-style: normal;font-weight: 600;line-height: normal;margin-right: 5px;">{{$data_training->sum_rating ? $data_training->sum_rating : '0'}}</span>
@@ -595,16 +636,28 @@
                         <div class="col-12 px-4 mb-5">
                             
                             <div class="detail-training">
-                                <p class="mt-2">
+                                <div id="preview_detail" class="mt-2">
                                     {!!$data_training->detail!!}
-                                </p>
+                                </div>
                                 @if( !empty($data_training->video))
-                                    <div class="d-flex justify-content-end w-100 mt-4 mb--2" style="color: #989898;">
-                                        <i class="fa-regular fa-clock me-2"></i>
-                                        <span id="videoDuration"></span>
+                                    <div id="div_tag_show_preview_video">
+                                        <div class="d-flex justify-content-end w-100 mt-4 mb--2" style="color: #989898;">
+                                            <i class="fa-regular fa-clock me-2"></i>
+                                            <span id="videoDuration"></span>
+                                        </div>
+                                        <div class="d-flex justify-content-center w-100">
+                                            <video id="preview_video" src="{{ $data_training->video }}" controls loop muted style="width:100%;border-radius: 10px; max-width: 700px;margin-top:5px!important;" class="video-preview"></video>
+                                        </div>
                                     </div>
-                                    <div class="d-flex justify-content-center w-100">
-                                        <video id="trainingVideo" src="{{ $data_training->video }}" controls loop muted style="width:100%;border-radius: 10px; max-width: 700px;margin-top:5px!important;" class="video-preview"></video>
+                                @else
+                                    <div id="div_tag_show_preview_video" class="d-none">
+                                        <div class="d-flex justify-content-end w-100 mt-4 mb--2" style="color: #989898;">
+                                            <i class="fa-regular fa-clock me-2"></i>
+                                            <span id="videoDuration"></span>
+                                        </div>
+                                        <div class="d-flex justify-content-center w-100">
+                                            <video id="preview_video" src="" controls loop muted style="width:100%;border-radius: 10px; max-width: 700px;margin-top:5px!important;" class="video-preview"></video>
+                                        </div>
                                     </div>
                                 @endif
 
@@ -638,7 +691,7 @@
                                     </div>
                                     <div class="mt-5">
                                         <a>
-                                            <i class="fa-solid fa-chevron-left"></i> กลับหน้ารวมหลักสูตร
+                                            <i class="fa-solid fa-chevron-left"></i> ย้อนกลับ
                                         </a>
                                     </div>
                                 </div>
@@ -767,29 +820,74 @@
                             <i class="fa-regular fa-chart-mixed me-1 font-22 text-primary"></i>
                         </div>
                         <h5 class="mb-0 text-primary">
-                            แก้ไขหลักสูตร <span class="text-danger">(Pending)</span>
+                            แก้ไขหลักสูตร
                         </h5>
                     </div>
-                    <button type="button" class="btn btn-success float-end" disabled>
+                    <button id="btn_cf_edit_data" class="btn btn-success float-end d-flex align-items-center" type="button" disabled onclick="cf_edit_data();">
+                        <span id="span_load_save" class="spinner-border spinner-border-sm me-2 d-none" role="status" aria-hidden="true"></span>
                         ยืนยันการเปลี่ยนแปลง
                     </button>
                 </div>
+
                 <hr>
+
+                <div class="row">
+                    <div class="col-4">
+                        @if( $data_training->status == 'Yes' )
+                            <h4>
+                                Status : <span id="preview_status" class="text-success">Active</span>
+                            </h4>
+                        @else
+                            <h4>
+                                Status : <span id="preview_status" class="text-danger">Inactive</span>
+                            </h4>
+                        @endif
+                    </div>
+                    <div class="col-8">
+                        <div class="float-end">
+                            เวลาแสดงผล
+                        </div>
+                        @php
+                            $text_datetime_start_to_end = '';
+
+                            if( !empty($data_training->datetime_end) ){
+                                $datetime_start = Carbon\Carbon::parse($data_training->datetime_start);
+                                $datetime_start = $datetime_start->format('d/m/Y H:i  น.');
+
+                                $datetime_end = Carbon\Carbon::parse($data_training->datetime_end);
+                                $datetime_end = $datetime_end->format('d/m/Y H:i น.');
+
+                                $text_datetime_start_to_end = $datetime_start . " - " . $datetime_end;
+                            }else{
+                                $datetime_start = Carbon\Carbon::parse($data_training->datetime_start);
+                                $datetime_start = $datetime_start->format('d/m/Y H:i น.');
+
+                                $text_datetime_start_to_end = $datetime_start ;
+                            }
+
+                        @endphp
+                        <br>
+                        <p id="preview_text_datetime_start_to_end" class="float-end" style="font-size: 16px;">
+                            {{ $text_datetime_start_to_end }}
+                        </p>
+                    </div>
+                </div>
+
                 <div class="row mb-3">
                     <label for="title" class="col-sm-2 col-form-label">
-                        ชื่อหลักสูตร<span class="text-danger">*</span>
+                        ชื่อหลักสูตร
                     </label>
                     <div class="col-sm-10">
-                        <input class="form-control" name="title" type="text" id="title" value="{{ isset($data_training->title) ? $data_training->title : ''}}" placeholder="เพิ่มชื่อ" oninput="check_data_for_submit();">
+                        <input class="form-control" name="title" type="text" id="title" value="{{ isset($data_training->title) ? $data_training->title : ''}}" placeholder="เพิ่มชื่อ" oninput="show_preview_data('title',event);" onchange="show_preview_date_start_end();">
                         {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="for_rank" class="col-sm-2 col-form-label">
-                        ประเภท<span class="text-danger">*</span>
+                        ประเภท
                     </label>
                     <div class="col-sm-10">
-                        <select class="form-select" name="type_article" type="text" id="type_article" value="{{ isset($training->type_article) ? $training->type_article : ''}}" onchange="document.querySelector('#training_type_id').value = document.querySelector('#type_article').value ;">
+                        <select class="form-select" name="type_article" type="text" id="type_article" value="{{ isset($training->type_article) ? $training->type_article : ''}}" onchange="document.querySelector('#training_type_id').value = document.querySelector('#type_article').value ;show_preview_data('type_article',event);show_preview_date_start_end();">
                             <option value="">เลือกประเภท</option>
                             @foreach($type_article as $item)
                                 @if($data_training->training_type_id == $item->id)
@@ -803,12 +901,34 @@
                     </div>
                 </div>
                 <div class="row mb-3">
+                    <label for="" class="col-sm-2 col-form-label">
+                        รูปภาพ / วิดีโอ
+                    </label>
+                    <div class="col-sm-10">
+                        <div class="d-flex justify-content-center">
+                            <button type="button" class="btn btn-primary mx-2" onclick="document.querySelector('#select_photo').click();">
+                                <i class="fa-solid fa-image"></i> เลือกรูปภาพ
+                            </button>
+                            <button type="button" class="btn btn-danger mx-2" onclick="document.querySelector('#select_video').click();">
+                                <i class="fa-duotone fa-photo-film"></i> เลือกวิดีโอ
+                            </button>
+                        </div>
+
+                        <input class="form-control d-none" name="select_video" type="file" id="select_video" accept="video/*" onchange="show_preview_date_start_end();">
+                        <input class="form-control d-none" name="video" type="text" id="video" value="{{ isset($data_training->video) ? $data_training->video : ''}}">
+
+                        <input class="form-control d-none" name="select_photo" type="file" id="select_photo" accept="image/*" onchange="show_preview_date_start_end();">
+                        <input class="form-control d-none" name="photo" type="text" id="photo" value="{{ isset($data_training->photo) ? $data_training->photo : ''}}">
+                    </div>
+                </div>
+                <div class="row mb-3">
                     <label for="detail" class="col-sm-2 col-form-label">
                         รายละเอียด
                     </label>
                     <div class="col-sm-10">
                         <textarea class="form-control" rows="5" name="detail" type="textarea" id="detail" placeholder="เพิ่มรายละเอียดเนื้อหา">{{ isset($data_training->detail) ? $data_training->detail : ''}}</textarea>
-                        {!! $errors->first('detail', '<p class="help-block">:message</p>') !!}
+
+                        <textarea class="form-control d-none" rows="5" name="for_detail" type="textarea" id="for_detail" placeholder="เพิ่มรายละเอียดเนื้อหา">{{ isset($data_training->detail) ? $data_training->detail : ''}}</textarea>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -829,13 +949,13 @@
                                 <span class="right">on</span>
                             </span>
                         </label>
-                        <input class="form-control d-none" name="status" type="text" id="status" value="" readonly="">
+                        <input class="form-control d-none" name="status" type="text" id="status" value="{{ isset($data_training->status) ? $data_training->status : ''}}" readonly="">
                         
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="status" class="col-sm-2 col-form-label">
-                        เวลาแสดงผล
+                        เวลาแสดงผล <span class="text-danger">*</span>
                     </label>
                     <div class="col-sm-10" style="position: relative;">
                         <div class="row">
@@ -843,16 +963,54 @@
                                 <label class="col-form-label mb-2">
                                     เริ่มต้น <span class="text-danger">*</span>
                                 </label>
-                                <input type="datetime-local" name="datetime_start" id="datetime_start" class="form-control" value="{{ isset($data_training->datetime_start) ? $data_training->datetime_start : ''}}" required onchange="check_data_for_submit();">
+                                <input type="datetime-local" name="datetime_start" id="datetime_start" class="form-control" value="{{ isset($data_training->datetime_start) ? $data_training->datetime_start : ''}}" required onchange="check_date_input_start();show_preview_date_start_end();">
                             </div>
                             <div class="col-6">
                                 <label class="col-form-label mb-2">
                                     สิ้นสุด <span class="text-danger">(สามารถเว้นว่างได้ หากไม่มีกำหนดสิ้นสุด)</span>
                                 </label>
-                                <input type="datetime-local" name="datetime_end" id="datetime_end" class="form-control" value="{{ isset($data_training->datetime_end) ? $data_training->datetime_end : ''}}">
+                                <input type="datetime-local" name="datetime_end" id="datetime_end" class="form-control" value="{{ isset($data_training->datetime_end) ? $data_training->datetime_end : ''}}" onchange="check_datetime_end();">
                             </div>
                         </div>
                     </div>
+                    <script>
+                        function check_date_input_start() {
+                            let inputDateTime = document.getElementById('datetime_start').value;
+
+                            if (inputDateTime) {
+                              let inputDate = new Date(inputDateTime);
+                              let now = new Date();
+
+                              if (inputDate < now) {
+                                document.getElementById('check_status').checked = true;
+                                document.getElementById('status').value = 'Yes';
+                                document.querySelector('#preview_status').innerHTML = "Active" ;
+                                document.querySelector('#preview_status').classList.remove('text-danger');
+                                document.querySelector('#preview_status').classList.add('text-success');
+                              } else {
+                                document.getElementById('check_status').checked = false;
+                                document.getElementById('status').value = '';
+                              }
+                            }
+
+                        }
+
+                        function check_datetime_end(){
+                            let datetime_start = document.querySelector('#datetime_start');
+                            let datetime_end = document.querySelector('#datetime_end');
+
+                            if (!datetime_start.value) {
+                              alert("กรุณาเพิ่มวันเริ่มต้น");
+                              datetime_end.value = '';
+                              return;
+                            }
+                            else if (datetime_end.value && new Date(datetime_end.value) < new Date(datetime_start.value)) {
+                              alert("ไม่สามารถเลือกวันที่มาก่อนวันเริ่มต้นได้");
+                              datetime_end.value = '';
+                            }
+                            show_preview_date_start_end();
+                        }
+                    </script>
                 </div>
             </div>
         </div>
@@ -867,9 +1025,12 @@
     });
 
     document.addEventListener('DOMContentLoaded', (event) => {
+        duration_video();
+    });
 
-        if(document.getElementById('trainingVideo')){
-            var video = document.getElementById('trainingVideo');
+    function duration_video(){
+        if(document.getElementById('preview_video')){
+            var video = document.getElementById('preview_video');
             video.addEventListener('loadedmetadata', function() {
                 var duration = video.duration;
                 var hours = Math.floor(duration / 3600);
@@ -890,14 +1051,375 @@
                 document.getElementById('videoDuration').innerText = formattedDuration;
             });
         }
+    }
 
+    function show_preview_data(tag ,event){
+        let focus_tag = document.querySelector('#preview_'+tag);
+        let data_new = document.querySelector('#'+tag);
+
+        if(tag == 'type_article'){
+            const selectElement = event.target;
+            const selectedOption = selectElement.options[selectElement.selectedIndex];
+            const selectedText = selectedOption.text;
+
+            focus_tag.innerHTML = '#'+selectedText ;
+        }
+        else if(tag !== 'photo' || tag !== 'video'){
+            // console.log(data_new);
+            focus_tag.innerHTML = data_new.value ;
+        }
+        else{
+            focus_tag.setAttribute('src' , data_new.value)
+        }
+
+    }
+
+    function show_preview_date_start_end(){
+        let datetime_start = document.querySelector('#datetime_start').value;
+        let datetime_end = document.querySelector('#datetime_end').value;
+
+        let show_start ;
+        let show_end ;
+
+        let text_sum ;
+        if(datetime_start && datetime_end){
+            show_start = formatDateTime_start_end(datetime_start);
+            show_end = formatDateTime_start_end(datetime_end);
+
+            text_sum = show_start + ' - ' + show_end ;
+
+        }
+        else if(datetime_start && !datetime_end){
+            show_start = formatDateTime_start_end(datetime_start);
+
+            text_sum = show_start ;
+        }
+
+        if(show_start){
+            document.querySelector('#btn_cf_edit_data').disabled = false ;
+        }
+        else{
+            document.querySelector('#btn_cf_edit_data').disabled = true ;
+        }
+
+        let inputDateTime = document.getElementById('datetime_start').value;
+
+        if (inputDateTime) {
+          let inputDate = new Date(inputDateTime);
+          let now = new Date();
+
+          if (inputDate > now) {
+            document.querySelector('#preview_status').innerHTML = "Inactive" ;
+            document.querySelector('#preview_status').classList.add('text-danger');
+            document.querySelector('#preview_status').classList.remove('text-success');
+          }
+        }
+
+        document.querySelector('#preview_text_datetime_start_to_end').innerHTML = text_sum;
+    }
+
+    function formatDateTime_start_end(dateTimeStr) {
+        let dateTime = new Date(dateTimeStr);
+        
+        let day = String(dateTime.getDate()).padStart(2, '0');
+        let month = String(dateTime.getMonth() + 1).padStart(2, '0');
+        let year = dateTime.getFullYear();
+        let hours = String(dateTime.getHours()).padStart(2, '0');
+        let minutes = String(dateTime.getMinutes()).padStart(2, '0');
+        
+        return `${day}/${month}/${year} ${hours}:${minutes} น.`;
+    }
+
+    function click_check_status() {
+        let check_status = document.querySelector('#check_status').checked ;
+            // console.log(check_status);
+        let status = document.querySelector('#status') ;
+        let datetime_start = document.querySelector('#datetime_start');
+        let datetime_end = document.querySelector('#datetime_end');
+
+        if(!check_status){
+            status.value = 'Yes';
+            document.querySelector('#preview_status').innerHTML = "Active" ;
+            document.querySelector('#preview_status').classList.remove('text-danger');
+            document.querySelector('#preview_status').classList.add('text-success');
+            document.querySelector('#btn_cf_edit_data').disabled = false ;
+
+            let now = new Date();
+            let year = now.getFullYear();
+            let month = String(now.getMonth() + 1).padStart(2, '0');
+            let day = String(now.getDate()).padStart(2, '0');
+            let hours = String(now.getHours()).padStart(2, '0');
+            let minutes = String(now.getMinutes()).padStart(2, '0');
+
+            // Format the current date and time to YYYY-MM-DDTHH:MM
+            let currentDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
+
+            // // Format the current date and time to YYYY-MM-DDTHH:MM AM/PM (12-hour format)
+            // let hours12 = hours % 12 || 12;
+            // let ampm = hours >= 12 ? 'PM' : 'AM';
+            // let hours12Str = String(hours12).padStart(2, '0');
+
+            // // Format the current date and time to DD/MM/YYYY HH:MM (24-hour format)
+            // let hours24Str = String(hours).padStart(2, '0');
+            // let text_datetime_start_to_end = `${day}/${month}/${year} ${hours24Str}:${minutes} น.`;
+
+            // let preview_text_datetime = document.querySelector('#preview_text_datetime_start_to_end');
+            //     preview_text_datetime.innerHTML = text_datetime_start_to_end;
+
+            datetime_start.value = currentDateTime;
+            datetime_start.setAttribute('readonly', 'true');
+
+            show_preview_date_start_end();
+
+        }else{
+            document.querySelector('#preview_status').innerHTML = "Inactive" ;
+            document.querySelector('#preview_status').classList.add('text-danger');
+            document.querySelector('#preview_status').classList.remove('text-success');
+            let preview_text_datetime = document.querySelector('#preview_text_datetime_start_to_end');
+                preview_text_datetime.innerHTML = '';
+            document.querySelector('#btn_cf_edit_data').disabled = true ;
+
+            status.value = '';
+            datetime_start.value = '';
+            datetime_end.value = '';
+            datetime_start.removeAttribute("readonly");
+        }
+
+    }
+
+
+    // SAVE DATA
+    function cf_edit_data(){
+
+        let select_photo = document.querySelector('#select_photo').value;
+        let select_video = document.querySelector('#select_video').value;
+
+        if(select_photo){
+            let previewContainer = document.getElementById('preview_photo');
+            uploadBlobToFirebase(previewContainer.src);
+        }
+        else if(select_video){
+            upload_video();
+        }
+        else{
+            save_data();
+        }
+
+    }
+
+    async function uploadBlobToFirebase(blobUrl, rank, number) {
+
+        let title = document.querySelector('#title').value;
+
+        try {
+            const response = await fetch(blobUrl);
+            const blob = await response.blob();
+
+            let date_now = new Date();
+            let Date_for_firebase = formatDate_for_firebase(date_now);
+            let name_file = Date_for_firebase + '-Edit-' + title;
+            let storageRef = storage.ref('/training/image/' + name_file);
+
+            let uploadTask = storageRef.put(blob);
+
+            uploadTask.on('state_changed',
+                function(snapshot) {
+                    // ติดตามความคืบหน้าของการอัพโหลด (optional)
+                },
+                function(error) {
+                    // กรณีเกิดข้อผิดพลาดในการอัพโหลด
+                    console.error('Upload failed:', error);
+                },
+                function() {
+                    // เมื่ออัพโหลดสำเร็จ
+                    uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+                        // console.log(downloadURL);
+                        document.querySelector('#photo').value = downloadURL ;
+                        document.querySelector('#select_photo').value = null;
+
+                        let select_video = document.querySelector('#select_video').value;
+
+                        if(select_video){
+                            upload_video();
+                        }
+                        else{
+                            save_data();
+                        }
+                    });
+                }
+            );
+        } catch (error) {
+            console.error('Error fetching the Blob:', error);
+        }
+    }
+
+    function upload_video(){
+        let fileInput = document.getElementById('select_video');
+        let file = fileInput.files[0];
+        let title = document.querySelector('#title').value;
+
+        let date_now = new Date();
+        let Date_for_firebase = formatDate_for_firebase(date_now);
+
+        let name_file = Date_for_firebase + '-Edit-' + title ;
+        let storageRef = storage.ref('/training/video/' + name_file);
+
+        let uploadTask = storageRef.put(file);
+
+        uploadTask.on('state_changed', 
+            function(snapshot){
+                // ติดตามความคืบหน้าของการอัพโหลด (optional)
+            }, 
+            function(error) {
+                // กรณีเกิดข้อผิดพลาดในการอัพโหลด
+                console.error('Upload failed:', error);
+            }, 
+            function() {
+                // เมื่ออัพโหลดสำเร็จ
+                uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+                    // ทำอะไรกับ URL ที่ได้รับเช่นการแสดงผลหรือบันทึกลงฐานข้อมูล
+                    // console.log('File available at', downloadURL);
+                    document.querySelector('#video').value = downloadURL ;
+                    document.querySelector('#select_video').value = null;
+
+                    save_data();
+
+                    // ตัวอย่างการแสดง URL บนหน้าเว็บ
+                    // alert('File uploaded successfully. URL: ' + downloadURL);
+                });
+            }
+        );
+    }
+
+    function save_data(){
+
+        document.querySelector('#span_load_save').classList.remove('d-none');
+        document.querySelector('#btn_cf_edit_data').innerHTML = 'กำลังบันทึกข้อมูล..';
+
+        let title = document.querySelector('#title').value;
+        let training_type_id = document.querySelector('#training_type_id').value;
+        let detail = document.querySelector('#for_detail').value;
+        let photo = document.querySelector('#photo').value;
+        let video = document.querySelector('#video').value;
+        let datetime_start = document.querySelector('#datetime_start').value;
+        let datetime_end = document.querySelector('#datetime_end').value;
+        let status = document.querySelector('#status').value;
+
+        let data_arr = {
+            "id" : "{{ $data_training->id }}",
+            "title" : title,
+            "training_type_id" : training_type_id,
+            "detail" : detail,
+            "photo" : photo,
+            "video" : video,
+            "datetime_start" : datetime_start,
+            "datetime_end" : datetime_end,
+            "status" : status,
+        }; 
+
+        fetch("{{ url('/') }}/api/save_data_edit_training", {
+            method: 'post',
+            body: JSON.stringify(data_arr),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response){
+            return response.text();
+        }).then(function(data){
+            // console.log(data);
+            if(data == 'success'){
+                document.querySelector('#goto_manage_training').click();
+            }
+        }).catch(function(error){
+            console.error(error);
+        });
+    }
+    // END SAVE DATA
+</script>
+
+<script>
+    var cropper;
+    var image = document.getElementById('imageToCrop');
+
+    document.addEventListener("DOMContentLoaded", function() {
+
+        $('#cropModal').on('shown.bs.modal', function () {
+            cropper = new Cropper(image, {
+                dragMode: 'move',
+                aspectRatio: 1 / 1,
+                autoCropArea: 1,
+                center: false,
+                cropBoxMovable: true,
+                cropBoxResizable: true,
+                maxCropBoxHeight: 300,
+                viewMode: 2,
+                guides: false,
+            });
+        }).on('hidden.bs.modal', function () {
+            cropper.destroy();
+            cropper = null;
+        });
+
+        let select_photo = document.querySelector('#select_photo');
+
+        select_photo.addEventListener('change', function (event) {
+            // console.log('input_ag_1');
+            let files = event.target.files;
+
+            if (files && files.length > 0) {
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                image.src = e.target.result;
+                    $('#cropModal').modal('show');
+                };
+                reader.readAsDataURL(files[0]);
+            }
+
+            $('#cropModal').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+
+            document.querySelector('#cropAndSave').setAttribute('onclick' , 'crop_img()');
+        });
+
+    });
+
+    function crop_img(){
+
+        let previewContainer = document.getElementById('preview_photo');
+
+        let canvas = cropper.getCroppedCanvas({
+          width: 512,
+          height: 512
+        });
+
+        canvas.toBlob(function (blob) {
+          let url = URL.createObjectURL(blob);
+          // let img = document.createElement('img');
+          // img.src = url;
+          previewContainer.src = '';
+          previewContainer.src = url;
+          $('#cropModal').modal('hide');
+        });
+
+    }
+
+    document.getElementById('select_video').addEventListener('change', function(event) {
+
+        let preview_video = document.querySelector('#preview_video');
+        document.querySelector('#div_tag_show_preview_video').classList.remove('d-none');
+
+        var file = this.files[0];
+        preview_video.src = URL.createObjectURL(file);
+        
     });
 </script>
 
 <!-- CKEDITOR -->
 <style>
     div.ck-editor__editable {
-      min-height: 300px;
+      min-height: 200px;
     }
 
     .ck-powered-by{
@@ -905,6 +1427,7 @@
     }
 </style>
 <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/super-build/ckeditor.js"></script>
+
 <script>
     CKEDITOR.ClassicEditor.create(document.getElementById("detail"), {
         // https://ckeditor.com/docs/ckeditor5/latest/features/toolbar/toolbar.html#extended-toolbar-configuration-format
@@ -1034,6 +1557,20 @@
             'PasteFromOfficeEnhanced',
             'CaseChange'
         ]
+    }).then(editor => {
+        editor.model.document.on('change:data', () => {
+            // console.log(editor.getData());
+            if(!editor.getData()){
+                document.querySelector('#preview_detail').innerHTML = '';
+            }
+            else{
+                document.querySelector('#for_detail').value = editor.getData();
+                document.querySelector('#preview_detail').innerHTML = editor.getData();
+                show_preview_date_start_end();
+            }
+        });
+    }).catch(error => {
+        console.error(error);
     });
 </script>
 <!-- END CKEDITOR -->

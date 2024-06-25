@@ -834,4 +834,15 @@ class TrainingController extends Controller
         return $data;
 
     }
+
+    function save_data_edit_training(Request $request)
+    {
+        $requestData = $request->all();
+
+        $training = Training::findOrFail($requestData['id']);
+        $training->update($requestData);
+
+        return 'success' ;
+
+    }
 }

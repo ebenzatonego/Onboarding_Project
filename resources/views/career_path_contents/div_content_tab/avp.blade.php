@@ -89,7 +89,7 @@
                 <textarea class="form-control" rows="3" name="description_story_avp_1" type="textarea" id="description_story_avp_1" >{{ isset($data_avp[1]->description_story) ? $data_avp[1]->description_story : ''}}</textarea>
             </div>
             <div class="col-3">
-                <label class="control-label">{{ 'Photo Story 1' }}</label>
+                <label class="control-label">{{ 'Photo Story 1' }} <span class="text-danger">(ขนาด 406*160 px)</span></label>
                 <input type="File" name="photo_story_story_avp_1" id="photo_story_story_avp_1" accept="image/*">
                 <div id="preview_photo_story_story_avp_1" class="preview_photo_crop">
                     <!-- preview_photo_story_story_avp_1 -->
@@ -153,7 +153,7 @@
                 <textarea class="form-control" rows="3" name="description_story_avp_2" type="textarea" id="description_story_avp_2" >{{ isset($data_avp[2]->description_story) ? $data_avp[2]->description_story : ''}}</textarea>
             </div>
             <div class="col-3">
-                <label class="control-label">{{ 'Photo Story 2' }}</label>
+                <label class="control-label">{{ 'Photo Story 2' }} <span class="text-danger">(ขนาด 406*160 px)</span></label>
                 <input type="File" name="photo_story_story_avp_2" id="photo_story_story_avp_2" accept="image/*">
                 <div id="preview_photo_story_story_avp_2" class="preview_photo_crop">
                     <!-- preview_photo_story_story_avp_2 -->
@@ -217,7 +217,7 @@
                 <textarea class="form-control" rows="3" name="description_story_avp_3" type="textarea" id="description_story_avp_3" >{{ isset($data_avp[3]->description_story) ? $data_avp[3]->description_story : ''}}</textarea>
             </div>
             <div class="col-3">
-                <label class="control-label">{{ 'Photo Story 3' }}</label>
+                <label class="control-label">{{ 'Photo Story 3' }} <span class="text-danger">(ขนาด 406*160 px)</span></label>
                 <input type="File" name="photo_story_story_avp_3" id="photo_story_story_avp_3" accept="image/*">
                 <div id="preview_photo_story_story_avp_3" class="preview_photo_crop">
                     <!-- preview_photo_story_story_avp_3 -->

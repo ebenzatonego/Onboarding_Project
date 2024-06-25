@@ -1130,20 +1130,54 @@
                 </div>
             </div>
         </div>
+
+        <!-- Tools apps -->
         <div class="tab-pane fade show active" id="pills-tools" role="tabpanel" aria-labelledby="pills-tools-tab">
             <p class="title-tools">เครื่องมือบริษัท</p>
             <p></p>
             <div class="container-tap d-flex justify-content-center mb-4">
                 <div class="tabs">
-                    <input type="radio" id="radio-1" name="tabs" checked="">
-                    <label class="tab" for="radio-1">แอปพลิเคชั่น</label>
-                    <input type="radio" id="radio-2" name="tabs">
-                    <label class="tab" for="radio-2">ทั้งหมด</label>
-                    <input type="radio" id="radio-3" name="tabs">
-                    <label class="tab" for="radio-3">เว็บไซต์</label>
+                    <input type="radio" id="radio-1" name="tabs_type_app" value="app" onchange="change_view_app_type();">
+                    <label class="tab" for="radio-1">
+                        แอปพลิเคชั่น
+                    </label>
+                    <input type="radio" id="radio-2" name="tabs_type_app" checked="" value="all" onchange="change_view_app_type();">
+                    <label class="tab" for="radio-2">
+                        ทั้งหมด
+                    </label>
+                    <input type="radio" id="radio-3" name="tabs_type_app" value="web" onchange="change_view_app_type();">
+                    <label class="tab" for="radio-3">
+                        เว็บไซต์
+                    </label>
                     <span class="glider"></span>
                 </div>
             </div>
+
+            <script>
+                function change_view_app_type(){
+                    let tabs_type_app = document.querySelectorAll('[name="tabs_type_app"]');
+                    let tabs_type_app_value = "" ;
+                        tabs_type_app.forEach(tabs_type_app => {
+                            if(tabs_type_app.checked){
+                                tabs_type_app_value = tabs_type_app.value;
+                            }
+                        }) 
+
+                    document.querySelector('#div_tools_type_app').classList.add('d-none');
+                    document.querySelector('#div_tools_type_web').classList.add('d-none');
+
+                    if(tabs_type_app_value == "all"){
+                        document.querySelector('#div_tools_type_app').classList.remove('d-none');
+                        document.querySelector('#div_tools_type_web').classList.remove('d-none');
+                    }
+                    else if(tabs_type_app_value == "app"){
+                        document.querySelector('#div_tools_type_app').classList.remove('d-none');
+                    }
+                    else if(tabs_type_app_value == "web"){
+                        document.querySelector('#div_tools_type_web').classList.remove('d-none');
+                    }
+                }
+            </script>
 
 
             <div class=" m-auto" style="max-width: 500px;padding:0 20px ;">
@@ -1151,38 +1185,140 @@
                 <div class="tools-item">
                     <img src="{{url('img/icon/icon-tools1.png')}}" alt="">
                     <div class="ms-3 w-100" style="flex-direction: column; justify-content: space-between;display: flex;">
-                        <span class="title-tools text-start" style="font-size: 16px;">Financial Health Check </span>
+                        <span class="title-tools text-start" style="font-size: 16px;">
+                            Financial Health Check
+                        </span>
                         <div class="d-flex justify-content-between align-items-center">
-                            <button class="btn-create-tools">กดเพื่อสร้าง</button>
-                            <i class="fa-light fa-circle-exclamation cursor-pointer" data-toggle="modal" data-target="#modal_detail_app"></i>
+                            <a href="https://h-lab-official.github.io/Financial-Health-Check/?user_params={{ Auth::user()->account }}" class="btn-create-tools">
+                                กดเพื่อสร้าง
+                            </a>
+                            <i class="fa-light fa-circle-exclamation cursor-pointer" onclick="open_modal_detail_app('FHC')"></i>
                         </div>
                     </div>
                 </div>
 
-                <div class="tools-item">
-                    <img src="{{url('img/icon/icon-tools2.png')}}" alt="">
-                    <div class="ms-3 w-100" style="flex-direction: column; justify-content: space-between;display: flex;">
-                        <span class="title-tools text-start" style="font-size: 16px;">Allianz Ayudhya - My Allianz</span>
-                        <div>
-                            <span class="company-name">Allianz Ayudhya Assurance Pcl.</span>
+                <div id="div_tools_type_app" class="">
+                    <!-- Tools APPs -->
+                </div>
 
-                            <div class="d-flex justify-content-between align-items-center mt-1">
-                                <div>
-                                    <a href="">
-                                        <img src="{{url('img/icon/ios-download.png')}}" class="img-download" alt="">
-                                    </a>
-                                    <a href="">
-                                        <img src="{{url('img/icon/android-download.png')}}" class="img-download" alt="">
-                                    </a>
-                                </div>
-                                <i class="fa-light fa-circle-exclamation"></i>
-                            </div>
-                        </div>
-                    </div>
+                <div id="div_tools_type_web" class="">
+                    <!-- Tools WEB -->
                 </div>
 
             </div>
         </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                get_data_tools_apps();
+            });
+
+            var arr_tools_apps ;
+
+            function get_data_tools_apps(){
+                fetch("{{ url('/') }}/api/get_data_tools_apps")
+                    .then(response => response.json())
+                    .then(result => {
+                        console.log(result);
+
+                        if (result) {
+
+                            arr_tools_apps = result ;
+
+                            for (let i = 0; i < result.length; i++) {
+
+                                let html ;
+
+                                if(result[i].type == "แอปพลิเคชั่น"){
+
+                                    let div_tools_type_app = document.querySelector('#div_tools_type_app');
+                                    html = `
+                                        <div class="tools-item">
+                                            <img src="`+result[i].photo_icon+`" alt="">
+                                            <div class="ms-3 w-100" style="flex-direction: column; justify-content: space-between;display: flex;">
+                                                <span class="title-tools text-start" style="font-size: 16px;">
+                                                    `+result[i].name+`
+                                                </span>
+                                                <div>
+                                                    <span class="company-name">
+                                                        Allianz Ayudhya Assurance Pcl.
+                                                    </span>
+
+                                                    <div class="d-flex justify-content-between align-items-center mt-1">
+                                                        <div>
+                                                            <a href="`+result[i].link_ios+`">
+                                                                <img src="{{url('img/icon/download-ios.png')}}" class="img-download" alt="">
+                                                            </a>
+                                                            <a href="`+result[i].link_android+`">
+                                                                <img src="{{url('img/icon/download-android.png')}}" class="img-download" alt="">
+                                                            </a>
+                                                        </div>
+                                                        <i class="fa-light fa-circle-exclamation" onclick="open_modal_detail_app(`+i+`)"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `;
+
+                                    div_tools_type_app.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+                                }
+                                else if(result[i].type == "เว็บไซต์"){
+
+                                    let div_tools_type_web = document.querySelector('#div_tools_type_web');
+                                    html = `
+                                        <div class="tools-item">
+                                            <img src="`+result[i].photo_icon+`" alt="">
+                                            <div class="ms-3 w-100" style="flex-direction: column; justify-content: space-between;display: flex;">
+                                                <span class="title-tools text-start" style="font-size: 16px;">
+                                                    `+result[i].name+`
+                                                </span>
+                                                <span class="company-name">
+                                                    Allianz Ayudhya Assurance Pcl.
+                                                </span>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <a href="`+result[i].link_web+`" class="btn-create-tools">
+                                                        เข้าสู่เว็บไซต์
+                                                    </a>
+                                                    <i class="fa-light fa-circle-exclamation cursor-pointer" onclick="open_modal_detail_app(`+i+`)"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `;
+
+                                    div_tools_type_web.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+                                }
+                            }
+                        }
+
+                    });
+            }
+
+            function open_modal_detail_app(type){
+                console.log(type);
+
+                let img_modal = document.querySelector('#img_modal_tools_apps');
+                    img_modal.src = '';
+                let name_modal = document.querySelector('#name_modal_tools_apps');
+                    name_modal.innerHTML = '';
+                let detail_modal = document.querySelector('#detail_modal_tools_apps');
+                    // detail_modal.innerHTML = '';
+
+                if(type == 'FHC'){
+                    img_modal.src = `{{url('img/icon/icon-tools1.png')}}`;
+                    name_modal.innerHTML = 'Financial Health Check';
+                    // detail_modal.innerHTML = '';
+                }
+                else{
+                    img_modal.src = arr_tools_apps[type].photo_icon;
+                    name_modal.innerHTML = arr_tools_apps[type].name;
+                    detail_modal.innerHTML = arr_tools_apps[type].detail;
+                }
+
+                document.querySelector('#btn_open_modal_detail_app').click();
+            }
+        </script>
+
+        <!-- contact -->
         <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
             <div class=" d-flex justify-content-center">
                 <div id="content_item_contact" class="w-100 row" style="max-width: 800px;">
@@ -1281,16 +1417,22 @@
     });
 </script>
 
+<button id="btn_open_modal_detail_app" data-toggle="modal" data-target="#modal_detail_app" class="d-none">
+    modal_detail_app
+</button>
 <!-- Modal -->
 <div class="modal fade" id="modal_detail_app" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content" style="border: none;">
             <div class="modal-body p-4" style="border-radius: 10px;background: #F0F5FF;box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);">
                 <div class="d-flex justify-content-center">
-                    <img src="{{url('img/icon/icon-tools2.png')}}" width="48" height="48" alt="">
+                    <img id="img_modal_tools_apps" src="{{url('img/icon/icon-tools2.png')}}" width="48" height="48" alt="">
                 </div>
-                <p class="title-tools mt-2" style="font-size: 14px;">Allianz Ayudhya - My Allianz</p>
-                <p class="text-detail-app">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime nemo dolorem aut illo amet dicta sunt! Dolorum expedita voluptas culpa magni libero architecto vel aliquid, suscipit nobis doloremque delectus! Aliquid!
+                <p id="name_modal_tools_apps" class="title-tools mt-2" style="font-size: 14px;">
+                    Allianz Ayudhya - My Allianz
+                </p>
+                <p id="detail_modal_tools_apps" class="text-detail-app">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime nemo dolorem aut illo amet dicta sunt! Dolorum expedita voluptas culpa magni libero architecto vel aliquid, suscipit nobis doloremque delectus! Aliquid!
                 </p>
                 <button type="button" class="close btn-close-modal" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>

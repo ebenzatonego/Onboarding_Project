@@ -1,11 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.theme_admin')
 
 @section('content')
-    <div class="container">
+    <div class="container-fields">
         <div class="row">
-            @include('admin.sidebar')
-
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Tools_app {{ $tools_app->id }}</div>
                     <div class="card-body">

@@ -146,6 +146,10 @@ Route::get('/get_data_product_admin/{type}', 'ProductsController@get_data_produc
 // Tools contact
 Route::get('/get_data_show_tools_contact', 'Tools_contactsController@get_data_show_tools_contact');
 
+// Tools contact
+Route::get('/get_data_tools_apps', 'Tools_appsController@get_data_tools_apps');
+
+
 // Career Paths
 Route::post('/update_title_story_career_path', 'Career_pathsController@update_title_story_career_path');
 Route::get('/get_data_story_career_paths', 'Career_pathsController@get_data_story_career_paths');

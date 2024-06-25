@@ -155,6 +155,8 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
 
     // Tools Contacts
     Route::resource('tools_contacts', 'Tools_contactsController');
+    Route::resource('tools_apps', 'Tools_appsController');
+    Route::get('/manage_tools_apps', 'Tools_appsController@manage_tools_apps');
 
     // Career Paths
     Route::resource('career_paths', 'Career_pathsController');
@@ -204,7 +206,6 @@ Route::resource('log_video_trainings', 'Log_video_trainingsController');
 Route::resource('log_video_news', 'Log_video_newsController');
 Route::resource('log_video_tools_tutorials', 'Log_video_tools_tutorialsController');
 Route::resource('logs', 'LogsController');
-Route::resource('tools_apps', 'Tools_appsController');
 Route::resource('tools_tutorials', 'Tools_tutorialsController');
 Route::resource('news_types', 'News_typesController');
 Route::resource('activity_types', 'Activity_typesController');

@@ -60,7 +60,9 @@ class Tools_appsController extends Controller
         
         Tools_app::create($requestData);
 
-        return redirect('tools_apps')->with('flash_message', 'Tools_app added!');
+        return redirect('/manage_tools_apps');
+
+        // return redirect('tools_apps')->with('flash_message', 'Tools_app added!');
     }
 
     /**
@@ -122,5 +124,15 @@ class Tools_appsController extends Controller
         Tools_app::destroy($id);
 
         return redirect('tools_apps')->with('flash_message', 'Tools_app deleted!');
+    }
+
+    function manage_tools_apps(){
+
+        return view('tools_apps.manage_tools_apps');
+    }
+
+    function get_data_tools_apps(){
+        $tools_app = Tools_app::get();
+        return $tools_app ;
     }
 }

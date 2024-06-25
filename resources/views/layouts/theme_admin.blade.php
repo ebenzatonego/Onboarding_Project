@@ -356,7 +356,7 @@
                         </a>
                         <ul>
                             <li>
-                                <a class="btn" href="{{ url('//tools/create_applications') }}">
+                                <a class="btn" href="{{ url('/tools_apps/create') }}">
                                     <i class="fa-solid fa-mobile-screen-button"></i> แอปพลิเคชัน
                                 </a>
                             </li>

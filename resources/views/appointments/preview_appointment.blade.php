@@ -14,7 +14,9 @@
         border-radius: 40px;
         border: 8px #000 solid;
         overflow: hidden;
+        position: -webkit-sticky;
         position: sticky;
+        top: 70px;
     }
 
     .frame-top {
@@ -419,17 +421,10 @@
     </div>
   </div>
 </div>
-<style>
-div.sticky {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 70px;
-}
-</style>
 <div class="container-fluid">
 
     <div class="d-flex position-raletive">
-        <div class="phone-frame sticky">
+        <div class="phone-frame">
             <div class="frame-top">
                 <div class="text-dark px-4 time d-flex align-items-center">{{ date('H:i') }}</div>
                 <div class="w-100 phone-camera d-flex align-items-center"> &nbsp;</div>
@@ -1580,7 +1575,7 @@ div.sticky {
             let date_now = new Date();
             let Date_for_firebase = formatDate_for_firebase(date_now);
             let name_file = Date_for_firebase + '-Edit-' + title;
-            let storageRef = storage.ref('/training/image/' + name_file);
+            let storageRef = storage.ref('/appointment/image/' + name_file);
 
             let uploadTask = storageRef.put(blob);
 
@@ -1615,7 +1610,17 @@ div.sticky {
         document.querySelector('#btn_cf_edit_data').innerHTML = 'กำลังบันทึกข้อมูล..';
 
         let title = document.querySelector('#title').value;
+        let type = document.querySelector('#type').value;
         let training_type_id = document.querySelector('#training_type_id').value;
+        let appointment_area_id = document.querySelector('#appointment_area_id').value;
+        let link_out = document.querySelector('#link_out').value;
+        let all_day = document.querySelector('#all_day').value;
+        let date_start = document.querySelector('#date_start').value;
+        let time_start = document.querySelector('#time_start').value;
+        let date_end = document.querySelector('#date_end').value;
+        let time_end = document.querySelector('#time_end').value;
+        let location_detail = document.querySelector('#for_location_detail').value;
+        let link_map = document.querySelector('#link_map').value;
         let detail = document.querySelector('#for_detail').value;
         let photo = document.querySelector('#photo').value;
         let datetime_start = document.querySelector('#datetime_start').value;
@@ -1625,7 +1630,17 @@ div.sticky {
         let data_arr = {
             "id" : "{{ $data_appointment->id }}",
             "title" : title,
+            "type" : type,
             "training_type_id" : training_type_id,
+            "appointment_area_id" : appointment_area_id,
+            "link_out" : link_out,
+            "all_day" : all_day,
+            "date_start" : date_start,
+            "time_start" : time_start,
+            "date_end" : date_end,
+            "time_end" : time_end,
+            "location_detail" : location_detail,
+            "link_map" : link_map,
             "detail" : detail,
             "photo" : photo,
             "datetime_start" : datetime_start,
@@ -1633,7 +1648,7 @@ div.sticky {
             "status" : status,
         }; 
 
-        fetch("{{ url('/') }}/api/save_data_edit_training", {
+        fetch("{{ url('/') }}/api/save_data_edit_appointment", {
             method: 'post',
             body: JSON.stringify(data_arr),
             headers: {

@@ -729,4 +729,15 @@ class AppointmentsController extends Controller
         return $data ;
 
     }
+
+    function save_data_edit_appointment(Request $request)
+    {
+        $requestData = $request->all();
+
+        $appointment = Appointment::findOrFail($requestData['id']);
+        $appointment->update($requestData);
+
+        return 'success' ;
+
+    }
 }

@@ -14,6 +14,9 @@
         border-radius: 40px;
         border: 8px #000 solid;
         overflow: hidden;
+        position: -webkit-sticky;
+        position: sticky;
+        top: 70px;
     }
 
     .frame-top {

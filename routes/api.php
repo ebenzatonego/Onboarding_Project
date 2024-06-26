@@ -102,6 +102,7 @@ Route::get('/user_click_fav_btn_appointment/{user_id}/{appointment_id}/{type}', 
 Route::get('/update_user_view_appointment/{user_id}/{appointment_id}', 'AppointmentsController@update_user_view_appointment');
 Route::get('/get_list_quiz_area', 'AppointmentsController@get_list_quiz_area');
 Route::get('/get_data_appointment_now_quiz/{month}/{year}/{area_id}', 'AppointmentsController@get_data_appointment_now_quiz');
+Route::post('/save_data_edit_appointment', 'AppointmentsController@save_data_edit_appointment');
 
 
 // activity

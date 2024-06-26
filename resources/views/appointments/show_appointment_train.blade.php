@@ -399,7 +399,9 @@
 
             <!-- if ถ้ามี รายละเอียดการเข้าอบรม -->
             <div class="my-3">
-                <p style="color: #003781;font-size: 15px;font-style: normal;font-weight: 600;line-height: normal;">รายละเอียดการเข้าอบรม</p>
+                <p style="color: #003781;font-size: 15px;font-style: normal;font-weight: 600;line-height: normal;">
+                    รายละเอียดการเข้า{{ $appointment->type }}
+                </p>
                 <div class="d-flex ">
                     <i class="fa-light fa-location-dot me-2"></i>
                     <div>

@@ -322,30 +322,6 @@
 
 </style>
 
-
-<!-- MODAL การจัดการเมนูหลักสูตร -->
-<div class="modal fade" id="modal_menu_management" tabindex="-1" aria-labelledby="Label_menu_management" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="Label_menu_management">การจัดการเมนู</h5>
-        <button id="btn_close_modal_menu_management" type="button" class="btn" data-dismiss="modal" aria-label="Close">
-          <i class="fa-solid fa-circle-xmark"></i>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="card">
-          <div class="card-body">
-            <div id="content_number_menu_type" class="row mt-3 mb-2">
-              <!--  -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
 	<div class="breadcrumb-title pe-3">การจัดการตารางอบรม/สอบ</div>
   <div class="ps-3">
@@ -354,22 +330,42 @@
     </select>
   </div>
   <div class="ps-3">
-    <select id="select_show_type_appointments" class="form-select">
+    <select id="select_show_type_appointments" class="form-select" onchange="change_view_type_appointments();">
       <option value="all" selected>ประเภททั้งหมด</option>
       <option value="อบรม">อบรม</option>
       <option value="สอบ">สอบ</option>
     </select>
   </div>
+  <script>
+    function change_view_type_appointments(){
+
+      let select_show = document.querySelector('#select_show_type_appointments');
+
+      let item_data_appointments = document.querySelectorAll('.item_data_appointments');
+          item_data_appointments.forEach(item => {
+            item.classList.add('d-none');
+          })
+
+      if(select_show.value != 'all'){
+        let item_show = document.querySelectorAll('[type_appointments="'+select_show.value+'"]');
+          item_show.forEach(item_show => {
+            item_show.classList.remove('d-none');
+          })
+      }
+      else{
+        let all = document.querySelectorAll('.item_data_appointments');
+          all.forEach(item_all => {
+            item_all.classList.remove('d-none');
+          })
+      }
+
+    }
+  </script>
 	<div class="ms-auto">
 		<div class="btn-group">
 			<a href="{{ url('/appointment_create') }}" class="btn btn-success">
 				<i class="fa-solid fa-calendar-plus"></i> เพิ่มตารางอบรม/สอบ
 			</a>
-		</div>
-		<div class="btn-group">
-			<span class="btn btn-warning" data-toggle="modal" data-target="#modal_menu_management">
-				<i class="fa-solid fa-list-ol"></i> การจัดการเมนู
-			</span>
 		</div>
 	</div>
 </div>
@@ -395,7 +391,6 @@
 	document.addEventListener('DOMContentLoaded', function () {
         get_data_appointment('all');
         get_data_Training_type();
-        get_data_number_menu_of_appointment();
   });
 
   function get_data_appointment(type){
@@ -477,7 +472,7 @@
                   }
 
                   let html = `
-                      <div class="col-12 col-md-3">
+                      <div type_appointments="`+result['data_appointments'][i].type+`" class="item_data_appointments col-12 col-md-3">
                         <div class="card" style="position:relative;">
                           `+html_status+`
                           <img src="`+result['data_appointments'][i].photo+`" class="card-img-top">
@@ -488,6 +483,9 @@
                             <p class="card-text text-info">
                               #`+type_article+`
                             </p>
+                            <p class="card-text text-danger">
+                              #`+result['data_appointments'][i].type+`
+                            </p>
                             <p class="card-text">
                               <b>เริ่ม : </b>`+sum_datetime_start+`
                               <br>
@@ -496,9 +494,12 @@
                             <p class="detail-course">
                               `+textWithoutHtml+`
                             </p>
+                            <p class="card-text mt-3">
+                              <b>ผู้ลงข้อมูล : </b>`+result['data_appointments'][i].name_creator+`
+                            </p>
                             <hr>
                             <center class="mt-4 mb-2">
-                              <a href="{{ url('/preview_training') }}/`+result['data_appointments'][i].id+`" class="btn btn-sm btn-info">
+                              <a href="{{ url('/preview_appointment') }}/`+result['data_appointments'][i].id+`" class="btn btn-sm btn-info">
                                 ดูข้อมูล
                               </a>
                               <form method="POST" action="{{ url('/appointments') }}/`+result['data_appointments'][i].id+`" accept-charset="UTF-8" style="display:inline" onsubmit="return confirmDelete(event, this)">
@@ -548,86 +549,6 @@
     get_data_appointment(select_training_id)
   }
 
-  function get_data_number_menu_of_appointment(){
-
-    let content_number_menu_type = document.querySelector('#content_number_menu_type');
-        content_number_menu_type.innerHTML = '';
-
-        fetch("{{ url('/') }}/api/get_data_number_menu_of_appointment")
-          .then(response => response.json())
-          .then(result => {
-              // console.log(result);
-
-              if(result){
-
-                for (let i = 0; i < result.length; i++) {
-
-                  let html_list_number = `` ;
-                  for (let ix = 0; ix < 3; ix++) {
-
-                    let count = ix + 1 ;
-                    list_number = `
-                      <li>
-                        <span class="dropdown-item btn" onclick="change_number_menu_of_appointment('`+result[i].id+`' , '`+count+`')">
-                          ลำดับที่ `+count+`
-                        </span>
-                      </li>
-                    `;
-
-                    html_list_number = html_list_number + list_number ;
-
-                  }
-
-                  let html_number_menu = ``;
-                  if(result[i].number_menu_of_appointment){
-                    html_number_menu = `
-                      <i class="fa-solid fa-circle-`+result[i].number_menu_of_appointment+` font-24 text-info"></i>
-                    `;
-                  }
-
-                  let html = `
-                    <div class="col-1 center-vertical mb-3">
-                      `+html_number_menu+`
-                    </div>
-                    <div class="col-1 mb-3">
-                      <div class="icon-menu-course">
-                          <img src="`+result[i].icon+`">
-                      </div>
-                    </div>
-                    <div class="col-8 center-vertical mb-3">
-                      `+result[i].type_article+`
-                    </div>
-                    <div class="col-2 center-vertical mb-3">
-                      <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Number Menu</button>
-                        <ul class="dropdown-menu" style="margin: 0px;">
-                          `+html_list_number+`
-                        </ul>
-                      </div>
-                    </div>
-                    <hr>
-                  `;
-
-                  content_number_menu_type.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
-
-                }
-
-              }
-        });
-  }
-
-  function change_number_menu_of_appointment(type_id , number){
-
-    fetch("{{ url('/') }}/api/change_number_menu_of_appointment/"+ type_id + "/" + number)
-          .then(response => response.text())
-          .then(result => {
-              // console.log(result);
-              if(result == 'success'){
-                get_data_number_menu_of_appointment();
-              }
-    });
-
-  }
 
 </script>
 

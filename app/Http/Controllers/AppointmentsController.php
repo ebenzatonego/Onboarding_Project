@@ -200,6 +200,21 @@ class AppointmentsController extends Controller
         return view('appointments.show_appointment_train', compact('appointment'));
     }
 
+    function preview_appointment($id){
+        
+        $data_appointment = DB::table('appointments')
+                ->join('training_types', 'training_types.id', '=', 'appointments.training_type_id')
+                ->where('appointments.id' , $id)
+                ->select('appointments.*', 'training_types.type_article')
+                ->first();
+
+        $type_article = Training_type::get();
+        $appointment_area = Appointment_area::orderBy('area','ASC')->get();
+
+        return view('appointments.preview_appointment', compact('data_appointment','type_article','appointment_area'));
+
+    }
+
     function get_data_appointment($type){
 
         $data = [];
@@ -209,14 +224,24 @@ class AppointmentsController extends Controller
 
             $data['data_appointments'] = DB::table('appointments')
                 ->join('training_types', 'training_types.id', '=', 'appointments.training_type_id')
-                ->select('appointments.*', 'training_types.type_article')
+                ->leftJoin('users', 'users.id', '=', 'appointments.creator')
+                ->select('appointments.*', 'training_types.type_article', 'users.name as name_creator')
                 ->orderBy("id", "DESC")
                 ->get();
         }
         else{
-            $data['data_appointments'] = Appointment::where('training_type_id', $type)
+            // $data['data_appointments'] = Appointment::where('training_type_id', $type)
+            //     ->orderBy("id", "DESC")
+            //     ->get();
+
+            $data['data_appointments'] = DB::table('appointments')
+                ->join('training_types', 'training_types.id', '=', 'appointments.training_type_id')
+                ->leftJoin('users', 'users.id', '=', 'appointments.creator')
+                ->where('appointments.training_type_id', $type)
+                ->select('appointments.*', 'training_types.type_article', 'users.name as name_creator')
                 ->orderBy("id", "DESC")
                 ->get();
+
             $data_Training_type = Training_type::where('id', $type)->first();
             $data['type_article'] = $data_Training_type->type_article ;
         }

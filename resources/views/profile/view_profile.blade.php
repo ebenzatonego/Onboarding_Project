@@ -388,12 +388,23 @@
                                 </p>
                                 <p class="m-0">
                                     <span style="font-size: 10;font-weight: bolder;color: #373737;">วันที่เริ่มต้น : </span>
-                                    <span style="font-size: 10;font-weight: bolder;color: #0E2B81;">{{ thaidate("j M Y" , strtotime(Auth::user()->license_start)) ? thaidate("j M Y" , strtotime(Auth::user()->license_start)) : '-'}} </span>
+                                    <span style="font-size: 10;font-weight: bolder;color: #0E2B81;">
+                                        @if(!empty(Auth::user()->license_start))
+                                        {{ thaidate("j M Y" , strtotime(Auth::user()->license_start)) }}
+                                        @else
+                                                    -
+                                        @endif
+                                    </span>
                                 </p>
                                 <p class="m-0">
                                     <span style="font-size: 10;font-weight: bolder;color: #373737;">วันที่หมดอายุ : </span>
-                                    <span style="font-size: 10;font-weight: bolder;color: #0E2B81;">{{ thaidate("j M Y" , strtotime(Auth::user()->license_expire)) ? thaidate("j M Y" , strtotime(Auth::user()->license_expire)) : '-'}} </span>
-
+                                    <span style="font-size: 10;font-weight: bolder;color: #0E2B81;">
+                                        @if(!empty(Auth::user()->license_expire))
+                                        {{ thaidate("j M Y" , strtotime(Auth::user()->license_expire)) }}
+                                        @else
+                                                    -
+                                        @endif
+                                    </span>
                                 </p>
                             </div>
 
@@ -428,7 +439,7 @@
                             <div class="" style=" position: absolute;bottom: -12px; display: flex;">
                                 <div class="alert-license-expire me-3">
                                     <div>
-                                        <span class="ms-1">หมดอายุภายใน <span id="">{{ $Dateinterval->days }}</span> วัน</span>
+                                    <i class="fa-solid fa-triangle-exclamation text-white" style="margin-right: 4px;"></i><span>หมดอายุภายใน <span id="">{{ $Dateinterval->days }}</span> วัน</span>
                                     </div>
                                 </div>
                             </div>
@@ -454,7 +465,7 @@
                         <div class="body-my-goal">
                             <!-- MY GOAL QUESTIONAIRE -->
 
-                            <div class="d-flex justify-content-center mt-3">
+                            <div class="d-flex justify-content-center mt-3 d-none">
                                 <button class="btn-more-job px-5" data-toggle="modal" data-target="#modal_my_goal">
                                     ทำแบบทดสอบเป้าหมาย
                                 </button>
@@ -677,7 +688,7 @@
                             <p class="mb-0 ms-3" style="font-size: 12px;">รหัสตัวเเทน : <span class="text-color-obd">{{ $upper_al->account ? $upper_al->account : '-' }}</span></p>
                             <p class="mb-0 ms-3" style="font-size: 12px;">ชื่อหน่วยงาน/AO : <span class="text-color-obd">{{ $upper_al->organization_name ? $upper_al->organization_name : '-' }}</span></p>
                             <p class="mb-0 ms-3" style="font-size: 12px;">โทร : <a href="tel:088-567-8901" class="text-color-obd">{{ $upper_al->phone ? $upper_al->phone : '-' }}</a></p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">อีเมล : <a href="mailto:Apitchaya@gmail.com"><u>{{ $upper_al->emial ? $upper_al->emial : '-' }}</u></a></p>
+                            <p class="mb-0 ms-3" style="font-size: 12px;">อีเมล : <a href="mailto:Apitchaya@gmail.com"><u>{{ $upper_al->email ? $upper_al->email : '-' }}</u></a></p>
                         </div>
                     </div>
                     <br>
@@ -910,11 +921,23 @@
                             </p>
                             <p class="detail-profile">
                                 วันออกใบอนุญาต :
-                                <span style="color: #003781;">{{ Auth::user()->license_start ? Auth::user()->license_start : '-'}}</span>
+                                <span style="color: #003781;">
+                                    @if(!empty(Auth::user()->license_start))
+                                        {{ thaidate("j M Y" , strtotime(Auth::user()->license_start)) }}
+                                    @else
+                                                -
+                                    @endif
+                                </span>
                             </p>
                             <p class="detail-profile">
                                 วันหมดอายุใบอนุญาต :
-                                <span style="color: #003781;">{{ Auth::user()->license_expire ? Auth::user()->license_expire : '-'}}</span>
+                                <span style="color: #003781;">
+                                    @if(!empty(Auth::user()->license_expire))
+                                        {{ thaidate("j M Y" , strtotime(Auth::user()->license_expire)) }}
+                                    @else
+                                                -
+                                    @endif
+                                </span>
                             </p>
                             <p class="detail-profile">
                                 เลขที่ใบอนุญาต IC License :
@@ -922,11 +945,23 @@
                             </p>
                             <p class="detail-profile">
                                 วันออกใบอนุญาต IC License :
-                                <span style="color: #003781;">{{ Auth::user()->ic_license_start ? Auth::user()->ic_license_start : '-'}}</span>
+                                <span style="color: #003781;">
+                                    @if(!empty(Auth::user()->ic_license_start))
+                                        {{ thaidate("j M Y" , strtotime(Auth::user()->ic_license_start)) }}
+                                    @else
+                                                -
+                                    @endif
+                                </span>
                             </p>
                             <p class="detail-profile">
                                 วันหมดอายุใบอนุญาต IC License :
-                                <span style="color: #003781;">{{ Auth::user()->ic_license_expire ? Auth::user()->ic_license_expire : '-'}}</span>
+                                <span style="color: #003781;">
+                                    @if(!empty(Auth::user()->ic_license_expire))
+                                        {{ thaidate("j M Y" , strtotime(Auth::user()->ic_license_expire)) }}
+                                    @else
+                                                -
+                                    @endif
+                                </span>
                             </p>
 
                             @if(Auth::user()->clm == "1")

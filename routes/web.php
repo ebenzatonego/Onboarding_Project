@@ -145,6 +145,7 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
     // News
     Route::resource('news', 'NewsController');
     Route::get('/manage_news', 'NewsController@manage_news');
+    Route::get('/preview_news/{id}', 'NewsController@preview_news');
 
     // Activitys
     Route::resource('activitys', 'ActivitysController');

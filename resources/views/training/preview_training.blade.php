@@ -819,9 +819,6 @@
             <div class="card-body p-5">
                 <div class="card-title d-flex align-items-center justify-content-between">
                     <div class="d-flex">
-                        <div>
-                            <i class="fa-regular fa-chart-mixed me-1 font-22 text-primary"></i>
-                        </div>
                         <h5 class="mb-0 text-primary">
                             แก้ไขหลักสูตร
                         </h5>
@@ -908,8 +905,8 @@
                         รูปภาพ / วิดีโอ
                     </label>
                     <div class="col-sm-10">
-                        <div class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-primary mx-2" onclick="document.querySelector('#select_photo').click();">
+                        <div class="d-flex">
+                            <button type="button" class="btn btn-primary me-2" onclick="document.querySelector('#select_photo').click();">
                                 <i class="fa-solid fa-image"></i> เลือกรูปภาพ
                             </button>
                             <button type="button" class="btn btn-danger mx-2" onclick="document.querySelector('#select_video').click();">

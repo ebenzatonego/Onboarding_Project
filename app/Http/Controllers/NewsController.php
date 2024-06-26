@@ -175,6 +175,21 @@ class NewsController extends Controller
         return view('news.manage_news');
     }
 
+    function preview_news($id){
+
+        // $data_news = Training::where('id' , $id)->first();
+        $data_news = DB::table('news')
+                ->join('news_types', 'news_types.id', '=', 'news.news_type_id')
+                ->where('news.id' , $id)
+                ->select('news.*', 'news_types.name_type')
+                ->first();
+
+        $name_type = News_type::get();
+
+        return view('news.preview_news', compact('data_news','name_type'));
+
+    }
+
     function get_data_news($news_type_id){
 
         if($news_type_id == 'all'){

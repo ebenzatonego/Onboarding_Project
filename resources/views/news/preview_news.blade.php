@@ -238,165 +238,96 @@
   height: auto;
 }
 
-.checkbox-wrapper-46 input[type="checkbox"] {
-  display: none;
-  visibility: hidden;
-}
+.mydict div {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 0.5rem;
+        /*  justify-content: center;*/
+    }
 
-.checkbox-wrapper-46 .cbx {
-  margin: auto;
-  -webkit-user-select: none;
-  user-select: none;
-  cursor: pointer;
-}
-.checkbox-wrapper-46 .cbx span {
-  display: inline-block;
-  vertical-align: middle;
-  transform: translate3d(0, 0, 0);
-}
-.checkbox-wrapper-46 .cbx span:first-child {
-  position: relative;
-  width: 18px;
-  height: 18px;
-  border-radius: 3px;
-  transform: scale(1);
-  vertical-align: middle;
-  border: 1px solid #9098a9;
-  transition: all 0.2s ease;
-}
-.checkbox-wrapper-46 .cbx span:first-child svg {
-  position: absolute;
-  top: 3px;
-  left: 2px;
-  fill: none;
-  stroke: #ffffff;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 16px;
-  stroke-dashoffset: 16px;
-  transition: all 0.3s ease;
-  transition-delay: 0.1s;
-  transform: translate3d(0, 0, 0);
-}
-.checkbox-wrapper-46 .cbx span:first-child:before {
-  content: "";
-  width: 100%;
-  height: 100%;
-  background: #506eec;
-  display: block;
-  transform: scale(0);
-  opacity: 1;
-  border-radius: 50%;
-}
-.checkbox-wrapper-46 .cbx span:last-child {
-  padding-left: 8px;
-}
-.checkbox-wrapper-46 .cbx:hover span:first-child {
-  border-color: #506eec;
-}
+    .mydict input[type="radio"] {
+        clip: rect(0 0 0 0);
+        clip-path: inset(100%);
+        height: 1px;
+        overflow: hidden;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
+    }
 
-.checkbox-wrapper-46 .inp-cbx:checked + .cbx span:first-child {
-  background: #506eec;
-  border-color: #506eec;
-  animation: wave-46 0.4s ease;
-}
-.checkbox-wrapper-46 .inp-cbx:checked + .cbx span:first-child svg {
-  stroke-dashoffset: 0;
-}
-.checkbox-wrapper-46 .inp-cbx:checked + .cbx span:first-child:before {
-  transform: scale(3.5);
-  opacity: 0;
-  transition: all 0.6s ease;
-}
+    .mydict input[type="radio"]:checked+span {
+        box-shadow: 0 0 0 0.0625em #0043ed;
+        background-color: #dee7ff;
+        z-index: 1;
+        color: #0043ed;
+    }
 
-@keyframes wave-46 {
-  50% {
-    transform: scale(0.9);
-  }
-}
+    .mydict label span {
+        display: block;
+        cursor: pointer;
+        background-color: #fff;
+        padding: 0.375em .75em;
+        position: relative;
+        margin-left: .0625em;
+        box-shadow: 0 0 0 0.0625em #b5bfd9;
+        letter-spacing: .05em;
+        color: #3e4963;
+        text-align: center;
+        transition: background-color .5s ease;
+    }
 
-.checkbox-wrapper-46 input[type="checkbox"] {
-  display: none;
-  visibility: hidden;
-}
+    .mydict label:first-child span {
+        border-radius: .375em 0 0 .375em;
+    }
 
-.checkbox-wrapper-46 .cbx {
-  margin: auto;
-  -webkit-user-select: none;
-  user-select: none;
-  cursor: pointer;
-}
-.checkbox-wrapper-46 .cbx span {
-  display: inline-block;
-  vertical-align: middle;
-  transform: translate3d(0, 0, 0);
-}
-.checkbox-wrapper-46 .cbx span:first-child {
-  position: relative;
-  width: 18px;
-  height: 18px;
-  border-radius: 3px;
-  transform: scale(1);
-  vertical-align: middle;
-  border: 1px solid #9098a9;
-  transition: all 0.2s ease;
-}
-.checkbox-wrapper-46 .cbx span:first-child svg {
-  position: absolute;
-  top: 3px;
-  left: 2px;
-  fill: none;
-  stroke: #ffffff;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 16px;
-  stroke-dashoffset: 16px;
-  transition: all 0.3s ease;
-  transition-delay: 0.1s;
-  transform: translate3d(0, 0, 0);
-}
-.checkbox-wrapper-46 .cbx span:first-child:before {
-  content: "";
-  width: 100%;
-  height: 100%;
-  background: #506eec;
-  display: block;
-  transform: scale(0);
-  opacity: 1;
-  border-radius: 50%;
-}
-.checkbox-wrapper-46 .cbx span:last-child {
-  padding-left: 8px;
-}
-.checkbox-wrapper-46 .cbx:hover span:first-child {
-  border-color: #506eec;
-}
+    .mydict label:last-child span {
+        border-radius: 0 .375em .375em 0;
+    }
 
-.checkbox-wrapper-46 .inp-cbx:checked + .cbx span:first-child {
-  background: #506eec;
-  border-color: #506eec;
-  animation: wave-46 0.4s ease;
-}
-.checkbox-wrapper-46 .inp-cbx:checked + .cbx span:first-child svg {
-  stroke-dashoffset: 0;
-}
-.checkbox-wrapper-46 .inp-cbx:checked + .cbx span:first-child:before {
-  transform: scale(3.5);
-  opacity: 0;
-  transition: all 0.6s ease;
-}
+    /*  photo_gallery  */
+    .group-img {
+        flex: 0 0 20%;
+        max-width: 20%;
+        position: relative;
 
-@keyframes wave-46 {
-  50% {
-    transform: scale(0.9);
-  }
-}
+        cursor: pointer;
+    }
+
+    .img-news {
+        width: 100%;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        filter: grayscale(70%);
+    }
+
+    .img-news.active {
+        filter: blur(0) grayscale(0) !important;
+
+    }
+
+    .img-news.active+.icon-preview {
+        display: none !important;
+
+    }
+
+    .preview-img {
+        width: 100%;
+    }
+
+    .icon-preview {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff !important;
+        font-size: 33px;
+        pointer-events: none;
+        /* ปิดการใช้งาน hitbox */
+    }
 
 </style>
 
-<a id="goto_manage_appointment" href="{{ url('/manage_appointment') }}" class="d-none"></a>
+<a id="goto_manage_news" href="{{ url('/manage_news') }}" class="d-none"></a>
 
 <!-- Modal for cropping -->
 <div class="modal fade" id="cropModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="cropModalLabel" aria-hidden="true">
@@ -421,9 +352,154 @@
     </div>
   </div>
 </div>
+
+<!-- จัดการ Photo Gallery -->
+<button id="btn_Modal_showPhotoGallery" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#Modal_showPhotoGallery">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="Modal_showPhotoGallery" tabindex="-1" aria-labelledby="Label_showPhotoGallery" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="Label_showPhotoGallery">จัดการ Photo Gallery</h5>
+        <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body row" id="modal-body">
+        <!-- Cards will be appended here -->
+      </div>
+      <hr>
+      <div class="d-flex justify-content-center mt-2 mb-4">
+        <button type="button" class="btn btn-warning mx-2 px-4" onclick="document.querySelector('#news_photo').click();">
+            <i class="fa-solid fa-plus"></i> เพิ่มรูปภาพ
+        </button>
+        <button type="button" class="btn btn-success mx-2 px-5" data-dismiss="modal" aria-label="Close">
+            <i class="fa-solid fa-check"></i> ยืนยัน
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<input class="d-none" type="file" id="news_photo" name="news_photo[]" accept="image/*" multiple onchange=" addNewPhotos();">
+
+<script>
+
+    var amount_photo_gallery = 0 ;
+
+    function showPhotoGallery() {
+
+        let photoGallery = document.getElementById('photo_gallery').value;
+        let photoUrls = photoGallery.split(',');
+        let modalBody = document.getElementById('modal-body');
+        // modalBody.innerHTML = '';
+
+        // // ลบเฉพาะ .card-old-img และลดค่า amount_photo_gallery
+        // let oldImages = modalBody.querySelectorAll('.card-old-img');
+        // oldImages.forEach(img => {
+        //     img.parentElement.remove();
+        //     amount_photo_gallery--;
+        // });
+
+        if(photoGallery){
+            photoUrls.forEach((url, index) => {
+                let card = document.createElement('div');
+                card.classList.add('card', 'mb-3' , 'p-4');
+                card.style.width = '10rem';
+
+                let img = document.createElement('img');
+                img.classList.add('card-img-top' , 'card-old-img');
+                img.src = url;
+                img.alt = `Photo ${index + 1}`;
+
+                let cardBody = document.createElement('div');
+                cardBody.classList.add('card-body');
+
+                let deleteButton = document.createElement('span');
+                deleteButton.classList.add('btn', 'btn-danger' , 'btn-sm');
+                deleteButton.textContent = 'Delete';
+                deleteButton.addEventListener('click', function() {
+                    photoUrls.splice(index, 1);
+                    updatePhotoGallery(photoUrls);
+                    // showPhotoGallery();
+                    card.remove();
+                    amount_photo_gallery--;
+                    console.log(amount_photo_gallery);
+                });
+
+                cardBody.appendChild(deleteButton);
+                card.appendChild(img);
+                card.appendChild(cardBody);
+                modalBody.appendChild(card);
+                amount_photo_gallery++;
+            });
+
+            console.log(amount_photo_gallery);
+
+        }
+    }
+
+    function updatePhotoGallery(photoUrls) {
+        let photoGallery = document.getElementById('photo_gallery');
+        photoGallery.value = photoUrls.join(',');
+    }
+
+    function addNewPhotos() {
+        let newsPhotoInput = document.getElementById('news_photo');
+        let files = newsPhotoInput.files;
+        let modalBody = document.getElementById('modal-body');
+
+        let check_amount = 0 ;
+        check_amount = amount_photo_gallery + files.length ;
+        console.log("check_amount >> " + check_amount);
+
+        if(check_amount <= 20){
+            Array.from(files).forEach(file => {
+                let card = document.createElement('div');
+                card.classList.add('card', 'mb-3' , 'p-4');
+                card.style.width = '10rem';
+
+                let img = document.createElement('img');
+                img.classList.add('card-img-top', 'card-new-img');
+                img.src = URL.createObjectURL(file);
+                img.alt = 'New Photo';
+
+                let cardBody = document.createElement('div');
+                cardBody.classList.add('card-body');
+
+                let deleteButton = document.createElement('button');
+                    deleteButton.classList.add('btn', 'btn-danger', 'btn-sm');
+                    deleteButton.textContent = 'Delete';
+                    deleteButton.addEventListener('click', function() {
+                        card.remove();
+                        amount_photo_gallery--;
+                        console.log(amount_photo_gallery);
+                    });
+
+                cardBody.appendChild(deleteButton);
+                card.appendChild(img);
+                card.appendChild(cardBody);
+                modalBody.appendChild(card);
+                amount_photo_gallery++;
+            });
+        }
+        else{
+            alert('เพิ่มรูปภาพสูงสุด 20 รูป');
+        }
+
+        console.log(amount_photo_gallery);
+
+    }
+
+</script>
+
 <div class="container-fluid">
 
-    <div class="d-flex position-raletive">
+    <div class="d-flex">
+
         <div class="phone-frame">
             <div class="frame-top">
                 <div class="text-dark px-4 time d-flex align-items-center">{{ date('H:i') }}</div>
@@ -673,7 +749,21 @@
                                 <span>ย้อนกลับ</span>
                             </button>
 
-                            <img id="preview_photo" src="{{ $data_appointment->photo }}" alt="" style="width: 100%;">
+                            @php
+                                $check_dnone_photo_cover = '';
+                                $check_dnone_video_main = '';
+
+                                if( $data_news->select_content_show == 'video' ){
+                                    $check_dnone_photo_cover = 'd-none';
+                                }
+                                else{
+                                    $check_dnone_video_main = 'd-none';
+                                }
+                            @endphp
+
+                            <img id="preview_photo_cover" src="{{ $data_news->photo_cover }}" class="{{ $check_dnone_photo_cover }}" alt="" style="width: 100%;">
+
+                            <video id="preview_video_main" src="{{ $data_news->video }}" class="{{ $check_dnone_video_main }}" controls loop muted style="width:100%;border-radius: 10px; max-width: 700px;margin-top:5px!important;" class=""></video>
                             
                             <div class="px-4 d-flex justify-content-between">
 
@@ -684,8 +774,8 @@
                                         </div>
                                         @php
                                             $count = 0;
-                                            if( !empty($data_appointment->user_like) ){
-                                                $array = json_decode($data_appointment->user_like, true);
+                                            if( !empty($data_news->user_like) ){
+                                                $array = json_decode($data_news->user_like, true);
                                                 $count = count($array);
                                             }
                                         @endphp
@@ -710,15 +800,21 @@
                             </div>
                             <div class="title-training px-4">
                                 <div>
-                                    <p id="preview_title" class="mb-2" style="color: #003781;font-size: 20px;font-style: normal;font-weight: 600;line-height: normal;">{{$data_appointment->title}}</p>
+                                    <p id="preview_title" class="mb-2" style="color: #003781;font-size: 20px;font-style: normal;font-weight: 600;line-height: normal;">{{$data_news->title}}</p>
                                 </div>
                                 <div class="hastag-training">
-                                    <span id="preview_type_article">#{{ $data_appointment->type_article }}</span>
+                                    <span id="preview_name_type">#{{ $data_news->name_type }}</span>
                                 </div>
                                 <div class="rating-training mt-2">
-                                    <span style="color: #EDB529;font-size: 14px;font-style: normal;font-weight: 600;line-height: normal;margin-right: 5px;">{{$data_appointment->sum_rating ? $data_appointment->sum_rating : '0'}}</span>
-                                    <i data-star="{{$data_appointment->sum_rating ? $data_appointment->sum_rating : '0'}}" class="star-rating"></i>
+                                    <span style="color: #EDB529;font-size: 14px;font-style: normal;font-weight: 600;line-height: normal;margin-right: 5px;">{{$data_news->sum_rating ? $data_news->sum_rating : '0'}}</span>
+                                    <i data-star="{{$data_news->sum_rating ? $data_news->sum_rating : '0'}}" class="star-rating"></i>
                                 </div>
+
+                                @php
+                                    $date = new DateTime($data_news->updated_at);
+                                    $formatted_updated_at = $date->format('d/m/Y  |  g.i A');
+                                @endphp
+                                <p class="mt-3 mb-3">Update : {{ $formatted_updated_at }}</p>
                             </div>
                         </div>
                         <style>
@@ -792,105 +888,82 @@
                         </style>
                         <div class="col-12 px-4 mb-5">
                             
-                            <!-- if ถ้ามีเวลาเข้าร่วม -->
-                            <div class="d-flex align-items-center my-2 mt-3">
-                                <i class="fa-light fa-calendar-days me-2" style="color: #0E2B81;font-size:18px"></i>
-                                <span id="text_date_start" style="color: #0E2B81;font-size: 12px;font-style: normal;font-weight: 600;">
-                                    <!--  -->
-                                </span>
-                            </div>
-                            <!-- endif -->
-
-                            <!-- if ถ้ามีลิงค์เข้าร่วมสอบ -->
-                                <a id="preview_link_out" href="{{ $data_appointment->link_out }}" target="bank" class="btn w-100 btn-join-meet my-2">
-                                    <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" fill="none">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M23 0H3.19412V3.19419H4.47192V1.27768H21.7222V15.9709H8.05806V17.2486H23V0ZM3.83302 8.30489C3.32468 8.30489 2.83716 8.10297 2.47771 7.74356C2.11826 7.38414 1.91632 6.89667 1.91632 6.38838C1.91632 5.88008 2.11826 5.39261 2.47771 5.0332C2.83716 4.67378 3.32468 4.47186 3.83302 4.47186C4.34136 4.47186 4.82887 4.67378 5.18833 5.0332C5.54778 5.39261 5.74972 5.88008 5.74972 6.38838C5.74972 6.89667 5.54778 7.38414 5.18833 7.74356C4.82887 8.10297 4.34136 8.30489 3.83302 8.30489ZM2.53541 9.58895C1.70548 9.58895 1.04869 9.96203 0.618715 10.5383C0.216846 11.0781 0.0468979 11.7457 0.008564 12.3621C-0.028986 12.9945 0.057169 13.6282 0.262207 14.2276C0.453876 14.7833 0.7778 15.3583 1.27742 15.7525V22.0399C1.27696 22.2807 1.36715 22.5128 1.53005 22.6901C1.69296 22.8674 1.91664 22.9768 2.1566 22.9967C2.39657 23.0166 2.63522 22.9454 2.8251 22.7974C3.01497 22.6493 3.14215 22.4352 3.18134 22.1977L4.00552 17.2486H4.19591L5.12743 22.2162C5.17166 22.4507 5.30177 22.6602 5.49232 22.8038C5.68286 22.9474 5.92013 23.0148 6.15772 22.9927C6.39531 22.9707 6.61613 22.8608 6.77699 22.6846C6.93785 22.5084 7.02719 22.2785 7.02751 22.0399V12.9256C7.15528 13.1202 7.28136 13.3159 7.40574 13.5127L7.45558 13.5913L7.46836 13.6117L7.47155 13.6175C7.55766 13.7557 7.67758 13.8697 7.82 13.9487C7.96242 14.0278 8.12263 14.0692 8.28551 14.0691H11.48C11.7342 14.0691 11.9779 13.9682 12.1577 13.7885C12.3374 13.6087 12.4384 13.365 12.4384 13.1109C12.4384 12.8567 12.3374 12.613 12.1577 12.4333C11.9779 12.2536 11.7342 12.1526 11.48 12.1526H8.81132C8.65607 11.9124 8.45162 11.6007 8.23695 11.2876C8.01334 10.9612 7.76672 10.6156 7.54694 10.3447C7.44024 10.2125 7.32077 10.0745 7.20066 9.96139C7.14188 9.90582 7.0601 9.83363 6.96043 9.76974C6.78454 9.6543 6.5792 9.59177 6.36881 9.58959L2.53541 9.58895Z" fill="white"/>
-                                    </svg>
-                                    <!-- if ตารางสอบ -->
-                                    เข้าร่วม{{ $data_appointment->type }}
-                                    <!--  else-->
-                                    <!-- เข้าร่วมอบรม -->
-                                    <!-- endif -->
-                                </a>
-                            <!-- endif -->
-
-                            <!-- if ถ้ามี รายละเอียดการเข้าอบรม -->
-                            <div class="my-3">
-                                <p style="color: #003781;font-size: 15px;font-style: normal;font-weight: 600;line-height: normal;">
-                                    รายละเอียดการเข้า<span id="preview_type">{{ $data_appointment->type }}</span>
-                                </p>
-                                <div class="d-flex ">
-                                    <i class="fa-light fa-location-dot me-2"></i>
-                                    <div>
-                                        <div id="preview_location_detail" class="m-0">
-                                            {!! $data_appointment->location_detail !!}
-                                        </div>
-                                        <a id="preview_link_map" href="{{ $data_appointment->link_map }}" target="bank" id="link-to-copy" style="color: #0872FF;font-size: 10px;font-style: normal;font-weight: 600;line-height: normal;text-decoration-line: underline;">
-                                            {{ $data_appointment->link_map }}
-                                        </a>
-                                        <i style="color: #9E9E9E;" class="fa-regular fa-copy mx-2"></i>
-                                    </div>
-                                    <div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- endif -->
-
-                            <script>
-                                function create_text_date_start(){
-
-                                    // Friday 19 April 2024 10:30 น. - Friday 19 April 2024 12:30 น.
-                                    let text_date_start = document.querySelector('#text_date_start');
-
-                                    let all_day = "{{ $data_appointment->all_day }}";
-                                    let date_start = "{{ $data_appointment->date_start }}";
-                                    let time_start = "{{ $data_appointment->time_start }}";
-                                    let date_end = "{{ $data_appointment->date_end }}";
-                                    let time_end = "{{ $data_appointment->time_end }}";
-
-                                    if (all_day === 'Yes') {
-                                        // Case 1: all_day = Yes
-                                        let formattedDate = formatDate_for_appointment(date_start);
-                                        text_date_start.innerHTML = formattedDate;
-                                    } else if (!all_day && date_start === date_end) {
-                                        // Case 2: all_day = null and date_start equals date_end
-                                        let formattedDate = formatDate_for_appointment(date_start);
-                                        let formattedTime = formatTime_for_appointment(time_start) + ' - ' + formatTime_for_appointment(time_end);
-                                        text_date_start.innerHTML = formattedDate + ' ' + formattedTime;
-                                    } else if (!all_day && date_start !== date_end) {
-                                        // Case 3: all_day = null and date_start not equals date_end
-                                        let formattedStartDate = formatDate_for_appointment(date_start);
-                                        let formattedEndDate = formatDate_for_appointment(date_end);
-                                        let formattedStartTime = formatTime_for_appointment(time_start);
-                                        let formattedEndTime = formatTime_for_appointment(time_end);
-                                        text_date_start.innerHTML = `${formattedStartDate} ${formattedStartTime} - ${formattedEndDate} ${formattedEndTime}`;
-                                    }
-
-                                }
-
-                                function formatDate_for_appointment(dateString) {
-                                    let date = new Date(dateString);
-                                    let options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
-                                    return date.toLocaleDateString('en-US', options);
-                                }
-
-                                function formatTime_for_appointment(timeString) {
-                                    // Assuming timeString is in HH:mm format
-                                    let [hours, minutes] = timeString.split(':');
-                                    let period = hours >= 12 ? 'น.' : 'น.';
-                                    hours = hours % 12 || 12; // Convert hours to 12-hour format
-                                    return `${hours}:${minutes} ${period}`;
-                                }
-                            </script>
-
                             <div class="detail-training">
                                 <div id="preview_detail" class="mt-2">
-                                    {!!$data_appointment->detail!!}
+                                    {!!$data_news->detail!!}
                                 </div>
 
+                                @if( !empty($data_news->photo_gallery) )
+
+                                    @php
+                                        $urls = $data_news->photo_gallery;
+                                        $urlArray = explode(',', $urls);
+                                        $check_photo_gallery_1 = 0 ;
+                                    @endphp
+
+                                    <img id="preview_photo_gallery_main" src="{{ $urlArray[0] }}" class="preview-img" alt="">
+
+                                    <div id="preview_photo_gallery" class="row mb-3 row-cols-auto g-2 justify-content-start mt-3">
+                                        @foreach($urlArray as $item_img)
+                                            @if( $check_photo_gallery_1 == 0 )
+                                                <div class="group-img p-1">
+                                                    <img src="{{ $item_img }}" class="img-news border rounded active" >
+                                                    <i class="fa-light fa-eye icon-preview"></i>
+                                                </div>
+                                                @php $check_photo_gallery_1 = $check_photo_gallery_1 + 1 @endphp
+                                            @else
+                                                <div class="group-img p-1">
+                                                    <img src="{{ $item_img }}" class="img-news border rounded" >
+                                                    <i class="fa-light fa-eye icon-preview"></i>
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    </div>
+
+                                    <script>
+                                        const imgNewsElements = document.querySelectorAll('.img-news');
+
+                                        imgNewsElements.forEach(imgNews => {
+                                            imgNews.addEventListener('click', function handleClick() {
+                                                // Remove the 'active' class from all previously clicked images
+                                                imgNewsElements.forEach(otherImg => otherImg.classList.remove('active'));
+
+                                                // Add the 'active' class to the clicked image
+                                                this.classList.add('active');
+
+                                                // Update the 'src' attribute of the preview image
+                                                const previewImg = document.querySelector('.preview-img');
+                                                previewImg.src = this.src;
+                                            });
+                                        });
+                                    </script>
+
+                                @endif
+
+                                @if( !empty($data_news->video))
+                                    <div id="div_tag_show_preview_video">
+                                        <div class="d-flex justify-content-end w-100 mt-4 mb--2" style="color: #989898;">
+                                            <i class="fa-regular fa-clock me-2"></i>
+                                            <span id="videoDuration"></span>
+                                        </div>
+                                        <div class="d-flex justify-content-center w-100">
+                                            <video id="preview_video" src="{{ $data_news->video }}" controls loop muted style="width:100%;border-radius: 10px; max-width: 700px;margin-top:5px!important;" class="video-preview"></video>
+                                        </div>
+                                    </div>
+                                @else
+                                    <div id="div_tag_show_preview_video" class="d-none">
+                                        <div class="d-flex justify-content-end w-100 mt-4 mb--2" style="color: #989898;">
+                                            <i class="fa-regular fa-clock me-2"></i>
+                                            <span id="videoDuration"></span>
+                                        </div>
+                                        <div class="d-flex justify-content-center w-100">
+                                            <video id="preview_video" src="" controls loop muted style="width:100%;border-radius: 10px; max-width: 700px;margin-top:5px!important;" class="video-preview"></video>
+                                        </div>
+                                    </div>
+                                @endif
+
                                 <div class="w-100 mt-3">
-                                    <p class="mb-2 mt-3" style="color: #989898;font-size: 14px;font-style: normal;font-weight: 500;line-height: normal;">ถูกใจหลักสูตรนี้?</p>
+                                    <p class="mb-2 mt-3" style="color: #989898;font-size: 14px;font-style: normal;font-weight: 500;line-height: normal;">ถูกใจข่าวนี้?</p>
 
                                     <div class="d-flex justify-content-end ">
                                         <button class="btn btn-like  me-1">
@@ -1045,7 +1118,7 @@
                 <div class="card-title d-flex align-items-center justify-content-between">
                     <div class="d-flex">
                         <h5 class="mb-0 text-primary">
-                            แก้ไขตารางอบรม/สอบ
+                            แก้ไขข่าว
                         </h5>
                     </div>
                     <button id="btn_cf_edit_data" class="btn btn-success float-end d-flex align-items-center" type="button" disabled onclick="cf_edit_data();">
@@ -1058,7 +1131,7 @@
 
                 <div class="row">
                     <div class="col-4">
-                        @if( $data_appointment->status == 'Yes' )
+                        @if( $data_news->status == 'Yes' )
                             <h4>
                                 Status : <span id="preview_status" class="text-success">Active</span>
                             </h4>
@@ -1075,16 +1148,16 @@
                         @php
                             $text_datetime_start_to_end = '';
 
-                            if( !empty($data_appointment->datetime_end) ){
-                                $datetime_start = Carbon\Carbon::parse($data_appointment->datetime_start);
+                            if( !empty($data_news->datetime_end) ){
+                                $datetime_start = Carbon\Carbon::parse($data_news->datetime_start);
                                 $datetime_start = $datetime_start->format('d/m/Y H:i  น.');
 
-                                $datetime_end = Carbon\Carbon::parse($data_appointment->datetime_end);
+                                $datetime_end = Carbon\Carbon::parse($data_news->datetime_end);
                                 $datetime_end = $datetime_end->format('d/m/Y H:i น.');
 
                                 $text_datetime_start_to_end = $datetime_start . " - " . $datetime_end;
                             }else{
-                                $datetime_start = Carbon\Carbon::parse($data_appointment->datetime_start);
+                                $datetime_start = Carbon\Carbon::parse($data_news->datetime_start);
                                 $datetime_start = $datetime_start->format('d/m/Y H:i น.');
 
                                 $text_datetime_start_to_end = $datetime_start ;
@@ -1100,201 +1173,141 @@
 
                 <div class="row mb-3">
                     <label for="title" class="col-sm-2 col-form-label">
-                        ชื่อ
+                        ชื่อข่าว
                     </label>
                     <div class="col-sm-10">
-                        <input class="form-control" name="title" type="text" id="title" value="{{ isset($data_appointment->title) ? $data_appointment->title : ''}}" placeholder="เพิ่มชื่อ" oninput="show_preview_data('title',event);" onchange="show_preview_date_start_end();">
+                        <input class="form-control" name="title" type="text" id="title" value="{{ isset($data_news->title) ? $data_news->title : ''}}" placeholder="เพิ่มชื่อ" oninput="show_preview_data('title',event);" onchange="show_preview_date_start_end();">
                         {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="for_rank" class="col-sm-2 col-form-label">
-                        สอบ / อบรม
+                        ประเภท
                     </label>
                     <div class="col-sm-10">
-                        <select class="form-select" name="type" type="text" id="type" value="" onchange="show_preview_data('type',event);show_preview_date_start_end();">
-                            <option value="{{ $data_appointment->type }}" selected>
-                                {{ $data_appointment->type }}
-                            </option>
-                            @if($data_appointment->type == "สอบ")
-                                <option value="อบรม">อบรม</option>
-                            @else
-                                <option value="สอบ">สอบ</option>
-                            @endif
-                        </select>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <label for="for_rank" class="col-sm-2 col-form-label">
-                        ประเภทหลักสูตร
-                    </label>
-                    <div class="col-sm-10">
-                        <select class="form-select" name="type_article" type="text" id="type_article" value="" onchange="document.querySelector('#training_type_id').value = document.querySelector('#type_article').value ;show_preview_data('type_article',event);show_preview_date_start_end();">
-                            @foreach($type_article as $item)
-                                @if($data_appointment->training_type_id == $item->id)
-                                    <option selected value="{{ $item->id }}">{{ $item->type_article }}</option>
+                        <select class="form-select" name="name_type" type="text" id="name_type" value="" onchange="document.querySelector('#news_type_id').value = document.querySelector('#name_type').value ;show_preview_data('name_type',event);show_preview_date_start_end();">
+                            @foreach($name_type as $item)
+                                @if($data_news->news_type_id == $item->id)
+                                    <option selected value="{{ $item->id }}">{{ $item->name_type }}</option>
                                 @else
-                                    <option value="{{ $item->id }}">{{ $item->type_article }}</option>
+                                    <option value="{{ $item->id }}">{{ $item->name_type }}</option>
                                 @endif
                             @endforeach
                         </select>
-                        <input class="form-control d-none" name="training_type_id" type="text" id="training_type_id" value="{{ isset($data_appointment->training_type_id) ? $data_appointment->training_type_id : ''}}" readonly>
+                        <input class="form-control d-none" name="news_type_id" type="text" id="news_type_id" value="{{ isset($data_news->news_type_id) ? $data_news->news_type_id : ''}}" readonly>
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="appointment_area_id" class="col-sm-2 col-form-label">
-                        พื้นที่
+                    <label for="title" class="col-sm-2 col-form-label">
+                        แสดงผล cover
                     </label>
                     <div class="col-sm-10">
-                        <select class="form-select" name="appointment_area_id" type="text" id="appointment_area_id" value="" onchange="show_preview_date_start_end();">
-                            @foreach($appointment_area as $item_area)
-                                @if($item_area->id == $data_appointment->appointment_area_id )
-                                <option value="{{ $item_area->id }}" selected>
-                                    {{ $item_area->area }} - {{ $item_area->sub_area }}
-                                </option>
-                                @else
-                                <option value="{{ $item_area->id }}">
-                                    {{ $item_area->area }} - {{ $item_area->sub_area }}
-                                </option>
-                                @endif
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <label for="link_out" class="col-sm-2 col-form-label">
-                        ลิงก์เข้าร่วมสอบ
-                    </label>
-                    <div class="col-sm-10">
-                        <input class="form-control" name="link_out" type="text" id="link_out" value="{{ $data_appointment->link_out }}" placeholder="เพิ่มลิงก์เข้าร่วมสอบ" onchange="show_preview_data('link_out',event);show_preview_date_start_end();">
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <label for="" class="col-sm-2 col-form-label">
-                        วันที่ของกิจกรรม
-                    </label>
-                    <div class="col-sm-6 mb-2">
-                        <label>วันเริ่ม</label>
-                        <input class="form-control" type="date" name="date_start"  id="date_start" value="{{ $data_appointment->date_start }}" onchange="change_date_time_item();">
-                        @if( $data_appointment->all_day == "Yes" )
-                        <div id="div_not_all_day" class="row d-none">
-                        @else
-                        <div id="div_not_all_day" class="row">
-                        @endif
-                            <div class="col-sm-12 mt-2 mb-2">
-                                <label>เวลาเริ่ม</label>
-                                <input class="form-control" type="time" name="time_start"  id="time_start" value="{{ $data_appointment->time_start }}" onchange="change_date_time_item();">
-                            </div>
-                            <div class="col-sm-12 mt-3 mb-2">
-                                <label>วันสิ้นสุด</label>
-                                <input class="form-control" type="date" name="date_end"  id="date_end" value="{{ $data_appointment->date_end }}" onchange="change_date_time_item();">
-                            </div>
-                            <div class="col-sm-12 mt-2 mb-2">
-                                <label>เวลาสิ้นสุด</label>
-                                <input class="form-control" type="time" name="time_end"  id="time_end" value="{{ $data_appointment->time_end }}" onchange="change_date_time_item();">
+                        <div class="mydict">
+                            <div>
+                                <label>
+                                    <input type="radio" name="select_select_content_show" value="photo" checked="" onchange="check_select_select_content_show();">
+                                    <span>รูปภาพ</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="select_select_content_show" value="video" onchange="check_select_select_content_show();">
+                                    <span>วิดีโอ</span>
+                                </label>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-4" >
-                        <div class="checkbox-wrapper-46 mt-4">
-                          <input type="text" id="all_day" name="all_day" class="d-none" value="{{ $data_appointment->all_day }}">
-                          @if( $data_appointment->all_day == "Yes" )
-                          <input checked type="checkbox" id="check_all_day" class="inp-cbx" onclick="change_select_all_day();">
-                          @else
-                          <input type="checkbox" id="check_all_day" class="inp-cbx" onclick="change_select_all_day();">
-                          @endif
-                          <label for="check_all_day" class="cbx"
-                            ><span>
-                              <svg viewBox="0 0 12 10" height="10px" width="12px">
-                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline></svg></span
-                            ><span>ทั้งวัน</span>
-                          </label>
-                        </div>
+                        <input type="text" name="select_content_show" id="select_content_show" class="d-none" value="{{ $data_news->select_content_show }}">
                     </div>
                 </div>
                 <script>
-                    function change_select_all_day(){
-                        let check_all_day = document.querySelector('#check_all_day');
-                        if(check_all_day.checked){
-                            // console.log('Yes');
-                            document.querySelector('#time_start').value = '';
-                            document.querySelector('#date_end').value = '';
-                            document.querySelector('#time_end').value = '';
-                            document.querySelector('#all_day').value = 'Yes';
+                    function check_select_select_content_show() {
+                        let select_select_content_show = document.querySelectorAll('input[name="select_select_content_show"]');
+                        let select_select_content_show_value = "";
+                        select_select_content_show.forEach(select_select_content_show => {
+                            if (select_select_content_show.checked) {
+                                select_select_content_show_value = select_select_content_show.value;
+                            }
+                        })
 
-                            document.querySelector('#div_not_all_day').classList.add('d-none');
-                        }
-                        else{
-                            // console.log('No');
-                            document.querySelector('#all_day').value = '';
-                            document.querySelector('#div_not_all_day').classList.remove('d-none');
-                        }
+                        document.querySelector('#select_content_show').value = select_select_content_show_value;
 
-                        change_date_time_item();
-                    }
+                        let video = document.querySelector('#video');
+                        let select_video = document.querySelector('#select_video');
+                        let select_content_show = document.querySelector('#select_content_show');
 
-                    function change_date_time_item(){
-                        // Friday 19 April 2024 10:30 น. - Friday 19 April 2024 12:30 น.
-                        let text_date_start = document.querySelector('#text_date_start');
-
-                        let all_day = document.querySelector('#all_day').value;
-                        let date_start = document.querySelector('#date_start').value;
-                        let time_start = document.querySelector('#time_start').value;
-                        let date_end = document.querySelector('#date_end').value;
-                        let time_end = document.querySelector('#time_end').value;
-
-                        if (all_day === 'Yes') {
-                            // Case 1: all_day = Yes
-                            let formattedDate = formatDate_for_appointment(date_start);
-                            text_date_start.innerHTML = formattedDate;
-                        } else if (!all_day && date_start === date_end) {
-                            // Case 2: all_day = null and date_start equals date_end
-                            let formattedDate = formatDate_for_appointment(date_start);
-                            let formattedTime = formatTime_for_appointment(time_start) + ' - ' + formatTime_for_appointment(time_end);
-                            text_date_start.innerHTML = formattedDate + ' ' + formattedTime;
-                        } else if (!all_day && date_start !== date_end) {
-                            // Case 3: all_day = null and date_start not equals date_end
-                            let formattedStartDate = formatDate_for_appointment(date_start);
-                            let formattedEndDate = formatDate_for_appointment(date_end);
-                            let formattedStartTime = formatTime_for_appointment(time_start);
-                            let formattedEndTime = formatTime_for_appointment(time_end);
-                            text_date_start.innerHTML = `${formattedStartDate} ${formattedStartTime} - ${formattedEndDate} ${formattedEndTime}`;
+                        if(!video.value && select_content_show.value == 'video'){
+                            if(!select_video.value && select_content_show.value == 'video'){
+                                document.querySelector('#div_alert_add_video').classList.remove('d-none');
+                            }else{
+                                document.querySelector('#div_alert_add_video').classList.add('d-none');
+                            }
+                        }else{
+                            document.querySelector('#div_alert_add_video').classList.add('d-none');
                         }
 
                         show_preview_date_start_end();
+
+                        let preview_photo_cover = document.querySelector('#preview_photo_cover');
+                        let preview_video_main = document.querySelector('#preview_video_main');
+
+                        if (select_content_show.value == 'video') {
+                            preview_video_main.classList.remove('d-none');
+                            preview_photo_cover.classList.add('d-none');
+
+                            if(select_video.files[0]){
+                                let file = select_video.files[0];
+                                preview_video_main.src = URL.createObjectURL(file);
+                            }
+                        }
+                        else if (select_content_show.value == 'photo'){
+                            preview_video_main.classList.add('d-none');
+                            preview_photo_cover.classList.remove('d-none');
+                        }
+
                     }
                 </script>
-                <div class="row mb-3">
-                    <label for="location_detail" class="col-sm-2 col-form-label">
-                        สถานที่
-                    </label>
-                    <div class="col-sm-10 location_detail">
-                        <textarea class="form-control location_detail" rows="3" name="location_detail" type="textarea" id="location_detail" placeholder="เพิ่มรายละเอียดสถานที่">{{ isset($data_appointment->location_detail) ? $data_appointment->location_detail : ''}}</textarea>
 
-                        <textarea class="form-control d-none" rows="5" name="for_location_detail" type="textarea" id="for_location_detail" placeholder="เพิ่มรายละเอียดเนื้อหา">{{ isset($data_appointment->location_detail) ? $data_appointment->location_detail : ''}}</textarea>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <label for="link_map" class="col-sm-2 col-form-label">
-                        Google map
+                <div id="div_alert_add_video" class="row mb-3 d-none">
+                    <label for="" class="col-sm-2 col-form-label">
+                        <!--  -->
                     </label>
                     <div class="col-sm-10">
-                        <input class="form-control" name="link_map" type="text" id="link_map" value="{{ $data_appointment->link_map }}" placeholder="เพิ่มลิงก์ Google map" onchange="show_preview_data('link_map',event);show_preview_date_start_end();">
+                        <span class="text-danger">
+                            กรุณาเพิ่มวิดีโอ
+                        </span>
                     </div>
                 </div>
+
                 <div class="row mb-3">
                     <label for="" class="col-sm-2 col-form-label">
-                        รูปภาพ
+                        รูปภาพ / วิดีโอ
                     </label>
                     <div class="col-sm-10">
                         <div class="d-flex">
                             <button type="button" class="btn btn-primary me-2" onclick="document.querySelector('#select_photo').click();">
                                 <i class="fa-solid fa-image"></i> เลือกรูปภาพ
                             </button>
+                            <button type="button" class="btn btn-danger mx-2" onclick="document.querySelector('#select_video').click();">
+                                <i class="fa-duotone fa-photo-film"></i> เลือกวิดีโอ
+                            </button>
                         </div>
 
+                        <input class="form-control d-none" name="select_video" type="file" id="select_video" accept="video/*" onchange="show_preview_date_start_end();check_select_select_content_show()">
+                        <input class="form-control d-none" name="video" type="text" id="video" value="{{ isset($data_news->video) ? $data_news->video : ''}}">
+
                         <input class="form-control d-none" name="select_photo" type="file" id="select_photo" accept="image/*" onchange="show_preview_date_start_end();">
-                        <input class="form-control d-none" name="photo" type="text" id="photo" value="{{ isset($data_appointment->photo) ? $data_appointment->photo : ''}}">
+                        <input class="form-control d-none" name="photo_cover" type="text" id="photo_cover" value="{{ isset($data_news->photo_cover) ? $data_news->photo_cover : ''}}">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="" class="col-sm-2 col-form-label">
+                        Photo Gallery
+                    </label>
+                    <div class="col-sm-10">
+                        <div class="d-flex">
+                            <button type="button" class="btn btn-warning me-2" onclick="showPhotoGallery();document.querySelector('#btn_Modal_showPhotoGallery').click();">
+                                <i class="fa-solid fa-images"></i> จัดการ Photo Gallery
+                            </button>
+                        </div>
+                        <textarea class="form-control d-" rows="5" name="photo_gallery" type="textarea" id="photo_gallery">{{ isset($data_news->photo_gallery) ? $data_news->photo_gallery : ''}}</textarea>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -1302,9 +1315,9 @@
                         รายละเอียด
                     </label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" rows="5" name="detail" type="textarea" id="detail" placeholder="เพิ่มรายละเอียดเนื้อหา">{{ isset($data_appointment->detail) ? $data_appointment->detail : ''}}</textarea>
+                        <textarea class="form-control" rows="5" name="detail" type="textarea" id="detail" placeholder="เพิ่มรายละเอียดเนื้อหา">{{ isset($data_news->detail) ? $data_news->detail : ''}}</textarea>
 
-                        <textarea class="form-control d-none" rows="5" name="for_detail" type="textarea" id="for_detail" placeholder="เพิ่มรายละเอียดเนื้อหา">{{ isset($data_appointment->detail) ? $data_appointment->detail : ''}}</textarea>
+                        <textarea class="form-control d-none" rows="5" name="for_detail" type="textarea" id="for_detail" placeholder="เพิ่มรายละเอียดเนื้อหา">{{ isset($data_news->detail) ? $data_news->detail : ''}}</textarea>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -1313,7 +1326,7 @@
                     </label>
                     @php
                         $check_status = '';
-                        if( $data_appointment->status == 'Yes' ){
+                        if( $data_news->status == 'Yes' ){
                             $check_status = 'checked';
                         }
                     @endphp
@@ -1325,7 +1338,7 @@
                                 <span class="right">on</span>
                             </span>
                         </label>
-                        <input class="form-control d-none" name="status" type="text" id="status" value="{{ isset($data_appointment->status) ? $data_appointment->status : ''}}" readonly="">
+                        <input class="form-control d-none" name="status" type="text" id="status" value="{{ isset($data_news->status) ? $data_news->status : ''}}" readonly="">
                         
                     </div>
                 </div>
@@ -1339,13 +1352,13 @@
                                 <label class="col-form-label mb-2">
                                     เริ่มต้น <span class="text-danger">*</span>
                                 </label>
-                                <input type="datetime-local" name="datetime_start" id="datetime_start" class="form-control" value="{{ isset($data_appointment->datetime_start) ? $data_appointment->datetime_start : ''}}" required onchange="check_date_input_start();show_preview_date_start_end();">
+                                <input type="datetime-local" name="datetime_start" id="datetime_start" class="form-control" value="{{ isset($data_news->datetime_start) ? $data_news->datetime_start : ''}}" required onchange="check_date_input_start();show_preview_date_start_end();">
                             </div>
                             <div class="col-6">
                                 <label class="col-form-label mb-2">
                                     สิ้นสุด <span class="text-danger">(สามารถเว้นว่างได้ หากไม่มีกำหนดสิ้นสุด)</span>
                                 </label>
-                                <input type="datetime-local" name="datetime_end" id="datetime_end" class="form-control" value="{{ isset($data_appointment->datetime_end) ? $data_appointment->datetime_end : ''}}" onchange="check_datetime_end();">
+                                <input type="datetime-local" name="datetime_end" id="datetime_end" class="form-control" value="{{ isset($data_news->datetime_end) ? $data_news->datetime_end : ''}}" onchange="check_datetime_end();">
                             </div>
                         </div>
                     </div>
@@ -1401,28 +1414,46 @@
     });
 
     document.addEventListener('DOMContentLoaded', (event) => {
-        create_text_date_start();
+        duration_video();
     });
+
+    function duration_video(){
+        if(document.getElementById('preview_video')){
+            var video = document.getElementById('preview_video');
+            video.addEventListener('loadedmetadata', function() {
+                var duration = video.duration;
+                var hours = Math.floor(duration / 3600);
+                var minutes = Math.floor((duration % 3600) / 60);
+                var seconds = Math.floor(duration % 60);
+
+                var formattedDuration = "";
+                if (hours > 0) {
+                    formattedDuration += hours + " ชั่วโมง ";
+                }
+                if (minutes > 0) {
+                    formattedDuration += minutes + " นาที ";
+                }
+                if (seconds > 0 || (hours === 0 && minutes === 0)) { // เพื่อให้แสดงวินาทีเสมอถ้าไม่มีชั่วโมงและนาที
+                    formattedDuration += seconds + " วินาที";
+                }
+
+                document.getElementById('videoDuration').innerText = formattedDuration;
+            });
+        }
+    }
 
     function show_preview_data(tag ,event){
         let focus_tag = document.querySelector('#preview_'+tag);
         let data_new = document.querySelector('#'+tag);
 
-        if(tag == 'type_article'){
+        if(tag == 'name_type'){
             const selectElement = event.target;
             const selectedOption = selectElement.options[selectElement.selectedIndex];
             const selectedText = selectedOption.text;
 
             focus_tag.innerHTML = '#'+selectedText ;
         }
-        else if(tag == 'link_out'){
-            focus_tag.href = data_new.value;
-        }
-        else if(tag == 'link_map'){
-            focus_tag.href = data_new.value;
-            focus_tag.innerHTML = data_new.value;
-        }
-        else if(tag !== 'photo' || tag !== 'video'){
+        else if(tag !== 'photo_cover' || tag !== 'video'){
             // console.log(data_new);
             focus_tag.innerHTML = data_new.value ;
         }
@@ -1454,7 +1485,19 @@
         }
 
         if(show_start){
-            document.querySelector('#btn_cf_edit_data').disabled = false ;
+            let video = document.querySelector('#video');
+            let select_video = document.querySelector('#select_video');
+            let select_content_show = document.querySelector('#select_content_show');
+
+            if(!video.value && select_content_show.value == 'video'){
+                if(!select_video.value && select_content_show.value == 'video'){
+                    document.querySelector('#btn_cf_edit_data').disabled = true ;
+                }else{
+                    document.querySelector('#btn_cf_edit_data').disabled = false ;
+                }
+            }else{
+                document.querySelector('#btn_cf_edit_data').disabled = false ;
+            }
         }
         else{
             document.querySelector('#btn_cf_edit_data').disabled = true ;
@@ -1550,10 +1593,14 @@
     function cf_edit_data(){
 
         let select_photo = document.querySelector('#select_photo').value;
+        let select_video = document.querySelector('#select_video').value;
 
         if(select_photo){
-            let previewContainer = document.getElementById('preview_photo');
+            let previewContainer = document.getElementById('preview_photo_cover');
             uploadBlobToFirebase(previewContainer.src);
+        }
+        else if(select_video){
+            upload_video();
         }
         else{
             save_data();
@@ -1572,7 +1619,7 @@
             let date_now = new Date();
             let Date_for_firebase = formatDate_for_firebase(date_now);
             let name_file = Date_for_firebase + '-Edit-' + title;
-            let storageRef = storage.ref('/appointment/image/' + name_file);
+            let storageRef = storage.ref('/news/image/' + name_file);
 
             let uploadTask = storageRef.put(blob);
 
@@ -1588,11 +1635,17 @@
                     // เมื่ออัพโหลดสำเร็จ
                     uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
                         // console.log(downloadURL);
-                        document.querySelector('#photo').value = downloadURL ;
+                        document.querySelector('#photo_cover').value = downloadURL ;
                         document.querySelector('#select_photo').value = null;
 
-                        save_data();
-                        
+                        let select_video = document.querySelector('#select_video').value;
+
+                        if(select_video){
+                            upload_video();
+                        }
+                        else{
+                            save_data();
+                        }
                     });
                 }
             );
@@ -1601,51 +1654,71 @@
         }
     }
 
+    function upload_video(){
+        let fileInput = document.getElementById('select_video');
+        let file = fileInput.files[0];
+        let title = document.querySelector('#title').value;
+
+        let date_now = new Date();
+        let Date_for_firebase = formatDate_for_firebase(date_now);
+
+        let name_file = Date_for_firebase + '-Edit-' + title ;
+        let storageRef = storage.ref('/news/video/' + name_file);
+
+        let uploadTask = storageRef.put(file);
+
+        uploadTask.on('state_changed', 
+            function(snapshot){
+                // ติดตามความคืบหน้าของการอัพโหลด (optional)
+            }, 
+            function(error) {
+                // กรณีเกิดข้อผิดพลาดในการอัพโหลด
+                console.error('Upload failed:', error);
+            }, 
+            function() {
+                // เมื่ออัพโหลดสำเร็จ
+                uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+                    // ทำอะไรกับ URL ที่ได้รับเช่นการแสดงผลหรือบันทึกลงฐานข้อมูล
+                    // console.log('File available at', downloadURL);
+                    document.querySelector('#video').value = downloadURL ;
+                    document.querySelector('#select_video').value = null;
+
+                    save_data();
+
+                    // ตัวอย่างการแสดง URL บนหน้าเว็บ
+                    // alert('File uploaded successfully. URL: ' + downloadURL);
+                });
+            }
+        );
+    }
+
     function save_data(){
 
         document.querySelector('#span_load_save').classList.remove('d-none');
         document.querySelector('#btn_cf_edit_data').innerHTML = 'กำลังบันทึกข้อมูล..';
 
         let title = document.querySelector('#title').value;
-        let type = document.querySelector('#type').value;
-        let training_type_id = document.querySelector('#training_type_id').value;
-        let appointment_area_id = document.querySelector('#appointment_area_id').value;
-        let link_out = document.querySelector('#link_out').value;
-        let all_day = document.querySelector('#all_day').value;
-        let date_start = document.querySelector('#date_start').value;
-        let time_start = document.querySelector('#time_start').value;
-        let date_end = document.querySelector('#date_end').value;
-        let time_end = document.querySelector('#time_end').value;
-        let location_detail = document.querySelector('#for_location_detail').value;
-        let link_map = document.querySelector('#link_map').value;
+        let news_type_id = document.querySelector('#news_type_id').value;
         let detail = document.querySelector('#for_detail').value;
-        let photo = document.querySelector('#photo').value;
+        let photo_cover = document.querySelector('#photo_cover').value;
+        let video = document.querySelector('#video').value;
         let datetime_start = document.querySelector('#datetime_start').value;
         let datetime_end = document.querySelector('#datetime_end').value;
         let status = document.querySelector('#status').value;
 
         let data_arr = {
-            "id" : "{{ $data_appointment->id }}",
+            "id" : "{{ $data_news->id }}",
             "title" : title,
-            "type" : type,
-            "training_type_id" : training_type_id,
-            "appointment_area_id" : appointment_area_id,
-            "link_out" : link_out,
-            "all_day" : all_day,
-            "date_start" : date_start,
-            "time_start" : time_start,
-            "date_end" : date_end,
-            "time_end" : time_end,
-            "location_detail" : location_detail,
-            "link_map" : link_map,
+            "news_type_id" : news_type_id,
             "detail" : detail,
-            "photo" : photo,
+            "photo_cover" : photo_cover,
+            "video" : video,
             "datetime_start" : datetime_start,
             "datetime_end" : datetime_end,
             "status" : status,
         }; 
 
-        fetch("{{ url('/') }}/api/save_data_edit_appointment", {
+        fetch("{{ url('/') }}/api/save_data_edit_news", {
             method: 'post',
             body: JSON.stringify(data_arr),
             headers: {
@@ -1656,7 +1729,7 @@
         }).then(function(data){
             // console.log(data);
             if(data == 'success'){
-                document.querySelector('#goto_manage_appointment').click();
+                document.querySelector('#goto_manage_news').click();
             }
         }).catch(function(error){
             console.error(error);
@@ -1715,7 +1788,7 @@
 
     function crop_img(){
 
-        let previewContainer = document.getElementById('preview_photo');
+        let previewContainer = document.getElementById('preview_photo_cover');
 
         let canvas = cropper.getCroppedCanvas({
           width: 512,
@@ -1733,6 +1806,15 @@
 
     }
 
+    document.getElementById('select_video').addEventListener('change', function(event) {
+
+        let preview_video = document.querySelector('#preview_video');
+        document.querySelector('#div_tag_show_preview_video').classList.remove('d-none');
+
+        var file = this.files[0];
+        preview_video.src = URL.createObjectURL(file);
+        
+    });
 </script>
 
 <!-- CKEDITOR -->
@@ -1740,9 +1822,7 @@
     div.ck-editor__editable {
       min-height: 200px;
     }
-    .location_detail div.ck-editor__editable{
-      min-height: 100px;
-    }
+
     .ck-powered-by{
         display: none;
     }
@@ -1893,152 +1973,6 @@
     }).catch(error => {
         console.error(error);
     });
-
-    CKEDITOR.ClassicEditor.create(document.getElementById("location_detail"), {
-        // https://ckeditor.com/docs/ckeditor5/latest/features/toolbar/toolbar.html#extended-toolbar-configuration-format
-        toolbar: {
-            items: [
-                'undo', 'redo', '|',
-                'findAndReplace', '|','link', '|',
-                'heading', '|','fontSize', '|',
-                'alignment', 'bold', 'italic', 'strikethrough', 'underline', 'subscript', 'superscript', 'removeFormat', '|',
-                'bulletedList', 'numberedList', 'todoList', '|',
-                'outdent', 'indent', '|',
-                'fontColor', 'highlight', '|',
-                'specialCharacters', 'horizontalLine', '|','exportPDF','exportWord', 
-            ],
-            shouldNotGroupWhenFull: true
-        },
-        // Changing the language of the interface requires loading the language file using the <script> tag.
-        // language: 'es',
-        list: {
-            properties: {
-                styles: true,
-                startIndex: true,
-                reversed: true
-            }
-        },
-        // https://ckeditor.com/docs/ckeditor5/latest/features/headings.html#configuration
-        heading: {
-            options: [
-                { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-                { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
-                { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
-                { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' },
-                { model: 'heading4', view: 'h4', title: 'Heading 4', class: 'ck-heading_heading4' },
-                { model: 'heading5', view: 'h5', title: 'Heading 5', class: 'ck-heading_heading5' },
-                { model: 'heading6', view: 'h6', title: 'Heading 6', class: 'ck-heading_heading6' }
-            ]
-        },
-        // https://ckeditor.com/docs/ckeditor5/latest/features/editor-placeholder.html#using-the-editor-configuration
-        placeholder: '',
-        // https://ckeditor.com/docs/ckeditor5/latest/features/font.html#configuring-the-font-size-feature
-        fontSize: {
-            options: [ 10, 12, 14, 'default', 18, 20, 22 ],
-            supportAllValues: true
-        },
-        // Be careful with the setting below. It instructs CKEditor to accept ALL HTML markup.
-        // https://ckeditor.com/docs/ckeditor5/latest/features/general-html-support.html#enabling-all-html-features
-        htmlSupport: {
-            allow: [
-                {
-                    name: /.*/,
-                    attributes: true,
-                    classes: true,
-                    styles: true
-                }
-            ]
-        },
-        // Be careful with enabling previews
-        // https://ckeditor.com/docs/ckeditor5/latest/features/html-embed.html#content-previews
-        htmlEmbed: {
-            showPreviews: true
-        },
-        // https://ckeditor.com/docs/ckeditor5/latest/features/link.html#custom-link-attributes-decorators
-        link: {
-            decorators: {
-                addTargetToExternalLinks: true,
-                defaultProtocol: 'https://',
-                // toggleDownloadable: {
-                //     mode: 'manual',
-                //     label: 'Downloadable',
-                //     attributes: {
-                //         download: 'file'
-                //     }
-                // }
-            }
-        },
-        // https://ckeditor.com/docs/ckeditor5/latest/features/mentions.html#configuration
-        mention: {
-            feeds: [
-                {
-                    marker: '@',
-                    feed: [
-                        '@apple', '@bears', '@brownie', '@cake', '@cake', '@candy', '@canes', '@chocolate', '@cookie', '@cotton', '@cream',
-                        '@cupcake', '@danish', '@donut', '@dragée', '@fruitcake', '@gingerbread', '@gummi', '@ice', '@jelly-o',
-                        '@liquorice', '@macaroon', '@marzipan', '@oat', '@pie', '@plum', '@pudding', '@sesame', '@snaps', '@soufflé',
-                        '@sugar', '@sweet', '@topping', '@wafer'
-                    ],
-                    minimumCharacters: 1
-                }
-            ]
-        },
-        // The "superbuild" contains more premium features that require additional configuration, disable them below.
-        // Do not turn them on unless you read the documentation and know how to configure them and setup the editor.
-        removePlugins: [
-            // These two are commercial, but you can try them out without registering to a trial.
-            // 'ExportPdf',
-            // 'ExportWord',
-            'AIAssistant',
-            'CKBox',
-            'CKFinder',
-            'EasyImage',
-            // This sample uses the Base64UploadAdapter to handle image uploads as it requires no configuration.
-            // https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/base64-upload-adapter.html
-            // Storing images as Base64 is usually a very bad idea.
-            // Replace it on production website with other solutions:
-            // https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/image-upload.html
-            // 'Base64UploadAdapter',
-            'MultiLevelList',
-            'RealTimeCollaborativeComments',
-            'RealTimeCollaborativeTrackChanges',
-            'RealTimeCollaborativeRevisionHistory',
-            'PresenceList',
-            'Comments',
-            'TrackChanges',
-            'TrackChangesData',
-            'RevisionHistory',
-            'Pagination',
-            'WProofreader',
-            // Careful, with the Mathtype plugin CKEditor will not load when loading this sample
-            // from a local file system (file://) - load this site via HTTP server if you enable MathType.
-            'MathType',
-            // The following features are part of the Productivity Pack and require additional license.
-            'SlashCommand',
-            'Template',
-            'DocumentOutline',
-            'FormatPainter',
-            'TableOfContents',
-            'PasteFromOfficeEnhanced',
-            'CaseChange'
-        ]
-    }).then(editor => {
-        // เพิ่ม event listener สำหรับการเปลี่ยนแปลงใน editor
-        editor.model.document.on('change:data', () => {
-            // console.log('Content has changed:', editor.getData());
-            if(!editor.getData()){
-                document.querySelector('#preview_location_detail').innerHTML = '';
-            }
-            else{
-                document.querySelector('#for_location_detail').value = editor.getData();
-                document.querySelector('#preview_location_detail').innerHTML = editor.getData();
-                show_preview_date_start_end();
-            }
-        });
-    }).catch(error => {
-        console.error('There was a problem initializing the editor:', error);
-    });
-
 </script>
 <!-- END CKEDITOR -->
 @endsection

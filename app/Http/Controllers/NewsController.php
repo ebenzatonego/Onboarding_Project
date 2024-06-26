@@ -678,22 +678,127 @@ class NewsController extends Controller
         $data = [];
 
         if($type == 'all'){
-            // $data['data_appointments'] = Appointment::orderBy('id' , 'DESC')->get();
+
+            // $data['data_news'] = DB::table('news')
+            //     ->join('news_types', 'news_types.id', '=', 'news.news_type_id')
+            //     ->select('news.*', 'news_types.name_type')
+            //     ->orderBy("id", "DESC")
+            //     ->get();
 
             $data['data_news'] = DB::table('news')
                 ->join('news_types', 'news_types.id', '=', 'news.news_type_id')
-                ->select('news.*', 'news_types.name_type')
-                ->orderBy("id", "DESC")
+                ->leftJoin('users', 'users.id', '=', 'news.creator')
+                ->select('news.*', 'news_types.name_type' , 'users.name as name_creator')
+                ->orderByRaw("CASE 
+                        WHEN highlight_number IS NOT NULL THEN 1
+                        ELSE 2
+                        END, 
+                        highlight_number ASC, 
+                        id DESC")
                 ->get();
         }
         else{
-            $data['data_news'] = News::where('news_type_id', $type)
-                ->orderBy("id", "DESC")
+            // $data['data_news'] = News::where('news_type_id', $type)
+            //     ->orderBy("id", "DESC")
+            //     ->get();
+
+            $data['data_news'] = DB::table('news')
+                ->join('news_types', 'news_types.id', '=', 'news.news_type_id')
+                ->leftJoin('users', 'users.id', '=', 'news.creator')
+                ->select('news.*', 'news_types.name_type' , 'users.name as name_creator')
+                ->where('news.news_type_id', $type)
+                ->orderByRaw("CASE 
+                        WHEN highlight_of_type IS NOT NULL THEN 1
+                        ELSE 2
+                        END, 
+                        highlight_of_type ASC, 
+                        id DESC")
                 ->get();
+
             $data_New_type = News_type::where('id', $type)->first();
             $data['name_type'] = $data_New_type->name_type ;
         }
 
         return $data;
     }
+
+    function change_Highlight_news($news_id , $number , $type){
+
+        $data = [];
+
+        if($type == 'all'){
+            $Highlight_number_old = News::where('highlight_number', $number)->first();
+            $Highlight_number_select = News::where('id', $news_id)->first();
+
+            if( !empty($Highlight_number_select->highlight_number) ){
+                $data['old_id_change_to'] = $Highlight_number_select->highlight_number;
+            }
+            else{
+                $data['old_id_change_to'] = null;
+            }
+
+            if( !empty($Highlight_number_old->id) ){
+                $data['old_id'] = $Highlight_number_old->id;
+
+                DB::table('news')
+                    ->where([ 
+                            ['id', $data['old_id']],
+                        ])
+                    ->update([
+                            'highlight_number' => $data['old_id_change_to'],
+                        ]);
+            }
+
+            if($number == 'ว่าง'){
+                $number = null ;
+            }
+
+            DB::table('news')
+                ->where([ 
+                        ['id', $news_id],
+                    ])
+                ->update([
+                        'highlight_number' => $number,
+                    ]);
+        }
+        else{
+            $Highlight_number_old = News::where('news_type_id' , $type)->where('highlight_of_type', $number)->first();
+            $Highlight_number_select = News::where('id', $news_id)->first();
+
+            if( !empty($Highlight_number_select->highlight_of_type) ){
+                $data['old_id_change_to'] = $Highlight_number_select->highlight_of_type;
+            }
+            else{
+                $data['old_id_change_to'] = null;
+            }
+
+            if( !empty($Highlight_number_old->id) ){
+                $data['old_id'] = $Highlight_number_old->id;
+
+                DB::table('news')
+                    ->where([ 
+                            ['id', $data['old_id']],
+                        ])
+                    ->update([
+                            'highlight_of_type' => $data['old_id_change_to'],
+                        ]);
+            }
+
+            if($number == 'ว่าง'){
+                $number = null ;
+            }
+
+            DB::table('news')
+                ->where([ 
+                        ['id', $news_id],
+                    ])
+                ->update([
+                        'highlight_of_type' => $number,
+                    ]);
+        }
+
+        return $data;
+
+    }
+
 }

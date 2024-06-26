@@ -128,6 +128,11 @@ Route::get('/user_click_fav_btn_news/{user_id}/{news_id}/{type}', 'NewsControlle
 Route::get('/update_countTime_newsVideo/{user_id}/{countTime}/{news_id}', 'NewsController@update_countTime_newsVideo');
 Route::get('/get_data_News_type', 'News_typesController@get_data_News_type');
 Route::get('/get_data_news_admin/{type}', 'NewsController@get_data_news_admin');
+Route::get('/get_data_number_menu_of_news/', 'News_typesController@get_data_number_menu_of_news');
+Route::get('/change_Highlight_news/{news_id}/{number}/{type}', 'NewsController@change_Highlight_news');
+Route::get('/change_number_menu_type_news/{type_id}/{number}', 'News_typesController@change_number_menu_type_news');
+Route::get('/delete_news_type/{news_type_id}', 'News_typesController@delete_news_type');
+
 
 // Product
 Route::post('/add_product_type', 'Product_typesController@add_product_type');

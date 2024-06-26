@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
+use App\Models\News;
 use App\Models\News_type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class News_typesController extends Controller
 {
@@ -123,5 +126,65 @@ class News_typesController extends Controller
     function get_data_News_type(){
         $data = News_type::orderBy('number_menu', 'ASC')->get();
         return $data ;
+    }
+
+    function get_data_number_menu_of_news(){
+        $data = News_type::orderByRaw("CASE 
+                WHEN number_menu IS NOT NULL THEN 1
+                ELSE 2
+                END, 
+                number_menu ASC, 
+                id DESC")
+            ->get();
+        return $data ;
+    }
+
+    function change_number_menu_type_news($type_id, $number){
+
+        $number_old = News_type::where('number_menu', $number)->first();
+        $number_select = News_type::where('id', $type_id)->first();
+
+        $data = [];
+
+        if( !empty($number_select->id) ){
+            $data['old_change_to'] = $number_select->number_menu;
+        }
+        else{
+            $data['old_change_to'] = null;
+        }
+
+        if( !empty($number_old->id) ){
+            $data['old_id'] = $number_old->id;
+
+            DB::table('news_types')
+                ->where([ 
+                        ['id', $data['old_id']],
+                    ])
+                ->update([
+                        'number_menu' => $data['old_change_to'],
+                    ]);
+        }
+
+        DB::table('news_types')
+            ->where([ 
+                    ['id', $type_id],
+                ])
+            ->update([
+                    'number_menu' => $number,
+                ]);
+
+        return 'success';
+    }
+
+    function delete_news_type($news_type_id){
+        $data = News_type::where('id', $news_type_id)->first();
+        News::where('news_type_id', $news_type_id)->delete();
+
+        if( !empty($data->id) ){
+            $data->delete();
+        }
+
+        return 'success';
+
     }
 }

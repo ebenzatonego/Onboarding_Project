@@ -248,22 +248,22 @@
                                     </li>
                                     <li>
                                         <img src="{{url('img/icon/icon-car.png')}}" alt="">
-    
+
                                         <span class="ms-2">อยากซื้อบ้าน</span>
                                     </li>
                                     <li>
                                         <img src="{{url('img/icon/icon-car.png')}}" alt="">
-    
+
                                         <span class="ms-2">อยากเก็บเงินลงทุน</span>
                                     </li>
                                     <li>
                                         <img src="{{url('img/icon/icon-car.png')}}" alt="">
-    
+
                                         <span class="ms-2">อยากเตรียมเงินให้ลูก</span>
                                     </li>
                                     <li>
                                         <img src="{{url('img/icon/icon-car.png')}}" alt="">
-    
+
                                         <span class="ms-2">อยากเก็บเงินเกษียณ</span>
                                     </li>
                                 </ul>
@@ -343,31 +343,11 @@
                                 <div class="dropdown_my_goal mt-4" id="dropdown_value">
                                     <div class="select_my_goal">
                                         <label class="label_select_my_goal">ความฝันของคุณมีมูลค่าประมาณเท่าไหร่ ?</label>
-                                        <span class="selected_my_goal">โปรดเลือกมูลค่า</span>
+                                        <span class="selected_my_goal selected_value">โปรดเลือกมูลค่า</span>
                                         <div class="caret_may_goal"></div>
                                     </div>
-                                    <ul class="menu_my_goal">
-                                        <li class="text-center">
-                                            <p class="ms-2">ประมาณ 600,000 บาท</p>
-                                        </li>
-                                        <li class="text-center">
-                                            <p class="ms-2">ประมาณ 800,000 บาท</p>
-                                        </li>
-                                        <li class="text-center">
-                                            <p class="ms-2">ประมาณ 1,000,000 บาท</p>
-                                        </li>
-                                        <li class="text-center">
-                                            <p class="ms-2">ประมาณ 1,500,000 บาท</p>
-                                        </li>
-                                        <li class="text-center">
-                                            <p class="ms-2">ประมาณ 2,000,000 บาท</p>
-                                        </li>
-                                        <li class="text-center">
-                                            <p class="ms-2">ประมาณ 3,000,000 บาท</p>
-                                        </li>
-                                        <li class="text-center">
-                                            <p class="ms-2">ประมาณ 5,000,000 บาท</p>
-                                        </li>
+                                    <ul class="menu_my_goal" id="goalMenu">
+                                        
                                     </ul>
                                 </div>
                             </div>
@@ -507,14 +487,14 @@
                                 </div> -->
                             </div>
                         </div>
-                        <div class="d-flex justify-content-between mt-3">
+                        <div class="w-100 d-flex justify-content-between mt-3">
                             <button id="btn_value_back" class="btn btn-action-select-goal" onclick="setupBackButton('btn_value_back', 'section_select_value', 'section_select_goal')">
                                 ย้อนกลับ
                             </button>
 
 
 
-                            <button id="btn_value_next" class="btn btn-action-select-goal" disabled>
+                            <button id="btn_value_next" class="btn btn-action-select-goal " disabled>
                                 ต่อไป
                             </button>
                         </div>
@@ -564,28 +544,57 @@
                     </div> -->
                     <!-- Goal Success -->
                     <div id="section_goal_success" class="d-none">
-                        <h4 class="text-center mb-4"><b>โอเค เราได้บันทึก</b></h4>
+                        <h4 class="text-center mb-1"><b>โอเค เราได้บันทึก</b></h4>
                         <h4 class="text-center mb-4"><b>เป้าหมายของคุณแล้ว</b></h4>
                         <!-- <h4 class="text-center mb-4"><b>คือ</b></h4> -->
-                        <h1 id="goal_success_title" class="text-center mb-4" style="color: #800201;font-weight: bolder;">“อยากซื้อรถ”</h1>
-                        <h4 class="text-center mb-4"><b>มูลค่า</b></h4>
-                        <h1 class="text-center mb-4" style="color: #800201;font-weight: bolder;">
+                        <h1 class="text-center" style="color: #800201;font-weight: bolder;">
+                            "อยาก<span id="goal_success_title"></span>"
+                        </h1>
+                        <h2 class="text-center " style="color: #800201;font-weight: bolder;"><b>มูลค่าประมาณ</b></h2>
+                        <h2 class="text-center " style="color: #800201;font-weight: bolder;">
                             <b>
                                 <span id="goal_success_value">
 
                                 </span>
+                                บาท
+                            </b>
+                        </h2>
+                        <h4 class="text-center mb-1">
+                            <b>
                                 <span>
-                                    ภายใน <span id="goal_success_period">6 เดือน</span>
+                                    ภายในเดือน
+                                    <span id="goal_success_year"></span>
+                                    <span id="goal_success_month"></span>
                                 </span>
                             </b>
-                        </h1>
-                        <h4 class="text-center">
+                        </h4>
+
+                        <p class="text-center mt-5 mb-0" style="color: #373737;text-align: center;font-size: 24px;font-style: normal;font-weight: 700;line-height: normal;">คุณต้องทำ  PC ได้ประมาณ</p>
+                        <h2 class="text-center " style="color: #800201;font-weight: bolder;">
+                            <b>
+                                <span id="goal_success_value_pc">
+
+                                </span>
+                                บาท
+                            </b>
+                        </h2>
+                        <h4 class="text-center mb-1">
+                            <b>
+                                <span>
+                                    ภายในเดือน
+                                    <span id="goal_success_month_pc"></span>
+                                    <span id="goal_success_year_pc"></span>
+                                </span>
+                            </b>
+                        </h4>
+                        <p class="mb-5" style="color: #989898;text-align: center;font-size: 14px;">*หมายเหตุ เป้าหมายคิดเป็น 40% ของ PC โดยเฉลี่ย</p>
+                        <p class="text-center font-20">
                             “เราจะคอยถาม
                             และเป็นกำลังใจ
                             ช่วยให้คุณทำ
                             ตามเป้าหมาย
                             ได้สำเร็จนะสู้ๆๆ”
-                        </h4>
+                        </p>
 
                         <div class="d-flex justify-content-between mt-3">
 
@@ -593,7 +602,7 @@
                                 ย้อนกลับ
                             </button>
                             <button class="btn btn-action-select-goal" onclick="select_goal_success()">
-                                เสร็จ
+                                บันทึกเป้าหมาย
                             </button>
                         </div>
                     </div>
@@ -606,16 +615,17 @@
 
 
 <script>
-     var yearsToAdd;
-     var monthsToAdd;
-    function setupDropdown(dropdownId, nextButtonId, nextSectionId, titleElementId = null, valueElementId = null, periodElementId = null, test) {
+    var yearsToAdd;
+    var monthsToAdd;
+
+    function setupDropdown(dropdownId, nextButtonId, nextSectionId, titleElementId = null, valueElementId = null, periodElementId = null, ) {
         let dropdown = document.querySelector(`#${dropdownId}`);
         let select = dropdown.querySelector(".select_my_goal");
         let caret = dropdown.querySelector(".caret_may_goal");
         let menu = dropdown.querySelector(".menu_my_goal");
         let options = dropdown.querySelectorAll(".menu_my_goal li");
         let selected = dropdown.querySelector(".selected_my_goal");
-        let my_goal = dropdown.querySelector(".my_goal");
+        var my_goal = dropdown.querySelector(".my_goal");
         let nextButton = document.querySelector(`#${nextButtonId}`);
 
         select.addEventListener("click", () => {
@@ -637,19 +647,22 @@
 
                         my_goal.innerText = radio.value;
                         nextButton.disabled = false;
+                        crate_option_goal(my_goal.innerText);
                     }
                     // selected.innerText = radio.value;
                     select.classList.remove("select-clicked");
                     caret.classList.remove("caret_may_goal-rotate");
                     menu.classList.remove("menu_my_goal_open");
-
+                    document.querySelector('.selected_value').innerHTML = 'โปรดเลือกมูลค่า';
+                    document.querySelector('#btn_value_next').disabled = true;
                 }
             });
         });
 
         options.forEach(option => {
+            // console.log(options.innerText);
             option.addEventListener("click", () => {
-                // console.log(option.innerText);
+                console.log(option.innerText);
                 selected.innerText = option.innerText;
                 select.classList.remove("select-clicked");
                 caret.classList.remove("caret_may_goal-rotate");
@@ -668,12 +681,14 @@
                 if (dropdown.id === 'dropdown_period_year') {
                     // console.log(option.innerText);
                     yearsToAdd = option.innerText;
+                    // console.log(yearsToAdd);
 
                 }
 
                 if (dropdown.id === 'dropdown_period_month') {
                     // console.log(option.innerText);
                     monthsToAdd = option.innerText;
+                    // console.log(monthsToAdd);
                 }
 
             });
@@ -687,64 +702,182 @@
             document.querySelector(`#${nextSectionId}`).classList.remove('d-none');
 
             if (nextSectionId === 'section_select_value') {
+
                 document.querySelector('#goal_value_title').innerText = selected.innerText;
                 // document.querySelector('#goal_period_title').innerText = selected.innerText;
                 document.querySelector('#goal_success_title').innerText = selected.innerText;
 
-                // console.log(selected.innerText);
-                // document.querySelector(`#goal_value_img`).src = `{{url("img/icon/select_my_goal")}}` + '/' + selected.innerText.replace(/\s+/g, '') + '.png';
-                // document.querySelector(`#goal_success_img`).src = `{{url("img/icon/select_my_goal")}}` + '/' + selected.innerText.replace(/\s+/g, '') + '.png';
             }
-
-            // if (nextSectionId === 'section_select_period') {
-            //     document.querySelector('#goal_period_value').innerText = selected.innerText;
-            //     document.querySelector('#goal_success_value').innerText = selected.innerText;
-            // }
-
-            // if (nextSectionId === 'section_goal_success') {
-            //     document.querySelector('#goal_success_period').innerText = selected.innerText;
-            // }
 
             if (titleElementId === 'goal_value') {
-                document.querySelector('#goal_success_value').innerText = selected.innerText;
+
+
+                // Extract the number from the text using a regular expression
+                let number_selected = parseFloat(selected.innerText.replace(/[^\d.-]/g, ''));
+
+                // Calculate the goal success value
+                let goal_success_value = (number_selected * 100) / 40;
+                // let goal_success_value = number_selected * 0.4;
+                // console.log(number);
+                // console.log(goal_success_value);
+                document.querySelector('#goal_success_value').innerText = Number((number_selected).toFixed(1)).toLocaleString();
+                document.querySelector('#goal_success_value_pc').innerText = Number((goal_success_value).toFixed(1)).toLocaleString();
             }
 
-
+            if (dropdownId === 'dropdown_value') {
+                selected.innerText = 'โปรดเลือกมูลค่า';
+            }
         });
 
     }
 
-    setupDropdown("dropdown_goal", "btn_goal_next", "section_select_value", "goal_value_title", 2);
-    setupDropdown("dropdown_value", "btn_value_next", "section_goal_success", "goal_value", null, "goal_period_value", 1);
-    setupDropdown("dropdown_period_year", "btn_value_next", "section_goal_success", "goal_period_year", "goal_success_value", "goal_success_period", 1);
-    setupDropdown("dropdown_period_month", "btn_value_next", "section_goal_success", "goal_period_month", "goal_success_value", "goal_success_period", 1);
+    setupDropdown("dropdown_goal", "btn_goal_next", "section_select_value", "goal_value_title");
+    setupDropdown("dropdown_value", "btn_value_next", "section_goal_success", "goal_value", null, "goal_period_value");
+    setupDropdown("dropdown_period_year", "btn_value_next", "section_goal_success", "goal_period_year", "goal_success_value", "goal_success_period");
+    setupDropdown("dropdown_period_month", "btn_value_next", "section_goal_success", "goal_period_month", "goal_success_value", "goal_success_period");
 
-    function calculateFutureDate() {
-        console.log('asd');
-        // รับวันที่ปัจจุบัน
-        console.log(yearsToAdd);
-        console.log(monthsToAdd);
-        const currentDate = new Date();
+    function crate_option_goal(goal) {
 
-        // แสดงวันที่ปัจจุบัน
-        // document.getElementById('currentDate').innerText = `Current Date: ${currentDate.toDateString()}`;
+        let values;
 
-        // คำนวณเดือนและปีในอนาคต
-        
+        switch (goal) {
+            case 'ซื้อรถ':
+                values = [
+                    "ประมาณ 600,000 บาท",
+                    "ประมาณ 800,000 บาท",
+                    "ประมาณ 1,000,000 บาท",
+                    "ประมาณ 1,500,000 บาท",
+                    "ประมาณ 2,000,000 บาท",
+                    "มากกว่า 2,000,000 บาท"
+                ];
+                break;
+            case 'ซื้อบ้าน':
+                values = [
+                    "ประมาณ 3,000,000 บาท",
+                    "ประมาณ. 5,000,000 บาท",
+                    "ประมาณ 7,000,000 บาท",
+                    "ประมาณ 9,000,000 บาท",
+                    "ประมาณ 10,000,000 บาท",
+                    "มากกว่า 10,000,000 บาท"
+                ];
+                break;
+            case 'เก็บลงทุน':
+                values = [
+                    "ประมาณ 100,000 บาท",
+                    "ประมาณ 300,000 บาท",
+                    "ประมาณ 500,000 บาท",
+                    "ประมาณ 700,000 บาท",
+                    "ประมาณ 1,000,000 บาท",
+                    "มากกว่า 1,000,000 บาท"
+                ];
+                break;
+            case 'เก็บเกษียณ':
+                values = [
+                    "ประมาณ 1,000,000 บาท",
+                    "ประมาณ 3,000,000 บาท",
+                    "ประมาณ 5,000,000 บาท",
+                    "ประมาณ 7,000,000 บาท",
+                    "ประมาณ 10,000,000 บาท",
+                    "มากกว่า 10,000,000 บาท"
+                ];
+                break;
+            case 'เก็บให้ลูก':
+                values = [
+                    "ประมาณ 100,000 บาท",
+                    "ประมาณ 300,000 บาท",
+                    "ประมาณ 500,000 บาท",
+                    "ประมาณ 700,000 บาท",
+                    "ประมาณ 1,000,000 บาท",
+                    "มากกว่า 1,000,000 บาท"
 
-        // สร้างวันที่ใหม่
-        // const futureDate = new Date(currentDate.setFullYear(futureYear, futureMonth, currentDate.getDate()));
+                ];
+                break;
+            default:
+                values = [];
+                break;
+        }
 
-        // แสดงวันที่ในอนาคต
-        // document.getElementById('futureDate').innerText = `Future Date: ${futureDate.toDateString()}`;
-        // console.log(`Future Date: ${futureDate.toDateString()}`)
-        const futureYear = currentDate.getFullYear() + parseInt(yearsToAdd);
-        const futureMonth = currentDate.getMonth() + parseInt(monthsToAdd);
-        
-        console.log(currentDate.getMonth());
-        console.log(`FfutureYear: ${futureYear}`);
-        console.log(`FfutureMonth: ${futureMonth}`);
+        let goalMenu = document.getElementById('goalMenu');
+        goalMenu.innerHTML = "";
+
+        values.forEach(value => {
+            let li = document.createElement('li');
+            li.className = 'text-center';
+
+            let p = document.createElement('p');
+            p.className = 'ms-2';
+            p.innerText = value;
+
+            li.appendChild(p);
+            goalMenu.appendChild(li);
+        });
+
+        let dropdown = document.querySelector(`#dropdown_value`);
+        let select = dropdown.querySelector(".select_my_goal");
+        let caret = dropdown.querySelector(".caret_may_goal");
+        let menu = dropdown.querySelector(".menu_my_goal");
+        let options = dropdown.querySelectorAll(".menu_my_goal li");
+        let selected = dropdown.querySelector(".selected_my_goal");
+        let nextButton = document.querySelector(`#btn_value_next`);
+        options.forEach(option => {
+            // console.log(options.innerText);
+            option.addEventListener("click", () => {
+                console.log(option.innerText);
+                selected.innerText = option.innerText;
+                select.classList.remove("select-clicked");
+                caret.classList.remove("caret_may_goal-rotate");
+                menu.classList.remove("menu_my_goal_open");
+
+                options.forEach(option => {
+                    option.classList.remove("my_goal_active");
+                });
+                option.classList.add("my_goal_active");
+
+
+                // nextButton.disabled = false;
+                check_period_section(nextButton);
+            });
+        });
+       
     }
+
+    function calculateFutureDate(monthsToAdd, yearsToAdd) {
+
+        // สร้างวันที่ปัจจุบัน
+        let currentDate = new Date();
+
+        // ดึงค่าปัจจุบันของเดือนและปี
+        let currentMonth = currentDate.getMonth(); // เดือนจะเริ่มจาก 0 (มกราคม = 0, กุมภาพันธ์ = 1, ...)
+        let currentYear = currentDate.getFullYear();
+
+        // คำนวณเดือนและปีใหม่
+        let newMonth = currentMonth + monthsToAdd;
+        let newYear = currentYear + yearsToAdd;
+
+        // ปรับเดือนและปีให้ถูกต้อง
+        while (newMonth >= 12) {
+            newMonth -= 12;
+            newYear++;
+        }
+
+        if (monthsToAdd > 0) {
+            document.querySelector('#goal_success_month').innerText = monthsToAdd + ' เดือน';
+        }
+        if (yearsToAdd > 0) {
+            document.querySelector('#goal_success_year').innerText = monthsToAdd + ' ปี';
+        }
+        // แปลงเดือนใหม่และปีใหม่ให้เป็นชื่อเดือน
+        const monthNames = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
+        let futureMonthName = monthNames[newMonth];
+
+        document.querySelector('#goal_success_month_pc').innerText = futureMonthName;
+        document.querySelector('#goal_success_year_pc').innerText = newYear;
+        // console.log(`${futureMonthName} `);
+        // console.log(` ${newYear}`);
+    }
+
+    // ตัวอย่างการใช้งาน
+
 
     function setupBackButton(backButtonId, currentSectionId, previousSectionId) {
         let currentSection = document.querySelector(`#${currentSectionId}`);
@@ -764,6 +897,7 @@
 </script>
 <script>
     function check_period_section(nextButton) {
+        console.log('start');
         const dropdowns = ['dropdown_period_year', 'dropdown_period_month', 'dropdown_value'];
         let allActive = true;
 
@@ -781,8 +915,19 @@
 
         if (allActive) {
             // console.log("All dropdowns have an active item. Proceed with the next action.");
-           
-                calculateFutureDate();
+
+            // calculateFutureDate(monthsToAdd ,yearsToAdd);
+            // console.log(calculateFutureDate(parseInt(monthsToAdd) ,parseInt(yearsToAdd))); 
+
+            setTimeout(() => {
+
+                // console.log('monthsToAdd' + monthsToAdd);
+                // console.log('yearsToAdd' + yearsToAdd);
+                calculateFutureDate(parseInt(monthsToAdd), parseInt(yearsToAdd));
+
+            }, 100);
+
+            // console.log(calculateFutureDate(18, 2)); 
             nextButton.disabled = false;
         } else {
             // console.log("Not all dropdowns have an active item. Cannot proceed.");
@@ -790,11 +935,12 @@
     }
 
     function select_goal_success() {
-        let successTitle = document.querySelector('#goal_success_title').innerText;
-        let successValue = document.querySelector('#goal_success_value').innerText;
-        let successPeriod = document.querySelector('#goal_success_period').innerText;
-
-        alert(`เป้าหมาย: ${successTitle}\nมูลค่า: ${successValue}\nภายใน: ${successPeriod}`);
+        let goal_success_title = document.querySelector('#goal_success_title').innerText;
+        let goal_success_value = document.querySelector('#goal_success_value').innerText;
+        let goal_success_month = document.querySelector('#goal_success_month').innerText;
+        let goal_success_year = document.querySelector('#goal_success_year').innerText;
+      
+        alert(`เป้าหมาย: ${goal_success_title}\nมูลค่า: ${goal_success_value}\nภายในเดือน: ${goal_success_month}\nปี: ${goal_success_year}`);
 
         $('#modal_my_goal').modal('hide');
     }

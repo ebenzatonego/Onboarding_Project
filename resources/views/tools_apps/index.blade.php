@@ -886,7 +886,7 @@
                             <p class="detail-our-business">อลิอันซ์ อยุธยา ประกันชีวิต มอบแบบประกันชีวิต ประกันสุขภาพ ประกันเพื่อการออม เพื่อช่วยให้คุณวางแผนชีวิตอย่างราบรื่น ไม่ว่าเงื่อนไขชีวิตจะเป็นอย่างไร</p>
                         </div>
                         <div class="container-btn-our-business">
-                            <a class="mt-auto btn-see-more cursor-pointer" href="https://www.azay.co.th/th_TH/life-insurance.html" target="_self">
+                            <a class="mt-auto btn-see-more cursor-pointer" href="{{ url('page_products')}}" target="_self">
                                 <svg class="me-3" xmlns="http://www.w3.org/2000/svg" width="36" height="8" viewBox="0 0 36 8" fill="none">
                                     <path d="M35.3536 4.35355C35.5488 4.15829 35.5488 3.84171 35.3536 3.64645L32.1716 0.464466C31.9763 0.269204 31.6597 0.269204 31.4645 0.464466C31.2692 0.659728 31.2692 0.976311 31.4645 1.17157L34.2929 4L31.4645 6.82843C31.2692 7.02369 31.2692 7.34027 31.4645 7.53553C31.6597 7.7308 31.9763 7.7308 32.1716 7.53553L35.3536 4.35355ZM0 4.5H35V3.5H0L0 4.5Z" fill="#383838" />
                                 </svg>
@@ -901,7 +901,7 @@
                             <p class="detail-our-business">อลิอันซ์ อยุธยา ประกันภัย ให้คุณกล้าใช้ชีวิตได้อย่างหมดกังวล ด้วยแบบประกันที่หลากหลาย ครอบคลุมทุกความต้องการ ทั้งประกันรถยนต์ ประกันสินทรัพย์ ประกันการเดินทาง ฯลฯ</p>
                         </div>
                         <div class="container-btn-our-business">
-                            <a class="mt-auto btn-see-more cursor-pointer" href="/th_TH/general-insurance.html" target="_self">
+                            <a class="mt-auto btn-see-more cursor-pointer" href="{{ url('page_products')}}" target="_self">
                                 <svg class="me-3" xmlns="http://www.w3.org/2000/svg" width="36" height="8" viewBox="0 0 36 8" fill="none">
                                     <path d="M35.3536 4.35355C35.5488 4.15829 35.5488 3.84171 35.3536 3.64645L32.1716 0.464466C31.9763 0.269204 31.6597 0.269204 31.4645 0.464466C31.2692 0.659728 31.2692 0.976311 31.4645 1.17157L34.2929 4L31.4645 6.82843C31.2692 7.02369 31.2692 7.34027 31.4645 7.53553C31.6597 7.7308 31.9763 7.7308 32.1716 7.53553L35.3536 4.35355ZM0 4.5H35V3.5H0L0 4.5Z" fill="#383838" />
                                 </svg>

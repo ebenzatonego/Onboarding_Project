@@ -465,7 +465,7 @@
                         <div class="body-my-goal">
                             <!-- MY GOAL QUESTIONAIRE -->
 
-                            <div class="d-flex justify-content-center mt-3 d-none">
+                            <div class="d-flex justify-content-center mt-3">
                                 <button class="btn-more-job px-5" data-toggle="modal" data-target="#modal_my_goal">
                                     ทำแบบทดสอบเป้าหมาย
                                 </button>

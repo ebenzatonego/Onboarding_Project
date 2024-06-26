@@ -419,12 +419,17 @@
     </div>
   </div>
 </div>
-
+<style>
+div.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 70px;
+}
+</style>
 <div class="container-fluid">
 
-    <div class="d-flex">
-
-        <div class="phone-frame">
+    <div class="d-flex position-raletive">
+        <div class="phone-frame sticky">
             <div class="frame-top">
                 <div class="text-dark px-4 time d-flex align-items-center">{{ date('H:i') }}</div>
                 <div class="w-100 phone-camera d-flex align-items-center"> &nbsp;</div>

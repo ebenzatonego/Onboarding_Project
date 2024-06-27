@@ -66,11 +66,11 @@
             <!-- Tab VP -->
             @include ('career_path_contents.div_content_tab.vp')
 
-            <!-- Tab EVP -->
-            @include ('career_path_contents.div_content_tab.evp')
+            <!-- Tab SVP -->
+            @include ('career_path_contents.div_content_tab.svp')
 
-            <!-- Tab SEVP -->
-            @include ('career_path_contents.div_content_tab.sevp')
+            <!-- Tab ESVP -->
+            @include ('career_path_contents.div_content_tab.esvp')
         </div>
 
         <div class="mt-5">
@@ -132,20 +132,20 @@
             input_vp_2.value = null;
             input_vp_3.value = null;
 
-            input_evp_1.value = null;
-            input_evp_2.value = null;
-            input_evp_3.value = null;
+            input_svp_1.value = null;
+            input_svp_2.value = null;
+            input_svp_3.value = null;
 
-            input_sevp_1.value = null;
-            input_sevp_2.value = null;
-            input_sevp_3.value = null;
+            input_esvp_1.value = null;
+            input_esvp_2.value = null;
+            input_esvp_3.value = null;
         });
 
     });
 
     function create_ul_menu_tab(){
         let ul_menu_tab = document.querySelector('#ul_menu_tab');
-        const arr_rank = ['AG','UM','SUM','DM','SDM','AVP','VP','EVP','SEVP'];
+        const arr_rank = ['AG','UM','SUM','DM','SDM','AVP','VP','SVP','ESVP'];
 
         for (let i = 0; i < arr_rank.length; i++) {
 

@@ -817,6 +817,14 @@ img {
                         </div>
                     </div>
                     <div class="row mb-3">
+                        <label for="link_out" class="col-sm-2 col-form-label">
+                            ลิงก์ LMS (ถ้ามี)
+                        </label>
+                        <div class="col-sm-10">
+                            <input class="form-control" name="link_out" type="text" id="link_out" value="" placeholder="เพิ่มลิงก์ LMS" oninput="check_data_for_submit();">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
                         <label for="status" class="col-sm-2 col-form-label">
                             เปิดใช้งานทันที
                         </label>
@@ -910,9 +918,13 @@ img {
                         <label class="col-sm-2 col-form-label"></label>
                         <div class="col-sm-10">
                             <input id="btn_submit_form" class="btn btn-primary d-none" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
-                            <span id="btn_submit" class="btn btn-primary px-5 disabled" onclick="upload_to_firebase();" >
-                                สร้างเนื้อหา
+                            <span id="btn_submit" class="btn btn-primary px-5 me-5 disabled" onclick="upload_to_firebase('create');" >
+                                สร้างเนื้อหาอย่างเดียว
                             </span>
+                            <span id="btn_submit_goto_add_train" class="btn btn-warning px-5 disabled" onclick="upload_to_firebase('create_and_goto');" >
+                                สร้างเนื้อหา + ไปยังหน้าเพิ่มปฏิทินหลักสูตร
+                            </span>
+                            <input type="text" name="check_goto" id="check_goto" class="d-none" value="">
                         </div>
                     </div>
                     <div id="div_loading" class="d-none">
@@ -954,8 +966,10 @@ img {
 
 <script>
 
-    function upload_to_firebase() {
+    function upload_to_firebase(check_goto) {
 
+        document.querySelector('#check_goto').value = check_goto;
+        
         let select_photo = document.querySelector('#select_photo').value;
         let select_video = document.querySelector('#select_video').value;
         // console.log(type_value);
@@ -1157,16 +1171,20 @@ img {
 
         // console.log('check_data_for_submit');
         let btn_submit = document.querySelector('#btn_submit');
+        let btn_submit_goto_add_train = document.querySelector('#btn_submit_goto_add_train');
         let training_type_id = document.querySelector('#training_type_id').value;
         let title = document.querySelector('#title').value;
         let select_photo = document.querySelector('#select_photo').value;
         let datetime_start = document.querySelector('#datetime_start').value;
+        // let link_out = document.querySelector('#link_out').value;
 
         if (training_type_id && title && select_photo && datetime_start) {
             btn_submit.classList.remove('disabled');
+            btn_submit_goto_add_train.classList.remove('disabled');
         }
         else{
             btn_submit.classList.add('disabled');
+            btn_submit_goto_add_train.classList.add('disabled');
         }
 
     }

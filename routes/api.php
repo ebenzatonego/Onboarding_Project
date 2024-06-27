@@ -176,3 +176,8 @@ Route::get('/get_data_for_calendar', 'AdminController@get_data_for_calendar');
 Route::get('/get_data_for_calendar_for_user/{user_id}', 'AdminController@get_data_for_calendar_for_user');
 Route::post('/add_calendar', 'CalendarsController@add_calendar');
 
+
+// My Goal
+Route::post('/save_my_goal_users', 'My_goal_usersController@save_my_goal_users');
+Route::get('/update_my_goal/{user_id}', 'My_goal_usersController@update_my_goal');
+

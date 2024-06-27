@@ -562,7 +562,7 @@
                         <h4 class="text-center mb-1">
                             <b>
                                 <span>
-                                    ภายในเดือน
+                                    ภายใน
                                     <span id="goal_success_year"></span>
                                     <span id="goal_success_month"></span>
                                 </span>
@@ -581,7 +581,7 @@
                         <h4 class="text-center mb-1">
                             <b>
                                 <span>
-                                    ภายในเดือน
+                                    ภายใน
                                     <span id="goal_success_month_pc"></span>
                                     <span id="goal_success_year_pc"></span>
                                 </span>
@@ -642,7 +642,7 @@
         radios_select_goal.forEach(radio => {
             radio.addEventListener('change', () => {
                 if (radio.checked) {
-                    console.log("Selected value: " + radio.value);
+                    // console.log("Selected value: " + radio.value);
                     if (my_goal) {
 
                         my_goal.innerText = radio.value;
@@ -662,7 +662,7 @@
         options.forEach(option => {
             // console.log(options.innerText);
             option.addEventListener("click", () => {
-                console.log(option.innerText);
+                // console.log(option.innerText);
                 selected.innerText = option.innerText;
                 select.classList.remove("select-clicked");
                 caret.classList.remove("caret_may_goal-rotate");
@@ -754,7 +754,7 @@
             case 'ซื้อบ้าน':
                 values = [
                     "ประมาณ 3,000,000 บาท",
-                    "ประมาณ. 5,000,000 บาท",
+                    "ประมาณ 5,000,000 บาท",
                     "ประมาณ 7,000,000 บาท",
                     "ประมาณ 9,000,000 บาท",
                     "ประมาณ 10,000,000 บาท",
@@ -822,7 +822,7 @@
         options.forEach(option => {
             // console.log(options.innerText);
             option.addEventListener("click", () => {
-                console.log(option.innerText);
+                // console.log(option.innerText);
                 selected.innerText = option.innerText;
                 select.classList.remove("select-clicked");
                 caret.classList.remove("caret_may_goal-rotate");
@@ -841,39 +841,68 @@
        
     }
 
+    var now_date_start ;
+    var now_date_end ;
+
     function calculateFutureDate(monthsToAdd, yearsToAdd) {
 
-        // สร้างวันที่ปัจจุบัน
-        let currentDate = new Date();
+        // 1. หาวัน เดือน ปี ปัจจุบัน
+        let now = new Date();
+        let currentDay = now.getDate();
+        let currentMonth = now.getMonth(); // เดือนใน JavaScript เริ่มต้นที่ 0
+        let currentYear = now.getFullYear();
 
-        // ดึงค่าปัจจุบันของเดือนและปี
-        let currentMonth = currentDate.getMonth(); // เดือนจะเริ่มจาก 0 (มกราคม = 0, กุมภาพันธ์ = 1, ...)
-        let currentYear = currentDate.getFullYear();
+        // 2. นำวัน เดือน ปี ปัจจุบันมาบวกปีและเดือน
+        let newDate = new Date(now);
+        newDate.setFullYear(newDate.getFullYear() + yearsToAdd);
+        newDate.setMonth(newDate.getMonth() + monthsToAdd);
 
-        // คำนวณเดือนและปีใหม่
-        let newMonth = currentMonth + monthsToAdd;
-        let newYear = currentYear + yearsToAdd;
+        // 3. หาวัน เดือน ปี หลังจากบวกเพิ่มแล้ว
+        let newDay = newDate.getDate();
+        let newMonth = newDate.getMonth(); // เดือนใน JavaScript เริ่มต้นที่ 0
+        let newYear = newDate.getFullYear();
 
-        // ปรับเดือนและปีให้ถูกต้อง
-        while (newMonth >= 12) {
-            newMonth -= 12;
-            newYear++;
+        // 4. แปลงเดือนเป็นภาษาไทย
+        const thaiMonths = [
+            "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
+            "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"
+        ];
+
+        let newMonthThai = thaiMonths[newMonth];
+
+        now_date_start = formatDateToYYYYMMDD(now);
+        now_date_end = formatDateToYYYYMMDD(newDate);
+
+        // console.log(`วันที่ปัจจุบัน: ${currentDay} ${thaiMonths[currentMonth]} ${currentYear}`);
+        // console.log(`วันที่หลังจากบวกเพิ่ม: ${newDay} ${newMonthThai} ${newYear}`);
+
+        document.querySelector('#goal_success_month').innerText = monthsToAdd + ' เดือน';
+        document.querySelector('#goal_success_year').innerText = yearsToAdd + ' ปี';
+
+        if (monthsToAdd == 0) {
+            document.querySelector('#goal_success_month').classList.add('d-none');
+        }
+        else{
+            document.querySelector('#goal_success_month').classList.remove('d-none');
         }
 
-        if (monthsToAdd > 0) {
-            document.querySelector('#goal_success_month').innerText = monthsToAdd + ' เดือน';
+        if (yearsToAdd == 0) {
+            document.querySelector('#goal_success_year').classList.add('d-none');
+        }else{
+            document.querySelector('#goal_success_year').classList.remove('d-none');
         }
-        if (yearsToAdd > 0) {
-            document.querySelector('#goal_success_year').innerText = monthsToAdd + ' ปี';
-        }
-        // แปลงเดือนใหม่และปีใหม่ให้เป็นชื่อเดือน
-        const monthNames = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
-        let futureMonthName = monthNames[newMonth];
 
-        document.querySelector('#goal_success_month_pc').innerText = futureMonthName;
+        document.querySelector('#goal_success_month_pc').innerText = newMonthThai;
         document.querySelector('#goal_success_year_pc').innerText = newYear;
         // console.log(`${futureMonthName} `);
         // console.log(` ${newYear}`);
+    }
+
+    function formatDateToYYYYMMDD(date) {
+        let day = String(date.getDate()).padStart(2, '0');
+        let month = String(date.getMonth() + 1).padStart(2, '0'); // เดือนใน JavaScript เริ่มต้นที่ 0
+        let year = date.getFullYear();
+        return `${year}-${month}-${day}`;
     }
 
     // ตัวอย่างการใช้งาน
@@ -884,6 +913,8 @@
         let previousSection = document.querySelector(`#${previousSectionId}`);
         currentSection.classList.add('d-none');
         previousSection.classList.remove('d-none');
+
+        document.querySelector('#btn_value_next').disabled = true ;
 
     }
 
@@ -897,7 +928,7 @@
 </script>
 <script>
     function check_period_section(nextButton) {
-        console.log('start');
+        // console.log('start');
         const dropdowns = ['dropdown_period_year', 'dropdown_period_month', 'dropdown_value'];
         let allActive = true;
 
@@ -925,10 +956,17 @@
                 // console.log('yearsToAdd' + yearsToAdd);
                 calculateFutureDate(parseInt(monthsToAdd), parseInt(yearsToAdd));
 
+                // console.log(">> " + parseInt(yearsToAdd));
+                // console.log(">> " + parseInt(monthsToAdd));
+
+                if ( parseInt(yearsToAdd) == 0 && parseInt(monthsToAdd) == 0 ) {
+                    nextButton.disabled = true;
+                }else{
+                    nextButton.disabled = false;
+                }
+
             }, 100);
 
-            // console.log(calculateFutureDate(18, 2)); 
-            nextButton.disabled = false;
         } else {
             // console.log("Not all dropdowns have an active item. Cannot proceed.");
         }
@@ -940,8 +978,50 @@
         let goal_success_month = document.querySelector('#goal_success_month').innerText;
         let goal_success_year = document.querySelector('#goal_success_year').innerText;
       
-        alert(`เป้าหมาย: ${goal_success_title}\nมูลค่า: ${goal_success_value}\nภายในเดือน: ${goal_success_month}\nปี: ${goal_success_year}`);
+        // alert(`
+        //         เป้าหมาย: ${goal_success_title}\n
+        //         มูลค่า: ${goal_success_value}\n
+        //         ภายในเดือน: ${goal_success_month}\n
+        //         ปี: ${goal_success_year}\n
+        //         date_start: ${now_date_start }\n
+        //         date_end : ${now_date_end }\n
+        //     `
+        // );
 
-        $('#modal_my_goal').modal('hide');
+        let period ;
+        if( parseInt(goal_success_year) != 0 ){
+            period = goal_success_year + ' ' + goal_success_month ;
+        }
+        else{
+            period = goal_success_month ;
+        }
+
+        let data_arr = {
+            "user_id" : "{{ Auth::user()->id }}",
+            "goal" : goal_success_title,
+            "date_start" : now_date_start,
+            "date_end" : now_date_end,
+            "period" : period,
+            "price" : goal_success_value,
+        }; 
+
+        fetch("{{ url('/') }}/api/save_my_goal_users", {
+            method: 'post',
+            body: JSON.stringify(data_arr),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response){
+            return response.text();
+        }).then(function(data){
+            // console.log(data);
+            if(data == 'success'){
+                location.reload();
+            }
+        }).catch(function(error){
+            console.error(error);
+        });
+
+        // $('#modal_my_goal').modal('hide');
     }
 </script>

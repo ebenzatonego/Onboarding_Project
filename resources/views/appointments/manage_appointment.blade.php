@@ -363,7 +363,7 @@
   </script>
 	<div class="ms-auto">
 		<div class="btn-group">
-			<a href="{{ url('/appointment_create') }}" class="btn btn-success">
+			<a href="{{ url('/appointment_create/quiz') }}" class="btn btn-success">
 				<i class="fa-solid fa-calendar-plus"></i> เพิ่มตารางอบรม/สอบ
 			</a>
 		</div>

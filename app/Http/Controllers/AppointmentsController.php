@@ -59,11 +59,18 @@ class AppointmentsController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create($type)
     {
+        if($type == 'quiz'){
+            $type = 'สอบ';
+        }
+        else{
+            $type = 'อบรม';
+        }
+
         $type_article = Training_type::get();
         $appointment_area = Appointment_area::orderBy('area','ASC')->get();
-        return view('appointments.create', compact('type_article','appointment_area'));
+        return view('appointments.create', compact('type_article','appointment_area','type'));
     }
 
     /**

@@ -233,6 +233,59 @@
                             <i class="fa-regular fa-chart-mixed"></i>
                         </div>
                         <div class="menu-title">
+                            หลักสูตร
+                        </div>
+                    </a>
+                    
+                    <ul>
+                        <li>
+                            <a class="btn" href="{{ url('/manage_training') }}">
+                                <i class="fa-solid fa-books"></i> จัดการหลักสูตร
+                            </a>
+                        </li>
+                        <li>
+                            <a class="btn" href="{{ url('/training_create') }}">
+                                <i class="fa-solid fa-file-plus"></i> เพิ่มข้อมูลหลักสูตร
+                            </a>
+                        </li>
+                        <li>
+                            <a class="btn" href="{{ url('/appointment_create/train') }}">
+                                <i class="fa-solid fa-calendar-lines-pen"></i> เพิ่มปฏิทินหลักสูตร
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon">
+                            <i class="fa-solid fa-hundred-points"></i>
+                        </div>
+                        <div class="menu-title">
+                            สนามสอบ
+                        </div>
+                    </a>
+                    
+                    <ul>
+                        <li>
+                            <a class="btn" href="{{ url('/manage_appointment') }}">
+                                <i class="fa-solid fa-calendar-circle-exclamation"></i> จัดการสนามสอบ
+                            </a>
+                        </li>
+                        <li>
+                            <a class="btn" href="{{ url('/appointment_create/quiz') }}">
+                                <i class="fa-solid fa-calendar-circle-plus"></i> เพิ่มข้อมูลสนามสอบ
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon">
+                            <i class="fa-regular fa-chart-mixed"></i>
+                        </div>
+                        <div class="menu-title">
                             Training
                         </div>
                     </a>
@@ -272,7 +325,7 @@
                             </ul>
                         </li>
                     </ul>
-                </li>
+                </li> -->
 
                 @if(Auth::check())
                     @if(Auth::user()->role == "Super-admin")

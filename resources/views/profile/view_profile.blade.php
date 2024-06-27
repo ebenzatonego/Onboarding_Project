@@ -465,15 +465,103 @@
                         <div class="body-my-goal">
                             <!-- MY GOAL QUESTIONAIRE -->
 
-                            <div class="d-flex justify-content-center mt-3">
-                                <button class="btn-more-job px-5" data-toggle="modal" data-target="#modal_my_goal">
-                                    ทำแบบทดสอบเป้าหมาย
-                                </button>
-                            </div>
+                            @php
+                                use Carbon\Carbon;
+
+                                $my_goal = App\Models\My_goal_user::where('user_id',Auth::user()->id)->first();
+
+                                if( !empty($my_goal->id) ){
+                                    $createdAt = new Carbon($my_goal->created_at);
+                                    $updatedAt = new Carbon($my_goal->updated_at);
+
+                                    // คำนวณความแตกต่างอย่างละเอียด
+                                    $diff = $createdAt->diff($updatedAt);
+
+                                    $diffInYears = $diff->y;
+                                    $diffInMonths = $diff->m;
+                                    $diffInDays = $diff->d;
+
+                                    // สร้างข้อความแสดงผล
+                                    $diffString = '';
+
+                                    if ($diffInYears > 0) {
+                                        $diffString .= $diffInYears . ' ปี ';
+                                    }
+                                    if ($diffInMonths > 0) {
+                                        $diffString .= $diffInMonths . ' เดือน ';
+                                    }
+                                    if ($diffInDays > 0) {
+                                        $diffString .= $diffInDays . ' วัน';
+                                    }
+
+                                    // ตรวจสอบว่าปี เดือน และวันเป็น 0 หรือไม่
+                                    if ($diffInYears === 0 && $diffInMonths === 0 && $diffInDays === 0) {
+                                        $diffString = 'น้อยกว่า 1 วัน';
+                                    } else {
+                                        // ตัดช่องว่างที่อาจจะเกินท้ายข้อความ
+                                        $diffString = trim($diffString);
+                                    }
+
+                                }
+                            @endphp
+
+                            @if( empty($my_goal->id) )
+                                <div class="d-flex justify-content-center mt-3">
+                                    <button class="btn-more-job px-5" data-toggle="modal" data-target="#modal_my_goal">
+                                        ทำแบบทดสอบเป้าหมาย
+                                    </button>
+                                </div>
+                            @elseif($my_goal->status == 'success')
+                                <div class="mt-3">
+                                    <div class="d-flex justify-content-evenly align-items-center w-100">
+                                        <img src="{{ url('/img/icon/select_my_goal'.'/'.$my_goal->goal.'.png') }}" width="80" height="80">
+                                        <div class="text-center">
+                                            <h6 id="" class="mb-0" style="color: #000000;font-size: 13.084px;"><b>ยินดีด้วยคุณทำสำเร็จแล้ว</b></h6>
+                                            <h6 class="mb-0" style="color: #800201;font-size: 13.084px;">
+                                                <b id="">“{{ $my_goal->goal }}”</b><br>
+                                                <b>{{ $my_goal->price }} บาท</b><br>
+                                                <b id="">ใช้เวลา {{ $diffString }}  </b>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="mt-3">
+                                    <div class="d-flex justify-content-evenly align-items-center w-100">
+                                        <img src="{{ url('/img/icon/select_my_goal'.'/'.$my_goal->goal.'.png') }}" width="80" height="80">
+                                        <div class="text-center">
+                                            <h6 id="mygoal_1" class="mb-0" style="color: #000000;font-size: 13.084px;"><b>เป้าหมายของฉันคือ</b></h6>
+                                            <h6 class="mb-0" style="color: #800201;font-size: 13.084px;">
+                                                <b id="mygoal_2">“อยาก{{ $my_goal->goal }}”</b><br>
+                                                <b>{{ $my_goal->price }} บาท</b><br>
+                                                <b id="mygoal_3">ภายใน {{ $my_goal->period }}  </b>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <center>
+                                        <span id="btn_update_my_goal" class="btn mt-3 py-1" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);background-color: #ffffff;border-radius: 7.5px;width: 50%;font-size: 13.99px;color: #003781;" onclick="update_my_goal();">
+                                            ทำสำเร็จแล้ว
+                                        </span>
+                                    </center>
+                                </div>
+                            @endif
 
 
                             @include ('profile.my_goal_questionaire')
 
+                            <script>
+                                function update_my_goal(){
+                                    fetch("{{ url('/') }}/api/update_my_goal/" + "{{ Auth::user()->id }}")
+                                        .then(response => response.text())
+                                        .then(result => {
+                                            // console.log(result);
+
+                                            if(result){
+                                                location.reload();
+                                            }
+                                        });
+                                }
+                            </script>
 
                             <div class="header-my-goal d-flex align-items-center my-4">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="20" viewBox="0 0 22 20" fill="none">

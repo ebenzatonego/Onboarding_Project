@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 use App\Models\My_goal_user;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class My_goal_usersController extends Controller
 {
@@ -120,5 +121,26 @@ class My_goal_usersController extends Controller
         My_goal_user::destroy($id);
 
         return redirect('my_goal_users')->with('flash_message', 'My_goal_user deleted!');
+    }
+
+    function save_my_goal_users(Request $request)
+    {
+        $requestData = $request->all();
+        
+        My_goal_user::create($requestData);
+
+        return 'success' ;
+
+    }
+
+    function update_my_goal($user_id){
+
+        $data = [] ;
+        $data['status'] = 'success' ;
+
+        $my_goal_user = My_goal_user::where('user_id',$user_id)->first();
+        $my_goal_user->update($data);
+
+        return 'success' ;
     }
 }

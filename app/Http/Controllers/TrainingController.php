@@ -75,7 +75,12 @@ class TrainingController extends Controller
 
         Training::create($requestData);
 
-        return redirect('/manage_training');
+        if($requestData['check_goto'] == 'create'){
+            return redirect('/manage_training');
+        }
+        else if($requestData['check_goto'] == 'create_and_goto'){
+            return redirect('/appointment_create/train');
+        }
         
         // return redirect('training_create/article')->with('flash_message', 'Training added!');
         // if(Auth::user()->role == 'Admin'){

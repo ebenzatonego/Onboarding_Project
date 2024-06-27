@@ -25,7 +25,7 @@ class My_goal_user extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'my_goals_type_id', 'date_start', 'date_end', 'period'];
+    protected $fillable = ['user_id', 'goal', 'date_start', 'date_end', 'period','price','status'];
 
     
 }

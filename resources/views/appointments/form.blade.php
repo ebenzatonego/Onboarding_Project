@@ -534,16 +534,30 @@ img {
 
 </style>
 
+@php
+    $class_color = '' ;
+    if($type == 'สอบ'){
+      $class_color = 'success' ;
+    }
+    else{
+      $class_color = 'primary' ;
+    }
+@endphp
+
 <div class="row">
     <div class="col-12 mx-auto">
-        <div class="card border-top border-0 border-4 border-success">
+        <div class="card border-top border-0 border-4 border-{{ $class_color }}">
             <div class="card-body">
                 <div class="p-4 rounded">
                     <div class="card-title d-flex align-items-center">
                         <div>
-                            <i class="fa-solid fa-calendar-plus me-1 font-22 text-success"></i>
+                            <i class="fa-solid fa-calendar-plus me-1 font-22 text-{{ $class_color }}"></i>
                         </div>
-                        <h5 class="mb-0 text-success">เพิ่มตารางอบรม/สอบ</h5>
+                        @if( $type == 'สอบ' )
+                          <h5 class="mb-0 text-{{ $class_color }}">เพิ่มสนามสอบ</h5>
+                        @else
+                          <h5 class="mb-0 text-{{ $class_color }}">เพิ่มปฏิทินหลักสูตร</h5>
+                        @endif
                     </div>
                     <hr>
                     <div class="row mb-3">
@@ -557,14 +571,15 @@ img {
                     </div>
                     <div class="row mb-3">
                         <label for="type" class="col-sm-2 col-form-label">
-                            สอบ / อบรม<span class="text-danger">*</span>
+                            {{ $type }}<span class="text-danger">*</span>
                         </label>
                         <div class="col-sm-10">
-                            <select class="form-select" name="type" type="text" id="type" value="" onchange="check_data_for_submit();">
+                            <!-- <select class="form-select" name="type" type="text" id="type" value="" onchange="check_data_for_submit();">
                                 <option value="">เลือกประเภท</option>
                                 <option value="อบรม">อบรม</option>
                                 <option value="สอบ">สอบ</option>
-                            </select>
+                            </select> -->
+                            <input class="form-control" name="type" type="text" id="type" value="{{ $type }}" readonly>
                         </div>
                     </div>
                     <div class="row mb-3">

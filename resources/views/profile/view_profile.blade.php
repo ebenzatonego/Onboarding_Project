@@ -503,7 +503,7 @@
 
                             $currentRank = strtolower( $currentRank );
 
-                            $ranks = ['ag', 'um', 'sum', 'dm', 'sdm', 'apv', 'vp', 'svp', 'esvp'];
+                            $ranks = ['ag', 'um', 'sum', 'dm', 'sdm', 'avp', 'vp', 'svp', 'esvp'];
                             $foundCurrentRank = false;
                             $set_center = 0 ;
                             $count_set_center = 0 ;
@@ -676,7 +676,7 @@
                 @endif
 
                 <div class="contact-leader mb-5">
-                    @if( !empty($users->account_upper_al) )
+                    @if( !empty($users->account_upper_al) && Auth::user()->current_rank == 'AG')
                     <p style="color: #003781;font-size: 16px;font-weight: bolder;">Upper Al</p>
                     <div class="d-flex ">
                         <div>

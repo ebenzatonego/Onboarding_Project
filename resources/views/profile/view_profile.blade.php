@@ -800,6 +800,7 @@
                                 width: 100%;
                                 max-width: 361px;
                                 margin-bottom: -10px;
+                                text-align: center;
                             }
 
                             .img-leader {

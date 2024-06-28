@@ -537,6 +537,7 @@
 .select_my_goal_container{
     scale: .7;
 }
+}
                         </style>
                         @if( empty($my_goal->id) )
                         <div class="d-flex justify-content-center mt-0">

@@ -146,7 +146,9 @@
         border-radius: 3px;
         z-index: 1;
     }
-
+    .owl-carousel .owl-item:last-child .nav-item::before{
+        display: none;
+    }
     .sw-theme-dots>.nav .nav-link.active::after {
         background-color: #0d6efd !important;
     }
@@ -199,25 +201,25 @@
         z-index: 98;
     }
 
-    .owl-item:nth-child(1) .nav-link.active::before {
+    /* .owl-item:nth-child(1) .nav-link.active::before {
         background: #4183B2 !important;
     }
 
 
     .owl-item:nth-child(1) .nav-link.active {
-        color: #4183B2 !important;
+        color: #001f9b !important;
         cursor: pointer;
-    }
+    } */
 
-    .owl-item:nth-child(1) .nav-item::before {
+    /* .owl-item:nth-child(1) .nav-item::before {
         background-color: #4183B2;
 
-    }
+    } */
 
-    .owl-item:nth-child(1) .nav-item.active::before {
+    /* .owl-item:nth-child(1) .nav-item.active::before {
         background-color: #4183B2;
 
-    }
+    } */
 
 
     .nav-item.level-now::before {
@@ -230,7 +232,7 @@
     }
 
     .owl-item .nav-item.active::before {
-        background-color: #56B3F7;
+        background-color: #fff;
 
     }
 
@@ -239,7 +241,10 @@
 
     }
 
-    .owl-item .nav-link.active::before {
+    .nav-item.current-rank .nav-link.active::before {
+        background: #002297;
+    }
+    .owl-item .nav-link.active:before {
         background: #56B3F7;
     }
 
@@ -256,8 +261,11 @@
     .owl-item,
     .owl-stage-outer {
         padding-top: 7px;
+        height: 100px !important;
     }
-
+.owl-item{
+    margin-top: 20px;
+}
     /* .owl-item:nth-child(2) {
         margin-top: -1px;
         border: #A1A1A1 solid 1px;
@@ -309,18 +317,20 @@
     }
 
     .current-rank .fa-briefcase-blank {
-        scale: 1.5;
-        margin-top: 2px !important;
+        scale: 2;
+        margin-top: 5px !important;
+        color: #002297;
     }
 
     .current-rank .title-level {
-        margin-top: -7px !important;
+        margin-top: -15px !important;
 
     }
 
     .current-rank .title-level * {
-        font-size: 14px;
+        font-size: 18px;
         margin-left: 2px;
+        margin-bottom: 5px;
     }
 
     /* .title-level {
@@ -330,6 +340,9 @@
     .nav-link {
         position: relative !important;
     }
+    /* .nav-link.active{
+        display: none !important;
+    } */
 </style>
 @section('content')
 @include('profile.edit_profile_modal')
@@ -529,15 +542,18 @@
                                 background-color: #243286;
 
                             }
+
                             @media (max-width: 380px) {
-.select_my_goal_container{
-    scale: .8;
-}
-                            } @media (max-width: 320px) {
-.select_my_goal_container{
-    scale: .7;
-}
-}
+                                .select_my_goal_container {
+                                    scale: .8;
+                                }
+                            }
+
+                            @media (max-width: 320px) {
+                                .select_my_goal_container {
+                                    scale: .7;
+                                }
+                            }
                         </style>
                         @if( empty($my_goal->id) )
                         <div class="d-flex justify-content-center mt-0">
@@ -697,10 +713,17 @@
                                     <a class="nav-link {{ $navItemClass }} position-relative" href="#step-{{ $loop->index + 1 }}">
                                         <span class="title-level">
                                             @if($isCurrentRank)
-                                            <i class="fa-solid fa-crown" style="color: #ffc107;"></i>
+                                            <!-- <i class="fa-solid fa-crown" style="color: #ffc107;"></i> -->
+                                            <img src="{{url('img/icon/crown_career.png')}}" alt="" height="18">
                                             <br>
                                             @endif
+
+                                            @if($isCurrentRank)
+                                            <span style="text-transform: uppercase;color: #002297;font-weight: bolder;">{{ $rank }}</span>
+
+                                            @else
                                             <span style="text-transform: uppercase;">{{ $rank }}</span>
+                                            @endif
                                         </span>
                                         <i class="fa-solid fa-briefcase-blank"></i>
                                     </a>
@@ -959,6 +982,10 @@
     .btn-submit-profile:disabled {
         background-color: #A3A3A3 !important;
         color: #57759C !important;
+    }
+    .nav-menu.sw.sw-theme-dots .owl-carousel .owl-item img {
+        display: inline !important;
+        width: auto !important;
     }
 </style>
 <!-- Modal แก้ไขข้อมูลโปรไฟล์-->
@@ -1386,9 +1413,9 @@
         items: 6,
         loop: false,
         nav: false,
-        center:true
+        center: true
     })
-let carousel_menu_center = '{{ $set_center }}';
+    let carousel_menu_center = '{{ $set_center }}';
     // carousel_menu.trigger('to.owl.carousel', ["{{ $set_center }}", 300, true]);
     $('.owl-carousel').trigger("to.owl.carousel", [parseInt(carousel_menu_center) - 1, 200]);
     // console.log("{{ $set_center }}")

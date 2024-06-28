@@ -312,12 +312,13 @@
         scale: 1.5;
         margin-top: 2px !important;
     }
-    .current-rank .title-level{
+
+    .current-rank .title-level {
         margin-top: -7px !important;
 
     }
 
-    .current-rank .title-level *{
+    .current-rank .title-level * {
         font-size: 14px;
         margin-left: 2px;
     }
@@ -326,7 +327,7 @@
         margin-top: -2px !important;
 
     } */
-    .nav-link{
+    .nav-link {
         position: relative !important;
     }
 </style>
@@ -392,7 +393,7 @@
                                         @if(!empty(Auth::user()->license_start))
                                         {{ thaidate("j M Y" , strtotime(Auth::user()->license_start)) }}
                                         @else
-                                                    -
+                                        -
                                         @endif
                                     </span>
                                 </p>
@@ -402,7 +403,7 @@
                                         @if(!empty(Auth::user()->license_expire))
                                         {{ thaidate("j M Y" , strtotime(Auth::user()->license_expire)) }}
                                         @else
-                                                    -
+                                        -
                                         @endif
                                     </span>
                                 </p>
@@ -418,224 +419,295 @@
                             </div>
                         </div>
                         @php
-                            if( !empty(Auth::user()->license_expire) ){
-                                // วันที่หมดอายุ
-                                $license_expire = Auth::user()->license_expire;
+                        if( !empty(Auth::user()->license_expire) ){
+                        // วันที่หมดอายุ
+                        $license_expire = Auth::user()->license_expire;
 
-                                // วันที่ปัจจุบัน
-                                $current_date = date("Y-m-d");
+                        // วันที่ปัจจุบัน
+                        $current_date = date("Y-m-d");
 
-                                // แปลงวันที่หมดอายุและวันที่ปัจจุบันเป็นวัตถุ DateTime
-                                $expire_date = new DateTime($license_expire);
-                                $today_date = new DateTime($current_date);
+                        // แปลงวันที่หมดอายุและวันที่ปัจจุบันเป็นวัตถุ DateTime
+                        $expire_date = new DateTime($license_expire);
+                        $today_date = new DateTime($current_date);
 
-                                // คำนวณความแตกต่างระหว่างสองวันที่
-                                $Dateinterval = $today_date->diff($expire_date);
-                            }
+                        // คำนวณความแตกต่างระหว่างสองวันที่
+                        $Dateinterval = $today_date->diff($expire_date);
+                        }
                         @endphp
 
                         @if( !empty($Dateinterval->days) )
-                            @if($Dateinterval->days <= 90)
-                            <div class="" style=" position: absolute;bottom: -12px; display: flex;">
-                                <div class="alert-license-expire me-3">
-                                    <div>
+                        @if($Dateinterval->days <= 90) <div class="" style=" position: absolute;bottom: -12px; display: flex;">
+                            <div class="alert-license-expire me-3">
+                                <div>
                                     <i class="fa-solid fa-triangle-exclamation text-white" style="margin-right: 4px;"></i><span>หมดอายุภายใน <span id="">{{ $Dateinterval->days }}</span> วัน</span>
-                                    </div>
                                 </div>
                             </div>
-                            @endif
-                        @endif
-                        <div style="position: absolute;bottom: -25px;left: 50%;transform: translate(-50%, -50%);">
-                            <button type="button" class="" data-toggle="modal" data-target="#modal_show_all_detail" style="border:none !important;background: #7FA3D4;padding: 5px 5px ;border-radius: 50px;color:#fff">
-                                <i class="fa-solid fa-chevron-down"></i>
-                            </button>
-                        </div>
-
-
                     </div>
+                    @endif
+                    @endif
+                    <div style="position: absolute;bottom: -25px;left: 50%;transform: translate(-50%, -50%);">
+                        <button type="button" class="" data-toggle="modal" data-target="#modal_show_all_detail" style="border:none !important;background: #7FA3D4;padding: 5px 5px ;border-radius: 50px;color:#fff">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                    </div>
+
+
                 </div>
             </div>
-            <div class="col-lg-8 p-0 p-lg-3">
-                <div class="card-profile p-3">
-                    <div class="card-body ">
-                        <div class="header-my-goal d-flex">
-                            <i class="fa-solid fa-bullseye-arrow text-color-obd"></i>
-                            <p class="text-color-obd ms-2">My Goal</p>
-                        </div>
-                        <div class="body-my-goal">
-                            <!-- MY GOAL QUESTIONAIRE -->
+        </div>
+        <div class="col-lg-8 p-0 p-lg-3">
+            <div class="card-profile p-3">
+                <div class="card-body ">
+                    <div class="header-my-goal d-flex">
+                        <i class="fa-solid fa-bullseye-arrow text-color-obd"></i>
+                        <p class="text-color-obd ms-2">My Goal</p>
+                    </div>
+                    <div class="body-my-goal">
+                        <!-- MY GOAL QUESTIONAIRE -->
 
-                            @php
-                                use Carbon\Carbon;
+                        @php
+                        use Carbon\Carbon;
 
-                                $my_goal = App\Models\My_goal_user::where('user_id',Auth::user()->id)->first();
+                        $my_goal = App\Models\My_goal_user::where('user_id',Auth::user()->id)->first();
 
-                                if( !empty($my_goal->id) ){
-                                    $createdAt = new Carbon($my_goal->created_at);
-                                    $updatedAt = new Carbon($my_goal->updated_at);
+                        if( !empty($my_goal->id) ){
+                        $createdAt = new Carbon($my_goal->created_at);
+                        $updatedAt = new Carbon($my_goal->updated_at);
 
-                                    // คำนวณความแตกต่างอย่างละเอียด
-                                    $diff = $createdAt->diff($updatedAt);
+                        // คำนวณความแตกต่างอย่างละเอียด
+                        $diff = $createdAt->diff($updatedAt);
 
-                                    $diffInYears = $diff->y;
-                                    $diffInMonths = $diff->m;
-                                    $diffInDays = $diff->d;
+                        $diffInYears = $diff->y;
+                        $diffInMonths = $diff->m;
+                        $diffInDays = $diff->d;
 
-                                    // สร้างข้อความแสดงผล
-                                    $diffString = '';
+                        // สร้างข้อความแสดงผล
+                        $diffString = '';
 
-                                    if ($diffInYears > 0) {
-                                        $diffString .= $diffInYears . ' ปี ';
-                                    }
-                                    if ($diffInMonths > 0) {
-                                        $diffString .= $diffInMonths . ' เดือน ';
-                                    }
-                                    if ($diffInDays > 0) {
-                                        $diffString .= $diffInDays . ' วัน';
-                                    }
+                        if ($diffInYears > 0) {
+                        $diffString .= $diffInYears . ' ปี ';
+                        }
+                        if ($diffInMonths > 0) {
+                        $diffString .= $diffInMonths . ' เดือน ';
+                        }
+                        if ($diffInDays > 0) {
+                        $diffString .= $diffInDays . ' วัน';
+                        }
 
-                                    // ตรวจสอบว่าปี เดือน และวันเป็น 0 หรือไม่
-                                    if ($diffInYears === 0 && $diffInMonths === 0 && $diffInDays === 0) {
-                                        $diffString = 'น้อยกว่า 1 วัน';
-                                    } else {
-                                        // ตัดช่องว่างที่อาจจะเกินท้ายข้อความ
-                                        $diffString = trim($diffString);
-                                    }
+                        // ตรวจสอบว่าปี เดือน และวันเป็น 0 หรือไม่
+                        if ($diffInYears === 0 && $diffInMonths === 0 && $diffInDays === 0) {
+                        $diffString = 'น้อยกว่า 1 วัน';
+                        } else {
+                        // ตัดช่องว่างที่อาจจะเกินท้ายข้อความ
+                        $diffString = trim($diffString);
+                        }
 
-                                }
-                            @endphp
+                        }
+                        @endphp
+                        <style>
+                            .my-goal-item {
+                                background-color: #B8C6D8;
+                                color: #FFF;
+                                font-size: 12px;
+                                font-style: normal;
+                                font-weight: 600;
+                                line-height: normal;
+                                border-radius: 10px;
+                                width: 60px;
+                                height: 60px;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                margin-right: 5px;
+                            }
 
-                            @if( empty($my_goal->id) )
-                                <div class="d-flex justify-content-center mt-3">
-                                    <button class="btn-more-job px-5" data-toggle="modal" data-target="#modal_my_goal">
-                                        ทำแบบทดสอบเป้าหมาย
-                                    </button>
-                                </div>
-                            @elseif($my_goal->status == 'success')
-                                <div class="mt-3">
-                                    <div class="d-flex justify-content-evenly align-items-center w-100">
-                                        <img src="{{ url('/img/icon/select_my_goal'.'/'.$my_goal->goal.'.png') }}" width="80" height="80">
-                                        <div class="text-center">
-                                            <h6 id="" class="mb-0" style="color: #000000;font-size: 13.084px;"><b>ยินดีด้วยคุณทำสำเร็จแล้ว</b></h6>
-                                            <h6 class="mb-0" style="color: #800201;font-size: 13.084px;">
-                                                <b id="">“{{ $my_goal->goal }}”</b><br>
-                                                <b>{{ $my_goal->price }} บาท</b><br>
-                                                <b id="">ใช้เวลา {{ $diffString }}  </b>
-                                            </h6>
+                            .my-goal-item img {
+                                width: 100%;
+                            }
+
+                            .my-goal-item:hover {
+                                background-color: #243286;
+
+                            }
+                            @media (max-width: 380px) {
+.select_my_goal_container{
+    scale: .8;
+}
+                            } @media (max-width: 320px) {
+.select_my_goal_container{
+    scale: .7;
+}
+                        </style>
+                        @if( empty($my_goal->id) )
+                        <div class="d-flex justify-content-center mt-0">
+                            <div class="select_my_goal_container">
+                                <div class="d-flex justify-content-center mb-3">
+                                    <div class="my-goal-item">
+                                        <div class="d-block text-center">
+                                            <img src="{{url('img/icon/select_my_goal/icon_ซื้อรถ.png')}}" alt="" style="width: 33.96px;height: 16.98px;margin-top: 10px;">
+
+                                            <p class="mb-0 mt-1">ซื้อรถ</p>
+                                        </div>
+                                    </div>
+                                    <div class="my-goal-item">
+                                        <div class="d-block text-center">
+
+                                            <img src="{{url('img/icon/select_my_goal/icon_ซื้อบ้าน.png')}}" alt="" style="width: 27.168px;height: 26.036px;">
+                                            <p class="mb-0  mt-1">ซื้อบ้าน</p>
+                                        </div>
+                                    </div>
+                                    <div class="my-goal-item">
+                                        <div class="d-block text-center">
+
+                                            <img src="{{url('img/icon/select_my_goal/icon_เก็บลงทุน.png')}}" alt="" style="width: 25.163px;height: 26px;">
+                                            <p class="mb-0  mt-1">ลงทุน</p>
+                                        </div>
+                                    </div>
+                                    <div class="my-goal-item">
+                                        <div class="d-block text-center">
+
+                                            <img src="{{url('img/icon/select_my_goal/icon_เก็บเกษียณ.png')}}" alt="" style="width: 20px;height: 27.375px;">
+                                            <p class="mb-0  mt-1">เกษียณ</p>
+                                        </div>
+                                    </div>
+                                    <div class="my-goal-item">
+                                        <div class="d-block text-center">
+
+                                            <img src="{{url('img/icon/select_my_goal/icon_เก็บให้ลูก.png')}}" alt="" style="width: 25px;height: 28.024px;">
+                                            <p class="mb-0  mt-1">ให้ลูก</p>
                                         </div>
                                     </div>
                                 </div>
-                            @else
-                                <div class="mt-3">
-                                    <div class="d-flex justify-content-evenly align-items-center w-100">
-                                        <img src="{{ url('/img/icon/select_my_goal'.'/'.$my_goal->goal.'.png') }}" width="80" height="80">
-                                        <div class="text-center">
-                                            <h6 id="mygoal_1" class="mb-0" style="color: #000000;font-size: 13.084px;"><b>เป้าหมายของฉันคือ</b></h6>
-                                            <h6 class="mb-0" style="color: #800201;font-size: 13.084px;">
-                                                <b id="mygoal_2">“อยาก{{ $my_goal->goal }}”</b><br>
-                                                <b>{{ $my_goal->price }} บาท</b><br>
-                                                <b id="mygoal_3">ภายใน {{ $my_goal->period }}  </b>
-                                            </h6>
-                                        </div>
-                                    </div>
-                                    <center>
-                                        <span id="btn_update_my_goal" class="btn mt-3 py-1" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);background-color: #ffffff;border-radius: 7.5px;width: 50%;font-size: 13.99px;color: #003781;" onclick="update_my_goal();">
-                                            ทำสำเร็จแล้ว
-                                        </span>
-                                    </center>
-                                </div>
-                            @endif
-
-
-                            @include ('profile.my_goal_questionaire')
-
-                            <script>
-                                function update_my_goal(){
-                                    fetch("{{ url('/') }}/api/update_my_goal/" + "{{ Auth::user()->id }}")
-                                        .then(response => response.text())
-                                        .then(result => {
-                                            // console.log(result);
-
-                                            if(result){
-                                                location.reload();
-                                            }
-                                        });
-                                }
-                            </script>
-
-                            <div class="header-my-goal d-flex align-items-center my-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="20" viewBox="0 0 22 20" fill="none">
-                                    <path d="M13.4561 5.7015C13.4561 6.58312 14.5929 8.69437 15.2425 9.83119C15.4513 10.1792 15.9385 10.1792 16.1473 9.83119C16.7969 8.69437 17.9338 6.60632 17.9338 5.7015C17.9338 4.47187 16.9361 3.45105 15.6833 3.45105C14.4769 3.47425 13.4561 4.47187 13.4561 5.7015ZM15.7065 4.65748C16.2865 4.65748 16.7505 5.12149 16.7505 5.7015C16.7505 6.28151 16.2865 6.74552 15.7065 6.74552C15.1265 6.74552 14.6625 6.28151 14.6625 5.7015C14.6625 5.12149 15.1265 4.65748 15.7065 4.65748Z" fill="#003781" />
-                                    <path d="M15.9155 11.1073H11.7626C11.2058 11.1073 10.7418 10.6433 10.7418 10.0865C10.7418 9.52971 11.2058 9.0657 11.7626 9.0657H12.8995C13.1547 9.0657 13.3403 8.8569 13.3403 8.62489C13.3403 8.36969 13.1315 8.18408 12.8995 8.18408H11.7626C10.6954 8.18408 9.83698 9.0425 9.83698 10.1097C9.83698 11.1769 10.6954 12.0354 11.7626 12.0354H15.9155C16.4723 12.0354 16.9363 12.4994 16.9363 13.0562C16.9363 13.613 16.4723 14.077 15.9155 14.077H8.46815C8.21295 14.077 8.02734 14.2858 8.02734 14.5178C8.02734 14.773 8.23615 14.9586 8.46815 14.9586H15.9155C16.9827 14.9586 17.8412 14.1002 17.8412 13.033C17.8412 11.9658 16.9827 11.1073 15.9155 11.1073Z" fill="#003781" />
-                                    <path d="M6.33346 8.25366C5.10383 8.25366 4.08301 9.25128 4.08301 10.5041C4.08301 11.3857 5.21983 13.497 5.86945 14.6338C6.07825 14.9818 6.56546 14.9818 6.77427 14.6338C7.42388 13.497 8.56071 11.4089 8.56071 10.5041C8.58391 9.27448 7.56308 8.25366 6.33346 8.25366ZM6.33346 11.5481C5.75344 11.5481 5.28943 11.0841 5.28943 10.5041C5.28943 9.9241 5.75344 9.46009 6.33346 9.46009C6.91347 9.46009 7.37748 9.9241 7.37748 10.5041C7.37748 11.0841 6.91347 11.5481 6.33346 11.5481Z" fill="#003781" />
-                                    <path d="M21.4837 1.47903L14.5931 0.0174004C14.5003 -0.00580013 14.3843 -0.00580013 14.2915 0.0174004L7.56337 1.47903L0.835218 0.0638014C0.626414 0.0174004 0.417609 0.0638014 0.255206 0.203004C0.0928021 0.342208 0 0.527812 0 0.759817V17.6266C0 17.9514 0.232005 18.253 0.556812 18.3226L7.42416 19.7842C7.47057 19.7842 7.51697 19.8074 7.56337 19.8074C7.60977 19.8074 7.65617 19.8074 7.70257 19.7842L14.4307 18.3226L21.1589 19.7378C21.3677 19.7842 21.5765 19.7378 21.7389 19.5986C21.9013 19.4594 21.9941 19.2738 21.9941 19.0418V2.17505C22.0405 1.82704 21.8085 1.54863 21.4837 1.47903ZM20.6253 18.1834L14.5931 16.9074C14.5003 16.8842 14.3843 16.8842 14.2915 16.9074L7.56337 18.369L1.41523 17.0698V1.61824L7.44736 2.89426C7.54017 2.91746 7.65617 2.91746 7.74897 2.89426L14.4771 1.43263L20.6485 2.73186L20.6253 18.1834Z" fill="#003781" />
-                                </svg>
-                                <p class="text-color-obd ms-2 mb-0">Training Journey</p>
-
-                            </div>
-                            <div class="d-flex justify-content-center">
-                                <img src="{{ url('/img/icon/training_path.png') }}" alt="" style="max-width: 300px; width: 100%;">
-                            </div>
-                            <div class="d-flex justify-content-center my-4">
-                                <button class="btn-more-job px-5">
-                                    ดูเส้นทางฝึกฝนเพิ่มเติม
+                                <button class="btn-more-job px-5" data-toggle="modal" data-target="#modal_my_goal">
+                                    เลือกเป้าหมายของคุณ
                                 </button>
                             </div>
-                            @php
-                            if( !empty(Auth::user()->current_rank) ){
-                                $currentRank = Auth::user()->current_rank;
+                        </div>
+                        @elseif($my_goal->status == 'success')
+                        <div class="mt-3">
+                            <div class="d-flex justify-content-evenly align-items-center w-100">
+                                <img src="{{ url('/img/icon/select_my_goal'.'/'.$my_goal->goal.'.png') }}" width="80" height="80">
+                                <div class="text-center">
+                                    <h6 id="" class="mb-0" style="color: #000000;font-size: 13.084px;"><b>ยินดีด้วยคุณทำสำเร็จแล้ว</b></h6>
+                                    <h6 class="mb-0" style="color: #800201;font-size: 13.084px;">
+                                        <b id="">“{{ $my_goal->goal }}”</b><br>
+                                        <b>{{ $my_goal->price }} บาท</b><br>
+                                        <b id="">ใช้เวลา {{ $diffString }} </b>
+                                    </h6>
+                                </div>
+                            </div>
+                        </div>
+                        @else
+                        <div class="mt-3">
+                            <div class="d-flex justify-content-evenly align-items-center w-100">
+                                <img src="{{ url('/img/icon/select_my_goal'.'/'.$my_goal->goal.'.png') }}" width="80" height="80">
+                                <div class="text-center">
+                                    <h6 id="mygoal_1" class="mb-0" style="color: #000000;font-size: 13.084px;"><b>เป้าหมายของฉันคือ</b></h6>
+                                    <h6 class="mb-0" style="color: #800201;font-size: 13.084px;">
+                                        <b id="mygoal_2">“อยาก{{ $my_goal->goal }}”</b><br>
+                                        <b>{{ $my_goal->price }} บาท</b><br>
+                                        <b id="mygoal_3">ภายใน {{ $my_goal->period }} </b>
+                                    </h6>
+                                </div>
+                            </div>
+                            <center>
+                                <span id="btn_update_my_goal" class="btn mt-3 py-1" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);background-color: #ffffff;border-radius: 7.5px;width: 50%;font-size: 13.99px;color: #003781;" onclick="update_my_goal();">
+                                    ทำสำเร็จแล้ว
+                                </span>
+                            </center>
+                        </div>
+                        @endif
+
+
+                        @include ('profile.my_goal_questionaire')
+
+                        <script>
+                            function update_my_goal() {
+                                fetch("{{ url('/') }}/api/update_my_goal/" + "{{ Auth::user()->id }}")
+                                    .then(response => response.text())
+                                    .then(result => {
+                                        // console.log(result);
+
+                                        if (result) {
+                                            location.reload();
+                                        }
+                                    });
                             }
-                            else{
-                                $currentRank = 'AG';
-                            }
+                        </script>
 
-                            $currentRank = strtolower( $currentRank );
+                        <div class="header-my-goal d-flex align-items-center my-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="20" viewBox="0 0 22 20" fill="none">
+                                <path d="M13.4561 5.7015C13.4561 6.58312 14.5929 8.69437 15.2425 9.83119C15.4513 10.1792 15.9385 10.1792 16.1473 9.83119C16.7969 8.69437 17.9338 6.60632 17.9338 5.7015C17.9338 4.47187 16.9361 3.45105 15.6833 3.45105C14.4769 3.47425 13.4561 4.47187 13.4561 5.7015ZM15.7065 4.65748C16.2865 4.65748 16.7505 5.12149 16.7505 5.7015C16.7505 6.28151 16.2865 6.74552 15.7065 6.74552C15.1265 6.74552 14.6625 6.28151 14.6625 5.7015C14.6625 5.12149 15.1265 4.65748 15.7065 4.65748Z" fill="#003781" />
+                                <path d="M15.9155 11.1073H11.7626C11.2058 11.1073 10.7418 10.6433 10.7418 10.0865C10.7418 9.52971 11.2058 9.0657 11.7626 9.0657H12.8995C13.1547 9.0657 13.3403 8.8569 13.3403 8.62489C13.3403 8.36969 13.1315 8.18408 12.8995 8.18408H11.7626C10.6954 8.18408 9.83698 9.0425 9.83698 10.1097C9.83698 11.1769 10.6954 12.0354 11.7626 12.0354H15.9155C16.4723 12.0354 16.9363 12.4994 16.9363 13.0562C16.9363 13.613 16.4723 14.077 15.9155 14.077H8.46815C8.21295 14.077 8.02734 14.2858 8.02734 14.5178C8.02734 14.773 8.23615 14.9586 8.46815 14.9586H15.9155C16.9827 14.9586 17.8412 14.1002 17.8412 13.033C17.8412 11.9658 16.9827 11.1073 15.9155 11.1073Z" fill="#003781" />
+                                <path d="M6.33346 8.25366C5.10383 8.25366 4.08301 9.25128 4.08301 10.5041C4.08301 11.3857 5.21983 13.497 5.86945 14.6338C6.07825 14.9818 6.56546 14.9818 6.77427 14.6338C7.42388 13.497 8.56071 11.4089 8.56071 10.5041C8.58391 9.27448 7.56308 8.25366 6.33346 8.25366ZM6.33346 11.5481C5.75344 11.5481 5.28943 11.0841 5.28943 10.5041C5.28943 9.9241 5.75344 9.46009 6.33346 9.46009C6.91347 9.46009 7.37748 9.9241 7.37748 10.5041C7.37748 11.0841 6.91347 11.5481 6.33346 11.5481Z" fill="#003781" />
+                                <path d="M21.4837 1.47903L14.5931 0.0174004C14.5003 -0.00580013 14.3843 -0.00580013 14.2915 0.0174004L7.56337 1.47903L0.835218 0.0638014C0.626414 0.0174004 0.417609 0.0638014 0.255206 0.203004C0.0928021 0.342208 0 0.527812 0 0.759817V17.6266C0 17.9514 0.232005 18.253 0.556812 18.3226L7.42416 19.7842C7.47057 19.7842 7.51697 19.8074 7.56337 19.8074C7.60977 19.8074 7.65617 19.8074 7.70257 19.7842L14.4307 18.3226L21.1589 19.7378C21.3677 19.7842 21.5765 19.7378 21.7389 19.5986C21.9013 19.4594 21.9941 19.2738 21.9941 19.0418V2.17505C22.0405 1.82704 21.8085 1.54863 21.4837 1.47903ZM20.6253 18.1834L14.5931 16.9074C14.5003 16.8842 14.3843 16.8842 14.2915 16.9074L7.56337 18.369L1.41523 17.0698V1.61824L7.44736 2.89426C7.54017 2.91746 7.65617 2.91746 7.74897 2.89426L14.4771 1.43263L20.6485 2.73186L20.6253 18.1834Z" fill="#003781" />
+                            </svg>
+                            <p class="text-color-obd ms-2 mb-0">Training Journey</p>
 
-                            $ranks = ['ag', 'um', 'sum', 'dm', 'sdm', 'avp', 'vp', 'svp', 'esvp'];
-                            $foundCurrentRank = false;
-                            $set_center = 0 ;
-                            $count_set_center = 0 ;
-                            @endphp
-                            <p style="font-size: 14px; font-weight: bolder;color: #000;" class="m-0 my-1">ตำแหน่งของคุณ</p>
-                            <div class="nav-menu sw sw-theme-dots sw-justified" id="div_menu_view">
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <img src="{{ url('/img/icon/training_path.png') }}" alt="" style="max-width: 300px; width: 100%;">
+                        </div>
+                        <div class="d-flex justify-content-center my-4">
+                            <button class="btn-more-job px-5">
+                                ดูเส้นทางฝึกฝนเพิ่มเติม
+                            </button>
+                        </div>
+                        @php
+                        if( !empty(Auth::user()->current_rank) ){
+                        $currentRank = Auth::user()->current_rank;
+                        }
+                        else{
+                        $currentRank = 'AG';
+                        }
+
+                        $currentRank = strtolower( $currentRank );
+
+                        $ranks = ['ag', 'um', 'sum', 'dm', 'sdm', 'avp', 'vp', 'svp', 'esvp'];
+                        $foundCurrentRank = false;
+                        $set_center = 0 ;
+                        $count_set_center = 0 ;
+                        @endphp
+                        <p style="font-size: 14px; font-weight: bolder;color: #000;" class="m-0 my-1">ตำแหน่งของคุณ</p>
+                        <div class="nav-menu sw sw-theme-dots sw-justified" id="div_menu_view">
 
 
-                                <ul class="nav d-flex justify-content-center owl-carousel owl-theme" role="group" aria-label="First group">
-                                    @foreach($ranks as $rank)
-                                    @php
+                            <ul class="nav d-flex justify-content-center owl-carousel owl-theme" role="group" aria-label="First group">
+                                @foreach($ranks as $rank)
+                                @php
 
-                                    $count_set_center = (int)$count_set_center + 1 ;
+                                $count_set_center = (int)$count_set_center + 1 ;
 
-                                    // ตรวจสอบว่าเป็นแรงค์ปัจจุบันหรือไม่
-                                    $isCurrentRank = $rank === $currentRank;
+                                // ตรวจสอบว่าเป็นแรงค์ปัจจุบันหรือไม่
+                                $isCurrentRank = $rank === $currentRank;
 
-                                    if ($isCurrentRank) {
-                                        $foundCurrentRank = true;
-                                        $set_center = $count_set_center ;
-                                    }
+                                if ($isCurrentRank) {
+                                $foundCurrentRank = true;
+                                $set_center = $count_set_center ;
+                                }
 
-                                    $navItemClass = $isCurrentRank || !$foundCurrentRank ? 'active' : 'inactive';
-                                    @endphp
+                                $navItemClass = $isCurrentRank || !$foundCurrentRank ? 'active' : 'inactive';
+                                @endphp
 
-                                    <li class="nav-item {{ $isCurrentRank ? 'current-rank' : $navItemClass }}">
-                                        @if($isCurrentRank)
-                                        <!-- <p style="position: absolute;top: 45%;left: 0%;transform: translate(-50%, -50%);color: #56B3F7;font-size: 1em;-webkit-text-stroke: .3px white;font-weight: lighter;">AL</p> -->
-                                        @endif
-                                        <a class="nav-link {{ $navItemClass }} position-relative" href="#step-{{ $loop->index + 1 }}">
-                                            <span class="title-level">
-                                                @if($isCurrentRank)
-                                                <i class="fa-solid fa-crown" style="color: #ffc107;"></i>
-                                                <br>
-                                                @endif
-                                                <span style="text-transform: uppercase;">{{ $rank }}</span>
-                                            </span>
-                                            <i class="fa-solid fa-briefcase-blank"></i>
-                                        </a>
-                                    </li>
-                                    @endforeach
-                                </ul>
+                                <li class="nav-item {{ $isCurrentRank ? 'current-rank' : $navItemClass }}">
+                                    @if($isCurrentRank)
+                                    <!-- <p style="position: absolute;top: 45%;left: 0%;transform: translate(-50%, -50%);color: #56B3F7;font-size: 1em;-webkit-text-stroke: .3px white;font-weight: lighter;">AL</p> -->
+                                    @endif
+                                    <a class="nav-link {{ $navItemClass }} position-relative" href="#step-{{ $loop->index + 1 }}">
+                                        <span class="title-level">
+                                            @if($isCurrentRank)
+                                            <i class="fa-solid fa-crown" style="color: #ffc107;"></i>
+                                            <br>
+                                            @endif
+                                            <span style="text-transform: uppercase;">{{ $rank }}</span>
+                                        </span>
+                                        <i class="fa-solid fa-briefcase-blank"></i>
+                                    </a>
+                                </li>
+                                @endforeach
+                            </ul>
 
-                                <!-- <ul class="nav d-flex justify-content-center owl-carousel owl-theme" role="group" aria-label="First group">
+                            <!-- <ul class="nav d-flex justify-content-center owl-carousel owl-theme" role="group" aria-label="First group">
                                     <li class="nav-item  active">
                                         <a class="nav-link active" href="#step-1">
                                             <span class="title-level">AG</span>
@@ -712,113 +784,115 @@
                                         </a>
                                     </li>
                                 </ul> -->
-                            </div>
-                            <style>
-                                .btn-more-job {
-                                    background-color: #4B90E2;
-                                    color: #fff;
-                                    border-radius: 50px;
-                                    -webkit-border-radius: 50px;
-                                    -moz-border-radius: 50px;
-                                    -ms-border-radius: 50px;
-                                    -o-border-radius: 50px;
-                                    border: none;
-                                    padding: 6px 20px;
-                                    margin-bottom: -10px;
-                                }
-
-                                .img-leader {
-                                    width: 55px;
-                                    height: 55px;
-                                    border-radius: 50%;
-                                    -webkit-border-radius: 50%;
-                                    -moz-border-radius: 50%;
-                                    -ms-border-radius: 50%;
-                                    -o-border-radius: 50%;
-                                    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
-                                    -webkit-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
-                                    -moz-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
-                                    border: 1.5px solid #fff;
-                                }
-                            </style>
-                            <div class="d-flex justify-content-center mt-3">
-                                <a href="{{ url('/page_career_paths') }}" class="btn-more-job px-5">
-                                    ดูเส้นทางอาชีพเพิ่มเติม
-                                </a>
-                            </div>
-
                         </div>
+                        <style>
+                            .btn-more-job {
+                                background-color: #4B90E2;
+                                color: #fff;
+                                border-radius: 50px;
+                                -webkit-border-radius: 50px;
+                                -moz-border-radius: 50px;
+                                -ms-border-radius: 50px;
+                                -o-border-radius: 50px;
+                                border: none;
+                                padding: 6px 20px;
+                                width: 100%;
+                                max-width: 361px;
+                                margin-bottom: -10px;
+                            }
 
+                            .img-leader {
+                                width: 55px;
+                                height: 55px;
+                                border-radius: 50%;
+                                -webkit-border-radius: 50%;
+                                -moz-border-radius: 50%;
+                                -ms-border-radius: 50%;
+                                -o-border-radius: 50%;
+                                box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+                                -webkit-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+                                -moz-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+                                border: 1.5px solid #fff;
+                            }
+                        </style>
+                        <div class="d-flex justify-content-center mt-3">
+                            <a href="{{ url('/page_career_paths') }}" class="btn-more-job px-5">
+                                ดูเส้นทางอาชีพเพิ่มเติม
+                            </a>
+                        </div>
 
                     </div>
 
 
                 </div>
 
-                @if(in_array(Auth::user()->role, ['Super-admin', 'Admin']))
-                <center>
-                    <a href="{{ url('/welcome_admin') }}" class="btn btn-sm btn-info mb-3" style="width:80%;">
-                        For <b>{{ Auth::user()->role }}</b>
-                    </a>
-                </center>
+
+            </div>
+
+            @if(in_array(Auth::user()->role, ['Super-admin', 'Admin']))
+            <center>
+                <a href="{{ url('/welcome_admin') }}" class="btn btn-sm btn-info mb-3" style="width:80%;">
+                    For <b>{{ Auth::user()->role }}</b>
+                </a>
+            </center>
+            @endif
+
+            <div class="contact-leader mb-5">
+                @if( !empty($users->account_upper_al) && Auth::user()->current_rank == 'AG')
+                <p style="color: #003781;font-size: 16px;font-weight: bolder;">Upper Al</p>
+                <div class="d-flex ">
+                    <div>
+                        <img src="{{ url('/img/icon/profile.png') }}" alt="" class="img-leader">
+                    </div>
+                    <div>
+                        <p class="mb-0 ms-3" style="color: #003781; font-size: 14px;font-weight: bolder;">{{ $upper_al->name ? $upper_al->name : '-'}}</p>
+                        <p class="mb-0 ms-3" style="font-size: 12px;">ชื่อเล่น: <span class="text-color-obd">{{ $upper_al->nickname ? $upper_al->nickname : '-' }}</span></p>
+                        <p class="mb-0 ms-3" style="font-size: 12px;">รหัสตัวเเทน : <span class="text-color-obd">{{ $upper_al->account ? $upper_al->account : '-' }}</span></p>
+                        <p class="mb-0 ms-3" style="font-size: 12px;">ชื่อหน่วยงาน/AO : <span class="text-color-obd">{{ $upper_al->organization_name ? $upper_al->organization_name : '-' }}</span></p>
+                        <p class="mb-0 ms-3" style="font-size: 12px;">โทร : <a href="tel:088-567-8901" class="text-color-obd">{{ $upper_al->phone ? $upper_al->phone : '-' }}</a></p>
+                        <p class="mb-0 ms-3" style="font-size: 12px;">อีเมล : <a href="mailto:Apitchaya@gmail.com"><u>{{ $upper_al->email ? $upper_al->email : '-' }}</u></a></p>
+                    </div>
+                </div>
+                <br>
                 @endif
 
-                <div class="contact-leader mb-5">
-                    @if( !empty($users->account_upper_al) && Auth::user()->current_rank == 'AG')
-                    <p style="color: #003781;font-size: 16px;font-weight: bolder;">Upper Al</p>
-                    <div class="d-flex ">
-                        <div>
-                            <img src="{{ url('/img/icon/profile.png') }}" alt="" class="img-leader">
-                        </div>
-                        <div>
-                            <p class="mb-0 ms-3" style="color: #003781; font-size: 14px;font-weight: bolder;">{{ $upper_al->name ? $upper_al->name : '-'}}</p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">ชื่อเล่น: <span class="text-color-obd">{{ $upper_al->nickname ? $upper_al->nickname : '-' }}</span></p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">รหัสตัวเเทน : <span class="text-color-obd">{{ $upper_al->account ? $upper_al->account : '-' }}</span></p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">ชื่อหน่วยงาน/AO : <span class="text-color-obd">{{ $upper_al->organization_name ? $upper_al->organization_name : '-' }}</span></p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">โทร : <a href="tel:088-567-8901" class="text-color-obd">{{ $upper_al->phone ? $upper_al->phone : '-' }}</a></p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">อีเมล : <a href="mailto:Apitchaya@gmail.com"><u>{{ $upper_al->email ? $upper_al->email : '-' }}</u></a></p>
-                        </div>
+                @if( !empty($users->account_group_manager) )
+                <p style="color: #003781;font-size: 16px;font-weight: bolder;">Group Manager</p>
+                <div class="d-flex ">
+                    <div>
+                        <img src="{{ url('/img/icon/profile.png') }}" alt="" class="img-leader">
                     </div>
-                    <br>
-                    @endif
-
-                    @if( !empty($users->account_group_manager) )
-                    <p style="color: #003781;font-size: 16px;font-weight: bolder;">Group Manager</p>
-                    <div class="d-flex ">
-                        <div>
-                            <img src="{{ url('/img/icon/profile.png') }}" alt="" class="img-leader">
-                        </div>
-                        <div>
-                            <p class="mb-0 ms-3" style="color: #003781; font-size: 14px;font-weight: bolder;">{{ $group_manager->name }}</p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">ชื่อเล่น: <span class="text-color-obd">{{ $group_manager->nickname }}</span></p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">รหัสตัวเเทน : <span class="text-color-obd">{{ $group_manager->account }}</span></p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">ชื่อหน่วยงาน/AO : <span class="text-color-obd">{{ $group_manager->organization_name }}</span></p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">โทร : <a href="tel:088-567-8901" class="text-color-obd">{{ $group_manager->phone }}</a></p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">อีเมล : <a href="mailto:Apitchaya@gmail.com"><u>{{ $group_manager->email }}</u></a></p>
-                        </div>
+                    <div>
+                        <p class="mb-0 ms-3" style="color: #003781; font-size: 14px;font-weight: bolder;">{{ $group_manager->name }}</p>
+                        <p class="mb-0 ms-3" style="font-size: 12px;">ชื่อเล่น: <span class="text-color-obd">{{ $group_manager->nickname }}</span></p>
+                        <p class="mb-0 ms-3" style="font-size: 12px;">รหัสตัวเเทน : <span class="text-color-obd">{{ $group_manager->account }}</span></p>
+                        <p class="mb-0 ms-3" style="font-size: 12px;">ชื่อหน่วยงาน/AO : <span class="text-color-obd">{{ $group_manager->organization_name }}</span></p>
+                        <p class="mb-0 ms-3" style="font-size: 12px;">โทร : <a href="tel:088-567-8901" class="text-color-obd">{{ $group_manager->phone }}</a></p>
+                        <p class="mb-0 ms-3" style="font-size: 12px;">อีเมล : <a href="mailto:Apitchaya@gmail.com"><u>{{ $group_manager->email }}</u></a></p>
                     </div>
-                    <br>
-                    @endif
-
-                    @if( !empty($users->area) )
-                    <p style="color: #003781;font-size: 16px;font-weight: bolder;">Agency Executive</p>
-                    <div class="d-flex ">
-                        <div>
-                            <img src="{{ url('/img/icon/profile.png') }}" alt="" class="img-leader">
-                        </div>
-                        <div>
-                            <p class="mb-0 ms-3" style="color: #003781; font-size: 14px;font-weight: bolder;">{{ $area_supervisor->name }}</p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">ชื่อเล่น: <span class="text-color-obd">{{ $area_supervisor->nickname }}</span></p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">พื้นที่ดูเเล : <span class="text-color-obd">{{ $area_supervisor->area }}</span></p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">โทร : <a href="tel:088-567-8901" class="text-color-obd">{{ $area_supervisor->phone }}</a></p>
-                            <p class="mb-0 ms-3" style="font-size: 12px;">อีเมล : <a href="mailto:Chawanan@gmail.com"><u>{{ $area_supervisor->email }}</u></a></p>
-                        </div>
-                    </div>
-                    @endif
                 </div>
+                <br>
+                @endif
+
+                @if( !empty($users->area) )
+                <p style="color: #003781;font-size: 16px;font-weight: bolder;">Agency Executive</p>
+                <div class="d-flex ">
+                    <div>
+                        <img src="{{ url('/img/icon/profile.png') }}" alt="" class="img-leader">
+                    </div>
+                    <div>
+                        <p class="mb-0 ms-3" style="color: #003781; font-size: 14px;font-weight: bolder;">{{ $area_supervisor->name }}</p>
+                        <p class="mb-0 ms-3" style="font-size: 12px;">ชื่อเล่น: <span class="text-color-obd">{{ $area_supervisor->nickname }}</span></p>
+                        <p class="mb-0 ms-3" style="font-size: 12px;">พื้นที่ดูเเล : <span class="text-color-obd">{{ $area_supervisor->area }}</span></p>
+                        <p class="mb-0 ms-3" style="font-size: 12px;">โทร : <a href="tel:088-567-8901" class="text-color-obd">{{ $area_supervisor->phone }}</a></p>
+                        <p class="mb-0 ms-3" style="font-size: 12px;">อีเมล : <a href="mailto:Chawanan@gmail.com"><u>{{ $area_supervisor->email }}</u></a></p>
+                    </div>
+                </div>
+                @endif
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <style>
@@ -1011,9 +1085,9 @@
                                 วันออกใบอนุญาต :
                                 <span style="color: #003781;">
                                     @if(!empty(Auth::user()->license_start))
-                                        {{ thaidate("j M Y" , strtotime(Auth::user()->license_start)) }}
+                                    {{ thaidate("j M Y" , strtotime(Auth::user()->license_start)) }}
                                     @else
-                                                -
+                                    -
                                     @endif
                                 </span>
                             </p>
@@ -1021,9 +1095,9 @@
                                 วันหมดอายุใบอนุญาต :
                                 <span style="color: #003781;">
                                     @if(!empty(Auth::user()->license_expire))
-                                        {{ thaidate("j M Y" , strtotime(Auth::user()->license_expire)) }}
+                                    {{ thaidate("j M Y" , strtotime(Auth::user()->license_expire)) }}
                                     @else
-                                                -
+                                    -
                                     @endif
                                 </span>
                             </p>
@@ -1035,9 +1109,9 @@
                                 วันออกใบอนุญาต IC License :
                                 <span style="color: #003781;">
                                     @if(!empty(Auth::user()->ic_license_start))
-                                        {{ thaidate("j M Y" , strtotime(Auth::user()->ic_license_start)) }}
+                                    {{ thaidate("j M Y" , strtotime(Auth::user()->ic_license_start)) }}
                                     @else
-                                                -
+                                    -
                                     @endif
                                 </span>
                             </p>
@@ -1045,9 +1119,9 @@
                                 วันหมดอายุใบอนุญาต IC License :
                                 <span style="color: #003781;">
                                     @if(!empty(Auth::user()->ic_license_expire))
-                                        {{ thaidate("j M Y" , strtotime(Auth::user()->ic_license_expire)) }}
+                                    {{ thaidate("j M Y" , strtotime(Auth::user()->ic_license_expire)) }}
                                     @else
-                                                -
+                                    -
                                     @endif
                                 </span>
                             </p>

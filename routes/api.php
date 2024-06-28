@@ -148,6 +148,11 @@ Route::get('/user_click_pdf_btn/{user_id}/{product_id}', 'ProductsController@use
 Route::get('/get_data_product_fav/{user_id}', 'ProductsController@get_data_product_fav');
 Route::get('/get_data_product_type', 'Product_typesController@get_data_product_type');
 Route::get('/get_data_product_admin/{type}', 'ProductsController@get_data_product_admin');
+Route::get('/change_Highlight_products/{product_id}/{number}/{type}', 'ProductsController@change_Highlight_products');
+Route::get('/get_data_product_type', 'Product_typesController@get_data_product_type');
+Route::get('/change_number_menu_type_product/{type_id}/{number}', 'Product_typesController@change_number_menu_type_product');
+Route::get('/delete_product_type/{product_type_id}', 'Product_typesController@delete_product_type');
+
 
 // Tools contact
 Route::get('/get_data_show_tools_contact', 'Tools_contactsController@get_data_show_tools_contact');

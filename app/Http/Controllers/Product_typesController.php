@@ -7,6 +7,9 @@ use App\Http\Requests;
 
 use App\Models\Product_type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Product;
 
 class Product_typesController extends Controller
 {
@@ -163,4 +166,55 @@ class Product_typesController extends Controller
         $data = Product_type::orderBy('number_menu', 'ASC')->get();
         return $data ;
     }
+
+    function change_number_menu_type_product($type_id, $number){
+
+        $number_old = Product_type::where('number_menu', $number)->first();
+        $number_select = Product_type::where('id', $type_id)->first();
+
+        $data = [];
+
+        if( !empty($number_select->id) ){
+            $data['old_change_to'] = $number_select->number_menu;
+        }
+        else{
+            $data['old_change_to'] = null;
+        }
+
+        if( !empty($number_old->id) ){
+            $data['old_id'] = $number_old->id;
+
+            DB::table('product_types')
+                ->where([ 
+                        ['id', $data['old_id']],
+                    ])
+                ->update([
+                        'number_menu' => $data['old_change_to'],
+                    ]);
+        }
+
+        DB::table('product_types')
+            ->where([ 
+                    ['id', $type_id],
+                ])
+            ->update([
+                    'number_menu' => $number,
+                ]);
+
+        return 'success';
+
+    }
+
+    function delete_product_type($product_type_id){
+        $data = Product_type::where('id', $product_type_id)->first();
+        Product::where('product_type_id', $product_type_id)->delete();
+
+        if( !empty($data->id) ){
+            $data->delete();
+        }
+
+        return 'success';
+
+    }
+
 }

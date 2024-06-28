@@ -326,7 +326,42 @@
 </style>
 
 
-<!-- MODAL การจัดการเมนูหลักสูตร -->
+<!-- Modal ลบประเภทผลิตภัณฑ์ -->
+<!-- Button trigger modal -->
+<button id="btn_Modal_delete_products_type" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#Modal_delete_products_type">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="Modal_delete_products_type" tabindex="-1" aria-labelledby="Label_delete_products_type" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="mt-3 mb-2 text-center">
+          <img src="{{ url('/img/icon/problem (1).png') }}" style="width: 60%;">
+          <br>
+          <h4 class="mt-3">
+            ยืนยันการลบ
+            <br>
+            <b><span id="modal_delete_name_products_type"></span></b>
+          </h4>
+          <p class="text-danger"><u>เมื่อกดยืนยัน ผลิตภัณฑ์ทั้งหมดที่เป็นประเภทนี้จะถูกลบด้วย</u></p>
+        </div>
+        <hr>
+        <center>
+          <button id="btn_close_Modal_delete_products_type" type="button" class="btn btn-secondary" data-dismiss="modal" style="width:40%;">
+            ปิด
+          </button>
+          <button id="btn_cf_delete_products_type" type="button" class="btn btn-danger" style="width:40%;">
+            ยืนยันการลบ
+          </button>
+        </center>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL การจัดการเมนู -->
 <div class="modal fade" id="modal_menu_management" tabindex="-1" aria-labelledby="Label_menu_management" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
@@ -339,9 +374,10 @@
       <div class="modal-body">
         <div class="card">
           <div class="card-body">
+            <hr>
             <div id="content_number_menu_type" class="row mt-3 mb-2">
-              <!--  -->
-            </div>
+                <!--  -->
+              </div>
           </div>
         </div>
       </div>
@@ -363,8 +399,8 @@
 			</a>
 		</div>
 		<div class="btn-group">
-			<button disabled class="btn btn-warning" data-toggle="modal" data-target="#modal_menu_management">
-				<i class="fa-solid fa-list-ol"></i> การจัดการเมนู (pending)
+			<button class="btn btn-warning" data-toggle="modal" data-target="#modal_menu_management">
+				<i class="fa-solid fa-list-ol"></i> การจัดการเมนู
 			</button>
 		</div>
 	</div>
@@ -391,14 +427,14 @@
 	document.addEventListener('DOMContentLoaded', function () {
         get_data_product('all');
         get_data_product_type();
-        // get_data_number_menu_of_products();
+        get_data_number_menu_type();
   });
 
   function get_data_product(type){
     fetch("{{ url('/') }}/api/get_data_product_admin/" + type )
       .then(response => response.json())
       .then(result => {
-          console.log(result['data_products']);
+          // console.log(result['data_products']);
 
           if(type == 'all'){
               document.querySelector('#h5_products_types').innerHTML = 'ผลิตภัณฑ์ทั้งหมด';
@@ -425,6 +461,28 @@
                   }
                   else{
                       name_type = result['name_type'] ;
+                  }
+
+                  // Highlight
+                  let html_Highlight ;
+                  if(type == 'all'){
+                    html_Highlight = `<span id="span_Highlight_id_`+result['data_products'][i].id+`" class="float-end">..</span>`;
+                    if(result['data_products'][i].highlight_number){
+                      html_Highlight = `
+                        <span id="span_Highlight_id_`+result['data_products'][i].id+`">
+                          <i class="i_Highlight fa-solid fa-circle-`+result['data_products'][i].highlight_number+` font-24 float-end text-success"></i>
+                        </span>
+                        `;
+                    }
+                  }else{
+                    html_Highlight = `<span id="span_Highlight_id_`+result['data_products'][i].id+`" class="float-end">..</span>`;
+                    if(result['data_products'][i].highlight_of_type){
+                      html_Highlight = `
+                        <span id="span_Highlight_id_`+result['data_products'][i].id+`">
+                          <i class="i_Highlight fa-solid fa-circle-`+result['data_products'][i].highlight_of_type+` font-24 float-end text-success"></i>
+                        </span>
+                        `;
+                    }
                   }
 
                   let sum_datetime_start = ``;
@@ -492,11 +550,57 @@
                             <p class="detail-course">
                               `+textWithoutHtml+`
                             </p>
+                            <p class="card-text mt-3">
+                              <b>ผู้ลงข้อมูล : </b>`+result['data_products'][i].name_creator+`
+                            </p>
                             <hr>
+                            <span>
+                              <b>Highlight</b>
+                              `+html_Highlight+`
+                            </span>
                             <center class="mt-4 mb-2">
                               <a href="{{ url('/preview_products') }}/`+result['data_products'][i].id+`" class="btn btn-sm btn-info">
                                 ดูข้อมูล
                               </a>
+                              @if(Auth::check())
+                                @if(Auth::user()->role == "Super-admin")
+                                <div class="btn-group" role="group">
+                                  <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Highlight</button>
+                                  <ul class="dropdown-menu" style="margin: 0px;">
+                                    <li>
+                                      <span class="dropdown-item btn" onclick="change_Highlight_products('`+result['data_products'][i].id+`' , 'ว่าง' , '`+type+`')">
+                                        ว่าง
+                                      </span>
+                                    </li>
+                                    <li>
+                                      <span class="dropdown-item btn" onclick="change_Highlight_products('`+result['data_products'][i].id+`' , '1' , '`+type+`')">
+                                        ลำดับที่ 1
+                                      </span>
+                                    </li>
+                                    <li>
+                                      <span class="dropdown-item btn" onclick="change_Highlight_products('`+result['data_products'][i].id+`' , '2' , '`+type+`')">
+                                        ลำดับที่ 2
+                                      </span>
+                                    </li>
+                                    <li>
+                                      <span class="dropdown-item btn" onclick="change_Highlight_products('`+result['data_products'][i].id+`' , '3' , '`+type+`')">
+                                        ลำดับที่ 3
+                                      </span>
+                                    </li>
+                                    <li>
+                                      <span class="dropdown-item btn" onclick="change_Highlight_products('`+result['data_products'][i].id+`' , '4' , '`+type+`')">
+                                        ลำดับที่ 4
+                                      </span>
+                                    </li>
+                                    <li>
+                                      <span class="dropdown-item btn" onclick="change_Highlight_products('`+result['data_products'][i].id+`' , '5' , '`+type+`')">
+                                        ลำดับที่ 5
+                                      </span>
+                                    </li>
+                                  </ul>
+                                </div>
+                                @endif
+                              @endif
                               <form method="POST" action="{{ url('/products') }}/`+result['data_products'][i].id+`" accept-charset="UTF-8" style="display:inline" onsubmit="return confirmDelete(event, this)">
                                   {{ method_field('DELETE') }}
                                   {{ csrf_field() }}
@@ -516,6 +620,158 @@
           }
 
       });
+  }
+
+  function change_Highlight_products(product_id , number , type){
+    // console.log(product_id);
+    // console.log(number);
+
+    fetch("{{ url('/') }}/api/change_Highlight_products/" + product_id  + "/" + number + "/" + type)
+      .then(response => response.json())
+      .then(result => {
+          // console.log(result);
+
+          if(result['old_id']){
+            let span_Highlight_old_id = document.querySelector('#span_Highlight_id_'+result['old_id']);
+
+            if(result['old_id_change_to']){
+                span_Highlight_old_id.innerHTML = `
+                  <span id="span_Highlight_id_`+result['old_id']+`">
+                    <i class="i_Highlight fa-solid fa-circle-`+result['old_id_change_to']+` font-24 float-end text-success"></i>
+                  </span>
+                `;
+
+                let icon_1 = document.getElementById('span_Highlight_id_'+result['old_id']);
+                    icon_1.classList.remove('i_Highlight');
+                    // void icon_1.offsetWidth; // Trigger reflow
+                    setTimeout(() => {
+                      icon_1.classList.add('i_Highlight');
+                    }, 500);
+                  }
+            else{
+              span_Highlight_old_id.innerHTML = `
+                <span id="span_Highlight_id_`+result['old_id']+`" class="float-end">..</span>
+              `;
+            }
+          }
+
+          let select = document.querySelector('#span_Highlight_id_'+product_id);
+          select.innerHTML = `
+            <span id="span_Highlight_id_`+product_id+`">
+              <i class="i_Highlight fa-solid fa-circle-`+number+` font-24 float-end text-success"></i>
+            </span>
+          `;
+
+          let icon_2 = document.getElementById('span_Highlight_id_'+product_id);
+              icon_2.classList.remove('i_Highlight');
+              // void icon_2.offsetWidth; // Trigger reflow
+              setTimeout(() => {
+                icon_2.classList.add('i_Highlight');
+              }, 500);
+
+      });
+  }
+
+  function get_data_number_menu_type(){
+
+    let content_number_menu_type = document.querySelector('#content_number_menu_type');
+        content_number_menu_type.innerHTML = '';
+
+        fetch("{{ url('/') }}/api/get_data_product_type")
+          .then(response => response.json())
+          .then(result => {
+              // console.log(result);
+
+              if(result){
+
+                for (let i = 0; i < result.length; i++) {
+
+                  let html_list_number = `` ;
+                  for (let ix = 0; ix < result.length; ix++) {
+
+                    let count = ix + 1 ;
+                    list_number = `
+                      <li>
+                        <span class="dropdown-item btn" onclick="change_number_menu_type('`+result[i].id+`' , '`+count+`')">
+                          ลำดับที่ `+count+`
+                        </span>
+                      </li>
+                    `;
+
+                    html_list_number = html_list_number + list_number ;
+
+                  }
+
+                  let html = `
+                    <div class="col-1 center-vertical mb-3">
+                      <i class="fa-solid fa-circle-`+result[i].number_menu+` font-24 text-info"></i>
+                    </div>
+                    <div class="col-1 mb-3">
+                      <div class="icon-menu-course" style="background-color: `+result[i].color_code+`">
+                          <img src="`+result[i].icon+`">
+                      </div>
+                    </div>
+                    <div class="col-7 center-vertical mb-3">
+                      `+result[i].name_type+`
+                    </div>
+                    <div class="col-3 center-vertical mb-3">
+                      <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Number Menu</button>
+                        <ul class="dropdown-menu" style="margin: 0px;">
+                          `+html_list_number+`
+                        </ul>
+                      </div>
+                      <button type="button" class="btn btn-sm btn-danger mx-2" onclick="click_delete_name_training_type('`+result[i].id+`' , '`+result[i].name_type+`')">
+                        <i class="fa-solid fa-trash-can"></i> ลบ
+                      </button>
+                    </div>
+                    <hr>
+                  `;
+
+                  content_number_menu_type.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+
+                }
+
+              }
+        });
+  }
+
+  function click_delete_name_training_type(product_type_id , name_type){
+
+    let btn = document.querySelector('#btn_cf_delete_products_type');
+    let name_products_type = document.querySelector('#modal_delete_name_products_type');
+        name_products_type.innerHTML = name_type ;
+
+        btn.setAttribute('onclick' , "cf_delete_products_type('"+product_type_id+"')");
+        
+        document.querySelector('#btn_close_modal_menu_management').click();
+        document.querySelector('#btn_Modal_delete_products_type').click();
+  }
+
+  function cf_delete_products_type(product_type_id){
+    fetch("{{ url('/') }}/api/delete_product_type/"+ product_type_id)
+          .then(response => response.text())
+          .then(result => {
+              // console.log(result);
+
+            if(result == 'success'){
+              document.querySelector('#btn_close_Modal_delete_products_type').click();
+              get_data_number_menu_type();
+            }
+    });
+  }
+
+  function change_number_menu_type(type_id , number){
+
+    fetch("{{ url('/') }}/api/change_number_menu_type_product/"+ type_id + "/" + number)
+          .then(response => response.text())
+          .then(result => {
+              // console.log(result);
+              if(result == 'success'){
+                get_data_number_menu_type();
+              }
+    });
+
   }
 
   function get_data_product_type(){

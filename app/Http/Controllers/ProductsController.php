@@ -682,20 +682,125 @@ class ProductsController extends Controller
         if($type == 'all'){
             // $data['data_appointments'] = Appointment::orderBy('id' , 'DESC')->get();
 
+            // $data['data_products'] = DB::table('products')
+            //     ->join('product_types', 'product_types.id', '=', 'products.product_type_id')
+            //     ->select('products.*', 'product_types.name_type')
+            //     ->orderBy("id", "DESC")
+            //     ->get();
+
             $data['data_products'] = DB::table('products')
                 ->join('product_types', 'product_types.id', '=', 'products.product_type_id')
-                ->select('products.*', 'product_types.name_type')
-                ->orderBy("id", "DESC")
+                ->leftJoin('users', 'users.id', '=', 'products.creator')
+                ->select('products.*', 'product_types.name_type' , 'users.name as name_creator')
+                ->orderByRaw("CASE 
+                        WHEN highlight_number IS NOT NULL THEN 1
+                        ELSE 2
+                        END, 
+                        highlight_number ASC, 
+                        id DESC")
                 ->get();
         }
         else{
-            $data['data_products'] = Product::where('product_type_id', $type)
-                ->orderBy("id", "DESC")
+            // $data['data_products'] = Product::where('product_type_id', $type)
+            //     ->orderBy("id", "DESC")
+            //     ->get();
+
+            $data['data_products'] = DB::table('products')
+                ->join('product_types', 'product_types.id', '=', 'products.product_type_id')
+                ->leftJoin('users', 'users.id', '=', 'products.creator')
+                ->select('products.*', 'product_types.name_type' , 'users.name as name_creator')
+                ->where('products.product_type_id', $type)
+                ->orderByRaw("CASE 
+                        WHEN highlight_of_type IS NOT NULL THEN 1
+                        ELSE 2
+                        END, 
+                        highlight_of_type ASC, 
+                        id DESC")
                 ->get();
+
             $data_New_type = Product_type::where('id', $type)->first();
             $data['name_type'] = $data_New_type->name_type ;
         }
 
         return $data;
+    }
+
+    function change_Highlight_products($product_id , $number , $type){
+
+        $data = [];
+
+        if($type == 'all'){
+            $Highlight_number_old = Product::where('highlight_number', $number)->first();
+            $Highlight_number_select = Product::where('id', $product_id)->first();
+
+            if( !empty($Highlight_number_select->highlight_number) ){
+                $data['old_id_change_to'] = $Highlight_number_select->highlight_number;
+            }
+            else{
+                $data['old_id_change_to'] = null;
+            }
+
+            if( !empty($Highlight_number_old->id) ){
+                $data['old_id'] = $Highlight_number_old->id;
+
+                DB::table('products')
+                    ->where([ 
+                            ['id', $data['old_id']],
+                        ])
+                    ->update([
+                            'highlight_number' => $data['old_id_change_to'],
+                        ]);
+            }
+
+            if($number == 'ว่าง'){
+                $number = null ;
+            }
+
+            DB::table('products')
+                ->where([ 
+                        ['id', $product_id],
+                    ])
+                ->update([
+                        'highlight_number' => $number,
+                    ]);
+        }
+        else{
+            $Highlight_number_old = Product::where('product_type_id' , $type)->where('highlight_of_type', $number)->first();
+            $Highlight_number_select = Product::where('id', $product_id)->first();
+
+            if( !empty($Highlight_number_select->highlight_of_type) ){
+                $data['old_id_change_to'] = $Highlight_number_select->highlight_of_type;
+            }
+            else{
+                $data['old_id_change_to'] = null;
+            }
+
+            if( !empty($Highlight_number_old->id) ){
+                $data['old_id'] = $Highlight_number_old->id;
+
+                DB::table('products')
+                    ->where([ 
+                            ['id', $data['old_id']],
+                        ])
+                    ->update([
+                            'highlight_of_type' => $data['old_id_change_to'],
+                        ]);
+            }
+
+            if($number == 'ว่าง'){
+                $number = null ;
+            }
+
+            DB::table('products')
+                ->where([ 
+                        ['id', $product_id],
+                    ])
+                ->update([
+                        'highlight_of_type' => $number,
+                    ]);
+        }
+
+        return $data;
+        
     }
 }

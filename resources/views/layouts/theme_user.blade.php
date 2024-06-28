@@ -349,18 +349,18 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle-nocaret" href="{{ url('/my_favorites') }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle-nocaret" href="{{ url('/my_favorites') }}" role="button">
                             <i class="fa-regular fa-bookmark text-color-obd"></i>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle-nocaret position-relative" href="{{ url('/calendars') }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle-nocaret position-relative" href="{{ url('/calendars') }}" role="button">
                             <span class="alert-count d-none"></span>
                             <i class="fa-regular fa-calendar text-color-obd"></i>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle-nocaret position-relative" href="#" role="button">
                             <span class="alert-count"></span>
                             <i class="fa-regular fa-bell text-color-obd"></i>
                         </a>
@@ -582,11 +582,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
 
-<script>
+<!-- <script>
     $(".mobile-search-icon").on("click", function() {
         $(".search-bar").addClass("full-search-bar");
     });
-</script>
+</script> -->
 
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {

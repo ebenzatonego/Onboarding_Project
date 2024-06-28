@@ -276,7 +276,7 @@
                         line-height: normal;
                     }
                 </style>
-                <div class="d-flex w-100 justify-content-center">
+                <div id="btn_goto_top" class="d-flex w-100 justify-content-center d-none">
                     <button class="btn-go-to-top" onclick="document.body.scrollTop=0;document.documentElement.scrollTop=0;event.preventDefault()">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="24" viewBox="0 0 16 24" fill="none">
                             <path d="M7 22.5391C7 23.0913 7.44772 23.5391 8 23.5391C8.55228 23.5391 9 23.0913 9 22.5391L7 22.5391ZM8.70711 0.293493C8.31658 -0.0970306 7.68342 -0.0970307 7.29289 0.293493L0.928933 6.65746C0.538408 7.04798 0.538408 7.68114 0.928933 8.07167C1.31946 8.46219 1.95262 8.46219 2.34315 8.07167L8 2.41481L13.6569 8.07167C14.0474 8.46219 14.6805 8.46219 15.0711 8.07167C15.4616 7.68115 15.4616 7.04798 15.0711 6.65746L8.70711 0.293493ZM9 22.5391L9 1.0006L7 1.0006L7 22.5391L9 22.5391Z" fill="#616161" />
@@ -309,6 +309,13 @@
                 // console.log(result);
 
                 if(result){
+
+                    if(result.length >= 12){
+                        document.querySelector('#btn_goto_top').classList.remove('d-none');
+                    }
+                    else {
+                        document.querySelector('#btn_goto_top').classList.add('d-none');
+                    }
 
                     let promises = result.map((item, i) => {
                         return new Promise((resolve, reject) => {

@@ -138,8 +138,10 @@ class FavoritesController extends Controller
             ->where('favorites.status' , 'Yes')
             ->select('favorites.*',
                     'news_types.name_type',
+                    'news.id as item_id',
                     'news.title',
                     'news.detail',
+                    'news.photo_cover',
                 )
             ->orderBy('favorites.created_at' , 'DESC')
             ->get();
@@ -152,8 +154,10 @@ class FavoritesController extends Controller
             ->where('favorites.status' , 'Yes')
             ->select('favorites.*',
                     'training_types.type_article',
+                    'trainings.id as item_id',
                     'trainings.title',
                     'trainings.detail',
+                    'trainings.photo',
                 )
             ->orderBy('favorites.created_at' , 'DESC')
             ->get();
@@ -166,7 +170,9 @@ class FavoritesController extends Controller
             ->where('favorites.status' , 'Yes')
             ->select('favorites.*',
                     'training_types.type_article',
+                    'appointments.id as item_id',
                     'appointments.title',
+                    'appointments.photo',
                     'appointments.detail',
                     'appointments.type as type_appointments',
                     'appointments.all_day',
@@ -186,7 +192,9 @@ class FavoritesController extends Controller
             ->where('favorites.status' , 'Yes')
             ->select('favorites.*',
                     'product_types.name_type',
+                    'products.id as item_id',
                     'products.title',
+                    'products.photo',
                     'products.detail',
                 )
             ->orderBy('favorites.created_at' , 'DESC')
@@ -200,7 +208,9 @@ class FavoritesController extends Controller
             ->where('favorites.status' , 'Yes')
             ->select('favorites.*',
                     'activity_types.name_type',
+                    'activitys.id as item_id',
                     'activitys.title',
+                    'activitys.photo',
                     'activitys.detail',
                     'activitys.all_day',
                     'activitys.date_start',

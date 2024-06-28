@@ -675,6 +675,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        transition: all .15s ease-in-out;
     }
 
     .icon-menu-course img{
@@ -694,6 +695,129 @@
         display: flex !important; /* To override display:block I added !important */
         flex-direction: row;
         justify-content: center; /* To center the carousel */
+    }
+</style>
+
+<style>
+    .product-item {
+        position: relative;
+        padding: 10px;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+        display: flex;
+        /* background-color: #fff; */
+        border: 0px solid rgba(0, 0, 0, 0);
+        box-shadow: 0 0 2rem 0 rgb(136 152 170 / 15%);
+        border-radius: 0.25rem;
+        margin-bottom: 1.5rem;
+
+
+    }
+
+    .product-item.yellow {
+        background-color: rgba(255, 191, 68, 0.3);
+    }
+
+    .product-item.pink {
+        background-color: rgba(253, 160, 152, 0.3);
+
+    }
+
+    .product-item.green {
+        background-color: rgba(168, 210, 159, 0.3);
+
+    }
+
+    .product-item.blue {
+        background-color: rgba(174, 195, 255, 0.3);
+
+    }
+
+    @media (max-width: 770px) {
+        .product-item {
+            width: 100% !important;
+        }
+    }
+
+    @media (min-width: 770px) {
+        .container-product {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+
+
+        }
+
+        .product-item {
+            width: 49% !important;
+
+        }
+    }
+
+    .product-item img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+    }
+
+    .product-item .title-product {
+        font-size: 12;
+        color: #0E2B81;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 5px;
+    }
+
+    .product-item .detail-product {
+        font-size: 10;
+        color: #000;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 5px;
+
+    }
+
+    .category-product {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    .category-product span {
+        color: #0E2B81;
+        border: #0E2B81 1px solid;
+        border-radius: 50px;
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        -ms-border-radius: 50px;
+        -o-border-radius: 50px;
+        font-size: 9px;
+        padding: 2px 10px;
+    }
+
+    .container-product .product-item.bookmark .fav-product {
+        display: block !important;
+    }
+
+    .fav-product {
+        display: none;
+        position: absolute;
+        top: 0px;
+        right: 8px;
     }
 </style>
 
@@ -727,29 +851,31 @@
         </div>
     </div>
 
-    <div id="div_for_fav_training" class="owl-carousel carousel-menu-course owl-theme owl-loaded owl-drag mb-3">
-        <div class="item mx-2" onclick="change_view_item_training('1');">
-            <div id="view_item_1" class="menu-course text-center active">
-                <div class="icon-menu-course ">
-                    <img src="{{ url('/img/icon/for_page_fav/หลักสูตร.png') }}">
+    <div id="div_for_fav_training" class="d-none">
+        <div class="owl-carousel carousel-menu-course owl-theme owl-loaded owl-drag mb-3">
+            <div class="item mx-2" onclick="change_view_item_training('1');">
+                <div id="view_item_1" class="menu-course text-center active">
+                    <div class="icon-menu-course ">
+                        <img src="{{ url('/img/icon/for_page_fav/หลักสูตร.png') }}">
+                    </div>
+                    <p class="mb-0 mt-2">หลักสูตร</p>
                 </div>
-                <p class="mb-0 mt-2">หลักสูตร</p>
             </div>
-        </div>
-        <div class="item mx-2" onclick="change_view_item_training('2');">
-            <div id="view_item_2" class="menu-course text-center">
-                <div class="icon-menu-course ">
-                    <img src="{{ url('/img/icon/for_page_fav/อบรม.png') }}">
+            <div class="item mx-2" onclick="change_view_item_training('2');">
+                <div id="view_item_2" class="menu-course text-center">
+                    <div class="icon-menu-course ">
+                        <img src="{{ url('/img/icon/for_page_fav/อบรม.png') }}">
+                    </div>
+                    <p class="mb-0 mt-2">อบรม</p>
                 </div>
-                <p class="mb-0 mt-2">อบรม</p>
             </div>
-        </div>
-        <div class="item mx-2" onclick="change_view_item_training('3');">
-            <div id="view_item_3" class="menu-course text-center">
-                <div class="icon-menu-course ">
-                    <img src="{{ url('/img/icon/for_page_fav/สอบ.png') }}">
+            <div class="item mx-2" onclick="change_view_item_training('3');">
+                <div id="view_item_3" class="menu-course text-center">
+                    <div class="icon-menu-course ">
+                        <img src="{{ url('/img/icon/for_page_fav/สอบ.png') }}">
+                    </div>
+                    <p class="mb-0 mt-2">สอบ</p>
                 </div>
-                <p class="mb-0 mt-2">สอบ</p>
             </div>
         </div>
     </div>
@@ -761,34 +887,37 @@
             document.querySelector('#view_item_3').classList.remove('active');
 
             document.querySelector('#view_item_'+type).classList.add('active');
+
+            let item_of_content = document.querySelectorAll('.item_of_content');
+                item_of_content.forEach(item_of_content => {
+                    item_of_content.classList.add('d-none');
+                }) 
+
+            if(type == '1'){
+                let item_1 = document.querySelectorAll('[check_sub_type="หลักสูตร"]');
+                    item_1.forEach(item_1 => {
+                        item_1.classList.remove('d-none');
+                    }) 
+            }
+            else if(type == '2'){
+                let item_2 = document.querySelectorAll('[check_sub_type="อบรม"]');
+                    item_2.forEach(item_2 => {
+                        item_2.classList.remove('d-none');
+                    })
+            }
+            else if(type == '3'){
+                let item_3 = document.querySelectorAll('[check_sub_type="สอบ"]');
+                    item_3.forEach(item_3 => {
+                        item_3.classList.remove('d-none');
+                    })
+            }
         }
     </script>
 
     <div class="bottom-course">
 
-        <div id="div_content" class="container-course ">
-            <a href="http://localhost/Onboarding_Project/public/training_show/19" class="course-item bookmark">
-                <img src="https://firebasestorage.googleapis.com/v0/b/test-storage-63113.appspot.com/o/training%2Fimage%2F26-06-2024__04%3A20-Edit-TFB?alt=media&amp;token=2034606a-a321-4d18-9b1b-eed38f455fb7">
-                <div class="ms-3">
-                    <p class="title-course">
-                        TFB
-                    </p>
-                    <p class="detail-course">
-                        หลักการเจรจาต่อรองอย่างมีคุณภาพการกำหนดจุดประสงค์ให้ชัดเจนการประเมินทางเลือกของการเจรจา (BATNA)การบริหารจัดการให้การเจรจามีคุณภาพ (ZOPA)การเตรียมความพร้อมก่อนการเจรจาต่อรองRole Playing: การฝึกฝนเทคนิคการเจรจาต่อรองอย่างสร้างสรรค์เทคนิคการปิดการขายให้ลูกค้าเห็นคุณค่า (Value Proposition)
-                    </p>
-                    <div class="category-course">
-                        <span id="span_type_of_training">
-                            #หลักสูตรแนะนำ
-                        </span>
-                    </div>
-                </div>
-                <div class="fav-course">
-                    <svg width="17" height="22" viewBox="0 0 17 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M16.0002 0H1.07715C0.524864 0 0.0771484 0.447716 0.0771484 1V20.3889C0.0771484 21.1306 0.856276 21.6141 1.52095 21.285L8.09489 18.0293C8.37455 17.8908 8.70283 17.8908 8.98248 18.0293L15.5564 21.285C16.2211 21.6141 17.0002 21.1306 17.0002 20.3888V1C17.0002 0.447715 16.5525 0 16.0002 0Z" fill="#FFB600"></path>
-                        <path d="M6.80604 7.04096L3.85769 7.45107L3.80547 7.46126C3.72641 7.4814 3.65435 7.5213 3.59663 7.57689C3.53891 7.63248 3.4976 7.70178 3.47692 7.7777C3.45625 7.85362 3.45694 7.93344 3.47894 8.00902C3.50094 8.0846 3.54345 8.15322 3.60213 8.20788L5.73807 10.2026L5.23436 13.0201L5.22835 13.0689C5.22351 13.1473 5.24049 13.2256 5.27754 13.2957C5.3146 13.3657 5.3704 13.4251 5.43923 13.4677C5.50807 13.5103 5.58746 13.5345 5.66928 13.538C5.75111 13.5415 5.83242 13.524 5.9049 13.4874L8.54178 12.1573L11.1727 13.4874L11.2189 13.5078C11.2951 13.5366 11.378 13.5455 11.4591 13.5334C11.5401 13.5214 11.6163 13.4888 11.6799 13.4392C11.7435 13.3896 11.7922 13.3246 11.8209 13.2509C11.8497 13.1773 11.8576 13.0976 11.8437 13.0201L11.3395 10.2026L13.4763 8.20744L13.5124 8.16975C13.5639 8.10891 13.5976 8.03606 13.6102 7.95862C13.6228 7.88118 13.6138 7.80193 13.5841 7.72893C13.5543 7.65593 13.505 7.5918 13.441 7.54307C13.377 7.49433 13.3007 7.46274 13.2199 7.45151L10.2715 7.04096L8.95354 4.47834C8.9154 4.40409 8.85636 4.34157 8.7831 4.29785C8.70984 4.25413 8.62529 4.23096 8.53901 4.23096C8.45273 4.23096 8.36818 4.25413 8.29492 4.29785C8.22166 4.34157 8.16262 4.40409 8.12448 4.47834L6.80604 7.04096Z" fill="#8C6400"></path>
-                    </svg>
-                </div>
-            </a>
+        <div id="div_content" class="container-course container-product">
+            <!-- div_content -->
         </div>
 
     </div>
@@ -803,21 +932,44 @@
                     }
                 }) 
 
+            let item_of_content = document.querySelectorAll('.item_of_content');
+                item_of_content.forEach(item_of_content => {
+                    item_of_content.classList.add('d-none');
+                }) 
+
+            document.querySelector('#div_for_fav_training').classList.add('d-none');
 
             if(tabs_type_fav_value == "ทั้งหมด"){
-                // 
+                let item_all = document.querySelectorAll('.item_of_content');
+                item_all.forEach(item_all => {
+                    item_all.classList.remove('d-none');
+                }) 
             }
             else if(tabs_type_fav_value == "ข่าว"){
-                // 
+                let item_news = document.querySelectorAll('[check_type="ข่าว"]');
+                item_news.forEach(item_news => {
+                    item_news.classList.remove('d-none');
+                }) 
             }
             else if(tabs_type_fav_value == "หลักสูตร"){
-                // 
+                document.querySelector('#div_for_fav_training').classList.remove('d-none');
+                let item_training = document.querySelectorAll('[check_type="หลักสูตร"]');
+                item_training.forEach(item_training => {
+                    item_training.classList.remove('d-none');
+                })
+                change_view_item_training('1');
             }
             else if(tabs_type_fav_value == "ผลิตภัณฑ์"){
-                // 
+                let item_product = document.querySelectorAll('[check_type="ผลิตภัณฑ์"]');
+                item_product.forEach(item_product => {
+                    item_product.classList.remove('d-none');
+                }) 
             }
             else if(tabs_type_fav_value == "กิจกรรม"){
-                // 
+                let item_activity = document.querySelectorAll('[check_type="กิจกรรม"]');
+                item_activity.forEach(item_activity => {
+                    item_activity.classList.remove('d-none');
+                }) 
             }
         }
     </script>
@@ -836,7 +988,7 @@ function get_data_fav_of_user(){
     fetch("{{ url('/') }}/api/get_data_fav_of_user" + "/" + "{{ Auth::user()->id }}")
         .then(response => response.json())
         .then(result => {
-            console.log(result);
+            // console.log(result);
 
             if(result){
 
@@ -845,12 +997,103 @@ function get_data_fav_of_user(){
 
                 for (let i = 0; i < result.length; i++) {
 
+                    let textWithoutHtml = ``;
+                    if(result[i].detail){
+                        textWithoutHtml = result[i].detail.replace(/(<([^>]+)>)/gi, "");
+                    }
+
                     let html = ``;
                     if(result[i].type == "หลักสูตร" || result[i].type == "อบรม/สอบ"){
-                        // 
+
+                        let url = ``;
+                        let check_type = ``;
+                        let check_sub_type = ``;
+                        if(result[i].type == "หลักสูตร"){
+                            url = `href="{{ url('/training_show') }}/`+result[i].item_id+`"`;
+                            check_type = `check_type="หลักสูตร"`;
+                            check_sub_type = `check_sub_type="หลักสูตร"`;
+                        }
+                        else if(result[i].type == "อบรม/สอบ"){
+                            url = `href="{{ url('/show_appointment_train') }}/`+result[i].item_id+`"`;
+                            check_type = `check_type="หลักสูตร"`;
+                            check_sub_type = `check_sub_type="`+result[i].type_appointments+`"`;
+                        }
+
+
+                        html = `
+                            <a `+url+` class="item_of_content course-item bookmark" `+check_type+` `+check_sub_type+`>
+                                <img src="`+result[i].photo+`">
+                                <div class="ms-3">
+                                    <p class="title-course">
+                                        `+result[i].title+`
+                                    </p>
+                                    <p class="detail-course">
+                                        `+textWithoutHtml+`
+                                    </p>
+                                    <div class="category-course">
+                                        <span id="span_type_of_training">
+                                            #`+result[i].type_article+`
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="fav-course">
+                                    <svg width="17" height="22" viewBox="0 0 17 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16.0002 0H1.07715C0.524864 0 0.0771484 0.447716 0.0771484 1V20.3889C0.0771484 21.1306 0.856276 21.6141 1.52095 21.285L8.09489 18.0293C8.37455 17.8908 8.70283 17.8908 8.98248 18.0293L15.5564 21.285C16.2211 21.6141 17.0002 21.1306 17.0002 20.3888V1C17.0002 0.447715 16.5525 0 16.0002 0Z" fill="#FFB600"/>
+                                        <path d="M6.80604 7.04096L3.85769 7.45107L3.80547 7.46126C3.72641 7.4814 3.65435 7.5213 3.59663 7.57689C3.53891 7.63248 3.4976 7.70178 3.47692 7.7777C3.45625 7.85362 3.45694 7.93344 3.47894 8.00902C3.50094 8.0846 3.54345 8.15322 3.60213 8.20788L5.73807 10.2026L5.23436 13.0201L5.22835 13.0689C5.22351 13.1473 5.24049 13.2256 5.27754 13.2957C5.3146 13.3657 5.3704 13.4251 5.43923 13.4677C5.50807 13.5103 5.58746 13.5345 5.66928 13.538C5.75111 13.5415 5.83242 13.524 5.9049 13.4874L8.54178 12.1573L11.1727 13.4874L11.2189 13.5078C11.2951 13.5366 11.378 13.5455 11.4591 13.5334C11.5401 13.5214 11.6163 13.4888 11.6799 13.4392C11.7435 13.3896 11.7922 13.3246 11.8209 13.2509C11.8497 13.1773 11.8576 13.0976 11.8437 13.0201L11.3395 10.2026L13.4763 8.20744L13.5124 8.16975C13.5639 8.10891 13.5976 8.03606 13.6102 7.95862C13.6228 7.88118 13.6138 7.80193 13.5841 7.72893C13.5543 7.65593 13.505 7.5918 13.441 7.54307C13.377 7.49433 13.3007 7.46274 13.2199 7.45151L10.2715 7.04096L8.95354 4.47834C8.9154 4.40409 8.85636 4.34157 8.7831 4.29785C8.70984 4.25413 8.62529 4.23096 8.53901 4.23096C8.45273 4.23096 8.36818 4.25413 8.29492 4.29785C8.22166 4.34157 8.16262 4.40409 8.12448 4.47834L6.80604 7.04096Z" fill="#8C6400"/>
+                                    </svg>
+                                </div>
+                            </a>
+                        `;
+                        div_content.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+
                     }
                     else if(result[i].type == "ข่าว" || result[i].type == "ผลิตภัณฑ์" || result[i].type == "กิจกรรม"){
-                        // 
+
+                        let url = ``;
+                        let show_photo = ``;
+                        let check_type = ``;
+                        if(result[i].type == "ข่าว"){
+                            url = `href="{{ url('/news_show') }}/`+result[i].item_id+`"`;
+                            show_photo = result[i].photo_cover ;
+                            check_type = `check_type="ข่าว"`;
+                        }
+                        else if(result[i].type == "ผลิตภัณฑ์"){
+                            url = `href="{{ url('/product_show') }}/`+result[i].item_id+`"`;
+                            show_photo = result[i].photo ;
+                            check_type = `check_type="ผลิตภัณฑ์"`;
+                        }
+                        else if(result[i].type == "กิจกรรม"){
+                            url = `href="{{ url('/activitys_show') }}/`+result[i].item_id+`"`;
+                            show_photo = result[i].photo ;
+                            check_type = `check_type="กิจกรรม"`;
+                        }
+
+
+                        html = `
+                            <a `+url+` class="item_of_content product-item bookmark " `+check_type+`>
+                                <div class="position-relative">
+                                    <img src="`+show_photo+`">
+                                    <div class="fav-product">
+                                        <svg width="17" height="22" viewBox="0 0 17 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M16.0002 0H1.07715C0.524864 0 0.0771484 0.447716 0.0771484 1V20.3889C0.0771484 21.1306 0.856276 21.6141 1.52095 21.285L8.09489 18.0293C8.37455 17.8908 8.70283 17.8908 8.98248 18.0293L15.5564 21.285C16.2211 21.6141 17.0002 21.1306 17.0002 20.3888V1C17.0002 0.447715 16.5525 0 16.0002 0Z" fill="#FFB600" />
+                                            <path d="M6.80604 7.04096L3.85769 7.45107L3.80547 7.46126C3.72641 7.4814 3.65435 7.5213 3.59663 7.57689C3.53891 7.63248 3.4976 7.70178 3.47692 7.7777C3.45625 7.85362 3.45694 7.93344 3.47894 8.00902C3.50094 8.0846 3.54345 8.15322 3.60213 8.20788L5.73807 10.2026L5.23436 13.0201L5.22835 13.0689C5.22351 13.1473 5.24049 13.2256 5.27754 13.2957C5.3146 13.3657 5.3704 13.4251 5.43923 13.4677C5.50807 13.5103 5.58746 13.5345 5.66928 13.538C5.75111 13.5415 5.83242 13.524 5.9049 13.4874L8.54178 12.1573L11.1727 13.4874L11.2189 13.5078C11.2951 13.5366 11.378 13.5455 11.4591 13.5334C11.5401 13.5214 11.6163 13.4888 11.6799 13.4392C11.7435 13.3896 11.7922 13.3246 11.8209 13.2509C11.8497 13.1773 11.8576 13.0976 11.8437 13.0201L11.3395 10.2026L13.4763 8.20744L13.5124 8.16975C13.5639 8.10891 13.5976 8.03606 13.6102 7.95862C13.6228 7.88118 13.6138 7.80193 13.5841 7.72893C13.5543 7.65593 13.505 7.5918 13.441 7.54307C13.377 7.49433 13.3007 7.46274 13.2199 7.45151L10.2715 7.04096L8.95354 4.47834C8.9154 4.40409 8.85636 4.34157 8.7831 4.29785C8.70984 4.25413 8.62529 4.23096 8.53901 4.23096C8.45273 4.23096 8.36818 4.25413 8.29492 4.29785C8.22166 4.34157 8.16262 4.40409 8.12448 4.47834L6.80604 7.04096Z" fill="#8C6400" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="ms-3">
+                                    <p class="title-product">
+                                        `+result[i].title+`
+                                    </p>
+                                    <p class="detail-product">
+                                        `+textWithoutHtml+`
+                                    </p>
+                                    <div class="category-product">
+                                        <span>#`+result[i].name_type+`</span>
+                                    </div>
+                                </div>
+                            </a>
+                        `;
+                        div_content.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
                     }
 
                 }
@@ -860,4 +1103,6 @@ function get_data_fav_of_user(){
         });
 }
 </script>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
 @endsection

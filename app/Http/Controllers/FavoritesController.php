@@ -8,6 +8,10 @@ use App\Http\Requests;
 use App\Models\Favorite;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use App\User;
+
 class FavoritesController extends Controller
 {
     /**
@@ -122,5 +126,117 @@ class FavoritesController extends Controller
         Favorite::destroy($id);
 
         return redirect('favorites')->with('flash_message', 'Favorite deleted!');
+    }
+
+    function get_data_fav_of_user($user_id){
+
+        // favorites join news (ข่าว)
+        $data_news = DB::table('favorites')
+            ->join('news', 'news.id', '=', 'favorites.news_id')
+            ->leftJoin('news_types', 'news_types.id', '=', 'news.news_type_id')
+            ->where('favorites.user_id' ,$user_id)
+            ->where('favorites.status' , 'Yes')
+            ->select('favorites.*',
+                    'news_types.name_type',
+                    'news.title',
+                    'news.detail',
+                )
+            ->orderBy('favorites.created_at' , 'DESC')
+            ->get();
+
+        // favorites join trainings (หลักสูตร)
+        $data_trainings = DB::table('favorites')
+            ->join('trainings', 'trainings.id', '=', 'favorites.training_id')
+            ->leftJoin('training_types', 'training_types.id', '=', 'trainings.training_type_id')
+            ->where('favorites.user_id' ,$user_id)
+            ->where('favorites.status' , 'Yes')
+            ->select('favorites.*',
+                    'training_types.type_article',
+                    'trainings.title',
+                    'trainings.detail',
+                )
+            ->orderBy('favorites.created_at' , 'DESC')
+            ->get();
+
+        // favorites join appointments (ตารางอบรม / สอบ)
+        $data_appointments = DB::table('favorites')
+            ->join('appointments', 'appointments.id', '=', 'favorites.appointment_id')
+            ->leftJoin('training_types', 'training_types.id', '=', 'appointments.training_type_id')
+            ->where('favorites.user_id' ,$user_id)
+            ->where('favorites.status' , 'Yes')
+            ->select('favorites.*',
+                    'training_types.type_article',
+                    'appointments.title',
+                    'appointments.detail',
+                    'appointments.type as type_appointments',
+                    'appointments.all_day',
+                    'appointments.date_start',
+                    'appointments.date_end',
+                    'appointments.time_start',
+                    'appointments.time_end',
+                )
+            ->orderBy('favorites.created_at' , 'DESC')
+            ->get();
+
+        // favorites join products (ผลิตภัณฑ์)
+        $data_products = DB::table('favorites')
+            ->join('products', 'products.id', '=', 'favorites.product_id')
+            ->leftJoin('product_types', 'product_types.id', '=', 'products.product_type_id')
+            ->where('favorites.user_id' ,$user_id)
+            ->where('favorites.status' , 'Yes')
+            ->select('favorites.*',
+                    'product_types.name_type',
+                    'products.title',
+                    'products.detail',
+                )
+            ->orderBy('favorites.created_at' , 'DESC')
+            ->get();
+
+        // favorites join activitys (กิจกรรม)
+        $data_activitys = DB::table('favorites')
+            ->join('activitys', 'activitys.id', '=', 'favorites.activity_id')
+            ->leftJoin('activity_types', 'activity_types.id', '=', 'activitys.activity_type_id')
+            ->where('favorites.user_id' ,$user_id)
+            ->where('favorites.status' , 'Yes')
+            ->select('favorites.*',
+                    'activity_types.name_type',
+                    'activitys.title',
+                    'activitys.detail',
+                    'activitys.all_day',
+                    'activitys.date_start',
+                    'activitys.date_end',
+                    'activitys.time_start',
+                    'activitys.time_end',
+                )
+            ->orderBy('favorites.created_at' , 'DESC')
+            ->get();
+
+
+
+        // $data = [];
+        // แปลงคอลเลกชันให้อยู่ในรูปแบบของอาร์เรย์
+        $data_news = $data_news->toArray();
+        $data_trainings = $data_trainings->toArray();
+        $data_appointments = $data_appointments->toArray();
+        $data_products = $data_products->toArray();
+        $data_activitys = $data_activitys->toArray();
+
+        // รวมคอลเลกชันเข้าด้วยกัน
+        $data = array_merge($data_appointments, $data_activitys, $data_news, $data_trainings, $data_products);
+
+        // เรียงลำดับข้อมูลตาม created_at และ updated_at จากมากไปน้อย
+        usort($data, function($a, $b) {
+            if ($a->created_at == $b->created_at) {
+                return $b->updated_at <=> $a->updated_at;
+            }
+            return $b->created_at <=> $a->created_at;
+        });
+
+        if (empty($data)) {
+            return [];
+        }
+
+        return $data ;
+
     }
 }

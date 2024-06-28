@@ -164,6 +164,9 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
     Route::resource('career_paths', 'Career_pathsController');
     Route::resource('career_path_contents', 'Career_path_contentsController');
 
+    // Favorites
+    Route::resource('favorites', 'FavoritesController');
+
 });
 
 // member & Staff
@@ -199,11 +202,13 @@ Route::middleware(['auth', 'role:Super-admin,Admin,Staff,member'])->group(functi
     // calendars
     Route::resource('calendars', 'CalendarsController');
 
+    // Favorites
+    Route::get('my_favorites', 'FavoritesController@index');
+
 });
 
 // Route::resource('training_type', 'Training_typeController');
 
-Route::resource('favorites', 'FavoritesController');
 Route::resource('log_video_trainings', 'Log_video_trainingsController');
 Route::resource('log_video_news', 'Log_video_newsController');
 Route::resource('log_video_tools_tutorials', 'Log_video_tools_tutorialsController');

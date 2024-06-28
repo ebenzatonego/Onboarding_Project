@@ -181,3 +181,5 @@ Route::post('/add_calendar', 'CalendarsController@add_calendar');
 Route::post('/save_my_goal_users', 'My_goal_usersController@save_my_goal_users');
 Route::get('/update_my_goal/{user_id}', 'My_goal_usersController@update_my_goal');
 
+Route::get('/get_data_fav_of_user/{user_id}', 'FavoritesController@get_data_fav_of_user');
+

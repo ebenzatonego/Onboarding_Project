@@ -349,7 +349,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle-nocaret" href="{{ url('/my_favorites') }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa-regular fa-bookmark text-color-obd"></i>
                         </a>
                     </li>

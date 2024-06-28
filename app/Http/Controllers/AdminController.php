@@ -340,7 +340,8 @@ class AdminController extends Controller
         $data_appointments = DB::table('favorites')
             ->join('appointments', 'appointments.id', '=', 'favorites.appointment_id')
             ->leftJoin('training_types', 'training_types.id', '=', 'appointments.training_type_id')
-            ->where('user_id' ,$user_id)
+            ->where('favorites.user_id' ,$user_id)
+            ->where('favorites.status' , 'Yes')
             ->select('favorites.*',
                     'training_types.type_article',
                     'appointments.title',
@@ -355,11 +356,12 @@ class AdminController extends Controller
             ->orderBy('appointments.time_start' , 'ASC')
             ->get();
 
-        // favorites join appointments (ตารางอบรม / สอบ)
+        // favorites join activitys (กิจกรรม)
         $data_activitys = DB::table('favorites')
             ->join('activitys', 'activitys.id', '=', 'favorites.activity_id')
             ->leftJoin('activity_types', 'activity_types.id', '=', 'activitys.activity_type_id')
-            ->where('user_id' ,$user_id)
+            ->where('favorites.user_id' ,$user_id)
+            ->where('favorites.status' , 'Yes')
             ->select('favorites.*',
                     'activity_types.name_type',
                     'activitys.title',

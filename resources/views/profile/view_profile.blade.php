@@ -559,28 +559,28 @@
                         <div class="d-flex justify-content-center mt-0">
                             <div class="select_my_goal_container">
                                 <div class="d-flex justify-content-center mb-3">
-                                    <div class="my-goal-item">
+                                    <div class="my-goal-item" onclick="select_my_goal_start('car');">
                                         <div class="d-block text-center">
                                             <img src="{{url('img/icon/select_my_goal/icon_ซื้อรถ.png')}}" alt="" style="width: 33.96px;height: 16.98px;margin-top: 10px;">
 
                                             <p class="mb-0 mt-1">ซื้อรถ</p>
                                         </div>
                                     </div>
-                                    <div class="my-goal-item">
+                                    <div class="my-goal-item" onclick="select_my_goal_start('home');">
                                         <div class="d-block text-center">
 
                                             <img src="{{url('img/icon/select_my_goal/icon_ซื้อบ้าน.png')}}" alt="" style="width: 27.168px;height: 26.036px;">
                                             <p class="mb-0  mt-1">ซื้อบ้าน</p>
                                         </div>
                                     </div>
-                                    <div class="my-goal-item">
+                                    <div class="my-goal-item" onclick="select_my_goal_start('invest');">
                                         <div class="d-block text-center">
 
                                             <img src="{{url('img/icon/select_my_goal/icon_เก็บลงทุน.png')}}" alt="" style="width: 25.163px;height: 26px;">
                                             <p class="mb-0  mt-1">ลงทุน</p>
                                         </div>
                                     </div>
-                                    <div class="my-goal-item">
+                                    <div class="my-goal-item" onclick="select_my_goal_start('retire');">
                                         <div class="d-block text-center">
 
                                             <img src="{{url('img/icon/select_my_goal/icon_เก็บเกษียณ.png')}}" alt="" style="width: 20px;height: 27.375px;">
@@ -588,14 +588,14 @@
                                         </div>
                                     </div>
                                     <div class="my-goal-item">
-                                        <div class="d-block text-center">
+                                        <div class="d-block text-center" onclick="select_my_goal_start('child');">
 
                                             <img src="{{url('img/icon/select_my_goal/icon_เก็บให้ลูก.png')}}" alt="" style="width: 25px;height: 28.024px;">
                                             <p class="mb-0  mt-1">ให้ลูก</p>
                                         </div>
                                     </div>
                                 </div>
-                                <button class="btn-more-job px-5" data-toggle="modal" data-target="#modal_my_goal">
+                                <button id="btn_start_modal_my_goal" class="btn-more-job px-5" data-toggle="modal" data-target="#modal_my_goal">
                                     เลือกเป้าหมายของคุณ
                                 </button>
                             </div>
@@ -649,6 +649,14 @@
                                             location.reload();
                                         }
                                     });
+                            }
+                            
+                            function select_my_goal_start(type){
+                                document.querySelector('#btn_start_modal_my_goal').click();
+
+                                setTimeout(() => {
+                                    document.querySelector('#'+type).click();
+                                }, 300);
                             }
                         </script>
 

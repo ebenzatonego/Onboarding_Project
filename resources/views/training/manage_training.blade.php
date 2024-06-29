@@ -1075,17 +1075,6 @@
                             </span>
                             <center class="mt-4 mb-2">
 
-
-                              <div class="row">
-                                <div class="col-12">
-                                </div>
-                                <div class="col-6" mt-2>
-                                </div>
-                                <div class="col-6" mt-2>
-                                </div>
-                              </div>
-
-                              
                               <div class="row">
                                 <div class="col-12">
                                   <a href="{{ url('/preview_training') }}/`+result['data_training'][i].id+`" class="btn btn-sm btn-info w-100">

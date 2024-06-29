@@ -672,7 +672,7 @@
                                         </svg>
                                         ดาวน์โหลด PDF
                                     </button>
-                                    <a id="downloadLink" class="btn btn-sm btn-info d-none" target="_blank">Download</a>
+                                    <a href="{{ $data_product->pdf_file }}" id="downloadLink" class="btn btn-sm btn-info d-none" target="_blank">Download</a>
                                     @else
                                     <button id="preview_pdf_file" class="btn w-100 btn-download-pdf my-5 d-none" onclick="document.querySelector('#downloadLink').click();">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="23" height="27" viewBox="0 0 23 27" fill="none">
@@ -689,7 +689,7 @@
                                     @endif
 
                                 <div class="w-100 mt-3">
-                                    <p class="mb-2 mt-3" style="color: #989898;font-size: 14px;font-style: normal;font-weight: 500;line-height: normal;">ถูกใจหลักสูตรนี้?</p>
+                                    <p class="mb-2 mt-3" style="color: #989898;font-size: 14px;font-style: normal;font-weight: 500;line-height: normal;">ถูกใจผลิตภัณฑ์นี้?</p>
 
                                     <div class="d-flex justify-content-end ">
                                         <button class="btn btn-like  me-1">
@@ -844,7 +844,7 @@
                 <div class="card-title d-flex align-items-center justify-content-between">
                     <div class="d-flex">
                         <h5 class="mb-0 text-primary">
-                            แก้ไขหลักสูตร
+                            แก้ไขผลิตภัณฑ์
                         </h5>
                     </div>
                     <button id="btn_cf_edit_data" class="btn btn-success float-end d-flex align-items-center" type="button" disabled onclick="cf_edit_data();">
@@ -899,7 +899,7 @@
 
                 <div class="row mb-3">
                     <label for="title" class="col-sm-2 col-form-label">
-                        ชื่อหลักสูตร
+                        ชื่อผลิตภัณฑ์
                     </label>
                     <div class="col-sm-10">
                         <input class="form-control" name="title" type="text" id="title" value="{{ isset($data_product->title) ? $data_product->title : ''}}" placeholder="เพิ่มชื่อ" oninput="show_preview_data('title',event);" onchange="show_preview_date_start_end();">
@@ -1056,23 +1056,23 @@
         el.style.setProperty('--rating-width', `${(rating / 5) * 100}%`);
     });
 
-    document.addEventListener('DOMContentLoaded', (event) => {
-        @if( !empty($data_product->pdf_file) )
-        const downloadLink = document.getElementById('downloadLink');
-        const fileUrl = "{{ $data_product->pdf_file }}";
-        const NamefilePDF = "{{ $data_product->title }}";
+    // document.addEventListener('DOMContentLoaded', (event) => {
+    //     @if( !empty($data_product->pdf_file) )
+    //     const downloadLink = document.getElementById('downloadLink');
+    //     const fileUrl = "{{ $data_product->pdf_file }}";
+    //     const NamefilePDF = "{{ $data_product->title }}";
 
-        downloadLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            const link = document.createElement('a');
-            link.href = fileUrl;
-            link.download = NamefilePDF+'.pdf';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        });
-        @endif
-    });
+    //     downloadLink.addEventListener('click', function(e) {
+    //         e.preventDefault();
+    //         const link = document.createElement('a');
+    //         link.href = fileUrl;
+    //         link.download = NamefilePDF+'.pdf';
+    //         document.body.appendChild(link);
+    //         link.click();
+    //         document.body.removeChild(link);
+    //     });
+    //     @endif
+    // });
 
     function change_select_file_pdf(){
 

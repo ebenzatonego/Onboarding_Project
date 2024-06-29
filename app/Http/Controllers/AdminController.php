@@ -1015,4 +1015,16 @@ class AdminController extends Controller
 
     }
 
+    function update_coc_of_user($user_id){
+        DB::table('users')
+            ->where([ 
+                    ['id', $user_id],
+                ])
+            ->update([
+                    'check_coc' => 'Yes',
+                ]);
+
+        return 'success' ;
+    }
+
 }

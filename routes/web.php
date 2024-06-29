@@ -154,6 +154,7 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
     // Products
     Route::resource('products', 'ProductsController');
     Route::get('/manage_products', 'ProductsController@manage_products');
+    Route::get('/preview_products/{id}', 'ProductsController@preview_products');
 
     // Tools Contacts
     Route::resource('tools_contacts', 'Tools_contactsController');

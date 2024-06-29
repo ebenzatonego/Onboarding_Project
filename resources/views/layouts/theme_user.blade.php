@@ -448,9 +448,10 @@
                 </a>
             </div>
         </div>
-        <div class="col text-center text-truncate col-navbar d-flex justify-content-center">
+        <div class="col text-center text-truncate col-navbar d-flex justify-content-center" style="position: relative;">
             <div class=" mx-2 pt-2 pb-1 mb-2" id="menu_theme_user_Tools">
                 <a href="{{ url('/tools') }}">
+                    <span id="span_alert_tools" class="alert-tools d-none"></span>
                     <i class="fa-regular fa-wrench-simple fa-rotate-by" style="--fa-rotate-angle: 320deg;"></i>
                     <p class=" text-truncate mt-1 mb-0">
                         Tools
@@ -460,6 +461,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    .alert-tools {
+        position: absolute;
+        top: 4px;
+        right: 8px;
+        width: 18px;
+        height: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 12px;
+        font-weight: 500;
+        color: #fff;
+        background: #f62718;
+    }
+</style>
 
 <script>
     function change_active_menu_theme_user(type) {
@@ -594,6 +613,7 @@
 
         // ตรวจสอบการเลื่อนตำแหน่ง => content_popup => birthday
         check_current_rank();
+        check_user_coc();
     });
 
     function check_current_rank() {
@@ -753,6 +773,23 @@
         }
 
     });
+
+    function check_user_coc(){
+        let check_coc = "{{ Auth::user()->check_coc }}" ;
+
+        if(check_coc != 'Yes'){
+            document.querySelector('#span_alert_tools').classList.remove('d-none');
+            if(document.querySelector('#span_alert_tools_menu')){
+                document.querySelector('#span_alert_tools_menu').classList.remove('d-none');
+            }
+        }
+        else{
+            document.querySelector('#span_alert_tools').classList.add('d-none');
+            if(document.querySelector('#span_alert_tools_menu')){
+                document.querySelector('#span_alert_tools_menu').classList.add('d-none');
+            }
+        }
+    }
 </script>
 
 

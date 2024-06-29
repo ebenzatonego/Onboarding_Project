@@ -596,6 +596,22 @@
             margin: 3px;
         }
     }
+
+    .alert-tools-menu {
+        position: absolute;
+        top: -4px;
+        right: 0px;
+        width: 18px;
+        height: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 12px;
+        font-weight: 500;
+        color: #fff;
+        background: #f62718;
+    }
 </style>
 
 
@@ -612,8 +628,11 @@
             <li class="nav-item " onclick="show_tools_contact();">
                 <a class="nav-link menu-tools" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">ติดต่อ</a>
             </li>
-            <li class="nav-item ">
-                <a class="nav-link menu-tools" id="pills-coc-tab" data-toggle="pill" href="#pills-coc" role="tab" aria-controls="pills-coc" aria-selected="false">COC</a>
+            <li class="nav-item " style="position: relative;">
+                <a class="nav-link menu-tools" id="pills-coc-tab" data-toggle="pill" href="#pills-coc" role="tab" aria-controls="pills-coc" aria-selected="false">
+                    <span id="span_alert_tools_menu" class="alert-tools-menu d-none"></span>
+                    COC
+                </a>
             </li>
             <li class="nav-item ">
                 <a class="nav-link menu-tools" id="pills-tutorials-tab" data-toggle="pill" href="#pills-tutorials" role="tab" aria-controls="pills-tutorials" aria-selected="false">Tutorials</a>
@@ -2869,6 +2888,8 @@
             input.classList.add('d-none');
             svg.classList.remove('d-none');
             svg.classList.add('svg-visible');
+
+            update_coc_of_user();
         }
         //  else {
         //     input.classList.remove('input-hidden');
@@ -2876,6 +2897,28 @@
         //     svg.classList.remove('svg-visible');
         // }
     });
+
+    function check_user_coc_for_tools(){
+        let check_coc = "{{ Auth::user()->check_coc }}" ;
+
+        if(check_coc == 'Yes'){
+            document.querySelector('#submit_coc').click();
+        }
+    }
+
+    function update_coc_of_user(){
+        fetch("{{ url('/') }}/api/update_coc_of_user/" + "{{ Auth::user()->id }}")
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+                if( result == "success" ){
+                    document.querySelector('#span_alert_tools').classList.add('d-none');
+                    if(document.querySelector('#span_alert_tools_menu')){
+                        document.querySelector('#span_alert_tools_menu').classList.add('d-none');
+                    }
+                }
+            });
+    }
 </script>
 
 <button id="btn_open_modal_detail_app" data-toggle="modal" data-target="#modal_detail_app" class="d-none">
@@ -2948,6 +2991,7 @@
     }
     document.addEventListener("DOMContentLoaded", function() {
         change_active_menu_theme_user('Tools');
+        check_user_coc_for_tools();
     });
 
     function show_tools_contact() {

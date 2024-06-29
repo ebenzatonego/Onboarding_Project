@@ -167,6 +167,21 @@ class ProductsController extends Controller
         return redirect('manage_products')->with('flash_message', 'Product deleted!');
     }
 
+    function preview_products($id){
+
+        // $data_product = product::where('id' , $id)->first();
+        $data_product = DB::table('products')
+                ->join('product_types', 'product_types.id', '=', 'products.product_type_id')
+                ->where('products.id' , $id)
+                ->select('products.*', 'product_types.name_type')
+                ->first();
+
+        $name_type = Product_type::get();
+
+        return view('products.preview_products', compact('data_product','name_type'));
+
+    }
+
     function get_data_product($products_type_id){
 
         if($products_type_id == 'all'){
@@ -802,5 +817,16 @@ class ProductsController extends Controller
 
         return $data;
         
+    }
+
+    function save_data_edit_product(Request $request)
+    {
+        $requestData = $request->all();
+
+        $product = Product::findOrFail($requestData['id']);
+        $product->update($requestData);
+
+        return 'success' ;
+
     }
 }

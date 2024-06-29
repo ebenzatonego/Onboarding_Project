@@ -22,6 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/verify_account/{account}', 'AdminController@verify_account');
 
 Route::get('/check_pdpa/{account}', 'AdminController@check_pdpa');
+Route::get('/update_coc_of_user/{users_id}', 'AdminController@update_coc_of_user');
 Route::get('/update_pdpa/{account}', 'AdminController@update_pdpa');
 Route::post('/edit_profile', 'AdminController@edit_profile');
 Route::get('/update_check_birthday/{user_id}', 'AdminController@update_check_birthday');
@@ -152,7 +153,7 @@ Route::get('/change_Highlight_products/{product_id}/{number}/{type}', 'ProductsC
 Route::get('/get_data_product_type', 'Product_typesController@get_data_product_type');
 Route::get('/change_number_menu_type_product/{type_id}/{number}', 'Product_typesController@change_number_menu_type_product');
 Route::get('/delete_product_type/{product_type_id}', 'Product_typesController@delete_product_type');
-
+Route::post('/save_data_edit_product', 'ProductsController@save_data_edit_product');
 
 // Tools contact
 Route::get('/get_data_show_tools_contact', 'Tools_contactsController@get_data_show_tools_contact');

@@ -1074,55 +1074,76 @@
                               `+html_Highlight+`
                             </span>
                             <center class="mt-4 mb-2">
-                              <a href="{{ url('/preview_training') }}/`+result['data_training'][i].id+`" class="btn btn-sm btn-info">
-                                ดูข้อมูล
-                              </a>
-                              @if(Auth::check())
-                                @if(Auth::user()->role == "Super-admin")
-                                <div class="btn-group" role="group">
-                                  <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Highlight</button>
-                                  <ul class="dropdown-menu" style="margin: 0px;">
-                                    <li>
-                                      <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , 'ว่าง' , '`+type+`')">
-                                        ว่าง
-                                      </span>
-                                    </li>
-                                    <li>
-                                      <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '1' , '`+type+`')">
-                                        ลำดับที่ 1
-                                      </span>
-                                    </li>
-                                    <li>
-                                      <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '2' , '`+type+`')">
-                                        ลำดับที่ 2
-                                      </span>
-                                    </li>
-                                    <li>
-                                      <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '3' , '`+type+`')">
-                                        ลำดับที่ 3
-                                      </span>
-                                    </li>
-                                    <li>
-                                      <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '4' , '`+type+`')">
-                                        ลำดับที่ 4
-                                      </span>
-                                    </li>
-                                    <li>
-                                      <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '5' , '`+type+`')">
-                                        ลำดับที่ 5
-                                      </span>
-                                    </li>
-                                  </ul>
+
+
+                              <div class="row">
+                                <div class="col-12">
                                 </div>
-                                @endif
-                              @endif
-                              <form method="POST" action="{{ url('/training') }}/`+result['data_training'][i].id+`" accept-charset="UTF-8" style="display:inline" onsubmit="return confirmDelete(event, this)">
-                                  {{ method_field('DELETE') }}
-                                  {{ csrf_field() }}
-                                  <button type="submit" class="btn btn-danger btn-sm text-center" title="Delete Tools_tutorial">
-                                      &nbsp;<i class="fa-solid fa-trash-can"></i>
-                                  </button>
-                              </form>
+                                <div class="col-6" mt-2>
+                                </div>
+                                <div class="col-6" mt-2>
+                                </div>
+                              </div>
+
+                              
+                              <div class="row">
+                                <div class="col-12">
+                                  <a href="{{ url('/preview_training') }}/`+result['data_training'][i].id+`" class="btn btn-sm btn-info w-100">
+                                    <i class="fa-solid fa-money-check-pen"></i> ดูข้อมูล / แก้ไขข้อมูล
+                                  </a>
+                                </div>
+                                <div class="col-6 mt-2">
+                                  @if(Auth::check())
+                                    @if(Auth::user()->role == "Super-admin")
+                                    <div class="btn-group w-100" role="group">
+                                      <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Highlight</button>
+                                      <ul class="dropdown-menu" style="margin: 0px;">
+                                        <li>
+                                          <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , 'ว่าง' , '`+type+`')">
+                                            ว่าง
+                                          </span>
+                                        </li>
+                                        <li>
+                                          <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '1' , '`+type+`')">
+                                            ลำดับที่ 1
+                                          </span>
+                                        </li>
+                                        <li>
+                                          <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '2' , '`+type+`')">
+                                            ลำดับที่ 2
+                                          </span>
+                                        </li>
+                                        <li>
+                                          <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '3' , '`+type+`')">
+                                            ลำดับที่ 3
+                                          </span>
+                                        </li>
+                                        <li>
+                                          <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '4' , '`+type+`')">
+                                            ลำดับที่ 4
+                                          </span>
+                                        </li>
+                                        <li>
+                                          <span class="dropdown-item btn" onclick="change_Highlight('`+result['data_training'][i].id+`' , '5' , '`+type+`')">
+                                            ลำดับที่ 5
+                                          </span>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                    @endif
+                                  @endif
+                                </div>
+                                <div class="col-6 mt-2">
+                                  <form method="POST" action="{{ url('/training') }}/`+result['data_training'][i].id+`" accept-charset="UTF-8" style="display:inline" onsubmit="return confirmDelete(event, this)">
+                                      {{ method_field('DELETE') }}
+                                      {{ csrf_field() }}
+                                      <button type="submit" class="btn btn-danger btn-sm text-center w-100" title="Delete Tools_tutorial">
+                                          &nbsp;<i class="fa-solid fa-trash-can"></i> ลบ
+                                      </button>
+                                  </form>
+                                </div>
+                              </div>
+
                             </center>
                           </div>
                         </div>

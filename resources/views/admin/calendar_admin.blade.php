@@ -39,8 +39,13 @@
 							@endif
                 		@endif
 						<li>
-							<a href="{{ url('/appointment_create') }}" class="dropdown-item">
-								ตารางอบรม / สอบ
+							<a href="{{ url('/appointment_create/train') }}" class="dropdown-item">
+								ปฏิทินหลักสูตร
+							</a>
+						</li>
+						<li>
+							<a href="{{ url('/appointment_create/quiz') }}" class="dropdown-item">
+								สนามสอบ
 							</a>
 						</li>
 					</ul>
@@ -61,10 +66,10 @@
 								กิจกรรม
 							</button>
 							<button id="btn_view_success" type="button" class="btn btn-sm btn-outline-success" onclick="change_select_view('success');">
-								ตารางอบรม
+								ปฏิทินหลักสูตร
 							</button>
 							<button id="btn_view_warning" type="button" class="btn btn-sm btn-outline-warning" onclick="change_select_view('warning');">
-								ตารางสอบ
+								สนามสอบ
 							</button>
 						</div>
 					</div>

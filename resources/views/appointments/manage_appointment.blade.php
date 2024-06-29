@@ -323,7 +323,7 @@
 </style>
 
 <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-	<div class="breadcrumb-title pe-3">การจัดการตารางอบรม/สอบ</div>
+	<div class="breadcrumb-title pe-3">การจัดการ สนามสอบ / ปฏิทินหลักสูตร</div>
   <div class="ps-3">
     <select id="select_show_training_by_type" class="form-select" onchange="change_show_training_by_type();">
       <option value="all" selected>หลักสูตรทั้งหมด</option>
@@ -332,8 +332,8 @@
   <div class="ps-3">
     <select id="select_show_type_appointments" class="form-select" onchange="change_view_type_appointments();">
       <option value="all" selected>ประเภททั้งหมด</option>
-      <option value="อบรม">อบรม</option>
-      <option value="สอบ">สอบ</option>
+      <option value="อบรม">ปฏิทินหลักสูตร</option>
+      <option value="สอบ">สนามสอบ</option>
     </select>
   </div>
   <script>
@@ -364,7 +364,7 @@
 	<div class="ms-auto">
 		<div class="btn-group">
 			<a href="{{ url('/appointment_create/quiz') }}" class="btn btn-success">
-				<i class="fa-solid fa-calendar-plus"></i> เพิ่มตารางอบรม/สอบ
+				<i class="fa-solid fa-calendar-plus"></i> เพิ่มสนามสอบ
 			</a>
 		</div>
 	</div>
@@ -499,16 +499,24 @@
                             </p>
                             <hr>
                             <center class="mt-4 mb-2">
-                              <a href="{{ url('/preview_appointment') }}/`+result['data_appointments'][i].id+`" class="btn btn-sm btn-info">
-                                ดูข้อมูล
-                              </a>
-                              <form method="POST" action="{{ url('/appointments') }}/`+result['data_appointments'][i].id+`" accept-charset="UTF-8" style="display:inline" onsubmit="return confirmDelete(event, this)">
-                                  {{ method_field('DELETE') }}
-                                  {{ csrf_field() }}
-                                  <button type="submit" class="btn btn-danger btn-sm text-center" title="Delete Tools_tutorial">
-                                      &nbsp;<i class="fa-solid fa-trash-can"></i>
-                                  </button>
-                              </form>
+
+                              <div class="row">
+                                <div class="col-12">
+                                  <a href="{{ url('/preview_appointment') }}/`+result['data_appointments'][i].id+`" class="btn btn-sm btn-info w-100">
+                                    <i class="fa-solid fa-money-check-pen"></i> ดูข้อมูล / แก้ไขข้อมูล
+                                  </a>
+                                </div>
+                                <div class="col-12 mt-2" >
+                                  <form method="POST" action="{{ url('/appointments') }}/`+result['data_appointments'][i].id+`" accept-charset="UTF-8" style="display:inline" onsubmit="return confirmDelete(event, this)">
+                                      {{ method_field('DELETE') }}
+                                      {{ csrf_field() }}
+                                      <button type="submit" class="btn btn-danger btn-sm text-center w-100" title="Delete Tools_tutorial">
+                                          &nbsp;<i class="fa-solid fa-trash-can"></i> ลบ
+                                      </button>
+                                  </form>
+                                </div>
+                              </div>
+
                             </center>
                           </div>
                         </div>

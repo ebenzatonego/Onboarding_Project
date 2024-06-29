@@ -492,16 +492,28 @@
                             </p>
                             <hr>
                             <center class="mt-4 mb-2">
-                              <a href="{{ url('/preview_activitys') }}/`+result['data_activity'][i].id+`" class="btn btn-sm btn-info">
-                                ดูข้อมูล
-                              </a>
-                              <form method="POST" action="{{ url('/activitys') }}/`+result['data_activity'][i].id+`" accept-charset="UTF-8" style="display:inline" onsubmit="return confirmDelete(event, this)">
-                                  {{ method_field('DELETE') }}
-                                  {{ csrf_field() }}
-                                  <button type="submit" class="btn btn-danger btn-sm text-center" title="Delete Tools_tutorial">
-                                      &nbsp;<i class="fa-solid fa-trash-can"></i>
-                                  </button>
-                              </form>
+
+                              <div class="row">
+                                <div class="col-12">
+                                  <a href="{{ url('/preview_activitys') }}/`+result['data_activity'][i].id+`" class="btn btn-sm btn-info w-100">
+                                    <i class="fa-solid fa-money-check-pen"></i> ดูข้อมูล / แก้ไขข้อมูล
+                                  </a>
+                                </div>
+                                <div class="col-6 mt-2">
+                                </div>
+                                <div class="col-6 mt-2">
+                                  <form method="POST" action="{{ url('/activitys') }}/`+result['data_activity'][i].id+`" accept-charset="UTF-8" style="display:inline" onsubmit="return confirmDelete(event, this)">
+                                      {{ method_field('DELETE') }}
+                                      {{ csrf_field() }}
+                                      <button type="submit" class="btn btn-danger btn-sm text-center w-100" title="Delete Tools_tutorial">
+                                          &nbsp;<i class="fa-solid fa-trash-can"></i> ลบ
+                                      </button>
+                                  </form>
+                                </div>
+                              </div>
+
+                              
+                              
                             </center>
                           </div>
                         </div>

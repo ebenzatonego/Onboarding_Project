@@ -1290,7 +1290,7 @@
                 fetch("{{ url('/') }}/api/get_data_tools_apps")
                     .then(response => response.json())
                     .then(result => {
-                        console.log(result);
+                        // console.log(result);
 
                         if (result) {
 
@@ -1364,7 +1364,7 @@
             }
 
             function open_modal_detail_app(type) {
-                console.log(type);
+                // console.log(type);
 
                 let img_modal = document.querySelector('#img_modal_tools_apps');
                 img_modal.src = '';

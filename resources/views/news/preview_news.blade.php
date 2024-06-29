@@ -376,7 +376,7 @@
         <button type="button" class="btn btn-warning mx-2 px-4" onclick="document.querySelector('#news_photo').click();">
             <i class="fa-solid fa-plus"></i> เพิ่มรูปภาพ
         </button>
-        <button type="button" class="btn btn-success mx-2 px-5" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="btn btn-success mx-2 px-5" data-dismiss="modal" aria-label="Close" onclick="cretae_div_preview_photo_gallery();">
             <i class="fa-solid fa-check"></i> ยืนยัน
         </button>
       </div>
@@ -389,13 +389,15 @@
 <script>
 
     var amount_photo_gallery = 0 ;
+    var arr_photo_gallery ;
 
     function showPhotoGallery() {
 
-        let photoGallery = document.getElementById('photo_gallery').value;
-        let photoUrls = photoGallery.split(',');
+        arr_photo_gallery = document.getElementById('photo_gallery').value;
+        // let photoGallery = document.getElementById('photo_gallery').value;
+        let photoUrls = arr_photo_gallery.split(',');
         let modalBody = document.getElementById('modal-body');
-        // modalBody.innerHTML = '';
+        modalBody.innerHTML = '';
 
         // // ลบเฉพาะ .card-old-img และลดค่า amount_photo_gallery
         // let oldImages = modalBody.querySelectorAll('.card-old-img');
@@ -404,7 +406,7 @@
         //     amount_photo_gallery--;
         // });
 
-        if(photoGallery){
+        if(arr_photo_gallery){
             photoUrls.forEach((url, index) => {
                 let card = document.createElement('div');
                 card.classList.add('card', 'mb-3' , 'p-4');
@@ -427,7 +429,7 @@
                     // showPhotoGallery();
                     card.remove();
                     amount_photo_gallery--;
-                    console.log(amount_photo_gallery);
+                    // console.log(amount_photo_gallery);
                 });
 
                 cardBody.appendChild(deleteButton);
@@ -437,30 +439,43 @@
                 amount_photo_gallery++;
             });
 
-            console.log(amount_photo_gallery);
+            // console.log(amount_photo_gallery);
 
         }
+
+        // console.log(html_addNewPhotos);
+        modalBody.insertAdjacentHTML('beforeend', html_addNewPhotos); // แทรกล่างสุด
+
     }
 
     function updatePhotoGallery(photoUrls) {
         let photoGallery = document.getElementById('photo_gallery');
         photoGallery.value = photoUrls.join(',');
+        arr_photo_gallery = photoUrls.join(',');
     }
 
+    var html_addNewPhotos = `` ;
+    var count_new_photo = 0 ;
+
     function addNewPhotos() {
+
         let newsPhotoInput = document.getElementById('news_photo');
         let files = newsPhotoInput.files;
         let modalBody = document.getElementById('modal-body');
 
         let check_amount = 0 ;
         check_amount = amount_photo_gallery + files.length ;
-        console.log("check_amount >> " + check_amount);
+        // console.log("check_amount >> " + check_amount);
 
         if(check_amount <= 20){
             Array.from(files).forEach(file => {
+
+                count_new_photo = count_new_photo  + 1 ;
+
                 let card = document.createElement('div');
                 card.classList.add('card', 'mb-3' , 'p-4');
                 card.style.width = '10rem';
+                card.id = 'new_count_' + count_new_photo;
 
                 let img = document.createElement('img');
                 img.classList.add('card-img-top', 'card-new-img');
@@ -473,27 +488,202 @@
                 let deleteButton = document.createElement('button');
                     deleteButton.classList.add('btn', 'btn-danger', 'btn-sm');
                     deleteButton.textContent = 'Delete';
-                    deleteButton.addEventListener('click', function() {
-                        card.remove();
-                        amount_photo_gallery--;
-                        console.log(amount_photo_gallery);
-                    });
+
+                    deleteButton.setAttribute('onclick' , 'drop_of_new_photo('+count_new_photo+')');
+                    // deleteButton.addEventListener('click', function() {
+                    //     card.remove();
+                    //     amount_photo_gallery--;
+                    //     console.log(amount_photo_gallery);
+                    // });
 
                 cardBody.appendChild(deleteButton);
                 card.appendChild(img);
                 card.appendChild(cardBody);
                 modalBody.appendChild(card);
                 amount_photo_gallery++;
+
+                let care_new_photo = document.querySelector('#new_count_' + count_new_photo);
+                // console.log(care_new_photo);
+                html_addNewPhotos = html_addNewPhotos + care_new_photo.outerHTML;
             });
         }
         else{
             alert('เพิ่มรูปภาพสูงสุด 20 รูป');
         }
 
-        console.log(amount_photo_gallery);
+        // console.log(amount_photo_gallery);
 
     }
 
+    function drop_of_new_photo(count_new_photo) {
+
+        // แปลงข้อความ HTML กลับเป็น HTMLDivElement
+        let tempDiv = document.createElement('div');
+        tempDiv.innerHTML = html_addNewPhotos;
+
+        let drop_new_photo = document.querySelector('#new_count_' + count_new_photo);
+        drop_new_photo.remove();
+
+        let tempDiv_drop_new_photo = tempDiv.querySelector('#new_count_' + count_new_photo);
+        tempDiv_drop_new_photo.remove();
+
+        amount_photo_gallery--;
+        // console.log(amount_photo_gallery);
+
+        html_addNewPhotos = tempDiv.innerHTML;
+        // console.log(html_addNewPhotos);
+    }
+
+    function cretae_div_preview_photo_gallery(){
+
+        let check_img_main = 'No' ;
+        let div_preview_photo_gallery = document.querySelector('#div_preview_photo_gallery');
+            div_preview_photo_gallery.innerHTML = '' ;
+
+        let photo_old = document.getElementById('photo_gallery').value;
+        let photo_old_Urls = photo_old.split(',');
+
+        // console.log('cretae_div_preview_photo_gallery');
+        // console.log(photo_old_Urls);
+
+        if(photo_old_Urls[0] != ''){
+
+            for (let i = 0; i < photo_old_Urls.length; i++) {
+
+                let html_photo_main = ``;
+                let check_active = ``;
+                let html_photo_old = ``;
+
+                if(check_img_main == 'No'){
+                    check_img_main = 'Yes' ;
+                    html_photo_main = `<img id="preview_photo_gallery_main" src="`+photo_old_Urls[i]+`" class="preview-img" alt="">`;
+                    check_active = `active` ;
+
+                    html_photo_old = `
+                        `+html_photo_main+`
+
+                            <div id="preview_photo_gallery" class="row mb-3 row-cols-auto g-2 justify-content-start mt-3">
+                                <div class="group-img p-1">
+                                    <img src="`+photo_old_Urls[i]+`" class="img-news border rounded `+check_active+`" >
+                                    <i class="fa-light fa-eye icon-preview"></i>
+                                </div>
+                            </div>
+                    `;
+                    div_preview_photo_gallery.insertAdjacentHTML('beforeend', html_photo_old); // แทรกล่างสุด
+                }
+                else{
+                    html_photo_old = `
+                        <div class="group-img p-1">
+                            <img src="`+photo_old_Urls[i]+`" class="img-news border rounded `+check_active+`" >
+                            <i class="fa-light fa-eye icon-preview"></i>
+                        </div>
+                    `;
+                    let preview_photo_gallery = document.querySelector('#preview_photo_gallery');
+                    preview_photo_gallery.insertAdjacentHTML('beforeend', html_photo_old); // แทรกล่างสุด
+                }
+            }
+
+            cerate_html_of_new_photo('สร้าง HTML แล้ว');
+
+        }else{
+            cerate_html_of_new_photo('ยังไม่ได้สร้าง HTML');
+        }
+
+        new_imgNewsListener_click();
+        show_preview_date_start_end();
+
+    }
+
+    function cerate_html_of_new_photo(text){
+
+        let care_new_photo = document.querySelectorAll('.card-new-img');
+        let arr_care_new_photo = [];
+
+        care_new_photo.forEach(photo => {
+            arr_care_new_photo.push(photo.src);
+        });
+
+        // console.log(arr_care_new_photo);
+
+        if(arr_care_new_photo){
+
+            if(text == 'สร้าง HTML แล้ว'){
+                for (let i = 0; i < arr_care_new_photo.length; i++) {
+                    let html_photo_new = `
+                        <div class="group-img p-1">
+                            <img src="`+arr_care_new_photo[i]+`" class="img-news border rounded" >
+                            <i class="fa-light fa-eye icon-preview"></i>
+                        </div>
+                    `;
+                    let preview_photo_gallery = document.querySelector('#preview_photo_gallery');
+                    preview_photo_gallery.insertAdjacentHTML('beforeend', html_photo_new); // แทรกล่างสุด
+                }
+            }
+            else if(text == 'ยังไม่ได้สร้าง HTML'){
+                let check_img_main = 'No' ;
+                let div_preview_photo_gallery = document.querySelector('#div_preview_photo_gallery');
+                    div_preview_photo_gallery.innerHTML = '' ;
+
+                for (let xi = 0; xi < arr_care_new_photo.length; xi++) {
+                    let html_photo_main = ``;
+                    let check_active = ``;
+                    let html_photo_new = ``;
+
+                    if(check_img_main == 'No'){
+                        check_img_main = 'Yes' ;
+                        html_photo_main = `<img id="preview_photo_gallery_main" src="`+arr_care_new_photo[xi]+`" class="preview-img" alt="">`;
+                        check_active = `active` ;
+
+                        html_photo_new = `
+                            `+html_photo_main+`
+
+                                <div id="preview_photo_gallery" class="row mb-3 row-cols-auto g-2 justify-content-start mt-3">
+                                    <div class="group-img p-1">
+                                        <img src="`+arr_care_new_photo[xi]+`" class="img-news border rounded `+check_active+`" >
+                                        <i class="fa-light fa-eye icon-preview"></i>
+                                    </div>
+                                </div>
+                        `;
+                        div_preview_photo_gallery.insertAdjacentHTML('beforeend', html_photo_new); // แทรกล่างสุด
+                    }
+                    else{
+                        html_photo_new = `
+                            <div class="group-img p-1">
+                                <img src="`+arr_care_new_photo[xi]+`" class="img-news border rounded `+check_active+`" >
+                                <i class="fa-light fa-eye icon-preview"></i>
+                            </div>
+                        `;
+                        let preview_photo_gallery = document.querySelector('#preview_photo_gallery');
+                        preview_photo_gallery.insertAdjacentHTML('beforeend', html_photo_new); // แทรกล่างสุด
+                    }
+                }
+            }
+
+        }
+
+    }
+
+</script>
+
+<script>
+
+    function new_imgNewsListener_click(){
+        const imgNewsElements = document.querySelectorAll('.img-news');
+
+        imgNewsElements.forEach(imgNews => {
+            imgNews.addEventListener('click', function handleClick() {
+                // Remove the 'active' class from all previously clicked images
+                imgNewsElements.forEach(otherImg => otherImg.classList.remove('active'));
+
+                // Add the 'active' class to the clicked image
+                this.classList.add('active');
+
+                // Update the 'src' attribute of the preview image
+                const previewImg = document.querySelector('.preview-img');
+                previewImg.src = this.src;
+            });
+        });
+    }
 </script>
 
 <div class="container-fluid">
@@ -893,6 +1083,7 @@
                                     {!!$data_news->detail!!}
                                 </div>
 
+                                <div id="div_preview_photo_gallery">
                                 @if( !empty($data_news->photo_gallery) )
 
                                     @php
@@ -937,8 +1128,9 @@
                                             });
                                         });
                                     </script>
-
                                 @endif
+                                </div>
+
 
                                 @if( !empty($data_news->video))
                                     <div id="div_tag_show_preview_video">
@@ -1307,7 +1499,7 @@
                                 <i class="fa-solid fa-images"></i> จัดการ Photo Gallery
                             </button>
                         </div>
-                        <textarea class="form-control d-" rows="5" name="photo_gallery" type="textarea" id="photo_gallery">{{ isset($data_news->photo_gallery) ? $data_news->photo_gallery : ''}}</textarea>
+                        <textarea class="form-control d-none" rows="5" name="photo_gallery" type="textarea" id="photo_gallery">{{ isset($data_news->photo_gallery) ? $data_news->photo_gallery : ''}}</textarea>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -1595,12 +1787,24 @@
         let select_photo = document.querySelector('#select_photo').value;
         let select_video = document.querySelector('#select_video').value;
 
+        let care_new_photo = document.querySelectorAll('.card-new-img');
+        let arr_care_new_photo = [];
+
+        care_new_photo.forEach(photo => {
+            arr_care_new_photo.push(photo.src);
+        });
+
+        // console.log(arr_care_new_photo);
+
         if(select_photo){
             let previewContainer = document.getElementById('preview_photo_cover');
             uploadBlobToFirebase(previewContainer.src);
         }
         else if(select_video){
             upload_video();
+        }
+        else if(arr_care_new_photo.length != 0){
+            getImageSources();
         }
         else{
             save_data();
@@ -1640,8 +1844,18 @@
 
                         let select_video = document.querySelector('#select_video').value;
 
+                        let care_new_photo = document.querySelectorAll('.card-new-img');
+                        let arr_care_new_photo = [];
+
+                        care_new_photo.forEach(photo => {
+                            arr_care_new_photo.push(photo.src);
+                        });
+
                         if(select_video){
                             upload_video();
+                        }
+                        else if(arr_care_new_photo.length != 0){
+                            getImageSources();
                         }
                         else{
                             save_data();
@@ -1683,13 +1897,108 @@
                     document.querySelector('#video').value = downloadURL ;
                     document.querySelector('#select_video').value = null;
 
-                    save_data();
+                    let care_new_photo = document.querySelectorAll('.card-new-img');
+                    let arr_care_new_photo = [];
+
+                    care_new_photo.forEach(photo => {
+                        arr_care_new_photo.push(photo.src);
+                    });
+
+                    if(arr_care_new_photo.length != 0){
+                        getImageSources();
+                    }else{
+                        save_data();
+                    }
 
                     // ตัวอย่างการแสดง URL บนหน้าเว็บ
                     // alert('File uploaded successfully. URL: ' + downloadURL);
                 });
             }
         );
+    }
+
+    function getImageSources() {
+        // Select all img elements with class 'get-img-firebase'
+        let care_new_photo = document.querySelectorAll('.card-new-img');
+        let srcArray = [];
+
+        care_new_photo.forEach(photo => {
+            srcArray.push(photo.src);
+        });
+
+        // Log the array to see the result
+        // console.log(srcArray);
+
+        let length_check_last = srcArray.length - 1 ;
+        let check_last = '' ;
+
+        for (let i = 0; i < srcArray.length; i++) {
+            if(length_check_last == i){
+                // console.log('รอบสุดท้าย');
+                check_last = 'รอบสุดท้าย' ;
+            }
+            else{
+                // console.log('ต่อ');
+                check_last = 'ต่อ' ;
+            }
+            uploadBlobToFirebase(srcArray[i], check_last, i)
+        }
+
+        return srcArray;
+    }
+
+    var new_link ;
+
+    async function uploadBlobToFirebase(blobUrl, check_last, round) {
+
+        round = parseInt(round) + 1 ;
+        try {
+            const response = await fetch(blobUrl);
+            const blob = await response.blob();
+
+            let title = document.querySelector('#title').value;
+            let date_now = new Date();
+            let Date_for_firebase = formatDate_for_firebase(date_now);
+            let name_file = Date_for_firebase + '-' + title + '-' + round;
+            let storageRef = storage.ref('/news/image/photo_gallery/'+title+'/' + name_file);
+
+            let uploadTask = storageRef.put(blob);
+
+            uploadTask.on('state_changed',
+                function(snapshot) {
+                    // ติดตามความคืบหน้าของการอัพโหลด (optional)
+                },
+                function(error) {
+                    // กรณีเกิดข้อผิดพลาดในการอัพโหลด
+                    console.error('Upload failed:', error);
+                },
+                function() {
+                    // เมื่ออัพโหลดสำเร็จ
+                    uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+
+                        let old_link = document.querySelector('#photo_gallery') ;
+
+                        if(old_link.value){
+                            new_link = old_link.value + "," + downloadURL ;
+                        }
+                        else{
+                            new_link = downloadURL ;
+                        }
+
+                        document.querySelector('#photo_gallery').value = new_link;
+
+                        if(check_last == 'รอบสุดท้าย'){
+
+                            document.querySelector('#news_photo').value = null;
+
+                            save_data();
+                        }
+                    });
+                }
+            );
+        } catch (error) {
+            console.error('Error fetching the Blob:', error);
+        }
     }
 
     function save_data(){
@@ -1705,6 +2014,8 @@
         let datetime_start = document.querySelector('#datetime_start').value;
         let datetime_end = document.querySelector('#datetime_end').value;
         let status = document.querySelector('#status').value;
+        let photo_gallery = document.querySelector('#photo_gallery').value;
+        let select_content_show = document.querySelector('#select_content_show').value;
 
         let data_arr = {
             "id" : "{{ $data_news->id }}",
@@ -1716,6 +2027,8 @@
             "datetime_start" : datetime_start,
             "datetime_end" : datetime_end,
             "status" : status,
+            "photo_gallery" : photo_gallery,
+            "select_content_show" : select_content_show,
         }; 
 
         fetch("{{ url('/') }}/api/save_data_edit_news", {

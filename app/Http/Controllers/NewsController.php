@@ -816,4 +816,15 @@ class NewsController extends Controller
 
     }
 
+    function save_data_edit_news(Request $request)
+    {
+        $requestData = $request->all();
+
+        $news = News::findOrFail($requestData['id']);
+        $news->update($requestData);
+
+        return 'success' ;
+
+    }
+
 }

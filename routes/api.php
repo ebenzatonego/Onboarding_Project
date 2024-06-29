@@ -133,6 +133,7 @@ Route::get('/get_data_number_menu_of_news/', 'News_typesController@get_data_numb
 Route::get('/change_Highlight_news/{news_id}/{number}/{type}', 'NewsController@change_Highlight_news');
 Route::get('/change_number_menu_type_news/{type_id}/{number}', 'News_typesController@change_number_menu_type_news');
 Route::get('/delete_news_type/{news_type_id}', 'News_typesController@delete_news_type');
+Route::post('/save_data_edit_news', 'NewsController@save_data_edit_news');
 
 
 // Product

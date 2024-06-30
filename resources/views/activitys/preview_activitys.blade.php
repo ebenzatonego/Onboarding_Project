@@ -2470,12 +2470,18 @@
         let datetime_end = document.querySelector('#datetime_end').value;
         let status = document.querySelector('#status').value;
         let photo_gallery = document.querySelector('#photo_gallery').value;
+        let location_detail = document.querySelector('#location_detail').value;
+        let link_map = document.querySelector('#link_map').value;
 
         let all_day = document.querySelector('#all_day').value;
         let date_start = document.querySelector('#date_start').value;
         let time_start = document.querySelector('#time_start').value;
         let date_end = document.querySelector('#date_end').value;
         let time_end = document.querySelector('#time_end').value;
+        
+        let show_all_member = document.querySelector('#show_all_member').value;
+        let show_rank = document.querySelector('#show_rank').value;
+        let show_individual = document.querySelector('#show_individual').value;
 
         let data_arr = {
             "id" : "{{ $data_activitys->id }}",
@@ -2493,6 +2499,11 @@
             "time_start" : time_start,
             "date_end" : date_end,
             "time_end" : time_end,
+            "location_detail" : location_detail,
+            "link_map" : link_map,
+            "show_all_member" : show_all_member,
+            "show_rank" : show_rank,
+            "show_individual" : show_individual,
         }; 
 
         fetch("{{ url('/') }}/api/save_data_edit_activity", {

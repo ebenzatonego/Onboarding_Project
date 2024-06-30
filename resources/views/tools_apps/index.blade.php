@@ -1771,9 +1771,10 @@
                     <br>
                     <br>(5.4.9) ผู้ขายประกันชีวิตต้องไม่เก็บค่าเบี้ยประกันภัยหรือเงิน อื่นในนามของบริษัทฯ เว้นแต่ได้รับมอบอำนาจเป็นลายลักษณ์ อักษรจากบริษัทฯ ให้กระทำการได้ หากผู้ขายประกันชีวิต ได้รับมอบอำนาจดังกล่าว ผู้ขายประกันชีวิตต้องปฏิบัติตาม นโยบายของบริษัทฯ หรือตามข้อพึงปฏิบัติตามจรรยาบรรณนี้ โดยเคร่งครัด
                     <br>(5.4.9) The Sales Person must not collect premium or any other moneys on behalf of AACP unless authorized in writing by AACP to do so. If the Sales Person is so authorized then the Sales Person must strictly comply with AACP's Policy and this Code of Conduct in doing so.
+                   <br><br>
                     การฝ่าฝืน Consequences of Non-Compliance
                     การฝ่าฝืนข้อพึงปฏิบัติตามจรรยาบรรณนี้ของผู้ขายประกันชีวิต อาจทำให้ผู้ขายประกันชีวิตและบริษัทฯ เสื่อมเสียชื่อเสียง และ ได้รับโทษตามกฎหมาย ซึ่งรวมถึงการถูกตักเตือน ปรับ ระงับ หรือเพิกถอนใบอนุญาต การฝ่าฝืนข้อพึงปฏิบัติตาม จรรยาบรรณนี้อาจทำให้ผู้ขายประกันชีวิตถูกบอกเลิกสัญญากับ บริษัทฯ หรือถูกบันทึกพฤติกรรมและรายงานการกระทำ ความผิดทางอาญาต่อเจ้าหน้าที่ของรัฐ
-                    Failure by any Sales Person to comply with the Sales Person Code of Conduct can expose that Sales Person and AACP to damage to his/her/its reputation, as well as legal and regulatory penalties including warnings, fines, suspension or withdrawal of licenses. Failure to comply can also expose the Sales Person to a termination of his/her contract with AACP, blacklisting and a criminal report filed with the authorities against the Sales Person.
+                    <br>Failure by any Sales Person to comply with the Sales Person Code of Conduct can expose that Sales Person and AACP to damage to his/her/its reputation, as well as legal and regulatory penalties including warnings, fines, suspension or withdrawal of licenses. Failure to comply can also expose the Sales Person to a termination of his/her contract with AACP, blacklisting and a criminal report filed with the authorities against the Sales Person.
 
                 </p>
                 <div class="w-100 d-flex justify-content-center">

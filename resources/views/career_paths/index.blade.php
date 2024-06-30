@@ -323,8 +323,8 @@
         flex-shrink: 0;
         position: absolute;
         transform: translate(-50%, -50%) rotate(-4.715deg);
-        width: 36px;
-        height: 40px;
+        width: 80%;
+        height: 80%;
         flex-shrink: 0;
         top: 1%;
         left: 89%;

@@ -275,6 +275,7 @@
 <header>
     
     @include ('Share_social')
+    @include ('notification')
 
     <!-- Modal Happy birthday-->
     <button id="btn_modal_Happy_birthday" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#happybirthday"></button>
@@ -360,7 +361,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle-nocaret position-relative" href="#" role="button">
+                        <a class="nav-link dropdown-toggle-nocaret position-relative" href="#" role="button"  data-toggle="modal" data-target="#modal_notification">
                             <span class="alert-count"></span>
                             <i class="fa-regular fa-bell text-color-obd"></i>
                         </a>
@@ -448,9 +449,9 @@
                 </a>
             </div>
         </div>
-        <div class="col text-center text-truncate col-navbar d-flex justify-content-center" style="position: relative;">
-            <div class=" mx-2 pt-2 pb-1 mb-2" id="menu_theme_user_Tools">
-                <a href="{{ url('/tools') }}">
+        <div class="col text-center text-truncate col-navbar d-flex justify-content-center" >
+            <div class=" mx-2 pt-2 pb-1 mb-2" id="menu_theme_user_Tools" style="position: relative;">
+                <a href="{{ url('/tools') }}" class="position-raletive">
                     <span id="span_alert_tools" class="alert-tools d-none"></span>
                     <i class="fa-regular fa-wrench-simple fa-rotate-by" style="--fa-rotate-angle: 320deg;"></i>
                     <p class=" text-truncate mt-1 mb-0">
@@ -463,10 +464,14 @@
 </div>
 
 <style>
+    .navbar-bottom-active .alert-tools {
+        top: -3px !important;
+        right: -5px !important;
+    }
     .alert-tools {
         position: absolute;
-        top: 4px;
-        right: 8px;
+        top: -3px;
+        right: -19px;
         width: 18px;
         height: 18px;
         display: flex;

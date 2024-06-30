@@ -95,6 +95,10 @@ Route::middleware(['auth',])->group(function () {
     Route::get('/demo/tools', function () {
         return view('demo/tools');
     });
+
+    Route::get('/training_path', function () {
+        return view('training_path');
+    });
 });
 
 // Super-admin,Admin

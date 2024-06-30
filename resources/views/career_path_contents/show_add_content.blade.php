@@ -641,6 +641,11 @@
         else if(icon.value == 'Photo'){
             checkFiles_photo_gallery();
         }
+        else{
+            setTimeout(() => {
+                document.querySelector('#btn_submit_form').click();
+            }, 800);
+        }
 
     }
 

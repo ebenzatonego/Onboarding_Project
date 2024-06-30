@@ -41,6 +41,7 @@
 
 <div class="card">
     <div class="card-body">
+        <p class="text-danger">*หากต้องการปิดเมนู กดปุ่ม "<u>แก้ไข</u>" และลบข้อมูล "<u>Title Story</u>" ออก</p>
         <ul id="ul_menu_tab" class="nav nav-tabs nav-success mb-3" role="tablist">
             <!-- ul_menu_tab -->
         </ul>

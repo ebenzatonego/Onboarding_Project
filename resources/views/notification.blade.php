@@ -371,6 +371,7 @@
                             }
 
                             html = `
+                            <a href="{{ url('/show_appointment_train') }}/`+result[i].id+`">
                                 <div type="`+result[i].type+`" class="notification-alert">
                                     <img src="`+result[i].photo+`" alt="" style="width: 100%; height: auto; object-fit: cover;">
                                     <div class="d-block px-3">
@@ -383,6 +384,7 @@
                                         </p>
                                     </div>
                                 </div>
+                            </a>
                             `;
                         }
                         else if(result[i].type == "ข่าวสาร" || result[i].type == "บริษัท"){
@@ -390,7 +392,16 @@
                             if(result[i].detail){
                                 textWithoutHtml = result[i].detail.replace(/(<([^>]+)>)/gi, "");
                             }
+                            let url = ``;
+                            if(result[i].type == "ข่าวสาร"){
+                                url = `{{ url('/news_show') }}/`+result[i].id;
+                            }
+                            else if(result[i].type == "บริษัท"){
+                                url = `{{ url('/activitys_show') }}/`+result[i].id;
+                            }
+
                             html = `
+                            <a href="`+url+`">
                                 <div type="`+result[i].type+`" class="notification-alert">
                                     <img src="`+result[i].photo+`" alt="" style="width: 100%; height: auto; object-fit: cover;">
                                     <div class="d-block px-3">
@@ -400,6 +411,7 @@
                                         </p>
                                     </div>
                                 </div>
+                            </a>
                             `;
                         }
 

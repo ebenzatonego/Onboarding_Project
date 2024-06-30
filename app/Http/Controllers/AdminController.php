@@ -1032,8 +1032,8 @@ class AdminController extends Controller
     {
         $requestData = $request->all();
 
-        $activity = Contact_area_supervisor::findOrFail($requestData['id']);
-        $activity->update($requestData);
+        $area_supervisor = Contact_area_supervisor::findOrFail($requestData['id']);
+        $area_supervisor->update($requestData);
 
         return 'success' ;
         

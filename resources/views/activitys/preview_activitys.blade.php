@@ -546,6 +546,7 @@
 
     var amount_photo_gallery = 0 ;
     var arr_photo_gallery ;
+    var check_start = "Yes" ;
 
     function showPhotoGallery() {
 
@@ -583,8 +584,8 @@
                     photoUrls.splice(index, 1);
                     updatePhotoGallery(photoUrls);
                     // showPhotoGallery();
-                    card.remove();
                     amount_photo_gallery--;
+                    card.remove();
                     // console.log(amount_photo_gallery);
                 });
 
@@ -592,7 +593,10 @@
                 card.appendChild(img);
                 card.appendChild(cardBody);
                 modalBody.appendChild(card);
-                amount_photo_gallery++;
+
+                if(check_start == 'Yes'){
+                    amount_photo_gallery++;
+                }
             });
 
             // console.log(amount_photo_gallery);
@@ -601,6 +605,7 @@
 
         // console.log(html_addNewPhotos);
         modalBody.insertAdjacentHTML('beforeend', html_addNewPhotos); // แทรกล่างสุด
+        check_start = 'No';
 
     }
 
@@ -608,6 +613,7 @@
         let photoGallery = document.getElementById('photo_gallery');
         photoGallery.value = photoUrls.join(',');
         arr_photo_gallery = photoUrls.join(',');
+        showPhotoGallery();
     }
 
     var html_addNewPhotos = `` ;

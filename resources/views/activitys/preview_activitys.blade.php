@@ -325,6 +325,162 @@
         /* ปิดการใช้งาน hitbox */
     }
 
+    .checkbox-wrapper-46 input[type="checkbox"] {
+  display: none;
+  visibility: hidden;
+}
+
+.checkbox-wrapper-46 .cbx {
+  margin: auto;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+.checkbox-wrapper-46 .cbx span {
+  display: inline-block;
+  vertical-align: middle;
+  transform: translate3d(0, 0, 0);
+}
+.checkbox-wrapper-46 .cbx span:first-child {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  transform: scale(1);
+  vertical-align: middle;
+  border: 1px solid #9098a9;
+  transition: all 0.2s ease;
+}
+.checkbox-wrapper-46 .cbx span:first-child svg {
+  position: absolute;
+  top: 3px;
+  left: 2px;
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 16px;
+  stroke-dashoffset: 16px;
+  transition: all 0.3s ease;
+  transition-delay: 0.1s;
+  transform: translate3d(0, 0, 0);
+}
+.checkbox-wrapper-46 .cbx span:first-child:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: #506eec;
+  display: block;
+  transform: scale(0);
+  opacity: 1;
+  border-radius: 50%;
+}
+.checkbox-wrapper-46 .cbx span:last-child {
+  padding-left: 8px;
+}
+.checkbox-wrapper-46 .cbx:hover span:first-child {
+  border-color: #506eec;
+}
+
+.checkbox-wrapper-46 .inp-cbx:checked + .cbx span:first-child {
+  background: #506eec;
+  border-color: #506eec;
+  animation: wave-46 0.4s ease;
+}
+.checkbox-wrapper-46 .inp-cbx:checked + .cbx span:first-child svg {
+  stroke-dashoffset: 0;
+}
+.checkbox-wrapper-46 .inp-cbx:checked + .cbx span:first-child:before {
+  transform: scale(3.5);
+  opacity: 0;
+  transition: all 0.6s ease;
+}
+
+@keyframes wave-46 {
+  50% {
+    transform: scale(0.9);
+  }
+}
+
+.checkbox-wrapper-46 input[type="checkbox"] {
+  display: none;
+  visibility: hidden;
+}
+
+.checkbox-wrapper-46 .cbx {
+  margin: auto;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+.checkbox-wrapper-46 .cbx span {
+  display: inline-block;
+  vertical-align: middle;
+  transform: translate3d(0, 0, 0);
+}
+.checkbox-wrapper-46 .cbx span:first-child {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  transform: scale(1);
+  vertical-align: middle;
+  border: 1px solid #9098a9;
+  transition: all 0.2s ease;
+}
+.checkbox-wrapper-46 .cbx span:first-child svg {
+  position: absolute;
+  top: 3px;
+  left: 2px;
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 16px;
+  stroke-dashoffset: 16px;
+  transition: all 0.3s ease;
+  transition-delay: 0.1s;
+  transform: translate3d(0, 0, 0);
+}
+.checkbox-wrapper-46 .cbx span:first-child:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: #506eec;
+  display: block;
+  transform: scale(0);
+  opacity: 1;
+  border-radius: 50%;
+}
+.checkbox-wrapper-46 .cbx span:last-child {
+  padding-left: 8px;
+}
+.checkbox-wrapper-46 .cbx:hover span:first-child {
+  border-color: #506eec;
+}
+
+.checkbox-wrapper-46 .inp-cbx:checked + .cbx span:first-child {
+  background: #506eec;
+  border-color: #506eec;
+  animation: wave-46 0.4s ease;
+}
+.checkbox-wrapper-46 .inp-cbx:checked + .cbx span:first-child svg {
+  stroke-dashoffset: 0;
+}
+.checkbox-wrapper-46 .inp-cbx:checked + .cbx span:first-child:before {
+  transform: scale(3.5);
+  opacity: 0;
+  transition: all 0.6s ease;
+}
+
+@keyframes wave-46 {
+  50% {
+    transform: scale(0.9);
+  }
+}
+
 </style>
 
 <a id="goto_manage_activity" href="{{ url('/manage_activity') }}" class="d-none"></a>
@@ -1074,9 +1230,9 @@
                                     <div>
                                         <p class="m-0 mb-2" style="color: #003781;font-size: 15px;font-style: normal;font-weight: 600;line-height: normal;">
                                             <i class="fa-light fa-location-dot me-2"></i>
-                                            {!! $data_activitys->location_detail !!}
+                                            <span id="preview_location_detail">{!! $data_activitys->location_detail !!}</span>
                                         </p>
-                                        <a href="{{ $data_activitys->link_map }}" target="bank" id="link-to-copy" style="color: #0872FF;font-size: 10px;font-style: normal;font-weight: 600;line-height: normal;text-decoration-line: underline;">
+                                        <a id="preview_link_map" href="{{ $data_activitys->link_map }}" target="bank" id="link-to-copy" style="color: #0872FF;font-size: 10px;font-style: normal;font-weight: 600;line-height: normal;text-decoration-line: underline;">
                                             {{ $data_activitys->link_map }}
                                         </a>
                                         <i style="color: #9E9E9E;" class="fa-regular fa-copy mx-2"  onclick="copyLink_map()"></i>
@@ -1399,6 +1555,89 @@
                         <input class="form-control d-none" name="activity_type_id" type="text" id="activity_type_id" value="{{ isset($data_activitys->activity_type_id) ? $data_activitys->activity_type_id : ''}}" readonly>
                     </div>
                 </div>
+                <div class="row mb-3">
+                    <label for="" class="col-sm-2 col-form-label">
+                        วันที่ของกิจกรรม
+                    </label>
+                    @php
+                        $checked_all_day = '' ;
+                        $class_div_not_all_day = '' ;
+                        if($data_activitys->all_day == 'Yes'){
+                            $checked_all_day = 'checked' ;
+                            $class_div_not_all_day = 'd-none' ;
+                        }
+                      @endphp
+                    <div class="col-sm-6 mb-2">
+                        <label>วันเริ่ม</label>
+                        <input class="form-control" type="date" name="date_start"  id="date_start" value="{{ isset($data_activitys->date_start) ? $data_activitys->date_start : ''}}" onchange="show_preview_date_start_end();show_preview_data('date_of_activitys',event);">
+                        <div id="div_not_all_day" class="row {{ $class_div_not_all_day }}">
+                            <div class="col-sm-12 mt-2 mb-2">
+                                <label>เวลาเริ่ม</label>
+                                <input class="form-control" type="time" name="time_start"  id="time_start" value="{{ isset($data_activitys->time_start) ? $data_activitys->time_start : ''}}" onchange="show_preview_date_start_end();show_preview_data('date_of_activitys',event);">
+                            </div>
+                            <div class="col-sm-12 mt-3 mb-2">
+                                <label>วันสิ้นสุด</label>
+                                <input class="form-control" type="date" name="date_end"  id="date_end" value="{{ isset($data_activitys->date_end) ? $data_activitys->date_end : ''}}" onchange="show_preview_date_start_end();show_preview_data('date_of_activitys',event);">
+                            </div>
+                            <div class="col-sm-12 mt-2 mb-2">
+                                <label>เวลาสิ้นสุด</label>
+                                <input class="form-control" type="time" name="time_end"  id="time_end" value="{{ isset($data_activitys->time_end) ? $data_activitys->time_end : ''}}" onchange="show_preview_date_start_end();show_preview_data('date_of_activitys',event);">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4" >
+                        <div class="checkbox-wrapper-46 mt-4">
+                          <input type="text" id="all_day" name="all_day" class="d-none" value="{{ isset($data_activitys->all_day) ? $data_activitys->all_day : ''}}">
+
+                          <input {{ $checked_all_day }} type="checkbox" id="check_all_day" class="inp-cbx" onclick="change_select_all_day();">
+                          <label for="check_all_day" class="cbx"
+                            ><span>
+                              <svg viewBox="0 0 12 10" height="10px" width="12px">
+                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline></svg></span
+                            ><span>ทั้งวัน</span>
+                          </label>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    function change_select_all_day(){
+                        let check_all_day = document.querySelector('#check_all_day');
+                        if(check_all_day.checked){
+                            // console.log('Yes');
+                            document.querySelector('#time_start').value = '';
+                            document.querySelector('#date_end').value = '';
+                            document.querySelector('#time_end').value = '';
+                            document.querySelector('#all_day').value = 'Yes';
+
+                            document.querySelector('#div_not_all_day').classList.add('d-none');
+                        }
+                        else{
+                            // console.log('No');
+                            document.querySelector('#all_day').value = '';
+                            document.querySelector('#div_not_all_day').classList.remove('d-none');
+                        }
+                        show_preview_date_start_end();
+                        show_preview_data('date_of_activitys',event);
+                    }
+                </script>
+
+
+                <div class="row mb-3">
+                    <label for="location_detail" class="col-sm-2 col-form-label">
+                        สถานที่
+                    </label>
+                    <div class="col-sm-10 location_detail">
+                        <input class="form-control" name="location_detail" type="text" id="location_detail" value="{{ isset($data_activitys->location_detail) ? $data_activitys->location_detail : ''}}" placeholder="เพิ่มรายละเอียดสถานที่" oninput="show_preview_data('location_detail',event);show_preview_date_start_end();">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="link_map" class="col-sm-2 col-form-label">
+                        Google map
+                    </label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="link_map" type="text" id="link_map" value="{{ isset($data_activitys->link_map) ? $data_activitys->link_map : ''}}" placeholder="เพิ่มลิงก์ Google map" oninput="show_preview_data('link_map',event);show_preview_date_start_end();">
+                    </div>
+                </div>
 
                 <div id="div_alert_add_video" class="row mb-3 d-none">
                     <label for="" class="col-sm-2 col-form-label">
@@ -1455,6 +1694,187 @@
                         <textarea class="form-control d-none" rows="5" name="for_detail" type="textarea" id="for_detail" placeholder="เพิ่มรายละเอียดเนื้อหา">{{ isset($data_activitys->detail) ? $data_activitys->detail : ''}}</textarea>
                     </div>
                 </div>
+
+                <div class="row mb-3">
+                    <label for="" class="col-sm-2 col-form-label">
+                        เลือกการแสดงผล
+                    </label>
+                    @php
+                        $checked_show_all_member = '' ;
+                        $class_show_all_member = '' ;
+
+                        $checked_radio_show_for_individual = '';
+                        $class_show_for_individual = 'd-none';
+                        $checked_radio_show_for_rank = '';
+                        $class_show_for_rank = 'd-none';
+
+                        if($data_activitys->show_all_member == 'Yes'){
+                            $checked_show_all_member = 'checked' ;
+                            $class_show_all_member = 'd-none' ;
+                        }
+                        else{
+                            if( !empty($data_activitys->show_individual) ){
+                                $checked_radio_show_for_individual = 'checked';
+                                $class_show_for_individual = '';
+                            }
+                            else{
+                                $checked_radio_show_for_rank = 'checked';
+                                $class_show_for_rank = '';
+                            }
+                        }
+                    @endphp
+                    <div class="col-sm-6" >
+                        <div class="checkbox-wrapper-46 mt-4">
+                          <input type="text" id="show_all_member" name="show_all_member" class="d-none" value="{{ isset($data_activitys->show_all_member) ? $data_activitys->show_all_member : ''}}">
+                          <input {{ $checked_show_all_member }} type="checkbox" id="check_show_all_member" class="inp-cbx" onclick="change_select_show_all_member();">
+                          <label for="check_show_all_member" class="cbx"
+                            ><span>
+                              <svg viewBox="0 0 12 10" height="10px" width="12px">
+                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline></svg></span
+                            ><span>เห็นทุกคน</span>
+                          </label>
+                        </div>
+                        <div id="div_not_show_all_member" class="mt-3 row {{ $class_show_all_member }}">
+                            <div class="col-12 mydict mb-2">
+                                <div class="float-start">
+                                    <label>
+                                        <input type="radio" name="radio_show_for" {{ $checked_radio_show_for_individual }} value="individual" onchange="check_select_show_for();">
+                                        <span>เลือกรายบุคคล</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="radio_show_for" {{ $checked_radio_show_for_rank }} value="rank" onchange="check_select_show_for();">
+                                        <span>เลือกจาก rank</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div id="div_show_for_account" class="col-12 mt-3 {{ $class_show_for_individual }}">
+
+                                <p>เพิ่มรหัสตัวแทนด้วยไฟล์ Excel <span class="text-danger">(กดอ่านไฟล์เพื่อสร้างรหัสตัวแทน)</span></p>
+                                <p><span class="text-danger">** <u>การเพิ่มไฟล์จะล้างข้อมูลรหัสตัวแทนเดิมทั้งหมดออก</u></span></p>
+                              <input class="form-control border-start-0" type="file" id="excelInput" accept=".xlsx, .xls" onclick="clear_textarea_input();">
+                              <span class="btn btn-warning btn-sm px-5 mt-2" onclick="readExcel()">
+                                  อ่านไฟล์
+                              </span>
+
+                              <textarea class="form-control mt-3" rows="5" type="textarea" name="show_individual" id="show_individual" placeholder="เพิ่ม Account [เพิ่มหลาย Account คั่นด้วยเครื่องหมาย , (จุลภาค)]" onchange="show_preview_date_start_end();">{{ isset($data_activitys->show_individual) ? $data_activitys->show_individual : ''}}</textarea>
+                            </div>
+
+                            @php
+                                $ranks = ['AG', 'UM', 'SUM', 'DM', 'SDM', 'AVP', 'VP', 'SVP', 'ESVP'];
+                            @endphp
+
+                            <select class="col-12 form-select mt-3 {{ $class_show_for_rank }}" id="show_rank" name="show_rank" onchange="show_preview_date_start_end();">
+                                <option selected value="{{ isset($data_activitys->show_rank) ? $data_activitys->show_rank : ''}}">
+                                    {{ isset($data_activitys->show_rank) ? $data_activitys->show_rank : ''}}
+                                </option>
+                                @foreach($ranks as $item)
+                                <option value="{{ $item }}">{{ $item }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <script>
+
+                    function check_select_show_for(){
+                        let radio_show_for = document.querySelectorAll('input[name="radio_show_for"]');
+                        let radio_show_for_value = "" ;
+                            radio_show_for.forEach(radio_show_for => {
+                                if(radio_show_for.checked){
+                                    radio_show_for_value = radio_show_for.value;
+                                }
+                            })
+
+                            // console.log(radio_show_for_value);
+
+                            if(radio_show_for_value == "individual"){
+                                document.querySelector('#show_rank').value = "";
+                                document.querySelector('#show_rank').classList.add('d-none');
+                                document.querySelector('#div_show_for_account').classList.remove('d-none');
+                            }
+                            else if(radio_show_for_value == "rank"){
+                                document.querySelector('#show_individual').value = "";
+                                document.querySelector('#excelInput').value = null ;
+                                document.querySelector('#div_show_for_account').classList.add('d-none');
+                                document.querySelector('#show_rank').classList.remove('d-none');
+                            }
+
+                        show_preview_date_start_end();
+                    }
+
+                    function change_select_show_all_member(){
+                        let check_show_all_member = document.querySelector('#check_show_all_member');
+                        if(check_show_all_member.checked){
+                            // console.log('Yes');
+                            document.querySelector('#show_all_member').value = 'Yes';
+
+                            document.querySelector('#show_individual').value = "";
+                            document.querySelector('#excelInput').value = null ;
+                            document.querySelector('#show_rank').value = "";
+                            document.querySelector('#div_not_show_all_member').classList.add('d-none');
+                        }
+                        else{
+                            // console.log('No');
+                            document.querySelector('#show_all_member').value = '';
+                            document.querySelector('#div_not_show_all_member').classList.remove('d-none');
+                        }
+                        show_preview_date_start_end();
+                    }
+
+                    function clear_textarea_input(){
+                      document.querySelector('#show_individual').value = "";
+                    }
+
+                    // EXCEL
+                    function readExcel() {
+
+                        let input = document.getElementById('excelInput');
+                        let file = input.files[0];
+
+                        if (file) {
+
+                            let reader = new FileReader();
+
+                            reader.onload = function(e) {
+                                let data = e.target.result;
+                                let workbook = XLSX.read(data, { type: 'binary' });
+
+                                // เลือกชีทที่ต้องการ (0 คือชีทแรก)
+                                let sheetName = workbook.SheetNames[0];
+                                let sheet = workbook.Sheets[sheetName];
+
+                                // แปลงข้อมูลในชีทเป็น JSON
+                                let jsonData = XLSX.utils.sheet_to_json(sheet);
+
+                                // ตรวจสอบข้อมูลในคอนโซล
+                                // console.log(jsonData);
+
+                                let sum_account ;
+                                for (let i = 0; i < jsonData.length; i++) {
+                                  if(!sum_account){
+                                    sum_account = jsonData[i].account;
+                                  }else{
+                                    sum_account = sum_account + "," + jsonData[i].account;
+                                  }
+                                }
+
+                                document.querySelector('#show_individual').value = sum_account ;
+                                document.querySelector('#excelInput').value = null ;
+
+                                show_preview_date_start_end();
+
+                                
+                            };
+
+                            reader.readAsBinaryString(file);
+
+                        } else {
+                            alert('กรุณาเลือกไฟล์ Excel');
+                        }
+
+                    }
+                </script>
+
                 <div class="row mb-3">
                     <label for="status" class="col-sm-2 col-form-label">
                         เปิดใช้งานทันที
@@ -1541,6 +1961,10 @@
 
     </div>
 </div>
+
+<!-- ใส่ลิงก์ไปยังไลบรารี XLSX -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+
 <script>
      document.querySelectorAll('.star-rating').forEach(el => {
         const rating = parseFloat(el.getAttribute('data-star'));
@@ -1563,6 +1987,37 @@
         let time_start = "{{ $data_activitys->time_start }}";
         let date_end = "{{ $data_activitys->date_end }}";
         let time_end = "{{ $data_activitys->time_end }}";
+
+        if (all_day === 'Yes') {
+            // Case 1: all_day = Yes
+            let formattedDate = formatDate_for_activity(date_start);
+            text_date_start.innerHTML = formattedDate;
+        } else if (!all_day && date_start === date_end) {
+            // Case 2: all_day = null and date_start equals date_end
+            let formattedDate = formatDate_for_activity(date_start);
+            let formattedTime = formatTime_for_activity(time_start) + ' - ' + formatTime_for_activity(time_end);
+            text_date_start.innerHTML = formattedDate + ' ' + formattedTime;
+        } else if (!all_day && date_start !== date_end) {
+            // Case 3: all_day = null and date_start not equals date_end
+            let formattedStartDate = formatDate_for_activity(date_start);
+            let formattedEndDate = formatDate_for_activity(date_end);
+            let formattedStartTime = formatTime_for_activity(time_start);
+            let formattedEndTime = formatTime_for_activity(time_end);
+            text_date_start.innerHTML = `${formattedStartDate} ${formattedStartTime} - ${formattedEndDate} ${formattedEndTime}`;
+        }
+
+    }
+
+    function create_preview_date_start(){
+
+        // Friday 19 April 2024 10:30 น. - Friday 19 April 2024 12:30 น.
+        let text_date_start = document.querySelector('#text_date_start');
+
+        let all_day = document.querySelector('#all_day').value;
+        let date_start = document.querySelector('#date_start').value;
+        let time_start = document.querySelector('#time_start').value;
+        let date_end = document.querySelector('#date_end').value;
+        let time_end = document.querySelector('#time_end').value;
 
         if (all_day === 'Yes') {
             // Case 1: all_day = Yes
@@ -1634,6 +2089,13 @@
 
             focus_tag.innerHTML = '#'+selectedText ;
         }
+        else if(tag == 'link_map'){
+            focus_tag.setAttribute('href' , data_new.value)
+            focus_tag.innerHTML = data_new.value ;
+        }
+        else if(tag == 'date_of_activitys'){
+            create_preview_date_start();
+        }
         else if(tag !== 'photo' || tag !== 'video'){
             // console.log(data_new);
             focus_tag.innerHTML = data_new.value ;
@@ -1647,6 +2109,12 @@
     function show_preview_date_start_end(){
         let datetime_start = document.querySelector('#datetime_start').value;
         let datetime_end = document.querySelector('#datetime_end').value;
+
+        let all_day = document.querySelector('#all_day').value;
+        let date_start = document.querySelector('#date_start').value;
+        let time_start = document.querySelector('#time_start').value;
+        let date_end = document.querySelector('#date_end').value;
+        let time_end = document.querySelector('#time_end').value;
 
         let show_start ;
         let show_end ;
@@ -1666,7 +2134,15 @@
         }
 
         if(show_start){
-            document.querySelector('#btn_cf_edit_data').disabled = false ;
+            if(all_day == 'Yes' && date_start){
+                document.querySelector('#btn_cf_edit_data').disabled = false ;
+            }
+            else if(all_day != 'Yes' && date_start && time_start && date_end && time_end){
+                document.querySelector('#btn_cf_edit_data').disabled = false ;
+            }
+            else{
+                document.querySelector('#btn_cf_edit_data').disabled = true ;
+            }
         }
         else{
             document.querySelector('#btn_cf_edit_data').disabled = true ;
@@ -1995,6 +2471,12 @@
         let status = document.querySelector('#status').value;
         let photo_gallery = document.querySelector('#photo_gallery').value;
 
+        let all_day = document.querySelector('#all_day').value;
+        let date_start = document.querySelector('#date_start').value;
+        let time_start = document.querySelector('#time_start').value;
+        let date_end = document.querySelector('#date_end').value;
+        let time_end = document.querySelector('#time_end').value;
+
         let data_arr = {
             "id" : "{{ $data_activitys->id }}",
             "title" : title,
@@ -2006,6 +2488,11 @@
             "datetime_end" : datetime_end,
             "status" : status,
             "photo_gallery" : photo_gallery,
+            "all_day" : all_day,
+            "date_start" : date_start,
+            "time_start" : time_start,
+            "date_end" : date_end,
+            "time_end" : time_end,
         }; 
 
         fetch("{{ url('/') }}/api/save_data_edit_activity", {

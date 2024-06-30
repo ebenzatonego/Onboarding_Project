@@ -218,7 +218,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="btn" href="area_supervisor">
+                                <a class="btn" href="{{ url('/area_supervisor') }}">
                                     <i class="fa-solid fa-users-rectangle"></i> Area Supervisor
                                 </a>
                             </li>

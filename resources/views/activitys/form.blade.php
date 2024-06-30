@@ -1193,6 +1193,7 @@ img {
                             รายละเอียด
                         </label>
                         <div class="col-sm-10">
+                            <p class="text-danger mt-2">*กด Ctrl+Shift+V เพื่อวางข้อความแบบไม่จัดรูปแบบ</p>
                             <textarea class="form-control" rows="5" name="detail" type="textarea" id="detail" placeholder="เพิ่มรายละเอียดเนื้อหา"></textarea>
                         </div>
                     </div>

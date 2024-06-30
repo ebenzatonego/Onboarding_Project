@@ -362,7 +362,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link dropdown-toggle-nocaret position-relative" href="#" role="button"  data-toggle="modal" data-target="#modal_notification">
-                            <span class="alert-count"></span>
+                            <span id="alert_count_notification" class="alert-count d-none"></span>
                             <i class="fa-regular fa-bell text-color-obd"></i>
                         </a>
                     </li>

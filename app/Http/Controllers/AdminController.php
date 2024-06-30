@@ -1087,24 +1087,28 @@ class AdminController extends Controller
         }
 
         // เฉพาะคุณ => แจ้งเตือนเป้าหมาย
-        $data_user_license_expire = DB::table('users')
-            ->where('id', $user_id)
-            ->select('license_expire')
-            ->get();
+        if ($currentDateTime->day == 1) {
+            // echo "วันนี้เป็นวันที่ 1 ของเดือน";
+            $my_goal_users = DB::table('my_goal_users')
+                ->where('user_id', $user_id)
+                ->where('status' , null)
+                ->get();
 
-        foreach ($data_user_license_expire as $license) {
-            $datetimeStart_5 = Carbon::parse($license->license_expire);
-            $difference_5 = $currentDateTime->diffInDays($datetimeStart_5); // คำนวณห่างกี่วัน
+            foreach ($my_goal_users as $my_goal) {
+                $datetimeStart_6 = Carbon::parse($my_goal->date_end);
+                $difference_6 = $currentDateTime->diffInDays($datetimeStart_6); // คำนวณห่างกี่วัน
 
-            if ($difference_5 <= 90) {
                 $data_arr[] = [
                     'type' => 'เฉพาะคุณ',
-                    'sub_type' => 'บัตรหมดอายุ',
-                    'license_expire' => $license->license_expire,
-                    'days_difference' => $difference_5, // จำนวนวันที่ต่างกัน
+                    'sub_type' => 'แจ้งเตือนเป้าหมาย',
+                    'period' => $my_goal->period,
+                    'goal' => $my_goal->goal,
+                    'price' => $my_goal->price,
+                    'days_difference' => $difference_6, // จำนวนวันที่ต่างกัน
                 ];
             }
         }
+
 
         // ข่าวสาร
         $data_news = DB::table('news')
@@ -1162,35 +1166,35 @@ class AdminController extends Controller
 
 
         // อบรม,สอบ => อบรม
-        $data_trainings = DB::table('favorites')
-            ->join('trainings', 'trainings.id', '=', 'favorites.training_id')
-            ->where('favorites.user_id', $user_id)
-            ->where('favorites.status', 'Yes')
-            ->where('trainings.status', 'Yes')
-            ->select(
-                'trainings.id',
-                'trainings.title',
-                'trainings.photo',
-                'trainings.detail',
-                'trainings.datetime_start',
-            )
-            ->get();
+        // $data_trainings = DB::table('favorites')
+        //     ->join('trainings', 'trainings.id', '=', 'favorites.training_id')
+        //     ->where('favorites.user_id', $user_id)
+        //     ->where('favorites.status', 'Yes')
+        //     ->where('trainings.status', 'Yes')
+        //     ->select(
+        //         'trainings.id',
+        //         'trainings.title',
+        //         'trainings.photo',
+        //         'trainings.detail',
+        //         'trainings.datetime_start',
+        //     )
+        //     ->get();
 
-        foreach ($data_trainings as $training) {
-            $datetimeStart_3 = Carbon::parse($training->datetime_start);
-            $difference_3 = $currentDateTime->diffInDays($datetimeStart_3); // คำนวณห่างกี่วัน
+        // foreach ($data_trainings as $training) {
+        //     $datetimeStart_3 = Carbon::parse($training->datetime_start);
+        //     $difference_3 = $currentDateTime->diffInDays($datetimeStart_3); // คำนวณห่างกี่วัน
 
-            if ($difference_3 <= 3) {
-                $data_arr[] = [
-                    'type' => 'อบรม,สอบ',
-                    'id' => $training->id,
-                    'title' => $training->title,
-                    'photo' => $training->photo,
-                    'detail' => $training->detail,
-                    'days_difference' => $difference_3, // จำนวนวันที่ต่างกัน
-                ];
-            }
-        }
+        //     if ($difference_3 <= 3) {
+        //         $data_arr[] = [
+        //             'type' => 'อบรม,สอบ',
+        //             'id' => $training->id,
+        //             'title' => $training->title,
+        //             'photo' => $training->photo,
+        //             'detail' => $training->detail,
+        //             'days_difference' => $difference_3, // จำนวนวันที่ต่างกัน
+        //         ];
+        //     }
+        // }
 
         // อบรม,สอบ => สอบ
         $data_appointments = DB::table('favorites')
@@ -1201,9 +1205,15 @@ class AdminController extends Controller
             ->select(
                 'appointments.id',
                 'appointments.title',
+                'appointments.type',
                 'appointments.photo',
                 'appointments.detail',
+                'appointments.location_detail',
+                'appointments.all_day',
                 'appointments.date_start',
+                'appointments.date_end',
+                'appointments.time_start',
+                'appointments.time_end',
             )
             ->get();
 
@@ -1215,9 +1225,15 @@ class AdminController extends Controller
                 $data_arr[] = [
                     'type' => 'อบรม,สอบ',
                     'id' => $appointment->id,
+                    'sub_type' => $appointment->type,
                     'title' => $appointment->title,
                     'photo' => $appointment->photo,
-                    'detail' => $appointment->detail,
+                    'location_detail' => $appointment->location_detail,
+                    'all_day' => $appointment->all_day,
+                    'date_start' => $appointment->date_start,
+                    'date_end' => $appointment->date_end,
+                    'time_start' => $appointment->time_start,
+                    'time_end' => $appointment->time_end,
                     'days_difference' => $difference_4, // จำนวนวันที่ต่างกัน
                 ];
             }

@@ -121,29 +121,54 @@
 
                 <div class="container-tap-notificarion d-flex justify-content-center mb-2 mt-3 w-100">
                     <div class="tabs-notification">
-                        <input type="radio" id="noti-radio-1" name="tabs_type_noti" value="ทั้งหมด" checked="">
+                        <input type="radio" id="noti-radio-1" name="tabs_type_noti" value="ทั้งหมด" checked="" onclick="change_view_noti('all')">
                         <label class="tab-item" for="noti-radio-1">
                             ทั้งหมด
                         </label>
-                        <input type="radio" id="noti-radio-2" name="tabs_type_noti" value="เฉพาะคุณ">
+                        <input type="radio" id="noti-radio-2" name="tabs_type_noti" value="เฉพาะคุณ" onclick="change_view_noti('เฉพาะคุณ')">
                         <label class="tab-item" for="noti-radio-2">
                             เฉพาะคุณ
                         </label>
-                        <input type="radio" id="noti-radio-3" name="tabs_type_noti" value="อบรม,สอบ">
+                        <input type="radio" id="noti-radio-3" name="tabs_type_noti" value="อบรม,สอบ" onclick="change_view_noti('อบรม,สอบ')">
                         <label class="tab-item" for="noti-radio-3">
                             อบรม,สอบ
                         </label>
-                        <input type="radio" id="noti-radio-4" name="tabs_type_noti" value="บริษัท">
+                        <input type="radio" id="noti-radio-4" name="tabs_type_noti" value="บริษัท" onclick="change_view_noti('บริษัท')">
                         <label class="tab-item" for="noti-radio-4">
                             บริษัท
                         </label>
-                        <input type="radio" id="noti-radio-5" name="tabs_type_noti" value="ข่าวสาร">
+                        <input type="radio" id="noti-radio-5" name="tabs_type_noti" value="ข่าวสาร" onclick="change_view_noti('ข่าวสาร')">
                         <label class="tab-item" for="noti-radio-5">
                             ข่าวสาร
                         </label>
                         <span class="glider-notificaion"></span>
                     </div>
                 </div>
+
+                <script>
+                    function change_view_noti(type){
+
+                        let card_all = document.querySelectorAll('.notification-alert');
+                            card_all.forEach(card_all => {
+                                card_all.classList.add('d-none');
+                            })
+
+                        if(type == 'all'){
+                            let item_all = document.querySelectorAll('.notification-alert');
+                            item_all.forEach(item_all => {
+                                item_all.classList.remove('d-none');
+                            })
+                        }
+                        else{
+                            let item = document.querySelectorAll('[type="'+type+'"]');
+                            item.forEach(item => {
+                                item.classList.remove('d-none');
+                            })
+                        }
+
+                    }
+                </script>
+
             </div>
             <div class="modal-body">
 
@@ -252,14 +277,9 @@
                         height: 100% !important;
                     }
                 </style>
-                <div id="content-notification ">
-                    <div class="notification-alert">
-                        <img src="{{url('img/icon/preview-img.png')}}" alt="">
-                        <div class="d-block px-3">
-                            <p class="noti-title">สุขสันต์วันเกิด คุณ ปทุมรัตน์ ฉัตรรัตนศักดิ์ ddddd🎉</p>
-                            <p class="noti-detail">สุขสันต์วันครบรอบวันคล้ายวันเกิดของคุณ เราขอให้คุณสุขภาพแข็งแรง มีความสุขในชีวิต และประสบความสำเร็จตามเป้าหมายที่วางไว้</p>
-                        </div>
-                    </div>
+                <div id="content_notification">
+                    <!-- content_notification -->
+                    <img src="" style="width: 100%!important;height: auto;">
                 </div>
             </div>
         </div>
@@ -277,9 +297,160 @@
         fetch("{{ url('/') }}/api/gat_data_of_notification/" + "{{ Auth::user()->id }}")
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
+
+                if(result.length != 0){
+                    document.querySelector('#alert_count_notification').classList.remove('d-none');
+
+                    let content_notification = document.querySelector('#content_notification');
+                        content_notification.innerHTML = '';
+
+                    for (let i = 0; i < result.length; i++) {
+                        
+                        let html = ``;
+
+                        if(result[i].type == "เฉพาะคุณ"){
+                            if(result[i].sub_type == "วันเกิด"){
+                                html = `
+                                    <div type="`+result[i].type+`" class="notification-alert">
+                                        <img src="{{url('img/icon/noti_birthday.png')}}" alt="">
+                                        <div class="d-block px-3">
+                                            <p class="noti-title">สุขสันต์วันเกิด คุณ`+result[i].name+` 🎉</p>
+                                            <p class="noti-detail mt-2">สุขสันต์วันครบรอบวันคล้ายวันเกิดของคุณ เราขอให้คุณสุขภาพแข็งแรง มีความสุขในชีวิต และประสบความสำเร็จตามเป้าหมายที่วางไว้</p>
+                                        </div>
+                                    </div>
+                                `;
+                            }
+                            else if(result[i].sub_type == "บัตรหมดอายุ"){
+                                let license_expire = result[i].license_expire;
+                                let parts = license_expire.split("-");
+                                let formattedDate_expire = parts[2] + "/" + parts[1] + "/" + parts[0];
+
+                                html = `
+                                    <div type="`+result[i].type+`" class="notification-alert">
+                                        <img src="{{url('img/icon/noti_license_expire.png')}}" alt="">
+                                        <div class="d-block px-3">
+                                            <p class="noti-title">เเจ้งเตือนบัตรตัวเเทนหมดอายุ !</p>
+                                            <p class="noti-detail mt-2">ใบอนุญาติขายประกันของคุณจะหมดอายุในวันที่ `+formattedDate_expire+` กรุณาติดต่อเจ้าหน้าที่เพื่อดำเนินการต่ออายุใบอนุญาติขายประกันของคุณ</p>
+                                        </div>
+                                    </div>
+                                `;
+                            }
+                            else if(result[i].sub_type == "แจ้งเตือนเป้าหมาย"){
+                                let days_difference = result[i].days_difference;
+                                let months_difference = Math.floor(days_difference / 30);
+
+                                html = `
+                                    <div type="`+result[i].type+`" class="notification-alert">
+                                        <img src="{{url('img/icon/select_my_goal/`+result[i].goal+`.png')}}" alt="" style="width: 100%; height: auto; object-fit: contain;">
+                                        <div class="d-block px-3">
+                                            <p class="noti-title">เป้าหมายของ คุณ{{ Auth::user()->name }} 🎉</p>
+                                            <p class="noti-detail mt-2">
+                                                เป้าหมายของคุณคือ “อยาก`+result[i].goal+`” มูลค่า `+result[i].price+` บาท ภายใน `+result[i].period+` คุณเหลือเวลาบรรลุเป้าหมายอีกประมาณ `+months_difference+` เดือน สู้ๆนะ
+                                                </p>
+                                        </div>
+                                    </div>
+                                `;
+                            }
+                        }
+                        else if(result[i].type == "อบรม,สอบ"){
+
+                            let all_day = result[i].all_day;
+                            let date_start = result[i].date_start;
+                            let time_start = result[i].time_start;
+                            let date_end = result[i].date_end;
+                            let time_end = result[i].time_end;
+                            let text_date_start = create_text_date_start(all_day, date_start, time_start, date_end, time_end) ;
+
+                            let textWithoutHtml = ``;
+                            if(result[i].location_detail){
+                                textWithoutHtml = result[i].location_detail.replace(/(<([^>]+)>)/gi, "");
+                            }
+
+                            html = `
+                                <div type="`+result[i].type+`" class="notification-alert">
+                                    <img src="`+result[i].photo+`" alt="" style="width: 100%; height: auto; object-fit: cover;">
+                                    <div class="d-block px-3">
+                                        <p class="noti-title">`+result[i].title+`</p>
+                                        <p class="noti-detail mt-2">
+                                            <i class="fa-sharp fa-regular fa-location-dot"></i> `+text_date_start+`
+                                        </p>
+                                        <p class="noti-detail">
+                                            `+textWithoutHtml+`
+                                        </p>
+                                    </div>
+                                </div>
+                            `;
+                        }
+                        else if(result[i].type == "ข่าวสาร" || result[i].type == "บริษัท"){
+                            let textWithoutHtml = ``;
+                            if(result[i].detail){
+                                textWithoutHtml = result[i].detail.replace(/(<([^>]+)>)/gi, "");
+                            }
+                            html = `
+                                <div type="`+result[i].type+`" class="notification-alert">
+                                    <img src="`+result[i].photo+`" alt="" style="width: 100%; height: auto; object-fit: cover;">
+                                    <div class="d-block px-3">
+                                        <p class="noti-title">`+result[i].title+`</p>
+                                        <p class="noti-detail mt-2">
+                                            `+textWithoutHtml+`
+                                        </p>
+                                    </div>
+                                </div>
+                            `;
+                        }
+
+                        content_notification.insertAdjacentHTML('beforeend', html);
+
+                    }
+
+                }
+                else{
+                    document.querySelector('#alert_count_notification').classList.add('d-none');
+                }
                 
             });
 
+    }
+
+    function create_text_date_start(all_day, date_start, time_start, date_end, time_end){
+
+        // Friday 19 April 2024 10:30 น. - Friday 19 April 2024 12:30 น.
+        let text_date_start = '';
+
+        if (all_day === 'Yes') {
+            // Case 1: all_day = Yes
+            let formattedDate = formatDate_for_appointment(date_start);
+            text_date_start = formattedDate;
+        } else if (!all_day && date_start === date_end) {
+            // Case 2: all_day = null and date_start equals date_end
+            let formattedDate = formatDate_for_appointment(date_start);
+            let formattedTime = formatTime_for_appointment(time_start) + ' - ' + formatTime_for_appointment(time_end);
+            text_date_start = formattedDate + ' ' + formattedTime;
+        } else if (!all_day && date_start !== date_end) {
+            // Case 3: all_day = null and date_start not equals date_end
+            let formattedStartDate = formatDate_for_appointment(date_start);
+            let formattedEndDate = formatDate_for_appointment(date_end);
+            let formattedStartTime = formatTime_for_appointment(time_start);
+            let formattedEndTime = formatTime_for_appointment(time_end);
+            text_date_start = `${formattedStartDate} ${formattedStartTime} - ${formattedEndDate} ${formattedEndTime}`;
+        }
+
+        return text_date_start;
+
+    }
+
+    function formatDate_for_appointment(dateString) {
+        let date = new Date(dateString);
+        let options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+        return date.toLocaleDateString('en-US', options);
+    }
+
+    function formatTime_for_appointment(timeString) {
+        // Assuming timeString is in HH:mm format
+        let [hours, minutes] = timeString.split(':');
+        let period = hours >= 12 ? 'น.' : 'น.';
+        hours = hours % 12 || 12; // Convert hours to 12-hour format
+        return `${hours}:${minutes} ${period}`;
     }
 </script>

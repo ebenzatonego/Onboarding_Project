@@ -651,7 +651,7 @@
         fetch("{{ url('/') }}/api/get_data_story_career_paths")
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
+                console.log(result);
 
                 let pills_tabContent = document.querySelector('#pills_tabContent');
                 let now_name_rank ;
@@ -689,13 +689,23 @@
                             photo_story = result[i].photo_story;
                         }
 
+                        let description_story = ``;
+                        if(result[i].description_story){
+                            description_story = result[i].description_story ;
+                        }
+
+                        let check_title_story = `d-none`;
+                        if(result[i].title_story){
+                            check_title_story = ``;
+                        }
+
                         let html = `
-                            <div class="career-item" onclick="select_career_path('`+name_rank+`_`+result[i].number_story+`' ,'select' , null);update_user_view('head', '`+result[i].id+`')">
+                            <div class="career-item `+check_title_story+`" onclick="select_career_path('`+name_rank+`_`+result[i].number_story+`' ,'select' , null);update_user_view('head', '`+result[i].id+`')">
                                 <div class="w-100 content-career-path">
                                     <img src="`+photo_story+`" style="width: 100%;object-fit: cover;height: 150px;filter: brightness(0.6);" alt="">
                                     <div class="p-4 detail-career-path">
                                         <p class=" name-career-path mb-2">Story `+result[i].number_story+` : `+result[i].title_story+`</p>
-                                        <p class="m-0 name-career-path"><i>`+result[i].description_story+`</i> </p>
+                                        <p class="m-0 name-career-path"><i>`+description_story+`</i> </p>
                                     </div>
                                 </div>
                             </div>

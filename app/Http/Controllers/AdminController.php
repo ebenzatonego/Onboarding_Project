@@ -1069,6 +1069,7 @@ class AdminController extends Controller
         // เฉพาะคุณ => บัตรหมดอายุ
         $data_user_license_expire = DB::table('users')
             ->where('id', $user_id)
+            ->where('license_expire', '!=' , null)
             ->select('license_expire')
             ->get();
 

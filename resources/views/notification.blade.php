@@ -322,9 +322,13 @@
                                 `;
                             }
                             else if(result[i].sub_type == "บัตรหมดอายุ"){
-                                let license_expire = result[i].license_expire;
-                                let parts = license_expire.split("-");
-                                let formattedDate_expire = parts[2] + "/" + parts[1] + "/" + parts[0];
+
+                                let formattedDate_expire = ``;
+                                if(result[i].license_expire){
+                                    let license_expire = result[i].license_expire;
+                                    let parts = license_expire.split("-");
+                                    formattedDate_expire = parts[2] + "/" + parts[1] + "/" + parts[0];
+                                }
 
                                 html = `
                                     <div type="`+result[i].type+`" class="notification-alert">

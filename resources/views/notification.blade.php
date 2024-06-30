@@ -297,7 +297,7 @@
         fetch("{{ url('/') }}/api/gat_data_of_notification/" + "{{ Auth::user()->id }}")
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
+                console.log(result);
 
                 if(result.length != 0){
                     document.querySelector('#alert_count_notification').classList.remove('d-none');

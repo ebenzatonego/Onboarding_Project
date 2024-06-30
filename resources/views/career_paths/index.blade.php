@@ -850,6 +850,11 @@
                             `;
                         }
 
+                        let check_read = `d-none`;
+                        if(result[i].read){
+                            check_read = ``;
+                        }
+
                         if(result[i].icon == "PDF"){
 
 
@@ -860,7 +865,7 @@
                                     </svg>
                                     <div>
                                         <p class="title_cat m-0">`+result[i].title+`</p>
-                                        <p class="type_cat m-0">PDF : `+result[i].read+` นาที</p>
+                                        <p class="type_cat m-0 `+check_read+`">PDF : `+result[i].read+` นาที</p>
                                     </div>
                                     `+text_recommend+`
                                 </a>
@@ -875,7 +880,7 @@
                                     </svg>
                                     <div>
                                         <p class="title_cat m-0">`+result[i].title+`</p>
-                                        <p class="type_cat m-0">Read : `+result[i].read+` นาที</p>
+                                        <p class="type_cat m-0 `+check_read+`">Read : `+result[i].read+` นาที</p>
                                     </div>
                                     `+text_recommend+`
                                 </a>
@@ -889,7 +894,7 @@
                                     </svg>
                                     <div>
                                         <p class="title_cat m-0">`+result[i].title+`</p>
-                                        <p class="type_cat m-0">Video : `+result[i].read+` </p>
+                                        <p class="type_cat m-0 `+check_read+`">Video : `+result[i].read+` </p>
                                     </div>
                                     `+text_recommend+`
                                 </a>
@@ -906,7 +911,7 @@
                                     </svg>
                                     <div>
                                         <p class="title_cat m-0">`+result[i].title+`</p>
-                                        <p class="type_cat m-0">Gallery : `+result[i].read+` pictures</p>
+                                        <p class="type_cat m-0 `+check_read+`">Gallery : `+result[i].read+` pictures</p>
                                     </div>
                                     `+text_recommend+`
                                 </a>

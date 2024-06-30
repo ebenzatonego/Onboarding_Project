@@ -640,16 +640,42 @@ class ActivitysController extends Controller
 
         if($type == 'all'){
 
+            // $data['data_activity'] = DB::table('activitys')
+            //     ->join('activity_types', 'activity_types.id', '=', 'activitys.activity_type_id')
+            //     ->select('activitys.*', 'activity_types.name_type')
+            //     ->orderBy("id", "DESC")
+            //     ->get();
+
             $data['data_activity'] = DB::table('activitys')
                 ->join('activity_types', 'activity_types.id', '=', 'activitys.activity_type_id')
-                ->select('activitys.*', 'activity_types.name_type')
-                ->orderBy("id", "DESC")
+                ->leftJoin('users', 'users.id', '=', 'activitys.creator')
+                ->select('activitys.*', 'activity_types.name_type' , 'users.name as name_creator')
+                ->orderByRaw("CASE 
+                        WHEN highlight_number IS NOT NULL THEN 1
+                        ELSE 2
+                        END, 
+                        highlight_number ASC, 
+                        id DESC")
                 ->get();
         }
         else{
-            $data['data_activity'] = Activity::where('activity_type_id', $type)
-                ->orderBy("id", "DESC")
+            // $data['data_activity'] = Activity::where('activity_type_id', $type)
+            //     ->orderBy("id", "DESC")
+            //     ->get();
+
+            $data['data_activity'] = DB::table('activitys')
+                ->join('activity_types', 'activity_types.id', '=', 'activitys.activity_type_id')
+                ->leftJoin('users', 'users.id', '=', 'activitys.creator')
+                ->select('activitys.*', 'activity_types.name_type' , 'users.name as name_creator')
+                ->where('activitys.activity_type_id', $type)
+                ->orderByRaw("CASE 
+                        WHEN highlight_of_type IS NOT NULL THEN 1
+                        ELSE 2
+                        END, 
+                        highlight_of_type ASC, 
+                        id DESC")
                 ->get();
+
             $data_New_type = Activity_type::where('id', $type)->first();
             $data['name_type'] = $data_New_type->name_type ;
         }
@@ -697,6 +723,110 @@ class ActivitysController extends Controller
                 ]);
 
         return 'success' ;
+    }
+
+    function change_Highlight_activity($activity_id , $number , $type){
+
+        $data = [];
+
+        if($type == 'all'){
+            $Highlight_number_old = Activity::where('highlight_number', $number)->first();
+            $Highlight_number_select = Activity::where('id', $activity_id)->first();
+
+            if( !empty($Highlight_number_select->highlight_number) ){
+                $data['old_id_change_to'] = $Highlight_number_select->highlight_number;
+            }
+            else{
+                $data['old_id_change_to'] = null;
+            }
+
+            if( !empty($Highlight_number_old->id) ){
+                $data['old_id'] = $Highlight_number_old->id;
+
+                DB::table('activitys')
+                    ->where([ 
+                            ['id', $data['old_id']],
+                        ])
+                    ->update([
+                            'highlight_number' => $data['old_id_change_to'],
+                        ]);
+            }
+
+            if($number == 'ว่าง'){
+                $number = null ;
+            }
+
+            DB::table('activitys')
+                ->where([ 
+                        ['id', $activity_id],
+                    ])
+                ->update([
+                        'highlight_number' => $number,
+                    ]);
+        }
+        else{
+            $Highlight_number_old = Activity::where('activity_type_id' , $type)->where('highlight_of_type', $number)->first();
+            $Highlight_number_select = Activity::where('id', $activity_id)->first();
+
+            if( !empty($Highlight_number_select->highlight_of_type) ){
+                $data['old_id_change_to'] = $Highlight_number_select->highlight_of_type;
+            }
+            else{
+                $data['old_id_change_to'] = null;
+            }
+
+            if( !empty($Highlight_number_old->id) ){
+                $data['old_id'] = $Highlight_number_old->id;
+
+                DB::table('activitys')
+                    ->where([ 
+                            ['id', $data['old_id']],
+                        ])
+                    ->update([
+                            'highlight_of_type' => $data['old_id_change_to'],
+                        ]);
+            }
+
+            if($number == 'ว่าง'){
+                $number = null ;
+            }
+
+            DB::table('activitys')
+                ->where([ 
+                        ['id', $activity_id],
+                    ])
+                ->update([
+                        'highlight_of_type' => $number,
+                    ]);
+        }
+
+        return $data;
+    }
+
+    function preview_activitys($id){
+
+        // $data_activitys = Training::where('id' , $id)->first();
+        $data_activitys = DB::table('activitys')
+                ->join('activity_types', 'activity_types.id', '=', 'activitys.activity_type_id')
+                ->where('activitys.id' , $id)
+                ->select('activitys.*', 'activity_types.name_type')
+                ->first();
+
+        $name_type = Activity_type::get();
+
+        return view('activitys.preview_activitys', compact('data_activitys','name_type'));
+
+    }
+
+    function save_data_edit_activity(Request $request)
+    {
+        $requestData = $request->all();
+
+        $activity = Activity::findOrFail($requestData['id']);
+        $activity->update($requestData);
+
+        return 'success' ;
+        
     }
 
 }

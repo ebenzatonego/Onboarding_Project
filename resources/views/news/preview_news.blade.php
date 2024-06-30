@@ -1305,11 +1305,11 @@
             </div>
         </div>
 
-        <div class="card border-top border-0 border-4 border-primary ms-4 w-100">
+        <div class="card border-top border-0 border-4 border-dark ms-4 w-100">
             <div class="card-body p-5">
                 <div class="card-title d-flex align-items-center justify-content-between">
                     <div class="d-flex">
-                        <h5 class="mb-0 text-primary">
+                        <h5 class="mb-0 text-dark">
                             แก้ไขข่าว
                         </h5>
                     </div>
@@ -1394,14 +1394,23 @@
                         แสดงผล cover
                     </label>
                     <div class="col-sm-10">
+                        @php
+                            $checked_photo = '' ;
+                            $checked_video = '' ;
+                            if($data_news->select_content_show == 'photo'){
+                                $checked_photo = 'checked' ;
+                            }else{
+                                $checked_video = 'checked' ;
+                            }
+                        @endphp
                         <div class="mydict">
                             <div>
                                 <label>
-                                    <input type="radio" name="select_select_content_show" value="photo" checked="" onchange="check_select_select_content_show();">
+                                    <input type="radio" name="select_select_content_show" value="photo" {{ $checked_photo }} onchange="check_select_select_content_show();">
                                     <span>รูปภาพ</span>
                                 </label>
                                 <label>
-                                    <input type="radio" name="select_select_content_show" value="video" onchange="check_select_select_content_show();">
+                                    <input type="radio" name="select_select_content_show" value="video" {{ $checked_video }} onchange="check_select_select_content_show();">
                                     <span>วิดีโอ</span>
                                 </label>
                             </div>
@@ -1823,7 +1832,7 @@
             let date_now = new Date();
             let Date_for_firebase = formatDate_for_firebase(date_now);
             let name_file = Date_for_firebase + '-Edit-' + title;
-            let storageRef = storage.ref('/news/image/' + name_file);
+            let storageRef = storage.ref('/news/image/cover/' + name_file);
 
             let uploadTask = storageRef.put(blob);
 
@@ -1941,7 +1950,7 @@
                 // console.log('ต่อ');
                 check_last = 'ต่อ' ;
             }
-            uploadBlobToFirebase(srcArray[i], check_last, i)
+            uploadBlobToFirebase_photo_gallery(srcArray[i], check_last, i)
         }
 
         return srcArray;
@@ -1949,7 +1958,7 @@
 
     var new_link ;
 
-    async function uploadBlobToFirebase(blobUrl, check_last, round) {
+    async function uploadBlobToFirebase_photo_gallery(blobUrl, check_last, round) {
 
         round = parseInt(round) + 1 ;
         try {

@@ -839,11 +839,20 @@
             </div>
         </div>
 
-        <div class="card border-top border-0 border-4 border-primary ms-4 w-100">
+        <style>
+            .border-product-create{
+                border-color: #F19F0F !important;
+            }
+
+            .text-product-create{
+                color: #F19F0F !important;
+            }
+        </style>
+        <div class="card border-top border-0 border-4 border-product-create ms-4 w-100">
             <div class="card-body p-5">
                 <div class="card-title d-flex align-items-center justify-content-between">
                     <div class="d-flex">
-                        <h5 class="mb-0 text-primary">
+                        <h5 class="mb-0 text-product-create">
                             แก้ไขผลิตภัณฑ์
                         </h5>
                     </div>

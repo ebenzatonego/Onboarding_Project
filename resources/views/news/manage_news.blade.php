@@ -546,6 +546,9 @@
                             <p class="detail-course">
                               `+textWithoutHtml+`
                             </p>
+                            <p class="card-text mt-3">
+                              <b>ผู้ลงข้อมูล : </b>`+result['data_news'][i].name_creator+`
+                            </p>
                             <hr>
                             <span>
                               <b>Highlight</b>

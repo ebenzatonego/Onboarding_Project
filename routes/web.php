@@ -150,6 +150,7 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
     // Activitys
     Route::resource('activitys', 'ActivitysController');
     Route::get('/manage_activity', 'ActivitysController@manage_activity');
+    Route::get('/preview_activitys/{id}', 'ActivitysController@preview_activitys');
 
     // Products
     Route::resource('products', 'ProductsController');

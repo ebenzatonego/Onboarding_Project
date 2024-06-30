@@ -117,6 +117,12 @@ Route::get('/user_click_fav_btn_activity/{user_id}/{activity_id}/{type}', 'Activ
 Route::get('/get_data_activity_type', 'Activity_typesController@get_data_activity_type');
 Route::get('/get_data_activity_admin/{type}', 'ActivitysController@get_data_activity_admin');
 Route::get('/update_countTime_activityVideo/{user_id}/{countTime}/{activity_id}', 'ActivitysController@update_countTime_activityVideo');
+Route::get('/get_data_number_menu_of_activitys/', 'Activity_typesController@get_data_number_menu_of_activitys');
+Route::get('/change_number_menu_of_activitys/{type_id}/{number}', 'Activity_typesController@change_number_menu_of_activitys');
+Route::get('/delete_activitys_type/{activitys_type_id}', 'Activity_typesController@delete_activitys_type');
+Route::get('/change_Highlight_activity/{activity_id}/{number}/{type}', 'ActivitysController@change_Highlight_activity');
+Route::post('/save_data_edit_activity', 'ActivitysController@save_data_edit_activity');
+
 
 // News
 Route::get('/get_data_news/{news_type_id}', 'NewsController@get_data_news');

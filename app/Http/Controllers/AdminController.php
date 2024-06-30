@@ -1027,4 +1027,16 @@ class AdminController extends Controller
         return 'success' ;
     }
 
+
+    function edit_area_super_visor(Request $request)
+    {
+        $requestData = $request->all();
+
+        $activity = Contact_area_supervisor::findOrFail($requestData['id']);
+        $activity->update($requestData);
+
+        return 'success' ;
+        
+
+    }
 }

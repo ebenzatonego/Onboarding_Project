@@ -38,6 +38,8 @@ Route::get('/get_list_upper_al', 'AdminController@get_list_upper_al');
 Route::get('/get_list_member', 'AdminController@get_list_member');
 Route::get('/get_group_manager', 'AdminController@get_group_manager');
 Route::get('/get_area_supervisor', 'AdminController@get_area_supervisor');
+Route::post('/edit_area_super_visor', 'AdminController@edit_area_super_visor');
+
 
 // Video INTRO
 Route::get('/change_status_video_intro/{click_id}', 'AdminController@change_status_video_intro');
@@ -195,4 +197,7 @@ Route::post('/save_my_goal_users', 'My_goal_usersController@save_my_goal_users')
 Route::get('/update_my_goal/{user_id}', 'My_goal_usersController@update_my_goal');
 
 Route::get('/get_data_fav_of_user/{user_id}', 'FavoritesController@get_data_fav_of_user');
+
+Route::get('/get_data_fav_of_user/', 'FavoritesController@get_data_fav_of_user');
+
 

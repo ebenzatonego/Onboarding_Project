@@ -146,9 +146,11 @@
         border-radius: 3px;
         z-index: 1;
     }
-    .owl-carousel .owl-item:last-child .nav-item::before{
+
+    .owl-carousel .owl-item:last-child .nav-item::before {
         display: none;
     }
+
     .sw-theme-dots>.nav .nav-link.active::after {
         background-color: #0d6efd !important;
     }
@@ -244,6 +246,7 @@
     .nav-item.current-rank .nav-link.active::before {
         background: #002297;
     }
+
     .owl-item .nav-link.active:before {
         background: #56B3F7;
     }
@@ -263,9 +266,11 @@
         padding-top: 7px;
         height: 100px !important;
     }
-.owl-item{
-    margin-top: 20px;
-}
+
+    .owl-item {
+        margin-top: 20px;
+    }
+
     /* .owl-item:nth-child(2) {
         margin-top: -1px;
         border: #A1A1A1 solid 1px;
@@ -340,6 +345,7 @@
     .nav-link {
         position: relative !important;
     }
+
     /* .nav-link.active{
         display: none !important;
     } */
@@ -650,12 +656,12 @@
                                         }
                                     });
                             }
-                            
-                            function select_my_goal_start(type){
+
+                            function select_my_goal_start(type) {
                                 document.querySelector('#btn_start_modal_my_goal').click();
 
                                 setTimeout(() => {
-                                    document.querySelector('#'+type).click();
+                                    document.querySelector('#' + type).click();
                                 }, 300);
                             }
                         </script>
@@ -671,12 +677,19 @@
 
                         </div>
                         <div class="d-flex justify-content-center">
-                            <img src="{{ url('/img/icon/training_path.png') }}" alt="" style="max-width: 300px; width: 100%;">
+                            <a href="{{url('training_path')}}">
+                                <img src="{{ url('/img/icon/training_path1.png') }}" alt="" style="max-width: 300px; width: 100%;">
+                            </a>
                         </div>
-                        <div class="d-flex justify-content-center my-4">
-                            <button class="btn-more-job px-5">
+                        <div class="w-100 d-flex justify-content-center mt-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="14" viewBox="0 0 26 14" fill="none">
+                                <path d="M1 1L13 13L25 1" stroke="#0E2B81" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <div class="d-flex justify-content-center mb-4 mt-2">
+                            <a class="btn-more-job px-5" href="{{url('training_path')}}">
                                 ดูเส้นทางฝึกฝนเพิ่มเติม
-                            </button>
+                            </a>
                         </div>
                         @php
                         if( !empty(Auth::user()->current_rank) ){
@@ -831,6 +844,11 @@
                                 max-width: 361px;
                                 margin-bottom: -10px;
                                 text-align: center;
+                            }
+
+                            .btn-more-job:hover {
+                                color: #fff;
+
                             }
 
                             .img-leader {
@@ -991,6 +1009,7 @@
         background-color: #A3A3A3 !important;
         color: #57759C !important;
     }
+
     .nav-menu.sw.sw-theme-dots .owl-carousel .owl-item img {
         display: inline !important;
         width: auto !important;

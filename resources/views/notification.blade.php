@@ -279,7 +279,6 @@
                 </style>
                 <div id="content_notification">
                     <!-- content_notification -->
-                    <img src="" style="width: 100%!important;height: auto;">
                 </div>
             </div>
         </div>

@@ -21,6 +21,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // FHC
 Route::get('/verify_account/{account}', 'AdminController@verify_account');
 
+Route::get('/gat_data_of_notification/{user_id}', 'AdminController@gat_data_of_notification');
+
 Route::get('/check_pdpa/{account}', 'AdminController@check_pdpa');
 Route::get('/update_coc_of_user/{users_id}', 'AdminController@update_coc_of_user');
 Route::get('/update_pdpa/{account}', 'AdminController@update_pdpa');

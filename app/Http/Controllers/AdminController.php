@@ -1039,4 +1039,197 @@ class AdminController extends Controller
         
 
     }
+
+    function gat_data_of_notification($user_id){
+
+        $data_arr = [];
+        $currentDateTime = Carbon::now();
+
+
+        // เฉพาะคุณ => วันเกิด
+        $data_user_birthday = DB::table('users')
+            ->where('id', $user_id)
+            ->select('birthday', 'name')
+            ->get();
+
+        foreach ($data_user_birthday as $user) {
+            $birthday = Carbon::createFromFormat('d-m-Y', $user->birthday); // ใช้รูปแบบ 'd-m' เพื่อไม่ต้องสนใจปี
+
+            // ตรวจสอบว่าวันและเดือนของวันเกิดตรงกับวันและเดือนปัจจุบันหรือไม่
+            if ($birthday->day == $currentDateTime->day && $birthday->month == $currentDateTime->month) {
+                $data_arr[] = [
+                    'type' => 'เฉพาะคุณ',
+                    'sub_type' => 'วันเกิด',
+                    'name' => $user->name,
+                    'days_difference' => 0, // จำนวนวันที่ต่างกัน
+                ];
+            }
+        }
+
+        // เฉพาะคุณ => บัตรหมดอายุ
+        $data_user_license_expire = DB::table('users')
+            ->where('id', $user_id)
+            ->select('license_expire')
+            ->get();
+
+        foreach ($data_user_license_expire as $license) {
+            $datetimeStart_5 = Carbon::parse($license->license_expire);
+            $difference_5 = $currentDateTime->diffInDays($datetimeStart_5); // คำนวณห่างกี่วัน
+
+            if ($difference_5 <= 90) {
+                $data_arr[] = [
+                    'type' => 'เฉพาะคุณ',
+                    'sub_type' => 'บัตรหมดอายุ',
+                    'license_expire' => $license->license_expire,
+                    'days_difference' => $difference_5, // จำนวนวันที่ต่างกัน
+                ];
+            }
+        }
+
+        // เฉพาะคุณ => บัตรหมดอายุ
+        $data_user_license_expire = DB::table('users')
+            ->where('id', $user_id)
+            ->select('license_expire')
+            ->get();
+
+        foreach ($data_user_license_expire as $license) {
+            $datetimeStart_5 = Carbon::parse($license->license_expire);
+            $difference_5 = $currentDateTime->diffInDays($datetimeStart_5); // คำนวณห่างกี่วัน
+
+            if ($difference_5 <= 90) {
+                $data_arr[] = [
+                    'type' => 'เฉพาะคุณ',
+                    'sub_type' => 'บัตรหมดอายุ',
+                    'license_expire' => $license->license_expire,
+                    'days_difference' => $difference_5, // จำนวนวันที่ต่างกัน
+                ];
+            }
+        }
+
+        // ข่าวสาร
+        $data_news = DB::table('news')
+            ->where('status', 'Yes')
+            ->get();
+
+        foreach ($data_news as $news) {
+            $datetimeStart_1 = Carbon::parse($news->datetime_start);
+            $difference_1 = $currentDateTime->diffInDays($datetimeStart_1); // คำนวณห่างกี่วัน
+
+            if ($difference_1 <= 7) {
+                $data_arr[] = [
+                    'type' => 'ข่าวสาร',
+                    'id' => $news->id,
+                    'title' => $news->title,
+                    'photo' => $news->photo_cover,
+                    'detail' => $news->detail,
+                    'days_difference' => $difference_1, // จำนวนวันที่ต่างกัน
+                ];
+            }
+        }
+
+
+        // บริษัท (กิจกรรม)
+        $data_activitys = DB::table('favorites')
+            ->join('activitys', 'activitys.id', '=', 'favorites.activity_id')
+            ->where('favorites.user_id', $user_id)
+            ->where('favorites.status', 'Yes')
+            ->where('activitys.status', 'Yes')
+            ->select(
+                'activitys.id',
+                'activitys.title',
+                'activitys.photo',
+                'activitys.detail',
+                'activitys.all_day',
+                'activitys.date_start',
+            )
+            ->get();
+
+        foreach ($data_activitys as $activity) {
+            $datetimeStart_2 = Carbon::parse($activity->date_start);
+            $difference_2 = $currentDateTime->diffInDays($datetimeStart_2); // คำนวณห่างกี่วัน
+
+            if ($difference_2 <= 3) {
+                $data_arr[] = [
+                    'type' => 'บริษัท',
+                    'id' => $activity->id,
+                    'title' => $activity->title,
+                    'photo' => $activity->photo,
+                    'detail' => $activity->detail,
+                    'days_difference' => $difference_2, // จำนวนวันที่ต่างกัน
+                ];
+            }
+        }
+
+
+        // อบรม,สอบ => อบรม
+        $data_trainings = DB::table('favorites')
+            ->join('trainings', 'trainings.id', '=', 'favorites.training_id')
+            ->where('favorites.user_id', $user_id)
+            ->where('favorites.status', 'Yes')
+            ->where('trainings.status', 'Yes')
+            ->select(
+                'trainings.id',
+                'trainings.title',
+                'trainings.photo',
+                'trainings.detail',
+                'trainings.datetime_start',
+            )
+            ->get();
+
+        foreach ($data_trainings as $training) {
+            $datetimeStart_3 = Carbon::parse($training->datetime_start);
+            $difference_3 = $currentDateTime->diffInDays($datetimeStart_3); // คำนวณห่างกี่วัน
+
+            if ($difference_3 <= 3) {
+                $data_arr[] = [
+                    'type' => 'อบรม,สอบ',
+                    'id' => $training->id,
+                    'title' => $training->title,
+                    'photo' => $training->photo,
+                    'detail' => $training->detail,
+                    'days_difference' => $difference_3, // จำนวนวันที่ต่างกัน
+                ];
+            }
+        }
+
+        // อบรม,สอบ => สอบ
+        $data_appointments = DB::table('favorites')
+            ->join('appointments', 'appointments.id', '=', 'favorites.appointment_id')
+            ->where('favorites.user_id', $user_id)
+            ->where('favorites.status', 'Yes')
+            ->where('appointments.status', 'Yes')
+            ->select(
+                'appointments.id',
+                'appointments.title',
+                'appointments.photo',
+                'appointments.detail',
+                'appointments.date_start',
+            )
+            ->get();
+
+        foreach ($data_appointments as $appointment) {
+            $datetimeStart_4 = Carbon::parse($appointment->date_start);
+            $difference_4 = $currentDateTime->diffInDays($datetimeStart_4); // คำนวณห่างกี่วัน
+
+            if ($difference_4 <= 3) {
+                $data_arr[] = [
+                    'type' => 'อบรม,สอบ',
+                    'id' => $appointment->id,
+                    'title' => $appointment->title,
+                    'photo' => $appointment->photo,
+                    'detail' => $appointment->detail,
+                    'days_difference' => $difference_4, // จำนวนวันที่ต่างกัน
+                ];
+            }
+        }
+
+
+        // เรียงลำดับ $data_arr ตาม days_difference จากน้อยไปมาก
+        usort($data_arr, function ($a, $b) {
+            return $a['days_difference'] - $b['days_difference'];
+        });
+
+        return $data_arr ;
+
+    }
 }

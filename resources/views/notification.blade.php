@@ -229,24 +229,24 @@
                     }
 
                   
-#modal_notification .modal-body::-webkit-scrollbar-track
-{
-	border-radius: 10px;
-	background-color: #F5F5F5;
-}
+                    #modal_notification .modal-body::-webkit-scrollbar-track
+                    {
+                    	border-radius: 10px;
+                    	background-color: #F5F5F5;
+                    }
 
-#modal_notification .modal-body::-webkit-scrollbar
-{
-	width: 8px;
-	background-color: #F5F5F5;
-}
+                    #modal_notification .modal-body::-webkit-scrollbar
+                    {
+                    	width: 8px;
+                    	background-color: #F5F5F5;
+                    }
 
-#modal_notification .modal-body::-webkit-scrollbar-thumb
-{
-	border-radius: 10px;
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-	background-color: #003781;
-}
+                    #modal_notification .modal-body::-webkit-scrollbar-thumb
+                    {
+                    	border-radius: 10px;
+                    	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+                    	background-color: #003781;
+                    }
 
                     #content-notification {
                         height: 100% !important;
@@ -265,3 +265,21 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // console.log("START");
+        gat_data_of_notification();
+    });
+
+    function gat_data_of_notification(){
+
+        fetch("{{ url('/') }}/api/gat_data_of_notification/" + "{{ Auth::user()->id }}")
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                
+            });
+
+    }
+</script>

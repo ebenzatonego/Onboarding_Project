@@ -2247,15 +2247,15 @@
             arr_care_new_photo.push(photo.src);
         });
 
-        console.log('cf_edit_data');
+        // console.log('cf_edit_data');
 
         if(select_photo){
             let previewContainer = document.getElementById('preview_photo');
-            console.log(previewContainer.src);
+            // console.log(previewContainer.src);
             uploadBlobToFirebase(previewContainer.src);
         }
         else if(select_video){
-            console.log(select_video);
+            // console.log(select_video);
             upload_video();
         }
         else if(arr_care_new_photo.length != 0){

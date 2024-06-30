@@ -651,7 +651,7 @@
         fetch("{{ url('/') }}/api/get_data_story_career_paths")
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 let pills_tabContent = document.querySelector('#pills_tabContent');
                 let now_name_rank ;

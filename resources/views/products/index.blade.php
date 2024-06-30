@@ -59,6 +59,16 @@
         pointer-events: none;
         opacity: 0.5;
     }
+
+    @media (max-width: 402px) {
+        .btn-product {
+            font-size: 10px !important;
+        }
+    }  @media (max-width: 367px) {
+        .btn-product {
+            font-size: 9px !important;
+        }
+    }
 </style>
 <div class="container mb-5">
     <div class="main-body">
@@ -203,22 +213,24 @@
                     .product-item .title-product {
                         font-size: 12;
                         color: #0E2B81;
-                        display: -webkit-box;
                         -webkit-line-clamp: 2;
+                        /* autoprefixer: ignore next */
                         -webkit-box-orient: vertical;
+                        display: -webkit-box;
                         overflow: hidden;
-                        text-overflow: ellipsis;
+                        word-break: break-word;
                         margin-bottom: 5px;
                     }
 
                     .product-item .detail-product {
                         font-size: 10;
                         color: #000;
-                        display: -webkit-box;
                         -webkit-line-clamp: 2;
+                        /* autoprefixer: ignore next */
                         -webkit-box-orient: vertical;
+                        display: -webkit-box;
                         overflow: hidden;
-                        text-overflow: ellipsis;
+                        word-break: break-word;
                         margin-bottom: 5px;
 
                     }

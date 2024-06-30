@@ -55,7 +55,7 @@
                                 <th>branch_name</th>
                                 <th>license</th>
                                 <th>license expire</th>
-                                <th>Action</th>
+                                <th class="d-none">Action</th>
                             </tr>
                         </thead>
                         <tbody id="content_tbody" class="">
@@ -79,7 +79,7 @@
         fetch("{{ url('/') }}/api/get_list_member")
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 let content_tbody = document.querySelector('#content_tbody');
                 content_tbody.innerHTML = '';
@@ -107,7 +107,7 @@
                             <td>${item.branch_name ? item.branch_name : '-'}</td>
                             <td>${item.license ? item.license : '-'}</td>
                             <td>${formatDate(item.license_expire)}</td>
-                              <td>
+                              <td class="d-none">
                             	<button class="btn btn-sm btn-warning" onclick="edit_upper_al('${item.id ? item.id : '-'}');">
                             		<i class="fa-solid fa-pen-to-square"></i> Edit
                             	</button>

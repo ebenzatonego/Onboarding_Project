@@ -260,7 +260,7 @@
         fetch("{{ url('/') }}/api/get_area_supervisor")
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 let content_tbody = document.querySelector('#content_tbody');
                 content_tbody.innerHTML = '';
@@ -395,8 +395,13 @@
         let edit_phone = document.querySelector('#edit_phone').value
         let edit_email = document.querySelector('#edit_email').value
 
-        
 
+        edit_name = edit_name === "-" ? null : edit_name;
+        edit_nickname = edit_nickname === "-" ? null : edit_nickname;
+        edit_account = edit_account === "-" ? null : edit_account;
+        edit_area = edit_area === "-" ? null : edit_area;
+        edit_phone = edit_phone === "-" ? null : edit_phone;
+        edit_email = edit_email === "-" ? null : edit_email;
 
         if (base64String) {
             // แปลง Base64 เป็น Blob

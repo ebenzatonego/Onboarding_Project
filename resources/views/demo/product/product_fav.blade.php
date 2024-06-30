@@ -108,22 +108,24 @@
                     .product-item .title-product {
                         font-size: 12;
                         color: #0E2B81;
-                        display: -webkit-box;
-                        -webkit-line-clamp: 2;
+                       -webkit-line-clamp: 2;
+                        /* autoprefixer: ignore next */
                         -webkit-box-orient: vertical;
+                        display: -webkit-box;
                         overflow: hidden;
-                        text-overflow: ellipsis;
+                        word-break: break-word;
                         margin-bottom: 5px;
                     }
 
                     .product-item .detail-product {
                         font-size: 10;
                         color: #000;
-                        display: -webkit-box;
                         -webkit-line-clamp: 2;
+                        /* autoprefixer: ignore next */
                         -webkit-box-orient: vertical;
+                        display: -webkit-box;
                         overflow: hidden;
-                        text-overflow: ellipsis;
+                        word-break: break-word;
                         margin-bottom: 5px;
 
                     }

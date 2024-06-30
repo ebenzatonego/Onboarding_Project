@@ -94,7 +94,7 @@ box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
         box-shadow: 0 0 2rem 0 rgb(136 152 170 / 15%);
         border-radius: 0.25rem;
         margin-bottom: 1.5rem;
-
+overflow: hidden;
     }
 
     .course-item img {
@@ -111,26 +111,25 @@ box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
     .course-item .title-course {
         font-size: 12;
         color: #0E2B81;
-        display: -webkit-box;
         -webkit-line-clamp: 2;
+        /* autoprefixer: ignore next */
         -webkit-box-orient: vertical;
+        display: -webkit-box;
         overflow: hidden;
-        text-overflow: ellipsis;
+        word-break: break-word;
         margin-bottom: 5px;
     }
 
     .course-item .detail-course {
         font-size: 10;
         color: #000;
-        display: -webkit-box;
         -webkit-line-clamp: 2;
+        /* autoprefixer: ignore next */
         -webkit-box-orient: vertical;
+        display: -webkit-box;
         overflow: hidden;
-        text-overflow: ellipsis;
-        margin-bottom: 5px;
-
+        word-break: break-word;
     }
-
     .category-course {
         display: flex;
         flex-wrap: wrap;
@@ -217,6 +216,15 @@ box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
   overflow: hidden;
   text-overflow: ellipsis;
   width: 100%;
+    } @media (max-width:379px) {
+        .btn-filter-news {
+            font-size: 12px !important;
+        }
+    }
+    @media (max-width:347px) {
+        .btn-filter-news {
+            font-size: 10px !important;
+        }
     }
 </style>
 

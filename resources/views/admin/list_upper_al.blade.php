@@ -48,7 +48,7 @@
                                 <th>Nickname</th>
                                 <th>Email</th>
                                 <th>Phone</th>
-                                <th>Action</th>
+                                <th class="d-none">Action</th>
                             </tr>
                         </thead>
                         <tbody id="content_tbody" class="">
@@ -116,7 +116,7 @@
                             <td>`+nickname+`</td>
                             <td>`+email+`</td>
                             <td>`+phone+`</td>
-                            <td>
+                            <td class="d-none">
                             	<button class="btn btn-sm btn-warning" onclick="edit_upper_al('`+result[i].id+`');">
                             		<i class="fa-solid fa-pen-to-square"></i> Edit
                             	</button>

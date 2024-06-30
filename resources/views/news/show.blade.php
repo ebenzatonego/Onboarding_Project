@@ -45,6 +45,7 @@
         position: absolute;
         top: 10px;
         left: 10px;
+        z-index: 5;
         font-size: 14px;
     }
 
@@ -234,9 +235,9 @@
                 <span>ย้อนกลับ</span>
             </a>
             @if( $news->select_content_show == 'photo' )
-                <img src="{{ $news->photo_cover }}" alt="" style="width: 100%;">
+                <img src="{{ $news->photo_cover }}" alt="" style="width: 100%;position: relative;z-index: 2;">
             @else
-                <video src="{{ $news->video }}" controls loop muted style="width:100%;border-radius: 10px; max-width: 700px;margin-top:5px!important;" class=""></video>
+                <video src="{{ $news->video }}" controls loop muted style="width:100%;border-radius: 10px; max-width: 700px;margin-top:5px!important;position: relative;z-index: 2;" class=""></video>
             @endif
             <div class="d-flex justify-content-between">
 
@@ -608,6 +609,7 @@
 <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#rating">
   Launch demo modal
 </button> -->
+
 <div class="modal fade" id="rating" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content modal-vote-training">

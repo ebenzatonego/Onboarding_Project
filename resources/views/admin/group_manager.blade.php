@@ -50,7 +50,7 @@
                                 <th>Organization name</th>
                                 <th>Phone</th>
                                 <th>Email</th>
-                                <th>Action</th>
+                                <th class="d-none">Action</th>
                             </tr>
                         </thead>
                         <tbody id="content_tbody" class="">
@@ -74,7 +74,7 @@ group_manager
         fetch("{{ url('/') }}/api/get_group_manager")
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 let content_tbody = document.querySelector('#content_tbody');
                 content_tbody.innerHTML = '';
@@ -96,7 +96,7 @@ group_manager
                             <td>${item.organization_name ? item.organization_name : '-'}</td>
                             <td>${item.phone ? item.phone : '-'}</td>
                             <td>${item.email ? item.email : '-'}</td>
-                              <td>
+                              <td class="d-none">
                             	<button class="btn btn-sm btn-warning" onclick="edit_upper_al('${item.id ? item.id : '-'}');">
                             		<i class="fa-solid fa-pen-to-square"></i> Edit
                             	</button>

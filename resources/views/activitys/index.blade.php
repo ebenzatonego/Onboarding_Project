@@ -16,9 +16,9 @@
         position: absolute;
         top: 0;
         width: 100%;
-        -webkit-box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
--moz-box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
-box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
+        -webkit-box-shadow: inset 0px -116px 64px -31px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: inset 0px -116px 64px -31px rgba(0, 0, 0, 0.75);
+        box-shadow: inset 0px -116px 64px -31px rgba(0, 0, 0, 0.75);
         border-radius: 15px !important;
         -webkit-border-radius: 15px !important;
         -moz-border-radius: 15px !important;
@@ -111,22 +111,24 @@ box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
     .course-item .title-course {
         font-size: 12;
         color: #0E2B81;
-        display: -webkit-box;
         -webkit-line-clamp: 2;
+        /* autoprefixer: ignore next */
         -webkit-box-orient: vertical;
+        display: -webkit-box;
         overflow: hidden;
-        text-overflow: ellipsis;
+        word-break: break-word;
         margin-bottom: 5px;
     }
 
     .course-item .detail-course {
         font-size: 10;
         color: #000;
-        display: -webkit-box;
         -webkit-line-clamp: 2;
+        /* autoprefixer: ignore next */
         -webkit-box-orient: vertical;
+        display: -webkit-box;
         overflow: hidden;
-        text-overflow: ellipsis;
+        word-break: break-word;
         margin-bottom: 5px;
 
     }
@@ -210,13 +212,14 @@ box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
         left: 50%;
         transform: translate(-50%, -50%);
         padding: 0 10px 0 25px;
-        
+
     }
+
     .detail-on-img p {
         white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
     }
 </style>
 
@@ -225,7 +228,7 @@ box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
         <div class="col-md-6 col-12">
             <ul class="nav nav-pills w-100 d-flex justify-content-center w-100" id="pills-tab" role="tablist">
                 <li class="nav-item px-1">
-                    <a class="nav-link btn-filter-news" id="pills-news-tab" href="{{ url('/page_news') }}" >ข่าวสาร/การแข่งขัน</a>
+                    <a class="nav-link btn-filter-news" id="pills-news-tab" href="{{ url('/page_news') }}">ข่าวสาร/การแข่งขัน</a>
                 </li>
                 <li class="nav-item px-1">
                     <a class="nav-link active btn-filter-news" id="pills-event-tab" data-toggle="pill" href="#pills-event" role="tab" aria-controls="pills-event" aria-selected="false">ตารางกิจกรรม</a>
@@ -247,13 +250,13 @@ box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
                     <div class="col-lg-12 mt-3">
 
                         @php
-                            $data_activity_type = App\Models\Activity_type::orderByRaw("CASE 
-                            WHEN number_menu IS NOT NULL THEN 1
-                            ELSE 2
-                            END, 
-                            number_menu ASC, 
-                            id DESC")
-                            ->get();
+                        $data_activity_type = App\Models\Activity_type::orderByRaw("CASE
+                        WHEN number_menu IS NOT NULL THEN 1
+                        ELSE 2
+                        END,
+                        number_menu ASC,
+                        id DESC")
+                        ->get();
                         @endphp
 
                         <div class="owl-carousel carousel-menu-course owl-theme">
@@ -286,36 +289,35 @@ box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
         get_data_activitys('all');
     });
 
-    function get_data_activitys(activity_type_id){
+    function get_data_activitys(activity_type_id) {
 
         let item_type_event = document.querySelectorAll('.item_type_event');
-            item_type_event.forEach(item_type_event => {
-                item_type_event.classList.remove('active');
-            })
+        item_type_event.forEach(item_type_event => {
+            item_type_event.classList.remove('active');
+        })
 
-        document.querySelector('#item_type_event_'+activity_type_id).classList.add('active');
+        document.querySelector('#item_type_event_' + activity_type_id).classList.add('active');
 
         let div_content_highlight_number = document.querySelector('#div_content_highlight_number');
-            div_content_highlight_number.innerHTML = "";
+        div_content_highlight_number.innerHTML = "";
         let content_list_item_event = document.querySelector('#content_list_item_event');
-            content_list_item_event.innerHTML = "";
+        content_list_item_event.innerHTML = "";
 
-        fetch("{{ url('/') }}/api/get_data_activitys/" + activity_type_id )
+        fetch("{{ url('/') }}/api/get_data_activitys/" + activity_type_id)
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
 
-                if(result){
+                if (result) {
 
                     let promises = result.map((item, i) => {
                         return new Promise((resolve, reject) => {
                             // เช็คการแสดงผล show_all_member
-                            if(item.show_all_member == 'Yes'){
+                            if (item.show_all_member == 'Yes') {
                                 create_html_for_activitys(activity_type_id, item);
                                 resolve();
-                            }
-                            else{
-                                if(item.show_individual){
+                            } else {
+                                if (item.show_individual) {
                                     let account_user = "{{ Auth::user()->account }}";
                                     let text_show_individual = item.show_individual;
 
@@ -331,9 +333,8 @@ box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
                                     } else {
                                         resolve();
                                     }
-                                }
-                                else if(item.show_rank){
-                                    if(item.show_rank == "{{ Auth::user()->current_rank }}"){
+                                } else if (item.show_rank) {
+                                    if (item.show_rank == "{{ Auth::user()->current_rank }}") {
                                         create_html_for_activitys(activity_type_id, item);
                                     }
                                     resolve();
@@ -370,42 +371,42 @@ box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
                     });
 
                 }
-        });
+            });
     }
 
-    function create_html_for_activitys(activity_type_id,result){
+    function create_html_for_activitys(activity_type_id, result) {
 
         // console.log(activity_type_id);
 
-        let text_day = '' ;
-        let day = '' ;
+        let text_day = '';
+        let day = '';
         let year_month = '';
 
         let time_start = ``;
         let html_time_start = ``;
         let html_item_time_start = ``;
 
-        if(result.time_start){
+        if (result.time_start) {
             let time_start_sp = result.time_start.split(':');
-            time_start = time_start_sp[0] +':'+ time_start_sp[1];
+            time_start = time_start_sp[0] + ':' + time_start_sp[1];
             html_time_start = `
-                <p class="m-0" style="font-size: 12px;">เริ่ม `+time_start+` น.</p>
+                <p class="m-0" style="font-size: 12px;">เริ่ม ` + time_start + ` น.</p>
             `;
             html_item_time_start = `
-                <p>เริ่มเวลา `+time_start+` น.</p>
+                <p>เริ่มเวลา ` + time_start + ` น.</p>
             `;
         }
 
-        if(result.date_start){
+        if (result.date_start) {
             let date = new Date(result.date_start);
 
             // หาและตั้งค่าวัน
             let days = ["วันอาทิตย์", "วันจันทร์", "วันอังคาร", "วันพุธ", "วันพฤหัสบดี", "วันศุกร์", "วันเสาร์"];
             text_day = days[date.getDay()];
-            
+
             // ตั้งค่าวันที่
             day = date.getDate();
-            
+
             // หาและตั้งค่าเดือนและปีในรูปแบบ พ.ศ.
             let months = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
             let month = months[date.getMonth()];
@@ -414,31 +415,64 @@ box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
         }
 
         let div_content_highlight_number = document.querySelector('#div_content_highlight_number');
-            // div_content_highlight_number.innerHTML = "";
+        // div_content_highlight_number.innerHTML = "";
 
-        if(activity_type_id == 'all'){
+        if (activity_type_id == 'all') {
             // highlight_number ALL
-            if(result.highlight_number){
-                
+            if (result.highlight_number) {
+
                 let html_highlight_number = `
                     <div class="item">
-                        <a href="{{ url('/activitys_show') }}/`+result.id+`" class="text-white">
+                        <a href="{{ url('/activitys_show') }}/` + result.id + `" class="text-white">
                         <div class="position-relative">
                             <div class="container-img">
-                                <img src="`+result.photo+`">
+                                <img src="` + result.photo + `">
                             </div>
                             <div class="position-absolute detail-on-img w-100">
                                 <div>
                                     <div class="d-flex align-items-center " style="margin-bottom: 10px;">
-                                        <h1 class="m-0 text-white me-3" style="font-weight: bolder;">`+day+`</h1>
+                                        <h1 class="m-0 text-white me-3" style="font-weight: bolder;">` + day + `</h1>
                                         <div>
-                                            <p class="m-0">`+text_day+`</p>
-                                            <p class="m-0">`+year_month+`</p>
+                                            <p class="m-0">` + text_day + `</p>
+                                            <p class="m-0">` + year_month + `</p>
                                         </div>
                                     </div>
-                                    <p class="" style="margin-bottom: 10px;">`+result.title+`</p>
-                                    `+html_time_start+`
-                                    <p class="m-0" style="font-size: 12px;">สถานที่ `+result.location_detail+`</p>
+                                    <p class="" style="margin-bottom: 10px;">` + result.title + `</p>
+                                    ` + html_time_start + `
+                                    <p class="m-0" style="font-size: 12px;">สถานที่ ` + result.location_detail + `</p>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                `;
+
+                div_content_highlight_number.insertAdjacentHTML('beforeend', html_highlight_number); // แทรกล่างสุด
+
+            }
+        } else {
+            // highlight_of_type
+            if (result.highlight_of_type) {
+                // console.log(result.highlight_of_type);
+                let html_highlight_number = `
+                    <div class="item">
+                        <a href="{{ url('/activitys_show') }}/` + result.id + `" class="text-white">
+                        <div class="position-relative">
+                            <div class="container-img">
+                                <img src="` + result.photo + `">
+                            </div>
+                            <div class="position-absolute detail-on-img w-100">
+                                <div>
+                                    <div class="d-flex align-items-center " style="margin-bottom: 10px;">
+                                        <h1 class="m-0 text-white me-3" style="font-weight: bolder;">` + day + `</h1>
+                                        <div>
+                                            <p class="m-0">` + text_day + `</p>
+                                            <p class="m-0">` + year_month + `</p>
+                                        </div>
+                                    </div>
+                                    <p class="" style="margin-bottom: 10px;">` + result.title + `</p>
+                                    ` + html_time_start + `
+                                    <p class="m-0" style="font-size: 12px;">สถานที่ ` + result.location_detail + `</p>
                                 </div>
                             </div>
                         </div>
@@ -450,50 +484,16 @@ box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
 
             }
         }
-        else{
-            // highlight_of_type
-            if(result.highlight_of_type){
-                // console.log(result.highlight_of_type);
-                let html_highlight_number = `
-                    <div class="item">
-                        <a href="{{ url('/activitys_show') }}/`+result.id+`" class="text-white">
-                        <div class="position-relative">
-                            <div class="container-img">
-                                <img src="`+result.photo+`">
-                            </div>
-                            <div class="position-absolute detail-on-img w-100">
-                                <div>
-                                    <div class="d-flex align-items-center " style="margin-bottom: 10px;">
-                                        <h1 class="m-0 text-white me-3" style="font-weight: bolder;">`+day+`</h1>
-                                        <div>
-                                            <p class="m-0">`+text_day+`</p>
-                                            <p class="m-0">`+year_month+`</p>
-                                        </div>
-                                    </div>
-                                    <p class="" style="margin-bottom: 10px;">`+result.title+`</p>
-                                    `+html_time_start+`
-                                    <p class="m-0" style="font-size: 12px;">สถานที่ `+result.location_detail+`</p>
-                                </div>
-                            </div>
-                        </div>
-                        </a>
-                    </div>
-                `;
-
-                div_content_highlight_number.insertAdjacentHTML('beforeend', html_highlight_number); // แทรกล่างสุด
-
-            } 
-        }
 
         let content_list_item_event = document.querySelector('#content_list_item_event');
 
         // Check bookmark
         let check_fav = ``;
         let user_id = "{{ Auth::user()->id }}";
-        let user_fav_text  = result.user_fav ;
-            // console.log(user_fav_text );
+        let user_fav_text = result.user_fav;
+        // console.log(user_fav_text );
 
-        if(user_fav_text){
+        if (user_fav_text) {
             let user_fav;
             try {
                 user_fav = JSON.parse(user_fav_text);
@@ -516,9 +516,9 @@ box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
         }
 
         let html = `
-            <a href="{{ url('/activitys_show') }}/`+result.id+`" class="course-item `+check_fav+` text-white">
+            <a href="{{ url('/activitys_show') }}/` + result.id + `" class="course-item ` + check_fav + ` text-white">
                 <div style="position: relative;">
-                    <img src="`+result.photo+`">
+                    <img src="` + result.photo + `">
 
                     <div class="fav-event">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="22" viewBox="0 0 16 22" fill="none">
@@ -528,11 +528,11 @@ box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
                 </div>
 
                 <div class="ms-3">
-                    <p class="title-course" style="font-size: 16px;"><b>`+result.title+`</b></p>
-                    <p class="detail-course" style="font-size: 16px;">`+text_day+` `+day+` `+year_month+`</p>
+                    <p class="title-course" style="font-size: 16px;"><b>` + result.title + `</b></p>
+                    <p class="detail-course" style="font-size: 16px;">` + text_day + ` ` + day + ` ` + year_month + `</p>
                     <div class="event-detail pt-2">
-                        `+html_item_time_start+`
-                        <p>สถานที่ `+result.location_detail+`</p>
+                        ` + html_item_time_start + `
+                        <p>สถานที่ ` + result.location_detail + `</p>
                     </div>
                 </div>
             </a>
@@ -570,7 +570,7 @@ box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
         }
     })
 
-    
+
     $('a[data-toggle="pill"]').on('shown.bs.tab', function(e) {
         e.target // newly activated tab
         e.relatedTarget // previous active tab

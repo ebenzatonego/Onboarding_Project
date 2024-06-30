@@ -1086,7 +1086,7 @@ class AdminController extends Controller
             }
         }
 
-        // เฉพาะคุณ => บัตรหมดอายุ
+        // เฉพาะคุณ => แจ้งเตือนเป้าหมาย
         $data_user_license_expire = DB::table('users')
             ->where('id', $user_id)
             ->select('license_expire')

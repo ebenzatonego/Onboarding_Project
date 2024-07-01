@@ -550,7 +550,7 @@
                         <h1 class="text-center" style="color: #800201;font-weight: bolder;">
                             "อยาก<span id="goal_success_title"></span>"
                         </h1>
-                        <h2 class="text-center " style="color: #800201;font-weight: bolder;"><b>มูลค่าประมาณ</b></h2>
+                        <h2 class="text-center " style="color: #800201;font-weight: bolder;"><b>มูลค่า</b></h2>
                         <h2 class="text-center " style="color: #800201;font-weight: bolder;">
                             <b>
                                 <span id="goal_success_value">
@@ -711,6 +711,10 @@
 
             if (titleElementId === 'goal_value') {
 
+                let text_over = `` ;
+                if (selected.innerText.includes("มากกว่า")) {
+                    text_over = `มากกว่า`;
+                }
 
                 // Extract the number from the text using a regular expression
                 let number_selected = parseFloat(selected.innerText.replace(/[^\d.-]/g, ''));
@@ -720,7 +724,7 @@
                 // let goal_success_value = number_selected * 0.4;
                 // console.log(number);
                 // console.log(goal_success_value);
-                document.querySelector('#goal_success_value').innerText = Number((number_selected).toFixed(1)).toLocaleString();
+                document.querySelector('#goal_success_value').innerText = text_over+' '+Number((number_selected).toFixed(1)).toLocaleString();
                 document.querySelector('#goal_success_value_pc').innerText = Number((goal_success_value).toFixed(1)).toLocaleString();
             }
 
@@ -981,20 +985,25 @@
         // alert(`
         //         เป้าหมาย: ${goal_success_title}\n
         //         มูลค่า: ${goal_success_value}\n
-        //         ภายในเดือน: ${goal_success_month}\n
+        //         เดือน: ${goal_success_month}\n
         //         ปี: ${goal_success_year}\n
         //         date_start: ${now_date_start }\n
         //         date_end : ${now_date_end }\n
         //     `
         // );
 
-        let period ;
-        if( parseInt(goal_success_year) != 0 ){
-            period = goal_success_year + ' ' + goal_success_month ;
+        let period;
+        const year = parseInt(goal_success_year);
+        const month = parseInt(goal_success_month);
+
+        if (year !== 0 && month !== 0) {
+            period = goal_success_year + ' ' + goal_success_month;
+        } else if (year === 0 && month !== 0) {
+            period = goal_success_month;
+        } else if (year !== 0 && month === 0) {
+            period = goal_success_year;
         }
-        else{
-            period = goal_success_month ;
-        }
+
 
         let data_arr = {
             "user_id" : "{{ Auth::user()->id }}",

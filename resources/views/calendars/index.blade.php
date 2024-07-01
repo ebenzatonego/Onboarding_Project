@@ -782,30 +782,32 @@
                             class_color = `green`;
                             hashtag = `<i class="fa-regular fa-circle-dot"></i> ส่วนตัว` + `  ` + `#` + result[i].type_memo;
                         }
+                        else if(key == 'my_goal'){
 
-                        let newEvent = {
-                            title: result[i].title,
-                            backgroundColor: bg_color,
-                        };
+                            let check_status_goal = `กำลังดำเนินการ`;
+                            if(result[i].status == 'success'){
+                                check_status_goal = `สำเร็จแล้ว 🎉`;
+                            }
 
-                        if(result[i].all_day == 'Yes'){
-                            newEvent.start = result[i].date_start;
-                        }else{
-                            if(result[i].date_start == result[i].date_end){
-                                newEvent.start = result[i].date_start+'T'+result[i].time_start;
-                                newEvent.end = result[i].date_start+'T'+result[i].time_end;
-                            }
-                            else{
-                                newEvent.start = result[i].date_start;
-                                newEvent.end = result[i].date_end;
-                            }
+                            bg_color = `#8FC14E`;
+                            class_color = `green`;
+                            hashtag = `<i class="fa-regular fa-circle-dot"></i> #` + check_status_goal;
                         }
 
-                        // เพิ่มข้อมูลใหม่เข้าไปในอาร์เรย์ data_arr_events
+                        let newEvent ;
+
+                        if(key == 'my_goal'){
+                            newEvent = {
+                                title: result[i].goal,
+                                backgroundColor: bg_color,
+                                start: result[i].date_end,
+                            };
+
+                            // เพิ่มข้อมูลใหม่เข้าไปในอาร์เรย์ data_arr_events
                         data_arr_events.push(newEvent);
 
                         // เช็คเดือน
-                        let dateStart = result[i].date_start;
+                        let dateStart = result[i].date_end;
 
                         // แยกเอาปีและเดือน
                         let [yearFromDateStart, monthFromDateStart] = dateStart.split('-').slice(0, 2);
@@ -831,14 +833,14 @@
                         // console.log(month_year);
 
 
-                        if (date_update != result[i].date_start) {
-                            date_update = result[i].date_start;
+                        if (date_update != result[i].date_end) {
+                            date_update = result[i].date_end;
 
-                            let formatDate_show = formatDate(result[i].date_start);
+                            let formatDate_show = formatDate(result[i].date_end);
                             let show_date = formatDate_show.split(',');
 
                             let html_datetime = `
-                                <div data_Month="`+month_year+`" data_date="`+result[i].date_start+`" class="item_of_event d-flex w-100 align-items-center mt-3 `+class_show_div+`">
+                                <div data_Month="`+month_year+`" data_date="`+result[i].date_end+`" class="item_of_event d-flex w-100 align-items-center mt-3 `+class_show_div+`">
                                     <div class="name-date-appointment">` + show_date[0] + `</div>
                                     <div class="day-appointment">` + show_date[1] + `</div>
                                 </div>
@@ -849,43 +851,19 @@
                         }
 
                         let show_time = ``;
-                        if (result[i].time_start && result[i].time_end) {
-
-                            let timeStart12 = formatTime24to12(result[i].time_start);
-                            let timeEnd12 = formatTime24to12(result[i].time_end);
-
-                            show_time = `
-                                <p class="time-start">` + timeStart12 + `</p>
-                                <p class="time-end">` + timeEnd12 + `</p>
-                            `;
-                        } else if (result[i].time_start && !result[i].time_end) {
-                            let timeStart12 = formatTime24to12(result[i].time_start);
-
-                            show_time = `
-                                <p class="time-start">` + timeStart12 + `</p>
-                            `;
-                        } else if (!result[i].time_start && !result[i].time_end) {
-                            show_time = `
-                                <p class="time-start">All Day &nbsp;</p>
-                            `;
-                        }
 
                         let tag_a_1 = ``;
                         let tag_a_2 = ``;
-                        if(link_url){
-                            tag_a_1 = `<a href="`+link_url+`">`;
-                            tag_a_2 = `</a>`;
-                        }
 
                         let html = `
                             `+tag_a_1+`
-                            <div title="`+result[i].title+`" data_Month="`+month_year+`" data_date="`+result[i].date_start+`" class="item_of_event d-flex w-100 align-items-center mt-2 `+class_show_div+`">
+                            <div title="`+result[i].goal+`" data_Month="`+month_year+`" data_date="`+result[i].date_end+`" class="item_of_event d-flex w-100 align-items-center mt-2 `+class_show_div+`">
                                 <div style="min-width: 50px;">
                                     `+show_time+`
                                 </div>
                                 <div class="content-appointment `+class_color+` ">
                                     <div>
-                                        <p class="title-appointment">`+result[i].title+`</p>
+                                        <p class="title-appointment">`+result[i].goal+` : มูลค่า ` + result[i].price+` บาท</p>
                                         <p class="detail-appointment">`+hashtag+`</p>
                                     </div>
                                 </div>
@@ -894,6 +872,122 @@
                         `;
 
                         content_event_calendar.insertAdjacentHTML('beforeend', html);
+
+                        }
+                        else if(key != 'my_goal'){
+
+                            newEvent = {
+                                title: result[i].title,
+                                backgroundColor: bg_color,
+                            };
+
+                            if(result[i].all_day == 'Yes'){
+                                newEvent.start = result[i].date_start;
+                            }else{
+                                if(result[i].date_start == result[i].date_end){
+                                    newEvent.start = result[i].date_start+'T'+result[i].time_start;
+                                    newEvent.end = result[i].date_start+'T'+result[i].time_end;
+                                }
+                                else{
+                                    newEvent.start = result[i].date_start;
+                                    newEvent.end = result[i].date_end;
+                                }
+                            }
+                            // เพิ่มข้อมูลใหม่เข้าไปในอาร์เรย์ data_arr_events
+                            data_arr_events.push(newEvent);
+
+                            // เช็คเดือน
+                            let dateStart = result[i].date_start;
+
+                            // แยกเอาปีและเดือน
+                            let [yearFromDateStart, monthFromDateStart] = dateStart.split('-').slice(0, 2);
+
+                            // รวมปีและเดือนในรูปแบบ "MM-YYYY"
+                            let month_year = `${monthFromDateStart}-${yearFromDateStart}`;
+
+                            // รับค่าเดือนและปีปัจจุบัน
+                            let currentDate = new Date();
+                            let currentYear = currentDate.getFullYear();
+                            let currentMonth = String(currentDate.getMonth() + 1).padStart(2, '0');
+
+                            // ตรวจสอบว่าปีและเดือนจากวันที่เท่ากับปีและเดือนปัจจุบันหรือไม่
+                            let class_show_div = '';
+                            if (yearFromDateStart === String(currentYear) && monthFromDateStart === currentMonth) {
+                                // console.log("ปีและเดือนจากวันที่ตรงกับปีและเดือนปัจจุบัน");
+                                class_show_div = '';
+                            } else {
+                                // console.log("ปีและเดือนจากวันที่ไม่ตรงกับปีและเดือนปัจจุบัน");
+                                class_show_div = 'd-none';
+                            }
+
+                            // console.log(month_year);
+
+
+                            if (date_update != result[i].date_start) {
+                                date_update = result[i].date_start;
+
+                                let formatDate_show = formatDate(result[i].date_start);
+                                let show_date = formatDate_show.split(',');
+
+                                let html_datetime = `
+                                    <div data_Month="`+month_year+`" data_date="`+result[i].date_start+`" class="item_of_event d-flex w-100 align-items-center mt-3 `+class_show_div+`">
+                                        <div class="name-date-appointment">` + show_date[0] + `</div>
+                                        <div class="day-appointment">` + show_date[1] + `</div>
+                                    </div>
+                                `;
+
+                                content_event_calendar.insertAdjacentHTML('beforeend', html_datetime); // แทรกล่างสุด
+
+                            }
+
+                            let show_time = ``;
+                            if (result[i].time_start && result[i].time_end) {
+
+                                let timeStart12 = formatTime24to12(result[i].time_start);
+                                let timeEnd12 = formatTime24to12(result[i].time_end);
+
+                                show_time = `
+                                    <p class="time-start">` + timeStart12 + `</p>
+                                    <p class="time-end">` + timeEnd12 + `</p>
+                                `;
+                            } else if (result[i].time_start && !result[i].time_end) {
+                                let timeStart12 = formatTime24to12(result[i].time_start);
+
+                                show_time = `
+                                    <p class="time-start">` + timeStart12 + `</p>
+                                `;
+                            } else if (!result[i].time_start && !result[i].time_end) {
+                                show_time = `
+                                    <p class="time-start">All Day &nbsp;</p>
+                                `;
+                            }
+
+                            let tag_a_1 = ``;
+                            let tag_a_2 = ``;
+                            if(link_url){
+                                tag_a_1 = `<a href="`+link_url+`">`;
+                                tag_a_2 = `</a>`;
+                            }
+
+                            let html = `
+                                `+tag_a_1+`
+                                <div title="`+result[i].title+`" data_Month="`+month_year+`" data_date="`+result[i].date_start+`" class="item_of_event d-flex w-100 align-items-center mt-2 `+class_show_div+`">
+                                    <div style="min-width: 50px;">
+                                        `+show_time+`
+                                    </div>
+                                    <div class="content-appointment `+class_color+` ">
+                                        <div>
+                                            <p class="title-appointment">`+result[i].title+`</p>
+                                            <p class="detail-appointment">`+hashtag+`</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                `+tag_a_2+`
+                            `;
+
+                            content_event_calendar.insertAdjacentHTML('beforeend', html);
+                        }
+
 
                     }
 

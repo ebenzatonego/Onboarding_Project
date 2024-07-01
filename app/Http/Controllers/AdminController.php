@@ -382,16 +382,31 @@ class AdminController extends Controller
             ->orderBy('calendars.time_start' , 'ASC')
             ->get();
 
+        // my_goal_users
+        $my_goal_users = DB::table('my_goal_users')
+            ->where('user_id', $user_id)
+            ->get();
+
+        $my_goal_users = $my_goal_users->map(function ($item) {
+            $item->type = 'my_goal';
+            $item->all_day = 'Yes';
+            $item->time_start = '00:00:00';
+            return $item;
+        });
+
+
+
         // $data = [];
         // แปลงคอลเลกชันให้อยู่ในรูปแบบของอาร์เรย์
         $data_appointments = $data_appointments->toArray();
         $data_activitys = $data_activitys->toArray();
         $data_calendars = $data_calendars->toArray();
+        $my_goal_users = $my_goal_users->toArray();
 
         // รวมคอลเลกชันเข้าด้วยกัน
-        $data = array_merge($data_appointments, $data_activitys, $data_calendars);
+        $data = array_merge($data_appointments, $data_activitys, $data_calendars, $my_goal_users);
 
-        // เรียงลำดับข้อมูลตาม date_start และ time_start
+        // เรียงลำดับข้อมูลตาม date_start และ time_start (ถ้ามี time_start)
         usort($data, function($a, $b) {
             if ($a->date_start == $b->date_start) {
                 return $a->time_start <=> $b->time_start;

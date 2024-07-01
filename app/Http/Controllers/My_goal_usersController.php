@@ -138,7 +138,7 @@ class My_goal_usersController extends Controller
         $data = [] ;
         $data['status'] = 'success' ;
 
-        $my_goal_user = My_goal_user::where('user_id',$user_id)->first();
+        $my_goal_user = My_goal_user::where('user_id',$user_id)->where('status' , null)->first();
         $my_goal_user->update($data);
 
         return 'success' ;

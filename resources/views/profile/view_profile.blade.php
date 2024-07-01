@@ -487,41 +487,58 @@
                         @php
                         use Carbon\Carbon;
 
-                        $my_goal = App\Models\My_goal_user::where('user_id',Auth::user()->id)->first();
+                        $check_my_goal_now = App\Models\My_goal_user::where('user_id',Auth::user()->id)
+                            ->where('status' , null)
+                            ->first();
 
-                        if( !empty($my_goal->id) ){
-                        $createdAt = new Carbon($my_goal->created_at);
-                        $updatedAt = new Carbon($my_goal->updated_at);
-
-                        // คำนวณความแตกต่างอย่างละเอียด
-                        $diff = $createdAt->diff($updatedAt);
-
-                        $diffInYears = $diff->y;
-                        $diffInMonths = $diff->m;
-                        $diffInDays = $diff->d;
-
-                        // สร้างข้อความแสดงผล
-                        $diffString = '';
-
-                        if ($diffInYears > 0) {
-                        $diffString .= $diffInYears . ' ปี ';
+                        if( !empty($check_my_goal_now->id) ){
+                            $my_goal = App\Models\My_goal_user::where('user_id',Auth::user()->id)
+                            ->where('status' , null)
+                            ->first();
                         }
-                        if ($diffInMonths > 0) {
-                        $diffString .= $diffInMonths . ' เดือน ';
-                        }
-                        if ($diffInDays > 0) {
-                        $diffString .= $diffInDays . ' วัน';
+                        else{
+
+                            $my_goal = App\Models\My_goal_user::where('user_id',Auth::user()->id)
+                                ->orderBy('id','DESC')
+                                ->first();
+
+                            if( !empty($my_goal->id) ){
+                                $createdAt = new Carbon($my_goal->created_at);
+                                $updatedAt = new Carbon($my_goal->updated_at);
+
+                                // คำนวณความแตกต่างอย่างละเอียด
+                                $diff = $createdAt->diff($updatedAt);
+
+                                $diffInYears = $diff->y;
+                                $diffInMonths = $diff->m;
+                                $diffInDays = $diff->d;
+
+                                // สร้างข้อความแสดงผล
+                                $diffString = '';
+
+                                if ($diffInYears > 0) {
+                                    $diffString .= $diffInYears . ' ปี ';
+                                }
+
+                                if ($diffInMonths > 0) {
+                                    $diffString .= $diffInMonths . ' เดือน ';
+                                }
+
+                                if ($diffInDays > 0) {
+                                    $diffString .= $diffInDays . ' วัน';
+                                }
+
+                                // ตรวจสอบว่าปี เดือน และวันเป็น 0 หรือไม่
+                                if ($diffInYears === 0 && $diffInMonths === 0 && $diffInDays === 0) {
+                                    $diffString = 'น้อยกว่า 1 วัน';
+                                } else {
+                                    // ตัดช่องว่างที่อาจจะเกินท้ายข้อความ
+                                    $diffString = trim($diffString);
+                                }
+                            }
                         }
 
-                        // ตรวจสอบว่าปี เดือน และวันเป็น 0 หรือไม่
-                        if ($diffInYears === 0 && $diffInMonths === 0 && $diffInDays === 0) {
-                        $diffString = 'น้อยกว่า 1 วัน';
-                        } else {
-                        // ตัดช่องว่างที่อาจจะเกินท้ายข้อความ
-                        $diffString = trim($diffString);
-                        }
 
-                        }
                         @endphp
                         <style>
                             .my-goal-item {
@@ -619,6 +636,9 @@
                                     </h6>
                                 </div>
                             </div>
+                            <button id="btn_start_modal_my_goal" class="btn-more-job px-5 mt-3" data-toggle="modal" data-target="#modal_my_goal">
+                                เลือกเป้าหมายใหม่ของคุณ
+                            </button>
                         </div>
                         @else
                         <div class="mt-3">

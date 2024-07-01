@@ -1267,7 +1267,7 @@
             </script>
 
 
-            <div class=" m-auto" style="max-width: 500px;padding:0 20px ;">
+            <div class=" m-auto" style="max-width: 500px;padding:0 20px 20px 20px;">
 
                 <div class="tools-item">
                     <img src="{{url('img/icon/icon-tools1.png')}}" alt="">

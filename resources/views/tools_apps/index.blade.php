@@ -1168,7 +1168,8 @@
             </div>
             <div class="d-flex justify-content-center mb-5">
 
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d31005.79472570617!2d100.53414200000002!3d13.735132!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e298d1e5ec259f%3A0x980da925961105c4!2sSri%20Maha%20Mariamman%20Temple%20(Wat%20Khaek)!5e0!3m2!1sen!2sth!4v1719162663032!5m2!1sen!2sth" class="map-company" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d31005.79472570617!2d100.53414200000002!3d13.735132!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e298d1e5ec259f%3A0x980da925961105c4!2sSri%20Maha%20Mariamman%20Temple%20(Wat%20Khaek)!5e0!3m2!1sen!2sth!4v1719162663032!5m2!1sen!2sth" class="map-company" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3875.6085172636667!2d100.54542873020459!3d13.742135495263945!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29edabfcfe5bf%3A0xa35784457a6c75a1!2sAllianz%20Ayudhya!5e0!3m2!1sen!2sth!4v1719849458484!5m2!1sen!2sth" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <center class="px-3 w-100 ">
                 <hr style="max-width: 590px;">

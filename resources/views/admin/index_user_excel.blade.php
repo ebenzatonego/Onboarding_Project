@@ -238,12 +238,15 @@
 
                         if(type == 'success'){
                             h5_content.innerHTML = 'เพิ่มข้อมูลใหม่ (และปลดล็อค)';
+                            type_update = 'เพิ่มข้อมูลใหม่ (และปลดล็อค)';
                         }
                         else if(type == 'danger'){
                             h5_content.innerHTML = 'บล็อคการเข้า user (inactive)';
+                            type_update = 'บล็อคการเข้า user (inactive)';
                         }
                         else if(type == 'info'){
                             h5_content.innerHTML = 'แก้ไขข้อมูล user';
+                            type_update = 'แก้ไขข้อมูล user';
                         }
 
 
@@ -288,6 +291,7 @@
                                                 <th>วันที่ / เวลา</th>
                                                 <th>เจ้าหน้าที่</th>
                                                 <th>ชื่อไฟล์</th>
+                                                <th>ประเภท</th>
                                                 <th>ไฟล์</th>
                                             </tr>
                                         </thead>
@@ -554,6 +558,8 @@
         document.querySelector(`#progress_text_${text_name}`).innerText = `${text_name} : ${Math.round(progress)}%`;
     }
 
+    var type_update = 'เพิ่มข้อมูลใหม่ (และปลดล็อค)';
+
     function upload_to_firebase() {
 
         let fileInput = document.getElementById('excelInput');
@@ -587,6 +593,7 @@
                         "name_file" : name_file,
                         "user_id" : "{{ Auth::user()->id }}",
                         "link_file" : downloadURL,
+                        "type" : type_update,
                     }; 
 
                     fetch("{{ url('/') }}/api/create_log_excel_users", {
@@ -640,11 +647,23 @@
                         name_file = result[i].name_file.split('-')[3];
                     }
 
+                    let html_of_type = `<td></td>`;
+                    if(result[i].type == 'เพิ่มข้อมูลใหม่ (และปลดล็อค)'){
+                        html_of_type = `<td><span class="text-success">เพิ่มข้อมูลใหม่ (และปลดล็อค)<span></td>` ;
+                    }
+                    else if(result[i].type == 'บล็อคการเข้า user (inactive)'){
+                        html_of_type = `<td><span class="text-danger">บล็อคการเข้า user (inactive)<span></td>` ;
+                    }
+                    else if(result[i].type == 'แก้ไขข้อมูล user'){
+                        html_of_type = `<td><span class="text-info">แก้ไขข้อมูล user<span></td>` ;
+                    }
+
                     let html = `
                         <tr>
                             <td>`+time_create+`</td>
                             <td>`+result[i].name_user+`</td>
                             <td>`+name_file+`</td>
+                            `+html_of_type+`
                             <td>
                                 <a href="`+result[i].link_file+`" class="btn btn-sm btn-info" download="">
                                     Download

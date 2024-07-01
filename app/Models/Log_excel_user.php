@@ -25,7 +25,7 @@ class Log_excel_user extends Model
      *
      * @var array
      */
-    protected $fillable = ['name_file', 'link_file', 'user_id'];
+    protected $fillable = ['name_file', 'link_file', 'user_id','type'];
 
     
 }

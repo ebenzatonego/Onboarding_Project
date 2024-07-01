@@ -3028,21 +3028,31 @@
                 if (result) {
                     for (let i = 0; i < result.length; i++) {
 
+                        let phone = ``;
+                        if (result[i].phone) {
+                            phone = result[i].phone ;
+                        }
+
+                        let mail = ``;
+                        if (result[i].mail) {
+                            mail = result[i].mail ;
+                        }
+
                         let html = `
                             <div class="col-md-6 p-2 contact-item">
                                 <div class="">
                                     <p class="contact-title">` + result[i].type + `</p>
-                                    <a class="d-block contact-phone" href="tel:` + result[i].phone + `">
+                                    <a class="d-block contact-phone" href="tel:` + phone + `">
                                         <svg class="me-3" xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 27 27" fill="none">
                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M0 13.5C0 6.04416 6.04252 0 13.5 0C20.9558 0 27 6.04252 27 13.5C27 20.9558 20.9575 27 13.5 27C6.04416 27 0 20.9575 0 13.5ZM16.6438 15.1803L15.5279 16.2962C15.3598 16.4643 15.0058 16.5109 14.8026 16.3925C14.7404 16.3603 14.6882 16.3327 14.6095 16.2878C14.472 16.2093 14.3153 16.1122 14.1429 15.996C13.6447 15.6599 13.127 15.24 12.6187 14.7317C12.1103 14.2233 11.6908 13.7062 11.3554 13.2091C11.2394 13.0371 10.9557 12.544 10.9557 12.544C10.8366 12.3455 10.8834 11.9931 11.0542 11.8224L12.17 10.7066C12.7662 10.1104 12.83 9.11558 12.3127 8.45053L10.2146 6.12924C9.66012 5.41637 8.78292 5.1462 8.14296 5.78616L6.46729 7.46182C4.53739 9.39173 6.87584 14.2574 10.0307 17.4122C13.1854 20.5669 17.9589 22.8127 19.8885 20.883L21.5642 19.2074C22.2037 18.5678 22.0423 17.7425 21.3285 17.1873L18.8998 15.0376C18.2357 14.5211 17.2401 14.584 16.6438 15.1803Z" fill="#243286" />
                                         </svg>
-                                        ` + result[i].phone + `
+                                        ` + phone + `
                                     </a>
-                                    <a class="d-block mt-2 contact-mail" href="mailto:` + result[i].mail + `">
+                                    <a class="d-block mt-2 contact-mail" href="mailto:` + mail + `">
                                         <svg class="me-3" xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 27 27" fill="none">
                                             <path d="M13.5 27C20.9587 27 27 20.9587 27 13.5C27 6.04125 20.9587 0 13.5 0C6.04125 0 0 6.04125 0 13.5C0 20.9587 6.04125 27 13.5 27ZM5.29875 8.60625L11.4413 13.5L5.29875 18.3938V8.60625ZM21.7013 18.3938L15.5588 13.5L21.6675 8.60625V18.3938H21.7013ZM5.3325 19.5413L12.15 14.0738L13.5 15.1538L14.85 14.0738L21.6675 19.5413H5.3325ZM21.6675 7.45875L13.5 14.0063L5.3325 7.45875H21.6675Z" fill="#243286" />
                                         </svg>
-                                        ` + result[i].mail + `
+                                        ` + mail + `
                                     </a>
                                 </div>
                             </div>

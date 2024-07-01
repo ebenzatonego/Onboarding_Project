@@ -145,7 +145,7 @@
 
     .name-career-path {
         color: #FFF;
-        font-size: 20px;
+        font-size: 17px;
         font-style: normal;
         font-weight: 600;
         line-height: 150%;

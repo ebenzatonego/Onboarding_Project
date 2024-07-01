@@ -1107,7 +1107,7 @@
                 <div class="row">
                     <label class="col-sm-2 col-form-label"></label>
                     <div class="col-sm-10">
-                        <label class="form-label text-danger">*จะมีการ notification ผู้ใช้ 7 เริ่มจากวันแสดงผล</label>
+                        <label class="form-label text-danger">*จะมีการ notification ผู้ใช้ 7 วันเริ่มจากวันแสดงผล</label>
                         <br>
                         <input id="btn_submit_form" class="btn btn-primary d-none" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
                         <span id="btn_submit" class="btn btn-primary px-5 disabled" onclick="upload_to_firebase();">

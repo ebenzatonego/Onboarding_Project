@@ -458,7 +458,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link career_path_evp" data-toggle="pill" href="#pills_career_path_evp" role="tab" aria-selected="false">
-                                    SVP
+                                    EVP
                                     <img src="{{ url('img/icon/Crown.png') }}" alt="" class="crown-evp1">
                                     <img src="{{ url('img/icon/Crown.png') }}" alt="" class="crown-evp2">
                                     <img src="{{ url('img/icon/Crown.png') }}" alt="" class="crown-evp3">
@@ -467,7 +467,7 @@
                             <li class="nav-item">
                                 <a class="nav-link career_path_sevp p-0" data-toggle="pill" href="#pills_career_path_sevp" role="tab" aria-selected="false">
                                     <p class="w-100 h-100 text-sevp ">
-                                        ESVP
+                                        SEVP
                                     </p>
                                     <img src="{{ url('img/icon/Crown.png') }}" alt="" class="crown-sevp">
                                     <img src="{{ url('img/icon/confetti.png') }}" alt="" class="confetti-sevp">

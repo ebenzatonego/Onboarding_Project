@@ -545,7 +545,24 @@
                         <button class="btn btn-toggle-traning-appointment">Blue Star</button>
                         <button class="btn btn-toggle-traning-appointment">Unit Links</button> -->
 
-
+                        <style>
+                            .dropdown-menu {
+                                top: auto !important;
+                                bottom: 100% !important;
+                                transform: translate3d(0, -5px, 0) !important;
+                            }
+                        </style>
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                                const dropdown = document.getElementById('dropdowntest');
+                                dropdown.addEventListener('show.bs.dropdown', function () {
+                                    dropdown.classList.remove('dropdown-menu-right', 'dropdown-menu-left');
+                                    dropdown.style.top = 'auto';
+                                    dropdown.style.bottom = '100%';
+                                    dropdown.style.transform = 'translate3d(0, -5px, 0)';
+                                });
+                            });
+                        </script>
 
 
                         <ul id="list_number_menu_of_appointment" class="nav nav-pills mb-3 d-flex justify-content-center dropdown show" role="tablist">

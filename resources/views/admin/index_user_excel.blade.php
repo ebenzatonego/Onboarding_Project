@@ -184,11 +184,77 @@
         <div class="tab-content py-3">
             <div class="tab-pane fade show active" id="primaryExcel" role="tabpanel">
 
-                <div class="card border-top border-0 border-4 border-success">
+                <div class="d-flex justify-content-center mt-2 mb-4">
+                    <button id="btn_add_data_type_success" style="width: 30%;" class="btn btn-success me-1" onclick="change_add_data('success');">
+                        เพิ่มข้อมูลใหม่ (และปลดล็อค)
+                    </button>
+                    <button id="btn_add_data_type_danger" style="width: 30%;" class="btn btn-outline-danger me-1" onclick="change_add_data('danger');">
+                        บล็อคการเข้า user (inactive)
+                    </button>
+                    <button id="btn_add_data_type_info" style="width: 30%;" class="btn btn-outline-info me-1" onclick="change_add_data('info');">
+                        แก้ไขข้อมูล user
+                    </button>
+                </div>
+
+                <script>
+                    function change_add_data(type){
+
+                        document.querySelector('#btn_add_data_type_success').classList.remove('btn-success');
+                        document.querySelector('#btn_add_data_type_danger').classList.remove('btn-danger');
+                        document.querySelector('#btn_add_data_type_info').classList.remove('btn-info');
+
+                        document.querySelector('#btn_add_data_type_success').classList.add('btn-outline-success');
+                        document.querySelector('#btn_add_data_type_danger').classList.add('btn-outline-danger');
+                        document.querySelector('#btn_add_data_type_info').classList.add('btn-outline-info');
+
+                        document.querySelector('#btn_add_data_type_'+type).classList.add('btn-'+type);
+                        document.querySelector('#btn_add_data_type_'+type).classList.remove('btn-outline-'+type);
+
+                        let card_content = document.querySelector('#card_content');
+                        let i_content = document.querySelector('#i_content');
+                        let h5_content = document.querySelector('#h5_content');
+                        let button_content = document.querySelector('#button_content');
+
+                        card_content.classList.remove('border-success');
+                        card_content.classList.remove('border-danger');
+                        card_content.classList.remove('border-info');
+
+                        i_content.classList.remove('text-success');
+                        i_content.classList.remove('text-danger');
+                        i_content.classList.remove('text-info');
+
+                        h5_content.classList.remove('text-success');
+                        h5_content.classList.remove('text-danger');
+                        h5_content.classList.remove('text-info');
+
+                        button_content.classList.remove('btn-success');
+                        button_content.classList.remove('btn-danger');
+                        button_content.classList.remove('btn-info');
+
+                        card_content.classList.add('border-'+type);
+                        i_content.classList.add('text-'+type);
+                        button_content.classList.add('btn-'+type);
+                        h5_content.classList.add('text-'+type);
+
+                        if(type == 'success'){
+                            h5_content.innerHTML = 'เพิ่มข้อมูลใหม่ (และปลดล็อค)';
+                        }
+                        else if(type == 'danger'){
+                            h5_content.innerHTML = 'บล็อคการเข้า user (inactive)';
+                        }
+                        else if(type == 'info'){
+                            h5_content.innerHTML = 'แก้ไขข้อมูล user';
+                        }
+
+
+                    }
+                </script>
+
+                <div id="card_content" class="card border-top border-0 border-4 border-success">
                     <div class="card-body p-5">
                         <div class="card-title text-center">
-                            <i class="fa-solid fa-file-excel text-success font-50"></i>
-                            <h5 class="mb-5 mt-2 text-success">เพิ่มข้อมูลสมาชิก</h5>
+                            <i id="i_content" class="fa-solid fa-file-excel text-success font-50"></i>
+                            <h5 id="h5_content" class="mb-5 mt-2 text-success">เพิ่มข้อมูลสมาชิก</h5>
                         </div>
                         <hr>
                         <div class="col-12">
@@ -201,7 +267,7 @@
                             </div>
                         </div>
                         <div class="col-12 mt-4 mb-2">
-                            <button class="btn btn-primary px-5" onclick="readExcel()">
+                            <button id="button_content" class="btn btn-success px-5" onclick="readExcel()">
                                 Read Excel
                             </button>
                         </div>

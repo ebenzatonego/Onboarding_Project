@@ -519,7 +519,7 @@
                     </label>
                     <span class="glider"></span>
                 </div>
-                <div class="card py-4 px-2" style="margin-top: -15px;" id="content_training_schedule">
+                <div class="card py-4 px-2" style="margin-top: 4px;" id="content_training_schedule">
                     <div class="d-flex w-100 justify-content-between align-items-center my-3 px-2">
                         <a class=" m-0 p-0" onclick="goBack('อบรม');get_data_appointment_now('อบรม');">
                             <i class="fa-regular fa-chevron-left" style="font-size: 14px;color:#848CA1;"></i>
@@ -544,26 +544,6 @@
                         <!-- <button class="btn btn-toggle-traning-appointment">แนะนำ</button>
                         <button class="btn btn-toggle-traning-appointment">Blue Star</button>
                         <button class="btn btn-toggle-traning-appointment">Unit Links</button> -->
-
-                        <style>
-                            .dropdown-menu {
-                                top: auto !important;
-                                bottom: 100% !important;
-                                transform: translate3d(0, -5px, 0) !important;
-                            }
-                        </style>
-                        <script>
-                            document.addEventListener('DOMContentLoaded', function () {
-                                const dropdown = document.getElementById('dropdowntest');
-                                dropdown.addEventListener('show.bs.dropdown', function () {
-                                    dropdown.classList.remove('dropdown-menu-right', 'dropdown-menu-left');
-                                    dropdown.style.top = 'auto';
-                                    dropdown.style.bottom = '100%';
-                                    dropdown.style.transform = 'translate3d(0, -5px, 0)';
-                                });
-                            });
-                        </script>
-
 
                         <ul id="list_number_menu_of_appointment" class="nav nav-pills mb-3 d-flex justify-content-center dropdown show" role="tablist">
                             <li class="nav-item me-2 dropdown">
@@ -1131,7 +1111,7 @@
     }
 
     function show_content_appointment_quiz(area_id) {
-        console.log("Select ID >> " + area_id)
+        // console.log("Select ID >> " + area_id)
 
         document.querySelector('#content_training_schedule').classList.add('d-none');
         document.querySelector('#content_exam_schedule').classList.add('d-none');

@@ -379,7 +379,7 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
-        text-decoration-line: underline;
+/*        text-decoration-line: underline;*/
     }
 
     .title-coc {

@@ -3037,7 +3037,7 @@
                                         </svg>
                                         ` + result[i].phone + `
                                     </a>
-                                    <a class="d-block mt-2 contact-mail" href="mailto:natthanicha.thia@gmail.com">
+                                    <a class="d-block mt-2 contact-mail" href="mailto:` + result[i].mail + `">
                                         <svg class="me-3" xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 27 27" fill="none">
                                             <path d="M13.5 27C20.9587 27 27 20.9587 27 13.5C27 6.04125 20.9587 0 13.5 0C6.04125 0 0 6.04125 0 13.5C0 20.9587 6.04125 27 13.5 27ZM5.29875 8.60625L11.4413 13.5L5.29875 18.3938V8.60625ZM21.7013 18.3938L15.5588 13.5L21.6675 8.60625V18.3938H21.7013ZM5.3325 19.5413L12.15 14.0738L13.5 15.1538L14.85 14.0738L21.6675 19.5413H5.3325ZM21.6675 7.45875L13.5 14.0063L5.3325 7.45875H21.6675Z" fill="#243286" />
                                         </svg>

@@ -322,24 +322,44 @@
 
 </style>
 
+@php
+    $class_color = '' ;
+    if($type == 'สอบ'){
+      $class_color = 'success' ;
+    }
+    else{
+      $class_color = 'primary' ;
+    }
+@endphp
+
 <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-	<div class="breadcrumb-title pe-3">การจัดการ สนามสอบ / ปฏิทินหลักสูตร</div>
+  @if($type == 'สอบ')
+   <div class="breadcrumb-title pe-3">การจัดการสนามสอบ</div>
+  @else
+	 <div class="breadcrumb-title pe-3">การจัดการปฏิทินหลักสูตร</div>
+  @endif
   <div class="ps-3">
     <select id="select_show_training_by_type" class="form-select" onchange="change_show_training_by_type();">
       <option value="all" selected>หลักสูตรทั้งหมด</option>
     </select>
   </div>
   <div class="ps-3">
-    <select id="select_show_type_appointments" class="form-select" onchange="change_view_type_appointments();">
-      <option value="all" selected>ประเภททั้งหมด</option>
-      <option value="อบรม">ปฏิทินหลักสูตร</option>
-      <option value="สอบ">สนามสอบ</option>
-    </select>
+      @if($type == 'สอบ')
+      <select id="select_show_type_appointments" class="form-select d-none">
+        <option value="สอบ" selected >สนามสอบ</option>
+      </select>
+      @else
+      <select id="select_show_type_appointments" class="form-select d-none">
+        <option value="อบรม" selected>ปฏิทินหลักสูตร</option>
+      </select>
+      @endif
   </div>
   <script>
     function change_view_type_appointments(){
 
       let select_show = document.querySelector('#select_show_type_appointments');
+      // console.log('change_view_type_appointments');
+      // console.log(select_show.value);
 
       let item_data_appointments = document.querySelectorAll('.item_data_appointments');
           item_data_appointments.forEach(item => {
@@ -363,19 +383,25 @@
   </script>
 	<div class="ms-auto">
 		<div class="btn-group">
-			<a href="{{ url('/appointment_create/quiz') }}" class="btn btn-success">
-				<i class="fa-solid fa-calendar-plus"></i> เพิ่มสนามสอบ
-			</a>
+      @if($type == 'สอบ')
+        <a href="{{ url('/appointment_create/quiz') }}" class="btn btn-{{ $class_color }}">
+          <i class="fa-solid fa-calendar-plus"></i> เพิ่มสนามสอบ
+        </a>
+      @else
+        <a href="{{ url('/appointment_create/train') }}" class="btn btn-{{ $class_color }}">
+          <i class="fa-solid fa-calendar-plus"></i> เพิ่มปฏิทินหลักสูตร
+        </a>
+      @endif
 		</div>
 	</div>
 </div>
 
 <hr>
 
-<div class="card border-top border-0 border-4 border-success">
+<div class="card border-top border-0 border-4 border-{{ $class_color }}">
   <div class="card-body p-5">
     <div class="card-title d-flex align-items-center">
-      <h5 id="h5_training_types" class="mb-0 text-success">
+      <h5 id="h5_training_types" class="mb-0 text-{{ $class_color }}">
         <!--  -->
       </h5>
     </div>
@@ -526,6 +552,9 @@
                   div_content.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
 
               }
+
+              change_view_type_appointments();
+
           }
 
       });

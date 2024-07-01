@@ -1040,13 +1040,31 @@
             </div>
         </div>
 
-        <div class="card border-top border-0 border-4 border-success ms-4 w-100">
+
+        @php
+            $class_color = '' ;
+            if($type == 'สอบ'){
+              $class_color = 'success' ;
+            }
+            else{
+              $class_color = 'primary' ;
+            }
+        @endphp
+
+        <div class="card border-top border-0 border-4 border-{{ $class_color }} ms-4 w-100">
             <div class="card-body p-5">
                 <div class="card-title d-flex align-items-center justify-content-between">
                     <div class="d-flex">
-                        <h5 class="mb-0 text-success">
-                            แก้ไขตารางอบรม/สอบ
-                        </h5>
+                        @if($type == 'สอบ')
+                            <h5 class="mb-0 text-{{ $class_color }}">
+                                แก้ไขข้อมูลสนามสอบ
+                            </h5>
+                        @else
+                            <h5 class="mb-0 text-{{ $class_color }}">
+                                แก้ไขข้อมูลปฏิทินหลักสูตร
+                            </h5>
+                        @endif
+                        
                     </div>
                     <button id="btn_cf_edit_data" class="btn btn-success float-end d-flex align-items-center" type="button" disabled onclick="cf_edit_data();">
                         <span id="span_load_save" class="spinner-border spinner-border-sm me-2 d-none" role="status" aria-hidden="true"></span>
@@ -1109,18 +1127,13 @@
                 </div>
                 <div class="row mb-3">
                     <label for="for_rank" class="col-sm-2 col-form-label">
-                        สอบ / อบรม
+                        {{ $type }}
                     </label>
                     <div class="col-sm-10">
                         <select class="form-select" name="type" type="text" id="type" value="" onchange="show_preview_data('type',event);show_preview_date_start_end();">
                             <option value="{{ $data_appointment->type }}" selected>
                                 {{ $data_appointment->type }}
                             </option>
-                            @if($data_appointment->type == "สอบ")
-                                <option value="อบรม">อบรม</option>
-                            @else
-                                <option value="สอบ">สอบ</option>
-                            @endif
                         </select>
                     </div>
                 </div>
@@ -1163,10 +1176,10 @@
                 </div>
                 <div class="row mb-3">
                     <label for="link_out" class="col-sm-2 col-form-label">
-                        ลิงก์เข้าร่วมสอบ
+                        ลิงก์เข้าร่วม{{ $type }}
                     </label>
                     <div class="col-sm-10">
-                        <input class="form-control" name="link_out" type="text" id="link_out" value="{{ $data_appointment->link_out }}" placeholder="เพิ่มลิงก์เข้าร่วมสอบ" onchange="show_preview_data('link_out',event);show_preview_date_start_end();">
+                        <input class="form-control" name="link_out" type="text" id="link_out" value="{{ $data_appointment->link_out }}" placeholder="เพิ่มลิงก์เข้าร่วม{{ $type }}" onchange="show_preview_data('link_out',event);show_preview_date_start_end();">
                     </div>
                 </div>
                 <div class="row mb-3">

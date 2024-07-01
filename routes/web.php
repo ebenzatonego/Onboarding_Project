@@ -142,7 +142,7 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
     
     // Appointments
     Route::resource('appointments', 'AppointmentsController');
-    Route::get('/manage_appointment', 'AppointmentsController@manage_appointment');
+    Route::get('/manage_appointment/{type}', 'AppointmentsController@manage_appointment');
     Route::get('/appointment_create/{type}', 'AppointmentsController@create');
     Route::get('/preview_appointment/{id}', 'AppointmentsController@preview_appointment');
 

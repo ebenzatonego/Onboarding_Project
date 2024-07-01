@@ -611,10 +611,10 @@ img {
                     </div>
                     <div class="row mb-3">
                         <label for="link_out" class="col-sm-2 col-form-label">
-                            ลิงก์เข้าร่วมสอบ<span class="text-danger">*</span>
+                            ลิงก์เข้าร่วม{{ $type }}<span class="text-danger">*</span>
                         </label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="link_out" type="text" id="link_out" value="" placeholder="เพิ่มลิงก์เข้าร่วมสอบ" oninput="check_data_for_submit();">
+                            <input class="form-control" name="link_out" type="text" id="link_out" value="" placeholder="เพิ่มลิงก์เข้าร่วม{{ $type }}" oninput="check_data_for_submit();">
                         </div>
                     </div>
                     <div class="row mb-3">

@@ -173,7 +173,14 @@ class AppointmentsController extends Controller
         return redirect('manage_appointment')->with('flash_message', 'Appointment deleted!');
     }
 
-    function manage_appointment(){
+    function manage_appointment($type){
+
+        if($type == 'quiz'){
+            $type = 'สอบ';
+        }
+        else{
+            $type = 'อบรม';
+        }
 
         $data_Training_type = Training_type::orderByRaw("CASE 
                         WHEN check_highlight IS NOT NULL THEN 1
@@ -199,7 +206,7 @@ class AppointmentsController extends Controller
             ->select('photo_menu')
             ->first();
 
-        return view('appointments.manage_appointment', compact('data_Training_type','photo_menu_highlight_1','photo_menu_highlight_2','photo_menu_highlight_3','photo_menu_highlight_4'));
+        return view('appointments.manage_appointment', compact('data_Training_type','photo_menu_highlight_1','photo_menu_highlight_2','photo_menu_highlight_3','photo_menu_highlight_4', 'type'));
     }
 
     function show_appointment_train($id){
@@ -215,10 +222,12 @@ class AppointmentsController extends Controller
                 ->select('appointments.*', 'training_types.type_article')
                 ->first();
 
+        $type = $data_appointment->type ;
+
         $type_article = Training_type::get();
         $appointment_area = Appointment_area::orderBy('area','ASC')->get();
 
-        return view('appointments.preview_appointment', compact('data_appointment','type_article','appointment_area'));
+        return view('appointments.preview_appointment', compact('data_appointment','type_article','appointment_area' , 'type'));
 
     }
 

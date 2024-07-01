@@ -249,6 +249,11 @@
                             </a>
                         </li>
                         <li>
+                            <a class="btn" href="{{ url('/manage_appointment/train') }}">
+                                <i class="fa-solid fa-calendar-circle-exclamation"></i> จัดการปฏิทินหลักสูตร
+                            </a>
+                        </li>
+                        <li>
                             <a class="btn" href="{{ url('/appointment_create/train') }}">
                                 <i class="fa-solid fa-calendar-lines-pen"></i> เพิ่มปฏิทินหลักสูตร
                             </a>
@@ -268,7 +273,7 @@
                     
                     <ul>
                         <li>
-                            <a class="btn" href="{{ url('/manage_appointment') }}">
+                            <a class="btn" href="{{ url('/manage_appointment/quiz') }}">
                                 <i class="fa-solid fa-calendar-circle-exclamation"></i> จัดการสนามสอบ
                             </a>
                         </li>

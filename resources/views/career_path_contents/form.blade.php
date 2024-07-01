@@ -68,10 +68,10 @@
             @include ('career_path_contents.div_content_tab.vp')
 
             <!-- Tab EVP -->
-            @include ('career_path_contents.div_content_tab.svp')
+            @include ('career_path_contents.div_content_tab.evp')
 
             <!-- Tab SEVP -->
-            @include ('career_path_contents.div_content_tab.esvp')
+            @include ('career_path_contents.div_content_tab.sevp')
         </div>
 
         <div class="mt-5">
@@ -133,13 +133,13 @@
             input_vp_2.value = null;
             input_vp_3.value = null;
 
-            input_svp_1.value = null;
-            input_svp_2.value = null;
-            input_svp_3.value = null;
+            input_evp_1.value = null;
+            input_evp_2.value = null;
+            input_evp_3.value = null;
 
-            input_esvp_1.value = null;
-            input_esvp_2.value = null;
-            input_esvp_3.value = null;
+            input_sevp_1.value = null;
+            input_sevp_2.value = null;
+            input_sevp_3.value = null;
         });
 
     });

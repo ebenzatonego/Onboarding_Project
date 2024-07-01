@@ -3028,12 +3028,12 @@
                 if (result) {
                     for (let i = 0; i < result.length; i++) {
 
-                        let phone = ``;
+                        let phone = `-`;
                         if (result[i].phone) {
                             phone = result[i].phone ;
                         }
 
-                        let mail = ``;
+                        let mail = `-`;
                         if (result[i].mail) {
                             mail = result[i].mail ;
                         }

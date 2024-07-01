@@ -701,7 +701,7 @@
 
                         $currentRank = strtolower( $currentRank );
 
-                        $ranks = ['ag', 'um', 'sum', 'dm', 'sdm', 'avp', 'vp', 'svp', 'esvp'];
+                        $ranks = ['ag', 'um', 'sum', 'dm', 'sdm', 'avp', 'vp', 'evp', 'sevp'];
                         $foundCurrentRank = false;
                         $set_center = 0 ;
                         $count_set_center = 0 ;

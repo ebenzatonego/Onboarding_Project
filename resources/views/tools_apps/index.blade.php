@@ -1260,7 +1260,7 @@
                             Financial Health Check
                         </span>
                         <div class="d-flex justify-content-between align-items-center">
-                            <a href="https://h-lab-official.github.io/Financial-Health-Check/?user_params={{ Auth::user()->account }}" class="btn-create-tools">
+                            <a href="https://financial-health-check.azayagencyjourney.com/?user_params={{ Auth::user()->account }}" class="btn-create-tools">
                                 กดเพื่อสร้าง
                             </a>
                             <i class="fa-light fa-circle-exclamation cursor-pointer" onclick="open_modal_detail_app('FHC')"></i>

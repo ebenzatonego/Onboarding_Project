@@ -1766,7 +1766,7 @@
                             </div>
 
                             @php
-                                $ranks = ['AG', 'UM', 'SUM', 'DM', 'SDM', 'AVP', 'VP', 'SVP', 'ESVP'];
+                                $ranks = ['AG', 'UM', 'SUM', 'DM', 'SDM', 'AVP', 'VP', 'EVP', 'SEVP'];
                             @endphp
 
                             <select class="col-12 form-select mt-3 {{ $class_show_for_rank }}" id="show_rank" name="show_rank" onchange="show_preview_date_start_end();">

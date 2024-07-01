@@ -211,6 +211,11 @@
                             font-weight: 400;
                             margin-bottom: 0;
                             line-height: normal;
+                            display: -webkit-box;
+                            -webkit-box-orient: vertical;
+                            -webkit-line-clamp: 3; /* จำนวนบรรทัดที่ต้องการจำกัด */
+                            overflow: hidden;
+                            text-overflow: ellipsis;
                         }
                     }
 
@@ -239,6 +244,11 @@
                             font-weight: 400;
                             margin-bottom: 0;
                             line-height: normal;
+                            display: -webkit-box;
+                            -webkit-box-orient: vertical;
+                            -webkit-line-clamp: 3; /* จำนวนบรรทัดที่ต้องการจำกัด */
+                            overflow: hidden;
+                            text-overflow: ellipsis;
                         }
 
                         #modal_notification .modal-content {

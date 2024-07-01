@@ -716,7 +716,7 @@
 
 
 <!-- EDIT CALENDAR -->
-<button id="btn_open_modal_edit_carlendar" class="btn-add-schedule" data-bs-toggle="modal" data-bs-target="#modal_edit_carlendar">
+<button id="btn_open_modal_edit_carlendar" class="btn-add-schedule d-none" data-bs-toggle="modal" data-bs-target="#modal_edit_carlendar">
     แก้ไข
 </button>
 <div class="modal fade edit-form" id="modal_edit_carlendar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

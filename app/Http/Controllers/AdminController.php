@@ -1053,16 +1053,19 @@ class AdminController extends Controller
             ->get();
 
         foreach ($data_user_birthday as $user) {
-            $birthday = Carbon::createFromFormat('d-m-Y', $user->birthday); // ใช้รูปแบบ 'd-m' เพื่อไม่ต้องสนใจปี
 
-            // ตรวจสอบว่าวันและเดือนของวันเกิดตรงกับวันและเดือนปัจจุบันหรือไม่
-            if ($birthday->day == $currentDateTime->day && $birthday->month == $currentDateTime->month) {
-                $data_arr[] = [
-                    'type' => 'เฉพาะคุณ',
-                    'sub_type' => 'วันเกิด',
-                    'name' => $user->name,
-                    'days_difference' => 0, // จำนวนวันที่ต่างกัน
-                ];
+            if( !empty($user->birthday) ){
+                $birthday = Carbon::createFromFormat('d-m-Y', $user->birthday);
+
+                // ตรวจสอบว่าวันและเดือนของวันเกิดตรงกับวันและเดือนปัจจุบันหรือไม่
+                if ($birthday->day == $currentDateTime->day && $birthday->month == $currentDateTime->month) {
+                    $data_arr[] = [
+                        'type' => 'เฉพาะคุณ',
+                        'sub_type' => 'วันเกิด',
+                        'name' => $user->name,
+                        'days_difference' => 0, // จำนวนวันที่ต่างกัน
+                    ];
+                }
             }
         }
 
@@ -1074,16 +1077,19 @@ class AdminController extends Controller
             ->get();
 
         foreach ($data_user_license_expire as $license) {
-            $datetimeStart_5 = Carbon::parse($license->license_expire);
-            $difference_5 = $currentDateTime->diffInDays($datetimeStart_5); // คำนวณห่างกี่วัน
 
-            if ($difference_5 <= 90) {
-                $data_arr[] = [
-                    'type' => 'เฉพาะคุณ',
-                    'sub_type' => 'บัตรหมดอายุ',
-                    'license_expire' => $license->license_expire,
-                    'days_difference' => $difference_5, // จำนวนวันที่ต่างกัน
-                ];
+            if( !empty($license->license_expire) ){
+                $datetimeStart_5 = Carbon::parse($license->license_expire);
+                $difference_5 = $currentDateTime->diffInDays($datetimeStart_5); // คำนวณห่างกี่วัน
+
+                if ($difference_5 <= 90) {
+                    $data_arr[] = [
+                        'type' => 'เฉพาะคุณ',
+                        'sub_type' => 'บัตรหมดอายุ',
+                        'license_expire' => $license->license_expire,
+                        'days_difference' => $difference_5, // จำนวนวันที่ต่างกัน
+                    ];
+                }
             }
         }
 

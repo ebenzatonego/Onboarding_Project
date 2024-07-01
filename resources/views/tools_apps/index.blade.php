@@ -286,6 +286,21 @@
         width: 80%;
     }
 
+    .btn-create-tools-no-show {
+        color: #fff;
+        text-align: center;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 150%;
+        /* 24px */
+        letter-spacing: -0.304px;
+        border-radius: 14px;
+        background: #494949;
+        padding: 0 10px;
+        width: 80%;
+    }
+
     .tools-item i {
         font-size: 21px;
     }
@@ -1260,9 +1275,12 @@
                             Financial Health Check
                         </span>
                         <div class="d-flex justify-content-between align-items-center">
-                            <a href="https://financial-health-check.azayagencyjourney.com/?user_params={{ Auth::user()->account }}" class="btn-create-tools">
+                            <!-- <a href="https://financial-health-check.azayagencyjourney.com/?user_params={{ Auth::user()->account }}" class="btn-create-tools">
                                 กดเพื่อสร้าง
-                            </a>
+                            </a> -->
+                            <button class="btn-create-tools-no-show" disabled>
+                                coming soon
+                            </button>
                             <i class="fa-light fa-circle-exclamation cursor-pointer" onclick="open_modal_detail_app('FHC')"></i>
                         </div>
                     </div>
@@ -1376,7 +1394,7 @@
                 if (type == 'FHC') {
                     img_modal.src = `{{url('img/icon/icon-tools1.png')}}`;
                     name_modal.innerHTML = 'Financial Health Check';
-                    // detail_modal.innerHTML = '';
+                    detail_modal.innerHTML = 'การตรวจสอบสุขภาพทางการเงิน เป็นกระบวนการที่สำคัญ ในการประเมินและทำความเข้าใจสถานะทางการเงินของคุณ สามารถช่วยให้คุณเห็นภาพรวมของการจัดการเงินส่วนบุคคล';
                 } else {
                     img_modal.src = arr_tools_apps[type].photo_icon;
                     name_modal.innerHTML = arr_tools_apps[type].name;

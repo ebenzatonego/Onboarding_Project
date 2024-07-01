@@ -1102,17 +1102,20 @@ class AdminController extends Controller
                 ->get();
 
             foreach ($my_goal_users as $my_goal) {
-                $datetimeStart_6 = Carbon::parse($my_goal->date_end);
-                $difference_6 = $currentDateTime->diffInDays($datetimeStart_6); // คำนวณห่างกี่วัน
 
-                $data_arr[] = [
-                    'type' => 'เฉพาะคุณ',
-                    'sub_type' => 'แจ้งเตือนเป้าหมาย',
-                    'period' => $my_goal->period,
-                    'goal' => $my_goal->goal,
-                    'price' => $my_goal->price,
-                    'days_difference' => $difference_6, // จำนวนวันที่ต่างกัน
-                ];
+                if( !empty($my_goal->date_end) ){
+                    $datetimeStart_6 = Carbon::parse($my_goal->date_end);
+                    $difference_6 = $currentDateTime->diffInDays($datetimeStart_6); // คำนวณห่างกี่วัน
+
+                    $data_arr[] = [
+                        'type' => 'เฉพาะคุณ',
+                        'sub_type' => 'แจ้งเตือนเป้าหมาย',
+                        'period' => $my_goal->period,
+                        'goal' => $my_goal->goal,
+                        'price' => $my_goal->price,
+                        'days_difference' => $difference_6, // จำนวนวันที่ต่างกัน
+                    ];
+                }
             }
         }
 
@@ -1123,18 +1126,21 @@ class AdminController extends Controller
             ->get();
 
         foreach ($data_news as $news) {
-            $datetimeStart_1 = Carbon::parse($news->datetime_start);
-            $difference_1 = $currentDateTime->diffInDays($datetimeStart_1); // คำนวณห่างกี่วัน
 
-            if ($difference_1 <= 7) {
-                $data_arr[] = [
-                    'type' => 'ข่าวสาร',
-                    'id' => $news->id,
-                    'title' => $news->title,
-                    'photo' => $news->photo_cover,
-                    'detail' => $news->detail,
-                    'days_difference' => $difference_1, // จำนวนวันที่ต่างกัน
-                ];
+            if( !empty($news->datetime_start) ){
+                $datetimeStart_1 = Carbon::parse($news->datetime_start);
+                $difference_1 = $currentDateTime->diffInDays($datetimeStart_1); // คำนวณห่างกี่วัน
+
+                if ($difference_1 <= 7) {
+                    $data_arr[] = [
+                        'type' => 'ข่าวสาร',
+                        'id' => $news->id,
+                        'title' => $news->title,
+                        'photo' => $news->photo_cover,
+                        'detail' => $news->detail,
+                        'days_difference' => $difference_1, // จำนวนวันที่ต่างกัน
+                    ];
+                }
             }
         }
 
@@ -1156,18 +1162,21 @@ class AdminController extends Controller
             ->get();
 
         foreach ($data_activitys as $activity) {
-            $datetimeStart_2 = Carbon::parse($activity->date_start);
-            $difference_2 = $currentDateTime->diffInDays($datetimeStart_2); // คำนวณห่างกี่วัน
 
-            if ($difference_2 <= 3) {
-                $data_arr[] = [
-                    'type' => 'บริษัท',
-                    'id' => $activity->id,
-                    'title' => $activity->title,
-                    'photo' => $activity->photo,
-                    'detail' => $activity->detail,
-                    'days_difference' => $difference_2, // จำนวนวันที่ต่างกัน
-                ];
+            if( !empty($activity->date_start) ){
+                $datetimeStart_2 = Carbon::parse($activity->date_start);
+                $difference_2 = $currentDateTime->diffInDays($datetimeStart_2); // คำนวณห่างกี่วัน
+
+                if ($difference_2 <= 3) {
+                    $data_arr[] = [
+                        'type' => 'บริษัท',
+                        'id' => $activity->id,
+                        'title' => $activity->title,
+                        'photo' => $activity->photo,
+                        'detail' => $activity->detail,
+                        'days_difference' => $difference_2, // จำนวนวันที่ต่างกัน
+                    ];
+                }
             }
         }
 
@@ -1225,24 +1234,27 @@ class AdminController extends Controller
             ->get();
 
         foreach ($data_appointments as $appointment) {
-            $datetimeStart_4 = Carbon::parse($appointment->date_start);
-            $difference_4 = $currentDateTime->diffInDays($datetimeStart_4); // คำนวณห่างกี่วัน
 
-            if ($difference_4 <= 3) {
-                $data_arr[] = [
-                    'type' => 'อบรม,สอบ',
-                    'id' => $appointment->id,
-                    'sub_type' => $appointment->type,
-                    'title' => $appointment->title,
-                    'photo' => $appointment->photo,
-                    'location_detail' => $appointment->location_detail,
-                    'all_day' => $appointment->all_day,
-                    'date_start' => $appointment->date_start,
-                    'date_end' => $appointment->date_end,
-                    'time_start' => $appointment->time_start,
-                    'time_end' => $appointment->time_end,
-                    'days_difference' => $difference_4, // จำนวนวันที่ต่างกัน
-                ];
+            if( !empty($appointment->date_start) ){
+                $datetimeStart_4 = Carbon::parse($appointment->date_start);
+                $difference_4 = $currentDateTime->diffInDays($datetimeStart_4); // คำนวณห่างกี่วัน
+
+                if ($difference_4 <= 3) {
+                    $data_arr[] = [
+                        'type' => 'อบรม,สอบ',
+                        'id' => $appointment->id,
+                        'sub_type' => $appointment->type,
+                        'title' => $appointment->title,
+                        'photo' => $appointment->photo,
+                        'location_detail' => $appointment->location_detail,
+                        'all_day' => $appointment->all_day,
+                        'date_start' => $appointment->date_start,
+                        'date_end' => $appointment->date_end,
+                        'time_start' => $appointment->time_start,
+                        'time_end' => $appointment->time_end,
+                        'days_difference' => $difference_4, // จำนวนวันที่ต่างกัน
+                    ];
+                }
             }
         }
 

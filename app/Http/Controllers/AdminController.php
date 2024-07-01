@@ -19,6 +19,7 @@ use Carbon\Carbon;
 use App\Models\Log_excel_user;
 use App\Models\Activity_type;
 use App\Models\Activity;
+use App\Models\Calendar;
 
 class AdminController extends Controller
 {
@@ -332,6 +333,23 @@ class AdminController extends Controller
         $data['quiz'] = $data_quiz;
 
         return $data;
+    }
+
+    function get_edit_data_calendar($id){
+        $data_calendars = Calendar::where('id' , $id)->first();
+
+        return $data_calendars ;
+    }
+
+    function cf_edit_data_calendar(Request $request)
+    {
+        $requestData = $request->all();
+        
+        $calendar = Calendar::where('id' ,$requestData['id'])->first();
+        $calendar->update($requestData);
+
+        return 'success' ;
+
     }
 
     function get_data_for_calendar_for_user($user_id){

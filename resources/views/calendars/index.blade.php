@@ -618,7 +618,7 @@
 
 <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js'></script>
 
-
+<!-- MODAL ADD CALENDAR -->
 <div class="modal fade edit-form" id="modal_add_carlendar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content" style="border-radius: 8.214px;position: relative;">
@@ -712,6 +712,238 @@
         </div>
     </div>
 </div>
+<!-- END MODAL ADD CALENDAR -->
+
+
+<!-- EDIT CALENDAR -->
+<button id="btn_open_modal_edit_carlendar" class="btn-add-schedule" data-bs-toggle="modal" data-bs-target="#modal_edit_carlendar">
+    แก้ไข
+</button>
+<div class="modal fade edit-form" id="modal_edit_carlendar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="border-radius: 8.214px;position: relative;">
+            <button type="button" class="btn-close" style="position: absolute;  top: 30px;  right: 10px;  transform: translate(-50%, -50%);" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-header border-bottom-0 mt-3">
+                <h5 class="modal-title text-center w-100 " id="edit_modal-title" style="color:#6E7781">แก้ไขข้อมูล</h5>
+            </div>
+            <div id="edit_form_calendar">
+                <div class="modal-body px-5 pb-0">
+                    <div class="alert alert-danger " role="alert" id="edit_danger-alert" style="display: none;">
+                        วันสิ้นสุดกิจกรรมควรมากกว่าวันที่เริ่มกิจกรรม
+                    </div>
+                    <div class="row mb-3">
+                        <label for="title" class="col-3 col-form-label">ชื่อโน้ต</label>
+                        <div class="col-9">
+                            <input style="border-radius: 50px;" type="text" class="form-control" id="edit_title" placeholder="กรอกชื่อโน้ต" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="title" class="col-3 col-form-label">แฮชแท็ก</label>
+                        <div class="col-9">
+                            <input style="border-radius: 50px;" type="text" class="form-control" list="data_list_type" id="edit_type_memo" placeholder="กรอกแฮชแท็ก" required>
+                            <datalist id="edit_data_list_type">
+                                @foreach($tag_calendars as $item)
+                                <option value="{{$item->type}}"></option>
+                                @endforeach
+                            </datalist>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="date_start" class="col-3 col-form-label">วันที่เริ่ม</label>
+                        <div class="col-9">
+                            <input type="date" style="border-radius: 50px;" class="form-control" id="edit_date_start" placeholder="เลือกวันที่เริ่ม" required>
+                        </div>
+                    </div>
+                    <div id="edit_not_all_day" class="d-none">
+                        <div class="row mb-3">
+                            <label for="time_start" class="col-3 col-form-label">เวลาที่เริ่ม</label>
+                            <div class="col-9">
+                                <input type="time" style="border-radius: 50px;" class="form-control" id="edit_time_start" placeholder="เลือกวันที่เริ่ม">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="date_end" class="col-3 col-form-label">วันที่จบ</label>
+                            <div class="col-9">
+                                <input type="date" style="border-radius: 50px;" class="form-control" id="edit_date_end" placeholder="เลือกวันที่จบ">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="time_end" class="col-3 col-form-label">เวลาที่จบ</label>
+                            <div class="col-9">
+                                <input type="time" style="border-radius: 50px;" class="form-control" id="edit_time_end" placeholder="เลือกวันที่เริ่ม">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="end-date" class="col-3 col-form-label pe-0">เลือกทั้งวัน</label>
+                        <div class="col-9">
+                            <input class="form-check-input" style="border-radius: 50%;width: 24px;height: 24px;" type="checkbox" id="edit_all_day" name="all_day" checked onchange="edit_check_all_day()">
+
+                        </div>
+                    </div>
+                    <!-- <div class="form-group">
+                        <label for="start-date">Start date <span class="text-danger">*</span></label>
+                        <input type="date" class="form-control" id="edit_start-date" placeholder="start-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="end-date">End date - <small class="text-muted">Optional</small></label>
+                        <input type="date" class="form-control" id="edit_end-date" placeholder="end-date">
+                    </div> -->
+
+                    <div class="row mb-3">
+                        <label for="end-date" class="col-3 col-form-label">หมวดหมู่</label>
+                        <div class="col-9">
+                            <select class="form-select mb-3" id="edit_type" style="border-radius: 50px;" aria-label="Default select example" required>
+                                <!--  -->
+                            </select>
+
+                        </div>
+                    </div>
+                    <!-- <div class="form-group">
+                        <label for="event-color">Color</label>
+                        <input type="color" class="form-control" id="edit_event-color" value="#3788d8">
+                    </div> -->
+                </div>
+                <div class="modal-footer border-top-0 d-flex justify-content-center ">
+                    <button type="submit" class="btn btn-success" id="edit_submit_button" style="border-radius: 50px;background-color: #003781 !important;border: none !important;">แก้ไขข้อมูล</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function edit_data_calendar(id) {
+        document.querySelector('#btn_open_modal_edit_carlendar').click();
+
+        let edit_title = document.querySelector('#edit_title');
+        let edit_type_memo = document.querySelector('#edit_type_memo');
+        let edit_date_start = document.querySelector('#edit_date_start');
+        let edit_time_start = document.querySelector('#edit_time_start');
+        let edit_date_end = document.querySelector('#edit_date_end');
+        let edit_time_end = document.querySelector('#edit_time_end');
+        let edit_all_day = document.querySelector('#edit_all_day');
+        let edit_type = document.querySelector('#edit_type');
+
+        fetch("{{ url('/') }}/api/get_edit_data_calendar" + "/" + id)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                if(result){
+                    edit_title.value = result.title ;
+                    edit_type_memo.value = result.type_memo ;
+                    edit_date_start.value = result.date_start ;
+                    edit_time_start.value = result.time_start ;
+                    edit_date_end.value = result.date_end ;
+                    edit_time_end.value = result.time_end ;
+                    // edit_all_day.value = result.all_day ;
+                    // edit_type.value = result.type ;
+                    if(edit_all_day.checked && result.all_day != 'Yes'){
+                        edit_all_day.click();
+                    }
+                    else if(!edit_all_day.checked && result.all_day == 'Yes'){
+                        edit_all_day.click();
+                    }
+
+                    edit_type.innerHTML = '';
+                    let html_option = `` ;
+                    if(result.type == 'ส่วนตัว'){
+                        html_option = `
+                            <option value="ส่วนตัว" style="color: #8FC14E;" selected="">ส่วนตัว</option>
+                            <option value="นัดลูกค้า" style="color: #E54141;">นัดลูกค้า</option>
+                        `;
+                    }
+                    else if(result.type == 'นัดลูกค้า'){
+                        html_option = `
+                            <option value="ส่วนตัว" style="color: #8FC14E;">ส่วนตัว</option>
+                            <option value="นัดลูกค้า" style="color: #E54141;" selected="">นัดลูกค้า</option>
+                        `;
+                    }
+
+                    edit_type.insertAdjacentHTML('beforeend', html_option); // แทรกล่างสุด
+
+
+                }
+            });
+
+        let edit_submit_button = document.querySelector('#edit_submit_button');
+            edit_submit_button.setAttribute('onclick' , 'cf_edit_data_calendar("'+id+'")');
+
+    }
+
+    function cf_edit_data_calendar(id){
+        let edit_title = document.querySelector('#edit_title');
+        let edit_type_memo = document.querySelector('#edit_type_memo');
+        let edit_date_start = document.querySelector('#edit_date_start');
+        let edit_time_start = document.querySelector('#edit_time_start');
+        let edit_date_end = document.querySelector('#edit_date_end');
+        let edit_time_end = document.querySelector('#edit_time_end');
+        let edit_type = document.querySelector('#edit_type');
+
+        let all_day = null;
+        let checkbox_edit_all_day = document.getElementById('edit_all_day');
+        if (checkbox_edit_all_day.checked) {
+            all_day = 'Yes'
+        }
+
+        // console.log(edit_title.value);
+        // console.log(edit_type_memo.value);
+        // console.log(edit_date_start.value);
+        // console.log(edit_time_start.value);
+        // console.log(edit_date_end.value);
+        // console.log(edit_time_end.value);
+        // console.log(edit_type.value);
+        // console.log(all_day);
+
+        let data_arr = {
+            "id" : id,
+            "title" : edit_title.value,
+            "type_memo" : edit_type_memo.value,
+            "date_start" : edit_date_start.value,
+            "time_start" : edit_time_start.value,
+            "date_end" : edit_date_end.value,
+            "time_end" : edit_time_end.value,
+            "type" : edit_type.value,
+            "all_day" : all_day,
+        }; 
+
+        fetch("{{ url('/') }}/api/cf_edit_data_calendar", {
+            method: 'post',
+            body: JSON.stringify(data_arr),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response){
+            return response.text();
+        }).then(function(data){
+            // console.log(data);
+            if(data == 'success'){
+                location.reload();
+            }
+        }).catch(function(error){
+            console.error(error);
+        });
+    }
+
+    function edit_check_all_day() {
+        console.log('edit_check_all_day');
+        let checkbox_all_day = document.getElementById('edit_all_day');
+        if (checkbox_all_day.checked) {
+            document.querySelector('#edit_not_all_day').classList.add('d-none');
+            document.querySelector('#edit_time_start').required = false;
+            document.querySelector('#edit_date_end').required = false;
+            document.querySelector('#edit_time_end').required = false;
+        } else {
+            document.querySelector('#edit_not_all_day').classList.remove('d-none');
+            document.querySelector('#edit_time_start').required = true;
+            document.querySelector('#edit_date_end').required = true;
+            document.querySelector('#edit_time_end').required = true;
+        }
+
+
+    }
+</script>
+<!-- END EDIT CALENDAR -->
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const calendarEl = document.getElementById('calendar');
@@ -967,6 +1199,10 @@
                             if(link_url){
                                 tag_a_1 = `<a href="`+link_url+`">`;
                                 tag_a_2 = `</a>`;
+                            }
+                            else{
+                                tag_a_1 = `<div onclick="edit_data_calendar('`+result[i].id+`');">`;
+                                tag_a_2 = `</div>`;
                             }
 
                             let html = `

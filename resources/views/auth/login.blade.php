@@ -2,9 +2,10 @@
 
 @section('content')
 <style>
-    body{
+    body {
         height: 100dvh !important;
     }
+
     @media (max-width: 992px) {
         .authentication-top {
             position: absolute;
@@ -50,29 +51,51 @@
         .authentication-top div {
             scale: .7 !important;
         }
+
         @media (max-height: 630px) {
             .authentication-top div {
-            scale: .5 !important;
-        }.authentication-bottom form p:first-child{
-            font-size: 20px !important;
-        }
-        .authentication-bottom form p:not(:first-child){
-            font-size: 14px !important;
-        }
-}
-}
+                scale: .5 !important;
+            }
 
-        .authentication-top {
-            min-height: 25% !important
+            .authentication-bottom form p:first-child {
+                font-size: 20px !important;
+            }
+
+            .authentication-bottom form p:not(:first-child) {
+                font-size: 14px !important;
+            }
         }
 
-        .authentication-bottom {
-            min-height: 75%
-        }
+        
+        @media (max-height: 571px) {
+            .authentication-top div {
+                scale: .5 !important;
+            }
 
-        .btn-submit-login {
-            margin-top: 5px !important;
+            .authentication-bottom form p:first-child {
+                font-size: 18px !important;
+            }
+
+            .authentication-bottom form p:not(:first-child) {
+                font-size: 12px !important;
+            }
+            .input-login-new{
+                height: 35px !important;
+            }
         }
+    }
+
+    .authentication-top {
+        min-height: 25% !important
+    }
+
+    .authentication-bottom {
+        min-height: 75%
+    }
+
+    .btn-submit-login {
+        margin-top: 5px !important;
+    }
     }
 
     @media (min-width: 992px) {
@@ -563,16 +586,14 @@
     }
 
     #form_login {}
-
-    
 </style>
 
 @if(session('alert'))
-    <script>
-        alert("{{ session('alert') }}");
-    </script>
+<script>
+    alert("{{ session('alert') }}");
+</script>
 @endif
-    
+
 <div class="col-12 p-0 d-flex justify-content-center">
     <div class="wrapper" style="position: relative;">
         <div class="section-authentication-signin d-flex align-items-center justify-content-center my-0">

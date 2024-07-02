@@ -957,10 +957,10 @@
                 </div>
                 <div class="row mb-3">
                     <label for="link_out" class="col-sm-2 col-form-label">
-                        ลิงก์สมัคร (ถ้ามี)
+                        ลิงก์สมัครอบรม (ถ้ามี)
                     </label>
                     <div class="col-sm-10">
-                        <input class="form-control" name="link_out" type="text" id="link_out" value="{{ isset($data_training->link_out) ? $data_training->link_out : ''}}" placeholder="เพิ่มลิงก์สมัคร" onchange="show_preview_data('link_out',event);show_preview_date_start_end();">
+                        <input class="form-control" name="link_out" type="text" id="link_out" value="{{ isset($data_training->link_out) ? $data_training->link_out : ''}}" placeholder="เพิ่มลิงก์สมัครอบรม" onchange="show_preview_data('link_out',event);show_preview_date_start_end();">
                     </div>
                 </div>
                 <div class="row mb-3">

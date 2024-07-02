@@ -819,10 +819,10 @@ img {
                     </div>
                     <div class="row mb-3">
                         <label for="link_out" class="col-sm-2 col-form-label">
-                            ลิงก์สมัคร (ถ้ามี)
+                            ลิงก์สมัครอบรม (ถ้ามี)
                         </label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="link_out" type="text" id="link_out" value="" placeholder="เพิ่มลิงก์สมัคร" oninput="check_data_for_submit();">
+                            <input class="form-control" name="link_out" type="text" id="link_out" value="" placeholder="เพิ่มลิงก์สมัครอบรม" oninput="check_data_for_submit();">
                         </div>
                     </div>
                     <div class="row mb-3">

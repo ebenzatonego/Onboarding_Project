@@ -51,41 +51,45 @@
         .authentication-top div {
             scale: .7 !important;
         }
+    }
 
-        @media (max-height: 630px) {
-            .authentication-top div {
-                scale: .5 !important;
-            }
-
-            .authentication-bottom form p:first-child {
-                font-size: 20px !important;
-            }
-
-            .authentication-bottom form p:not(:first-child) {
-                font-size: 14px !important;
-            }
+    @media (max-height: 630px) {
+        .authentication-top div {
+            scale: .5 !important;
         }
 
-        
-        @media (max-height: 571px) {
-            .authentication-top div {
-                scale: .5 !important;
-            }
+        .authentication-bottom form p:first-child {
+            font-size: 20px !important;
+        }
 
-            .authentication-bottom form p:first-child {
-                font-size: 18px !important;
-            }
-
-            .authentication-bottom form p:not(:first-child) {
-                font-size: 12px !important;
-            }
-            .input-login-new{
-                height: 35px !important;
-            }.authentication-bottom {
-    min-height: 70% !important;
-}
+        .authentication-bottom form p:not(:first-child) {
+            font-size: 14px !important;
         }
     }
+
+
+    @media (max-height: 571px) {
+        .authentication-top div {
+            scale: .5 !important;
+        }
+
+        .authentication-bottom form p:first-child {
+            font-size: 18px !important;
+        }
+
+        .authentication-bottom form p:not(:first-child) {
+            font-size: 12px !important;
+        }
+
+        .input-login-new {
+            height: 35px !important;
+        }
+
+        .authentication-bottom {
+            min-height: 70% !important;
+        }
+    }
+
 
     .authentication-top {
         min-height: 25% !important
@@ -98,7 +102,7 @@
     .btn-submit-login {
         margin-top: 5px !important;
     }
-    }
+
 
     @media (min-width: 992px) {
 

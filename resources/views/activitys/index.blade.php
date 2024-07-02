@@ -205,7 +205,16 @@
             width: 49% !important;
         }
     }
+    @media (max-width: 375px) {
 
+        .carousel-fav-course .item {
+        height: 280px !important;
+        min-width:280px !important;
+        color: #fff;
+
+    }
+
+}
     .detail-on-img {
         position: absolute;
         bottom: -8%;
@@ -371,7 +380,7 @@
                                 
                             }
                         }
-                        
+
                             // stagePadding:20,
                             // loop: false,
                             // autoWidth: true,

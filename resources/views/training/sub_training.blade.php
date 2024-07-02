@@ -1,40 +1,22 @@
 @extends('layouts.theme_user')
 @section('content')
 <style>
-   @media (max-width: 375px) {
-        .carousel-fav-course .item {
-            height: 311px;
-            min-width: 80vw;
-            color: #fff;
-            padding:4px;
-        }
-        .carousel-fav-course .item img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            border-radius: 10px;
-            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-            -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-            -moz-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-        }
-    }@media (min-width: 375px) {
-        .carousel-fav-course .item {
-            height: 311px;
-            min-width: 311px;
-            color: #fff;
-            padding:4px;
-        }
     
-        .carousel-fav-course .item img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            border-radius: 10px;
-            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-            -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-            -moz-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-        }
+    .carousel-fav-course .item {
+        height: 311px;
+        /* min-width: 311px; */
+        color: #fff;
+        padding:4px;
+    }
 
+    .carousel-fav-course .item img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 10px;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        -moz-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     }
 
     .owl-theme .owl-dots .owl-dot.active span,
@@ -358,20 +340,20 @@
                     $('.carousel-fav-course').owlCarousel({
                         // stagePadding:20,
                         loop: false,
-                        autoWidth: true,
+                        autoWidth: false,
                         margin: 10,
                         nav: false,
-                        // responsive: {
-                        //     0: {
-                        //         items: 1
-                        //     },
-                        //     600: {
-                        //         items: 3
-                        //     },
-                        //     1000: {
-                        //         items: 1
-                        //     }
-                        // }
+                        responsive: {
+                            0: {
+                                items: 3
+                            },
+                            600: {
+                                items: 3
+                            },
+                            1000: {
+                                items: 1
+                            }
+                        }
                     })
 
                 }

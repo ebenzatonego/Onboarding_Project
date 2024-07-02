@@ -681,7 +681,7 @@
                         `;
                     } else if (result[0].type == "video") {
                         html_photo_or_video = `
-                            <video src="` + result[0].video + `" controls autoplay loop muted style="width:80%;border-radius: 10px; max-width: 628px;" class="video-preview"></video>
+                            <video src="` + result[0].video + `" controls autoplay loop muted playsinline  style="width:80%;border-radius: 10px; max-width: 628px;" class="video-preview"></video>
                         `;
                     }
 

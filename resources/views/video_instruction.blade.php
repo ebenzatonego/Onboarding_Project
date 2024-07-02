@@ -372,6 +372,25 @@
             width: 90% !important;
         }
     }
+
+    @media screen and (max-height: 641px) {
+        .logo svg{
+            width: 60px;
+        }
+        .logo p:nth-child(2){
+         font-size: 20px !important;
+        }
+        .video-preview {
+            margin-top: 0 !important;
+            width: 80% !important;
+        }
+        .authentication-bottom div:nth-child(2) {
+            scale: .8;
+        }
+        .authentication-bottom{
+            min-height: 45% !important;
+        }
+    }
 </style>
 <div class="col-12 p-0 d-flex justify-content-center">
     <div class="wrapper" style="position: relative;">

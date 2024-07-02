@@ -393,7 +393,7 @@
                     <p class="AllianzNeo" style="color:#0E2B81;font-size: 10px;font-weight: bold;margin: 0;">ALLIANZ ON-BOARDING WEB</p>
                 </div>
                 <div class="d-flex-justify-content-center w-100 p-3">
-                    <video id="tag_video_congrats" src="" controls autoplay loop muted style="width:100%;border-radius: 10px; max-width: 628px;" class="video-preview"></video>
+                    <video id="tag_video_congrats" src="" controls autoplay loop muted playsinline  style="width:100%;border-radius: 10px; max-width: 628px;" class="video-preview"></video>
                 </div>
             </div>
         </div>

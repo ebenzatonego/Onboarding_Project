@@ -12,7 +12,7 @@
         width: 100%;
         height: 100%;
         object-fit: contain;
-
+        border-radius: 10px;
     }
 
     .owl-theme .owl-dots .owl-dot.active span,
@@ -69,6 +69,17 @@
             font-size: 9px !important;
         }
     }
+    @media (max-width: 375px) {
+
+.carousel-fav-product .item {
+    height: 300px !important;
+    min-width: 300px !important;
+    color: #fff;
+
+}
+
+
+}
 </style>
 <div class="container mb-5">
     <div class="main-body">
@@ -344,18 +355,23 @@
                         $('.carousel-fav-product').owlCarousel({
                             // stagePadding:20,
                             loop: false,
-                            autoWidth: true,
                             margin: 10,
                             nav: false,
                             responsive: {
                                 0: {
-                                    items: 1
+                                    items: 1,
+                                    autoWidth: false,
+
                                 },
-                                600: {
-                                    items: 3
+                                400: {
+                                    items: 1,
+                                    autoWidth: true,
+                                    
                                 },
                                 1000: {
-                                    items: 1
+                                    items: 1,
+                                    autoWidth: true,
+                                    
                                 }
                             }
                         })

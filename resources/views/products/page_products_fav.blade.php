@@ -155,7 +155,15 @@
                         position: absolute;
                         top: 0px;
                         right: 8px;
-                    }
+                    } @media (max-width: 402px) {
+        .btn-product {
+            font-size: 10px !important;
+        }
+    }  @media (max-width: 367px) {
+        .btn-product {
+            font-size: 9px !important;
+        }
+    }
 </style>
 @section('content')
 <div class="container mb-5">

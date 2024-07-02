@@ -1099,8 +1099,10 @@
         bottom: -100px;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 42px;
-        height: 42px;
+        min-width: 42px;
+        min-height: 42px;
+        max-width: 42px;
+        max-height: 42px;
         background-color: #003781;
         color: #fff;
         border-radius: 50%;

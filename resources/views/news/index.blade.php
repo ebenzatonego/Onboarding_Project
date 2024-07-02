@@ -5,7 +5,7 @@
         height: 311px;
         min-width: 311px;
         color: #fff;
-        
+
     }
 
     .container-img::after {
@@ -30,7 +30,7 @@
         width: 100%;
         height: 100%;
         object-fit: contain;
-        border-radius: 10px;
+
     }
 
     .owl-theme .owl-dots .owl-dot.active span,
@@ -231,21 +231,7 @@
         .btn-filter-news {
             font-size: 12px !important;
         }
-    } @media (max-width:345px) {
-        .btn-filter-news {
-            font-size: 10px !important;
-        }
     }
-    @media (max-width: 375px) {
-
-.carousel-fav-course .item {
-height: 300px !important;
-min-width:300px !important;
-color: #fff;
-
-}
-
-}
 </style>
 
 <div class="tab-content container mt-2" id="pills-tabContent">
@@ -479,42 +465,22 @@ color: #fff;
 <script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js'></script>
 <script>
     $('.carousel-fav-course').owlCarousel({
+        // stagePadding:20,
         loop: false,
+        autoWidth: true,
         margin: 10,
         nav: false,
         responsive: {
             0: {
-                items: 1,
-                    autoWidth: false,
-
+                items: 1
             },
-            400: {
-                items: 1,
-                autoWidth: true,
-                
+            600: {
+                items: 3
             },
             1000: {
-                items: 1,
-                autoWidth: true,
-                
+                items: 1
             }
         }
-        // stagePadding:20,
-        // loop: false,
-        // autoWidth: true,
-        // margin: 10,
-        // nav: false,
-        // responsive: {
-        //     0: {
-        //         items: 1
-        //     },
-        //     600: {
-        //         items: 3
-        //     },
-        //     1000: {
-        //         items: 1
-        //     }
-        // }
     })
 
     $('.carousel-menu-course').owlCarousel({

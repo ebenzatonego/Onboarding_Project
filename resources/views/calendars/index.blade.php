@@ -32,7 +32,7 @@
         }
 
         .calender-container {
-            height: calc(100dvh - 105px) !important;
+            height: calc(100dvh - 55px) !important;
         }
 
         .header-calendar,

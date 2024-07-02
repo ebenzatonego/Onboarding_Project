@@ -215,15 +215,15 @@
 
         }
 
-        @media (max-width: 378px) {
+       
+    }
+ @media (max-width: 378px) {
 
             .btn-filter-news {
                 font-size: 10px !important;
             }
 
         }
-    }
-
     .detail-on-img {
         position: absolute;
         bottom: -8%;

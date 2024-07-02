@@ -30,7 +30,7 @@
         width: 100%;
         height: 100%;
         object-fit: contain;
-
+        border-radius: 10px;
     }
 
     .owl-theme .owl-dots .owl-dot.active span,
@@ -231,7 +231,24 @@
         .btn-filter-news {
             font-size: 12px !important;
         }
+    }@media (max-width: 375px) {
+
+.carousel-fav-course .item {
+    height: 300px !important;
+    min-width: 300px !important;
+    color: #fff;
+
+}
+
+
+}
+@media (max-width: 378px) {
+
+    .btn-filter-news {
+        font-size: 10px !important;
     }
+
+}
 </style>
 
 <div class="tab-content container mt-2" id="pills-tabContent">

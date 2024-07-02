@@ -1099,10 +1099,8 @@
         bottom: -100px;
         left: 50%;
         transform: translate(-50%, -50%);
-        min-width: 42px;
-        min-height: 42px;
-        max-width: 42px;
-        max-height: 42px;
+        width: 42px;
+        height: 42px;
         background-color: #003781;
         color: #fff;
         border-radius: 50%;
@@ -1226,8 +1224,10 @@
                     </div>
 
 
-                    <button type="button" class="btn-close-modal-detail" data-dismiss="modal">
-                        <i class="fa-solid fa-xmark"></i>
+                    <button type="button" class="btn-close-modal-detail" data-dismiss="modal" style="padding: 0 !important;background-color: #fff !important;width: aoto !important;height: auto !important;border: none !important;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M21 42C32.62 42 42 32.62 42 21C42 9.38 32.62 0 21 0C9.38 0 0 9.38 0 21C0 32.62 9.38 42 21 42ZM13.7667 11.4333C13.1133 10.78 12.0867 10.78 11.4333 11.4333C10.78 12.0867 10.78 13.1133 11.4333 13.7667L18.7133 21L11.4333 28.2333C10.78 28.8867 10.78 29.9133 11.4333 30.5667C12.0867 31.22 13.1133 31.22 13.7667 30.5667L21 23.2867L28.2333 30.52C28.8867 31.1733 29.9133 31.1733 30.5667 30.52C31.22 29.8667 31.22 28.84 30.5667 28.1867L23.2867 21L30.52 13.7667C31.1733 13.1133 31.1733 12.0867 30.52 11.4333C29.8667 10.78 28.84 10.78 28.1867 11.4333L21 18.7133L13.7667 11.4333Z" fill="#003781"/>
+                        </svg>
                     </button>
                 </div>
 

@@ -336,22 +336,42 @@
 
                         // Initialize new carousel instance
                         $('.carousel-fav-course').owlCarousel({
-                            // stagePadding:20,
                             loop: false,
-                            autoWidth: true,
-                            margin: 10,
-                            nav: false,
-                            responsive: {
-                                0: {
-                                    items: 1
-                                },
-                                600: {
-                                    items: 3
-                                },
-                                1000: {
-                                    items: 1
-                                }
+                        margin: 10,
+                        nav: false,
+                        responsive: {
+                            0: {
+                                items: 1,
+                                 autoWidth: false,
+
+                            },
+                            400: {
+                                items: 1,
+                                autoWidth: true,
+                                
+                            },
+                            1000: {
+                                items: 1,
+                                autoWidth: true,
+                                
                             }
+                        }
+                            // stagePadding:20,
+                            // loop: false,
+                            // autoWidth: true,
+                            // margin: 10,
+                            // nav: false,
+                            // responsive: {
+                            //     0: {
+                            //         items: 1
+                            //     },
+                            //     600: {
+                            //         items: 3
+                            //     },
+                            //     1000: {
+                            //         items: 1
+                            //     }
+                            // }
                         });
                     });
 

@@ -205,16 +205,25 @@
             width: 49% !important;
         }
     }
+
     @media (max-width: 375px) {
 
         .carousel-fav-course .item {
-        height: 300px !important;
-        min-width:300px !important;
-        color: #fff;
+            height: 300px !important;
+            min-width: 300px !important;
+            color: #fff;
 
+        }
+
+        @media (max-width: 378px) {
+
+            .btn-filter-news {
+                font-size: 10px !important;
+            }
+
+        }
     }
 
-}
     .detail-on-img {
         position: absolute;
         bottom: -8%;
@@ -361,25 +370,25 @@
                         // Initialize new carousel instance
                         $('.carousel-fav-course').owlCarousel({
                             loop: false,
-                        margin: 10,
-                        nav: false,
-                        responsive: {
-                            0: {
-                                items: 1,
-                                 autoWidth: false,
+                            margin: 10,
+                            nav: false,
+                            responsive: {
+                                0: {
+                                    items: 1,
+                                    autoWidth: false,
 
-                            },
-                            400: {
-                                items: 1,
-                                autoWidth: true,
-                                
-                            },
-                            1000: {
-                                items: 1,
-                                autoWidth: true,
-                                
+                                },
+                                400: {
+                                    items: 1,
+                                    autoWidth: true,
+
+                                },
+                                1000: {
+                                    items: 1,
+                                    autoWidth: true,
+
+                                }
                             }
-                        }
 
                             // stagePadding:20,
                             // loop: false,
@@ -577,47 +586,27 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js'></script>
 <script>
     $('.carousel-menu-course').owlCarousel({
+        // stagePadding:20,
         loop: false,
-        margin: 10,
+        autoWidth: true,
+        margin: 20,
         nav: false,
+        dots: false,
+
         responsive: {
             0: {
-                items: 1,
-                    autoWidth: false,
-
+                margin: 20,
+                items: 6
             },
-            400: {
-                items: 1,
-                autoWidth: true,
-                
+            600: {
+                margin: 20,
+                items: 3
             },
             1000: {
-                items: 1,
-                autoWidth: true,
-                
+                margin: 40,
+                items: 1
             }
         }
-        // stagePadding:20,
-        // loop: false,
-        // autoWidth: true,
-        // margin: 20,
-        // nav: false,
-        // dots: false,
-
-        // responsive: {
-        //     0: {
-        //         margin: 20,
-        //         items: 6
-        //     },
-        //     600: {
-        //         margin: 20,
-        //         items: 3
-        //     },
-        //     1000: {
-        //         margin: 40,
-        //         items: 1
-        //     }
-        // }
     })
 
 

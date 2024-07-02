@@ -209,12 +209,12 @@
                             </li>
                             <li>
                                 <a class="btn" href="{{ url('/list_upper_al') }}">
-                                    <i class="fa-duotone fa-user-group"></i> Upper Al
+                                    <i class="fa-duotone fa-user-group"></i> AL upline
                                 </a>
                             </li>
                             <li>
                                 <a class="btn" href="{{ url('/group_manager') }}">
-                                    <i class="fa-solid fa-people-roof"></i> Group Manager
+                                    <i class="fa-solid fa-people-roof"></i> AVP / GM upline
                                 </a>
                             </li>
                             <li>

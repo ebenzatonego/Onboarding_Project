@@ -35,8 +35,18 @@
                 </a>
             </div>
             <div class="col-lg-12 mt-3 top-content">
-                <div id="div_content_highlight_number" class="owl-carousel carousel-fav-course owl-theme">
+                <div id="div_content_highlight_numberss" class="owl-carousel carousel-fav-course owl-theme">
                     <!-- Loop highlight of training_types -->
+                    <div class="item">
+                                        <a href="">
+                                            <img src="{{ url('/img/icon/ad.png') }}">
+                                        </a>
+                                    </div>
+                                    <div class="item">
+                                        <a href="">
+                                            <img src="{{ url('/img/icon/ad.png') }}">
+                                        </a>
+                                    </div>
                 </div>
             </div>
             <div class="col-lg-12 mt-3 bottom-content">
@@ -337,10 +347,22 @@
                     }
 
                     $('.carousel-fav-course').owlCarousel({
+                        // stagePadding:20,
                         loop: false,
                         autoWidth: true,
-                        nav: false,    
-                        dots: false,
+                        margin: 10,
+                        nav: false,
+                        // responsive: {
+                        //     0: {
+                        //         items: 1
+                        //     },
+                        //     600: {
+                        //         items: 3
+                        //     },
+                        //     1000: {
+                        //         items: 1
+                        //     }
+                        // }
                     })
 
                 }

@@ -81,7 +81,9 @@
             }
             .input-login-new{
                 height: 35px !important;
-            }
+            }.authentication-bottom {
+    min-height: 70% !important;
+}
         }
     }
 

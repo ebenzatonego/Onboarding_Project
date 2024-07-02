@@ -70,7 +70,7 @@
     .container-calender {
         flex-grow: 1;
         width: 100%;
-        overflow: auto;
+        /* overflow: auto; */
         padding: 10px 0;
 
     }

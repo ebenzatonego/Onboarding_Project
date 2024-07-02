@@ -321,7 +321,7 @@
         }
 
         .appointment {
-            padding:  0 20px 20px 40px!important;
+            padding:  0 20px 20px 60px!important;
             overflow: auto;
             transition: all .15s ease-in-out;
         }

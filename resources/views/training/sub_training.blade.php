@@ -4,7 +4,7 @@
     
     .carousel-fav-course .item {
         height: 311px;
-        /* min-width: 311px; */
+        min-width: 311px;
         color: #fff;
         padding:4px;
     }
@@ -340,18 +340,23 @@
                     $('.carousel-fav-course').owlCarousel({
                         // stagePadding:20,
                         loop: false,
-                        autoWidth: false,
                         margin: 10,
                         nav: false,
                         responsive: {
                             0: {
-                                items: 3
+                                items: 1,
+                                 autoWidth: false,
+
                             },
-                            600: {
-                                items: 3
+                            400: {
+                                items: 1,
+                                autoWidth: true,
+                                
                             },
                             1000: {
-                                items: 1
+                                items: 1,
+                                autoWidth: true,
+                                
                             }
                         }
                     })

@@ -25,7 +25,17 @@
     }
     .row-content{
         margin-right: 0 !important;
-    }
+    }@media (max-width: 375px) {
+
+.carousel-fav-course .item {
+    height: 300px !important;
+    min-width: 300px !important;
+    color: #fff;
+
+}
+
+
+}
 </style>
 <div class="container container-content">
     <div class="main-body">

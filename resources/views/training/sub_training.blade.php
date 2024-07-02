@@ -1,21 +1,40 @@
 @extends('layouts.theme_user')
 @section('content')
 <style>
-    .carousel-fav-course .item {
-        height: 311px;
-        min-width: 311px;
-        color: #fff;
-        padding:4px;
-    }
+   @media (max-width: 375px) {
+        .carousel-fav-course .item {
+            height: 311px;
+            min-width: 80vw;
+            color: #fff;
+            padding:4px;
+        }
+        .carousel-fav-course .item img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+            -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+            -moz-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        }
+    }@media (min-width: 375px) {
+        .carousel-fav-course .item {
+            height: 311px;
+            min-width: 311px;
+            color: #fff;
+            padding:4px;
+        }
+    
+        .carousel-fav-course .item img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+            -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+            -moz-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        }
 
-    .carousel-fav-course .item img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        border-radius: 10px;
-        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-        -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-        -moz-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     }
 
     .owl-theme .owl-dots .owl-dot.active span,
@@ -35,18 +54,8 @@
                 </a>
             </div>
             <div class="col-lg-12 mt-3 top-content">
-                <div id="div_content_highlight_numberss" class="owl-carousel carousel-fav-course owl-theme">
+                <div id="div_content_highlight_number" class="owl-carousel carousel-fav-course owl-theme">
                     <!-- Loop highlight of training_types -->
-                    <div class="item">
-                                        <a href="">
-                                            <img src="{{ url('/img/icon/ad.png') }}">
-                                        </a>
-                                    </div>
-                                    <div class="item">
-                                        <a href="">
-                                            <img src="{{ url('/img/icon/ad.png') }}">
-                                        </a>
-                                    </div>
                 </div>
             </div>
             <div class="col-lg-12 mt-3 bottom-content">

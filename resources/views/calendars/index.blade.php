@@ -619,7 +619,7 @@
 <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js'></script>
 
 <!-- MODAL ADD CALENDAR -->
-<div class="modal fade edit-form" id="modal_add_carlendar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade edit-form" id="modal_add_carlendar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 999999;">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content" style="border-radius: 8.214px;position: relative;">
             <button type="button" class="btn-close" style="position: absolute;  top: 30px;  right: 10px;  transform: translate(-50%, -50%);" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -719,7 +719,7 @@
 <button id="btn_open_modal_edit_carlendar" class="btn-add-schedule d-none" data-bs-toggle="modal" data-bs-target="#modal_edit_carlendar">
     แก้ไข
 </button>
-<div class="modal fade edit-form" id="modal_edit_carlendar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade edit-form" id="modal_edit_carlendar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 999999;">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content" style="border-radius: 8.214px;position: relative;">
             <button type="button" class="btn-close" style="position: absolute;  top: 30px;  right: 10px;  transform: translate(-50%, -50%);" data-bs-dismiss="modal" aria-label="Close"></button>

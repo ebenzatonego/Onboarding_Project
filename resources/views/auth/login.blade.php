@@ -50,7 +50,17 @@
         .authentication-top div {
             scale: .7 !important;
         }
-
+        @media (max-height: 630px) {
+            .authentication-top div {
+            scale: .5 !important;
+        }.authentication-bottom form p:first-child{
+            font-size: 20px !important;
+        }
+        .authentication-bottom form p:not(:first-child){
+            font-size: 14px !important;
+        }
+}
+}
 
         .authentication-top {
             min-height: 25% !important
@@ -553,6 +563,8 @@
     }
 
     #form_login {}
+
+    
 </style>
 
 @if(session('alert'))

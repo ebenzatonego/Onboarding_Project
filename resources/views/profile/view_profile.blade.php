@@ -909,7 +909,7 @@
 
             <div class="contact-leader mb-5">
                 @if( !empty($users->account_upper_al) && Auth::user()->current_rank == 'AG')
-                <p style="color: #003781;font-size: 16px;font-weight: bolder;">Upper Al</p>
+                <p style="color: #003781;font-size: 16px;font-weight: bolder;">Al Upline</p>
                 <div class="d-flex ">
                     <div>
                         <img src="{{ url('/img/icon/profile.png') }}" alt="" class="img-leader">

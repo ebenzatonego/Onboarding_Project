@@ -30,7 +30,7 @@
         width: 100%;
         height: 100%;
         object-fit: contain;
-
+        border-radius: 10px;
     }
 
     .owl-theme .owl-dots .owl-dot.active span,
@@ -208,7 +208,7 @@
 
     .detail-on-img {
         position: absolute;
-        bottom: -10%;
+        bottom: -8%;
         left: 50%;
         transform: translate(-50%, -50%);
         padding: 0 10px 0 25px;
@@ -547,27 +547,47 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js'></script>
 <script>
     $('.carousel-menu-course').owlCarousel({
-        // stagePadding:20,
         loop: false,
-        autoWidth: true,
-        margin: 20,
+        margin: 10,
         nav: false,
-        dots: false,
-
         responsive: {
             0: {
-                margin: 20,
-                items: 6
+                items: 1,
+                    autoWidth: false,
+
             },
-            600: {
-                margin: 20,
-                items: 3
+            400: {
+                items: 1,
+                autoWidth: true,
+                
             },
             1000: {
-                margin: 40,
-                items: 1
+                items: 1,
+                autoWidth: true,
+                
             }
         }
+        // stagePadding:20,
+        // loop: false,
+        // autoWidth: true,
+        // margin: 20,
+        // nav: false,
+        // dots: false,
+
+        // responsive: {
+        //     0: {
+        //         margin: 20,
+        //         items: 6
+        //     },
+        //     600: {
+        //         margin: 20,
+        //         items: 3
+        //     },
+        //     1000: {
+        //         margin: 40,
+        //         items: 1
+        //     }
+        // }
     })
 
 

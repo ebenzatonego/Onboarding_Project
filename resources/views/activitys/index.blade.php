@@ -208,8 +208,8 @@
     @media (max-width: 375px) {
 
         .carousel-fav-course .item {
-        height: 280px !important;
-        min-width:280px !important;
+        height: 300px !important;
+        min-width:300px !important;
         color: #fff;
 
     }

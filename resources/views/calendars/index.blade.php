@@ -321,7 +321,7 @@
         }
 
         .appointment {
-            padding-bottom: 200px !important;
+            padding-bottom: 10dvh!important;
             padding-left: 20px !important;
             padding-right: 20px !important;
             overflow: auto;

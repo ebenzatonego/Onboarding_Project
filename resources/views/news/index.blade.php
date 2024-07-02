@@ -16,9 +16,9 @@
         position: absolute;
         top: 0;
         width: 100%;
-        -webkit-box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
--moz-box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
-box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
+        -webkit-box-shadow: inset 0px -116px 64px -31px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: inset 0px -116px 64px -31px rgba(0, 0, 0, 0.75);
+        box-shadow: inset 0px -116px 64px -31px rgba(0, 0, 0, 0.75);
         border-radius: 15px !important;
         -webkit-border-radius: 15px !important;
         -moz-border-radius: 15px !important;
@@ -94,7 +94,7 @@ box-shadow: inset 0px -116px 64px -31px rgba(0,0,0,0.75);
         box-shadow: 0 0 2rem 0 rgb(136 152 170 / 15%);
         border-radius: 0.25rem;
         margin-bottom: 1.5rem;
-overflow: hidden;
+        overflow: hidden;
     }
 
     .course-item img {
@@ -130,6 +130,7 @@ overflow: hidden;
         overflow: hidden;
         word-break: break-word;
     }
+
     .category-course {
         display: flex;
         flex-wrap: wrap;
@@ -209,21 +210,26 @@ overflow: hidden;
         left: 50%;
         transform: translate(-50%, -50%);
         padding: 0 10px 0 25px;
-        
+
     }
+
     .detail-on-img p {
         white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 100%;
-    } @media (max-width:379px) {
-        .btn-filter-news {
-            font-size: 12px !important;
-        }
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
     }
+
     @media (max-width:347px) {
         .btn-filter-news {
             font-size: 10px !important;
+        }
+
+    }
+
+    @media (max-width:379px) {
+        .btn-filter-news {
+            font-size: 12px !important;
         }
     }
 </style>
@@ -236,7 +242,7 @@ overflow: hidden;
                     <a class="nav-link active btn-filter-news" id="pills-news-tab" data-toggle="pill" href="#pills-news" role="tab" aria-controls="pills-news" aria-selected="true">ข่าวสาร/การแข่งขัน</a>
                 </li>
                 <li class="nav-item px-1">
-                    <a class="nav-link btn-filter-news" id="pills-event-tab"  href="{{ url('/page_activitys') }}">ตารางกิจกรรม</a>
+                    <a class="nav-link btn-filter-news" id="pills-event-tab" href="{{ url('/page_activitys') }}">ตารางกิจกรรม</a>
                 </li>
             </ul>
         </div>
@@ -255,13 +261,13 @@ overflow: hidden;
                     <div class="col-lg-12 mt-3">
 
                         @php
-                            $data_news_type = App\Models\News_type::orderByRaw("CASE 
-                            WHEN number_menu IS NOT NULL THEN 1
-                            ELSE 2
-                            END, 
-                            number_menu ASC, 
-                            id DESC")
-                            ->get();
+                        $data_news_type = App\Models\News_type::orderByRaw("CASE
+                        WHEN number_menu IS NOT NULL THEN 1
+                        ELSE 2
+                        END,
+                        number_menu ASC,
+                        id DESC")
+                        ->get();
                         @endphp
 
                         <div class="owl-carousel carousel-menu-course owl-theme">
@@ -296,26 +302,26 @@ overflow: hidden;
         get_data_news('all');
     });
 
-    function get_data_news(news_type_id){
+    function get_data_news(news_type_id) {
 
         let item_type_news = document.querySelectorAll('.item_type_news');
-            item_type_news.forEach(item_type_news => {
-                item_type_news.classList.remove('active');
-            })
+        item_type_news.forEach(item_type_news => {
+            item_type_news.classList.remove('active');
+        })
 
-        document.querySelector('#item_type_news_'+news_type_id).classList.add('active');
+        document.querySelector('#item_type_news_' + news_type_id).classList.add('active');
 
         let div_content_highlight_number = document.querySelector('#div_content_highlight_number');
-            div_content_highlight_number.innerHTML = "";
+        div_content_highlight_number.innerHTML = "";
         let content_list_item_news = document.querySelector('#content_list_item_news');
-            content_list_item_news.innerHTML = "";
+        content_list_item_news.innerHTML = "";
 
-        fetch("{{ url('/') }}/api/get_data_news/" + news_type_id )
+        fetch("{{ url('/') }}/api/get_data_news/" + news_type_id)
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
 
-                if(result){
+                if (result) {
 
                     let promises = result.map((item, i) => {
                         return new Promise((resolve, reject) => {
@@ -350,24 +356,39 @@ overflow: hidden;
                     });
 
                 }
-        });
+            });
     }
 
-    function create_html_for_news(news_type_id,result){
+    function create_html_for_news(news_type_id, result) {
 
         // console.log(news_type_id);
 
         let div_content_highlight_number = document.querySelector('#div_content_highlight_number');
-            // div_content_highlight_number.innerHTML = "";
+        // div_content_highlight_number.innerHTML = "";
 
-        if(news_type_id == 'all'){
+        if (news_type_id == 'all') {
             // highlight_number ALL
-            if(result.highlight_number){
-                
+            if (result.highlight_number) {
+
                 let html_highlight_number = `
-                    <a href="{{ url('/news_show') }}/`+result.id+`">
+                    <a href="{{ url('/news_show') }}/` + result.id + `">
                         <div class="item">
-                            <img src="`+result.photo_cover+`">
+                            <img src="` + result.photo_cover + `">
+                        </div>
+                    </a>
+                `;
+
+                div_content_highlight_number.insertAdjacentHTML('beforeend', html_highlight_number); // แทรกล่างสุด
+
+            }
+        } else {
+            // highlight_of_type
+            if (result.highlight_of_type) {
+                // console.log(result.highlight_of_type);
+                let html_highlight_number = `
+                    <a href="{{ url('/news_show') }}/` + result.id + `">
+                        <div class="item">
+                            <img src="` + result.photo_cover + `">
                         </div>
                     </a>
                 `;
@@ -376,32 +397,16 @@ overflow: hidden;
 
             }
         }
-        else{
-            // highlight_of_type
-            if(result.highlight_of_type){
-                // console.log(result.highlight_of_type);
-                let html_highlight_number = `
-                    <a href="{{ url('/news_show') }}/`+result.id+`">
-                        <div class="item">
-                            <img src="`+result.photo_cover+`">
-                        </div>
-                    </a>
-                `;
-
-                div_content_highlight_number.insertAdjacentHTML('beforeend', html_highlight_number); // แทรกล่างสุด
-
-            } 
-        }
 
         let content_list_item_news = document.querySelector('#content_list_item_news');
 
         // Check bookmark
         let check_fav = ``;
         let user_id = "{{ Auth::user()->id }}";
-        let user_fav_text  = result.user_fav ;
-            // console.log(user_fav_text );
+        let user_fav_text = result.user_fav;
+        // console.log(user_fav_text );
 
-        if(user_fav_text){
+        if (user_fav_text) {
             let user_fav;
             try {
                 user_fav = JSON.parse(user_fav_text);
@@ -424,22 +429,22 @@ overflow: hidden;
         }
 
         let textWithoutHtml = ``;
-        if(result.detail){
+        if (result.detail) {
             textWithoutHtml = result.detail.replace(/(<([^>]+)>)/gi, "");
         }
 
         let html = `
-            <a href="{{ url('/news_show') }}/`+result.id+`" class="course-item `+check_fav+`">
-                <img src="`+result.photo_cover+`">
+            <a href="{{ url('/news_show') }}/` + result.id + `" class="course-item ` + check_fav + `">
+                <img src="` + result.photo_cover + `">
                 <div class="ms-3">
                     <p class="title-course">
-                        `+result.title+`
+                        ` + result.title + `
                     </p>
                     <p class="detail-course">
-                        `+textWithoutHtml+`
+                        ` + textWithoutHtml + `
                     </p>
                     <div class="category-course">
-                        <span>#`+result.name_type+`</span>
+                        <span>#` + result.name_type + `</span>
                     </div>
                 </div>
                 <div class="fav-course">
@@ -459,7 +464,6 @@ overflow: hidden;
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js'></script>
 <script>
-
     $('.carousel-fav-course').owlCarousel({
         // stagePadding:20,
         loop: false,
@@ -503,7 +507,7 @@ overflow: hidden;
         }
     })
 
-    
+
     $('a[data-toggle="pill"]').on('shown.bs.tab', function(e) {
         e.target // newly activated tab
         e.relatedTarget // previous active tab

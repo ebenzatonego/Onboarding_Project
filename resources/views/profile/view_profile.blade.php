@@ -654,7 +654,7 @@
                                 </div>
                             </div>
                             <center>
-                                <span id="btn_update_my_goal" class="btn mt-3 py-1" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);background-color: #ffffff;border-radius: 7.5px;width: 50%;font-size: 13.99px;color: #003781;" onclick="update_my_goal();">
+                                <span id="btn_update_my_goal" class="btn mt-3 py-1" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);background-color: #ffffff;border-radius: 7.5px;width: 80%;font-size: 13.99px;color: #003781;" onclick="update_my_goal();">
                                     กดยืนยันเมื่อทำสำเร็จแล้ว
                                 </span>
                             </center>

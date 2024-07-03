@@ -182,19 +182,27 @@
                         if (result[i].icon) {
                             if(result[i].icon == 'Article'){
                                 html_icon = icon_Article ;
-                                html_read = `read : `+result[i].read+` นาที`;
+                                if(result[i].read){
+                                    html_read = `read : `+result[i].read+` นาที`;
+                                }
                             }
                             else if(result[i].icon == 'PDF'){
                                 html_icon = icon_PDF ;
-                                html_read = `PDF : `+result[i].read+` นาที`;
+                                if(result[i].read){
+                                    html_read = `PDF : `+result[i].read+` นาที`;
+                                }
                             }
                             else if(result[i].icon == 'Video'){
                                 html_icon = icon_Video ;
-                                html_read = result[i].read.replace('0 นาที' , '');
+                                if(result[i].read){
+                                    html_read = result[i].read.replace('0 นาที' , '');
+                                }
                             }
                             else if(result[i].icon == 'Photo'){
                                 html_icon = icon_Photo ;
-                                html_read = `Gallery : `+result[i].read+` pictures`;
+                                if(result[i].read){
+                                    html_read = `Gallery : `+result[i].read+` pictures`;
+                                }
                             }
                         }
 

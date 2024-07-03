@@ -172,7 +172,7 @@
                             `;
                         }
 
-                        let textWithoutHtml = `<br><br><br>`;
+                        let textWithoutHtml = ``;
                         if(result[i].detail){
                             textWithoutHtml = result[i].detail.replace(/(<([^>]+)>)/gi, "");
                         }

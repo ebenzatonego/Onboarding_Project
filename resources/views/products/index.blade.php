@@ -10,7 +10,7 @@
     }
 
     .carousel-fav-product .item img {
-        width: 100%;
+        width: auto;
         height: 100%;
         object-fit: contain;
         border-radius: 10px;

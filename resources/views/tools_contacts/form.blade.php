@@ -18,7 +18,7 @@
             </div>
             <div class="col-md-12">
                 <label for="mail" class="form-label">หัวข้อ</label>
-                <input class="form-control" list="list_type" id="type" onchange="check_data_for_submit();" name="type">
+                <input class="form-control" list="list_type" id="type" onchange="check_data_for_submit();" name="type" value="{{ isset($tools_contact->type) ? $tools_contact->type : ''}}">
                 <datalist id="list_type">
                     @foreach($data_type as $item)
                     <option data-value="{{$item->type}}">{{$item->type}}</option>

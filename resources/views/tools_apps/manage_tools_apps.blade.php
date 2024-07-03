@@ -75,48 +75,22 @@
 		</script>
         <div class="col-12 mt-2">
             <div class="card-body p-0">
-                <div class="table-responsive">
-
-                	<div class="row text-center">
-                		<div class="col-2">
-                			<b>Photo</b>
-                		</div>
-                		<div class="col-2">
-                			<b>Name</b>
-                		</div>
-                		<div class="col-1">
-                			<b>Type</b>
-                		</div>
-                		<div class="col-4">
-                			<b>Detail</b>
-                		</div>
-                		<div class="col-2">
-                			<b>number</b>
-                		</div>
-                		<div class="col-1">
-                			<!--  -->
-                		</div>
-                	</div>
-                	<div id="content_tbody" class="row">
-                		
-                	</div>
-
-                    <!-- <table class="table mb-0">
+                <div class="">
+                	<table class="table mb-0 table-hover" >
                         <thead>
                             <tr>
-                                <th>Photo</th>
-                                <th>Name</th>
-                                <th>Type</th>
-                                <th>Detail</th>
-                                <th>number</th>
-                                <th></th>
+                                <th scope="col"></th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Type</th>
+                                <th scope="col" style="max-width: 200px;">Detail</th>
+                                <th scope="col" style="max-width: 200px;">Link Web</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
-                        <tbody id="content_tbody" class="">
-
+                        <tbody id="content_tbody">
+                            
                         </tbody>
-                    </table> -->
-
+                    </table>
                 </div>
             </div>
         </div>
@@ -147,62 +121,63 @@
                 		img_profile = result[i].photo_icon ;
                 	}
 
-                	let html_admin ;
-                	if(result[i].role == "Super-admin"){
-                		html_admin = `
-                			<span style="font-size:14px;" class="badge badge-pill bg-success">Super-admin</span>
+                	let type_app = `` ;
+                	let html_link = `` ;
+
+                	if(result[i].type == 'เว็บไซต์'){
+                		type_app = `Web`;
+                		html_link = `
+                			<h6><b>Link Web : </b>`+result[i].link_web+`</h6>
                 		`;
                 	}
-                	else if(result[i].role == "Admin"){
-						html_admin = `
-                			<span style="font-size:14px;" class="badge badge-pill bg-info">Admin</span>
-                		`;
-                	}
-                	else if(result[i].role == "Staff"){
-						html_admin = `
-                			<span style="font-size:14px;" class="badge badge-pill bg-warning">Staff</span>
+                	else if(result[i].type == 'แอปพลิเคชั่น'){
+                		type_app = `App`;
+                		html_link = `
+                			<h6><b>Link IOS : </b>`+result[i].link_ios+`</h6>
+                			<h6><b>Link Android : </b>`+result[i].link_android+`</h6>
                 		`;
                 	}
 
-                	let nickname = `-`;
-                	let email = `-`;
-                	let phone = `-`;
-
-                	if(result[i].nickname){
-                		nickname = result[i].nickname ;
+                	let number = ``;
+                	if(result[i].number){
+                		number = result[i].number ;
                 	}
 
-                	if(result[i].email){
-                		email = result[i].email ;
-                	}
-
-                	if(result[i].phone){
-                		phone = result[i].phone ;
-                	}
+                	let textWithoutHtml = ``;
+                  	if(result[i].detail){
+                      	textWithoutHtml = result[i].detail.replace(/(<([^>]+)>)/gi, "");
+                  	}
 
                     let html = `
-
-                		<div class="col-2">
-                			<b>Photo</b>
-                		</div>
-                		<div class="col-2">
-                			<b>Name</b>
-                		</div>
-                		<div class="col-1">
-                			<b>Type</b>
-                		</div>
-                		<div class="col-4">
-                			<b>Detail</b>
-                		</div>
-                		<div class="col-2">
-                			<b>number</b>
-                		</div>
-                		<div class="col-1">
-                			<!--  -->
-                		</div>
-            			<hr>
-
-                        
+                    	<tr type_app="`+type_app+`">
+                            <td>
+                        		<div class="product-img">
+						            <img src="`+img_profile+`" class="p-1" alt="">
+						            <span class="d-none">
+						            	`+img_profile+`
+						            </span>
+						        </div>
+                            </td>
+                            <td>
+                            	`+result[i].name+`
+                            </td>
+                            <td>
+                            	`+type_app+`
+                            </td>
+                            <td>
+                            	`+textWithoutHtml+`
+                            </td>
+                            <td>
+                            	`+html_link+`
+                            </td>
+                            <td>
+                                <a href="" class="btn btn-primary btn-sm mb-2 w-100" title="Edit Tools_contact">Number</a>
+                                <br>
+                                <a href="" class="btn btn-primary btn-sm mb-2 w-100" title="Edit Tools_contact">Edit</a>
+                                <br>
+                                <button type="submit" class="btn btn-danger btn-sm mb-2 w-100" title="Delete Tools_contact"> Delete</button>
+                            </td>
+                        </tr>
                     `;
 
                     content_tbody.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
@@ -215,19 +190,34 @@
 
 @endsection
 
-
-<!-- <tr type_app="`+result[i].type+`" class="list_admin">
-    <td style="width:20%;">
-        <div class="product-img">
-            <img src="`+img_profile+`" class="p-1" alt="">
-            <span class="d-none">
-            	`+img_profile+`
-            </span>
-        </div>
-    </td>
-    <td style="width:20%;">`+result[i].name+`</td>
-    <td style="width:20%;">`+result[i].type+`</td>
-    <td style="width:20%;">`+result[i].detail+`</td>
-    <td style="width:20%;">`+result[i].number+`</td>
-    <td style="width:20%;"></td>
-</tr> -->
+<!-- <div  class="row">
+	<div class="col-2">
+		
+	</div>
+	<div class="col-3">
+		<h6><b>Name : </b></h6>
+		<h6><b>Type : </b></h6>
+	</div>
+	<div class="col-7">
+		<h6><b>Detail : </b></h6>
+		
+	</div>
+	<div class="col-12 mt-1">
+		<button type="button" class="btn btn-sm btn-danger float-end mx-1" style="width:10%;">
+			ลบ
+		</button>
+		<button type="button" class="btn btn-sm btn-warning float-end mx-1" style="width:10%;">
+			แก้ไข
+		</button>
+		<div class="btn-group float-end" style="width:10%;">
+		  <button type="button" class="btn btn-info btn-sm dropdown-toggle mx-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    ลำดับ
+		  </button>
+		  <div class="dropdown-menu">
+		    <a class="dropdown-item" href="#">Action</a>
+		    <a class="dropdown-item" href="#">Another action</a>
+		  </div>
+		</div>
+	</div>
+</div>
+<hr> -->

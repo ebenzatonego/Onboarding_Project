@@ -374,6 +374,8 @@
 
     function get_data_news(news_type_id) {
 
+        carousel_menu.trigger('to.owl.carousel', [set_center[news_type_id], 300, true]);
+        
         let item_type_news = document.querySelectorAll('.item_type_news');
         item_type_news.forEach(item_type_news => {
             item_type_news.classList.remove('active');
@@ -397,6 +399,7 @@
 
                     let promises = result.map((item, i) => {
                         return new Promise((resolve, reject) => {
+                            set_center[item.id] = parseInt(i + 1);
                             create_html_for_news(news_type_id, item);
                             resolve();
                         });
@@ -431,7 +434,6 @@
                                 // }
                             });
 
-                            carousel_menu.trigger('to.owl.carousel', [set_center['all'], 300, true]);
                         });
                     }, 100);
 

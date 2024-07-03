@@ -1320,6 +1320,8 @@
 
                 select_show_content_by_dateClick(formattedDate);
                 document.querySelector('#p_view_content_all').classList.remove('d-none');
+                test();
+
             },
             headerToolbar: {
                 left: 'prev,next',

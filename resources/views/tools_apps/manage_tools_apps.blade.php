@@ -80,9 +80,8 @@
                         <thead>
                             <tr>
                                 <th scope="col"></th>
-                                <th scope="col">Name</th>
+                                <th scope="col">Name / Detail</th>
                                 <th scope="col">Type</th>
-                                <th scope="col" style="max-width: 100px;">Detail</th>
                                 <th scope="col" style="max-width: 200px;">Link Web</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -160,14 +159,13 @@
                             </td>
                             <td>
                             	`+result[i].name+`
+                            	<br>
+                            	`+textWithoutHtml+`
                             </td>
                             <td>
                             	`+type_app+`
                             </td>
-                            <td style="max-width: 100px;">
-                            	`+textWithoutHtml+`
-                            </td>
-                            <td style="max-width: 200px;">
+                            <td>
                             	`+html_link+`
                             </td>
                             <td>

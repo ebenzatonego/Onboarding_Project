@@ -19,6 +19,22 @@
 	    align-items: center;
 	    justify-content: center;
     }
+
+    .i_Highlight {
+	    animation: bounce-twice 2s;
+	  }
+
+	  @keyframes bounce-twice {
+	    0%, 20%, 50%, 80%, 100% {
+	      transform: translateY(0);
+	    }
+	    40% {
+	      transform: translateY(-30px);
+	    }
+	    60% {
+	      transform: translateY(-15px);
+	    }
+	  }
 </style>
 
 <div class="card border-top border-0 border-4 border-dark">
@@ -115,6 +131,8 @@
 
                 for (let i = 0; i < result.length; i++) {
 
+                	let html_sort_number = create_html_sort_number(result[i].id , result.length);
+
                 	let img_profile = `{{ url('/img/icon/icon-all-training.png') }}`;
                 	if(result[i].photo_icon){
                 		img_profile = result[i].photo_icon ;
@@ -187,8 +205,7 @@
 								    	จัดลำดับ
 								  	</button>
 								  	<div class="dropdown-menu">
-								    	<a class="dropdown-item" href="#">Action</a>
-								    	<a class="dropdown-item" href="#">Another action</a>
+								    	`+html_sort_number+`
 								  	</div>
 								</div>
                                 <br>
@@ -210,6 +227,77 @@
                     content_tbody.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
                 }
         });
+    }
+
+    function create_html_sort_number(id , length){
+        let html_sort_number = ``;
+
+        for (let xi = 0; xi < length; xi++) {
+            let count_r = xi + 1 ;
+            if(xi == 0){
+                html_sort_number = `
+                    <a class="dropdown-item btn" onclick="change_sort_number_tools_app('`+id+`' , 'ว่าง')">ว่าง</a>
+                    <a class="dropdown-item btn" onclick="change_sort_number_tools_app('`+id+`' , '`+count_r+`')">`+count_r+`</a>
+                `;
+            }
+            else{
+                html_sort_number = html_sort_number + `
+                    <a class="dropdown-item btn" onclick="change_sort_number_tools_app('`+id+`' , '`+count_r+`')">`+count_r+`</a>
+                `;
+            }
+        }
+
+        return html_sort_number ;
+    }
+
+    function change_sort_number_tools_app(id , number){
+    // console.log(id);
+    // console.log(number);
+
+    fetch("{{ url('/') }}/api/change_sort_number_tools_app/" + id  + "/" + number)
+      .then(response => response.json())
+      .then(result => {
+          // console.log(result);
+
+          if(result['old_id']){
+            let span_Highlight_old_id = document.querySelector('#span_Highlight_id_'+result['old_id']);
+
+            if(result['old_id_change_to']){
+                span_Highlight_old_id.innerHTML = `
+                  <span id="span_Highlight_id_`+result['old_id']+`">
+                    <i class="i_Highlight fa-solid fa-circle-`+result['old_id_change_to']+` font-24 float-end text-success"></i>
+                  </span>
+                `;
+
+                let icon_1 = document.getElementById('span_Highlight_id_'+result['old_id']);
+                    icon_1.classList.remove('i_Highlight');
+                    // void icon_1.offsetWidth; // Trigger reflow
+                    setTimeout(() => {
+                      icon_1.classList.add('i_Highlight');
+                    }, 500);
+                  }
+            else{
+              span_Highlight_old_id.innerHTML = `
+                <span id="span_Highlight_id_`+result['old_id']+`" class="float-end">..</span>
+              `;
+            }
+          }
+
+          let select = document.querySelector('#span_Highlight_id_'+id);
+          select.innerHTML = `
+            <span id="span_Highlight_id_`+id+`">
+              <i class="i_Highlight fa-solid fa-circle-`+number+` font-24 float-end text-success"></i>
+            </span>
+          `;
+
+          let icon_2 = document.getElementById('span_Highlight_id_'+id);
+              icon_2.classList.remove('i_Highlight');
+              // void icon_2.offsetWidth; // Trigger reflow
+              setTimeout(() => {
+                icon_2.classList.add('i_Highlight');
+              }, 500);
+
+      });
     }
 
     

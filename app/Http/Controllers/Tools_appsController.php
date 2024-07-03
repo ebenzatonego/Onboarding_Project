@@ -154,4 +154,47 @@ class Tools_appsController extends Controller
 
         return $tools_app ;
     }
+
+    function change_sort_number_tools_app($id , $number){
+
+        $data = [];
+
+        $Highlight_number_old = Tools_app::where('number', $number)->first();
+        $Highlight_number_select = Tools_app::where('id', $id)->first();
+
+        if( !empty($Highlight_number_select->number) ){
+            $data['old_id_change_to'] = $Highlight_number_select->number;
+        }
+        else{
+            $data['old_id_change_to'] = null;
+        }
+
+        if( !empty($Highlight_number_old->id) ){
+            $data['old_id'] = $Highlight_number_old->id;
+
+            DB::table('tools_apps')
+                ->where([ 
+                        ['id', $data['old_id']],
+                    ])
+                ->update([
+                        'number' => $data['old_id_change_to'],
+                    ]);
+        }
+
+        if($number == 'ว่าง'){
+            $number = null ;
+        }
+
+        DB::table('tools_apps')
+            ->where([ 
+                    ['id', $id],
+                ])
+            ->update([
+                    'number' => $number,
+                ]);
+        
+
+        return $data;
+
+    }
 }

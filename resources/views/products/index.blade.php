@@ -5,6 +5,7 @@
         height: 311px;
         width: 311px;
         color: #fff;
+        padding:4px;
 
     }
 
@@ -13,8 +14,22 @@
         height: 100%;
         object-fit: contain;
         border-radius: 10px;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        -moz-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     }
-
+    .row-content{
+        margin-right: 0 !important;
+    }
+    @media (max-width: 575px) {
+        .container-content ,.content-section .container,.content-section,.bottom-content ,.top-content{
+        padding-right: 0;
+        }
+        .container-product{
+        padding-right: calc(var(--bs-gutter-x, .85rem ))  !important;
+        
+        }
+    }
     .owl-theme .owl-dots .owl-dot.active span,
     .owl-theme .owl-dots .owl-dot:hover span {
         background: #003781;
@@ -88,7 +103,7 @@
 </style>
 <div class="container mb-5">
     <div class="main-body">
-        <div class="row">
+        <div class="row row-content">
             <div class="mt-2 d-flex flex-wrap w-100 d-flex justify-content-center">
                 <!-- <a href="" class="d-flex align-items-center" style="color: #003781; font-size: 18px; font-weight: bolder;">
                     <i class="fa-regular fa-chevron-left me-3"></i> <span class="mt-1">กลับหน้ารวมหลักสูตร/อมรม/สอบ</span>
@@ -102,12 +117,12 @@
                 <a class="btn-product active" href="{{ url('/page_products') }}">ผลิตภัณฑ์</a>
                 <a class="btn-product" href="{{ url('/page_products_fav') }}">ผลิตภัณฑ์โปรด</a>
             </div>
-            <div class="col-lg-12 mt-3">
+            <div class="col-lg-12 mt-3 pe-0">
                 <div id="div_content_highlight_number" class="owl-carousel carousel-fav-product owl-theme">
                     <!-- highlight_number -->
                 </div>
             </div>
-            <div class="col-lg-12 mt-3">
+            <div class="col-lg-12 mt-3 pe-0">
                 <style>
                     .carousel-menu-product .item {
                         width: 75px;
@@ -280,7 +295,7 @@
                     }
                 </style>
 
-                <div id="content_list_item_product" class="container-product mt-4">
+                <div id="content_list_item_product" class="container-product mt-4" >
                     <!-- content_list_item_product -->
                 </div>
                 <style>

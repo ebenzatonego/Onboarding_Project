@@ -296,14 +296,20 @@
     .fc-license-message {
         display: none !important;
     }
+   
+    @media (max-height: 560px) {
+ .container-calender {
+            margin-top: -10px !important;
 
+        }
+    }
     @media only screen and (max-width: 767px) {
         .header-fc-pc {
             display: none !important;
         }
 
         .container-calender {
-            margin-top: 20px !important;
+            margin-top: 20px;
 
         }
 

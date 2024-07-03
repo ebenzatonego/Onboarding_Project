@@ -15,6 +15,7 @@
         display: flex !important;
         flex-direction: column !important;
         padding: 80px 0 0 0 !important;
+        overflow: hidden;
     }
 
     @media only screen and (max-width: 767px) {
@@ -321,7 +322,7 @@
         }
 
         .appointment {
-            padding-bottom: 10dvh!important;
+            padding-bottom: 150px!important;
             padding-left: 20px !important;
             padding-right: 20px !important;
             overflow: auto;
@@ -352,7 +353,6 @@
         border-radius: 10px;
         background: #FFF;
         box-shadow: 0px -1px 13px 0px #B8C6D8;
-
     }
 
     .header-fc-pc {
@@ -572,7 +572,7 @@
         </div>
         <div class="container-calender">
             <div class="card-calender h-100">
-                <div class="card p-3 h-100 position-relative card-calender" style="position: relative;">
+                <div class="card px-3 mb-0 h-100 position-relative card-calender" style="position: relative;">
                     <a class="btn-show-all-calender" onclick="document.querySelector('#my_calendar').classList.toggle('d-none');document.querySelector('#icon_show_my_calender').classList.toggle('d-none');document.querySelector('.appointment').classList.toggle('show')">
                         <svg xmlns="http://www.w3.org/2000/svg" width="39" height="39" viewBox="0 0 39 39" fill="none">
                             <circle cx="19.5" cy="19.5" r="19.5" fill="#D9D9D9" />

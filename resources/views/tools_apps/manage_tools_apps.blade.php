@@ -142,7 +142,7 @@
         fetch("{{ url('/') }}/api/get_data_tools_apps")
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 let content_tbody = document.querySelector('#content_tbody');
                     content_tbody.innerHTML = '' ;

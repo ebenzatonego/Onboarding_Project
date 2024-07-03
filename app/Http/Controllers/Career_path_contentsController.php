@@ -10,6 +10,7 @@ use App\Models\Career_path_content;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Log_delete_content;
 
 class Career_path_contentsController extends Controller
 {
@@ -128,6 +129,16 @@ class Career_path_contentsController extends Controller
      */
     public function destroy($id)
     {
+        $career_path = Career_path_content::where('id',$id)->first();
+        $user_id = Auth::user()->id ;
+
+        $data = [];
+        $data['type'] = 'career_path';
+        $data['user_id'] = $user_id;
+        $data['career_path_content_name'] = $career_path->title;
+
+        Log_delete_content::create($data);
+
         Career_path_content::destroy($id);
 
         return redirect('career_path_contents')->with('flash_message', 'Career_path_content deleted!');
@@ -139,7 +150,14 @@ class Career_path_contentsController extends Controller
             ->where('number_story',$number_story)
             ->first();
 
-        $data = Career_path_content::where('career_path_id', $check_data->id)->get();
+        $data = Career_path_content::where('career_path_id', $check_data->id)
+            ->orderByRaw("CASE 
+                        WHEN number IS NOT NULL THEN 1
+                        ELSE 2
+                        END, 
+                        number ASC, 
+                        id DESC")
+            ->get();
 
         foreach ($data as $item) {
             $item->title_story = $check_data->title_story ;
@@ -280,11 +298,13 @@ class Career_path_contentsController extends Controller
 
     }
 
-    function get_data_career_path_contents(){
+    function get_data_career_path_contents($now_rank , $now_story){
 
         $data = DB::table('career_path_contents')
             ->join('career_paths', 'career_paths.id', '=', 'career_path_contents.career_path_id')
-            ->select('career_path_contents.*', 'career_paths.name_rank')
+            ->where('career_paths.name_rank' , $now_rank)
+            ->where('career_paths.number_story' , $now_story)
+            ->select('career_path_contents.*', 'career_paths.name_rank', 'career_paths.number_story')
             ->orderByRaw("CASE 
                         WHEN number IS NOT NULL THEN 1
                         ELSE 2
@@ -294,6 +314,51 @@ class Career_path_contentsController extends Controller
             ->get();
 
         return $data ;
+
+    }
+
+    function change_sort_number($id , $number , $type){
+
+        $data = [];
+
+        $Highlight_number_old = Career_path_content::where('career_path_id' , $type)
+            ->where('number', $number)
+            ->first();
+        $Highlight_number_select = Career_path_content::where('id', $id)->first();
+
+        if( !empty($Highlight_number_select->number) ){
+            $data['old_id_change_to'] = $Highlight_number_select->number;
+        }
+        else{
+            $data['old_id_change_to'] = null;
+        }
+
+        if( !empty($Highlight_number_old->id) ){
+            $data['old_id'] = $Highlight_number_old->id;
+
+            DB::table('career_path_contents')
+                ->where([ 
+                        ['id', $data['old_id']],
+                    ])
+                ->update([
+                        'number' => $data['old_id_change_to'],
+                    ]);
+        }
+
+        if($number == 'ว่าง'){
+            $number = null ;
+        }
+
+        DB::table('career_path_contents')
+            ->where([ 
+                    ['id', $id],
+                ])
+            ->update([
+                    'number' => $number,
+                ]);
+        
+
+        return $data;
 
     }
 }

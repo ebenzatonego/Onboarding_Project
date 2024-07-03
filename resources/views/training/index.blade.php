@@ -281,8 +281,11 @@
                             <img src="{{ url('/img/icon/icon-all-training.png') }}" alt="" width="71">
                         </div>
                         <div>
+                            <span style="font-size: 24px;font-weight: bolder;">{{ $count_training_type }}</span>
+                            <span id style="font-size:14 px;">&nbsp;หมวดหมู่</span>
+                            <br>
                             <span style="font-size: 24px;font-weight: bolder;">{{ count($training) }}</span>
-                            <span id style="font-size:14 px;">หลักสูตร</span>
+                            <span id style="font-size:14 px;">&nbsp;หลักสูตร</span>
                         </div>
                     </div>
                 </a>

@@ -26,6 +26,8 @@ class TrainingController extends Controller
         $perPage = 25;
 
         $training = Training::where('status' , 'Yes')->latest()->paginate($perPage);
+        $data_Training_type = Training_type::get();
+        $count_training_type = count($data_Training_type);
 
         $photo_menu_highlight_1 = Training_type::where('check_highlight' , '1')
             ->select('photo_menu','id')
@@ -43,7 +45,7 @@ class TrainingController extends Controller
             ->select('photo_menu','id')
             ->first();
 
-        return view('training.index', compact('training','photo_menu_highlight_1','photo_menu_highlight_2','photo_menu_highlight_3','photo_menu_highlight_4'));
+        return view('training.index', compact('training','photo_menu_highlight_1','photo_menu_highlight_2','photo_menu_highlight_3','photo_menu_highlight_4','count_training_type'));
     }
 
     /**

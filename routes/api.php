@@ -172,6 +172,7 @@ Route::get('/get_data_show_tools_contact', 'Tools_contactsController@get_data_sh
 // Tools App
 Route::get('/get_data_tools_apps', 'Tools_appsController@get_data_tools_apps');
 Route::get('/change_sort_number_tools_app/{id}/{number}', 'Tools_appsController@change_sort_number_tools_app');
+Route::post('/save_data_edit_tools_apps', 'Tools_appsController@save_data_edit_tools_apps');
 
 
 // Career Paths

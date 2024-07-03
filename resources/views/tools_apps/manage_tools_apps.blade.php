@@ -209,7 +209,7 @@
 								  	</div>
 								</div>
                                 <br>
-                                <a href="" class="btn btn-warning btn-sm mb-2 w-100" title="Edit Tools_contact">
+                                <a href="{{ url('/edit_tools_app') }}/`+result[i].id+`" class="btn btn-warning btn-sm mb-2 w-100" title="Edit Tools_contact" >
                                 	แก้ไข
                                 </a>
                                 <br>

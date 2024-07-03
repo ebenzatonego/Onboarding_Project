@@ -163,8 +163,11 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
 
     // Tools Contacts
     Route::resource('tools_contacts', 'Tools_contactsController');
+
+    // Tools APP
     Route::resource('tools_apps', 'Tools_appsController');
     Route::get('/manage_tools_apps', 'Tools_appsController@manage_tools_apps');
+    Route::get('/edit_tools_app/{id}', 'Tools_appsController@edit_tools_app');
 
     // Career Paths
     Route::resource('career_paths', 'Career_pathsController');

@@ -197,4 +197,29 @@ class Tools_appsController extends Controller
         return $data;
 
     }
+
+    function edit_tools_app($id){
+        $tools_app = Tools_app::findOrFail($id);
+
+        return view('tools_apps.edit_data', compact('tools_app'));
+    }
+
+    function save_data_edit_tools_apps(Request $request)
+    {
+        $requestData = $request->all();
+
+        if($requestData['type'] == 'แอปพลิเคชั่น'){
+            $requestData['link_web'] = null ;
+        }
+        else{
+            $requestData['link_ios'] = null ;
+            $requestData['link_android'] = null ;
+        }
+
+        $data = Tools_app::findOrFail($requestData['id']);
+        $data->update($requestData);
+
+        return 'success' ;
+
+    }
 }

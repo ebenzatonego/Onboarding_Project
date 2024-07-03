@@ -369,9 +369,6 @@
         get_data_news('all');
     });
 
-    var carousel_menu;
-    var set_center = [];
-
     function get_data_news(news_type_id) {
 
         let item_type_news = document.querySelectorAll('.item_type_news');
@@ -393,11 +390,8 @@
 
                 if (result) {
 
-                    set_center['all'] = 0;
-
                     let promises = result.map((item, i) => {
                         return new Promise((resolve, reject) => {
-                            set_center[item.id] = parseInt(i + 1);
                             create_html_for_news(news_type_id, item);
                             resolve();
                         });
@@ -409,7 +403,7 @@
                             $('.carousel-fav-course').trigger('destroy.owl.carousel');
 
                             // Initialize new carousel instance
-                            carousel_menu = $('.carousel-fav-course').owlCarousel({
+                            $('.carousel-fav-course').owlCarousel({
                                 margin: 10,
                                 loop: false,
                                 autoWidth: true,
@@ -431,9 +425,6 @@
                                 //     }
                                 // }
                             });
-
-                            carousel_menu.trigger('to.owl.carousel', [set_center[news_type_id], 300, true]);
-
                         });
                     }, 100);
 

@@ -218,15 +218,17 @@
 
         }
 
-       
+
     }
- @media (max-width: 378px) {
 
-            .btn-filter-news {
-                font-size: 10px !important;
-            }
+    @media (max-width: 378px) {
 
+        .btn-filter-news {
+            font-size: 10px !important;
         }
+
+    }
+
     .detail-on-img {
         position: absolute;
         bottom: -8%;
@@ -241,11 +243,14 @@
         overflow: hidden;
         text-overflow: ellipsis;
         width: 100%;
-    }@media (max-width: 450px) {
+    }
+
+    @media (max-width: 450px) {
         .btn-filter-news {
             font-size: 11px !important;
         }
     }
+
     .row-content {
         margin-right: 0 !important;
     }
@@ -260,14 +265,24 @@
         }
 
 
-    }  @media (max-width: 575px) {
-        .container-content ,.content-section .container,.content-section,.bottom-content ,.top-content{
-        padding-right: 0;
+    }
+
+    @media (max-width: 575px) {
+
+        .container-content,
+        .content-section .container,
+        .content-section,
+        .bottom-content,
+        .top-content {
+            padding-right: 0;
         }
-        .container-course ,.nav-pills{
-        padding-right: calc(var(--bs-gutter-x, .75rem) + 12px) ;
-        
-    }}
+
+        .container-course,
+        .nav-pills {
+            padding-right: calc(var(--bs-gutter-x, .75rem) + 12px);
+
+        }
+    }
 </style>
 
 <div class="tab-content container mt-2" id="pills-tabContent">
@@ -307,13 +322,13 @@
                         @endphp
 
                         <div class="owl-carousel carousel-menu-course owl-theme">
-                            <div class="item" onclick="get_data_activitys('all');">
+                            <div class="item" onclick="get_data_activitys('all');" id="0">
                                 <div id="item_type_event_all" class="item_type_event menu-course text-center active">
                                     <p class="mb-0">ทั้งหมด</p>
                                 </div>
                             </div>
                             @foreach($data_activity_type as $item_type)
-                            <div class="item" onclick="get_data_activitys('{{ $item_type->id }}');">
+                            <div class="item" onclick="get_data_activitys('{{ $item_type->id }}');" id="{{ $loop->iteration }}">
                                 <div id="item_type_event_{{ $item_type->id }}" class="item_type_event menu-course text-center">
                                     <p class="mb-0">{{ $item_type->name_type }}</p>
                                 </div>
@@ -600,8 +615,31 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js'></script>
 <script>
-    $('.carousel-menu-course').owlCarousel({
-        // stagePadding:20,
+    // $('.carousel-menu-course').owlCarousel({
+    //     // stagePadding:20,
+    //     loop: false,
+    //     autoWidth: true,
+    //     margin: 20,
+    //     nav: false,
+    //     dots: false,
+
+    //     responsive: {
+    //         0: {
+    //             margin: 20,
+    //             items: 6
+    //         },
+    //         600: {
+    //             margin: 20,
+    //             items: 3
+    //         },
+    //         1000: {
+    //             margin: 40,
+    //             items: 1
+    //         }
+    //     }
+    // })
+    var carousel_menu_course = $('.carousel-menu-course');
+    carousel_menu_course.owlCarousel({
         loop: false,
         autoWidth: true,
         margin: 20,
@@ -622,8 +660,14 @@
                 items: 1
             }
         }
-    })
+    });
 
+    // ฟังก์ชันที่เลื่อน item มาอยู่ตรงกลางเมื่อกด
+    $('.carousel-menu-course .item').click(function() {
+        var itemId = $(this).attr('id'); // ดึงค่า id ของ item ที่กด
+        var index = $('.carousel-menu-course .item').index(this);
+        carousel_menu_course.trigger('to.owl.carousel', [index, 300, true]); // เลื่อน item ไปที่ ind
+    });
 
     $('a[data-toggle="pill"]').on('shown.bs.tab', function(e) {
         e.target // newly activated tab

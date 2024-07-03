@@ -595,11 +595,24 @@
 <script>
     let check_calendar = true;
     function test() {
-        get_data_for_calendar_for_user();
-        document.querySelector('#my_calendar').classList.toggle('d-none');
-        document.querySelector('#icon_show_my_calender').classList.toggle('d-none');
-        document.querySelector('.appointment').classList.toggle('show');
-        document.querySelector('.card-calender').classList.toggle('d-none');
+
+        if(check_calendar){
+            // alert('if');
+            check_calendar = false;
+            document.querySelector('#my_calendar').classList.toggle('d-none');
+            document.querySelector('#icon_show_my_calender').classList.toggle('d-none');
+            document.querySelector('.appointment').classList.toggle('show');
+            document.querySelector('.card-calender').classList.toggle('d-none');
+        }else{     
+            // alert('else');
+            check_calendar = true;
+            get_data_for_calendar_for_user();
+            document.querySelector('#my_calendar').classList.toggle('d-none');
+            document.querySelector('#icon_show_my_calender').classList.toggle('d-none');
+            document.querySelector('.appointment').classList.toggle('show');
+            document.querySelector('.card-calender').classList.toggle('d-none');
+
+        }
 
     }
 </script>

@@ -414,12 +414,12 @@
                         </a>
                         <ul>
                             <li>
-                                <a class="btn" href="{{ url('/tools_apps/create') }}">
+                                <a class="btn" href="{{ url('/manage_tools_apps') }}">
                                     <i class="fa-solid fa-mobile-screen-button"></i> แอปพลิเคชัน
                                 </a>
                             </li>
                             <li>
-                                <a class="btn" href="{{ url('/tools_contacts/create') }}">
+                                <a class="btn" href="{{ url('/tools_contacts') }}">
                                     <i class="fa-solid fa-address-book"></i> ติดต่อ
                                 </a>
                             </li>

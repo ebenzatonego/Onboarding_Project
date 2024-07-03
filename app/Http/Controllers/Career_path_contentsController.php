@@ -317,6 +317,19 @@ class Career_path_contentsController extends Controller
 
     }
 
+    function preview_career_path_contents($id){
+
+        // $data_training = Training::where('id' , $id)->first();
+        $data = DB::table('career_path_contents')
+                ->join('career_paths', 'career_paths.id', '=', 'career_path_contents.career_path_id')
+                ->where('career_path_contents.id' , $id)
+                ->select('career_path_contents.*', 'career_paths.name_rank', 'career_paths.number_story')
+                ->first();
+
+        return view('career_path_contents.preview_career_path_contents', compact('data'));
+
+    }
+
     function change_sort_number($id , $number , $type){
 
         $data = [];

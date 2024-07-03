@@ -86,8 +86,9 @@ class Tools_contactsController extends Controller
     public function edit($id)
     {
         $tools_contact = Tools_contact::findOrFail($id);
+        $data_type = Tools_contact::groupBy('type')->select('type')->get();
 
-        return view('tools_contacts.edit', compact('tools_contact'));
+        return view('tools_contacts.edit', compact('tools_contact','data_type'));
     }
 
     /**

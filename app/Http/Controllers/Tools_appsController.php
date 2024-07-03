@@ -132,7 +132,14 @@ class Tools_appsController extends Controller
     }
 
     function get_data_tools_apps(){
-        $tools_app = Tools_app::get();
+        $tools_app = Tools_app::orderByRaw("CASE 
+                        WHEN number IS NOT NULL THEN 1
+                        ELSE 2
+                        END, 
+                        number ASC, 
+                        id ASC")
+            ->get();
+            
         return $tools_app ;
     }
 }

@@ -69,26 +69,34 @@ class AdminController extends Controller
                 else if($key == "license_start"){
                     $data_arr['license_start'] = $value;
                     // แปลงวันที่จาก d-m-Y เป็น Y-m-d
-                    $date = Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d');
-                    $data_arr['license_start'] = $date;
+                    if(!empty($data_arr['license_start'])){
+                        $date = Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d');
+                        $data_arr['license_start'] = $date;
+                    }
                 }
                 else if($key == "license_expire"){
                     $data_arr['license_expire'] = $value;
                     // แปลงวันที่จาก d-m-Y เป็น Y-m-d
-                    $date = Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d');
-                    $data_arr['license_expire'] = $date;
+                    if(!empty($data_arr['license_expire'])){
+                        $date = Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d');
+                        $data_arr['license_expire'] = $date;
+                    }
                 }
                 else if($key == "ic_license_start"){
                     $data_arr['ic_license_start'] = $value;
                     // แปลงวันที่จาก d-m-Y เป็น Y-m-d
-                    $date = Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d');
-                    $data_arr['ic_license_start'] = $date;
+                    if(!empty($data_arr['ic_license_start'])){
+                        $date = Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d');
+                        $data_arr['ic_license_start'] = $date;
+                    }
                 }
                 else if($key == "ic_license_expire"){
                     $data_arr['ic_license_expire'] = $value;
                     // แปลงวันที่จาก d-m-Y เป็น Y-m-d
-                    $date = Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d');
-                    $data_arr['ic_license_expire'] = $date;
+                    if(!empty($data_arr['ic_license_expire'])){
+                        $date = Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d');
+                        $data_arr['ic_license_expire'] = $date;
+                    }
                 }
                 else{
                     $data_arr[$key] = $value;

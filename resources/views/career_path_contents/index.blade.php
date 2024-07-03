@@ -263,12 +263,9 @@
                                         <hr>
                                         <div class="row">
                                             <div class="col-12">
-                                                <span href="javascript:;" class="btn btn-sm btn-info w-100 d-none">
+                                                <a href="{{ url('/preview_career_path_contents') }}/`+result[i].id+`" class="btn btn-sm btn-info w-100">
                                                     <i class="fa-solid fa-money-check-pen"></i> ดูข้อมูล / แก้ไขข้อมูล
-                                                </span>
-                                                <span href="javascript:;" class="btn btn-sm btn-info w-100">
-                                                    soon
-                                                </span>
+                                                </a>
                                             </div>
                                             <div class="col-6 mt-2">
                                                 <div class="btn-group w-100">

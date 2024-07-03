@@ -740,7 +740,30 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         create_star_rating();
         update_user_view();
+
+        setTimeout(() => {
+            image_resized_w100();
+        }, 1000);
     });
+
+    function image_resized_w100(){
+
+        let detail_training = document.querySelector('.detail-training');
+
+        let image_resized = detail_training.querySelectorAll('.image_resized');
+        image_resized.forEach(image_resized => {
+            image_resized.setAttribute('style' , 'width:100%;');
+        })
+
+        let tag_img = detail_training.querySelectorAll('img')
+            tag_img.forEach(tag_img => {
+            tag_img.setAttribute('class' , 'w-100');
+            tag_img.removeAttribute('width');
+            tag_img.removeAttribute('height');
+        })
+
+
+    }
 
     function create_star_rating(){
         document.querySelectorAll('.star-rating').forEach(el => {

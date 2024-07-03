@@ -1252,16 +1252,33 @@
                         }
                     })
 
-                    document.querySelector('#div_tools_type_app').classList.add('d-none');
-                    document.querySelector('#div_tools_type_web').classList.add('d-none');
+                    // document.querySelector('#div_tools_type_app').classList.add('d-none');
+                    // document.querySelector('#div_tools_type_web').classList.add('d-none');
+
+                    let div_tools_app = document.querySelectorAll('.div_tools_app');
+                    div_tools_app.forEach(div_tools_app => {
+                        div_tools_app.classList.add('d-none')
+                    })
 
                     if (tabs_type_app_value == "all") {
-                        document.querySelector('#div_tools_type_app').classList.remove('d-none');
-                        document.querySelector('#div_tools_type_web').classList.remove('d-none');
+                        // document.querySelector('#div_tools_type_app').classList.remove('d-none');
+                        // document.querySelector('#div_tools_type_web').classList.remove('d-none');
+                        let item_all = document.querySelectorAll('.div_tools_app');
+                            item_all.forEach(item_all => {
+                                item_all.classList.remove('d-none')
+                            })
                     } else if (tabs_type_app_value == "app") {
-                        document.querySelector('#div_tools_type_app').classList.remove('d-none');
+                        // document.querySelector('#div_tools_type_app').classList.remove('d-none');
+                        let app = document.querySelectorAll('[type_app="app"]');
+                        app.forEach(app => {
+                            app.classList.remove('d-none')
+                        })
                     } else if (tabs_type_app_value == "web") {
-                        document.querySelector('#div_tools_type_web').classList.remove('d-none');
+                        // document.querySelector('#div_tools_type_web').classList.remove('d-none');
+                        let app = document.querySelectorAll('[type_app="web"]');
+                        app.forEach(app => {
+                            app.classList.remove('d-none')
+                        })
                     }
                 }
             </script>
@@ -1323,7 +1340,7 @@
 
                                     let div_tools_type_app = document.querySelector('#div_tools_type_app');
                                     html = `
-                                        <div class="tools-item">
+                                        <div type_app="app" class="div_tools_app tools-item">
                                             <img src="` + result[i].photo_icon + `" alt="">
                                             <div class="ms-3 w-100" style="flex-direction: column; justify-content: space-between;display: flex;">
                                                 <span class="title-tools text-start" style="font-size: 16px;">
@@ -1355,7 +1372,7 @@
 
                                     let div_tools_type_web = document.querySelector('#div_tools_type_web');
                                     html = `
-                                        <div class="tools-item">
+                                        <div type_app="web" class="div_tools_app tools-item">
                                             <img src="` + result[i].photo_icon + `" alt="">
                                             <div class="ms-3 w-100" style="flex-direction: column; justify-content: space-between;display: flex;">
                                                 <span class="title-tools text-start" style="font-size: 16px;">
@@ -1374,7 +1391,8 @@
                                         </div>
                                     `;
 
-                                    div_tools_type_web.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+                                    // div_tools_type_web.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+                                    div_tools_type_app.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
                                 }
                             }
                         }

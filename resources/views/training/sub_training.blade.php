@@ -4,13 +4,13 @@
     
     .carousel-fav-course .item {
         height: 311px;
-        min-width: 311px;
+        width: 311px;
         color: #fff;
         padding:4px;
     }
 
     .carousel-fav-course .item img {
-        width: 100%;
+        width: auto;
         height: 100%;
         object-fit: contain;
         border-radius: 10px;

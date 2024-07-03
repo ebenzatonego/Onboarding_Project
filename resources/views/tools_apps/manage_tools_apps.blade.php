@@ -196,9 +196,13 @@
                                 	แก้ไข
                                 </a>
                                 <br>
-                                <button type="submit" class="btn btn-danger btn-sm mb-2 w-100" title="Delete Tools_contact">
-                                	ลบ
-                                </button>
+                                <form method="POST" action="{{ url('/tools_apps') }}/`+result[i].id+`" accept-charset="UTF-8" style="display:inline" onsubmit="return confirmDelete(event, this)">
+                                    {{ method_field('DELETE') }}
+                                    {{ csrf_field() }}
+                                    <button type="submit" class="btn btn-danger btn-sm mb-2 w-100" title="Delete Tools_tutorial">
+                                        ลบ
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     `;

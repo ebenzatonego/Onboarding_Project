@@ -262,7 +262,7 @@
                                         </p>
                                         <hr>
                                         <div class="row">
-                                            <div class="col-12">
+                                            <div class="col-12 d-none">
                                                 <a href="{{ url('/preview_career_path_contents') }}/`+result[i].id+`" class="btn btn-sm btn-info w-100">
                                                     <i class="fa-solid fa-money-check-pen"></i> ดูข้อมูล / แก้ไขข้อมูล
                                                 </a>

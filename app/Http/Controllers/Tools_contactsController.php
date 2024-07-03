@@ -7,6 +7,9 @@ use App\Http\Requests;
 
 use App\Models\Tools_contact;
 use Illuminate\Http\Request;
+use App\Models\Log_delete_content;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class Tools_contactsController extends Controller
 {
@@ -119,6 +122,15 @@ class Tools_contactsController extends Controller
      */
     public function destroy($id)
     {
+        $data_tools = Tools_contact::where('id',$id)->first();
+        $user_id = Auth::user()->id ;
+
+        $data = [];
+        $data['type'] = 'Tools_contact';
+        $data['user_id'] = $user_id;
+        $data['tools_contact_name'] = $data_tools->type . '-' . $data_tools->phone . '-' . $data_tools->mail;
+
+        Log_delete_content::create($data);
         Tools_contact::destroy($id);
 
         return redirect('tools_contacts')->with('flash_message', 'Tools_contact deleted!');

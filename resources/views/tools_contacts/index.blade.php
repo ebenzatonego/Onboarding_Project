@@ -17,8 +17,8 @@
                                     </h5>
                                 </div>
                                 <div >
-                                    <a class="btn text-primary border border-primary" href="{{ url('/tools_contacts/create') }}">
-                                        <i class="fa-solid fa-address-book text-primary"></i> ติดต่อ
+                                    <a class="btn text-success border border-success" href="{{ url('/tools_contacts/create') }}">
+                                        <i class="fa-solid fa-address-book text-success"></i> เพิ่มข้อมูล
                                     </a>
                                 </div>
                             </div>
@@ -45,10 +45,17 @@
                                    
                                     <a href="{{ url('/tools_contacts/' . $item->id . '/edit') }}" title="Edit Tools_contact"><button class="btn btn-primary btn-sm"><i class="fa-solid fa-pencil"></i> Edit</button></a>
 
-                                    <form method="POST" action="{{ url('/tools_contacts' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                                    <!-- <form method="POST" action="{{ url('/tools_contacts' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                         {{ method_field('DELETE') }}
                                         {{ csrf_field() }}
                                         <button type="submit" class="btn btn-danger btn-sm" title="Delete Tools_contact" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa-solid fa-trash"></i> Delete</button>
+                                    </form> -->
+                                    <form method="POST" action="{{ url('/tools_contacts' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline" onsubmit="return confirmDelete(event, this)">
+                                        {{ method_field('DELETE') }}
+                                        {{ csrf_field() }}
+                                        <button type="submit" class="btn btn-danger btn-sm" title="Delete Tools_tutorial">
+                                            &nbsp;<i class="fa-solid fa-trash-can"></i> ลบ
+                                        </button>
                                     </form>
                                 </td>
                             </tr>

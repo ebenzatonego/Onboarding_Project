@@ -7,6 +7,9 @@ use App\Http\Requests;
 
 use App\Models\Tools_app;
 use Illuminate\Http\Request;
+use App\Models\Log_delete_content;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class Tools_appsController extends Controller
 {
@@ -121,9 +124,18 @@ class Tools_appsController extends Controller
      */
     public function destroy($id)
     {
+        $data_tools = Tools_app::where('id',$id)->first();
+        $user_id = Auth::user()->id ;
+
+        $data = [];
+        $data['type'] = 'Tools_app';
+        $data['user_id'] = $user_id;
+        $data['tools_app_name'] = $data_tools->name;
+
+        Log_delete_content::create($data);
         Tools_app::destroy($id);
 
-        return redirect('tools_apps')->with('flash_message', 'Tools_app deleted!');
+        return redirect('manage_tools_apps')->with('flash_message', 'Tools_app deleted!');
     }
 
     function manage_tools_apps(){
@@ -139,7 +151,7 @@ class Tools_appsController extends Controller
                         number ASC, 
                         id ASC")
             ->get();
-            
+
         return $tools_app ;
     }
 }

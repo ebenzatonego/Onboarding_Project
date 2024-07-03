@@ -274,8 +274,8 @@
                 <a href="{{ url('/sub_training/all') }}">
                     <div class="all-coures w-100 d-flex justify-content-evenly align-items-center">
                         <div>
-                            <p style="font-size: 14px;margin-bottom: 0;">หลักสูตร</p>
-                            <p style="font-size: 18px;font-weight: bolder;margin-bottom: 0;">ทั้งหมด</p>
+                            <p style="font-size: 14px;margin-bottom: 0;">ดูหลักสูตร</p>
+                            <p style="font-size: 18px;font-weight: bolder;margin-bottom: 0;">เพิ่มเติม</p>
                         </div>
                         <div>
                             <img src="{{ url('/img/icon/icon-all-training.png') }}" alt="" width="71">

@@ -349,26 +349,10 @@
 
                     $('.carousel-fav-course').owlCarousel({
                         // stagePadding:20,
-                        loop: false,
-                        margin: 10,
-                        nav: false,
-                        responsive: {
-                            0: {
-                                items: 1,
-                                 autoWidth: false,
-
-                            },
-                            400: {
-                                items: 1,
-                                autoWidth: true,
-                                
-                            },
-                            1000: {
-                                items: 1,
-                                autoWidth: true,
-                                
-                            }
-                        }
+                        margin:10,
+    loop:true,
+    autoWidth:true,
+    items:4
                     })
 
                 }

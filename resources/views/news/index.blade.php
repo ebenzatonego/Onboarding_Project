@@ -5,7 +5,7 @@
         height: 311px;
         min-width: 311px;
         color: #fff;
-
+        padding: 4px;
     }
 
     .container-img::after {
@@ -27,10 +27,29 @@
     }
 
     .carousel-fav-course .item img {
-        width: 100%;
+        width: auto;
         height: 100%;
         object-fit: contain;
         border-radius: 10px;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        -moz-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+
+    @media (max-width: 575px) {
+
+        .container-content,
+        .content-section .container,
+        .content-section,
+        .bottom-content,
+        .top-content {
+            padding-right: 0;
+        }
+
+        .container-product {
+            padding-right: calc(var(--bs-gutter-x, .85rem)) !important;
+
+        }
     }
 
     .owl-theme .owl-dots .owl-dot.active span,
@@ -231,24 +250,50 @@
         .btn-filter-news {
             font-size: 12px !important;
         }
-    }@media (max-width: 375px) {
-
-.carousel-fav-course .item {
-    height: 300px !important;
-    min-width: 300px !important;
-    color: #fff;
-
-}
-
-
-}
-@media (max-width: 378px) {
-
-    .btn-filter-news {
-        font-size: 10px !important;
     }
 
-}
+    @media (max-width: 375px) {
+
+        .carousel-fav-course .item {
+            height: 300px !important;
+            min-width: 300px !important;
+            color: #fff;
+
+        }
+
+
+    }
+
+    @media (max-width: 378px) {
+
+        .btn-filter-news {
+            font-size: 10px !important;
+        }
+
+    }
+
+    .row-content {
+        margin-right: 0 !important;
+    }
+
+    @media (max-width: 375px) {
+
+        .carousel-fav-course .item {
+            height: 300px !important;
+            min-width: 300px !important;
+            color: #fff;
+
+        }
+
+
+    }  @media (max-width: 575px) {
+                       .container-content ,.content-section ,.bottom-content ,.top-content{
+                        padding-right: 0;
+                       }
+                       .container-course{
+                        padding-right: calc(var(--bs-gutter-x, .75rem)) ;
+                       
+                    }}
 </style>
 
 <div class="tab-content container mt-2" id="pills-tabContent">
@@ -269,13 +314,13 @@
     <div class="tab-pane fade show active" id="pills-news" role="tabpanel" aria-labelledby="pills-news-tab">
         <div class="">
             <div class="main-body">
-                <div class="row">
-                    <div class="col-lg-12 mt-3">
+                <div class="row row-content">
+                    <div class="col-lg-12 mt-3 pe-0">
                         <div id="div_content_highlight_number" class="owl-carousel carousel-fav-course owl-theme">
                             <!-- photo highlight -->
                         </div>
                     </div>
-                    <div class="col-lg-12 mt-3">
+                    <div class="col-lg-12 mt-3 pe-0">
 
                         @php
                         $data_news_type = App\Models\News_type::orderByRaw("CASE
@@ -353,26 +398,10 @@
 
                         // Initialize new carousel instance
                         $('.carousel-fav-course').owlCarousel({
+                            margin: 10,
                             loop: false,
-                        margin: 10,
-                        nav: false,
-                        responsive: {
-                            0: {
-                                items: 1,
-                                 autoWidth: false,
-
-                            },
-                            400: {
-                                items: 1,
-                                autoWidth: true,
-                                
-                            },
-                            1000: {
-                                items: 1,
-                                autoWidth: true,
-                                
-                            }
-                        }
+                            autoWidth: true,
+                            items: 4
                             // stagePadding:20,
                             // loop: false,
                             // autoWidth: true,

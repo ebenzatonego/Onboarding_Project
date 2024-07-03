@@ -374,8 +374,6 @@
 
     function get_data_news(news_type_id) {
 
-        carousel_menu.trigger('to.owl.carousel', [set_center[news_type_id], 300, true]);
-        
         let item_type_news = document.querySelectorAll('.item_type_news');
         item_type_news.forEach(item_type_news => {
             item_type_news.classList.remove('active');
@@ -433,6 +431,8 @@
                                 //     }
                                 // }
                             });
+
+                            carousel_menu.trigger('to.owl.carousel', [set_center[news_type_id], 300, true]);
 
                         });
                     }, 100);

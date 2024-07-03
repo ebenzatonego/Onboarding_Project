@@ -169,7 +169,7 @@ Route::post('/save_data_edit_product', 'ProductsController@save_data_edit_produc
 // Tools contact
 Route::get('/get_data_show_tools_contact', 'Tools_contactsController@get_data_show_tools_contact');
 
-// Tools contact
+// Tools App
 Route::get('/get_data_tools_apps', 'Tools_appsController@get_data_tools_apps');
 
 

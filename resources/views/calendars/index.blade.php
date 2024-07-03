@@ -1073,10 +1073,15 @@
                             let formatDate_show = formatDate(result[i].date_end);
                             let show_date = formatDate_show.split(',');
 
+                            let show_date_1 = ``;
+                            if(show_date[1]){
+                                show_date_1 = show_date[1] ;
+                            }
+
                             let html_datetime = `
                                 <div data_Month="`+month_year+`" data_date="`+result[i].date_end+`" class="item_of_event d-flex w-100 align-items-center mt-3 `+class_show_div+`">
                                     <div class="name-date-appointment">` + show_date[0] + `</div>
-                                    <div class="day-appointment">` + show_date[1] + `</div>
+                                    <div class="day-appointment">` + show_date_1 + `</div>
                                 </div>
                             `;
 
@@ -1163,10 +1168,15 @@
                                 let formatDate_show = formatDate(result[i].date_start);
                                 let show_date = formatDate_show.split(',');
 
+                                let show_date_1 = ``;
+                                if(show_date[1]){
+                                    show_date_1 = show_date[1] ;
+                                }
+                            
                                 let html_datetime = `
                                     <div data_Month="`+month_year+`" data_date="`+result[i].date_start+`" class="item_of_event d-flex w-100 align-items-center mt-3 `+class_show_div+`">
                                         <div class="name-date-appointment">` + show_date[0] + `</div>
-                                        <div class="day-appointment">` + show_date[1] + `</div>
+                                        <div class="day-appointment">` + show_date_1 + `</div>
                                     </div>
                                 `;
 

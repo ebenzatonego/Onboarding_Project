@@ -33,7 +33,7 @@
         }
 
         .calender-container {
-            height: calc(100dvh - 55px) !important;
+            height: calc(100dvh - 65px) !important;
         }
 
         .header-calendar,
@@ -322,7 +322,7 @@
         }
 
         .appointment {
-            padding-bottom: 150px!important;
+            padding-bottom: 160px!important;
             padding-left: 20px !important;
             padding-right: 20px !important;
             overflow: auto;

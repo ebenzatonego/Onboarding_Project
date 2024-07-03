@@ -80,8 +80,7 @@
                         <thead>
                             <tr>
                                 <th scope="col"></th>
-                                <th scope="col">Name / Detail</th>
-                                <th scope="col">Type</th>
+                                <th scope="col">Name / Detail / Type</th>
                                 <th scope="col" style="max-width: 200px;">Link Web</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -159,10 +158,8 @@
                             </td>
                             <td>
                             	<h6 class="text-info">`+result[i].name+`</h6>
-                            	`+textWithoutHtml+`
-                            </td>
-                            <td>
-                            	`+type_app+`
+                            	<p>Type : `+type_app+`</p>
+                            	<p>`+textWithoutHtml+`</p>
                             </td>
                             <td>
                             	`+html_link+`

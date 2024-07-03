@@ -427,14 +427,27 @@
                     </li>
 
                     <li>
-                        <a href="{{ url('/career_path_contents/create') }}" class="">
+                        <a href="javascript:;" class="has-arrow">
                             <div class="parent-icon">
-                                <i class="fa-solid fa-list-timeline"></i>
+                                <i class="fa-solid fa-route"></i>
                             </div>
                             <div class="menu-title">
                                 Career Path
                             </div>
                         </a>
+                        
+                        <ul>
+                            <li>
+                                <a class="btn" href="{{ url('/manage_career_path_contents') }}">
+                                    <i class="fa-solid fa-list-timeline"></i> การจัดการ
+                                </a>
+                            </li>
+                            <li>
+                                <a class="btn" href="{{ url('/career_path_contents/create') }}">
+                                    <i class="fa-solid fa-message-plus"></i> เพิ่มข้อมูล
+                                </a>
+                            </li>
+                        </ul>
                     </li>
 
                     <li class="d-none">

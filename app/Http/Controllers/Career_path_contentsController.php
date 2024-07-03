@@ -279,4 +279,21 @@ class Career_path_contentsController extends Controller
         return 'success' ;
 
     }
+
+    function get_data_career_path_contents(){
+
+        $data = DB::table('career_path_contents')
+            ->join('career_paths', 'career_paths.id', '=', 'career_path_contents.career_path_id')
+            ->select('career_path_contents.*', 'career_paths.name_rank')
+            ->orderByRaw("CASE 
+                        WHEN number IS NOT NULL THEN 1
+                        ELSE 2
+                        END, 
+                        number ASC, 
+                        id DESC")
+            ->get();
+
+        return $data ;
+
+    }
 }

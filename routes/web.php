@@ -169,6 +169,7 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
     // Career Paths
     Route::resource('career_paths', 'Career_pathsController');
     Route::resource('career_path_contents', 'Career_path_contentsController');
+    Route::get('manage_career_path_contents', 'Career_path_contentsController@index');
 
     // Favorites
     Route::resource('favorites', 'FavoritesController');

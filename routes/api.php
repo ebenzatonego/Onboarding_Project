@@ -182,6 +182,7 @@ Route::get('/update_user_view_career_paths_head/{user_id}/{id}', 'Career_pathsCo
 Route::get('/update_user_view_career_paths_item/{user_id}/{id}', 'Career_path_contentsController@update_user_view_career_paths_item');
 Route::get('/user_download_pdf_career_path/{user_id}/{id}', 'Career_path_contentsController@user_download_pdf_career_path');
 Route::get('/update_countTime_career_path/{user_id}/{countTime}/{id}', 'Career_path_contentsController@update_countTime_career_path');
+Route::get('/get_data_career_path_contents', 'Career_path_contentsController@get_data_career_path_contents');
 
 
 // Share

@@ -397,34 +397,36 @@
                         });
                     });
 
-                    Promise.all(promises).then(() => {
-                        // Destroy existing carousel instance if exists
-                        $('.carousel-fav-course').trigger('destroy.owl.carousel');
+                    setTimeout(() => {
+                        Promise.all(promises).then(() => {
+                            // Destroy existing carousel instance if exists
+                            $('.carousel-fav-course').trigger('destroy.owl.carousel');
 
-                        // Initialize new carousel instance
-                        $('.carousel-fav-course').owlCarousel({
-                            margin: 10,
-                            loop: false,
-                            autoWidth: true,
-                            items: 4
-                            // stagePadding:20,
-                            // loop: false,
-                            // autoWidth: true,
-                            // margin: 10,
-                            // nav: false,
-                            // responsive: {
-                            //     0: {
-                            //         items: 1
-                            //     },
-                            //     600: {
-                            //         items: 3
-                            //     },
-                            //     1000: {
-                            //         items: 1
-                            //     }
-                            // }
+                            // Initialize new carousel instance
+                            $('.carousel-fav-course').owlCarousel({
+                                margin: 10,
+                                loop: false,
+                                autoWidth: true,
+                                items: 4
+                                // stagePadding:20,
+                                // loop: false,
+                                // autoWidth: true,
+                                // margin: 10,
+                                // nav: false,
+                                // responsive: {
+                                //     0: {
+                                //         items: 1
+                                //     },
+                                //     600: {
+                                //         items: 3
+                                //     },
+                                //     1000: {
+                                //         items: 1
+                                //     }
+                                // }
+                            });
                         });
-                    });
+                    }, 1000);
 
                 }
             });

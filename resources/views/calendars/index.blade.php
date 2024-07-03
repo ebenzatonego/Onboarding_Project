@@ -15,7 +15,7 @@
         display: flex !important;
         flex-direction: column !important;
         padding: 80px 0 0 0 !important;
-        overflow: hidden;
+        /* overflow: hidden; */
     }
 
     @media only screen and (max-width: 767px) {

@@ -369,6 +369,9 @@
         get_data_news('all');
     });
 
+    var carousel_menu;
+    var set_center = [];
+
     function get_data_news(news_type_id) {
 
         let item_type_news = document.querySelectorAll('.item_type_news');

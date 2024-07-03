@@ -26,7 +26,11 @@
                 </datalist>
             </div>
 
-            <div class="col-12">
+            <div class="col-12 d-flex justify-content-between">
+                <a href="{{ url('/tools_contacts') }}" type="button" class="btn btn-warning btn-sm d-flex align-items-center" title="Back">
+                 <i class="fa fa-arrow-left" aria-hidden="true"></i> Back
+                </a>
+                
                 <div class="form-group">
                     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
                 </div>

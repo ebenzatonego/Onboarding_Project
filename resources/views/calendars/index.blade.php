@@ -562,7 +562,7 @@
         <div class="position-relative my-3 d-none" id="icon_show_my_calender">
             <hr>
 
-            <div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);z-index: 9999999;" onclick="document.querySelector('#my_calendar').classList.toggle('d-none');document.querySelector('#icon_show_my_calender').classList.toggle('d-none');document.querySelector('.appointment').classList.toggle('show')">
+            <div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);z-index: 9999999;" onclick="test()">
 
                 <svg xmlns="http://www.w3.org/2000/svg" width="39" height="39" viewBox="0 0 39 39" fill="none">
                     <circle cx="19.5" cy="19.5" r="19.5" fill="#003781" />
@@ -573,7 +573,7 @@
         <div class="container-calender">
             <div class="card-calender h-100">
                 <div class="card px-3 mb-0 h-100 position-relative card-calender" style="position: relative;">
-                    <a class="btn-show-all-calender" onclick="document.querySelector('#my_calendar').classList.toggle('d-none');document.querySelector('#icon_show_my_calender').classList.toggle('d-none');document.querySelector('.appointment').classList.toggle('show')">
+                    <a class="btn-show-all-calender" onclick="test()">
                         <svg xmlns="http://www.w3.org/2000/svg" width="39" height="39" viewBox="0 0 39 39" fill="none">
                             <circle cx="19.5" cy="19.5" r="19.5" fill="#D9D9D9" />
                             <path d="M14.1345 23.1111L19.5 14.4358L24.8655 23.1111L14.1345 23.1111ZM6 19.9953C6 21.9304 6.354 23.7504 7.062 25.4553C7.771 27.1592 8.733 28.6416 9.948 29.9027C11.163 31.1637 12.591 32.1619 14.232 32.8971C15.873 33.6324 17.6275 34 19.4955 34C21.3635 34 23.1185 33.6329 24.7605 32.8987C26.4025 32.1644 27.832 31.1668 29.049 29.9058C30.266 28.6447 31.2285 27.1639 31.9365 25.4631C32.6445 23.7624 32.999 21.9429 33 20.0047C33.001 18.0664 32.647 16.2464 31.938 14.5447C31.229 12.8429 30.267 11.3605 29.052 10.0973C27.837 8.83423 26.409 7.83608 24.768 7.10289C23.127 6.36971 21.3725 6.00208 19.5045 6.00001C17.6365 5.99793 15.8815 6.36504 14.2395 7.10134C12.5975 7.83764 11.168 8.83527 9.951 10.0942C8.734 11.3532 7.7715 12.8341 7.0635 14.5369C6.3555 16.2397 6.001 18.0592 6 19.9953Z" fill="white" />
@@ -592,7 +592,16 @@
         </div>
     </div>
 </div>
+<script>
+    let check_calendar = true;
+    function test() {
+        document.querySelector('#my_calendar').classList.toggle('d-none');
+        document.querySelector('#icon_show_my_calender').classList.toggle('d-none');
+        document.querySelector('.appointment').classList.toggle('show');
+        document.querySelector('.card-calender').classList.toggle('d-none');
 
+    }
+</script>
 
 <!-- Delete Modal -->
 <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="delete-modal-title" aria-hidden="true">

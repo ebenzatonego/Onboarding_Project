@@ -87,6 +87,24 @@
                    document.querySelector('#btn_view_'+type).classList.remove('btn-outline-primary');
                    document.querySelector('#btn_view_'+type).classList.add('btn-primary');
 
+                let item_tools_app = document.querySelectorAll('.item_tools_app');
+                    item_tools_app.forEach(item_tools_app => {
+                        item_tools_app.classList.add('d-none');
+                    })
+
+                if(type == 'all'){
+                	let all = document.querySelectorAll('.item_tools_app');
+                    all.forEach(all => {
+                        all.classList.remove('d-none');
+                    })
+                }
+                else{
+                	let tr_type = document.querySelectorAll('[type_app="'+type+'"]');
+                    tr_type.forEach(tr_type => {
+                        tr_type.classList.remove('d-none');
+                    })
+                }
+
 		    }
 		</script>
         <div class="col-12 mt-2">
@@ -179,7 +197,7 @@
 	                
 
                     let html = `
-                    	<tr type_app="`+type_app+`">
+                    	<tr type_app="`+type_app+`" class="item_tools_app">
                             <td>
                             	`+html_Highlight+`
                             </td>

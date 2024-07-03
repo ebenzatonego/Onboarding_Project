@@ -80,6 +80,7 @@
                         <thead>
                             <tr>
                                 <th scope="col"></th>
+                                <th scope="col"></th>
                                 <th scope="col">Name / Detail / Type</th>
                                 <th scope="col" style="max-width: 200px;">Link Web</th>
                                 <th scope="col">Action</th>
@@ -146,8 +147,24 @@
                       	textWithoutHtml = result[i].detail.replace(/(<([^>]+)>)/gi, "");
                   	}
 
+                  	// Highlight
+	                let html_Highlight ;
+	                
+                    html_Highlight = `<span id="span_Highlight_id_`+result[i].id+`" class="float-end"></span>`;
+                    if(result[i].number){
+                      html_Highlight = `
+                        <span id="span_Highlight_id_`+result[i].id+`">
+                          <i class="i_Highlight fa-solid fa-circle-`+result[i].number+` font-24 float-end text-success"></i>
+                        </span>
+                        `;
+                    }
+	                
+
                     let html = `
                     	<tr type_app="`+type_app+`">
+                            <td>
+                            	`+html_Highlight+`
+                            </td>
                             <td>
                         		<div class="product-img">
 						            <img src="`+img_profile+`" class="p-1" alt="">
@@ -165,11 +182,23 @@
                             	`+html_link+`
                             </td>
                             <td>
-                                <a href="" class="btn btn-primary btn-sm mb-2 w-100" title="Edit Tools_contact">Number</a>
+                                <div class="btn-group w-100">
+								  	<button type="button" class="btn btn-info btn-sm dropdown-toggle mb-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								    	จัดลำดับ
+								  	</button>
+								  	<div class="dropdown-menu">
+								    	<a class="dropdown-item" href="#">Action</a>
+								    	<a class="dropdown-item" href="#">Another action</a>
+								  	</div>
+								</div>
                                 <br>
-                                <a href="" class="btn btn-primary btn-sm mb-2 w-100" title="Edit Tools_contact">Edit</a>
+                                <a href="" class="btn btn-warning btn-sm mb-2 w-100" title="Edit Tools_contact">
+                                	แก้ไข
+                                </a>
                                 <br>
-                                <button type="submit" class="btn btn-danger btn-sm mb-2 w-100" title="Delete Tools_contact"> Delete</button>
+                                <button type="submit" class="btn btn-danger btn-sm mb-2 w-100" title="Delete Tools_contact">
+                                	ลบ
+                                </button>
                             </td>
                         </tr>
                     `;
@@ -203,15 +232,7 @@
 		<button type="button" class="btn btn-sm btn-warning float-end mx-1" style="width:10%;">
 			แก้ไข
 		</button>
-		<div class="btn-group float-end" style="width:10%;">
-		  <button type="button" class="btn btn-info btn-sm dropdown-toggle mx-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		    ลำดับ
-		  </button>
-		  <div class="dropdown-menu">
-		    <a class="dropdown-item" href="#">Action</a>
-		    <a class="dropdown-item" href="#">Another action</a>
-		  </div>
-		</div>
+		
 	</div>
 </div>
 <hr> -->

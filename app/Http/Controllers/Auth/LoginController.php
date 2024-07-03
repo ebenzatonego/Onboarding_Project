@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Models\Log;
 
 class LoginController extends Controller
 {
@@ -64,13 +65,13 @@ class LoginController extends Controller
 
             // $data_user = Auth::user();
 
-            // Log::create([
-            //     "log_content"=> ' 001_Log in page',
-            //     "user_id"=> $data_user->id,
-            //     "role"=> $data_user->role,
-            // ]);
-
             $data_user = Auth::user();
+
+            Log::create([
+                "log_content"=> 'login_page',
+                "user_id"=> $data_user->id,
+                "role"=> $data_user->role,
+            ]);
 
             if($data_user->check_video_congratulation == "No"){
                 DB::table('users')

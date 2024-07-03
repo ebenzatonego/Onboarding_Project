@@ -272,13 +272,11 @@
 
     }
 
-    @media (max-width: 385px) {
-
-.btn-filter-news {
-    font-size: 11px !important;
-}
-
-}
+    @media (max-width: 450px) {
+        .btn-filter-news {
+            font-size: 11px !important;
+        }
+    }
     .row-content {
         margin-right: 0 !important;
     }

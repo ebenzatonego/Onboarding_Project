@@ -238,7 +238,33 @@
         overflow: hidden;
         text-overflow: ellipsis;
         width: 100%;
+    }@media (max-width: 450px) {
+        .btn-filter-news {
+            font-size: 11px !important;
+        }
     }
+    .row-content {
+        margin-right: 0 !important;
+    }
+
+    @media (max-width: 375px) {
+
+        .carousel-fav-course .item {
+            height: 300px !important;
+            min-width: 300px !important;
+            color: #fff;
+
+        }
+
+
+    }  @media (max-width: 575px) {
+        .container-content ,.content-section .container,.content-section,.bottom-content ,.top-content{
+        padding-right: 0;
+        }
+        .container-course ,.nav-pills{
+        padding-right: calc(var(--bs-gutter-x, .75rem) + 12px) ;
+        
+    }}
 </style>
 
 <div class="tab-content container mt-2" id="pills-tabContent">
@@ -259,13 +285,13 @@
     <div class="tab-pane fade show active" id="pills-event" role="tabpanel" aria-labelledby="pills-event-tab">
         <div class="">
             <div class="main-body">
-                <div class="row">
-                    <div class="col-lg-12 my-3">
+                <div class="row row-content">
+                    <div class="col-lg-12 my-3 pe-0">
                         <div id="div_content_highlight_number" class="owl-carousel carousel-fav-course owl-theme">
                             <!--  -->
                         </div>
                     </div>
-                    <div class="col-lg-12 mt-3">
+                    <div class="col-lg-12 mt-3 pe-0">
 
                         @php
                         $data_activity_type = App\Models\Activity_type::orderByRaw("CASE
@@ -369,26 +395,10 @@
 
                         // Initialize new carousel instance
                         $('.carousel-fav-course').owlCarousel({
-                            loop: false,
                             margin: 10,
-                            nav: false,
-                            responsive: {
-                                0: {
-                                    items: 1,
-                                    autoWidth: false,
-
-                                },
-                                400: {
-                                    items: 1,
-                                    autoWidth: true,
-
-                                },
-                                1000: {
-                                    items: 1,
-                                    autoWidth: true,
-
-                                }
-                            }
+                            loop: false,
+                            autoWidth: true,
+                            items: 4
 
                             // stagePadding:20,
                             // loop: false,

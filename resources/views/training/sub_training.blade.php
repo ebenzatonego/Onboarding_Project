@@ -123,7 +123,7 @@
                         padding-right: 0;
                        }
                        .bottom-course{
-                        padding-right: calc(var(--bs-gutter-x, .75rem)) ;
+                        padding-right: calc(var(--bs-gutter-x, .75rem)  + 12px) ;
                        
                     }}
                     @media (max-width: 770px) {

@@ -296,7 +296,7 @@
                         padding-right: 0;
                        }
                        .container-course ,.nav-pills{
-                        padding-right: calc(var(--bs-gutter-x, .75rem)) ;
+                        padding-right: calc(var(--bs-gutter-x, .75rem)  + 12px) ;
                        
                     }}
 </style>

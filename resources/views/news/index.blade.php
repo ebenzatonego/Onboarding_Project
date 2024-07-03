@@ -390,6 +390,8 @@
 
                 if (result) {
 
+                    set_center['all'] = 0;
+
                     let promises = result.map((item, i) => {
                         return new Promise((resolve, reject) => {
                             create_html_for_news(news_type_id, item);
@@ -403,7 +405,7 @@
                             $('.carousel-fav-course').trigger('destroy.owl.carousel');
 
                             // Initialize new carousel instance
-                            $('.carousel-fav-course').owlCarousel({
+                            carousel_menu = $('.carousel-fav-course').owlCarousel({
                                 margin: 10,
                                 loop: false,
                                 autoWidth: true,
@@ -425,6 +427,8 @@
                                 //     }
                                 // }
                             });
+
+                            carousel_menu.trigger('to.owl.carousel', [set_center['all'], 300, true]);
                         });
                     }, 100);
 

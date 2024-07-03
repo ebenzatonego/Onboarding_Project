@@ -727,7 +727,7 @@
                         $count_set_center = 0 ;
                         @endphp
                         <p style="font-size: 14px; font-weight: bolder;color: #000;" class="m-0 my-1">ตำแหน่งของคุณ</p>
-                        <div class="nav-menu sw sw-theme-dots sw-justified" id="div_menu_view">
+                        <div class="nav-menu sw sw-theme-dots sw-justified d-none" id="div_menu_view">
 
 
                             <ul class="nav d-flex justify-content-center owl-carousel owl-theme" role="group" aria-label="First group">
@@ -1457,17 +1457,22 @@
     //         items: 6,
     //     });
     // })
+        // document.querySelector('#div_menu_view').classList.remove('d-none');
 
-    let carousel_menu = $('.owl-carousel').owlCarousel({
-        items: 6,
-        loop: false,
-        nav: false,
-        center: true
-    })
-    let carousel_menu_center = '{{ $set_center }}';
-    // carousel_menu.trigger('to.owl.carousel', ["{{ $set_center }}", 300, true]);
-    $('.owl-carousel').trigger("to.owl.carousel", [parseInt(carousel_menu_center) - 1, 200]);
-    // console.log("{{ $set_center }}")
+    setTimeout(() => {
+        document.querySelector('#div_menu_view').classList.remove('d-none');
+
+        let carousel_menu = $('.owl-carousel').owlCarousel({
+            items: 6,
+            loop: false,
+            nav: false,
+            center: true
+        })
+        let carousel_menu_center = '{{ $set_center }}';
+        // carousel_menu.trigger('to.owl.carousel', ["{{ $set_center }}", 300, true]);
+        $('.owl-carousel').trigger("to.owl.carousel", [parseInt(carousel_menu_center) - 1, 200]);
+        // console.log("{{ $set_center }}")
+    }, 500);
 </script>
 <script type="text/javascript">
     $(document).ready(function() {

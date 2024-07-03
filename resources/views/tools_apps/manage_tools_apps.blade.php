@@ -158,7 +158,7 @@
 						        </div>
                             </td>
                             <td>
-                            	`+result[i].name+`
+                            	<h6 class="text-info"><b>`+result[i].name+`</b></h6>
                             	<br>
                             	`+textWithoutHtml+`
                             </td>

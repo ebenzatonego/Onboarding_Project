@@ -515,6 +515,20 @@
         font-size: 11px;
         margin-bottom: 0;
     }
+    .fade{
+        animation: fade .5s ease 0s 1 normal forwards;
+    }
+    @keyframes fade {
+	0% {
+		opacity: 0;
+		transform: translateY(50px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
 </style>
 
 <div class="calender-container container">
@@ -602,7 +616,7 @@
             document.querySelector('#my_calendar').classList.toggle('d-none');
             document.querySelector('#icon_show_my_calender').classList.toggle('d-none');
             document.querySelector('.appointment').classList.toggle('show');
-            document.querySelector('.card-calender').classList.toggle('d-none');
+            document.querySelector('.card-calender').classList.remove('d-none');
         }else{     
             // alert('else');
             check_calendar = true;
@@ -610,7 +624,8 @@
             document.querySelector('#my_calendar').classList.toggle('d-none');
             document.querySelector('#icon_show_my_calender').classList.toggle('d-none');
             document.querySelector('.appointment').classList.toggle('show');
-            document.querySelector('.card-calender').classList.toggle('d-none');
+            document.querySelector('.card-calender').classList.add('d-none');
+            document.querySelector('.card-calender').classList.remove('fade');
 
         }
 
@@ -1325,6 +1340,8 @@
 
         });
         calendar.render();
+        document.querySelector('.card-calender').classList.remove('d-none');
+        document.querySelector('.card-calender').classList.add('fade');
 
         updateTitle();
 

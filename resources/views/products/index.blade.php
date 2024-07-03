@@ -3,7 +3,7 @@
 <style>
     .carousel-fav-product .item {
         height: 311px;
-        min-width: 311px;
+        width: 311px;
         color: #fff;
 
     }
@@ -357,26 +357,10 @@
                         // Initialize new carousel instance
                         $('.carousel-fav-product').owlCarousel({
                             // stagePadding:20,
-                            loop: false,
-                            margin: 10,
-                            nav: false,
-                            responsive: {
-                                0: {
-                                    items: 1,
-                                    autoWidth: false,
-
-                                },
-                                400: {
-                                    items: 1,
-                                    autoWidth: true,
-
-                                },
-                                1000: {
-                                    items: 1,
-                                    autoWidth: true,
-
-                                }
-                            }
+                            margin:10,
+                            loop:false,
+                            autoWidth:true,
+                            items:4
                         })
                     });
 

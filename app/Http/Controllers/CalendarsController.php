@@ -144,4 +144,10 @@ class CalendarsController extends Controller
         // Return response
         return response()->json($calendar);
     }
+
+    function delete_data_calendar($id){
+        Calendar::destroy($id);
+        return 'success';
+    }
+
 }

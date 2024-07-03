@@ -196,6 +196,7 @@ Route::get('/get_data_for_calendar_for_user/{user_id}', 'AdminController@get_dat
 Route::post('/add_calendar', 'CalendarsController@add_calendar');
 Route::get('/get_edit_data_calendar/{id}', 'AdminController@get_edit_data_calendar');
 Route::post('/cf_edit_data_calendar', 'AdminController@cf_edit_data_calendar');
+Route::get('/delete_data_calendar/{id}', 'CalendarsController@delete_data_calendar');
 
 // My Goal
 Route::post('/save_my_goal_users', 'My_goal_usersController@save_my_goal_users');

@@ -521,10 +521,10 @@
         font-size: 11px;
         margin-bottom: 0;
     }
-    .fade{
-        animation: fade .5s ease 0s 1 normal forwards;
+    .fade-calendar{
+        animation: fade-calendar .5s ease 0s 1 normal forwards;
     }
-    @keyframes fade {
+    @keyframes fade-calendar {
 	0% {
 		opacity: 0;
 		transform: translateY(50px);
@@ -631,7 +631,7 @@
             document.querySelector('#icon_show_my_calender').classList.toggle('d-none');
             document.querySelector('.appointment').classList.toggle('show');
             document.querySelector('.card-calender').classList.add('d-none');
-            document.querySelector('.card-calender').classList.remove('fade');
+            document.querySelector('.card-calender').classList.remove('fade-calendar');
 
         }
 
@@ -639,7 +639,7 @@
 </script>
 
 <!-- Delete Modal -->
-<div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="delete-modal-title" aria-hidden="true">
+<div class="modal fade-calendar" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="delete-modal-title" aria-hidden="true">
     <div class="modal-dialog modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header w-100 position-raletive">
@@ -665,7 +665,7 @@
 <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js'></script>
 
 <!-- MODAL ADD CALENDAR -->
-<div class="modal fade edit-form" id="modal_add_carlendar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 99999999;">
+<div class="modal fade-calendar edit-form" id="modal_add_carlendar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 99999999;">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content" style="border-radius: 8.214px;position: relative;">
             <button type="button" class="btn-close" style="position: absolute;  top: 30px;  right: 10px;  transform: translate(-50%, -50%);" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -765,10 +765,10 @@
 <button id="btn_open_modal_edit_carlendar" class="btn-add-schedule d-none" data-bs-toggle="modal" data-bs-target="#modal_edit_carlendar">
     แก้ไข
 </button>
-<div class="modal fade edit-form" id="modal_edit_carlendar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 99999999;">
+<div class="modal fade-calendar edit-form" id="modal_edit_carlendar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 99999999;">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content" style="border-radius: 8.214px;position: relative;">
-            <button type="button" class="btn-close" style="position: absolute;  top: 30px;  right: 10px;  transform: translate(-50%, -50%);" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button id="btn_close_modal_edit" type="button" class="btn-close" style="position: absolute;  top: 30px;  right: 10px;  transform: translate(-50%, -50%);" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-header border-bottom-0 mt-3">
                 <h5 class="modal-title text-center w-100 " id="edit_modal-title" style="color:#6E7781">แก้ไขข้อมูล</h5>
             </div>
@@ -852,11 +852,34 @@
                 </div>
                 <div class="modal-footer border-top-0 d-flex justify-content-center ">
                     <button type="submit" class="btn btn-success" id="edit_submit_button" style="border-radius: 50px;background-color: #003781 !important;border: none !important;">แก้ไขข้อมูล</button>
+                    <button type="submit" class="btn btn-danger" id="edit_delete_data" style="border-radius: 50px;background-color: red; !important;border: none !important;" onclick="document.querySelector('#btn_close_modal_edit').click();document.querySelector('#btn_Modal_delete_data').click();">ลบ</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Button trigger modal -->
+<button id="btn_Modal_delete_data" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#Modal_delete_data">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="Modal_delete_data" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <div class="modal-body">
+                ยืนยันการลบหรือไม่ ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                <button id="btn_cf_delete_data" type="button" class="btn btn-primary">ยืนยัน</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     function edit_data_calendar(id) {
         document.querySelector('#btn_open_modal_edit_carlendar').click();
@@ -914,6 +937,9 @@
         let edit_submit_button = document.querySelector('#edit_submit_button');
             edit_submit_button.setAttribute('onclick' , 'cf_edit_data_calendar("'+id+'")');
 
+        let btn_cf_delete_data = document.querySelector('#btn_cf_delete_data');
+            btn_cf_delete_data.setAttribute('onclick' , 'delete_data("'+id+'")');
+
     }
 
     function cf_edit_data_calendar(id){
@@ -970,8 +996,19 @@
         });
     }
 
+    function delete_data(id){
+        fetch("{{ url('/') }}/api/delete_data_calendar/" + id)
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+                if(result == 'success'){
+                    location.reload();
+                }
+            });
+    }
+
     function edit_check_all_day() {
-        console.log('edit_check_all_day');
+        // console.log('edit_check_all_day');
         let checkbox_all_day = document.getElementById('edit_all_day');
         if (checkbox_all_day.checked) {
             document.querySelector('#edit_not_all_day').classList.add('d-none');
@@ -1349,7 +1386,7 @@
         });
         calendar.render();
         document.querySelector('.card-calender').classList.remove('d-none');
-        document.querySelector('.card-calender').classList.add('fade');
+        document.querySelector('.card-calender').classList.add('fade-calendar');
 
         updateTitle();
 

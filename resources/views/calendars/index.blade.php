@@ -15,7 +15,7 @@
         display: flex !important;
         flex-direction: column !important;
         padding: 80px 0 0 0 !important;
-        /* overflow: hidden; */
+        overflow: hidden;
     }
 
     @media only screen and (max-width: 767px) {
@@ -595,6 +595,7 @@
 <script>
     let check_calendar = true;
     function test() {
+        get_data_for_calendar_for_user();
         document.querySelector('#my_calendar').classList.toggle('d-none');
         document.querySelector('#icon_show_my_calender').classList.toggle('d-none');
         document.querySelector('.appointment').classList.toggle('show');

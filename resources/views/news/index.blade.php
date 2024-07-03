@@ -290,7 +290,7 @@
                        .container-content ,.content-section ,.bottom-content ,.top-content{
                         padding-right: 0;
                        }
-                       .container-course{
+                       .container-course ,.nav-pills{
                         padding-right: calc(var(--bs-gutter-x, .75rem)) ;
                        
                     }}

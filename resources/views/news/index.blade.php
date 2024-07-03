@@ -338,13 +338,13 @@
                         @endphp
 
                         <div class="owl-carousel carousel-menu-course owl-theme">
-                            <div class="item " onclick="get_data_news('all');">
+                            <div class="item " onclick="get_data_news('all');" id="0">
                                 <div id="item_type_news_all" class="item_type_news menu-course text-center active">
                                     <p class="mb-0">ทั้งหมด</p>
                                 </div>
                             </div>
                             @foreach($data_news_type as $item_type)
-                            <div class="item" onclick="get_data_news('{{ $item_type->id }}');">
+                            <div class="item" onclick="get_data_news('{{ $item_type->id }}');" id="{{ $loop->iteration }}">
                                 <div id="item_type_news_{{ $item_type->id }}" class="item_type_news menu-course text-center">
                                     <p class="mb-0">{{ $item_type->name_type }}</p>
                                 </div>
@@ -555,6 +555,7 @@
             }
         }
     })
+    var carousel_menu_course = $('.carousel-menu-course');
 
     $('.carousel-menu-course').owlCarousel({
         // stagePadding:20,
@@ -579,7 +580,12 @@
             }
         }
     })
-
+    // ฟังก์ชันที่เลื่อน item มาอยู่ตรงกลางเมื่อกด
+    $('.carousel-menu-course .item').click(function() {
+        var itemId = $(this).attr('id'); // ดึงค่า id ของ item ที่กด
+        var index = $('.carousel-menu-course .item').index(this);
+        carousel_menu_course.trigger('to.owl.carousel', [index, 300, true]); // เลื่อน item ไปที่ ind
+    });
 
     $('a[data-toggle="pill"]').on('shown.bs.tab', function(e) {
         e.target // newly activated tab

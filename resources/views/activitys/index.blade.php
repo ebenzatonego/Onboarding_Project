@@ -217,7 +217,10 @@
             color: #fff;
 
         }
-
+        .container-img::after {
+        /* box-shadow: inset 3px 3px 10px 0 #000000; */
+        width: 95.5% !important;
+    }
 
     }
 

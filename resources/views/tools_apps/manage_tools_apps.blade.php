@@ -164,10 +164,10 @@
                             <td>
                             	`+type_app+`
                             </td>
-                            <td>
+                            <td style="max-width: 100px;">
                             	`+textWithoutHtml+`
                             </td>
-                            <td>
+                            <td style="max-width: 200px;">
                             	`+html_link+`
                             </td>
                             <td>

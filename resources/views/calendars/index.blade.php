@@ -865,7 +865,7 @@
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="Modal_delete_data" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="Modal_delete_data" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 99999999;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

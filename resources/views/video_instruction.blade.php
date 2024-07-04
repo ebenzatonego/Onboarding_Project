@@ -408,11 +408,51 @@
                     <p class="AllianzNeo" style="color:#0E2B81;font-size: 10px;font-weight: bold;margin: 0;">ALLIANZ ON-BOARDING WEB</p>
                 </div>
 
-                <div class="d-flex-justify-content-center w-100 px-3">
-                    <video id="tag_video_intro" src="" controls autoplay loop muted playsinline style="width:100%;border-radius: 10px; max-width: 628px;" class="video-preview"></video>
+                <div class="d-flex-justify-content-center w-100 px-3 position-relative">
+                    <video id="tag_video_intro" src="" controls loop playsinline style="width:100%;border-radius: 10px; max-width: 628px;" class="video-preview"></video>
+                    <style>
+                        .play-button {
+                            display: flex;
+                            justify-content: center;
+                            color: #fff;
+                            width: 80px;
+                            height: 80px;
+                            border-radius: 100%;
+                            background: linear-gradient(30deg,#384ed2 20%,#243286 80%);
+                            transition: all 0.3s ease-in-out 0s;
+                            box-shadow: rgba(193, 244, 246, 0.698) 0px 0px 0px 0px;
+                            animation: 1.2s cubic-bezier(0.8, 0, 0, 1) 0s infinite normal none running pulse;
+                            align-items: center;
+                            border: 0;
+                            position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+                            }
+/* 
+                            .play-button:is(:hover, :focus) {
+                            transform: scale(1.2);
+                            } */
+
+                            @keyframes pulse {
+                            100% {
+                                box-shadow: 0 0 0 45px rgba(193,244,246,0);
+                            }
+                            }
+                    </style>
+                    <a class="play-button" onclick="click_play_video()">
+                        <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="26px"><path d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z" fill="currentColor"></path></svg>
+                    </a>
                 </div>
             </div>
         </div>
+
+        <script>
+            function click_play_video() {
+                document.querySelector('.play-button').classList.add('d-none');
+                document.querySelector('#tag_video_intro').play();
+            }
+        </script>
         <div class="authentication-bottom">
             <div class="shape"></div>
             <div class="text-center px-5 w-100 h-100 d-flex align-items-center justify-content-center">

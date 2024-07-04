@@ -53,12 +53,11 @@ class Check_open_appointments extends Command
             ->update(['status' => 'Yes']);
 
         // อัพเดต status เป็น null ถ้าวันเวลาปัจจุบันไม่อยู่ระหว่าง datetime_start และ datetime_end
-        // DB::table('appointments')
-        //     ->where(function ($query) use ($currentDateTime) {
-        //         $query->where('datetime_start', '>', $currentDateTime)
-        //               ->orWhere('datetime_end', '<', $currentDateTime);
-        //     })
-        //     ->update(['status' => null]);
+        DB::table('appointments')
+            // ->where('datetime_start', '<=', $currentDateTime)
+            ->where('datetime_end', '!=', null)
+            ->where('datetime_end', '<', $currentDateTime)
+            ->update(['status' => null]);
     }
 
 }

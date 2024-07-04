@@ -409,7 +409,7 @@
                 </div>
 
                 <div class="d-flex-justify-content-center w-100 px-3 position-relative">
-                    <video id="tag_video_intro" src=""  loop playsinline style="width:100%;border-radius: 10px; max-width: 628px;" class="video-preview" poster="{{url('/img/icon/ad.png')}}"></video>
+                    <video id="tag_video_intro" src=""  loop playsinline style="width:100%;border-radius: 10px; max-width: 628px;" class="video-preview" poster="{{url('/img/icon/video_into.jpg')}}"></video>
                     <style>
                         .play-button {
                             display: flex;

@@ -414,7 +414,7 @@
     <div class="row justify-content-center mx-2 div-navbar-botttom">
         <div class="col text-center text-truncate col-navbar d-flex justify-content-center">
             <div class=" mx-2 pt-2 pb-1 mb-2" id="menu_theme_user_Training">
-                <a href="{{ url('/page_training') }}">
+                <a href="{{ url('/page_training') }}" onclick="return create_logs('Training_nemu');">
                     <i class="fa-regular fa-graduation-cap fa-flip-horizontal"></i>
                     <p class="text-truncate mt-1 mb-0">
                         Training
@@ -847,5 +847,21 @@
         let minutes = String(date.getMinutes()).padStart(2, '0');
 
         return `${day}-${month}-${year}__${hours}:${minutes}`;
+    }
+    
+    function create_logs(log_content) {
+        let user_id = "{{ Auth::user()->id }}";
+        let role = "{{ Auth::user()->role }}";
+      
+        fetch(`{{ url('/') }}/api/create_logs?user_id=${user_id}&role=${role}&content=${log_content}`)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                if (log_content == "000_Log out page") {
+                    document.querySelector('#btn-logout').click(); 
+                }
+
+                return true;
+            })
     }
 </script>

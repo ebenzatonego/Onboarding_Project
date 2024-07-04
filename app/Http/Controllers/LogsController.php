@@ -119,4 +119,18 @@ class LogsController extends Controller
 
         return redirect('logs')->with('flash_message', 'Log deleted!');
     }
+
+    public function create_logs(Request $request)
+    {
+        $requestData = $request->all();
+
+
+        Log::create([
+            "log_content"=> $requestData['content'],
+            "user_id"=> $requestData['user_id'],
+            "role"=>$requestData['role'],
+        ]);
+        return response()->json('ok');
+
+    }
 }

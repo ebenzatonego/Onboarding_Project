@@ -208,4 +208,7 @@ Route::get('/get_data_fav_of_user/{user_id}', 'FavoritesController@get_data_fav_
 
 Route::get('/get_data_fav_of_user/', 'FavoritesController@get_data_fav_of_user');
 
+//log
+Route::get('/create_logs', 'LogsController@create_logs');
+
 

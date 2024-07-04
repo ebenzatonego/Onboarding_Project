@@ -55,6 +55,7 @@ class AdminController extends Controller
         }
     }
 
+
     function create_user_member(Request $request)
     {
         $requestData = $request->all();
@@ -66,35 +67,44 @@ class AdminController extends Controller
                 if($key == "password"){
                     $data_arr['password'] = Hash::make($value);
                 }
-                else if($key == "license_start"){
+                else if ($key == "license_start") {
                     $data_arr['license_start'] = $value;
-                    // แปลงวันที่จาก d-m-Y เป็น Y-m-d
-                    if(!empty($data_arr['license_start'])){
-                        $date = Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d');
+                    if (!empty($data_arr['license_start'])) {
+                        if (is_numeric($value)) {
+                            $date = $this->convertExcelDate($value);
+                        } else {
+                            $date = Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d');
+                        }
                         $data_arr['license_start'] = $date;
                     }
-                }
-                else if($key == "license_expire"){
+                } else if ($key == "license_expire") {
                     $data_arr['license_expire'] = $value;
-                    // แปลงวันที่จาก d-m-Y เป็น Y-m-d
-                    if(!empty($data_arr['license_expire'])){
-                        $date = Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d');
+                    if (!empty($data_arr['license_expire'])) {
+                        if (is_numeric($value)) {
+                            $date = $this->convertExcelDate($value);
+                        } else {
+                            $date = Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d');
+                        }
                         $data_arr['license_expire'] = $date;
                     }
-                }
-                else if($key == "ic_license_start"){
+                } else if ($key == "ic_license_start") {
                     $data_arr['ic_license_start'] = $value;
-                    // แปลงวันที่จาก d-m-Y เป็น Y-m-d
-                    if(!empty($data_arr['ic_license_start'])){
-                        $date = Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d');
+                    if (!empty($data_arr['ic_license_start'])) {
+                        if (is_numeric($value)) {
+                            $date = $this->convertExcelDate($value);
+                        } else {
+                            $date = Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d');
+                        }
                         $data_arr['ic_license_start'] = $date;
                     }
-                }
-                else if($key == "ic_license_expire"){
+                } else if ($key == "ic_license_expire") {
                     $data_arr['ic_license_expire'] = $value;
-                    // แปลงวันที่จาก d-m-Y เป็น Y-m-d
-                    if(!empty($data_arr['ic_license_expire'])){
-                        $date = Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d');
+                    if (!empty($data_arr['ic_license_expire'])) {
+                        if (is_numeric($value)) {
+                            $date = $this->convertExcelDate($value);
+                        } else {
+                            $date = Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d');
+                        }
                         $data_arr['ic_license_expire'] = $date;
                     }
                 }
@@ -122,6 +132,12 @@ class AdminController extends Controller
 
         return "success" ;
 
+    }
+
+    function convertExcelDate($excelDateValue) {
+        $startDate = Carbon::createFromDate(1900, 1, 1);
+        $date = $startDate->addDays($excelDateValue - 2);
+        return $date->format('Y-m-d');
     }
 
     function create_user_upper_al(Request $request)

@@ -18,6 +18,7 @@ class Kernel extends ConsoleKernel
         Commands\Reset_content_popup::class,
         Commands\Check_open_training::class,
         Commands\Check_open_appointments::class,
+        Commands\Check_open_activitys::class,
     ];
 
     /**
@@ -34,6 +35,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('cron:reset_content_popup')->dailyAt('03:00')->withoutOverlapping(5);
         $schedule->command('cron:check_open_training')->everyMinute()->withoutOverlapping(5);
         $schedule->command('cron:check_open_appointments')->everyMinute()->withoutOverlapping(5);
+        $schedule->command('cron:check_open_activitys')->everyMinute()->withoutOverlapping(5);
     }
 
     /**

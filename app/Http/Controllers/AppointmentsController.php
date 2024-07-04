@@ -170,7 +170,7 @@ class AppointmentsController extends Controller
         Log_delete_content::create($data);
         Appointment::destroy($id);
 
-        return redirect('manage_appointment')->with('flash_message', 'Appointment deleted!');
+        return redirect('/manage_appointment/quiz')->with('flash_message', 'Appointment deleted!');
     }
 
     function manage_appointment($type){

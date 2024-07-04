@@ -46,17 +46,23 @@ class Check_open_training extends Command
     {
         $currentDateTime = Carbon::now();
 
-        // อัพเดต status เป็น 'Yes' ถ้าวันเวลาปัจจุบันอยู่ระหว่าง datetime_start และ datetime_end
+        // อัพเดต status เป็น 'Yes' ถ้าวันเวลาปัจจุบันอยู่ระหว่าง datetime_start และ datetime_end หรือถ้า datetime_end เป็นค่าว่าง
         DB::table('trainings')
             ->where('datetime_start', '<=', $currentDateTime)
-            ->where('datetime_end', '>=', $currentDateTime)
+            ->where(function ($query) use ($currentDateTime) {
+                $query->where('datetime_end', '>=', $currentDateTime)
+                      ->orWhereNull('datetime_end');
+            })
             ->update(['status' => 'Yes']);
 
         // อัพเดต status เป็น null ถ้าวันเวลาปัจจุบันไม่อยู่ระหว่าง datetime_start และ datetime_end
         DB::table('trainings')
             ->where(function ($query) use ($currentDateTime) {
                 $query->where('datetime_start', '>', $currentDateTime)
-                      ->orWhere('datetime_end', '<', $currentDateTime);
+                      ->orWhere(function ($subQuery) use ($currentDateTime) {
+                          $subQuery->where('datetime_end', '<', $currentDateTime)
+                                   ->orWhereNull('datetime_end');
+                      });
             })
             ->update(['status' => null]);
     }

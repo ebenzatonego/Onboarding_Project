@@ -409,7 +409,7 @@
                 </div>
 
                 <div class="d-flex-justify-content-center w-100 px-3 position-relative">
-                    <video id="tag_video_intro" src=""  loop playsinline style="width:100%;border-radius: 10px; max-width: 628px;" class="video-preview"></video>
+                    <video id="tag_video_intro" src=""  loop playsinline style="width:100%;border-radius: 10px; max-width: 628px;" class="video-preview" poster="{{url('/img/icon/ad.png')}}"></video>
                     <style>
                         .play-button {
                             display: flex;
@@ -451,6 +451,7 @@
             function click_play_video() {
                 document.querySelector('.play-button').classList.add('d-none');
                 document.querySelector('#tag_video_intro').play();
+                // document.querySelector('#tag_video_intro').muted = false;
             }
         </script>
         <div class="authentication-bottom">

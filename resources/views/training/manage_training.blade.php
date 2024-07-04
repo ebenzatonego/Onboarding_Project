@@ -358,7 +358,7 @@
 </div>
 
 <!-- MODAL การจัดการเมนูหลักสูตร -->
-<div class="modal fade" id="modal_menu_management" tabindex="-1" aria-labelledby="Label_menu_management" aria-hidden="true">
+<div class="modal fade" id="modal_menu_management" tabindex="-1" aria-labelledby="Label_menu_management" aria-hidden="true"  style="z-index:9999999!important;">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">

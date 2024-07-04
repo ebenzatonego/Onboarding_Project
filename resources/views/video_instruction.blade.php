@@ -493,7 +493,9 @@
         var main_video = document.getElementById('tag_video_intro');
 
         setTimeout(() => {
-            main_video.muted = false;
+            main_video.addEventListener('play', function() {
+                main_video.muted = false;
+            });
         }, 1000);
         // function isIOS() {
         //     return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;

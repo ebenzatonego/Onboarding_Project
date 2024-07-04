@@ -47,6 +47,10 @@
     video::-webkit-media-controls-time-remaining-display {
         display: none;
     }
+
+    .modal{
+        z-index: 9999999!important;
+    }
 </style>
 
 <body>

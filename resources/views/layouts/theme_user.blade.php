@@ -246,6 +246,10 @@
         padding: 40px 0;
     }
 
+    .modal{
+        z-index: 9999999!important;
+    }
+
     .btn-detail-profile {
         position: absolute;
         top: 0px;

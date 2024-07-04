@@ -59,6 +59,9 @@
     .bg-menu-bar{
         background: linear-gradient(to right, #011644 , #0455AC , #0467CE , #94daff)!important;
     }
+    .modal{
+        z-index: 9999999!important;
+    }
 </style>
 
 @php

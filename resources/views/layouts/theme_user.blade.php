@@ -804,7 +804,7 @@
     function check_user_status_login(){
 
         let status_login = "{{ Auth::user()->status_login }}" ;
-            console.log(status_login);
+            // console.log(status_login);
 
         if(status_login != 'Active'){
             document.querySelector('#btn_theme_logout_form').click();

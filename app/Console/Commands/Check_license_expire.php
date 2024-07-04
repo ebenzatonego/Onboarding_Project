@@ -47,7 +47,7 @@ class Check_license_expire extends Command
         $currentDate = Carbon::now()->toDateString();
 
         DB::table('users')
-            ->whereDate('license_expire', '=', $currentDate)
+            ->whereDate('license_expire', '<=', $currentDate)
             ->update(['status_login' => 'Inactive']);
 
     }

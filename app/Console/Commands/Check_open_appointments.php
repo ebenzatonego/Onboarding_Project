@@ -46,23 +46,17 @@ class Check_open_appointments extends Command
     {
         $currentDateTime = Carbon::now();
 
-        // อัพเดต status เป็น 'Yes' ถ้าวันเวลาปัจจุบันอยู่ระหว่าง datetime_start และ datetime_end หรือถ้า datetime_end เป็นค่าว่าง
+        // อัพเดต status เป็น 'Yes' ถ้าวันเวลาปัจจุบันอยู่ระหว่าง datetime_start และ datetime_end
         DB::table('appointments')
             ->where('datetime_start', '<=', $currentDateTime)
-            ->where(function ($query) use ($currentDateTime) {
-                $query->where('datetime_end', '>=', $currentDateTime)
-                      ->orWhereNull('datetime_end');
-            })
+            ->where('datetime_end', '>=', $currentDateTime)
             ->update(['status' => 'Yes']);
 
         // อัพเดต status เป็น null ถ้าวันเวลาปัจจุบันไม่อยู่ระหว่าง datetime_start และ datetime_end
         DB::table('appointments')
             ->where(function ($query) use ($currentDateTime) {
                 $query->where('datetime_start', '>', $currentDateTime)
-                      ->orWhere(function ($subQuery) use ($currentDateTime) {
-                          $subQuery->where('datetime_end', '<', $currentDateTime)
-                                   ->orWhereNull('datetime_end');
-                      });
+                      ->orWhere('datetime_end', '<', $currentDateTime);
             })
             ->update(['status' => null]);
     }

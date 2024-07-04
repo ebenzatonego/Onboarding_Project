@@ -87,7 +87,7 @@ class AppointmentsController extends Controller
         
         Appointment::create($requestData);
 
-        return redirect('/manage_appointment');
+        return redirect('/manage_appointment/quiz');
         // return redirect('appointments')->with('flash_message', 'Appointment added!');
     }
 

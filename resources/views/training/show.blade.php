@@ -672,7 +672,8 @@
             image_resized.setAttribute('style' , 'width:100%;');
         })
 
-        let tag_img = detail_training.querySelectorAll('img')
+        // let tag_img = detail_training.querySelectorAll('img')
+        let tag_img = detail_training.querySelectorAll('img:not(.img-news):not(.preview-img)');
             tag_img.forEach(tag_img => {
             tag_img.setAttribute('class' , 'w-100');
             tag_img.removeAttribute('width');

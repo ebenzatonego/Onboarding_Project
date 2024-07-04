@@ -484,6 +484,7 @@
                                 // Remove the 'active' class from all previously clicked images
                                 imgNewsElements.forEach(otherImg => otherImg.classList.remove('active'));
 
+                                // console.log(this);
                                 // Add the 'active' class to the clicked image
                                 this.classList.add('active');
 
@@ -771,7 +772,8 @@
             image_resized.setAttribute('style' , 'width:100%;');
         })
 
-        let tag_img = detail_training.querySelectorAll('img')
+        // let tag_img = detail_training.querySelectorAll('img')
+        let tag_img = detail_training.querySelectorAll('img:not(.img-news):not(.preview-img)');
             tag_img.forEach(tag_img => {
             tag_img.setAttribute('class' , 'w-100');
             tag_img.removeAttribute('width');

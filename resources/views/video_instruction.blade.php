@@ -409,7 +409,7 @@
                 </div>
 
                 <div class="d-flex-justify-content-center w-100 px-3">
-                    <video id="tag_video_intro" src="" controls autoplay loop playsinline style="width:100%;border-radius: 10px; max-width: 628px;" class="video-preview"></video>
+                    <video id="tag_video_intro" src="" controls autoplay loop muted playsinline style="width:100%;border-radius: 10px; max-width: 628px;" class="video-preview"></video>
                 </div>
             </div>
         </div>
@@ -489,27 +489,6 @@
                 });
             window.location.href = "{{ url('/home') }}";
         });
-
-        var main_video = document.getElementById('tag_video_intro');
-
-        setTimeout(() => {
-            main_video.addEventListener('play', function() {
-                main_video.muted = false;
-            });
-        }, 1000);
-        // function isIOS() {
-        //     return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-        // }
-
-        // if (isIOS()) {
-        //     main_video.volume = 1.0; // ตั้งค่าเสียงให้เต็ม
-        // }
-
-        // main_video.addEventListener('play', function() {
-        //     if (isIOS()) {
-        //         main_video.muted = false;
-        //     }
-        // });
 
     });
 

@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
         Commands\Cancel_check_birthday::class,
         Commands\Check_license_expire::class,
         Commands\Reset_content_popup::class,
+        Commands\Check_open_training::class,
     ];
 
     /**
@@ -30,6 +31,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('cron:cancel_check_birthday')->dailyAt('00:01')->withoutOverlapping(5);
         $schedule->command('cron:check_license_expire')->dailyAt('01:00')->withoutOverlapping(5);
         $schedule->command('cron:reset_content_popup')->dailyAt('03:00')->withoutOverlapping(5);
+        $schedule->command('cron:check_open_training')->everyMinute()->withoutOverlapping(5);
     }
 
     /**

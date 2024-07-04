@@ -490,6 +490,22 @@
             window.location.href = "{{ url('/home') }}";
         });
 
+        var main_video = document.getElementById('tag_video_intro');
+
+        function isIOS() {
+            return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        }
+
+        if (isIOS()) {
+            main_video.volume = 1.0; // ตั้งค่าเสียงให้เต็ม
+        }
+
+        main_video.addEventListener('play', function() {
+            if (isIOS()) {
+                main_video.muted = false;
+            }
+        });
+
     });
 
 

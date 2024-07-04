@@ -426,8 +426,13 @@
                             set_center = i ;
                         }
 
+                        let check_none = ``;
+                        if(name == 'ตารางสอบ'){
+                            check_none = `d-none` ; 
+                        }
+
                         let html = `
-                            <a href="{{ url('/sub_training') }}/`+result[i].id+`">
+                            <a href="{{ url('/sub_training') }}/`+result[i].id+`" class="`+check_none+`">
                                 <div class="item">
                                     <div id="item_menu_type_`+result[i].id+`" class="menu-course text-center `+check_active+`">
                                         <div class="icon-menu-course ">

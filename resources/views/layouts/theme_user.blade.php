@@ -619,6 +619,7 @@
         // ตรวจสอบการเลื่อนตำแหน่ง => content_popup => birthday
         check_current_rank();
         check_user_coc();
+        check_user_status_login();
     });
 
     function check_current_rank() {
@@ -795,7 +796,24 @@
             }
         }
     }
+
+    function check_user_status_login(){
+
+        let status_login = "{{ Auth::user()->status_login }}" ;
+            console.log(status_login);
+
+        if(status_login != 'Active'){
+            document.querySelector('#btn_theme_logout_form').click();
+        }
+
+    }
 </script>
+
+<a id="btn_theme_logout_form" href="{{ route('logout') }}" class="d-none" onclick="event.preventDefault();document.getElementById('theme_logout_form').submit();" style="color: #999999;font-size: 10px;">
+</a>
+<form id="theme_logout_form" action="{{ route('logout') }}" method="POST" class="d-none">
+    @csrf
+</form>
 
 
 <!-- ----------------------------- firebase --------------------------------- -->

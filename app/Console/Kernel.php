@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\Cancel_check_birthday::class,
+        Commands\Reset_content_popup::class,
     ];
 
     /**
@@ -25,7 +26,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command('cron:cancel_check_birthday')->dailyAt('14:48')->withoutOverlapping(5);
+        $schedule->command('cron:cancel_check_birthday')->dailyAt('00:01')->withoutOverlapping(5);
+        $schedule->command('cron:reset_content_popup')->dailyAt('03:00')->withoutOverlapping(5);
     }
 
     /**

@@ -414,7 +414,7 @@
     <div class="row justify-content-center mx-2 div-navbar-botttom">
         <div class="col text-center text-truncate col-navbar d-flex justify-content-center">
             <div class=" mx-2 pt-2 pb-1 mb-2" id="menu_theme_user_Training">
-                <a href="{{ url('/page_training') }}" onclick="return create_logs('Product_menu');">
+                <a href="{{ url('/page_training') }}" onclick="return create_logs('Training_menu');">
                     <i class="fa-regular fa-graduation-cap fa-flip-horizontal"></i>
                     <p class="text-truncate mt-1 mb-0">
                         Training
@@ -425,7 +425,7 @@
 
         <div class="col text-center text-truncate col-navbar d-flex justify-content-center">
             <div class=" mx-2 pt-2 pb-1 mb-2" id="menu_theme_user_Product">
-                <a href="{{ url('/page_products') }}" class="" onclick="return create_logs('Training_menu');">
+                <a href="{{ url('/page_products') }}" class="" onclick="return create_logs('Product_menu');">
                     <i class="fa-regular fa-clipboard-list"></i>
                     <p class="text-truncate mt-1 mb-0">
                         Product
@@ -455,7 +455,7 @@
         </div>
         <div class="col text-center text-truncate col-navbar d-flex justify-content-center" >
             <div class=" mx-2 pt-2 pb-1 mb-2" id="menu_theme_user_Tools" style="position: relative;">
-                <a href="{{ url('/tools') }}" class="position-raletive" onclick="return create_logs('Tools_nemu');"> 
+                <a href="{{ url('/tools') }}" class="position-raletive" onclick="return create_logs('Tools_menu');"> 
                     <span id="span_alert_tools" class="alert-tools d-none"></span>
                     <i class="fa-regular fa-wrench-simple fa-rotate-by" style="--fa-rotate-angle: 320deg;"></i>
                     <p class=" text-truncate mt-1 mb-0">

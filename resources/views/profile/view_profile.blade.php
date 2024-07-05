@@ -428,7 +428,7 @@
                                 </p>
                             </div>
 
-                            <div class=" d-flex justify-content-end align-items-end">
+                            <div class=" d-flex justify-content-end align-items-end" onclick="return create_logs('logout_page');">
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="color: #999999;font-size: 10px;">
                                     <u>ออกจากระบบ</u>
                                 </a>

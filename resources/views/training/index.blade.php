@@ -1046,8 +1046,8 @@
                             if(result[i].area == "กรุงเทพ"){
                                 // console.log('กรุงเทพ');
                                 html = `
-                                    <div class="card mx-3" onclick="return create_logs('Test schedule_Type กรุงเทพ');show_content_appointment_quiz('` + result[i].id + `');">
-                                        <a class="mb-0" onclick="goto_bottom()">
+                                    <div class="card mx-3" onclick="show_content_appointment_quiz('` + result[i].id + `');">
+                                        <a class="mb-0" onclick="goto_bottom();return create_logs('Test schedule_Type กรุงเทพ');">
                                             <div  class="btn btn-select-region collapsed" data-toggle="collapse" data-target="#collapse_` + update_round + `" aria-expanded="true" aria-controls="collapse_` + update_round + `">
                                                 ` + result[i].area + `
                                                 <div class="icon-arrow">

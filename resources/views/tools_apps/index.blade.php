@@ -1858,7 +1858,7 @@
                 flex-wrap: wrap;
                 transform: scale(0.8);
                 position: relative;
-                top:-30px;
+                top:-50px;
             }
 
             .menu-tutorials .item {

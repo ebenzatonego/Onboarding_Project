@@ -1857,6 +1857,8 @@
                 justify-content: center;
                 flex-wrap: wrap;
                 transform: scale(0.8);
+                position: relative;
+                top:-30px;
             }
 
             .menu-tutorials .item {

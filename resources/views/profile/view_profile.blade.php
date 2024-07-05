@@ -393,7 +393,7 @@
                                     For Admin
                                 </a>
                                 @endif   -->
-                                <a class=" btn-detail-profile" data-toggle="modal" data-target="#modal_show_card_profile">
+                                <a class=" btn-detail-profile" data-toggle="modal" data-target="#modal_show_card_profile" onclick="return create_logs('License Download_button');">
                                     <i class="fa-light fa-circle-exclamation"></i>
                                 </a>
 
@@ -465,7 +465,7 @@
                     @endif
                     @endif
                     <div style="position: absolute;bottom: -25px;left: 50%;transform: translate(-50%, -50%);">
-                        <button type="button" class="" data-toggle="modal" data-target="#modal_show_all_detail" style="border:none !important;background: #7FA3D4;padding: 5px 5px ;border-radius: 50px;color:#fff">
+                        <button type="button" class="" data-toggle="modal" data-target="#modal_show_all_detail" style="border:none !important;background: #7FA3D4;padding: 5px 5px ;border-radius: 50px;color:#fff" onclick="return create_logs('License_icon');">
                             <i class="fa-solid fa-chevron-down"></i>
                         </button>
                     </div>
@@ -636,9 +636,11 @@
                                     </h6>
                                 </div>
                             </div>
-                            <button id="btn_start_modal_my_goal" class="btn-more-job px-5 mt-3" data-toggle="modal" data-target="#modal_my_goal">
-                                เลือกเป้าหมายใหม่ของคุณ
-                            </button>
+                            <div class="d-flex justify-content-center ">
+                                <button id="btn_start_modal_my_goal" class="btn-more-job px-5 mt-3" data-toggle="modal" data-target="#modal_my_goal">
+                                    เลือกเป้าหมายใหม่ของคุณ
+                                </button>
+                            </div>
                         </div>
                         @else
                         <div class="mt-3">
@@ -654,7 +656,7 @@
                                 </div>
                             </div>
                             <center>
-                                <span id="btn_update_my_goal" class="btn mt-3 py-1" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);background-color: #ffffff;border-radius: 7.5px;width: 80%;font-size: 13.99px;color: #003781;" onclick="update_my_goal();">
+                                <span id="btn_update_my_goal" class="btn mt-3 py-1" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);background-color: #ffffff;border-radius: 7.5px;width: 80%;font-size: 13.99px;color: #003781;" onclick="update_my_goal();return create_logs('กดยืนยันเมื่อทำสำเร็จ_Button');">
                                     กดยืนยันเมื่อทำสำเร็จแล้ว
                                 </span>
                             </center>
@@ -707,7 +709,7 @@
                             </svg>
                         </div>
                         <div class="d-flex justify-content-center mb-4 mt-2">
-                            <a class="btn-more-job px-5" href="{{url('training_path')}}">
+                            <a class="btn-more-job px-5" href="{{url('training_path')}}" onclick="return create_logs('ดูเส้นทางฝึกฝนเพิ่มเติม_button');">
                                 ดูเส้นทางฝึกฝนเพิ่มเติม
                             </a>
                         </div>
@@ -886,7 +888,7 @@
                             }
                         </style>
                         <div class="d-flex justify-content-center mt-3">
-                            <a href="{{ url('/page_career_paths') }}" class="btn-more-job px-5">
+                            <a href="{{ url('/page_career_paths') }}" class="btn-more-job px-5" onclick="return create_logs('ดูเส้นทางอาชีพเพิ่มเติม_button');">
                                 ดูเส้นทางอาชีพเพิ่มเติม
                             </a>
                         </div>

@@ -354,18 +354,18 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle-nocaret" href="{{ url('/my_favorites') }}" role="button">
+                        <a class="nav-link dropdown-toggle-nocaret" href="{{ url('/my_favorites') }}" role="button" onclick="return create_logs('Fav_icon');">
                             <i class="fa-regular fa-bookmark text-color-obd"></i>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle-nocaret position-relative" href="{{ url('/calendars') }}" role="button">
+                        <a class="nav-link dropdown-toggle-nocaret position-relative" href="{{ url('/calendars') }}" role="button" onclick="return create_logs('Calendar_icon');">
                             <span class="alert-count d-none"></span>
                             <i class="fa-regular fa-calendar text-color-obd"></i>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle-nocaret position-relative" href="#" role="button"  data-toggle="modal" data-target="#modal_notification">
+                        <a class="nav-link dropdown-toggle-nocaret position-relative" href="#" role="button"  data-toggle="modal" data-target="#modal_notification" onclick="return create_logs('Notification_icon');">
                             <span id="alert_count_notification" class="alert-count d-none"></span>
                             <i class="fa-regular fa-bell text-color-obd"></i>
                         </a>
@@ -414,7 +414,7 @@
     <div class="row justify-content-center mx-2 div-navbar-botttom">
         <div class="col text-center text-truncate col-navbar d-flex justify-content-center">
             <div class=" mx-2 pt-2 pb-1 mb-2" id="menu_theme_user_Training">
-                <a href="{{ url('/page_training') }}" onclick="return create_logs('Training_menu');">
+                <a href="{{ url('/page_training') }}" onclick="return create_logs('Product_menu');">
                     <i class="fa-regular fa-graduation-cap fa-flip-horizontal"></i>
                     <p class="text-truncate mt-1 mb-0">
                         Training
@@ -425,7 +425,7 @@
 
         <div class="col text-center text-truncate col-navbar d-flex justify-content-center">
             <div class=" mx-2 pt-2 pb-1 mb-2" id="menu_theme_user_Product">
-                <a href="{{ url('/page_products') }}" class="">
+                <a href="{{ url('/page_products') }}" class="" onclick="return create_logs('Training_menu');">
                     <i class="fa-regular fa-clipboard-list"></i>
                     <p class="text-truncate mt-1 mb-0">
                         Product
@@ -435,7 +435,7 @@
         </div>
         <div class="col text-center text-truncate col-navbar d-flex justify-content-center">
             <div class=" mx-2 pt-2 pb-1 mb-2" id="menu_theme_user_Home">
-                <a href="{{ url('/home') }}">
+                <a href="{{ url('/home') }}" onclick="return create_logs('Home_menu');">
                     <i class="fa-regular fa-house"></i>
                     <p class="text-truncate mt-1 mb-0">
                         Home
@@ -445,7 +445,7 @@
         </div>
         <div class="col text-center text-truncate col-navbar d-flex justify-content-center">
             <div class=" mx-2 pt-2 pb-1 mb-2" id="menu_theme_user_News">
-                <a href="{{ url('/page_news') }}">
+                <a href="{{ url('/page_news') }}" onclick="return create_logs('News_menu');">
                     <i class="fa-regular fa-newspaper"></i>
                     <p class="text-truncate mt-1 mb-0">
                         News
@@ -455,7 +455,7 @@
         </div>
         <div class="col text-center text-truncate col-navbar d-flex justify-content-center" >
             <div class=" mx-2 pt-2 pb-1 mb-2" id="menu_theme_user_Tools" style="position: relative;">
-                <a href="{{ url('/tools') }}" class="position-raletive">
+                <a href="{{ url('/tools') }}" class="position-raletive" onclick="return create_logs('Tools_nemu');"> 
                     <span id="span_alert_tools" class="alert-tools d-none"></span>
                     <i class="fa-regular fa-wrench-simple fa-rotate-by" style="--fa-rotate-angle: 320deg;"></i>
                     <p class=" text-truncate mt-1 mb-0">

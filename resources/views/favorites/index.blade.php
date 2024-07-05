@@ -831,29 +831,34 @@
     <p class="title-tools">รายการที่บันทึกทั้งหมด</p>
     <div class="container-tap d-flex justify-content-center mb-4">
         <div class="tabs">
-            <input type="radio" id="radio-1" name="tabs_type_fav" value="ทั้งหมด" checked="" onchange="change_view_fav_type();">
+            <input type="radio" id="radio-1" name="tabs_type_fav" value="ทั้งหมด" checked="" onchange="change_view_fav_type();return create_logs('Fav Type_ทั้งหมด');">
             <label class="tab" for="radio-1">
                 ทั้งหมด
             </label>
-            <input type="radio" id="radio-2" name="tabs_type_fav" value="ข่าว" onchange="change_view_fav_type();">
+            <input type="radio" id="radio-2" name="tabs_type_fav" value="ข่าว" onchange="change_view_fav_type();return create_logs('Fav Type_ข่าวสาร');">
             <label class="tab" for="radio-2">
                 ข่าวสาร
             </label>
-            <input type="radio" id="radio-3" name="tabs_type_fav" value="หลักสูตร" onchange="change_view_fav_type();">
+            <input type="radio" id="radio-3" name="tabs_type_fav" value="หลักสูตร" onchange="change_view_fav_type();return create_logs('Fav Type_หลักสูตร');">
             <label class="tab" for="radio-3">
                 หลักสูตร
             </label>
-            <input type="radio" id="radio-4" name="tabs_type_fav" value="ผลิตภัณฑ์" onchange="change_view_fav_type();">
+            <input type="radio" id="radio-4" name="tabs_type_fav" value="ผลิตภัณฑ์" onchange="change_view_fav_type();return create_logs('Fav Type_ผลิตภัณฑ์');">
             <label class="tab" for="radio-4">
                 ผลิตภัณฑ์
             </label>
-            <input type="radio" id="radio-5" name="tabs_type_fav" value="กิจกรรม" onchange="change_view_fav_type();">
+            <input type="radio" id="radio-5" name="tabs_type_fav" value="กิจกรรม" onchange="change_view_fav_type();return create_logs('Fav Type_กิจกรรม');">
             <label class="tab" for="radio-5">
                 กิจกรรม
             </label>
             <span class="glider"></span>
         </div>
     </div>
+
+
+
+
+
 
     <div id="div_for_fav_training" class="d-none">
         <div class="owl-carousel carousel-menu-course owl-theme owl-loaded owl-drag mb-3">
@@ -865,7 +870,7 @@
                     <p class="mb-0 mt-2">หลักสูตร</p>
                 </div>
             </div>
-            <div class="item mx-2" onclick="change_view_item_training('2');">
+            <div class="item mx-2" onclick="change_view_item_training('2');return create_logs('Fav Type_อบรม');">
                 <div id="view_item_2" class="menu-course text-center">
                     <div class="icon-menu-course ">
                         <img src="{{ url('/img/icon/for_page_fav/อบรม.png') }}">
@@ -873,7 +878,7 @@
                     <p class="mb-0 mt-2">อบรม</p>
                 </div>
             </div>
-            <div class="item mx-2" onclick="change_view_item_training('3');">
+            <div class="item mx-2" onclick="change_view_item_training('3');return create_logs('Fav Type_สอบ');">
                 <div id="view_item_3" class="menu-course text-center">
                     <div class="icon-menu-course ">
                         <img src="{{ url('/img/icon/for_page_fav/สอบ.png') }}">

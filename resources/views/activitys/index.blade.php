@@ -73,7 +73,9 @@
         justify-content: center;
     }
 
-
+.menu-course{
+cursor: pointer;
+}
     .menu-course p {
         color: #B0C0D5;
         font-weight: bolder;
@@ -325,13 +327,13 @@
                         @endphp
 
                         <div class="owl-carousel carousel-menu-course owl-theme">
-                            <div class="item" onclick="get_data_activitys('all');" id="0">
+                            <div class="item" onclick="get_data_activitys('all');return create_logs('ตารางกิจกรรม Type_ทั้งหมด');" id="0">
                                 <div id="item_type_event_all" class="item_type_event menu-course text-center active">
                                     <p class="mb-0">ทั้งหมด</p>
                                 </div>
                             </div>
                             @foreach($data_activity_type as $item_type)
-                            <div class="item" onclick="get_data_activitys('{{ $item_type->id }}');" id="{{ $loop->iteration }}">
+                            <div class="item" onclick="get_data_activitys('{{ $item_type->id }}');return create_logs('ตารางกิจกรรม Type_{{ $item_type->name_type }}');" id="{{ $loop->iteration }}">
                                 <div id="item_type_event_{{ $item_type->id }}" class="item_type_event menu-course text-center">
                                     <p class="mb-0">{{ $item_type->name_type }}</p>
                                 </div>
@@ -495,7 +497,7 @@
 
                 let html_highlight_number = `
                     <div class="item">
-                        <a href="{{ url('/activitys_show') }}/` + result.id + `" class="text-white">
+                        <a href="{{ url('/activitys_show') }}/` + result.id + `" class="text-white" onclick="return create_logs('Click ตารางกิจกรรม_` + result.title + `');">
                         <div class="position-relative">
                             <div class="container-img">
                                 <img src="` + result.photo + `">
@@ -528,10 +530,10 @@
                 // console.log(result.highlight_of_type);
                 let html_highlight_number = `
                     <div class="item">
-                        <a href="{{ url('/activitys_show') }}/` + result.id + `" class="text-white">
+                        <a href="{{ url('/activitys_show') }}/` + result.id + `" class="text-white" onclick="return create_logs('Click ตารางกิจกรรม_` + result.title + `');">
                         <div class="position-relative">
                             <div class="container-img">
-                                <img src="` + result.photo + `">
+                                <img src="` + result.photso + `">
                             </div>
                             <div class="position-absolute detail-on-img w-100">
                                 <div>
@@ -588,7 +590,7 @@
         }
 
         let html = `
-            <a href="{{ url('/activitys_show') }}/` + result.id + `" class="course-item ` + check_fav + ` text-white">
+            <a href="{{ url('/activitys_show') }}/` + result.id + `" class="course-item ` + check_fav + ` text-white" onclick="return create_logs('Click ตารางกิจกรรม_` + result.title + `');">
                 <div style="position: relative;">
                     <img src="` + result.photo + `">
 

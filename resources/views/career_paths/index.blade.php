@@ -427,37 +427,35 @@
                         <img src="{{url('/img/icon/career_paths2.png')}}" alt="" style="width: 100%;">
                         <ul class="nav nav-pills" id="pills-tab" role="tablist">
                             <li class=" nav-item">
-                                <a class="nav-link active career_path_ag" data-toggle="pill" href="#pills_career_path_ag" role="tab" aria-selected="true">AG</a>
+                                <a class="nav-link active career_path_ag" data-toggle="pill" href="#pills_career_path_ag" role="tab" aria-selected="true" onclick="return create_logs('AG_Journey');">AG</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link career_path_um" data-toggle="pill" href="#pills_career_path_um" role="tab" aria-selected="false">UM</a>
+                                <a class="nav-link career_path_um" data-toggle="pill" href="#pills_career_path_um" role="tab" aria-selected="false" onclick="return create_logs('UM_Journey');">UM</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link career_path_sum" data-toggle="pill" href="#pills_career_path_sum" role="tab" aria-selected="false">SUM</a>
+                                <a class="nav-link career_path_sum" data-toggle="pill" href="#pills_career_path_sum" role="tab" aria-selected="false" onclick="return create_logs('SUM_Journey');">SUM</a>
                             </li>
                             <li class=" nav-item">
-                                <a class="nav-link career_path_dm" data-toggle="pill" href="#pills_career_path_dm" role="tab" aria-selected="true">DM</a>
+                                <a class="nav-link career_path_dm" data-toggle="pill" href="#pills_career_path_dm" role="tab" aria-selected="true" onclick="return create_logs('DM_Journey');">DM</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link career_path_sdm" data-toggle="pill" href="#pills_career_path_sdm" role="tab" aria-selected="false">SDM</a>
+                                <a class="nav-link career_path_sdm" data-toggle="pill" href="#pills_career_path_sdm" role="tab" aria-selected="false" onclick="return create_logs('SDM_Journey');">SDM</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link career_path_avp" data-toggle="pill" href="#pills_career_path_avp" role="tab" aria-selected="false">
+                                <a class="nav-link career_path_avp" data-toggle="pill" href="#pills_career_path_avp" role="tab" aria-selected="false" onclick="return create_logs('AVP_Journey');">
                                     AVP
                                     <img src="{{ url('img/icon/Crown.png') }}" alt="" class="crown-avp">
                                 </a>
                             </li>
                             <li class=" nav-item">
-                                <a class="nav-link career_path_vp" data-toggle="pill" href="#pills_career_path_vp" role="tab" aria-selected="true">
+                                <a class="nav-link career_path_vp" data-toggle="pill" href="#pills_career_path_vp" role="tab" aria-selected="true" onclick="return create_logs('VP_Journey');">
                                     VP
                                     <img src="{{ url('img/icon/Crown.png') }}" alt="" class="crown-vp1">
                                     <img src="{{ url('img/icon/Crown.png') }}" alt="" class="crown-vp2">
                                 </a>
-
-
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link career_path_evp" data-toggle="pill" href="#pills_career_path_evp" role="tab" aria-selected="false">
+                                <a class="nav-link career_path_evp" data-toggle="pill" href="#pills_career_path_evp" role="tab" aria-selected="false" onclick="return create_logs('EVP_Journey');">
                                     EVP
                                     <img src="{{ url('img/icon/Crown.png') }}" alt="" class="crown-evp1">
                                     <img src="{{ url('img/icon/Crown.png') }}" alt="" class="crown-evp2">
@@ -465,7 +463,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link career_path_sevp p-0" data-toggle="pill" href="#pills_career_path_sevp" role="tab" aria-selected="false">
+                                <a class="nav-link career_path_sevp p-0" data-toggle="pill" href="#pills_career_path_sevp" role="tab" aria-selected="false" onclick="return create_logs('SEVP_Journey');">
                                     <p class="w-100 h-100 text-sevp ">
                                         SEVP
                                     </p>

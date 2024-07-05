@@ -652,22 +652,22 @@
     <div class="w-100">
 
         <ul class="nav nav-pills mb-3 d-flex justify-content-center" id="pills-tab" role="tablist">
-            <li class="nav-item ">
+            <li class="nav-item " onclick="return create_logs('ข้อมูลบริษัท_button');">
                 <a class="nav-link menu-tools " id="pills-conpany-tab" data-toggle="pill" href="#pills-conpany" role="tab" aria-controls="pills-conpany" aria-selected="true">ข้อมูลบริษัท</a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item " onclick="return create_logs('Tools_button');">
                 <a class="nav-link menu-tools active" id="pills-tools-tab" data-toggle="pill" href="#pills-tools" role="tab" aria-controls="pills-tools" aria-selected="false">Tools</a>
             </li>
-            <li class="nav-item " onclick="show_tools_contact();">
+            <li class="nav-item " onclick="show_tools_contact();return create_logs('ติดต่อ_button');">
                 <a class="nav-link menu-tools" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">ติดต่อ</a>
             </li>
-            <li class="nav-item " style="position: relative;">
+            <li class="nav-item " style="position: relative;" onclick="return create_logs('COC_button');">
                 <a class="nav-link menu-tools" id="pills-coc-tab" data-toggle="pill" href="#pills-coc" role="tab" aria-controls="pills-coc" aria-selected="false">
                     <span id="span_alert_tools_menu" class="alert-tools-menu d-none"></span>
                     COC
                 </a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item " onclick="return create_logs('Tutorials_button');">
                 <a class="nav-link menu-tools" id="pills-tutorials-tab" data-toggle="pill" href="#pills-tutorials" role="tab" aria-controls="pills-tutorials" aria-selected="false">Tutorials</a>
             </li>
         </ul>
@@ -1244,15 +1244,15 @@
             <p></p>
             <div class="container-tap d-flex justify-content-center mb-4">
                 <div class="tabs">
-                    <input type="radio" id="radio-1" name="tabs_type_app" value="app" onchange="change_view_app_type();">
+                    <input type="radio" id="radio-1" name="tabs_type_app" value="app" onchange="change_view_app_type();return create_logs('Tools Type_แอปพลิเคชั่น');">
                     <label class="tab" for="radio-1">
                         แอปพลิเคชั่น
                     </label>
-                    <input type="radio" id="radio-2" name="tabs_type_app" checked="" value="all" onchange="change_view_app_type();">
+                    <input type="radio" id="radio-2" name="tabs_type_app" checked="" value="all" onchange="change_view_app_type();return create_logs('Tools Type_ทั้งหมด');">
                     <label class="tab" for="radio-2">
                         ทั้งหมด
                     </label>
-                    <input type="radio" id="radio-3" name="tabs_type_app" value="web" onchange="change_view_app_type();">
+                    <input type="radio" id="radio-3" name="tabs_type_app" value="web" onchange="change_view_app_type();return create_logs('Tools Type_เว็บไซต์');">
                     <label class="tab" for="radio-3">
                         เว็บไซต์
                     </label>
@@ -1314,7 +1314,7 @@
                             <!-- <a href="https://financial-health-check.azayagencyjourney.com/?user_params={{ Auth::user()->account }}" class="btn-create-tools">
                                 กดเพื่อสร้าง
                             </a> -->
-                            <button class="btn-create-tools-no-show" disabled>
+                            <button class="btn-create-tools-no-show" disabled onclick="return create_logs('เข้าสู่เว็บไซต์ button_application FHC');">
                                 coming soon
                             </button>
                             <i class="fa-light fa-circle-exclamation cursor-pointer" onclick="open_modal_detail_app('FHC')"></i>
@@ -1371,14 +1371,14 @@
 
                                                     <div class="d-flex justify-content-between align-items-center mt-1">
                                                         <div>
-                                                            <a href="` + result[i].link_ios + `" target="bank">
+                                                            <a href="` + result[i].link_ios + `" target="bank" onclick="return create_logs('Download ios_` + result[i].name + `');">
                                                                 <img src="{{url('img/icon/download-ios.png')}}" class="img-download" alt="">
                                                             </a>
-                                                            <a href="` + result[i].link_android + `" target="bank">
+                                                            <a href="` + result[i].link_android + `" target="bank" onclick="return create_logs('Download Android_` + result[i].name + `');">
                                                                 <img src="{{url('img/icon/download-android.png')}}" class="img-download" alt="">
                                                             </a>
                                                         </div>
-                                                        <i class="fa-light fa-circle-exclamation" onclick="open_modal_detail_app(` + i + `)"></i>
+                                                        <i class="fa-light fa-circle-exclamation" onclick="open_modal_detail_app(` + i + `);return create_logs('Instruction icon_` + result[i].name + `');"></i>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1400,7 +1400,7 @@
                                                     Allianz Ayudhya Assurance Pcl.
                                                 </span>
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                    <a href="` + result[i].link_web + `" class="btn-create-tools" target="bank">
+                                                    <a href="` + result[i].link_web + `" class="btn-create-tools" target="bank" onclick="return create_logs('เข้าสู่เว็บไซต์ button_` + result[i].name + `');">
                                                         เข้าสู่เว็บไซต์
                                                     </a>
                                                     <i class="fa-light fa-circle-exclamation cursor-pointer" onclick="open_modal_detail_app(` + i + `)"></i>
@@ -1834,8 +1834,9 @@
                 </p>
                 <div class="w-100 d-flex justify-content-center">
 
-                    <label for="submit_coc" class="btn-submit-coc">
-                        <input type="checkbox" name="submit_coc" id="submit_coc" class="me-2">
+                
+                    <label for="submit_coc" class="btn-submit-coc" >
+                        <input type="checkbox" name="submit_coc" id="submit_coc" class="me-2" >
                         <svg class="me-2 d-none" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M17.7778 0.746667L20.8 3.76889C20.8711 3.84 20.9422 3.87556 21.0133 3.91111C21.2267 4.01778 24.9956 3.94667 25.5289 3.94667C26.9156 3.94667 28.0533 5.08444 28.0533 6.47111C28.0533 7.04 28.0178 10.7733 28.0889 10.9867C28.1244 11.0578 28.16 11.1289 28.2311 11.2L31.2533 14.2222C32.2489 15.2178 32.2489 16.7822 31.2533 17.7778C30.8622 18.1689 28.16 20.7644 28.0889 21.0133C27.9822 21.2267 28.0533 24.9956 28.0533 25.5289C28.0533 26.9156 26.9156 28.0533 25.5289 28.0533C24.7467 28.0533 21.5111 27.9822 21.0133 28.0889C20.9422 28.1244 20.8711 28.16 20.8 28.2311L17.7778 31.2533C16.7822 32.2489 15.2178 32.2489 14.2222 31.2533C13.8667 30.8978 11.1644 28.1244 10.9867 28.0889C10.4889 27.9822 7.21778 28.0533 6.47111 28.0533C5.08444 28.0533 3.94667 26.9156 3.94667 25.5289C3.94667 24.7467 4.01778 21.5111 3.91111 21.0133C3.87556 20.8711 1.06667 18.1333 0.746667 17.7778C-0.248889 16.7822 -0.248889 15.2178 0.746667 14.2222L3.76889 11.2L3.94667 10.7378V6.47111C3.94667 5.08444 5.08444 3.94667 6.47111 3.94667C7.04 3.94667 10.7733 3.98222 10.9867 3.91111C11.2356 3.80444 13.8311 1.13778 14.2222 0.746667C15.2178 -0.248889 16.7822 -0.248889 17.7778 0.746667ZM10.4533 16.5333L13.7956 19.8756C14.1511 20.2311 14.7556 20.2311 15.1111 19.8756L21.5467 13.44C22.4356 12.5511 21.0844 11.2356 20.2311 12.1244L14.4356 17.8844L11.7689 15.2178C10.88 14.3289 9.56444 15.68 10.4533 16.5333ZM19.4844 5.08444L16.4622 2.06222C16.2133 1.81333 15.8222 1.81333 15.5733 2.06222L12.5511 5.08444C12.0889 5.54667 11.4489 5.83111 10.7733 5.83111H6.47111C6.11556 5.83111 5.83111 6.11556 5.83111 6.47111V10.7733C5.83111 11.1289 5.76 11.4489 5.65333 11.7333C5.51111 12.0178 5.33333 12.3022 5.12 12.5511L2.09778 15.5733C1.84889 15.8222 1.84889 16.2133 2.09778 16.4622L5.12 19.4844C5.36889 19.7333 5.54667 19.9822 5.65333 20.3022C5.79556 20.6222 5.83111 20.9422 5.83111 21.2622V25.5644C5.83111 25.92 6.11556 26.2044 6.47111 26.2044H10.7733C11.1289 26.2044 11.4489 26.2756 11.7333 26.3822C12.0533 26.5244 12.3022 26.7022 12.5511 26.9156L15.5733 29.9378C15.8222 30.1867 16.2133 30.1867 16.4622 29.9378L19.4844 26.9156C19.7333 26.6667 19.9822 26.4889 20.3022 26.3822C20.6222 26.24 20.9422 26.2044 21.2622 26.2044H25.5644C25.92 26.2044 26.2044 25.92 26.2044 25.5644V21.2622C26.2044 20.5867 26.4533 19.9467 26.9511 19.4844L29.9733 16.4622C30.2222 16.2133 30.2222 15.8222 29.9733 15.5733L26.9511 12.5511C26.9511 12.5156 26.2044 11.9467 26.2044 10.7733V6.47111C26.2044 6.11556 25.92 5.83111 25.5644 5.83111H21.2622C20.0889 5.83111 19.4844 5.08444 19.4844 5.08444Z" fill="white" />
                         </svg>
@@ -1930,8 +1931,8 @@
                         <p class="title-tools" style="font-size: 25px;">รู้จักกับ AGENCY JOURNEY</p>
                         <div class=" menu-tutorials px-2 mb-5">
                             <div class="col-6 col-md-6 p-2">
-                                <button class="item w-100" onclick="tutorials_go_to('start_tutorials') ">
-                                    <div class="d-block">
+                                <button class="item w-100" onclick="tutorials_go_to('start_tutorials'); ">
+                                    <div class="d-block" onclick=" return create_logs('Tutorials Type_เริ่มต้น');">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="58" height="58" viewBox="0 0 58 58" fill="none">
                                             <path d="M51.3305 0H38.5704C37.6945 0 36.8272 0.172525 36.0179 0.507726C35.2087 0.842927 34.4734 1.33424 33.854 1.95361C33.2346 2.57298 32.7433 3.30828 32.4081 4.11753C32.0729 4.92677 31.9004 5.79412 31.9004 6.67004V19.4301C31.9004 20.306 32.0729 21.1734 32.4081 21.9826C32.7433 22.7919 33.2346 23.5272 33.854 24.1465C34.4734 24.7659 35.2087 25.2572 36.0179 25.5924C36.8272 25.9276 37.6945 26.1002 38.5704 26.1002H51.3305C52.2064 26.1002 53.0738 25.9276 53.883 25.5924C54.6923 25.2572 55.4276 24.7659 56.0469 24.1465C56.6663 23.5272 57.1576 22.7919 57.4928 21.9826C57.828 21.1734 58.0005 20.306 58.0005 19.4301V6.67004C58.0005 4.90104 57.2978 3.20448 56.0469 1.95361C54.7961 0.702734 53.0995 0 51.3305 0ZM52.2005 19.4301C52.2046 19.5455 52.1848 19.6604 52.1425 19.7678C52.1003 19.8752 52.0363 19.9727 51.9547 20.0543C51.8731 20.1359 51.7756 20.1999 51.6682 20.2422C51.5608 20.2844 51.4459 20.3042 51.3305 20.3001H38.5704C38.4551 20.3042 38.3401 20.2844 38.2328 20.2422C38.1254 20.1999 38.0278 20.1359 37.9462 20.0543C37.8646 19.9727 37.8007 19.8752 37.7584 19.7678C37.7161 19.6604 37.6964 19.5455 37.7004 19.4301V6.67004C37.6964 6.5547 37.7161 6.43976 37.7584 6.33237C37.8007 6.22498 37.8646 6.12745 37.9462 6.04584C38.0278 5.96423 38.1254 5.90029 38.2328 5.85801C38.3401 5.81572 38.4551 5.79598 38.5704 5.80004H51.3305C51.4459 5.79598 51.5608 5.81572 51.6682 5.85801C51.7756 5.90029 51.8731 5.96423 51.9547 6.04584C52.0363 6.12745 52.1003 6.22498 52.1425 6.33237C52.1848 6.43976 52.2046 6.5547 52.2005 6.67004V19.4301Z" fill="white" />
                                             <path d="M19.4301 31.8994H6.67004C5.79412 31.8994 4.92677 32.0719 4.11753 32.4071C3.30828 32.7423 2.57298 33.2337 1.95361 33.853C1.33424 34.4724 0.842927 35.2077 0.507726 36.0169C0.172525 36.8262 0 37.6935 0 38.5695V51.3295C0 53.0985 0.702734 54.7951 1.95361 56.046C3.20448 57.2968 4.90104 57.9996 6.67004 57.9996H19.4301C20.306 57.9996 21.1734 57.827 21.9826 57.4918C22.7919 57.1566 23.5272 56.6653 24.1465 56.046C24.7659 55.4266 25.2572 54.6913 25.5924 53.882C25.9276 53.0728 26.1002 52.2055 26.1002 51.3295V38.5695C26.1002 37.6935 25.9276 36.8262 25.5924 36.0169C25.2572 35.2077 24.7659 34.4724 24.1465 33.853C23.5272 33.2337 22.7919 32.7423 21.9826 32.4071C21.1734 32.0719 20.306 31.8994 19.4301 31.8994ZM20.3001 51.3295C20.3042 51.4449 20.2844 51.5598 20.2422 51.6672C20.1999 51.7746 20.1359 51.8721 20.0543 51.9537C19.9727 52.0353 19.8752 52.0993 19.7678 52.1416C19.6604 52.1839 19.5455 52.2036 19.4301 52.1995H6.67004C6.5547 52.2036 6.43976 52.1839 6.33237 52.1416C6.22498 52.0993 6.12745 52.0353 6.04584 51.9537C5.96423 51.8721 5.90029 51.7746 5.85801 51.6672C5.81572 51.5598 5.79598 51.4449 5.80004 51.3295V38.5695C5.79598 38.4541 5.81572 38.3392 5.85801 38.2318C5.90029 38.1244 5.96423 38.0269 6.04584 37.9453C6.12745 37.8636 6.22498 37.7997 6.33237 37.7574C6.43976 37.7151 6.5547 37.6954 6.67004 37.6994H19.4301C19.5455 37.6954 19.6604 37.7151 19.7678 37.7574C19.8752 37.7997 19.9727 37.8636 20.0543 37.9453C20.1359 38.0269 20.1999 38.1244 20.2422 38.2318C20.2844 38.3392 20.3042 38.4541 20.3001 38.5695V51.3295Z" fill="white" />
@@ -1944,7 +1945,7 @@
                             </div>
                             <div class="col-6 col-md-6 p-2">
                                 <div class="item">
-                                    <button class="item w-100" onclick="tutorials_go_to('home_tutorials') ">
+                                    <button class="item w-100" onclick="tutorials_go_to('home_tutorials');return create_logs('Tutorials Type_Home'); ">
                                         <div class="d-block">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="64" height="61" viewBox="0 0 64 61" fill="none">
                                                 <path d="M60.8152 18.3512L36.8184 1.53339C33.8855 -0.511131 30.086 -0.511131 27.1531 1.53339L3.15635 18.3512C1.15662 19.7362 0.0234375 21.9786 0.0234375 24.5508V53.1741C0.0234375 57.461 3.55629 60.9565 7.95569 60.9565H55.9492C60.3486 60.9565 63.8814 57.461 63.8814 53.1741V24.5508C63.8814 21.9786 62.7483 19.7362 60.8152 18.3512ZM37.685 38.7965V54.2953H26.1532V38.7965H37.685ZM41.0845 32.1353H22.8203C20.9539 32.1353 19.4208 33.6522 19.4208 35.4989V54.2953H7.88904C7.22246 54.2953 6.6892 53.7677 6.6892 53.1741V24.5508C6.6892 24.0232 6.88917 23.8912 6.95583 23.8253L30.9526 7.00744C31.5525 6.61172 32.2191 6.61172 32.8857 7.00744L56.8824 23.8253C56.9491 23.8912 57.149 24.0232 57.149 24.5508V53.1741C57.149 53.7677 56.6158 54.2953 55.9492 54.2953H44.4174V35.4329C44.4174 33.5862 42.951 32.1353 41.0845 32.1353Z" fill="white" />
@@ -1956,7 +1957,7 @@
                             </div>
                             <div class="col-6 col-md-6 p-2">
                                 <div class="item">
-                                    <button class="item w-100" onclick="tutorials_go_to('training_tutorials') ">
+                                    <button class="item w-100" onclick="tutorials_go_to('training_tutorials');return create_logs('Tutorials Type_Traning'); ">
                                         <div class="d-block">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="84" height="57" viewBox="0 0 84 57" fill="none">
                                                 <path d="M81.4826 15.0442L43.0529 0.179811C42.3232 -0.0599369 41.3503 -0.0599369 40.6206 0.179811L2.19093 15.0442C0.488344 15.5237 -0.484561 17.4416 0.245118 19.1199C0.488344 19.8391 0.974796 20.5584 1.70447 20.7981L15.0819 27.2713V44.2934C15.3251 47.4101 17.0277 50.2871 19.9464 51.7256C24.8109 55.082 33.0806 57 42.08 57C51.0794 57 59.349 55.082 64.2136 51.7256C67.1323 50.2871 68.8349 47.4101 69.0781 44.2934V27.2713L71.0239 26.3123V45.2524C70.7807 46.9306 72.24 48.6088 73.9426 48.8486C75.6452 49.0883 77.3478 47.6498 77.591 45.9716C77.591 45.7319 77.591 45.4921 77.591 45.4921V23.1956L82.2123 21.0379C83.9149 20.3186 84.4013 18.4006 83.6717 16.7224C83.1852 15.7634 82.4555 15.2839 81.4826 15.0442ZM21.4058 30.6278L40.1342 39.9779C41.1071 40.4574 42.08 40.4574 43.0529 39.9779L61.7813 30.6278V44.2934C61.7813 46.2114 54.971 50.5268 41.5935 50.5268C28.2161 50.5268 21.4058 46.2114 21.4058 44.2934V30.6278ZM72.24 18.4006L41.8368 33.265L11.4335 18.4006L41.8368 6.653L72.24 18.4006Z" fill="white" />
@@ -1968,7 +1969,7 @@
                             </div>
                             <div class="col-6 col-md-6 p-2">
                                 <div class="item">
-                                    <button class="item w-100" onclick="tutorials_go_to('product_tutorials') ">
+                                    <button class="item w-100" onclick="tutorials_go_to('product_tutorials');return create_logs('Tutorials Type_Product'); ">
                                         <div class="d-block">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="52" height="63" viewBox="0 0 52 63" fill="none">
                                                 <path d="M41.5485 5.1219H38.6514V3.36031C38.6514 1.59872 37.2382 0.189453 35.4717 0.189453H16.3226C14.6268 0.189453 13.2136 1.66919 13.2136 3.36031V5.1219H10.3165C4.59295 5.1219 0 9.70202 0 15.3391V52.4029C0 58.04 4.59295 62.6201 10.2458 62.6201H41.5485C47.2014 62.6201 51.7943 58.04 51.7943 52.4029V15.3391C51.7943 9.70202 47.2014 5.1219 41.5485 5.1219ZM6.35947 15.3391C6.35947 13.2252 8.12598 11.4636 10.2458 11.4636H13.1429V13.5071C13.1429 15.2686 14.5561 16.6779 16.3226 16.6779H35.4717C37.2382 16.6779 38.6514 15.2686 38.6514 13.5071V11.4636H41.5485C43.6683 11.4636 45.4348 13.2252 45.4348 15.3391L45.3642 52.4029C45.3642 54.5168 43.5977 56.2784 41.4778 56.2784H10.2458C8.12598 56.2784 6.35947 54.5168 6.35947 52.4029V15.3391ZM19.5024 10.3362V6.53117H32.292V10.3362H19.5024Z" fill="white" />
@@ -1982,7 +1983,7 @@
                             </div>
                             <div class="col-6 col-md-6 p-2">
                                 <div class="item">
-                                    <button class="item w-100" onclick="tutorials_go_to('news_tutorials') ">
+                                    <button class="item w-100" onclick="tutorials_go_to('news_tutorials');return create_logs('Tutorials Type_News'); ">
                                         <div class="d-block">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="73" height="61" viewBox="0 0 73 61" fill="none">
                                                 <path d="M64.7402 0H22.8542C18.381 0 14.7211 3.66 14.7211 8.13333V12.1187H8.13318C3.65993 12.1187 0 15.7787 0 20.252V50.4267C0 56.2827 4.71725 61 10.5731 61H60.4296C67.2614 61 72.8733 55.388 72.8733 48.556V8.13333C72.8733 3.66 69.2134 0 64.7402 0ZM21.1463 50.4267V8.13333C21.1463 7.23867 21.8783 6.50667 22.7729 6.50667H64.7402C65.6348 6.50667 66.3668 7.23867 66.3668 8.13333L66.4481 48.556C66.4481 51.8093 63.7642 54.4933 60.5109 54.4933H20.333C20.9023 53.192 21.1463 51.8093 21.1463 50.4267ZM14.7211 18.6253V50.4267C14.7211 52.704 12.8504 54.4933 10.6545 54.4933C8.45851 54.4933 6.58788 52.6227 6.58788 50.4267V20.252C6.58788 19.3573 7.31987 18.6253 8.21452 18.6253H14.7211Z" fill="white" />
@@ -1996,7 +1997,7 @@
                             </div>
                             <div class="col-6 col-md-6 p-2">
                                 <div class="item">
-                                    <button class="item w-100" onclick="tutorials_go_to('tools_tutorials') ">
+                                    <button class="item w-100" onclick="tutorials_go_to('tools_tutorials');return create_logs('Tutorials Type_Tolols'); ">
                                         <div class="d-block">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="67" height="67" viewBox="0 0 67 67" fill="none">
                                                 <path d="M66.0704 44.1946L64.9679 43.0921C61.9414 40.0654 60.3092 35.8929 60.5038 31.6556C60.5902 29.7531 60.5038 27.8182 60.2227 25.9158C58.2987 12.3931 47.0357 1.57275 33.4487 0.167511C31.9895 0.0161779 30.5411 -0.0378687 29.1359 0.0269883C26.0013 0.145893 23.3423 2.03756 22.1965 4.96693C21.0508 7.8855 21.7426 11.204 23.9476 13.42L33.4487 22.9215L33.3623 23.462C32.5732 28.5209 28.4982 32.596 23.4396 33.3851L22.8991 33.4716L13.4088 23.9809C11.1605 21.7325 7.9286 21.0623 4.96693 22.2297C2.01606 23.3863 0.124477 26.0671 0.0163864 29.2343C-0.0268497 30.5422 0.0163871 31.8934 0.135287 33.2338C1.44318 46.9943 12.3279 58.3659 26.0121 60.2576C27.8713 60.517 29.7629 60.6035 31.6328 60.517C31.8382 60.517 32.0544 60.5062 32.2597 60.5062C36.3023 60.5062 40.2044 62.1168 43.0688 64.9813L44.1713 66.0839C45.3927 67.3054 47.5329 67.3054 48.7543 66.0839C49.3705 65.4678 49.7055 64.657 49.7055 63.7923C49.7055 62.9275 49.3705 62.1168 48.7543 61.5007L47.6518 60.3981C43.3498 56.0959 37.394 53.7719 31.3302 54.0421C29.8818 54.107 28.3901 54.0421 26.8985 53.8367C16.1543 52.345 7.61514 43.4272 6.58828 32.6177C6.491 31.5583 6.45857 30.499 6.491 29.4613C6.51262 28.7154 7.03145 28.3911 7.34492 28.2722C7.64757 28.1533 8.24206 28.0236 8.80413 28.5533L19.3213 39.0709C19.9374 39.6871 20.7481 40.0222 21.6128 40.0222C31.7409 40.0222 39.9882 31.7745 39.9882 21.646C39.9882 20.7921 39.6423 19.9597 39.037 19.3544L28.5306 8.84755C28.1307 8.44759 28.0118 7.90712 28.228 7.35583C28.4333 6.84779 28.8333 6.54512 29.3629 6.53431C30.4871 6.49107 31.6328 6.53431 32.7786 6.64241C43.4471 7.74498 52.2781 16.2412 53.7914 26.8454C54.0075 28.3587 54.0832 29.8828 54.0075 31.3746C53.7373 37.4279 56.0504 43.3731 60.3632 47.6969L61.4658 48.7995C62.7304 50.0642 64.795 50.0642 66.0488 48.7995C66.6649 48.1833 67 47.3726 67 46.5079C67 45.6431 66.6649 44.8216 66.0488 44.2163L66.0704 44.1946Z" fill="white" />
@@ -2971,6 +2972,7 @@
             .then(result => {
                 // console.log(result);
                 if( result == "success" ){
+                    return create_logs('Agree coc_button');
                     document.querySelector('#span_alert_tools').classList.add('d-none');
                     if(document.querySelector('#span_alert_tools_menu')){
                         document.querySelector('#span_alert_tools_menu').classList.add('d-none');
@@ -3081,13 +3083,13 @@
                             <div class="col-md-6 p-2 contact-item">
                                 <div class="">
                                     <p class="contact-title">` + result[i].type + `</p>
-                                    <a class="d-block contact-phone" href="tel:` + phone + `">
+                                    <a class="d-block contact-phone" href="tel:` + phone + `" onclick="return create_logs('ติดต่อ_` + result[i].type + `');">
                                         <svg class="me-3" xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 27 27" fill="none">
                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M0 13.5C0 6.04416 6.04252 0 13.5 0C20.9558 0 27 6.04252 27 13.5C27 20.9558 20.9575 27 13.5 27C6.04416 27 0 20.9575 0 13.5ZM16.6438 15.1803L15.5279 16.2962C15.3598 16.4643 15.0058 16.5109 14.8026 16.3925C14.7404 16.3603 14.6882 16.3327 14.6095 16.2878C14.472 16.2093 14.3153 16.1122 14.1429 15.996C13.6447 15.6599 13.127 15.24 12.6187 14.7317C12.1103 14.2233 11.6908 13.7062 11.3554 13.2091C11.2394 13.0371 10.9557 12.544 10.9557 12.544C10.8366 12.3455 10.8834 11.9931 11.0542 11.8224L12.17 10.7066C12.7662 10.1104 12.83 9.11558 12.3127 8.45053L10.2146 6.12924C9.66012 5.41637 8.78292 5.1462 8.14296 5.78616L6.46729 7.46182C4.53739 9.39173 6.87584 14.2574 10.0307 17.4122C13.1854 20.5669 17.9589 22.8127 19.8885 20.883L21.5642 19.2074C22.2037 18.5678 22.0423 17.7425 21.3285 17.1873L18.8998 15.0376C18.2357 14.5211 17.2401 14.584 16.6438 15.1803Z" fill="#243286" />
                                         </svg>
                                         ` + phone + `
                                     </a>
-                                    <a class="d-block mt-2 contact-mail" href="mailto:` + mail + `">
+                                    <a class="d-block mt-2 contact-mail" href="mailto:` + mail + `" onclick="return create_logs('ติดต่อ_` + result[i].type + `');">
                                         <svg class="me-3" xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 27 27" fill="none">
                                             <path d="M13.5 27C20.9587 27 27 20.9587 27 13.5C27 6.04125 20.9587 0 13.5 0C6.04125 0 0 6.04125 0 13.5C0 20.9587 6.04125 27 13.5 27ZM5.29875 8.60625L11.4413 13.5L5.29875 18.3938V8.60625ZM21.7013 18.3938L15.5588 13.5L21.6675 8.60625V18.3938H21.7013ZM5.3325 19.5413L12.15 14.0738L13.5 15.1538L14.85 14.0738L21.6675 19.5413H5.3325ZM21.6675 7.45875L13.5 14.0063L5.3325 7.45875H21.6675Z" fill="#243286" />
                                         </svg>

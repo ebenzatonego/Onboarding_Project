@@ -601,7 +601,7 @@
                             <button id="btn_success_back" class="btn btn-action-select-goal" onclick="setupBackButton('btn_success_back', 'section_goal_success', 'section_select_value')">
                                 ย้อนกลับ
                             </button>
-                            <button class="btn btn-action-select-goal" onclick="select_goal_success()">
+                            <button class="btn btn-action-select-goal" onclick="select_goal_success();return create_logs('บันทึกเป้าหมาย_Button');">
                                 บันทึกเป้าหมาย
                             </button>
                         </div>

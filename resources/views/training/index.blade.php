@@ -493,7 +493,7 @@
                 <a href="#for_appointment" class="d-none" id="btn_a_div_for_appointment"></a>
                 <div class="tabs" style="z-index: 5;">
                     <input type="radio" id="radio-1" name="tabs_traning_appointment" checked="">
-                    <label class="tab" for="radio-1" onclick="show_schedule('อบรม')">
+                    <label class="tab" for="radio-1" onclick="show_schedule('อบรม');return create_logs('Training schedule_button');">
                         <svg width="27" height="24" viewBox="0 0 27 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect class="stroke-svg" x="0.5" y="0.5" width="26" height="19" rx="2.5" fill="none" />
                             <rect class="fill-svg" x="6" y="23" width="15" height="1" rx="0.5" />
@@ -507,7 +507,7 @@
                         <span>ตารางอบรม</span>
                     </label>
                     <input type="radio" id="radio-2" name="tabs_traning_appointment">
-                    <label class="tab" for="radio-2" onclick="show_schedule('สอบ')">
+                    <label class="tab" for="radio-2" onclick="show_schedule('สอบ');return create_logs('Test schedule_button');">
                         <svg width="27" height="24" viewBox="0 0 27 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect class="stroke-svg" x="0.5" y="0.5" width="26" height="19" rx="2.5" fill="none" />
                             <rect class="fill-svg" x="6" y="23" width="15" height="1" rx="0.5" />
@@ -640,7 +640,7 @@
 
                                                 let html = `
                             <a href="{{ url('/show_appointment_train') }}/`+result[i].id+`">
-                            <div class="d-flex w-100 align-items-center mt-2">
+                            <div class="d-flex w-100 align-items-center mt-2" onclick="return create_logs('Click Test schedule_` + result[i].title + `');">
                                 <div>
                                     ` + show_time + `
                                 </div>
@@ -1046,7 +1046,7 @@
                             if(result[i].area == "กรุงเทพ"){
                                 // console.log('กรุงเทพ');
                                 html = `
-                                    <div class="card mx-3" onclick="show_content_appointment_quiz('` + result[i].id + `');">
+                                    <div class="card mx-3" onclick="return create_logs('Test schedule_Type กรุงเทพ');show_content_appointment_quiz('` + result[i].id + `');">
                                         <a class="mb-0" onclick="goto_bottom()">
                                             <div  class="btn btn-select-region collapsed" data-toggle="collapse" data-target="#collapse_` + update_round + `" aria-expanded="true" aria-controls="collapse_` + update_round + `">
                                                 ` + result[i].area + `
@@ -1064,7 +1064,7 @@
 
                                     <div class="card mx-3">
                                         <a class="mb-0" onclick="goto_bottom()">
-                                            <div  class="btn btn-select-region collapsed" data-toggle="collapse" data-target="#collapse_` + update_round + `" aria-expanded="true" aria-controls="collapse_` + update_round + `">
+                                            <div  class="btn btn-select-region collapsed" data-toggle="collapse" data-target="#collapse_` + update_round + `" aria-expanded="true" aria-controls="collapse_` + update_round + `" onclick="return create_logs('Test schedule_Type ` + result[i].area + `');">
                                                 ` + result[i].area + `
                                                 <div class="icon-arrow">
                                                     &nbsp;
@@ -1075,7 +1075,7 @@
 
                                         <div id="collapse_` + update_round + `" class="collapse" aria-labelledby="headingOne" data-parent="#div_content_quiz_area">
                                             <div id="div_content_collapse_` + update_round + `" class="card-body">
-                                                <a class="d-block text-center my-2 cursor-pointer" onclick="show_content_appointment_quiz('` + result[i].id + `');">
+                                                <a class="d-block text-center my-2 cursor-pointer" onclick="return create_logs('Test schedule_Province ` + result[i].sub_area + `') ;show_content_appointment_quiz('` + result[i].id + `');">
                                                     ` + result[i].sub_area + `
                                                 </a>
                                             </div>
@@ -1091,7 +1091,7 @@
                             let div_content_collapse = document.querySelector('#div_content_collapse_' + update_round);
 
                             let html_sub = `
-                                <a class="d-block text-center my-2 cursor-pointer" onclick="show_content_appointment_quiz('` + result[i].id + `');">
+                                <a class="d-block text-center my-2 cursor-pointer" onclick="show_content_appointment_quiz('` + result[i].id + `');return create_logs('Test schedule_Province ` + result[i].sub_area + `') ;">
                                     ` + result[i].sub_area + `
                                 </a>
                             `;
@@ -1187,7 +1187,7 @@
                         }
 
                         let html = `
-                            <a href="{{ url('/show_appointment_train') }}/`+result[i].id+`">
+                            <a href="{{ url('/show_appointment_train') }}/`+result[i].id+`" onclick="return create_logs('Click Test schedule_` + result[i].title + `');">
                             <div class="d-flex w-100 align-items-center mt-2">
                                 <div>
                                     ` + show_time + `

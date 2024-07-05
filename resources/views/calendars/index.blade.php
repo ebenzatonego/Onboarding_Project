@@ -546,7 +546,7 @@
                 </svg>
                 <span class="ms-3">My Calendar / Reminder</span>
             </div>
-            <button class="btn-add-schedule" data-bs-toggle="modal" data-bs-target="#modal_add_carlendar">
+            <button class="btn-add-schedule" data-bs-toggle="modal" data-bs-target="#modal_add_carlendar" onclick="return create_logs('Add data calendar_button');">
                 + เพิ่มข้อมูล
             </button>
         </div>

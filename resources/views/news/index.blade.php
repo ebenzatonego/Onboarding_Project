@@ -93,6 +93,7 @@
     .menu-course p {
         color: #B0C0D5;
         font-weight: bolder;
+        cursor: pointer;
     }
 
     .menu-course.active p {
@@ -306,10 +307,10 @@
         <div class="col-md-6 col-12">
             <ul class="nav nav-pills w-100 d-flex justify-content-center w-100" id="pills-tab" role="tablist">
                 <li class="nav-item px-1">
-                    <a class="nav-link active btn-filter-news" id="pills-news-tab" data-toggle="pill" href="#pills-news" role="tab" aria-controls="pills-news" aria-selected="true">ข่าวสาร/การแข่งขัน</a>
+                    <a class="nav-link active btn-filter-news" id="pills-news-tab" data-toggle="pill" href="#pills-news" role="tab" aria-controls="pills-news" aria-selected="true" onclick="return create_logs('ข่าวสาร/การเเข่งขัน_button');">ข่าวสาร/การแข่งขัน</a>
                 </li>
                 <li class="nav-item px-1">
-                    <a class="nav-link btn-filter-news" id="pills-event-tab" href="{{ url('/page_activitys') }}">ตารางกิจกรรม</a>
+                    <a class="nav-link btn-filter-news" id="pills-event-tab" href="{{ url('/page_activitys') }}" onclick="return create_logs('ตารางกิจกรรม_button');">ตารางกิจกรรม</a>
                 </li>
             </ul>
         </div>
@@ -338,13 +339,13 @@
                         @endphp
 
                         <div class="owl-carousel carousel-menu-course owl-theme">
-                            <div class="item " onclick="get_data_news('all');" id="0">
+                            <div class="item " onclick="get_data_news('all');return create_logs('ข่าวสาร/กิจกรรม Type_ทั้งหมด');" id="0">
                                 <div id="item_type_news_all" class="item_type_news menu-course text-center active">
                                     <p class="mb-0">ทั้งหมด</p>
                                 </div>
                             </div>
                             @foreach($data_news_type as $item_type)
-                            <div class="item" onclick="get_data_news('{{ $item_type->id }}');" id="{{ $loop->iteration }}">
+                            <div class="item" onclick="get_data_news('{{ $item_type->id }}');return create_logs('ข่าวสาร/กิจกรรม Type_{{ $item_type->name_type }}');" id="{{ $loop->iteration }}">
                                 <div id="item_type_news_{{ $item_type->id }}" class="item_type_news menu-course text-center">
                                     <p class="mb-0">{{ $item_type->name_type }}</p>
                                 </div>
@@ -444,7 +445,7 @@
             if (result.highlight_number) {
 
                 let html_highlight_number = `
-                    <a href="{{ url('/news_show') }}/` + result.id + `">
+                    <a href="{{ url('/news_show') }}/` + result.id + `" onclick="return create_logs('Click ข่าวสาร/กิจกรรม_` + result.title + `');">
                         <div class="item">
                             <img src="` + result.photo_cover + `">
                         </div>
@@ -459,7 +460,7 @@
             if (result.highlight_of_type) {
                 // console.log(result.highlight_of_type);
                 let html_highlight_number = `
-                    <a href="{{ url('/news_show') }}/` + result.id + `">
+                    <a href="{{ url('/news_show') }}/` + result.id + `" onclick="return create_logs('Click ข่าวสาร/กิจกรรม_` + result.title + `');">
                         <div class="item">
                             <img src="` + result.photo_cover + `">
                         </div>
@@ -507,7 +508,7 @@
         }
 
         let html = `
-            <a href="{{ url('/news_show') }}/` + result.id + `" class="course-item ` + check_fav + `">
+            <a href="{{ url('/news_show') }}/` + result.id + `" class="course-item ` + check_fav + `" onclick="return create_logs('Click ข่าวสาร/กิจกรรม_` + result.title + `');">
                 <img src="` + result.photo_cover + `">
                 <div class="ms-3">
                     <p class="title-course">

@@ -908,7 +908,7 @@
             @endif
 
             <div class="contact-leader mb-5">
-                @if( !empty($users->account_upper_al) && Auth::user()->current_rank == 'AG')
+                @if( !empty($users->account_upper_al) && Auth::user()->current_rank == 'AG' && !empty($upper_al->name))
                 <p style="color: #003781;font-size: 16px;font-weight: bolder;">AL upline</p>
                 <div class="d-flex ">
                     <div>
@@ -926,7 +926,7 @@
                 <br>
                 @endif
 
-                @if( !empty($users->account_group_manager) )
+                @if( !empty($users->account_group_manager) && !empty($group_manager->name) )
                 <p style="color: #003781;font-size: 16px;font-weight: bolder;">AVP / GM upline</p>
                 <div class="d-flex ">
                     <div>
@@ -944,7 +944,7 @@
                 <br>
                 @endif
 
-                @if( !empty($users->area) )
+                @if( !empty($users->area) && !empty($area_supervisor->name) )
                 <p style="color: #003781;font-size: 16px;font-weight: bolder;">Agency Executive</p>
                 <div class="d-flex ">
                     <div>

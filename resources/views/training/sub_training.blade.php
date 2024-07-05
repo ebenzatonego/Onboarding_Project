@@ -285,7 +285,7 @@
                         }
 
                         let html = `
-                            <a href="{{ url('/training_show') }}/`+result['data_training'][i].id+`" class="course-item `+check_fav+`">
+                            <a href="{{ url('/training_show') }}/`+result['data_training'][i].id+`" class="course-item `+check_fav+`" onclick="return create_logs('Click Training schedule_`+result['data_training'][i].title+`');">
                                 <img src="`+result['data_training'][i].photo+`">
                                 <div class="ms-3">
                                     <p class="title-course">
@@ -318,7 +318,7 @@
 
                                 let html_highlight_number = `
                                     <div class="item">
-                                        <a href="{{ url('/training_show') }}/`+result['data_training'][i].id+`">
+                                        <a href="{{ url('/training_show') }}/`+result['data_training'][i].id+`"  onclick="return create_logs('Click Highlight Training schedule_`+result['data_training'][i].title+`');">
                                             <img src="`+result['data_training'][i].photo+`">
                                         </a>
                                     </div>
@@ -335,7 +335,7 @@
 
                                 let html_highlight_number = `
                                     <div class="item">
-                                        <a href="{{ url('/training_show') }}/`+result['data_training'][i].id+`">
+                                        <a href="{{ url('/training_show') }}/`+result['data_training'][i].id+`" onclick="return create_logs('Click Highlight Training schedule_`+result['data_training'][i].title+`');">
                                             <img src="`+result['data_training'][i].photo+`">
                                         </a>
                                     </div>

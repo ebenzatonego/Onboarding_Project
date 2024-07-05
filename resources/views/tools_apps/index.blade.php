@@ -629,6 +629,24 @@
     }
 </style>
 
+<script>
+
+    document.addEventListener("DOMContentLoaded", function() {
+
+        // Get the URL parameters
+        const params = new URLSearchParams(window.location.search);
+
+        // Get the value of the 'menu' parameter
+        const menuValue = params.get('menu');
+
+        if (menuValue == 'Tutorials') {
+            document.querySelector('#pills-tutorials-tab').click();
+        }
+    });
+    
+
+</script>
+
 
 <div class="container p-0 conteiner-detail-news">
     <div class="w-100">

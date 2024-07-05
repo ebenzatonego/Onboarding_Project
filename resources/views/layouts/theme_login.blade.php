@@ -49,7 +49,7 @@
     }
 
     .modal{
-        z-index: 99999!important;
+        z-index: 999999!important;
     }
 </style>
 

@@ -2009,7 +2009,7 @@
                                 </div>
                             </div> -->
                         </div>
-                        <!-- <a class="button secondary url mt-3" href="#one">กลับหน้าหลัก</a> -->
+                        <!-- <a class="button secondary url mt-3" href="#two">กลับหน้าหลัก</a> -->
                     </div>
 
                 </div>
@@ -2091,7 +2091,7 @@
                         </div>
                         <p class="mb-5" style="color: #003781;text-align: center;font-size: 20px;margin-top: 30px;font-weight: 700;">ในเว็บไซต์นี้ จะมีส่วนประกอบหลักทั้งหมด 8 ส่วนย่อย ได้แก่ </p>
                         <!-- <a class="button secondary url mt-3" href="#one">กลับหน้าหลัก</a> -->
-                        <a class="button secondary url mt-3" href="#one" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
+                        <a class="button secondary url mt-3" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
 
                     </div>
                     <div class="item text-center">
@@ -2212,7 +2212,7 @@
                                 </ul>
                                 <!-- <a class="button secondary url mt-3" href="#one">กลับหน้าหลัก</a> -->
 
-                                <a class="button secondary url mt-3" href="#one" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
+                                <a class="button secondary url mt-3" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
                             </div>
                         </div>
 
@@ -2254,7 +2254,7 @@
                                 <path d="M3 23L13 13L3 3" stroke="#243286" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </div>
-                        <a class="button secondary url mt-4" href="#one" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
+                        <a class="button secondary url mt-4" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
                     </div>
                 </div>
                 <div class="owl-carousel owl-theme mt-4 d-none" role="group" aria-label="First group" id="sub_page_home_tutorials">
@@ -2273,7 +2273,7 @@
                             <p class="title-tools" style="font-size: 20px;font-weight: 400;">คลิกที่ภาพโปรไฟล์ เลือกภาพที่คุณต้องการ</p>
                         </div>
 
-                        <a class="button secondary url mt-3" href="#one" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
+                        <a class="button secondary url mt-3" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
                     </div>
                     <div class="item text-center">
                         <div>
@@ -2294,7 +2294,7 @@
                             <p class="title-tools" style="font-size: 20px;font-weight: 400;">คลิกเพื่อดูนามบัตรคุณและสามารถโหลดไว้</p>
                         </div>
 
-                        <a class="button secondary url mt-3" href="#one" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
+                        <a class="button secondary url mt-3" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
                     </div>
 
                     <div class="item text-center">
@@ -2315,7 +2315,7 @@
                             <p class="title-tools" style="font-size: 20px;font-weight: 400;">คลิกเพื่อดู Profile ส่วนตัวของคุณได้</p>
                         </div>
 
-                        <a class="button secondary url mt-3" href="#one" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
+                        <a class="button secondary url mt-3" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
 
                     </div>
                     <div class="item text-center">
@@ -2336,7 +2336,7 @@
                             <p class="title-tools" style="font-size: 20px;font-weight: 400;">เก็บทุกสิ่งที่คุณบันทึกไว้ที่นี่</p>
                         </div>
 
-                        <a class="button secondary url mt-3" href="#one" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
+                        <a class="button secondary url mt-3" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
 
                     </div>
                     <div class="item text-center">
@@ -2356,7 +2356,7 @@
                             <p class="title-tools" style="font-size: 20px;font-weight: 400;">ดูตารางอบรม, สอบ, กิจกรรม, และเพิ่มปฏิทินของตนเอง ดู Activity จากบริษัทได้ที่นี่</p>
                         </div>
 
-                        <a class="button secondary url mt-3" href="#one" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
+                        <a class="button secondary url mt-3" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
 
                     </div>
                     <div class="item text-center">
@@ -2377,7 +2377,7 @@
                             <p class="title-tools" style="font-size: 20px;font-weight: 400;">คุณสามารถรับการแจ้งเตือนกิจกรรม, ข่าวสาร, และการอัปเดตล่าสุดที่นี่</p>
                         </div>
 
-                        <a class="button secondary url mt-3" href="#one" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
+                        <a class="button secondary url mt-3" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
 
                     </div>
                 </div>
@@ -2418,7 +2418,7 @@
                                 <path d="M3 23L13 13L3 3" stroke="#243286" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </div>
-                        <a class="button secondary url mt-4" href="#one" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
+                        <a class="button secondary url mt-4" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
                     </div>
                 </div>
                 <div class="owl-carousel owl-theme mt-4 d-none" role="group" aria-label="First group" id="sub_page_training_tutorials">
@@ -2437,7 +2437,7 @@
                             <p class="title-tools" style="font-size: 20px;font-weight: 400;">แจ้งวัน,เวลา และสถานที่อบรมที่นี่</p>
                         </div>
 
-                        <a class="button secondary url mt-3" href="#one" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
+                        <a class="button secondary url mt-3" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
                     </div>
 
                     <div class="item text-center">
@@ -2456,7 +2456,7 @@
                             <p class="title-tools" style="font-size: 20px;font-weight: 400;">แจ้งวัน,เวลา และสถานที่สอบที่นี่</p>
                         </div>
 
-                        <a class="button secondary url mt-3" href="#one" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
+                        <a class="button secondary url mt-3" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
                     </div>
 
                     <div class="item text-center">
@@ -2475,7 +2475,7 @@
                             <p class="title-tools" style="font-size: 20px;font-weight: 400;">คลิกเพื่อดูและเข้าร่วมการอบรมหรือสอบ</p>
                         </div>
 
-                        <a class="button secondary url mt-3" href="#one" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
+                        <a class="button secondary url mt-3" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
                     </div>
 
                     <div class="item text-center">
@@ -2496,7 +2496,7 @@
                             <p class="title-tools" style="font-size: 20px;font-weight: 400;">กดเพื่อค้นหาหลักสูตรที่คุณสนใจ</p>
                         </div>
 
-                        <a class="button secondary url mt-3" href="#one" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
+                        <a class="button secondary url mt-3" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
                     </div>
 
                     <div class="item text-center">
@@ -2515,7 +2515,7 @@
                             <p class="title-tools" style="font-size: 20px;font-weight: 400;">กด Like และให้คะแนนบทความ</p>
                         </div>
 
-                        <a class="button secondary url mt-3" href="#one" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
+                        <a class="button secondary url mt-3" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
                     </div>
 
                     <div class="item text-center">
@@ -2534,7 +2534,7 @@
                             <p class="title-tools" style="font-size: 20px;font-weight: 400;">กด Like และให้คะแนนบทความ</p>
                         </div>
 
-                        <a class="button secondary url mt-3" href="#one" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
+                        <a class="button secondary url mt-3" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
                     </div>
                     <div class="item text-center">
                         <div>
@@ -2556,7 +2556,7 @@
                             <p class="title-tools" style="font-size: 20px;font-weight: 400;">กด Dislike และเขียนเหตุผลที่คุณไม่ชอบ</p>
                         </div>
 
-                        <a class="button secondary url mt-3" href="#one" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
+                        <a class="button secondary url mt-3" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
                     </div>
 
                     <div class="item text-center">
@@ -2575,7 +2575,7 @@
                             <p class="title-tools" style="font-size: 20px;font-weight: 400;">กด Dislike และเขียนเหตุผลที่คุณไม่ชอบ</p>
                         </div>
 
-                        <a class="button secondary url mt-3" href="#one" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
+                        <a class="button secondary url mt-3" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
                     </div>
 
                     <div class="item text-center">
@@ -2595,7 +2595,7 @@
                                 หลักสูตรของเรา</p>
                         </div>
 
-                        <a class="button secondary url mt-3" href="#one" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
+                        <a class="button secondary url mt-3" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
                     </div>
 
                     <div class="item text-center">
@@ -2616,7 +2616,7 @@
                             <p class="title-tools" style="font-size: 20px;font-weight: 400;">เก็บทุกสิ่งที่คุณบันทึกไว้จะไปอยู่ใน Favorites</p>
                         </div>
 
-                        <a class="button secondary url mt-3" href="#one" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
+                        <a class="button secondary url mt-3" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
                     </div>
                 </div>
             </div>
@@ -2657,7 +2657,7 @@
                                 <path d="M3 23L13 13L3 3" stroke="#243286" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </div>
-                        <a class="button secondary url mt-4" href="#one" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
+                        <a class="button secondary url mt-4" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
                     </div>
                 </div>
                 <div class="owl-carousel owl-theme mt-4 d-none" role="group" aria-label="First group" id="sub_page_product_tutorials">
@@ -2676,7 +2676,7 @@
                             <p class="title-tools" style="font-size: 20px;font-weight: 400;">คลิกเพื่อไปยังหน้า Financial Health Check </p>
                         </div>
 
-                        <a class="button secondary url mt-3" href="#one" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
+                        <a class="button secondary url mt-3" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
                     </div>
 
                     <div class="item text-center">
@@ -2694,7 +2694,7 @@
                             <p class="title-tools" style="font-size: 20px;font-weight: 400;">คลิกเพื่อดูผลิตภัณฑ์ต่างๆได้ที่นี่</p>
                         </div>
 
-                        <a class="button secondary url mt-3" href="#one" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
+                        <a class="button secondary url mt-3" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
                     </div>
 
                     <div class="item text-center">
@@ -2712,7 +2712,7 @@
                             <p class="title-tools" style="font-size: 20px;font-weight: 400;">คลิกเพื่อดูผลิตภัณฑ์ที่คุณกด Favorites ได้ที่นี่</p>
                         </div>
 
-                        <a class="button secondary url mt-3" href="#one" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
+                        <a class="button secondary url mt-3" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
                     </div>
 
                     <div class="item text-center">
@@ -2730,7 +2730,7 @@
                             <p class="title-tools" style="font-size: 20px;font-weight: 400;">คลิกเพื่อดูผลิตภัณฑ์ทั้งหมดที่เรามี</p>
                         </div>
 
-                        <a class="button secondary url mt-3" href="#one" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
+                        <a class="button secondary url mt-3" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
                     </div>
                 </div>
             </div>
@@ -2772,7 +2772,7 @@
                                 <path d="M3 23L13 13L3 3" stroke="#243286" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </div>
-                        <a class="button secondary url mt-4" href="#one" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
+                        <a class="button secondary url mt-4" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
                     </div>
                 </div>
                 <div class="owl-carousel owl-theme mt-4 d-none" role="group" aria-label="First group" id="sub_page_news_tutorials">
@@ -2791,7 +2791,7 @@
                             <p class="title-tools" style="font-size: 20px;font-weight: 400;">คลิกเพื่อดูข่าวสารและการแข่งขันที่นี่</p>
                         </div>
 
-                        <a class="button secondary url mt-3" href="#one" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
+                        <a class="button secondary url mt-3" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
                     </div>
 
                     <div class="item text-center">
@@ -2809,7 +2809,7 @@
                             <p class="title-tools" style="font-size: 20px;font-weight: 400;">คลิกเพื่อดูตารางกิจกรรมที่นี่</p>
                         </div>
 
-                        <a class="button secondary url mt-3" href="#one" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
+                        <a class="button secondary url mt-3" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
                     </div>
                 </div>
             </div>
@@ -2847,7 +2847,7 @@
                                 <path d="M3 23L13 13L3 3" stroke="#243286" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </div>
-                        <a class="button secondary url mt-4" href="#one" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
+                        <a class="button secondary url mt-4" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
                     </div>
                 </div>
                 <div class="owl-carousel owl-theme mt-4 d-none" role="group" aria-label="First group" id="sub_page_tools_tutorials">
@@ -2866,7 +2866,7 @@
                             <p class="title-tools" style="font-size: 20px;font-weight: 400;">คลิกเพื่อดูแอปพลิเคชั่นของบริษัท</p>
                         </div>
 
-                        <a class="button secondary url mt-3" href="#one" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
+                        <a class="button secondary url mt-3" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
                     </div>
 
                     <div class="item text-center">
@@ -2884,7 +2884,7 @@
                             <p class="title-tools" style="font-size: 20px;font-weight: 400;">คลิกเพื่อดูการใช้เครื่องมือแบบง่ายๆที่นี่</p>
                         </div>
 
-                        <a class="button secondary url mt-3" href="#one" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
+                        <a class="button secondary url mt-3" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
                     </div>
                     <div class="item text-center">
                         <div>
@@ -2901,7 +2901,7 @@
                             <p class="title-tools" style="font-size: 20px;font-weight: 400;">คลิกเพื่อดูเว็บไซต์ของบริษัทที่นี่</p>
                         </div>
 
-                        <a class="button secondary url mt-3" href="#one" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
+                        <a class="button secondary url mt-3" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
                     </div>
                 </div>
             </div>
@@ -2910,7 +2910,7 @@
             <!-- ///////////////////////////////////// -->
 
             <div class="container_tools d-none" id="other_tutorials">
-                <a class="button secondary url mt-3" href="#one" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
+                <a class="button secondary url mt-3" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
 
                 other_tutorials
             </div>

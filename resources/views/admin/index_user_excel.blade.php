@@ -644,7 +644,8 @@
 
                     let name_file ;
                     if(result[i].name_file){
-                        name_file = result[i].name_file.split('-')[3];
+                        // name_file = result[i].name_file.split('-')[3];
+                        name_file = result[i].name_file;
                     }
 
                     let html_of_type = `<td></td>`;

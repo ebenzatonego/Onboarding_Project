@@ -1067,7 +1067,7 @@
                     </div>
                 </div>
 
-                <div class="tab-pane fade show " id="training-path-bottom-1" role="tabpanel" aria-labelledby="pills-home-tab">
+                <div class="tab-pane fade show " id="training-path-bottom-2" role="tabpanel" aria-labelledby="pills-home-tab">
                     <div class="content-career">
 
                         <div class="career-item">
@@ -1084,7 +1084,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade show " id="training-path-bottom-2" role="tabpanel" aria-labelledby="pills-home-tab">
+                <div class="tab-pane fade show " id="training-path-bottom-1" role="tabpanel" aria-labelledby="pills-home-tab">
                     <div class="content-career">
 
                         <div class="career-item">

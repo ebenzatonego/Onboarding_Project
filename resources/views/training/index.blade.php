@@ -139,7 +139,7 @@
                     <div class="col-6">
                         <div class="w-100">
                             @if(!empty($photo_menu_highlight_1->id))
-                            <a href="{{ url('/sub_training') . '/' . $photo_menu_highlight_1->id }}" class="long-item mt-3">
+                            <a href="{{ url('/sub_training') . '/' . $photo_menu_highlight_1->id }}" class="long-item mt-3" onclick="return create_logs('Menu_Highlight_Training {{ $photo_menu_highlight_1->type_article }}');">
                                 @else
                                 <a href="{{ url('/sub_training/all') }}" class="long-item mt-3">
                                     @endif
@@ -161,7 +161,7 @@
                                     </div>
                                 </a>
                                 @if(!empty($photo_menu_highlight_2->id))
-                                <a href="{{ url('/sub_training') . '/' . $photo_menu_highlight_2->id }}" class="square-item mt-3">
+                                <a href="{{ url('/sub_training') . '/' . $photo_menu_highlight_2->id }}" class="square-item mt-3" onclick="return create_logs('Menu_Highlight_Training {{ $photo_menu_highlight_2->type_article }}');">
                                     @else
                                     <a href="{{ url('/sub_training/all') }}" class="square-item mt-3">
                                         @endif
@@ -187,7 +187,7 @@
                     <div class="col-6">
                         <div class="w-100">
                             @if(!empty($photo_menu_highlight_3->id))
-                            <a href="{{ url('/sub_training') . '/' . $photo_menu_highlight_3->id }}" class="square-item mt-3">
+                            <a href="{{ url('/sub_training') . '/' . $photo_menu_highlight_3->id }}" class="square-item mt-3" onclick="return create_logs('Menu_Highlight_Training {{ $photo_menu_highlight_3->type_article }}');">
                                 @else
                                 <a href="{{ url('/sub_training/all') }}" class="square-item mt-3">
                                     @endif
@@ -209,7 +209,7 @@
                                     </div>
                                 </a>
                                 @if(!empty($photo_menu_highlight_4->id))
-                                <a href="{{ url('/sub_training') . '/' . $photo_menu_highlight_4->id }}" class="long-item mt-3">
+                                <a href="{{ url('/sub_training') . '/' . $photo_menu_highlight_4->id }}" class="long-item mt-3" onclick="return create_logs('Menu_Highlight_Training {{ $photo_menu_highlight_4->type_article }}');">
                                     @else
                                     <a href="{{ url('/sub_training/all') }}" class="long-item mt-3">
                                         @endif
@@ -271,7 +271,7 @@
 
                     }
                 </style>
-                <a href="{{ url('/sub_training/all') }}">
+                <a href="{{ url('/sub_training/all') }}" onclick="return create_logs('Menu_Highlight_Training ดูหลักสูตรเพิ่มเติม');">
                     <div class="all-coures w-100 d-flex justify-content-evenly align-items-center">
                         <div>
                             <p style="font-size: 14px;margin-bottom: 0;">ดูหลักสูตร</p>
@@ -722,7 +722,7 @@
 
                                                 let html = `
                             <li class="nav-item me-2">
-                                <a class="nav-link btn-toggle-traning-appointment" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false" onclick="change_now_view_type('` + result['menu'][i].id + `', null, null)">` + type_article + `</a>
+                                <a class="nav-link btn-toggle-traning-appointment" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false" onclick="change_now_view_type('` + result['menu'][i].id + `', null, null);return create_logs('Click Menu Highlight Training Calendar_`+result['menu'][i].type_article+`');">` + type_article + `</a>
                             </li>
                         `;
 
@@ -733,7 +733,7 @@
                                             let dropdowntest = document.querySelector('#dropdowntest');
 
                                             let html_item_all = `
-                        <a class="dropdown-item" onclick="change_now_view_type('all','menu_all','ทั้งหมด')">
+                        <a class="dropdown-item" onclick="change_now_view_type('all','menu_all','ทั้งหมด');return create_logs('Click Menu List Training Calendar_ทั้งหมด');">
                             ทั้งหมด
                         </a>
                     `;
@@ -746,7 +746,7 @@
                                                 type_article_item = type_article_item.replace(" ", "");
 
                                                 let html_item = `
-                            <a class="dropdown-item" onclick="change_now_view_type('` + result['all'][ii].id + `','menu_all','` + type_article_item + `')">` + type_article_item + `</a>
+                            <a class="dropdown-item" onclick="change_now_view_type('` + result['all'][ii].id + `','menu_all','` + type_article_item + `');return create_logs('Click Menu List Training Calendar_`+result['all'][ii].type_article+`');">` + type_article_item + `</a>
                         `;
 
                                                 dropdowntest.insertAdjacentHTML('beforeend', html_item); // แทรกล่างสุด

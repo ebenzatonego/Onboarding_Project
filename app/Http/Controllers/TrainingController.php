@@ -30,19 +30,19 @@ class TrainingController extends Controller
         $count_training_type = count($data_Training_type);
 
         $photo_menu_highlight_1 = Training_type::where('check_highlight' , '1')
-            ->select('photo_menu','id')
+            ->select('photo_menu','id','type_article')
             ->first();
 
         $photo_menu_highlight_2 = Training_type::where('check_highlight' , '2')
-            ->select('photo_menu','id')
+            ->select('photo_menu','id','type_article')
             ->first();
 
         $photo_menu_highlight_3 = Training_type::where('check_highlight' , '3')
-            ->select('photo_menu','id')
+            ->select('photo_menu','id','type_article')
             ->first();
 
         $photo_menu_highlight_4 = Training_type::where('check_highlight' , '4')
-            ->select('photo_menu','id')
+            ->select('photo_menu','id','type_article')
             ->first();
 
         return view('training.index', compact('training','photo_menu_highlight_1','photo_menu_highlight_2','photo_menu_highlight_3','photo_menu_highlight_4','count_training_type'));

@@ -374,7 +374,7 @@
                         content_loop_training_types.innerHTML = '';
 
                     let html_type_all = `
-                        <a href="{{ url('/sub_training/all') }}">
+                        <a href="{{ url('/sub_training/all') }}" onclick="return create_logs('Course_Type ทั้งหมด');">
                             <div class="item ">
                                 <div id="item_menu_type_all" class="menu-course text-center">
                                     <div class="icon-menu-course">
@@ -432,7 +432,7 @@
                         }
 
                         let html = `
-                            <a href="{{ url('/sub_training') }}/`+result[i].id+`" class="`+check_none+`">
+                            <a href="{{ url('/sub_training') }}/`+result[i].id+`" class="`+check_none+`" onclick="return create_logs('Course_Type `+result[i].type_article+`');">
                                 <div class="item">
                                     <div id="item_menu_type_`+result[i].id+`" class="menu-course text-center `+check_active+`">
                                         <div class="icon-menu-course ">

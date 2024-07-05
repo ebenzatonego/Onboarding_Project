@@ -1856,6 +1856,7 @@
                 display: flex;
                 justify-content: center;
                 flex-wrap: wrap;
+                transform: scale(0.8);
             }
 
             .menu-tutorials .item {

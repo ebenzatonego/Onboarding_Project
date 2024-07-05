@@ -67,45 +67,28 @@ class AdminController extends Controller
                 if($key == "password"){
                     $data_arr['password'] = Hash::make($value);
                 }
-                else if ($key == "license_start") {
-                    $data_arr['license_start'] = $value;
-                    if (!empty($data_arr['license_start'])) {
+                else if ($key == "license_start" || $key == "license_expire") {
+                    $data_arr[$key] = $value;
+                    if (!empty($data_arr[$key])) {
                         if (is_numeric($value)) {
                             $date = $this->convertExcelDate($value);
                         } else {
-                            $date = Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d');
+                            $date = Carbon::createFromFormat('d-m-Y', $value);
+                            if ($date->year > 2500) {
+                                $date->subYears(543); // ลบ 543 ปีเพื่อแปลงเป็นปีคริสต์ศักราช
+                            }
                         }
-                        $data_arr['license_start'] = $date;
+                        $data_arr[$key] = $date->format('Y-m-d');
                     }
-                } else if ($key == "license_expire") {
-                    $data_arr['license_expire'] = $value;
-                    if (!empty($data_arr['license_expire'])) {
+                } else if ($key == "ic_license_start" || $key == "ic_license_expire") {
+                    $data_arr[$key] = $value;
+                    if (!empty($data_arr[$key])) {
                         if (is_numeric($value)) {
                             $date = $this->convertExcelDate($value);
                         } else {
-                            $date = Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d');
+                            $date = convertThaiToGregorian($value);
                         }
-                        $data_arr['license_expire'] = $date;
-                    }
-                } else if ($key == "ic_license_start") {
-                    $data_arr['ic_license_start'] = $value;
-                    if (!empty($data_arr['ic_license_start'])) {
-                        if (is_numeric($value)) {
-                            $date = $this->convertExcelDate($value);
-                        } else {
-                            $date = Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d');
-                        }
-                        $data_arr['ic_license_start'] = $date;
-                    }
-                } else if ($key == "ic_license_expire") {
-                    $data_arr['ic_license_expire'] = $value;
-                    if (!empty($data_arr['ic_license_expire'])) {
-                        if (is_numeric($value)) {
-                            $date = $this->convertExcelDate($value);
-                        } else {
-                            $date = Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d');
-                        }
-                        $data_arr['ic_license_expire'] = $date;
+                        $data_arr[$key] = $date;
                     }
                 }
                 else{
@@ -137,6 +120,20 @@ class AdminController extends Controller
     function convertExcelDate($excelDateValue) {
         $startDate = Carbon::createFromDate(1900, 1, 1);
         $date = $startDate->addDays($excelDateValue - 2);
+
+        if ($date->year > 2550) {
+            $date->subYears(543); // ลบ 543 ปีเพื่อแปลงเป็นปีคริสต์ศักราช
+        }
+
+        return $date->format('Y-m-d');
+    }
+
+
+    function convertThaiToGregorian($thaiDate) {
+        $date = Carbon::createFromFormat('d/m/Y', $thaiDate);
+        if ($date->year > 2500) {
+            $date->subYears(543); // ลบ 543 ปีเพื่อแปลงเป็นปีคริสต์ศักราช
+        }
         return $date->format('Y-m-d');
     }
 

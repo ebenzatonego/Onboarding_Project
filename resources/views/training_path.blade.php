@@ -652,7 +652,7 @@
             </div>
         </div>
 
-        <div class="col-md-6 col-12 bottom-content-career-path tt">
+        <div class="col-md-6 col-12 bottom-content-career-path tt" id="div_show_content_data">
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="training-path-main-1" role="tabpanel" aria-labelledby="pills-home-tab">
                     <div class="content-career">
@@ -1206,6 +1206,14 @@
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         get_video_intro();
+
+        document.querySelectorAll('.training_path_item').forEach(function(item) {
+            item.addEventListener('click', function(event) {
+                event.preventDefault(); // ป้องกันการทำงานของลิงก์ปกติ
+                var target = document.getElementById('div_show_content_data');
+                target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
     });
 
     function get_video_intro() {

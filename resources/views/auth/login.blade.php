@@ -707,20 +707,20 @@
             event.preventDefault(); // Prevent the form from submitting automatically
 
             let account = document.querySelector('#account').value;
-
+            // console.log(account);
             fetch("{{ url('/') }}/api/check_pdpa/" + account)
                 .then(response => response.text())
                 .then(result => {
+
                     if (result == "Yes") {
                         form.submit(); // Submit the form if PDPA check is successful
                     } else if (result == "No") {
-                        alert("PDPA No");
                         document.querySelector('#btn_modal_pdpa').click(); // Show modal if PDPA check fails
                     } else if (result == "Account none") {
                         alert("ไม่พบ Account ของคุณ"); // Alert if account is not found
                     }
                     else{
-                        alert("เกิดข้อผิดพลาดในการตรวจสอบ");
+                        alert(result);
                     }
                 })
                 .catch(error => {

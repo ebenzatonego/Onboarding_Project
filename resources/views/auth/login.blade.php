@@ -99,9 +99,9 @@
         min-height: 75%
     }
 
-    /*.btn-submit-login {
+    .btn-submit-login {
         margin-top: 5px !important;
-    }*/
+    }
 
 
     @media (min-width: 992px) {
@@ -574,11 +574,10 @@
         color: #0E2B81;
         padding: .7rem 0;
         border: none;
-/*        margin-top: 40px;*/
+        margin-top: 40px;
         margin-bottom: 30px;
         font-size: 16px;
         background-color: #fff;
-        margin-top: 5px !important;
     }
 
     .btn-submit-login:disabled {
@@ -638,7 +637,7 @@
                         <i class="fa-thin fa-lock icon-login-new"></i>
                     </div>
 
-                    <button id="submit_button" type="submit" class="btn-submit-login" disabled style="z-index: 1060 !important;">
+                    <button id="submit_button" type="submit" class="btn-submit-login" disabled>
                         เข้าสู่ระบบ
                     </button>
                     <!-- <a class="btn-forgot-password" href="authentication-forgot-password.html">ลืมรหัสผ่าน</a> -->
@@ -676,6 +675,8 @@
 </div>
 
 <script>
+
+
     document.addEventListener('DOMContentLoaded', function() {
         check_login();
 
@@ -700,6 +701,7 @@
                     }
                 });
         });
+
     })
 
     function update_pdpa() {

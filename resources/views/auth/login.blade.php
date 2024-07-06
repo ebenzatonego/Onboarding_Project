@@ -621,8 +621,8 @@
                 <div style="max-width: 740px;">
 
                     <p style="text-shadow: #000 1px 0 10px;font-size: 28px;margin: 5px;color: #fff !important;">ยินดีต้อนรับ !</p>
-                    <p style="text-shadow: #000 1px 0 10px;text-align: justify !important;font-size: 16px;margin: 0;color: #fff !important;text-indent: 20px;text-align: left;">กรุณากรอกรหัสตัวแทน (Agent Code) ที่ช่องแรกและ ใช้วันเดือนปีเกิด (ค.ศ. 4 ตัว) ของคุณ เพื่อเป็นรหัสผ่าน เช่น เกิดวันที่ 1 เดือนกันยายน ปี ค.ศ. 1984 รหัสผ่านของคุณจึงเป็น 11091984</p>
-                    <p style="text-shadow: #000 1px 0 10px;text-align: justify !important;font-size: 16px;margin: 0 0 30px 0;color: #fff !important;text-indent: 20px;text-align: left;">Enter your Agent in the first field and user your date of birth (4-digit year) as your password in the second field. E.g. You were born on Sep 1st, 1984, your password is 11091984.</p>
+                    <p style="text-shadow: #000 1px 0 10px;text-align: justify !important;font-size: 16px;margin: 0;color: #fff !important;text-indent: 20px;text-align: left;">กรุณากรอกรหัสตัวแทน (Agent Code) ที่ช่องแรกและ ใช้วันเดือนปีเกิด (ค.ศ. 4 ตัว) ของคุณ เพื่อเป็นรหัสผ่าน เช่น เกิดวันที่ 1 เดือนกันยายน ปี ค.ศ. 1984 รหัสผ่านของคุณจึงเป็น <span>01</span>091984</p>
+                    <p style="text-shadow: #000 1px 0 10px;text-align: justify !important;font-size: 16px;margin: 0 0 30px 0;color: #fff !important;text-indent: 20px;text-align: left;">Enter your Agent in the first field and user your date of birth (4-digit year) as your password in the second field. E.g. You were born on Sep 1st, 1984, your password is   <span>01</span>091984.</p>
                     <!-- <p style="font-size: 14px;margin: 0 0 30px 0;color: #fff;">กรุณากรอกชื่อ/อีเมลของคุณ หากคุณมีบัญชีเเล้ว หากไม่เคยลงทะเบียนกรุณาลงทะเบียนก่อนเข้าร่วม !</p> -->
 
 

@@ -683,25 +683,47 @@
         var form = document.getElementById('form_login');
         var submitButton = document.getElementById('submit_button');
 
-        form.addEventListener('submit', function(event) {
-            event.preventDefault(); // ป้องกันฟอร์มจากการส่งข้อมูลโดยอัตโนมัติ
+        // form.addEventListener('submit', function(event) {
+        //     event.preventDefault(); // ป้องกันฟอร์มจากการส่งข้อมูลโดยอัตโนมัติ
 
-            // Check PDPA
+        //     // Check PDPA
+        //     let account = document.querySelector('#account').value;
+        //     fetch("{{ url('/') }}/api/check_pdpa/" + account)
+        //         .then(response => response.text())
+        //         .then(result => {
+        //             // console.log(result);
+        //             if (result == "Yes") {
+        //                 form.submit();
+        //             } else if (result == "No") {
+        //                 document.querySelector('#btn_modal_pdpa').click();
+        //             } else if (result == "Account none") {
+        //                 alert("ไม่พบ Account ของคุณ");
+        //             }
+        //         });
+        // });
+
+        // Form submit event listener
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting automatically
+
             let account = document.querySelector('#account').value;
+
             fetch("{{ url('/') }}/api/check_pdpa/" + account)
                 .then(response => response.text())
                 .then(result => {
-                    // console.log(result);
                     if (result == "Yes") {
-                        form.submit();
+                        form.submit(); // Submit the form if PDPA check is successful
                     } else if (result == "No") {
-                        document.querySelector('#btn_modal_pdpa').click();
+                        document.querySelector('#btn_modal_pdpa').click(); // Show modal if PDPA check fails
                     } else if (result == "Account none") {
-                        alert("ไม่พบ Account ของคุณ");
+                        alert("ไม่พบ Account ของคุณ"); // Alert if account is not found
                     }
+                })
+                .catch(error => {
+                    console.error('Error:', error); // Log any errors
+                    alert("เกิดข้อผิดพลาดในการตรวจสอบ PDPA >> " + error); // Alert if there is an error
                 });
         });
-
     })
 
     function update_pdpa() {

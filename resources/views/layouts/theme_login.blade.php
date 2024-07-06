@@ -48,25 +48,9 @@
         display: none;
     }
 
-    /*.modal{
+    .modal{
         z-index: 999999!important;
-    }*/
-
-    .modal-backdrop {
-        z-index: 1040 !important;
-        position: fixed; /* Change to fixed to cover the entire screen */
     }
-
-    .modal-content {
-        z-index: 1050 !important;
-        position: relative; /* Ensure modal content is positioned relatively */
-    }
-
-    .btn-submit-login {
-        z-index: 1060 !important;
-        position: relative; /* Ensure the button is positioned relatively */
-    }
-
 </style>
 
 <body>

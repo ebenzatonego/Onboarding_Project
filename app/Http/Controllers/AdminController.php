@@ -277,14 +277,14 @@ class AdminController extends Controller
     function check_pdpa($account){
         $data = User::where('account' , $account)->first();
 
-        if($data){
+        if( !empty($data->id) ){
             if( !empty($data->check_pdpa) ){
                 $return = "Yes" ;
             }else{
-                $return ="No" ;
+                $return = "No" ;
             }
         }else{
-            $return ="Account none" ;
+            $return = "Account none" ;
         }
         
         return $return;

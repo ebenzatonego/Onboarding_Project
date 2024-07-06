@@ -638,7 +638,7 @@
                         <i class="fa-thin fa-lock icon-login-new"></i>
                     </div>
 
-                    <button id="submit_button" type="submit" class="btn-submit-login" disabled>
+                    <button id="submit_button" type="submit" class="btn-submit-login" disabled style="z-index: 1060 !important;">
                         เข้าสู่ระบบ
                     </button>
                     <!-- <a class="btn-forgot-password" href="authentication-forgot-password.html">ลืมรหัสผ่าน</a> -->

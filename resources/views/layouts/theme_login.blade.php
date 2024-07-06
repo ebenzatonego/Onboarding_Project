@@ -48,9 +48,19 @@
         display: none;
     }
 
-    .modal{
+    /*.modal{
         z-index: 999999!important;
+    }*/
+
+    .modal-backdrop {
+        z-index: 1040 !important;
+        position: absolute;
     }
+
+    .modal-content {
+        z-index: 1050 !important;
+    }
+
 </style>
 
 <body>

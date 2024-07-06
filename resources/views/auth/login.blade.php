@@ -713,14 +713,16 @@
                 .then(result => {
 
                     if (result == "Yes") {
-                        form.submit(); // Submit the form if PDPA check is successful
-                    } else if (result == "No") {
-                        document.querySelector('#btn_modal_pdpa').click(); // Show modal if PDPA check fails
-                    } else if (result == "Account none") {
-                        alert("ไม่พบ Account ของคุณ"); // Alert if account is not found
+                        form.submit();
+                    }
+                    else if (result == "No") {
+                        document.querySelector('#btn_modal_pdpa').click();
+                    }
+                    else if (result == "Account none") {
+                        alert("ไม่พบ Account ของคุณ");
                     }
                     else{
-                        alert(result);
+                        alert("เกิดข้อผิดพลาดในการตรวจสอบ");
                     }
                 })
                 .catch(error => {

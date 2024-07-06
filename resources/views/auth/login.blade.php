@@ -99,9 +99,9 @@
         min-height: 75%
     }
 
-    .btn-submit-login {
+    /*.btn-submit-login {
         margin-top: 5px !important;
-    }
+    }*/
 
 
     @media (min-width: 992px) {
@@ -574,10 +574,11 @@
         color: #0E2B81;
         padding: .7rem 0;
         border: none;
-        margin-top: 40px;
+/*        margin-top: 40px;*/
         margin-bottom: 30px;
         font-size: 16px;
         background-color: #fff;
+        margin-top: 5px !important;
     }
 
     .btn-submit-login:disabled {
@@ -644,29 +645,31 @@
                 </div>
             </form>
 
-            <!-- Button trigger modal -->
-            <button id="btn_modal_pdpa" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#Modal_PDPA">
-                test
-            </button>
+            
+        </div>
+    </div>
+</div>
 
-            <!-- Modal -->
-            <div class="modal fade" id="Modal_PDPA" tabindex="-1" role="dialog" aria-labelledby="Modal_PDPATitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content" style="border-radius: 10px;margin: 0 20px;">
-                        <div class="modal-body" style="background-color: #3D467F;border-radius: 10px; color:#fff;font-size: 14px;padding:  50px 30px;">
-                            <p>Agency Journey จะทำการเก็บรวบรวมเพื่อ ใช้ หรือ เปิดเผยรหัสข้อมูลส่วนตัวของตัวแทน ต่อบริษัท Box Exhibit เพื่อการใช้งานเว็บไซต์ Agency Journey</p>
-                            <br>
-                            <p>To give consent to Agency Journey to Collect, Use, and/or Disclosure of Personal Data process my Personal Data, I (“Data Subject”), have marked in the consent box and given my full name as an electronic signature.</p>
-                            <div class="d-flex align-items-center">
-                                <input name="check_box_submit_condition" id="check_box_submit_condition" class="form-check-input font-18 m-0 p-o" type="checkbox" value="" aria-label="Checkbox for following text input" onchange="validate_condition()">
-                                <label for="check_box_submit_condition" class="ms-2">ฉันยอมรับ และยินยอมในเงื่อนไขดังกล่าว</label>
-                            </div>
-                            <button type="button" class="btn-submit-login mb-0" id="btn_submit_condition" style="font-weight: bolder;" disabled onclick="update_pdpa();">
-                                ถัดไป
-                            </button>
-                        </div>
-                    </div>
+<!-- Button trigger modal -->
+<button id="btn_modal_pdpa" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#Modal_PDPA">
+    test
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="Modal_PDPA" tabindex="-1" role="dialog" aria-labelledby="Modal_PDPATitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="border-radius: 10px;margin: 0 20px;">
+            <div class="modal-body" style="background-color: #3D467F;border-radius: 10px; color:#fff;font-size: 14px;padding:  50px 30px;">
+                <p>Agency Journey จะทำการเก็บรวบรวมเพื่อ ใช้ หรือ เปิดเผยรหัสข้อมูลส่วนตัวของตัวแทน ต่อบริษัท Box Exhibit เพื่อการใช้งานเว็บไซต์ Agency Journey</p>
+                <br>
+                <p>To give consent to Agency Journey to Collect, Use, and/or Disclosure of Personal Data process my Personal Data, I (“Data Subject”), have marked in the consent box and given my full name as an electronic signature.</p>
+                <div class="d-flex align-items-center">
+                    <input name="check_box_submit_condition" id="check_box_submit_condition" class="form-check-input font-18 m-0 p-o" type="checkbox" value="" aria-label="Checkbox for following text input" onchange="validate_condition()">
+                    <label for="check_box_submit_condition" class="ms-2">ฉันยอมรับ และยินยอมในเงื่อนไขดังกล่าว</label>
                 </div>
+                <button type="button" class="btn-submit-login mb-0" id="btn_submit_condition" style="font-weight: bolder;" disabled onclick="update_pdpa();">
+                    ถัดไป
+                </button>
             </div>
         </div>
     </div>

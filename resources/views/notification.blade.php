@@ -148,6 +148,8 @@
                 <script>
                     function change_view_noti(type){
 
+                        console.log(type);
+
                         let card_all = document.querySelectorAll('.notification-alert');
                             card_all.forEach(card_all => {
                                 card_all.classList.add('d-none');
@@ -160,7 +162,7 @@
                             })
                         }
                         else{
-                            let item = document.querySelectorAll('[type="'+type+'"]');
+                            let item = document.querySelectorAll('[type_of_noti="'+type+'"]');
                             item.forEach(item => {
                                 item.classList.remove('d-none');
                             })
@@ -323,7 +325,7 @@
                         if(result[i].type == "เฉพาะคุณ"){
                             if(result[i].sub_type == "วันเกิด"){
                                 html = `
-                                    <div type="`+result[i].type+`" class="notification-alert">
+                                    <div type_of_noti="`+result[i].type+`" class="notification-alert">
                                         <img src="{{url('img/icon/noti_birthday.png')}}" alt="">
                                         <div class="d-block px-3">
                                             <p class="noti-title">สุขสันต์วันเกิด คุณ`+result[i].name+` 🎉</p>
@@ -342,7 +344,7 @@
                                 }
 
                                 html = `
-                                    <div type="`+result[i].type+`" class="notification-alert">
+                                    <div type_of_noti="`+result[i].type+`" class="notification-alert">
                                         <img src="{{url('img/icon/noti_license_expire.png')}}" alt="">
                                         <div class="d-block px-3">
                                             <p class="noti-title">เเจ้งเตือนบัตรตัวเเทนหมดอายุ !</p>
@@ -356,7 +358,7 @@
                                 let months_difference = Math.floor(days_difference / 30);
 
                                 html = `
-                                    <div type="`+result[i].type+`" class="notification-alert">
+                                    <div type_of_noti="`+result[i].type+`" class="notification-alert">
                                         <img src="{{url('img/icon/select_my_goal/`+result[i].goal+`.png')}}" alt="" style="width: 100%; height: auto; object-fit: contain;">
                                         <div class="d-block px-3">
                                             <p class="noti-title">เป้าหมายของ คุณ{{ Auth::user()->name }} 🎉</p>
@@ -383,7 +385,7 @@
                             }
 
                             html = `
-                            <div type="`+result[i].type+`" class="notification-alert">
+                            <div type_of_noti="`+result[i].type+`" class="notification-alert">
                                 <a href="{{ url('/show_appointment_train') }}/`+result[i].id+`">
                                     <img src="`+result[i].photo+`" alt="" style="width: 100%; height: auto; object-fit: cover;">
                                     <div class="d-block px-3">
@@ -413,7 +415,7 @@
                             }
 
                             html = `
-                            <div type="`+result[i].type+`" class="notification-alert">
+                            <div type_of_noti="`+result[i].type+`" class="notification-alert">
                                 <a href="`+url+`">
                                     <img src="`+result[i].photo+`" alt="" style="width: 100%; height: auto; object-fit: cover;">
                                     <div class="d-block px-3">

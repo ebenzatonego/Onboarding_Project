@@ -335,9 +335,11 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+        console.log('1')
         change_active_menu_theme_user('Product');
         get_data_product('all');
         get_data_type_product();
+        console.log('5')
     });
 
     function get_data_product(product_type_id) {

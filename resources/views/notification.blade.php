@@ -211,11 +211,12 @@
                             font-weight: 400;
                             margin-bottom: 0;
                             line-height: normal;
-                            display: -webkit-box;
+                            -webkit-line-clamp: 3;
+                            /* autoprefixer: ignore next */
                             -webkit-box-orient: vertical;
-                            -webkit-line-clamp: 3; /* จำนวนบรรทัดที่ต้องการจำกัด */
+                            display: -webkit-box;
                             overflow: hidden;
-                            text-overflow: ellipsis;
+                            word-break: break-word;
                         }
                     }
 
@@ -244,11 +245,12 @@
                             font-weight: 400;
                             margin-bottom: 0;
                             line-height: normal;
-                            display: -webkit-box;
+                            -webkit-line-clamp: 3;
+                            /* autoprefixer: ignore next */
                             -webkit-box-orient: vertical;
-                            -webkit-line-clamp: 3; /* จำนวนบรรทัดที่ต้องการจำกัด */
+                            display: -webkit-box;
                             overflow: hidden;
-                            text-overflow: ellipsis;
+                            word-break: break-word;
                         }
 
                         #modal_notification .modal-content {
@@ -298,7 +300,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
-        // gat_data_of_notification();
+        gat_data_of_notification();
     });
 
     function gat_data_of_notification(){

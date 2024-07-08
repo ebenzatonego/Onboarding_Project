@@ -382,6 +382,8 @@
                         })
                     });
 
+                    get_data_detail_of_id(product_type_id);
+
                 }
             });
 
@@ -478,8 +480,7 @@
                     <p class="title-product">
                         ` + result.title + `
                     </p>
-                    <p class="detail-product">
-                        ` + textWithoutHtml + `
+                    <p class="detail-product" id="detail_of_id_`+result.id+`">
                     </p>
                     <div class="category-product">
                         <span>#` + result.name_type + `</span>
@@ -490,6 +491,26 @@
 
         content_list_item_product.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
 
+    }
+
+    function get_data_detail_of_id(product_type_id){
+        fetch("{{ url('/') }}/api/get_data_detail_of_id/" + product_type_id)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+
+                if(result){
+                    for (let i = 0; i < result.length; i++) {
+
+                        let textWithoutHtml = ``;
+                        if (result.detail) {
+                            textWithoutHtml = result.detail.replace(/(<([^>]+)>)/gi, "");
+                        }
+
+                        document.querySelector('#detail_of_id_'+result.id).innerHTML = textWithoutHtml;
+                    }
+                }
+        });
     }
 
     var carousel_menu;

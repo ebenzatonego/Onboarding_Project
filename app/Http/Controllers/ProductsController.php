@@ -194,7 +194,7 @@ class ProductsController extends Controller
                     'products.title',
                     'products.photo',
                     'products.user_fav',
-                    'products.detail',
+                    // 'products.detail',
                     'products.title',
                     'product_types.name_type',
                     'product_types.color_code'
@@ -220,7 +220,7 @@ class ProductsController extends Controller
                     'products.title',
                     'products.photo',
                     'products.user_fav',
-                    'products.detail',
+                    // 'products.detail',
                     'products.title',
                     'product_types.name_type',
                     'product_types.color_code'
@@ -231,6 +231,25 @@ class ProductsController extends Controller
                             END, 
                             products.highlight_of_type ASC, 
                             id DESC")
+                ->get();
+        }
+
+        return $data_products ;
+    }
+
+    function get_data_detail_of_id($products_type_id){
+        if($products_type_id == 'all'){
+            $data_products = DB::table('products')
+                ->where('status' , 'Yes')
+                ->select('detail')
+                ->get();
+        }
+        else{
+            
+            $data_products = DB::table('products')
+                ->where('status' , 'Yes')
+                ->where('product_type_id' , $products_type_id)
+                ->select('detail')
                 ->get();
         }
 

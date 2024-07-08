@@ -351,7 +351,7 @@
         content_list_item_product.innerHTML = "";
 
         fetch("{{ url('/') }}/api/get_data_product/" + product_type_id)
-            .then(response => response.text())
+            .then(response => response.json())
             .then(result => {
                 console.log(result);
 

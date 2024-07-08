@@ -350,7 +350,7 @@
         fetch("{{ url('/') }}/api/get_data_product/" + product_type_id)
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
+                console.log(result);
 
                 if (result) {
 

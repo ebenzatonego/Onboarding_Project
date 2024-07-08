@@ -184,20 +184,6 @@ class ProductsController extends Controller
 
     function get_data_product($products_type_id){
 
-        
-
-
-
-            
-            
-            
-            
-            
-            
-            
-
-
-
         if($products_type_id == 'all'){
             $data_products = DB::table('products')
                 ->join('product_types', 'product_types.id', '=', 'products.product_type_id')
@@ -213,12 +199,12 @@ class ProductsController extends Controller
                     'product_types.name_type',
                     'product_types.color_code'
                 )
-                ->orderByRaw("CASE 
-                            WHEN products.highlight_number IS NOT NULL THEN 1
-                            ELSE 2
-                            END, 
-                            products.highlight_number ASC, 
-                            id DESC")
+                // ->orderByRaw("CASE 
+                //             WHEN products.highlight_number IS NOT NULL THEN 1
+                //             ELSE 2
+                //             END, 
+                //             products.highlight_number ASC, 
+                //             id DESC")
                 ->get();
 
         }
@@ -239,12 +225,12 @@ class ProductsController extends Controller
                     'product_types.name_type',
                     'product_types.color_code'
                 )
-                ->orderByRaw("CASE 
-                            WHEN products.highlight_of_type IS NOT NULL THEN 1
-                            ELSE 2
-                            END, 
-                            products.highlight_of_type ASC, 
-                            id DESC")
+                // ->orderByRaw("CASE 
+                //             WHEN products.highlight_of_type IS NOT NULL THEN 1
+                //             ELSE 2
+                //             END, 
+                //             products.highlight_of_type ASC, 
+                //             id DESC")
                 ->get();
         }
 

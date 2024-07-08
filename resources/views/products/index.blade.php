@@ -341,7 +341,7 @@
     });
 
     function get_data_product(product_type_id) {
-        console.log('get_data_product')
+        // console.log('get_data_product')
 
         let div_content_highlight_number = document.querySelector('#div_content_highlight_number');
         div_content_highlight_number.innerHTML = "";
@@ -351,7 +351,7 @@
         fetch("{{ url('/') }}/api/get_data_product/" + product_type_id)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 if (result) {
 
@@ -499,7 +499,7 @@
         fetch("{{ url('/') }}/api/get_data_detail_of_id/" + product_type_id)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 if(result){
                     for (let i = 0; i < result.length; i++) {

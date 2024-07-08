@@ -298,7 +298,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
-        gat_data_of_notification();
+        // gat_data_of_notification();
     });
 
     function gat_data_of_notification(){

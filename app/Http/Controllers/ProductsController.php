@@ -184,7 +184,7 @@ class ProductsController extends Controller
 
     function get_data_product($products_type_id){
 
-        return 'success'
+        return 'success' ;
         // if($products_type_id == 'all'){
         //     $data_products = DB::table('products')
         //         ->join('product_types', 'product_types.id', '=', 'products.product_type_id')

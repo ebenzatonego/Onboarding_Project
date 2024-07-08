@@ -184,57 +184,58 @@ class ProductsController extends Controller
 
     function get_data_product($products_type_id){
 
-        if($products_type_id == 'all'){
-            $data_products = DB::table('products')
-                ->join('product_types', 'product_types.id', '=', 'products.product_type_id')
-                ->where('products.status' , 'Yes')
-                ->select(
-                    'products.id',
-                    'products.highlight_number',
-                    'products.title',
-                    'products.photo',
-                    'products.user_fav',
-                    'products.detail',
-                    'products.title',
-                    'product_types.name_type',
-                    'product_types.color_code'
-                )
-                // ->orderByRaw("CASE 
-                //             WHEN products.highlight_number IS NOT NULL THEN 1
-                //             ELSE 2
-                //             END, 
-                //             products.highlight_number ASC, 
-                //             id DESC")
-                ->get();
+        return 'success'
+        // if($products_type_id == 'all'){
+        //     $data_products = DB::table('products')
+        //         ->join('product_types', 'product_types.id', '=', 'products.product_type_id')
+        //         ->where('products.status' , 'Yes')
+        //         ->select(
+        //             'products.id',
+        //             'products.highlight_number',
+        //             'products.title',
+        //             'products.photo',
+        //             'products.user_fav',
+        //             'products.detail',
+        //             'products.title',
+        //             'product_types.name_type',
+        //             'product_types.color_code'
+        //         )
+        //         ->orderByRaw("CASE 
+        //                     WHEN products.highlight_number IS NOT NULL THEN 1
+        //                     ELSE 2
+        //                     END, 
+        //                     products.highlight_number ASC, 
+        //                     id DESC")
+        //         ->get();
 
-        }
-        else{
+        // }
+        // else{
             
-            $data_products = DB::table('products')
-                ->join('product_types', 'product_types.id', '=', 'products.product_type_id')
-                ->where('products.status' , 'Yes')
-                ->where('products.product_type_id' , $products_type_id)
-                ->select(
-                    'products.id',
-                    'products.highlight_number',
-                    'products.title',
-                    'products.photo',
-                    'products.user_fav',
-                    'products.detail',
-                    'products.title',
-                    'product_types.name_type',
-                    'product_types.color_code'
-                )
-                // ->orderByRaw("CASE 
-                //             WHEN products.highlight_of_type IS NOT NULL THEN 1
-                //             ELSE 2
-                //             END, 
-                //             products.highlight_of_type ASC, 
-                //             id DESC")
-                ->get();
-        }
+        //     $data_products = DB::table('products')
+        //         ->join('product_types', 'product_types.id', '=', 'products.product_type_id')
+        //         ->where('products.status' , 'Yes')
+        //         ->where('products.product_type_id' , $products_type_id)
+        //         ->select(
+        //             'products.id',
+        //             'products.highlight_number',
+        //             'products.title',
+        //             'products.photo',
+        //             'products.user_fav',
+        //             'products.detail',
+        //             'products.title',
+        //             'product_types.name_type',
+        //             'product_types.color_code'
+        //         )
+        //         ->orderByRaw("CASE 
+        //                     WHEN products.highlight_of_type IS NOT NULL THEN 1
+        //                     ELSE 2
+        //                     END, 
+        //                     products.highlight_of_type ASC, 
+        //                     id DESC")
+        //         ->get();
+        // }
 
-        return $data_products ;
+        // return $data_products ;
     }
 
     function update_user_view_product($user_id,$product_id){

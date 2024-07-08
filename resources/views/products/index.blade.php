@@ -368,22 +368,27 @@
                         });
                     });
 
-                    setTimeout(() => {
-                        Promise.all(promises).then(() => {
-                            get_data_detail_of_id(product_type_id);
-                            // Destroy existing carousel instance if exists
-                            $('.carousel-fav-product').trigger('destroy.owl.carousel');
+                    Promise.all(promises).then(() => {
+                        // Destroy existing carousel instance if exists
+                        $('.carousel-fav-product').trigger('destroy.owl.carousel');
 
-                            // Initialize new carousel instance
-                            $('.carousel-fav-product').owlCarousel({
-                                // stagePadding:20,
-                                margin:10,
-                                loop:false,
-                                autoWidth:true,
-                                items:4
-                            })
-                        });
-                    }, 100);
+                        // Initialize new carousel instance
+                        $('.carousel-fav-product').owlCarousel({
+                            // stagePadding:20,
+                            margin:10,
+                            loop:false,
+                            autoWidth:true,
+                            items:4
+                        })
+                    });
+
+                    try {
+                        get_data_detail_of_id(product_type_id);
+                    } catch (error) {
+                        setTimeout(() => {
+                            get_data_detail_of_id(product_type_id);
+                        }, 1000);
+                    }
 
                 }
             });

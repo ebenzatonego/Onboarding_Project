@@ -121,19 +121,19 @@
 
                 <div class="container-tap-notificarion d-flex justify-content-center mb-2 mt-3 w-100">
                     <div class="tabs-notification">
-                        <input type="radio" id="noti-radio-1" name="tabs_type_noti" value="ทั้งหมด" checked="" onclick="return create_logs('Notification_ทั้งหมด');change_view_noti('all');">
+                        <input type="radio" id="noti-radio-1" name="tabs_type_noti" value="ทั้งหมด" checked="" onclick="change_view_noti('all');return create_logs('Notification_ทั้งหมด');">
                         <label class="tab-item" for="noti-radio-1">
                             ทั้งหมด
                         </label>
-                        <input type="radio" id="noti-radio-2" name="tabs_type_noti" value="เฉพาะคุณ" onclick="return create_logs('Notification_เฉพาะคุณ');change_view_noti('เฉพาะคุณ');">
+                        <input type="radio" id="noti-radio-2" name="tabs_type_noti" value="เฉพาะคุณ" onclick="change_view_noti('เฉพาะคุณ');return create_logs('Notification_เฉพาะคุณ');">
                         <label class="tab-item" for="noti-radio-2">
                             เฉพาะคุณ
                         </label>
-                        <input type="radio" id="noti-radio-3" name="tabs_type_noti" value="อบรม,สอบ" onclick="return create_logs('Notification_อบรม,สอบ');change_view_noti('อบรม,สอบ');">
+                        <input type="radio" id="noti-radio-3" name="tabs_type_noti" value="อบรม,สอบ" onclick="change_view_noti('อบรม,สอบ');return create_logs('Notification_อบรม,สอบ');">
                         <label class="tab-item" for="noti-radio-3">
                             อบรม,สอบ
                         </label>
-                        <input type="radio" id="noti-radio-4" name="tabs_type_noti" value="บริษัท" onclick="return create_logs('Notification_บริษัท');change_view_noti('บริษัท');">
+                        <input type="radio" id="noti-radio-4" name="tabs_type_noti" value="บริษัท" onclick="change_view_noti('บริษัท');return create_logs('Notification_บริษัท');">
                         <label class="tab-item" for="noti-radio-4">
                             บริษัท
                         </label>
@@ -385,8 +385,8 @@
                             }
 
                             html = `
-                            <div type_of_noti="`+result[i].type+`" class="notification-alert">
-                                <a href="{{ url('/show_appointment_train') }}/`+result[i].id+`">
+                            <a href="{{ url('/show_appointment_train') }}/`+result[i].id+`">
+                                <div type_of_noti="`+result[i].type+`" class="notification-alert">
                                     <img src="`+result[i].photo+`" alt="" style="width: 100%; height: auto; object-fit: cover;">
                                     <div class="d-block px-3">
                                         <p class="noti-title">`+result[i].title+`</p>
@@ -397,8 +397,8 @@
                                             `+textWithoutHtml+`
                                         </p>
                                     </div>
-                                </a>
-                            </div>
+                                </div>
+                            </a>
                             `;
                         }
                         else if(result[i].type == "ข่าวสาร" || result[i].type == "บริษัท"){
@@ -415,8 +415,8 @@
                             }
 
                             html = `
-                            <div type_of_noti="`+result[i].type+`" class="notification-alert">
-                                <a href="`+url+`">
+                            <a href="`+url+`">
+                                <div type_of_noti="`+result[i].type+`" class="notification-alert">
                                     <img src="`+result[i].photo+`" alt="" style="width: 100%; height: auto; object-fit: cover;">
                                     <div class="d-block px-3">
                                         <p class="noti-title">`+result[i].title+`</p>
@@ -424,8 +424,8 @@
                                             `+textWithoutHtml+`
                                         </p>
                                     </div>
-                                </a>
-                            </div>
+                                </div>
+                            </a>
                             `;
                         }
 

@@ -189,22 +189,22 @@ class ProductsController extends Controller
                 ->join('product_types', 'product_types.id', '=', 'products.product_type_id')
                 ->where('products.status' , 'Yes')
                 ->select(
-                    // 'products.id',
-                    // 'products.highlight_number',
-                    // 'products.title',
-                    // 'products.photo',
-                    // 'products.user_fav',
+                    'products.id',
+                    'products.highlight_number',
+                    'products.title',
+                    'products.photo',
+                    'products.user_fav',
                     'products.detail',
-                    // 'products.title',
-                    // 'product_types.name_type',
-                    // 'product_types.color_code'
+                    'products.title',
+                    'product_types.name_type',
+                    'product_types.color_code'
                 )
-                // ->orderByRaw("CASE 
-                //             WHEN products.highlight_number IS NOT NULL THEN 1
-                //             ELSE 2
-                //             END, 
-                //             products.highlight_number ASC, 
-                //             id DESC")
+                ->orderByRaw("CASE 
+                            WHEN products.highlight_number IS NOT NULL THEN 1
+                            ELSE 2
+                            END, 
+                            products.highlight_number ASC, 
+                            id DESC")
                 ->get();
 
         }

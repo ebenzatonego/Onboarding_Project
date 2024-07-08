@@ -340,107 +340,55 @@
         get_data_type_product();
     });
 
-    // function get_data_product(product_type_id) {
-    //     console.log('get_data_product')
-
-    //     let div_content_highlight_number = document.querySelector('#div_content_highlight_number');
-    //     div_content_highlight_number.innerHTML = "";
-    //     let content_list_item_product = document.querySelector('#content_list_item_product');
-    //     content_list_item_product.innerHTML = "";
-
-    //     fetch("{{ url('/') }}/api/get_data_product/" + product_type_id)
-    //         .then(response => response.json())
-    //         .then(result => {
-    //             console.log(result);
-
-    //             if (result) {
-
-    //                 if (result.length >= 12) {
-    //                     document.querySelector('#btn_goto_top').classList.remove('d-none');
-    //                 } else {
-    //                     document.querySelector('#btn_goto_top').classList.add('d-none');
-    //                 }
-
-    //                 let promises = result.map((item, i) => {
-    //                     return new Promise((resolve, reject) => {
-    //                         create_html_for_product(product_type_id, item);
-    //                         resolve();
-    //                     });
-    //                 });
-
-    //                 Promise.all(promises).then(() => {
-    //                     // Destroy existing carousel instance if exists
-    //                     $('.carousel-fav-product').trigger('destroy.owl.carousel');
-
-    //                     // Initialize new carousel instance
-    //                     $('.carousel-fav-product').owlCarousel({
-    //                         // stagePadding:20,
-    //                         margin:10,
-    //                         loop:false,
-    //                         autoWidth:true,
-    //                         items:4
-    //                     })
-    //                 });
-
-    //                 get_data_detail_of_id(product_type_id);
-
-    //             }
-    //         });
-
-    // }
-
-    async function get_data_product(product_type_id) {
-        console.log('get_data_product');
+    function get_data_product(product_type_id) {
+        console.log('get_data_product')
 
         let div_content_highlight_number = document.querySelector('#div_content_highlight_number');
         div_content_highlight_number.innerHTML = "";
         let content_list_item_product = document.querySelector('#content_list_item_product');
         content_list_item_product.innerHTML = "";
 
-        try {
-            let response = await fetch("{{ url('/') }}/api/get_data_product/" + product_type_id);
-            let result = await response.json();
+        fetch("{{ url('/') }}/api/get_data_product/" + product_type_id)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
 
-            console.log(result);
+                if (result) {
 
-            if (result) {
-                if (result.length >= 12) {
-                    document.querySelector('#btn_goto_top').classList.remove('d-none');
-                } else {
-                    document.querySelector('#btn_goto_top').classList.add('d-none');
-                }
+                    if (result.length >= 12) {
+                        document.querySelector('#btn_goto_top').classList.remove('d-none');
+                    } else {
+                        document.querySelector('#btn_goto_top').classList.add('d-none');
+                    }
 
-                let promises = result.map((item, i) => {
-                    return new Promise((resolve, reject) => {
-                        try {
+                    let promises = result.map((item, i) => {
+                        return new Promise((resolve, reject) => {
                             create_html_for_product(product_type_id, item);
                             resolve();
-                        } catch (error) {
-                            reject(error);
-                        }
+                        });
                     });
-                });
 
-                await Promise.all(promises);
+                    Promise.all(promises).then(() => {
+                        // Destroy existing carousel instance if exists
+                        $('.carousel-fav-product').trigger('destroy.owl.carousel');
 
-                // Destroy existing carousel instance if exists
-                $('.carousel-fav-product').trigger('destroy.owl.carousel');
+                        // Initialize new carousel instance
+                        $('.carousel-fav-product').owlCarousel({
+                            // stagePadding:20,
+                            margin:10,
+                            loop:false,
+                            autoWidth:true,
+                            items:4
+                        })
+                    });
 
-                // Initialize new carousel instance
-                $('.carousel-fav-product').owlCarousel({
-                    // stagePadding:20,
-                    margin:10,
-                    loop:false,
-                    autoWidth:true,
-                    items:4
-                });
+                    get_data_detail_of_id(product_type_id);
 
-                get_data_detail_of_id(product_type_id);
-            }
-        } catch (error) {
-            console.error("Error in fetching or processing data: ", error);
-        }
+                }
+            });
+
     }
+
 
 
     function create_html_for_product(product_type_id, result) {
@@ -557,11 +505,11 @@
                     for (let i = 0; i < result.length; i++) {
 
                         let textWithoutHtml = ``;
-                        if (result.detail) {
-                            textWithoutHtml = result.detail.replace(/(<([^>]+)>)/gi, "");
+                        if (result[i].detail) {
+                            textWithoutHtml = result[i].detail.replace(/(<([^>]+)>)/gi, "");
                         }
 
-                        document.querySelector('#detail_of_id_'+result.id).innerHTML = textWithoutHtml;
+                        document.querySelector('#detail_of_id_'+result[i].id).innerHTML = textWithoutHtml;
                     }
                 }
         });

@@ -194,7 +194,7 @@ class ProductsController extends Controller
                     'products.title',
                     'products.photo',
                     'products.user_fav',
-                    // 'products.detail',
+                    'products.detail',
                     'products.title',
                     'product_types.name_type',
                     'product_types.color_code'

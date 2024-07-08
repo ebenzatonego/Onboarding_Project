@@ -401,7 +401,7 @@
                 let html_highlight_number = `
                     <a href="{{ url('/product_show') }}/` + result.id + `" onclick="return create_logs('Click Product_` + result.title + `');">
                         <div class="item">
-                            <img src="` + result.photo + `">
+                            
                         </div>
                     </a>
                 `;
@@ -416,7 +416,7 @@
                 let html_highlight_number = `
                     <a href="{{ url('/product_show') }}/` + result.id + `" onclick="return create_logs('Click Product_` + result.title + `');">
                         <div class="item">
-                            <img src="` + result.photo + `">
+                            
                         </div>
                     </a>
                 `;
@@ -464,7 +464,6 @@
         let html = `
             <a href="{{ url('/product_show') }}/` + result.id + `" class="product-item ` + check_fav + ` " style="background-color: ` + result.color_code + `45;" onclick="return create_logs('Click Product_` + result.title + `');">
                 <div class="position-relative">
-                    <img src="` + result.photo + `">
                     <div class="fav-product">
                         <svg width="17" height="22" viewBox="0 0 17 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M16.0002 0H1.07715C0.524864 0 0.0771484 0.447716 0.0771484 1V20.3889C0.0771484 21.1306 0.856276 21.6141 1.52095 21.285L8.09489 18.0293C8.37455 17.8908 8.70283 17.8908 8.98248 18.0293L15.5564 21.285C16.2211 21.6141 17.0002 21.1306 17.0002 20.3888V1C17.0002 0.447715 16.5525 0 16.0002 0Z" fill="#FFB600" />

@@ -148,7 +148,7 @@
                 <script>
                     function change_view_noti(type){
 
-                        console.log(type);
+                        // console.log(type);
 
                         let card_all = document.querySelectorAll('.notification-alert');
                             card_all.forEach(card_all => {

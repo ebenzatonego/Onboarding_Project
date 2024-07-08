@@ -367,19 +367,19 @@
                         });
                     });
 
-                    // Promise.all(promises).then(() => {
-                    //     // Destroy existing carousel instance if exists
-                    //     $('.carousel-fav-product').trigger('destroy.owl.carousel');
+                    Promise.all(promises).then(() => {
+                        // Destroy existing carousel instance if exists
+                        $('.carousel-fav-product').trigger('destroy.owl.carousel');
 
-                    //     // Initialize new carousel instance
-                    //     $('.carousel-fav-product').owlCarousel({
-                    //         // stagePadding:20,
-                    //         margin:10,
-                    //         loop:false,
-                    //         autoWidth:true,
-                    //         items:4
-                    //     })
-                    // });
+                        // Initialize new carousel instance
+                        $('.carousel-fav-product').owlCarousel({
+                            // stagePadding:20,
+                            margin:10,
+                            loop:false,
+                            autoWidth:true,
+                            items:4
+                        })
+                    });
 
                 }
             });

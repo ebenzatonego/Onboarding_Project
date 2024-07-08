@@ -343,6 +343,7 @@
     });
 
     function get_data_product(product_type_id) {
+        console.log('get_data_product')
 
         let div_content_highlight_number = document.querySelector('#div_content_highlight_number');
         div_content_highlight_number.innerHTML = "";

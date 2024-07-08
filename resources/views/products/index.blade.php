@@ -335,15 +335,13 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        console.log('1')
         change_active_menu_theme_user('Product');
         get_data_product('all');
         get_data_type_product();
-        console.log('5')
     });
 
     function get_data_product(product_type_id) {
-        console.log('get_data_product')
+        // console.log('get_data_product')
 
         let div_content_highlight_number = document.querySelector('#div_content_highlight_number');
         div_content_highlight_number.innerHTML = "";
@@ -353,7 +351,7 @@
         fetch("{{ url('/') }}/api/get_data_product/" + product_type_id)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 if (result) {
 

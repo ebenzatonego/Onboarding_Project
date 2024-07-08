@@ -383,8 +383,8 @@
                             }
 
                             html = `
-                            <a href="{{ url('/show_appointment_train') }}/`+result[i].id+`" type="`+result[i].type+`" class="notification-alert">
-                                <div>
+                            <div type="`+result[i].type+`" class="notification-alert">
+                                <a href="{{ url('/show_appointment_train') }}/`+result[i].id+`">
                                     <img src="`+result[i].photo+`" alt="" style="width: 100%; height: auto; object-fit: cover;">
                                     <div class="d-block px-3">
                                         <p class="noti-title">`+result[i].title+`</p>
@@ -395,8 +395,8 @@
                                             `+textWithoutHtml+`
                                         </p>
                                     </div>
-                                </div>
-                            </a>
+                                </a>
+                            </div>
                             `;
                         }
                         else if(result[i].type == "ข่าวสาร" || result[i].type == "บริษัท"){
@@ -413,8 +413,8 @@
                             }
 
                             html = `
-                            <a href="`+url+`" type="`+result[i].type+`" class="notification-alert">
-                                <div>
+                            <div type="`+result[i].type+`" class="notification-alert">
+                                <a href="`+url+`">
                                     <img src="`+result[i].photo+`" alt="" style="width: 100%; height: auto; object-fit: cover;">
                                     <div class="d-block px-3">
                                         <p class="noti-title">`+result[i].title+`</p>
@@ -422,8 +422,8 @@
                                             `+textWithoutHtml+`
                                         </p>
                                     </div>
-                                </div>
-                            </a>
+                                </a>
+                            </div>
                             `;
                         }
 

@@ -388,7 +388,7 @@
 
     function create_html_for_product(product_type_id, result) {
 
-        // console.log(product_type_id);
+        console.log(product_type_id);
 
         let div_content_highlight_number = document.querySelector('#div_content_highlight_number');
         // div_content_highlight_number.innerHTML = "";

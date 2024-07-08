@@ -391,7 +391,7 @@
 
         // console.log("--------");
         // console.log(product_type_id);
-        console.log(result.id);
+        // console.log(result.id);
 
         let div_content_highlight_number = document.querySelector('#div_content_highlight_number');
         // div_content_highlight_number.innerHTML = "";

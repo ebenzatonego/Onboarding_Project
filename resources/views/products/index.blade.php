@@ -363,7 +363,7 @@
                     let promises = result.map((item, i) => {
                         return new Promise((resolve, reject) => {
                             create_html_for_product(product_type_id, item);
-                            // resolve();
+                            resolve();
                         });
                     });
 

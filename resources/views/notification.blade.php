@@ -383,8 +383,8 @@
                             }
 
                             html = `
-                            <a href="{{ url('/show_appointment_train') }}/`+result[i].id+`" type="`+result[i].type+`">
-                                <div class="notification-alert">
+                            <a href="{{ url('/show_appointment_train') }}/`+result[i].id+`" type="`+result[i].type+`" class="notification-alert">
+                                <div>
                                     <img src="`+result[i].photo+`" alt="" style="width: 100%; height: auto; object-fit: cover;">
                                     <div class="d-block px-3">
                                         <p class="noti-title">`+result[i].title+`</p>
@@ -413,8 +413,8 @@
                             }
 
                             html = `
-                            <a href="`+url+`" type="`+result[i].type+`">
-                                <div class="notification-alert">
+                            <a href="`+url+`" type="`+result[i].type+`" class="notification-alert">
+                                <div>
                                     <img src="`+result[i].photo+`" alt="" style="width: 100%; height: auto; object-fit: cover;">
                                     <div class="d-block px-3">
                                         <p class="noti-title">`+result[i].title+`</p>

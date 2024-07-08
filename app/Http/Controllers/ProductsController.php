@@ -188,7 +188,7 @@ class ProductsController extends Controller
             $data_products = DB::table('products')
                 ->join('product_types', 'product_types.id', '=', 'products.product_type_id')
                 ->where('products.status' , 'Yes')
-                ->select('products.*', 'product_types.name_type', 'product_types.color_code')
+                ->select('products.id', 'product_types.name_type', 'product_types.color_code')
                 ->orderByRaw("CASE 
                             WHEN products.highlight_number IS NOT NULL THEN 1
                             ELSE 2
@@ -204,7 +204,7 @@ class ProductsController extends Controller
                 ->join('product_types', 'product_types.id', '=', 'products.product_type_id')
                 ->where('products.status' , 'Yes')
                 ->where('products.product_type_id' , $products_type_id)
-                ->select('products.*', 'product_types.name_type', 'product_types.color_code')
+                ->select('products.id', 'product_types.name_type', 'product_types.color_code')
                 ->orderByRaw("CASE 
                             WHEN products.highlight_of_type IS NOT NULL THEN 1
                             ELSE 2

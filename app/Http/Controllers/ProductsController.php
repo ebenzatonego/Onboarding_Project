@@ -234,7 +234,7 @@ class ProductsController extends Controller
         //         ->get();
         // }
 
-        $data_products = DB::table('products')->get();
+        $data_products = DB::table('products')->select('id')->get();
 
         return $data_products ;
     }

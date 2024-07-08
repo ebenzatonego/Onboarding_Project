@@ -241,7 +241,7 @@ class ProductsController extends Controller
         if($products_type_id == 'all'){
             $data_products = DB::table('products')
                 ->where('status' , 'Yes')
-                ->select('detail')
+                ->select('id','detail')
                 ->get();
         }
         else{
@@ -249,7 +249,7 @@ class ProductsController extends Controller
             $data_products = DB::table('products')
                 ->where('status' , 'Yes')
                 ->where('product_type_id' , $products_type_id)
-                ->select('detail')
+                ->select('id','detail')
                 ->get();
         }
 

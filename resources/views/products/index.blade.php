@@ -337,7 +337,7 @@
     document.addEventListener("DOMContentLoaded", function() {
         change_active_menu_theme_user('Product');
         get_data_product('all');
-        // get_data_type_product();
+        get_data_type_product();
     });
 
     function get_data_product(product_type_id) {

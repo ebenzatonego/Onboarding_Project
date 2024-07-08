@@ -137,7 +137,7 @@
                         <label class="tab-item" for="noti-radio-4">
                             บริษัท
                         </label>
-                        <input type="radio" id="noti-radio-5" name="tabs_type_noti" value="ข่าวสาร" onclick="return create_logs('Notification_ข่าวสาร');change_view_noti('ข่าวสาร');">
+                        <input type="radio" id="noti-radio-5" name="tabs_type_noti" value="ข่าวสาร" onclick="change_view_noti('ข่าวสาร');return create_logs('Notification_ข่าวสาร');">
                         <label class="tab-item" for="noti-radio-5">
                             ข่าวสาร
                         </label>

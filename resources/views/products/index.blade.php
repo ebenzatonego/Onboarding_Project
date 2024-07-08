@@ -380,9 +380,11 @@
                             autoWidth:true,
                             items:4
                         })
+
+                        get_data_detail_of_id(product_type_id);
+                        
                     });
 
-                    get_data_detail_of_id(product_type_id);
 
                 }
             });

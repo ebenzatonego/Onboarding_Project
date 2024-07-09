@@ -331,7 +331,7 @@
                 <!-- data_for_content_popup -->
 
                 <div class="w-100 px-5 mt-3">
-                    <button type="submit" class="btn-submit-login mt-2" data-dismiss="modal" onclick="close_show_content_popup()">
+                    <button id="btn_close_modal_content_popup" type="submit" class="btn-submit-login mt-2" data-dismiss="modal" onclick="close_show_content_popup()">
                         ปิด
                     </button>
                     <div class="d-flex align-items-center justify-content-center">
@@ -681,9 +681,14 @@
                 .then(response => response.text())
                 .then(result => {
                     // console.log(result);
+                    let currentUrl = window.location.href;
+                    // console.log(currentUrl);
+
                     if (!check_content_popup && result == "Yes") {
                         // SHOW CONTENT POPUP
-                        show_content_popup_for_theme_user();
+                        if( currentUrl == "{{ url('/home') }}" ){
+                            show_content_popup_for_theme_user();
+                        }
                     } else if (day === currentDay && month === currentMonth && !check_birthday) {
                         // ตรวจสอบวันและเดือน
                         // console.log("วันนี้เป็นวันเกิด!");
@@ -746,6 +751,26 @@
 
                     document.querySelector('#btn_modal_content_popup').click();
                     startCountTime_show_content_popup();
+
+                    let content_detail = document.querySelector('#content_detail');
+                    let tag_a = content_detail.querySelectorAll('a');
+
+                    tag_a.forEach(function(a) {
+                        a.addEventListener('click', function(event) {
+                            // หยุดการเปลี่ยนหน้า
+                            event.preventDefault();
+
+                            // คลิกปุ่ม #btn_close_modal_content_popup
+                            document.querySelector('#btn_close_modal_content_popup').click();
+
+                            // รอจนกว่าปุ่มจะถูกคลิกและปิด modal (อาจต้องปรับเวลาให้เหมาะสม)
+                            setTimeout(function() {
+                                // เปลี่ยนหน้าไปตามลิงก์ที่กดจาก <a> tag
+                                window.location.href = a.href;
+                            }, 100); // รอ 100 มิลลิวินาที หรือปรับตามที่ต้องการ
+                        });
+                    });
+
                 }
             });
     }

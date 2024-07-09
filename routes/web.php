@@ -45,7 +45,10 @@ Route::middleware(['auth',])->group(function () {
     //     return view('profile/view_profile');
     // });
 
-    Route::get('/', 'ProfileController@view_profile');
+    // Route::get('/', 'ProfileController@view_profile');
+    Route::get('/', function () {
+        return redirect('/home');
+    });
     Route::get('/home', 'ProfileController@view_profile');
     Route::get('/404', 'ProfileController@view_profile');
 

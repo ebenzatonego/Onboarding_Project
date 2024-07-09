@@ -195,6 +195,7 @@ class ProductsController extends Controller
                     'products.photo',
                     'products.user_fav',
                     // 'products.detail',
+                    DB::raw('SUBSTRING(products.detail, 1, 100) as detail'),
                     'products.title',
                     'product_types.name_type',
                     'product_types.color_code'
@@ -221,6 +222,7 @@ class ProductsController extends Controller
                     'products.photo',
                     'products.user_fav',
                     // 'products.detail',
+                    DB::raw('SUBSTRING(products.detail, 1, 100) as detail'),
                     'products.title',
                     'product_types.name_type',
                     'product_types.color_code'

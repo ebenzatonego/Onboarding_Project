@@ -385,7 +385,7 @@
                         })
                     });
 
-                    get_data_detail_of_id(product_type_id);
+                    // get_data_detail_of_id(product_type_id);
                     
                     if (preloader) {
                         preloader.remove()
@@ -489,6 +489,7 @@
                         ` + result.title + `
                     </p>
                     <p class="detail-product" id="detail_of_id_`+result.id+`">
+                    `+textWithoutHtml+`
                     </p>
                     <div class="category-product">
                         <span>#` + result.name_type + `</span>

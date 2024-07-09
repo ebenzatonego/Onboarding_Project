@@ -195,7 +195,7 @@ class ProductsController extends Controller
                     'products.photo',
                     'products.user_fav',
                     // 'products.detail',
-                    DB::raw('SUBSTRING(REGEXP_REPLACE(products.detail, "<[^>]*>", ""), 1, 100) as detail'),
+                    DB::raw('SUBSTRING(REGEXP_REPLACE(products.detail, "<[^>]*>", ""), 1, 250) as detail'),
                     'products.title',
                     'product_types.name_type',
                     'product_types.color_code'
@@ -222,7 +222,7 @@ class ProductsController extends Controller
                     'products.photo',
                     'products.user_fav',
                     // 'products.detail',
-                    DB::raw('SUBSTRING(REGEXP_REPLACE(products.detail, "<[^>]*>", ""), 1, 100) as detail'),
+                    DB::raw('SUBSTRING(REGEXP_REPLACE(products.detail, "<[^>]*>", ""), 1, 250) as detail'),
                     'products.title',
                     'product_types.name_type',
                     'product_types.color_code'

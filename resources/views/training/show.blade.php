@@ -372,6 +372,9 @@
                 font-weight: 600;
                 line-height: normal;
             }
+            .btn-join-meet:hover{
+                color: #fff !important;
+            }
         </style>
         <div class="col-lg-7 col-md-7 px-4 mb-5">
             

@@ -221,6 +221,7 @@
         change_active_menu_theme_user('Training');
         get_data_Training(type);
         get_data_Training_type(type);
+        someCondition = false;
 
     });
 
@@ -346,7 +347,7 @@
                             }
                         }
                     }
-
+                    
                     $('.carousel-fav-course').owlCarousel({
                         // stagePadding:20,
                         margin:10,
@@ -354,7 +355,11 @@
                         autoWidth:true,
                         items:4
                     })
-
+                    
+                    
+                    if (preloader) {
+                        preloader.remove()
+                    }
                 }
 
             });

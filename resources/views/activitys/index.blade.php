@@ -354,6 +354,8 @@ cursor: pointer;
     document.addEventListener("DOMContentLoaded", function() {
         change_active_menu_theme_user('News');
         get_data_activitys('all');
+        someCondition = false;
+
     });
 
     function get_data_activitys(activity_type_id) {
@@ -442,6 +444,11 @@ cursor: pointer;
                                 // }
                             });
                         });
+
+                        if (preloader) {
+                            preloader.remove()
+                        }
+                        
                     }, 150);
 
                 }

@@ -368,6 +368,8 @@
     document.addEventListener("DOMContentLoaded", function() {
         change_active_menu_theme_user('News');
         get_data_news('all');
+
+        someCondition = false;
     });
 
     function get_data_news(news_type_id) {
@@ -427,12 +429,10 @@
                                 // }
                             });
                         });
-
-                        let preloader = document.querySelector('.loading-Az');
                         if (preloader) {
                             preloader.remove()
                         }
-                        
+
                     }, 100);
 
                 }

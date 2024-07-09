@@ -340,7 +340,7 @@
         get_data_product('all');
         get_data_type_product(); 
 
-         
+        someCondition = false;
     });
 
     function get_data_product(product_type_id) {
@@ -386,7 +386,7 @@
                     });
 
                     get_data_detail_of_id(product_type_id);
-                    let preloader = document.querySelector('.loading-Az');
+                    
                     if (preloader) {
                         preloader.remove()
                     }

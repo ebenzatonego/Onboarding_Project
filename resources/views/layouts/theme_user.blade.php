@@ -638,6 +638,9 @@
 </script> -->
 
 <script>
+    var someCondition = true;
+    var preloader = document.querySelector('.loading-Az');
+
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
 
@@ -646,9 +649,7 @@
         check_user_coc();
         check_user_status_login();
 
-
-        let preloader = document.querySelector('.loading-Az');
-        if (preloader) {
+        if (preloader  && someCondition) {
             window.addEventListener('load', () => {
             preloader.remove()
         });

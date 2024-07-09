@@ -295,7 +295,7 @@
 </style>
 <header>
     <div class="loading-Az">
-        <img src="{{url('img/icon/Az Web_loading loop.gif')}}" alt="">
+        <img src="{{url('img/icon/Az Web_loading fast.gif')}}" alt="">
     </div>
     
     @include ('Share_social')

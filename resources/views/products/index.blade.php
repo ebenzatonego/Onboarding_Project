@@ -334,10 +334,13 @@
 </div>
 
 <script>
+    
     document.addEventListener("DOMContentLoaded", function() {
         change_active_menu_theme_user('Product');
         get_data_product('all');
-        get_data_type_product();
+        get_data_type_product(); 
+
+         
     });
 
     function get_data_product(product_type_id) {
@@ -510,6 +513,7 @@
                         }
 
                         document.querySelector('#detail_of_id_'+result[i].id).innerHTML = textWithoutHtml;
+                        // document.querySelector('.loading-Az').classList.add('d-none');
                     }
                 }
         });

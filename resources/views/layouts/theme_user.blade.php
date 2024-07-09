@@ -275,8 +275,28 @@
         color: #57759C !important;
     }
 </style>
-
+<style>
+    .loading-Az{
+        width: 100%;
+        height: 100%;
+        top: 0;
+        right: 0;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        z-index: 999999999;
+    }
+    .loading-Az img{
+        width: 20%;
+        max-width: 150px;
+    }
+</style>
 <header>
+    <div class="loading-Az">
+        <img src="{{url('img/icon/Az Web_loading loop.gif')}}" alt="">
+    </div>
     
     @include ('Share_social')
     @include ('notification')
@@ -603,6 +623,7 @@
     </div>
 </div> -->
 
+
 <!--app JS-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 
@@ -624,6 +645,14 @@
         check_current_rank();
         check_user_coc();
         check_user_status_login();
+
+
+        let preloader = document.querySelector('.loading-Az');
+        if (preloader) {
+            window.addEventListener('load', () => {
+            preloader.remove()
+        });
+        }
     });
 
     function check_current_rank() {

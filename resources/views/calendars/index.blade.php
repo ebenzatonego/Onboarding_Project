@@ -167,14 +167,17 @@
 
     .btn-add-schedule {
         border: none !important;
-        color: #003781;
+        color:#fff;
         text-align: center;
         font-size: 10px;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
         border-radius: 10px;
-        background: rgba(207, 213, 230, 0.50);
+        background: #003781;
+        width: 35px;
+        height: 35px;
+        font-size: 20px;
     }
 
     /* 
@@ -547,7 +550,7 @@
                 <span class="ms-3">My Calendar / Reminder</span>
             </div>
             <button class="btn-add-schedule" data-bs-toggle="modal" data-bs-target="#modal_add_carlendar" onclick="return create_logs('Add data calendar_button');">
-                + เพิ่มข้อมูล
+            <i class="fa-solid fa-plus"></i>
             </button>
         </div>
         <div class="d-flex justify-content-center flex-wrap mt-2">

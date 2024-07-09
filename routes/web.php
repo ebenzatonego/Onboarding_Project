@@ -53,10 +53,6 @@ Route::middleware(['auth',])->group(function () {
         return view('profile.test_crop_profile');
     });
 
-    Route::get('/test_loader_page', function () {
-        return view('home');
-    });
-
     Route::get('/video_instruction', function () {
         return view('video_instruction');
     });

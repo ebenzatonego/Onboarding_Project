@@ -427,6 +427,12 @@
                                 // }
                             });
                         });
+
+                        let preloader = document.querySelector('.loading-Az');
+                        if (preloader) {
+                            preloader.remove()
+                        }
+                        
                     }, 100);
 
                 }

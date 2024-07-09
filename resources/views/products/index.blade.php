@@ -386,7 +386,10 @@
                     });
 
                     get_data_detail_of_id(product_type_id);
-
+                    let preloader = document.querySelector('.loading-Az');
+                    if (preloader) {
+                        preloader.remove()
+                    }
                 }
             });
 

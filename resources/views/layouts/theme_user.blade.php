@@ -647,12 +647,12 @@
         check_user_status_login();
 
 
-        let preloader = document.querySelector('.loading-Az');
-        if (preloader) {
-            window.addEventListener('load', () => {
-            preloader.remove()
-        });
-        }
+        // let preloader = document.querySelector('.loading-Az');
+        // if (preloader) {
+        //     window.addEventListener('load', () => {
+        //     preloader.remove()
+        // });
+        // }
     });
 
     function check_current_rank() {

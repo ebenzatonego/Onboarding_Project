@@ -150,6 +150,7 @@ Route::post('/save_data_edit_news', 'NewsController@save_data_edit_news');
 Route::post('/add_product_type', 'Product_typesController@add_product_type');
 Route::get('/get_data_product/{product_type_id}', 'ProductsController@get_data_product');
 Route::get('/get_data_detail_of_id/{product_type_id}', 'ProductsController@get_data_detail_of_id');
+Route::get('/get_data_product_detail/{id}', 'ProductsController@get_data_product_detail');
 Route::get('/get_data_type_product', 'Product_typesController@get_data_type_product');
 Route::get('/update_user_view_product/{user_id}/{product_id}', 'ProductsController@update_user_view_product');
 Route::get('/give_rating_product/{user_id}/{product_id}/{selectedRating}', 'ProductsController@give_rating_product');

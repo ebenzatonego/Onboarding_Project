@@ -256,6 +256,17 @@ class ProductsController extends Controller
         return $data_products ;
     }
 
+    function get_data_product_detail($id){
+        
+        $data_products = DB::table('products')
+            ->where('id' , $id)
+            ->select('detail')
+            ->get();
+        
+
+        return $data_products ;
+    }
+
     function update_user_view_product($user_id,$product_id){
         $data_product = Product::where('id' , $product_id)->first();
         $array_log = array();

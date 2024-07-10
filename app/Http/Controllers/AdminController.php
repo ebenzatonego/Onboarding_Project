@@ -962,7 +962,7 @@ class AdminController extends Controller
         $user_admin = User::where('role' , 'Super-admin')
             ->orWhere('role' , 'Admin')
             ->get();
-        $user_staff = User::where('role' , 'Staff')
+        $user_staff = User::where('role' , 'staff')
             ->get();
         $user_member = User::where('role' , 'member')
             ->get();
@@ -1004,7 +1004,7 @@ class AdminController extends Controller
     function get_list_admin(){
         $user_admin = User::where('role' , 'Super-admin')
             ->orWhere('role' , 'Admin')
-            ->orWhere('role' , 'Staff')
+            ->orWhere('role' , 'staff')
             ->get();
         return $user_admin ;
     }

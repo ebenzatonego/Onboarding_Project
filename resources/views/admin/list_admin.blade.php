@@ -32,8 +32,8 @@
 							รายชื่อแอดมิน
 						</h5>
 					</div>
-					<button id="btn_view_Staff" style="width: 15%;" class="mx-1 btn btn-sm btn-outline-warning float-end" onclick="select_view('Staff');">
-						Staff
+					<button id="btn_view_staff" style="width: 15%;" class="mx-1 btn btn-sm btn-outline-warning float-end" onclick="select_view('staff');">
+						staff
 					</button>
 					<button id="btn_view_Admin" style="width: 15%;" class="mx-1 btn btn-sm btn-outline-info float-end" onclick="select_view('Admin');">
 						Admin
@@ -53,12 +53,12 @@
 		    	document.querySelector('#btn_view_all').classList.remove('btn-primary');
 		    	document.querySelector('#btn_view_Super_admin').classList.remove('btn-success');
 		    	document.querySelector('#btn_view_Admin').classList.remove('btn-info');
-		    	document.querySelector('#btn_view_Staff').classList.remove('btn-warning');
+		    	document.querySelector('#btn_view_staff').classList.remove('btn-warning');
 
 		    	document.querySelector('#btn_view_all').classList.add('btn-outline-primary');
 		    	document.querySelector('#btn_view_Super_admin').classList.add('btn-outline-success');
 		    	document.querySelector('#btn_view_Admin').classList.add('btn-outline-info');
-		    	document.querySelector('#btn_view_Staff').classList.add('btn-outline-warning');
+		    	document.querySelector('#btn_view_staff').classList.add('btn-outline-warning');
 
 		    	if(type == 'all'){
 		    		document.querySelector('#btn_view_all').classList.add('btn-primary');
@@ -99,18 +99,18 @@
 						})
 		    	}
 
-		    	else if(type == 'Staff'){
-		    		document.querySelector('#btn_view_Staff').classList.add('btn-warning');
-		    		document.querySelector('#btn_view_Staff').classList.remove('btn-outline-warning');
+		    	else if(type == 'staff'){
+		    		document.querySelector('#btn_view_staff').classList.add('btn-warning');
+		    		document.querySelector('#btn_view_staff').classList.remove('btn-outline-warning');
 
 		    		let list_admin = document.querySelectorAll('.list_admin');
 						list_admin.forEach(list_admin => {
 						    list_admin.classList.add('d-none');
 						})
 
-					let list_Staff = document.querySelectorAll('tr[role="'+type+'"]');
-						list_Staff.forEach(list_Staff => {
-						    list_Staff.classList.remove('d-none');
+					let list_staff = document.querySelectorAll('tr[role="'+type+'"]');
+						list_staff.forEach(list_staff => {
+						    list_staff.classList.remove('d-none');
 						})
 		    	}
 		    }
@@ -175,9 +175,9 @@
                 			<span style="font-size:14px;" class="badge badge-pill bg-info">Admin</span>
                 		`;
                 	}
-                	else if(result[i].role == "Staff"){
+                	else if(result[i].role == "staff"){
 						html_admin = `
-                			<span style="font-size:14px;" class="badge badge-pill bg-warning">Staff</span>
+                			<span style="font-size:14px;" class="badge badge-pill bg-warning">staff</span>
                 		`;
                 	}
 

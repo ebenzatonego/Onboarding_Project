@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 // -- ROLE -- //
 // Super-admin
 // Admin
-// Staff
+// staff
 // member
 
 Auth::routes();
@@ -183,8 +183,8 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
 
 });
 
-// member & Staff
-Route::middleware(['auth', 'role:Super-admin,Admin,Staff,member'])->group(function () {
+// member & staff
+Route::middleware(['auth', 'role:Super-admin,Admin,staff,member'])->group(function () {
 
     // News
     Route::get('page_news', 'NewsController@index');

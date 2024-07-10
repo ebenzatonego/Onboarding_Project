@@ -22,6 +22,10 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 // No Login
+Route::get('/register', function () {
+    return redirect('/Do_not');
+});
+
 Route::get('/share_training/{id}', 'TrainingController@share_training');
 Route::get('/share_appointment/{id}', 'AppointmentsController@share_appointment');
 Route::get('/share_activity/{id}', 'ActivitysController@share_activity');

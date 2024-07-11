@@ -1014,10 +1014,25 @@ class AdminController extends Controller
         return $upper_al ;
     }
 
-    function get_list_member(){
-        $member = User::where('role','member')->get();
-        return $member ;
+    // function get_list_member(){
+    //     $member = User::where('role','member')->get();
+    //     return $member ;
+    // }
+
+    public function get_list_member(Request $request) {
+        $limit = $request->input('limit', 200); // จำนวนแถวต่อครั้ง, ค่าเริ่มต้นคือ 200
+        $page = $request->input('page', 1); // หน้าที่จะดึงข้อมูล
+        $offset = ($page - 1) * $limit;
+        
+        $members = User::where('role', 'member')
+                       ->offset($offset)
+                       ->limit($limit)
+                       ->get();
+
+        return response()->json($members);
     }
+
+    
     function get_group_manager(){
         $group_manager = Contact_group_manager::get();
         return $group_manager ;

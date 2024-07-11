@@ -69,98 +69,161 @@
 </div>
 
 <script>
+
+    let currentPage = 1;
+    const limit = 200;
+    let hasMoreData = true;
+
+    const content_tbody = document.querySelector('#content_tbody');
+
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
-        get_list_member();
+        // get_list_member();
+        fetchMembers(currentPage);
     });
 
-    function get_list_member() {
+    async function fetchMembers(page) {
 
-        fetch("{{ url('/') }}/api/get_list_member")
-            .then(response => response.json())
-            .then(result => {
-                // console.log(result);
+        console.log('fetchMembers > ' + page);
+        if (!hasMoreData) return;
 
-                let content_tbody = document.querySelector('#content_tbody');
-                content_tbody.innerHTML = '';
-                
-                result.forEach(item => {
+        try {
+            const response = await fetch(`{{ url('/') }}/api/get_list_member?page=${page}&limit=${limit}`);
+            const result = await response.json();
+            
+            if (result.length < limit) {
+                hasMoreData = false;
+            }
 
-                    let html = `
-                        <tr account="${item.account ? item.account : '-'}" class="member">
-                            <td>
-                                <div class="product-img">
-                                    <img src="${item.photo ? item.account : "{{ url('/img/icon/profile.png') }}"}" class="p-1" alt="">
-                                    <span class="d-none">
-                                    	${item.photo ? item.account : "{{ url('/img/icon/profile.png') }}"}
-                                    </span>
-                                </div>
-                            </td>
-                            <td>${item.name ? item.name : '-'}</td>
-                            <td>${item.nickname ? item.nickname : '-'}</td>
-                            <td>${item.account ? item.account : '-'}</td>
-                            <td>${item.email ? item.email : '-'}</td>
-                            <td>${item.phone ? item.phone : '-'}</td>
-                            <td>${item.current_rank ? item.current_rank : '-'}</td>
-                            <td>${item.position ? item.position : '-'}</td>
-                            <td>${item.organization_name ? item.organization_name : '-'}</td>
-                            <td>${item.branch_name ? item.branch_name : '-'}</td>
-                            <td>${item.license ? item.license : '-'}</td>
-                            <td>${formatDate(item.license_expire)}</td>
-                              <td class="d-none">
-                            	<button class="btn btn-sm btn-warning" onclick="edit_upper_al('${item.id ? item.id : '-'}');">
-                            		<i class="fa-solid fa-pen-to-square"></i> Edit
-                            	</button>
-                            </td>
-                        </tr>
-                    `;
-                    content_tbody.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
-                });
-                // for (let i = 0; i < result.length; i++) {
-
-                // 	let img_profile = `{{ url('/img/icon/profile.png') }}`;
-                // 	if(result[i].photo){
-                // 		img_profile = result[i].photo ;
-                // 	}
-
-                // 	let nickname = `-`;
-                // 	let email = `-`;
-                // 	let phone = `-`;
-
-                // 	if(result[i].nickname){
-                // 		nickname = result[i].nickname ;
-                // 	}
-
-                // 	if(result[i].email){
-                // 		email = result[i].email ;
-                // 	}
-
-                // 	if(result[i].phone){
-                // 		phone = result[i].phone ;
-                // 	}
-
-                //     let html = `
-                //         <tr account="`+result[i].account+`" class="list_upper_al">
-                //             <td>
-                //                 <div class="product-img">
-                //                     <img src="`+img_profile+`" class="p-1" alt="">
-                //                     <span class="d-none">
-                //                     	`+img_profile+`
-                //                     </span>
-                //                 </div>
-                //             </td>
-                //             <td>`+result[i].account+`</td>
-                //             <td>`+result[i].name+`</td>
-                //             <td>`+nickname+`</td>
-                //             <td>`+email+`</td>
-                //             <td>`+phone+`</td>
-                //         </tr>
-                //     `;
-
-                //     content_tbody.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
-                // }
+            result.forEach(item => {
+                let html = `
+                    <tr account="${item.account ? item.account : '-'}" class="member">
+                        <td>
+                            <div class="product-img">
+                                <img src="${item.photo ? item.photo : "{{ url('/img/icon/profile.png') }}"}" class="p-1" alt="">
+                                <span class="d-none">
+                                    ${item.photo ? item.photo : "{{ url('/img/icon/profile.png') }}"}
+                                </span>
+                            </div>
+                        </td>
+                        <td>${item.name ? item.name : '-'}</td>
+                        <td>${item.nickname ? item.nickname : '-'}</td>
+                        <td>${item.account ? item.account : '-'}</td>
+                        <td>${item.email ? item.email : '-'}</td>
+                        <td>${item.phone ? item.phone : '-'}</td>
+                        <td>${item.current_rank ? item.current_rank : '-'}</td>
+                        <td>${item.position ? item.position : '-'}</td>
+                        <td>${item.organization_name ? item.organization_name : '-'}</td>
+                        <td>${item.branch_name ? item.branch_name : '-'}</td>
+                        <td>${item.license ? item.license : '-'}</td>
+                        <td>${formatDate(item.license_expire)}</td>
+                        <td class="d-none">
+                            <button class="btn btn-sm btn-warning" onclick="edit_upper_al('${item.id ? item.id : '-'}');">
+                                <i class="fa-solid fa-pen-to-square"></i> Edit
+                            </button>
+                        </td>
+                    </tr>
+                `;
+                content_tbody.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
             });
+
+            if (hasMoreData) {
+                currentPage++;
+                fetchMembers(currentPage); // เรียกตัวเองซ้ำจนกว่าจะดึงข้อมูลครบ
+            }
+        } catch (error) {
+            console.error('Error fetching members:', error);
+        }
     }
+
+
+    // function get_list_member() {
+
+    //     fetch("{{ url('/') }}/api/get_list_member")
+    //         .then(response => response.json())
+    //         .then(result => {
+    //             // console.log(result);
+
+    //             let content_tbody = document.querySelector('#content_tbody');
+    //             content_tbody.innerHTML = '';
+                
+    //             result.forEach(item => {
+
+    //                 let html = `
+    //                     <tr account="${item.account ? item.account : '-'}" class="member">
+    //                         <td>
+    //                             <div class="product-img">
+    //                                 <img src="${item.photo ? item.account : "{{ url('/img/icon/profile.png') }}"}" class="p-1" alt="">
+    //                                 <span class="d-none">
+    //                                 	${item.photo ? item.account : "{{ url('/img/icon/profile.png') }}"}
+    //                                 </span>
+    //                             </div>
+    //                         </td>
+    //                         <td>${item.name ? item.name : '-'}</td>
+    //                         <td>${item.nickname ? item.nickname : '-'}</td>
+    //                         <td>${item.account ? item.account : '-'}</td>
+    //                         <td>${item.email ? item.email : '-'}</td>
+    //                         <td>${item.phone ? item.phone : '-'}</td>
+    //                         <td>${item.current_rank ? item.current_rank : '-'}</td>
+    //                         <td>${item.position ? item.position : '-'}</td>
+    //                         <td>${item.organization_name ? item.organization_name : '-'}</td>
+    //                         <td>${item.branch_name ? item.branch_name : '-'}</td>
+    //                         <td>${item.license ? item.license : '-'}</td>
+    //                         <td>${formatDate(item.license_expire)}</td>
+    //                           <td class="d-none">
+    //                         	<button class="btn btn-sm btn-warning" onclick="edit_upper_al('${item.id ? item.id : '-'}');">
+    //                         		<i class="fa-solid fa-pen-to-square"></i> Edit
+    //                         	</button>
+    //                         </td>
+    //                     </tr>
+    //                 `;
+    //                 content_tbody.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+    //             });
+    //             // for (let i = 0; i < result.length; i++) {
+
+    //             // 	let img_profile = `{{ url('/img/icon/profile.png') }}`;
+    //             // 	if(result[i].photo){
+    //             // 		img_profile = result[i].photo ;
+    //             // 	}
+
+    //             // 	let nickname = `-`;
+    //             // 	let email = `-`;
+    //             // 	let phone = `-`;
+
+    //             // 	if(result[i].nickname){
+    //             // 		nickname = result[i].nickname ;
+    //             // 	}
+
+    //             // 	if(result[i].email){
+    //             // 		email = result[i].email ;
+    //             // 	}
+
+    //             // 	if(result[i].phone){
+    //             // 		phone = result[i].phone ;
+    //             // 	}
+
+    //             //     let html = `
+    //             //         <tr account="`+result[i].account+`" class="list_upper_al">
+    //             //             <td>
+    //             //                 <div class="product-img">
+    //             //                     <img src="`+img_profile+`" class="p-1" alt="">
+    //             //                     <span class="d-none">
+    //             //                     	`+img_profile+`
+    //             //                     </span>
+    //             //                 </div>
+    //             //             </td>
+    //             //             <td>`+result[i].account+`</td>
+    //             //             <td>`+result[i].name+`</td>
+    //             //             <td>`+nickname+`</td>
+    //             //             <td>`+email+`</td>
+    //             //             <td>`+phone+`</td>
+    //             //         </tr>
+    //             //     `;
+
+    //             //     content_tbody.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+    //             // }
+    //         });
+    // }
 
     function edit_upper_al(upper_al_id) {
         console.log("upper_al_id >> " + upper_al_id);

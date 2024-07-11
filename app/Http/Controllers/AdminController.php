@@ -1020,7 +1020,7 @@ class AdminController extends Controller
     // }
 
     public function get_list_member(Request $request) {
-        $limit = $request->input('limit', 200); // จำนวนแถวต่อครั้ง, ค่าเริ่มต้นคือ 200
+        $limit = $request->input('limit', 350); // จำนวนแถวต่อครั้ง, ค่าเริ่มต้นคือ 350
         $page = $request->input('page', 1); // หน้าที่จะดึงข้อมูล
         $offset = ($page - 1) * $limit;
         
@@ -1032,7 +1032,7 @@ class AdminController extends Controller
         return response()->json($members);
     }
 
-    
+
     function get_group_manager(){
         $group_manager = Contact_group_manager::get();
         return $group_manager ;

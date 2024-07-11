@@ -36,7 +36,7 @@
                 </div>
                 <div class="col-6">
                     <div class="float-end">
-                        <p>ทั้งหมด : <span id="count_list_member"></span></p>
+                        <span id="count_list_member"></span>
                     </div>
                 </div>
             </div>
@@ -76,7 +76,7 @@
 <script>
 
     let currentPage = 1;
-    const limit = 200;
+    const limit = 350;
     let hasMoreData = true;
     let totalMembers = 0;
 
@@ -140,7 +140,7 @@
                 currentPage++;
                 fetchMembers(currentPage); // เรียกตัวเองซ้ำจนกว่าจะดึงข้อมูลครบ
             } else {
-                countListMember.textContent = `สมาชิกทั้งหมด: ${totalMembers}`; // อัพเดทจำนวนสมาชิก
+                countListMember.textContent = `สมาชิกทั้งหมด: ${totalMembers.toLocaleString()}`; // อัพเดทจำนวนสมาชิก
             }
         } catch (error) {
             console.error('Error fetching members:', error);

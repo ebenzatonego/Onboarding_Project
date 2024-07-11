@@ -26,12 +26,17 @@
     <div class="card-body p-5">
         <div>
             <div class="row">
-                <div class="col-12">
+                <div class="col-6">
                     <div class="float-start">
                         <h5 class="mb-0 text-dark">
                             <i class="fa-duotone fa-user-group me-2 font-22 text-dark"></i>
                             รายชื่อ Member
                         </h5>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="float-end">
+                        <p>ทั้งหมด : <span id="count_list_member"></span></p>
                     </div>
                 </div>
             </div>
@@ -73,8 +78,10 @@
     let currentPage = 1;
     const limit = 200;
     let hasMoreData = true;
+    let totalMembers = 0;
 
     const content_tbody = document.querySelector('#content_tbody');
+    const countListMember = document.querySelector('#count_list_member');
 
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
@@ -82,8 +89,9 @@
         fetchMembers(currentPage);
     });
 
+    // ฟังก์ชันการดึงข้อมูล
     async function fetchMembers(page) {
-
+        countListMember.textContent = 'กำลังโหลด...'; // แสดงสถานะการโหลด
         console.log('fetchMembers > ' + page);
         if (!hasMoreData) return;
 
@@ -95,6 +103,7 @@
                 hasMoreData = false;
             }
 
+            totalMembers += result.length; // เพิ่มจำนวนสมาชิกที่ถูกดึง
             result.forEach(item => {
                 let html = `
                     <tr account="${item.account ? item.account : '-'}" class="member">
@@ -130,9 +139,12 @@
             if (hasMoreData) {
                 currentPage++;
                 fetchMembers(currentPage); // เรียกตัวเองซ้ำจนกว่าจะดึงข้อมูลครบ
+            } else {
+                countListMember.textContent = `สมาชิกทั้งหมด: ${totalMembers}`; // อัพเดทจำนวนสมาชิก
             }
         } catch (error) {
             console.error('Error fetching members:', error);
+            countListMember.textContent = 'เกิดข้อผิดพลาดในการโหลดข้อมูล'; // แสดงข้อความเมื่อเกิดข้อผิดพลาด
         }
     }
 

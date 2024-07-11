@@ -92,7 +92,8 @@
     // ฟังก์ชันการดึงข้อมูล
     async function fetchMembers(page) {
         countListMember.textContent = 'กำลังโหลด...'; // แสดงสถานะการโหลด
-        console.log('fetchMembers > ' + page);
+        // console.log('fetchMembers > ' + page);
+        
         if (!hasMoreData) return;
 
         try {

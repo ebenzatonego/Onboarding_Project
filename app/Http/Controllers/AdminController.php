@@ -964,8 +964,11 @@ class AdminController extends Controller
             ->get();
         $user_staff = User::where('role' , 'staff')
             ->get();
-        $user_member = User::where('role' , 'member')
-            ->get();
+
+        // $user_member = User::where('role' , 'member')->get();
+
+        $count_user_member = User::where('role', 'member')->count();
+
         $upper_al = Contact_upper_al::get();
         $group_manager = Contact_group_manager::get();
         $area_supervisor = Contact_area_supervisor::get();
@@ -973,7 +976,8 @@ class AdminController extends Controller
         $return['last_update'] = $data->updated_at;
         $return['count_admin'] = count($user_admin);
         $return['count_staff'] = count($user_staff);
-        $return['count_user'] = count($user_member);
+        // $return['count_user'] = count($user_member);
+        $return['count_user'] = $count_user_member;
         $return['count_upper_al'] = count($upper_al);
         $return['count_group_manager'] = count($group_manager);
         $return['count_area_supervisor'] = count($area_supervisor);

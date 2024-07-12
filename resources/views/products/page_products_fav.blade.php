@@ -230,6 +230,12 @@
             .then(result => {
                 // console.log(result);
 
+                let content_list_item_product = document.querySelector('#content_list_item_product');
+
+                if(result.length == 0 || !result){
+                    content_list_item_product.innerHTML = `<p>ยังไม่มีรายการ</p>` ;
+                }
+
                 if(result){
 
                     if(result.length >= 12){
@@ -238,8 +244,6 @@
                     else {
                         document.querySelector('#btn_goto_top').classList.add('d-none');
                     }
-
-                    let content_list_item_product = document.querySelector('#content_list_item_product');
 
                     for (let i = 0; i < result.length; i++) {
 

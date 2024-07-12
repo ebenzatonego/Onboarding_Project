@@ -31,7 +31,7 @@
 	<link rel="stylesheet" href="{{ asset('/theme/css/semi-dark.css') }}" />
 	<link rel="stylesheet" href="{{ asset('/theme/css/header-colors.css') }}" />
     <!-- fontawesome icon -->
-	<link href="https://kit-pro.fontawesome.com/releases/v6.2.1/css/pro.min.css" rel="stylesheet">
+	<link href="https://kit-pro.fontawesome.com/releases/v6.4.2/css/pro.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">

@@ -102,7 +102,9 @@ Route::middleware(['auth',])->group(function () {
     Route::get('/demo/tools', function () {
         return view('demo/tools');
     });
-
+    Route::get('/demo/logs', function () {
+        return view('demo/logs');
+    });
     Route::get('/training_path', function () {
         return view('training_path');
     });

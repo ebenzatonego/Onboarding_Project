@@ -618,7 +618,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button id="btn_start_modal_my_goal" class="btn-more-job px-5" data-toggle="modal" data-target="#modal_my_goal">
+                                <button id="btn_start_modal_my_goal" class="btn-more-job px-5" data-toggle="modal" data-target="#modal_my_goal" onclick="return create_logs('เลือกเป้าหมายของคุณ_button');">
                                     เลือกเป้าหมายของคุณ
                                 </button>
                             </div>
@@ -637,7 +637,7 @@
                                 </div>
                             </div>
                             <div class="d-flex justify-content-center ">
-                                <button id="btn_start_modal_my_goal" class="btn-more-job px-5 mt-3" data-toggle="modal" data-target="#modal_my_goal">
+                                <button id="btn_start_modal_my_goal" class="btn-more-job px-5 mt-3" data-toggle="modal" data-target="#modal_my_goal" onclick="return create_logs('เลือกเป้าหมายของคุณ_button');">
                                     เลือกเป้าหมายใหม่ของคุณ
                                 </button>
                             </div>

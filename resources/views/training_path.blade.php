@@ -485,34 +485,34 @@
 
                             <!-- main วงใหญ่่ทั้งหมด -->
                             <li class="nav-item">
-                                <a class="nav-link training-path-main-1 training_path_item active" data-toggle="pill" href="#training-path-main-1" role="tab" aria-selected="false">
+                                <a class="nav-link training-path-main-1 training_path_item active" data-toggle="pill" href="#training-path-main-1" role="tab" aria-selected="false" onclick="return create_logs('Start_icon') ;">
                                     <img src="{{url('img/icon/START.png')}}" alt="">
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link training-path-main-2 training_path_item " data-toggle="pill" href="#training-path-main-2" role="tab" aria-selected="false">
+                                <a class="nav-link training-path-main-2 training_path_item " data-toggle="pill" href="#training-path-main-2" role="tab" aria-selected="false" onclick="return create_logs('Fulltime Development Program_icon') ;">
                                     <img src="{{url('img/icon/user_computer.png')}}" alt="">
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link training-path-main-3 training_path_item " data-toggle="pill" href="#training-path-main-3" role="tab" aria-selected="false">
+                                <a class="nav-link training-path-main-3 training_path_item " data-toggle="pill" href="#training-path-main-3" role="tab" aria-selected="false" onclick="return create_logs('FINANCIAL ADVISOR_icon') ;">
                                     <img src="{{url('img/icon/user_money.png')}}" alt="">
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link training-path-main-4 training_path_item " data-toggle="pill" href="#training-path-main-4" role="tab" aria-selected="false">
+                                <a class="nav-link training-path-main-4 training_path_item " data-toggle="pill" href="#training-path-main-4" role="tab" aria-selected="false" onclick="return create_logs('New UM_icon') ;">
                                     <img src="{{url('img/icon/user_um.png')}}" alt="">
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link training-path-main-5 training_path_item " data-toggle="pill" href="#training-path-main-5" role="tab" aria-selected="false">
+                                <a class="nav-link training-path-main-5 training_path_item " data-toggle="pill" href="#training-path-main-5" role="tab" aria-selected="false" onclick="return create_logs('New AVP_icon') ;">
                                     <img src="{{url('img/icon/user_new_avp.png')}}" alt="">
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link training-path-main-6 training_path_item " data-toggle="pill" href="#training-path-main-6" role="tab" aria-selected="false">
+                                <a class="nav-link training-path-main-6 training_path_item " data-toggle="pill" href="#training-path-main-6" role="tab" aria-selected="false" onclick="return create_logs('') ;">
                                     <img src="{{url('img/icon/FINISH.png')}}" alt="">
                                 </a>
                             </li>
@@ -520,46 +520,46 @@
                             
                             <!-- ด้านซ้าย ทั้งหมด -->
                             <!-- <li class="nav-item">
-                                <a class="nav-link training-path-left-1 training_path_item" href="" data-toggle="pill" href="#training-path-left-1" role="tab" aria-selected="false">
+                                <a class="nav-link training-path-left-1 training_path_item" href="" data-toggle="pill" href="#training-path-left-1" role="tab" aria-selected="false" onclick="return create_logs('') ;">
                                     <img src="{{url('img/icon/user_computer.png')}}" alt="">
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link  training-path-left-2 training_path_item " data-toggle="pill" href="#training-path-left-2" role="tab" aria-selected="false">
+                                <a class="nav-link  training-path-left-2 training_path_item " data-toggle="pill" href="#training-path-left-2" role="tab" aria-selected="false" onclick="return create_logs('') ;">
                                     <img src="{{url('img/icon/user_computer.png')}}" alt="">
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link training-path-left-3 training_path_item " data-toggle="pill" href="#training-path-left-3" role="tab" aria-selected="false">
+                                <a class="nav-link training-path-left-3 training_path_item " data-toggle="pill" href="#training-path-left-3" role="tab" aria-selected="false" onclick="return create_logs('') ;">
                                     <img src="{{url('img/icon/user_computer.png')}}" alt="">
                                 </a>
                             </li> -->
                             <li class="nav-item">
-                                <a class="nav-link  training-path-left-4 training_path_item " data-toggle="pill" href="#training-path-left-4" role="tab" aria-selected="false">
+                                <a class="nav-link  training-path-left-4 training_path_item " data-toggle="pill" href="#training-path-left-4" role="tab" aria-selected="false" onclick="return create_logs('Blue Star Program_icon') ;">
                                     <img src="{{url('img/icon/user_computer.png')}}" alt="">
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link training-path-left-5 training_path_item " data-toggle="pill" href="#training-path-left-5" role="tab" aria-selected="false">
+                                <a class="nav-link training-path-left-5 training_path_item " data-toggle="pill" href="#training-path-left-5" role="tab" aria-selected="false" onclick="return create_logs('Blue StarX Program_icon') ;">
                                     <img src="{{url('img/icon/user_computer.png')}}" alt="">
                                 </a>
                             </li>
 
 
                             <li class="nav-item">
-                                <a class="nav-link training-path-rad-1 training_path_item mark" data-toggle="pill" href="#training-path-red-1" role="tab" aria-selected="false">
+                                <a class="nav-link training-path-rad-1 training_path_item mark" data-toggle="pill" href="#training-path-red-1" role="tab" aria-selected="false" onclick="return create_logs('หลักสูตร CL/ RLC_icon') ;">
                                     <img src="{{url('img/icon/star.png')}}" alt="">
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link training-path-rad-2 training_path_item mark" data-toggle="pill" href="#training-path-red-2" role="tab" aria-selected="false">
+                                <a class="nav-link training-path-rad-2 training_path_item mark" data-toggle="pill" href="#training-path-red-2" role="tab" aria-selected="false" onclick="return create_logs('AL orientation_icon') ;">
                                     <img src="{{url('img/icon/star.png')}}" alt="">
 
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link training-path-rad-3 training_path_item mark" data-toggle="pill" href="#training-path-red-3" role="tab" aria-selected="false">
+                                <a class="nav-link training-path-rad-3 training_path_item mark" data-toggle="pill" href="#training-path-red-3" role="tab" aria-selected="false" onclick="return create_logs('New GM and AVP Orientation_icon') ;">
                                     <img src="{{url('img/icon/star.png')}}" alt="">
 
                                 </a>
@@ -567,78 +567,78 @@
 
 
                             <li class="nav-item">
-                                <a class="nav-link training-path-top-1 training_path_item mark" data-toggle="pill" href="#training-path-top-1" role="tab" aria-selected="false">
+                                <a class="nav-link training-path-top-1 training_path_item mark" data-toggle="pill" href="#training-path-top-1" role="tab" aria-selected="false" onclick="return create_logs('หลักสูตร smart start_icon') ;">
                                     <img src="{{url('img/icon/like.png')}}" alt="">
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link training-path-top-2 training_path_item mark" data-toggle="pill" href="#training-path-top-2" role="tab" aria-selected="false">
+                                <a class="nav-link training-path-top-2 training_path_item mark" data-toggle="pill" href="#training-path-top-2" role="tab" aria-selected="false" onclick="return create_logs('หลักสูตร High Productivity Agent_icon') ;">
                                     <img src="{{url('img/icon/like.png')}}" alt="">
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link training-path-top-3 training_path_item mark" data-toggle="pill" href="#training-path-top-3" role="tab" aria-selected="false">
+                                <a class="nav-link training-path-top-3 training_path_item mark" data-toggle="pill" href="#training-path-top-3" role="tab" aria-selected="false" onclick="return create_logs('หลักสูตร Smart Selling Skills_icon') ;">
                                     <img src="{{url('img/icon/like.png')}}" alt="">
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link training-path-top-4 training_path_item" data-toggle="pill" href="#training-path-top-4" role="tab" aria-selected="false">
+                                <a class="nav-link training-path-top-4 training_path_item" data-toggle="pill" href="#training-path-top-4" role="tab" aria-selected="false" onclick="return create_logs('Bridge to success_icon') ;">
                              
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link training-path-mid-top training_path_item" data-toggle="pill" href="#training-path-mid-top" role="tab" aria-selected="false">
+                                <a class="nav-link training-path-mid-top training_path_item" data-toggle="pill" href="#training-path-mid-top" role="tab" aria-selected="false" onclick="return create_logs('Pre AL_icon') ;">
                              
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link training-path-mid-1 training_path_item mark" data-toggle="pill" href="#training-path-mid-1" role="tab" aria-selected="false">
+                                <a class="nav-link training-path-mid-1 training_path_item mark" data-toggle="pill" href="#training-path-mid-1" role="tab" aria-selected="false" onclick="return create_logs('First time Management_icon') ;">
                                     <img src="{{url('img/icon/like.png')}}" alt="">
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link training-path-mid-2 training_path_item mark" data-toggle="pill" href="#training-path-mid-2" role="tab" aria-selected="false">
+                                <a class="nav-link training-path-mid-2 training_path_item mark" data-toggle="pill" href="#training-path-mid-2" role="tab" aria-selected="false" onclick="return create_logs('New AL Weekly Meeting_icon') ;">
                                     <img src="{{url('img/icon/like.png')}}" alt="">
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link training-path-mid-3 training_path_item mark" data-toggle="pill" href="#training-path-mid-3" role="tab" aria-selected="false">
+                                <a class="nav-link training-path-mid-3 training_path_item mark" data-toggle="pill" href="#training-path-mid-3" role="tab" aria-selected="false" onclick="return create_logs('Insurance Business Owner_icon') ;">
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link training-path-mid-4 training_path_item mark" data-toggle="pill" href="#training-path-mid-4" role="tab" aria-selected="false">
+                                <a class="nav-link training-path-mid-4 training_path_item mark" data-toggle="pill" href="#training-path-mid-4" role="tab" aria-selected="false" onclick="return create_logs('Pre AVP_icon') ;">
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link training-path-bottom-1 training_path_item mark" data-toggle="pill" href="#training-path-bottom-1" role="tab" aria-selected="false">
+                                <a class="nav-link training-path-bottom-1 training_path_item mark" data-toggle="pill" href="#training-path-bottom-1" role="tab" aria-selected="false" onclick="return create_logs('New AVP Weekly Meeting_icon') ;">
                                     <img src="{{url('img/icon/like.png')}}" alt="">
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link training-path-bottom-2 training_path_item mark" data-toggle="pill" href="#training-path-bottom-2" role="tab" aria-selected="false">
+                                <a class="nav-link training-path-bottom-2 training_path_item mark" data-toggle="pill" href="#training-path-bottom-2" role="tab" aria-selected="false" onclick="return create_logs('AVP Hero_icon') ;">
                                 </a>
                             </li>
 
 
                             <li class="nav-item">
-                                <a class="nav-link training-path-right-1 training_path_item" data-toggle="pill" href="#training-path-right-1" role="tab" aria-selected="false">
+                                <a class="nav-link training-path-right-1 training_path_item" data-toggle="pill" href="#training-path-right-1" role="tab" aria-selected="false" onclick="return create_logs('Openhouse_icon') ;">
                                     <img src="{{url('img/icon/light_money.png')}}" alt="">
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link  training-path-right-2 training_path_item " data-toggle="pill" href="#training-path-right-2" role="tab" aria-selected="false">
+                                <a class="nav-link  training-path-right-2 training_path_item " data-toggle="pill" href="#training-path-right-2" role="tab" aria-selected="false" onclick="return create_logs('Unit-Linked life policy_icon') ;">
                                     <img src="{{url('img/icon/light_money.png')}}" alt="">
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link training-path-right-3 training_path_item " data-toggle="pill" href="#training-path-right-3" role="tab" aria-selected="false">
+                                <a class="nav-link training-path-right-3 training_path_item " data-toggle="pill" href="#training-path-right-3" role="tab" aria-selected="false" onclick="return create_logs(`UL Product and Sales process_icon`);">
                                     <img src="{{url('img/icon/light_money.png')}}" alt="">
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link  training-path-right-4 training_path_item " data-toggle="pill" href="#training-path-right-4" role="tab" aria-selected="false">
+                                <a class="nav-link  training-path-right-4 training_path_item " data-toggle="pill" href="#training-path-right-4" role="tab" aria-selected="false" onclick="return create_logs('Active UL_icon') ;">
                                     <img src="{{url('img/icon/light_money.png')}}" alt="">
                                 </a>
                             </li>

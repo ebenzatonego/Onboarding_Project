@@ -474,7 +474,7 @@
     }
 
     async function create_user(sheet, sheetName) {
-        let jsonData = XLSX.utils.sheet_to_json(sheet);
+        let jsonData = XLSX.utils.sheet_to_json(sheet, { defval: "" });
         let chunkedData = chunkArray(jsonData, 100);
         let totalChunks = chunkedData.length;
 

@@ -1340,4 +1340,49 @@ class AdminController extends Controller
         return $data_arr ;
 
     }
+
+    function getUsers_for_export(Request $request)
+    {
+        $userIds = $request->input('userIds');
+
+        // ดึงข้อมูลผู้ใช้จากฐานข้อมูลตาม id
+        $users = User::whereIn('id', $userIds)->get([
+            'name',
+            'nickname',
+            'email',
+            'role',
+            'account',
+            'photo',
+            'birthday',
+            'current_rank',
+            'last_rank',
+            'phone',
+            'address',
+            'account_upper_al',
+            'account_group_manager',
+            'account_area_supervisor',
+            'check_pdpa',
+            'check_coc',
+            'position',
+            'organization_code',
+            'organization_name',
+            'area',
+            'branch_code',
+            'branch_name',
+            'group_code',
+            'license',
+            'license_start',
+            'license_expire',
+            'ic_license',
+            'ic_license_start',
+            'ic_license_expire',
+            'clm',
+            'elite_agency',
+            'agent_status',
+            'status_login'
+        ]);
+
+        return response()->json($users);
+        
+    }
 }

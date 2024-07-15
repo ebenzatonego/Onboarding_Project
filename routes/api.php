@@ -29,6 +29,7 @@ Route::get('/update_pdpa/{account}', 'AdminController@update_pdpa');
 Route::post('/edit_profile', 'AdminController@edit_profile');
 Route::get('/update_check_birthday/{user_id}', 'AdminController@update_check_birthday');
 Route::get('/get_last_update_users', 'AdminController@get_last_update_users');
+Route::post('/getUsers_for_export', 'AdminController@getUsers_for_export');
 Route::post('/create_user_member/excel', 'AdminController@create_user_member');
 Route::post('/create_user_upper_al/excel', 'AdminController@create_user_upper_al');
 Route::post('/create_user_group_manager/excel', 'AdminController@create_user_group_manager');

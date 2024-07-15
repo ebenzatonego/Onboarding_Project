@@ -100,6 +100,14 @@ class AdminController extends Controller
 
             if( !empty($check_user->account) ){
 
+                // Check if current_rank is different
+                if ($check_user->current_rank != $data_arr['current_rank']) {
+                    // Move current_rank to last_rank
+                    $check_user->last_rank = $check_user->current_rank;
+                    // Update current_rank with the new value
+                    $check_user->current_rank = $data_arr['current_rank'];
+                }
+    
                 foreach ($data_arr as $key => $value) {
                     if ($key != 'account' && $key != 'phone' && $key != 'email' && $key != 'nickname') {
                         // ยกเว้น account, phone, email และ nickname ไม่ต้องอัปเดต
@@ -1383,6 +1391,6 @@ class AdminController extends Controller
         ]);
 
         return response()->json($users);
-        
+
     }
 }

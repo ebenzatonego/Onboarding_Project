@@ -49,11 +49,11 @@
                 <div class="col-4">
                     <div class="input-group">
                         <span class="input-group-text bg-transparent"><i class="fa-solid fa-magnifying-glass"></i></span>
-                        <input type="text" class="form-control border-start-0" id="search_account" placeholder="ค้นหาด้วยชื่อหรือรหัสตัวแทน">
+                        <input type="text" class="form-control border-start-0" id="search_account" placeholder="ค้นหาด้วยชื่อหรือรหัสตัวแทน" oninput="delay_search_data_in_card();">
                     </div>
                 </div>
                 <div class="col-4">
-                    <select id="search_rank" class="form-select">
+                    <select id="search_rank" class="form-select" onchange="search_data_in_card();">
                         <option selected="" value="">Choose Rank</option>
                         <option value="AG">AG</option>
                         <option value="UM">UM</option>
@@ -66,12 +66,12 @@
                         <option value="SEVP">SEVP</option>
                     </select>
                 </div>
-                <div class="col-1">
+                <!-- <div class="col-1">
                     <button type="button" class="btn btn-primary" onclick="search_data_in_card()">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
-                </div>
-                <div class="col-3">
+                </div> -->
+                <div class="col-4">
                     <button id="btn_export_excel" type="button" class="btn btn-outline-secondary float-end" onclick="exportExcel()">
                         Export Excel
                     </button>
@@ -328,6 +328,17 @@
     return `${day}/${month}/${year}`;
 }
 
+let searchTimeout;
+
+function delay_search_data_in_card() {
+    // Clear the previous timeout
+    clearTimeout(searchTimeout);
+
+    // Set a new timeout
+    searchTimeout = setTimeout(function() {
+        search_data_in_card();
+    }, 1000);
+}
 
 function search_data_in_card() {
 

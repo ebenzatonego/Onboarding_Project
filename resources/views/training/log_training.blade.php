@@ -203,17 +203,8 @@
                 </div>
                 <!-- logs_like -->
                 <div class="tab-pane fade" id="logs_like" role="tabpanel">
-                    <div id="content_logs_loke">
-                        <div class="card w-100 shadow-sm  border-1 border p-3 mt-2">
-                            <div class="d-flex justify-content-start">
-                                <div>name (account)</div>
-                            </div>
-                        </div>
-                        <div class="card w-100 shadow-sm  border-1 border p-3 mt-2">
-                            <div class="d-flex justify-content-between">
-                                <div>name (account)</div>
-                            </div>
-                        </div>
+                    <div id="content_logs_like">
+                    	<!-- content_logs_like -->
                     </div>
                 </div>
                 <!-- logs_rate -->
@@ -414,6 +405,7 @@
 
 	document.addEventListener('DOMContentLoaded', function () {
 		get_log_view();
+		get_log_like();
   	});
 
   	function get_log_view(){
@@ -472,9 +464,9 @@
 
 						        let html_item_of_user = `
 						        	<div class="card w-100 shadow-sm border-1 border p-3 mt-2">
-									    <div class="d-flex justify-content-between">
-									        <div>Round ${roundId}</div>
-									        <div>Datetime: ${datetime}</div>
+									    <div class="d-flex justify-content-start">
+									        <div class="mx-2">Round ${roundId}</div>
+									        <div class="mx-2">Datetime: ${datetime}</div>
 									    </div>
 									</div>
 						        `;
@@ -488,7 +480,45 @@
 	    }
   	}
 
-  	
+  	function get_log_like(){
+
+  		// ดึงข้อมูล JSON จาก Blade Template
+	    let db_log_like = @json($training->user_like);
+
+	    // แปลง JSON เป็นอาร์เรย์ JavaScript
+	    let loglikeArray = JSON.parse(db_log_like);
+
+	    // ตรวจสอบค่าในคอนโซล
+	    // console.log(loglikeArray);
+
+	    let content_logs_like = document.querySelector('#content_logs_like');
+	    	content_logs_like.innerHTML = '';
+
+	    let html_heading ;
+
+	    for (let i = 0; i < loglikeArray.length; i++) {
+		    fetch("{{ url('/') }}/api/get_user_for_log/" + loglikeArray[i])
+		      	.then(response => response.json())
+		      	.then(result => {
+		          	// console.log(result);
+
+		          	if(result){
+		          		html_heading = `
+				        	<div name_user="`+result.name+`" account="`+result.account+`" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+							    <div class="d-flex justify-content-start">
+							        <div class="mx-2">`+result.account+`</div>
+							        <div class="mx-2">`+result.name+`</div>
+							    </div>
+							</div>
+				        `;
+                		content_logs_like.insertAdjacentHTML('beforeend', html_heading); // แทรกล่างสุด
+
+		          	}
+
+		        });
+	    }
+
+  	}
 
 </script>
 @endsection

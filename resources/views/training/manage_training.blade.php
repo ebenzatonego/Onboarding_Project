@@ -1122,12 +1122,17 @@
                                     @endif
                                   @endif
                                 </div>
-                                <div class="col-6 mt-2">
+                                <div class="col-3 mt-2">
+                                  <a href="{{ url('/log_training') }}/`+result['data_training'][i].id+`" class="btn btn-sm btn-secondary w-100">
+                                    LOG
+                                  </a>
+                                </div>
+                                <div class="col-3 mt-2">
                                   <form method="POST" action="{{ url('/training') }}/`+result['data_training'][i].id+`" accept-charset="UTF-8" style="display:inline" onsubmit="return confirmDelete(event, this)">
                                       {{ method_field('DELETE') }}
                                       {{ csrf_field() }}
                                       <button type="submit" class="btn btn-danger btn-sm text-center w-100" title="Delete Tools_tutorial">
-                                          &nbsp;<i class="fa-solid fa-trash-can"></i> ลบ
+                                          &nbsp;<i class="fa-solid fa-trash-can"></i>
                                       </button>
                                   </form>
                                 </div>

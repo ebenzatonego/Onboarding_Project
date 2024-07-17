@@ -1393,4 +1393,11 @@ class AdminController extends Controller
         return response()->json($users);
 
     }
+
+    function get_user_for_log($user_id){
+        $data_user = User::where('id',$user_id)
+            ->select('name' , 'account')
+            ->first();
+        return $data_user ;
+    }
 }

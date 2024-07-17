@@ -198,6 +198,7 @@ Route::middleware(['auth', 'role:Super-admin,Admin,staff,member'])->group(functi
 
     // training
     Route::get('/training_show/{id}', 'TrainingController@show');
+    Route::get('/log_training/{id}', 'TrainingController@log_training');
     Route::get('/page_training', 'TrainingController@index');
     Route::get('/sub_training/{type}', 'TrainingController@sub_training');
 

@@ -108,6 +108,23 @@ class TrainingController extends Controller
         return view('training.show', compact('training'));
     }
 
+    public function log_training($id)
+    {
+        // $training = Training::findOrFail($id);
+        $training = DB::table('trainings')
+                ->join('training_types', 'training_types.id', '=', 'trainings.training_type_id')
+                ->leftJoin('users', 'users.id', '=', 'trainings.creator')
+                ->where('trainings.id' , $id)
+                ->select('trainings.*',
+                    DB::raw('SUBSTRING(REGEXP_REPLACE(trainings.detail, "<[^>]*>", ""), 1, 350) as detail'),
+                    'training_types.type_article',
+                    'users.name as name_creator',
+                )
+                ->first();
+
+        return view('training.log_training', compact('training'));
+    }
+
     public function share_training($id)
     {
         if(Auth::check()){

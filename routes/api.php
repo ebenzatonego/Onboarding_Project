@@ -22,6 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/verify_account/{account}', 'AdminController@verify_account');
 
 Route::get('/gat_data_of_notification/{user_id}', 'AdminController@gat_data_of_notification');
+Route::get('/get_user_for_log/{user_id}', 'AdminController@get_user_for_log');
 
 Route::get('/check_pdpa/{account}', 'AdminController@check_pdpa');
 Route::get('/update_coc_of_user/{users_id}', 'AdminController@update_coc_of_user');

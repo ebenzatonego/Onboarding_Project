@@ -157,7 +157,7 @@
 	}
 
 	function search_data_in_card() {
-	    console.log('search_data_in_card');
+	    // console.log('search_data_in_card');
 	    let count_row = 0;
 	    
 	    // ดึงค่า input จาก search_account, search_role และ search_log_content

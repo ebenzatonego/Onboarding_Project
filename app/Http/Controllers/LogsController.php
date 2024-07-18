@@ -7,6 +7,8 @@ use App\Http\Requests;
 
 use App\Models\Log;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class LogsController extends Controller
 {
@@ -131,6 +133,31 @@ class LogsController extends Controller
             "role"=>$requestData['role'],
         ]);
         return response()->json('ok');
+
+    }
+
+    function log_web(){
+        return view('logs.log_web');
+    }
+
+    function get_list_log_web(Request $request) {
+        $limit = $request->input('limit', 350); // จำนวนแถวต่อครั้ง, ค่าเริ่มต้นคือ 350
+        $page = $request->input('page', 1); // หน้าที่จะดึงข้อมูล
+        $offset = ($page - 1) * $limit;
+        
+        // $log_web = Log::offset($offset)
+        //                ->limit($limit)
+        //                ->get();
+
+        $log_web = DB::table('logs')
+                ->join('users', 'users.id', '=', 'logs.user_id')
+                ->select('logs.*', 'users.name' , 'users.account')
+                ->offset($offset)
+                ->limit($limit)
+                ->orderBy('id' , 'DESC')
+                ->get();
+
+        return response()->json($log_web);
 
     }
 }

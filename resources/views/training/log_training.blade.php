@@ -201,6 +201,10 @@
         // }
 
         function exportExcel() {
+
+            const exportButton = document.querySelector('#btn_export_excel');
+            exportButton.textContent = "กำลังโหลด..";
+
             const sheetNames = ["View", "Like", "Rating", "Dislike", "Favorites", "Share", "Video"];
             const excelData = {};
 
@@ -363,6 +367,8 @@
             const filename = `log_data_${text_title}_${datetime}.xlsx`;
 
             XLSX.writeFile(workbook, filename);
+
+            exportButton.textContent = "Export Excel";
 
             // console.log('Excel file generated:', filename);
         }

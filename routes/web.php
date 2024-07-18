@@ -187,6 +187,9 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
     // Favorites
     Route::resource('favorites', 'FavoritesController');
 
+    // LOG
+    Route::get('log_web', 'LogsController@log_web');
+
 });
 
 // member & staff
@@ -225,6 +228,7 @@ Route::middleware(['auth', 'role:Super-admin,Admin,staff,member'])->group(functi
 
     // Favorites
     Route::get('my_favorites', 'FavoritesController@index');
+
 
 });
 

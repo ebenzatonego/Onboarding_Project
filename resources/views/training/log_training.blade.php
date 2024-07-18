@@ -103,7 +103,7 @@
         </h4>
 
         <h4 class="mt-4">
-            <span>คะแนน :</span>
+            <span>คะแนนเฉลี่ย :</span>
             <span>{{ number_format($training->sum_rating) }} ดาว</span>
         </h4>
     </div>
@@ -111,11 +111,47 @@
 
 <div class="mt-5">
     <div class="d-flex justify-content-end">
-        <input type="text" style="width: 100%; max-width: 400px;" class="form-control" name="search" placeholder="ค้นหาด้วยชื่อหรือรหัสตัวแทน" value="">
+        <input type="text" style="width: 100%; max-width: 400px;" class="form-control" name="search_account" id="search_account" placeholder="ค้นหาด้วยชื่อหรือรหัสตัวแทน" value="" oninput="delay_search_data_in_card();">
         <button id="btn_export_excel" type="button" class="btn btn-outline-secondary float-end mx-2" onclick="exportExcel()">
             Export Excel
         </button>
     </div>
+    <div class="d-flex justify-content-end mt-3">
+        <p class="text-danger">การ Export Excel จะทำการ Export ข้อมูลผู้ใช้จากชื่อหรือรหัสตัวแทนที่ค้นหาทั้งหมด (ไม่นับรวมการกรอง Active/Inactive/Social)</p>
+    </div>
+    <script>
+
+        let searchTimeout;
+        function delay_search_data_in_card() {
+            // Clear the previous timeout
+            clearTimeout(searchTimeout);
+
+            // Set a new timeout
+            searchTimeout = setTimeout(function() {
+                search_data_in_card();
+            }, 1000);
+        }
+
+        function search_data_in_card() {
+            const searchAccount = document.getElementById('search_account').value.trim().toLowerCase();
+            const logs = document.querySelectorAll('#div_show_content_logs .log-item');
+
+            logs.forEach(log => {
+                const nameUser = log.getAttribute('name_user').toLowerCase();
+                const account = log.getAttribute('account').toLowerCase();
+
+                if (searchAccount === '' || nameUser.includes(searchAccount) || account.includes(searchAccount)) {
+                    log.classList.remove('d-none');
+                } else {
+                    log.classList.add('d-none');
+                }
+            });
+        }
+
+        function exportExcel(){
+
+        }
+    </script>
     <div class="card mt-2">
         <div class="card-body">
             <ul class="nav nav-tabs nav-primary mb-0" role="tablist">
@@ -199,7 +235,7 @@
                     </a>
                 </li>
             </ul>
-            <div class="tab-content pt-3">
+            <div class="tab-content pt-3" id="div_show_content_logs">
             	<!-- logs_view -->
                 <div class="tab-pane fade active show" id="logs_view" role="tabpanel">
                     <div id="content_logs_view">
@@ -519,7 +555,7 @@
     			          		let roundCount = Object.keys(logViewArray[userId]).length;
 
     						    html_heading = `
-    					  			<div name_user="`+result.name+`" account="`+result.account+`" class="accordion" id="view_accordion_user_id_${userId}">
+    					  			<div name_user="`+result.name+`" account="`+result.account+`" class="log-item accordion" id="view_accordion_user_id_${userId}">
     									<div class="accordion-item">
     										<h2 class="accordion-header" id="view_heading_user_id_${userId}">
     								  			<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#view_collapse_user_id_${userId}" aria-expanded="false" aria-controls="view_collapse_user_id_${userId}">
@@ -586,7 +622,7 @@
 
     		          	if(result){
     		          		html_heading = `
-    				        	<div name_user="`+result.name+`" account="`+result.account+`" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+    				        	<div name_user="`+result.name+`" account="`+result.account+`" class="log-item card w-100 shadow-sm border-1 border p-3 mt-2">
     							    <div class="d-flex justify-content-start">
     							        <div class="mx-2">`+result.account+`</div>
     							        <div class="mx-2">`+result.name+`</div>
@@ -635,7 +671,7 @@
                                 let roundCount = Object.keys(log_ratingArray[userId]).length;
 
                                 html_heading = `
-                                    <div name_user="`+result.name+`" account="`+result.account+`" class="accordion" id="rating_accordion_user_id_${userId}">
+                                    <div name_user="`+result.name+`" account="`+result.account+`" class="log-item accordion" id="rating_accordion_user_id_${userId}">
                                         <div class="accordion-item">
                                             <h2 class="accordion-header" id="rating_heading_user_id_${userId}">
                                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rating_collapse_user_id_${userId}" aria-expanded="false" aria-controls="rating_collapse_user_id_${userId}">
@@ -727,7 +763,7 @@
                                 let roundCount = Object.keys(log_dislikeArray[userId]).length;
 
                                 html_heading = `
-                                    <div name_user="`+result.name+`" account="`+result.account+`" class="accordion" id="dislike_accordion_user_id_${userId}">
+                                    <div name_user="`+result.name+`" account="`+result.account+`" class="log-item accordion" id="dislike_accordion_user_id_${userId}">
                                         <div class="accordion-item">
                                             <h2 class="accordion-header" id="dislike_heading_user_id_${userId}">
                                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#dislike_collapse_user_id_${userId}" aria-expanded="false" aria-controls="dislike_collapse_user_id_${userId}">
@@ -819,7 +855,7 @@
                                 let roundCount = Object.keys(log_favArray[userId]).length;
 
                                 html_heading = `
-                                    <div name_user="`+result.name+`" account="`+result.account+`" class="accordion" id="fav_accordion_user_id_${userId}">
+                                    <div name_user="`+result.name+`" account="`+result.account+`" class="log-item accordion" id="fav_accordion_user_id_${userId}">
                                         <div class="accordion-item">
                                             <h2 class="accordion-header" id="fav_heading_user_id_${userId}">
                                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fav_collapse_user_id_${userId}" aria-expanded="false" aria-controls="fav_collapse_user_id_${userId}">
@@ -909,7 +945,7 @@
                                 let roundCount = Object.keys(log_shareArray[userId]).length;
 
                                 html_heading = `
-                                    <div name_user="`+result.name+`" account="`+result.account+`" class="accordion" id="share_accordion_user_id_${userId}">
+                                    <div name_user="`+result.name+`" account="`+result.account+`" class="log-item accordion" id="share_accordion_user_id_${userId}">
                                         <div class="accordion-item">
                                             <h2 class="accordion-header" id="share_heading_user_id_${userId}">
                                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#share_collapse_user_id_${userId}" aria-expanded="false" aria-controls="share_collapse_user_id_${userId}">
@@ -1044,7 +1080,7 @@
                                 let roundCount = Object.keys(log_videoArray[userId]).length;
 
                                 html_heading = `
-                                    <div name_user="`+result.name+`" account="`+result.account+`" class="accordion" id="video_accordion_user_id_${userId}">
+                                    <div name_user="`+result.name+`" account="`+result.account+`" class="log-item accordion" id="video_accordion_user_id_${userId}">
                                         <div class="accordion-item">
                                             <h2 class="accordion-header" id="video_heading_user_id_${userId}">
                                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#video_collapse_user_id_${userId}" aria-expanded="false" aria-controls="video_collapse_user_id_${userId}">

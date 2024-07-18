@@ -101,6 +101,11 @@
             <span>ถูกใจทั้งหมด :</span>
             <span>{{ number_format($user_like_count) }} คน</span>
         </h4>
+
+        <h4 class="mt-4">
+            <span>คะแนน :</span>
+            <span>{{ number_format($training->sum_rating) }}</span>
+        </h4>
     </div>
 </div>
 
@@ -209,61 +214,100 @@
                 </div>
                 <!-- logs_rate -->
                 <div class="tab-pane fade" id="logs_rate" role="tabpanel">
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="me-2 btn btn-outline-info active" data-bs-toggle="pill" onclick="change_view_active_logs_rate('All')">
+                                All
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="me-2 btn btn-outline-success" data-bs-toggle="pill" onclick="change_view_active_logs_rate('Active')">
+                                Active
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="me-2 btn btn-outline-danger" data-bs-toggle="pill" onclick="change_view_active_logs_rate('Inactive')">
+                                Inactive
+                            </button>
+                        </li>
+                    </ul>
                     <div id="content_logs_rate">
-                        <div class="card w-100 shadow-sm  border-1 border p-3 mt-2">
-                            <div class="d-flex justify-content-between align-items-center ">
-                                <div>name(account)</div>
-                                <div>12/5/2567 18:00น.</div>
-                                <div>5 คะแนน</div>
-                                <div class="bg-success py-1 px-3 text-white rounded-pill">active</div>
-                            </div>
-                        </div>
-                        <div class="card w-100 shadow-sm  border-1 border p-3 mt-2">
-                            <div class="d-flex justify-content-between align-items-center ">
-                                <div>name(account)</div>
-                                <div>12/5/2567 18:00น.</div>
-                                <div>5 คะแนน</div>
-                                <div class="bg-danger py-1 px-3 text-white rounded-pill">cancle</div>
-                            </div>
-                        </div>
+                        <!-- content_logs_rate -->
                     </div>
+                    <script>
+                        function change_view_active_logs_rate(type) {
+                            let list_log_rating = document.querySelectorAll('.list_log_rating');
+                            list_log_rating.forEach(function(item) {
+                                if (type === 'Active') {
+                                    if (item.getAttribute('status') === 'Canceled') {
+                                        item.classList.add('d-none');
+                                    } else {
+                                        item.classList.remove('d-none');
+                                    }
+                                }
+                                else if (type === 'Inactive') {
+                                    if (item.getAttribute('status') === 'Active') {
+                                        item.classList.add('d-none');
+                                    } else {
+                                        item.classList.remove('d-none');
+                                    }
+                                }
+                                else if (type === 'All') {
+                                    item.classList.remove('d-none');
+                                }
+                            });
+                        }
+                    </script>
                 </div>
                 <!-- logs_dislike -->
                 <div class="tab-pane fade" id="logs_dislike" role="tabpanel">
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <button class="me-2 btn btn-outline-success active" id="pills-active-tab" data-bs-toggle="pill" data-bs-target="#pills-active" type="button" role="tab" aria-controls="pills-active" aria-selected="true">active</button>
+                            <button class="me-2 btn btn-outline-info active" data-bs-toggle="pill" onclick="change_view_active_logs_dislike('All')">
+                                All
+                            </button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="me-2 btn btn-outline-danger" id="pills-inactive-tab" data-bs-toggle="pill" data-bs-target="#pills-inactive" type="button" role="tab" aria-controls="pills-inactive" aria-selected="false">inactive</button>
+                            <button class="me-2 btn btn-outline-success" data-bs-toggle="pill" onclick="change_view_active_logs_dislike('Active')">
+                                Active
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="me-2 btn btn-outline-danger" data-bs-toggle="pill" onclick="change_view_active_logs_dislike('Inactive')">
+                                Inactive
+                            </button>
                         </li>
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-active" role="tabpanel" aria-labelledby="pills-active-tab">
-                            <div id="content_logs_dislike_active">
-                                <div class="card w-100 shadow-sm  border-1 border p-3 mt-2">
-                                    <div class="d-flex justify-content-between align-items-center ">
-                                        <div class="mx-3">name(account)</div>
-                                        <div class="mx-3">12/5/2567 18:00น.</div>
-                                        <div class="mx-3">เหตุผล</div>
-                                        <div class="bg-success py-1 px-3 text-white rounded-pill mx-3">active</div>
-                                    </div>
-                                </div>
-                                <div class="card w-100 shadow-sm  border-1 border p-3 mt-2">
-                                    <div class="d-flex justify-content-between align-items-center ">
-                                        <div class="mx-3">name(account)</div>
-                                        <div class="mx-3">12/5/2567 18:00น.</div>
-                                        <div class="mx-3">เหตุผล</div>
-                                        <div class="bg-danger py-1 px-3 text-white rounded-pill mx-3">cancle</div>
-                                    </div>
-                                </div>
+                            <div id="content_logs_dislike">
+                                <!-- content_logs_dislike -->
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="pills-inactive" role="tabpanel" aria-labelledby="pills-inactive-tab">
-                            <div id="content_logs_dislike_inactive">
-                                content_logs_dislike_inactive
-                            </div>
-                        </div>
+                        <script>
+                            function change_view_active_logs_dislike(type) {
+                                let list_log_dislike = document.querySelectorAll('.list_log_dislike');
+                                list_log_dislike.forEach(function(item) {
+                                    if (type === 'Active') {
+                                        if (item.getAttribute('status') === 'Canceled') {
+                                            item.classList.add('d-none');
+                                        } else {
+                                            item.classList.remove('d-none');
+                                        }
+                                    }
+                                    else if (type === 'Inactive') {
+                                        if (item.getAttribute('status') === 'Active') {
+                                            item.classList.add('d-none');
+                                        } else {
+                                            item.classList.remove('d-none');
+                                        }
+                                    }
+                                    else if (type === 'All') {
+                                        item.classList.remove('d-none');
+                                    }
+                                });
+                            }
+                        </script>
                     </div>
                 </div>
                 <!-- logs_fav -->
@@ -405,7 +449,9 @@
 
 	document.addEventListener('DOMContentLoaded', function () {
 		get_log_view();
-		get_log_like();
+        get_log_like();
+        get_log_rating();
+		get_logs_dislike();
   	});
 
   	function get_log_view(){
@@ -439,15 +485,15 @@
 			          		let roundCount = Object.keys(logViewArray[userId]).length;
 
 						    html_heading = `
-					  			<div name_user="`+result.name+`" account="`+result.account+`" class="accordion" id="accordion_user_id_${userId}">
+					  			<div name_user="`+result.name+`" account="`+result.account+`" class="accordion" id="view_accordion_user_id_${userId}">
 									<div class="accordion-item">
-										<h2 class="accordion-header" id="heading_user_id_${userId}">
-								  			<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_user_id_${userId}" aria-expanded="false" aria-controls="collapse_user_id_${userId}">
+										<h2 class="accordion-header" id="view_heading_user_id_${userId}">
+								  			<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#view_collapse_user_id_${userId}" aria-expanded="false" aria-controls="view_collapse_user_id_${userId}">
 												`+result.account+` `+result.name+` (`+roundCount+` ครั้ง)
 								  			</button>
 										</h2>
-										<div id="collapse_user_id_${userId}" class="accordion-collapse collapse" aria-labelledby="heading_user_id_${userId}" data-bs-parent="#accordion_user_id_${userId}" style="">
-											<div id="item_of_user_${userId}" class="accordion-body">
+										<div id="view_collapse_user_id_${userId}" class="accordion-collapse collapse" aria-labelledby="view_heading_user_id_${userId}" data-bs-parent="#view_accordion_user_id_${userId}" style="">
+											<div id="view_item_of_user_${userId}" class="accordion-body">
 												
 											</div>
 										</div>
@@ -456,7 +502,7 @@
 							`;
                 			content_logs_view.insertAdjacentHTML('beforeend', html_heading); // แทรกล่างสุด
 
-                			let item_of_user = document.querySelector('#item_of_user_'+userId);
+                			let item_of_user = document.querySelector('#view_item_of_user_'+userId);
                 			// วนลูปเข้าไปยังรอบการดูของผู้ใช้
 						    for (let roundId in logViewArray[userId]) {
 						        let datetime = logViewArray[userId][roundId].datetime;
@@ -519,6 +565,186 @@
 	    }
 
   	}
+
+    function get_log_rating(){
+
+        // ดึงข้อมูล JSON จาก Blade Template
+        let db_log_rating = @json($training->log_rating);
+
+        // แปลง JSON เป็นอาร์เรย์ JavaScript
+        let log_ratingArray = JSON.parse(db_log_rating);
+
+        // ตรวจสอบค่าในคอนโซล
+        // console.log(log_ratingArray);
+
+        let content_logs_rate = document.querySelector('#content_logs_rate');
+            content_logs_rate.innerHTML = '';
+
+        let html_heading ;
+
+        if(log_ratingArray){
+            for (let userId in log_ratingArray) {
+                // แสดงชื่อผู้ใช้หรือข้อมูลอื่นที่ต้องการแสดง
+                // console.log(`User ID: ${userId}`);
+
+                fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                    .then(response => response.json())
+                    .then(result => {
+                        // console.log(result);
+
+                        if(result){
+
+                            let roundCount = Object.keys(log_ratingArray[userId]).length;
+
+                            html_heading = `
+                                <div name_user="`+result.name+`" account="`+result.account+`" class="accordion" id="rating_accordion_user_id_${userId}">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="rating_heading_user_id_${userId}">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rating_collapse_user_id_${userId}" aria-expanded="false" aria-controls="rating_collapse_user_id_${userId}">
+                                                `+result.account+` `+result.name+` (`+roundCount+` ครั้ง)
+                                            </button>
+                                        </h2>
+                                        <div id="rating_collapse_user_id_${userId}" class="accordion-collapse collapse" aria-labelledby="heading_user_id_${userId}" data-bs-parent="#rating_accordion_user_id_${userId}" style="">
+                                            <div id="rating_item_of_user_${userId}" class="accordion-body">
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                            content_logs_rate.insertAdjacentHTML('beforeend', html_heading); // แทรกล่างสุด
+
+                            let item_of_user = document.querySelector('#rating_item_of_user_'+userId);
+                            // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                            for (let roundId in log_ratingArray[userId]) {
+                                let datetime = log_ratingArray[userId][roundId].datetime;
+                                let rating = log_ratingArray[userId][roundId].rating;
+                                let status = log_ratingArray[userId][roundId].status;
+                                // console.log(`Round ID: ${roundId}, Datetime: ${datetime}`);
+
+                                let html_status = ``;
+
+                                if (status == "Active") {
+                                    html_status = `
+                                        <div class="bg-success py-1 px-3 text-white rounded-pill">Active</div>
+                                    `;
+                                }
+                                else if(status == "Canceled"){
+                                    html_status = `
+                                        <div class="bg-danger py-1 px-3 text-white rounded-pill">Cancle</div>
+                                    `;
+                                }
+
+                                let html_item_of_user = `
+                                    <div status="`+status+`" class="card w-100 shadow-sm border-1 border p-3 mt-2 list_log_rating">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="mx-2">Round ${roundId}</div>
+                                            <div class="mx-2">Datetime: ${datetime}</div>
+                                            <div class="mx-2">Rating: ${rating}</div>
+                                            `+html_status+`
+                                        </div>
+                                    </div>
+                                `;
+                                item_of_user.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+
+                            }
+                        }
+
+                    });
+            }
+        }
+
+    }
+
+    function get_logs_dislike(){
+
+        // ดึงข้อมูล JSON จาก Blade Template
+        let db_log_dislike = @json($training->user_dislike);
+
+        // แปลง JSON เป็นอาร์เรย์ JavaScript
+        let log_dislikeArray = JSON.parse(db_log_dislike);
+
+        // ตรวจสอบค่าในคอนโซล
+        console.log(log_dislikeArray);
+
+        let content_logs_dislike = document.querySelector('#content_logs_dislike');
+            content_logs_dislike.innerHTML = '';
+
+        let html_heading ;
+
+        if(log_dislikeArray){
+            for (let userId in log_dislikeArray) {
+                // แสดงชื่อผู้ใช้หรือข้อมูลอื่นที่ต้องการแสดง
+                // console.log(`User ID: ${userId}`);
+
+                fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                    .then(response => response.json())
+                    .then(result => {
+                        // console.log(result);
+
+                        if(result){
+
+                            let roundCount = Object.keys(log_dislikeArray[userId]).length;
+
+                            html_heading = `
+                                <div name_user="`+result.name+`" account="`+result.account+`" class="accordion" id="dislike_accordion_user_id_${userId}">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="dislike_heading_user_id_${userId}">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#dislike_collapse_user_id_${userId}" aria-expanded="false" aria-controls="dislike_collapse_user_id_${userId}">
+                                                `+result.account+` `+result.name+` (`+roundCount+` ครั้ง)
+                                            </button>
+                                        </h2>
+                                        <div id="dislike_collapse_user_id_${userId}" class="accordion-collapse collapse" aria-labelledby="heading_user_id_${userId}" data-bs-parent="#dislike_accordion_user_id_${userId}" style="">
+                                            <div id="dislike_item_of_user_${userId}" class="accordion-body">
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                            content_logs_dislike.insertAdjacentHTML('beforeend', html_heading); // แทรกล่างสุด
+
+                            let item_of_user = document.querySelector('#dislike_item_of_user_'+userId);
+                            // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                            for (let roundId in log_dislikeArray[userId]) {
+                                let datetime = log_dislikeArray[userId][roundId].datetime;
+                                let reasons = log_dislikeArray[userId][roundId].reasons;
+                                let status = log_dislikeArray[userId][roundId].status;
+                                // console.log(`Round ID: ${roundId}, Datetime: ${datetime}`);
+
+                                let html_status = ``;
+
+                                if (status == "Active") {
+                                    html_status = `
+                                        <div class="bg-success py-1 px-3 text-white rounded-pill">Active</div>
+                                    `;
+                                }
+                                else if(status == "Canceled"){
+                                    html_status = `
+                                        <div class="bg-danger py-1 px-3 text-white rounded-pill">Cancle</div>
+                                    `;
+                                }
+
+                                let html_item_of_user = `
+                                    <div status="`+status+`" class="card w-100 shadow-sm border-1 border p-3 mt-2 list_log_dislike">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="mx-2">Round ${roundId}</div>
+                                            <div class="mx-2">Datetime: ${datetime}</div>
+                                            <div class="mx-2">เหตุผล: ${reasons}</div>
+                                            `+html_status+`
+                                        </div>
+                                    </div>
+                                `;
+                                item_of_user.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+
+                            }
+                        }
+
+                    });
+            }
+        }
+
+    }
 
 </script>
 @endsection

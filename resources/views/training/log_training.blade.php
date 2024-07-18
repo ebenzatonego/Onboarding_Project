@@ -148,8 +148,235 @@
             });
         }
 
-        function exportExcel(){
+        // async function exportExcel() {
+        //     const button = document.getElementById('btn_export_excel');
+        //     const originalText = button.innerHTML;
 
+        //     button.innerHTML = 'กำลังโหลด..';
+        //     button.disabled = true;
+
+        //     // ข้อมูลตัวอย่างสำหรับแต่ละชีท
+        //     const data = {
+        //         "View": [["Header1", "Header2"], ["Data1", "Data2"]],
+        //         "Like": [["Header1", "Header2"], ["Data1", "Data2"]],
+        //         "Rating": [["Header1", "Header2"], ["Data1", "Data2"]],
+        //         "Dislike": [["Header1", "Header2"], ["Data1", "Data2"]],
+        //         "Favorites": [["Header1", "Header2"], ["Data1", "Data2"]],
+        //         "Share": [["Header1", "Header2"], ["Data1", "Data2"]],
+        //         "Video": [["Header1", "Header2"], ["Data1", "Data2"]]
+        //     };
+
+        //     const workbook = XLSX.utils.book_new();
+
+        //     for (const [sheetName, sheetData] of Object.entries(data)) {
+        //         const worksheet = XLSX.utils.aoa_to_sheet(sheetData);
+        //         XLSX.utils.book_append_sheet(workbook, worksheet, sheetName);
+        //     }
+
+        //     let text_title = "{{ $training->title }}";
+
+        //     // ฟังก์ชันเพื่อสร้างวันที่ในรูปแบบ yyyyMMdd_HHmmss
+        //     function getFormattedDate() {
+        //         const now = new Date();
+        //         const year = now.getFullYear();
+        //         const month = String(now.getMonth() + 1).padStart(2, '0');
+        //         const day = String(now.getDate()).padStart(2, '0');
+        //         const hours = String(now.getHours()).padStart(2, '0');
+        //         const minutes = String(now.getMinutes()).padStart(2, '0');
+        //         const seconds = String(now.getSeconds()).padStart(2, '0');
+        //         return `${year}${month}${day}_${hours}${minutes}${seconds}`;
+        //     }
+
+        //     const datetime = getFormattedDate();
+
+        //     // สร้างชื่อไฟล์พร้อมวันที่และชื่อเรื่อง
+        //     const filename = `log_data_${text_title}_${datetime}.xlsx`;
+
+        //     // ใช้ XLSX.writeFile เพื่อสร้างและดาวน์โหลดไฟล์ Excel
+        //     XLSX.writeFile(workbook, filename);
+
+        //     // เปลี่ยนข้อความปุ่มกลับไปเหมือนเดิม
+        //     button.innerHTML = originalText;
+        //     button.disabled = false;
+        // }
+
+        function exportExcel() {
+            const sheetNames = ["View", "Like", "Rating", "Dislike", "Favorites", "Share", "Video"];
+            const excelData = {};
+
+            sheetNames.forEach(sheetName => {
+                excelData[sheetName] = [];
+
+                const logItems = document.querySelectorAll(`#content_logs_${sheetName.toLowerCase()} .log-item:not(.d-none)`);
+
+                if(sheetName == "View"){
+                    logItems.forEach(logItem => {
+                        const name = logItem.getAttribute('name_user');
+                        const account = logItem.getAttribute('account');
+
+                        const viewItems = logItem.querySelectorAll('.view_item_of_user .card');
+                        viewItems.forEach(viewItem => {
+                            const datetime = viewItem.querySelector('.excel_datetime').textContent;
+                            const excelAccount = viewItem.querySelector('.excel_account').textContent;
+                            const excelName = viewItem.querySelector('.excel_name').textContent;
+
+                            excelData[sheetName].push({
+                                name: excelName,
+                                account: excelAccount,
+                                datetime: datetime
+                            });
+                        });
+                    });
+                }
+                else if(sheetName == "Like"){
+                    logItems.forEach(logItem => {
+                        const name = logItem.getAttribute('name_user');
+                        const account = logItem.getAttribute('account');
+
+                        excelData[sheetName].push({
+                            name: name,
+                            account: account,
+                        });
+                    });
+                }
+                else if(sheetName == "Rating"){
+                    logItems.forEach(logItem => {
+                        const name = logItem.getAttribute('name_user');
+                        const account = logItem.getAttribute('account');
+
+                        const viewItems = logItem.querySelectorAll('.view_item_of_user .card');
+                        viewItems.forEach(viewItem => {
+                            const datetime = viewItem.querySelector('.excel_datetime').textContent;
+                            const excelAccount = viewItem.querySelector('.excel_account').textContent;
+                            const excelName = viewItem.querySelector('.excel_name').textContent;
+                            const excelrating = viewItem.querySelector('.excel_rating').textContent;
+                            const excelstatus = viewItem.querySelector('.excel_status').textContent;
+
+                            excelData[sheetName].push({
+                                name: excelName,
+                                account: excelAccount,
+                                datetime: datetime,
+                                rating: excelrating,
+                                status: excelstatus,
+                            });
+                        });
+                    });
+                }
+                else if(sheetName == "Dislike"){
+                    logItems.forEach(logItem => {
+                        const name = logItem.getAttribute('name_user');
+                        const account = logItem.getAttribute('account');
+
+                        const viewItems = logItem.querySelectorAll('.view_item_of_user .card');
+                        viewItems.forEach(viewItem => {
+                            const datetime = viewItem.querySelector('.excel_datetime').textContent;
+                            const excelAccount = viewItem.querySelector('.excel_account').textContent;
+                            const excelName = viewItem.querySelector('.excel_name').textContent;
+                            const excelreasons = viewItem.querySelector('.excel_reasons').textContent;
+                            const excelstatus = viewItem.querySelector('.excel_status').textContent;
+
+                            excelData[sheetName].push({
+                                name: excelName,
+                                account: excelAccount,
+                                datetime: datetime,
+                                reasons: excelreasons,
+                                status: excelstatus,
+                            });
+                        });
+                    });
+                }
+                else if(sheetName == "Favorites"){
+                    logItems.forEach(logItem => {
+                        const name = logItem.getAttribute('name_user');
+                        const account = logItem.getAttribute('account');
+
+                        const viewItems = logItem.querySelectorAll('.view_item_of_user .card');
+                        viewItems.forEach(viewItem => {
+                            const datetime = viewItem.querySelector('.excel_datetime').textContent;
+                            const excelAccount = viewItem.querySelector('.excel_account').textContent;
+                            const excelName = viewItem.querySelector('.excel_name').textContent;
+                            const excelstatus = viewItem.querySelector('.excel_status').textContent;
+
+                            excelData[sheetName].push({
+                                name: excelName,
+                                account: excelAccount,
+                                datetime: datetime,
+                                status: excelstatus,
+                            });
+                        });
+                    });
+                }
+                else if(sheetName == "Share"){
+                    logItems.forEach(logItem => {
+                        const name = logItem.getAttribute('name_user');
+                        const account = logItem.getAttribute('account');
+
+                        const viewItems = logItem.querySelectorAll('.view_item_of_user .card');
+                        viewItems.forEach(viewItem => {
+                            const datetime = viewItem.querySelector('.excel_datetime').textContent;
+                            const excelAccount = viewItem.querySelector('.excel_account').textContent;
+                            const excelName = viewItem.querySelector('.excel_name').textContent;
+                            const excelsocial = viewItem.querySelector('.excel_social').textContent;
+
+                            excelData[sheetName].push({
+                                name: excelName,
+                                account: excelAccount,
+                                datetime: datetime,
+                                social: excelsocial,
+                            });
+                        });
+                    });
+                }
+                else if(sheetName == "Video"){
+                    logItems.forEach(logItem => {
+                        const name = logItem.getAttribute('name_user');
+                        const account = logItem.getAttribute('account');
+
+                        const viewItems = logItem.querySelectorAll('.view_item_of_user .card');
+                        viewItems.forEach(viewItem => {
+                            const datetime = viewItem.querySelector('.excel_datetime').textContent;
+                            const excelAccount = viewItem.querySelector('.excel_account').textContent;
+                            const excelName = viewItem.querySelector('.excel_name').textContent;
+                            const excelcountTime = viewItem.querySelector('.excel_countTime').textContent;
+
+                            excelData[sheetName].push({
+                                name: excelName,
+                                account: excelAccount,
+                                datetime: datetime,
+                                countTime: excelcountTime,
+                            });
+                        });
+                    });
+                }
+
+            });
+
+            const workbook = XLSX.utils.book_new();
+
+            sheetNames.forEach(sheetName => {
+                const worksheet = XLSX.utils.json_to_sheet(excelData[sheetName]);
+                XLSX.utils.book_append_sheet(workbook, worksheet, sheetName);
+            });
+
+            let text_title = "{{ $training->title }}";
+            const datetime = getFormattedDate();
+            const filename = `log_data_${text_title}_${datetime}.xlsx`;
+
+            XLSX.writeFile(workbook, filename);
+
+            // console.log('Excel file generated:', filename);
+        }
+
+        // ฟังก์ชันเพื่อสร้างวันที่ในรูปแบบ yyyyMMdd_HHmmss
+        function getFormattedDate() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            return `${year}${month}${day}_${hours}${minutes}${seconds}`;
         }
     </script>
     <div class="card mt-2">
@@ -267,8 +494,8 @@
                             </button>
                         </li>
                     </ul>
-                    <div id="content_logs_rate">
-                        <!-- content_logs_rate -->
+                    <div id="content_logs_rating">
+                        <!-- content_logs_rating -->
                     </div>
                     <script>
                         function change_view_active_logs_rate(type) {
@@ -365,8 +592,8 @@
                             </button>
                         </li>
                     </ul>
-                    <div id="content_logs_fav">
-                        <!-- content_logs_fav -->
+                    <div id="content_logs_favorites">
+                        <!-- content_logs_favorites -->
                     </div>
                     <script>
                         function change_view_active_logs_fav(type) {
@@ -490,7 +717,7 @@
                 </div>
                 <!-- logs_download_pdf -->
                 <div class="tab-pane fade" id="logs_download_pdf" role="tabpanel">
-                    <div id="content_logs_fav">
+                    <div id="content_logs_download_pdf">
                         <div class="card w-100 shadow-sm  border-1 border p-3 mt-2">
                             <div class="d-flex justify-content-between align-items-center ">
                                 <div>name(account)</div>
@@ -512,6 +739,9 @@
     </div>
 </div>
 
+
+<!-- ใส่ลิงก์ไปยังไลบรารี XLSX -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
 <script>
 
 	document.addEventListener('DOMContentLoaded', async function () {
@@ -563,7 +793,7 @@
     								  			</button>
     										</h2>
     										<div id="view_collapse_user_id_${userId}" class="accordion-collapse collapse" aria-labelledby="view_heading_user_id_${userId}" data-bs-parent="#view_accordion_user_id_${userId}" style="">
-    											<div id="view_item_of_user_${userId}" class="accordion-body">
+    											<div id="view_item_of_user_${userId}" class="view_item_of_user accordion-body">
     												
     											</div>
     										</div>
@@ -582,7 +812,9 @@
     						        	<div class="card w-100 shadow-sm border-1 border p-3 mt-2">
     									    <div class="d-flex justify-content-start">
     									        <div class="mx-2">Round ${roundId}</div>
-    									        <div class="mx-2">Datetime: ${datetime}</div>
+                                                <div class="mx-2">Datetime: <span class="excel_datetime">${datetime}</span></div>
+                                                <div class="mx-2 d-none excel_account">${result.account}</div>
+    									        <div class="mx-2 d-none excel_name">${result.name}</div>
     									    </div>
     									</div>
     						        `;
@@ -651,8 +883,8 @@
             // ตรวจสอบค่าในคอนโซล
             // console.log(log_ratingArray);
 
-            let content_logs_rate = document.querySelector('#content_logs_rate');
-                content_logs_rate.innerHTML = '';
+            let content_logs_rating = document.querySelector('#content_logs_rating');
+                content_logs_rating.innerHTML = '';
 
             let html_heading ;
 
@@ -679,14 +911,14 @@
                                                 </button>
                                             </h2>
                                             <div id="rating_collapse_user_id_${userId}" class="accordion-collapse collapse" aria-labelledby="heading_user_id_${userId}" data-bs-parent="#rating_accordion_user_id_${userId}" style="">
-                                                <div id="rating_item_of_user_${userId}" class="accordion-body">
+                                                <div id="rating_item_of_user_${userId}" class="view_item_of_user accordion-body">
                                                     
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 `;
-                                content_logs_rate.insertAdjacentHTML('beforeend', html_heading); // แทรกล่างสุด
+                                content_logs_rating.insertAdjacentHTML('beforeend', html_heading); // แทรกล่างสุด
 
                                 let item_of_user = document.querySelector('#rating_item_of_user_'+userId);
                                 // วนลูปเข้าไปยังรอบการดูของผู้ใช้
@@ -713,8 +945,11 @@
                                         <div status="`+status+`" class="card w-100 shadow-sm border-1 border p-3 mt-2 list_log_rating">
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="mx-2">Round ${roundId}</div>
-                                                <div class="mx-2">Datetime: ${datetime}</div>
-                                                <div class="mx-2">Rating: ${rating}</div>
+                                                <div class="mx-2">Datetime: <span class="excel_datetime">${datetime}</span></div>
+                                                <div class="mx-2">Rating: <span class="excel_rating">${rating}</span></div>
+                                                <div class="mx-2 d-none excel_account">${result.account}</div>
+                                                <div class="mx-2 d-none excel_name">${result.name}</div>
+                                                <div class="mx-2 d-none excel_status">${status}</div>
                                                 `+html_status+`
                                             </div>
                                         </div>
@@ -771,7 +1006,7 @@
                                                 </button>
                                             </h2>
                                             <div id="dislike_collapse_user_id_${userId}" class="accordion-collapse collapse" aria-labelledby="heading_user_id_${userId}" data-bs-parent="#dislike_accordion_user_id_${userId}" style="">
-                                                <div id="dislike_item_of_user_${userId}" class="accordion-body">
+                                                <div id="dislike_item_of_user_${userId}" class="view_item_of_user accordion-body">
                                                     
                                                 </div>
                                             </div>
@@ -805,8 +1040,11 @@
                                         <div status="`+status+`" class="card w-100 shadow-sm border-1 border p-3 mt-2 list_log_dislike">
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="mx-2">Round ${roundId}</div>
-                                                <div class="mx-2">Datetime: ${datetime}</div>
-                                                <div class="mx-2">เหตุผล: ${reasons}</div>
+                                                <div class="mx-2">Datetime: <span class="excel_datetime">${datetime}</span></div>
+                                                <div class="mx-2">เหตุผล: <span class="excel_reasons">${reasons}</span></div>
+                                                <div class="mx-2 d-none excel_account">${result.account}</div>
+                                                <div class="mx-2 d-none excel_name">${result.name}</div>
+                                                <div class="mx-2 d-none excel_status">${status}</div>
                                                 `+html_status+`
                                             </div>
                                         </div>
@@ -835,8 +1073,8 @@
             // ตรวจสอบค่าในคอนโซล
             // console.log(log_favArray);
 
-            let content_logs_fav = document.querySelector('#content_logs_fav');
-                content_logs_fav.innerHTML = '';
+            let content_logs_favorites = document.querySelector('#content_logs_favorites');
+                content_logs_favorites.innerHTML = '';
 
             let html_heading ;
 
@@ -863,14 +1101,14 @@
                                                 </button>
                                             </h2>
                                             <div id="fav_collapse_user_id_${userId}" class="accordion-collapse collapse" aria-labelledby="heading_user_id_${userId}" data-bs-parent="#fav_accordion_user_id_${userId}" style="">
-                                                <div id="fav_item_of_user_${userId}" class="accordion-body">
+                                                <div id="fav_item_of_user_${userId}" class="view_item_of_user accordion-body">
                                                     
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 `;
-                                content_logs_fav.insertAdjacentHTML('beforeend', html_heading); // แทรกล่างสุด
+                                content_logs_favorites.insertAdjacentHTML('beforeend', html_heading); // แทรกล่างสุด
 
                                 let item_of_user = document.querySelector('#fav_item_of_user_'+userId);
                                 // วนลูปเข้าไปยังรอบการดูของผู้ใช้
@@ -896,7 +1134,10 @@
                                         <div status="`+status+`" class="card w-100 shadow-sm border-1 border p-3 mt-2 list_log_fav">
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="mx-2">Round ${roundId}</div>
-                                                <div class="mx-2">Datetime: ${datetime}</div>
+                                                <div class="mx-2">Datetime: <span class="excel_datetime">${datetime}</span></div>
+                                                <div class="mx-2 d-none excel_account">${result.account}</div>
+                                                <div class="mx-2 d-none excel_name">${result.name}</div>
+                                                <div class="mx-2 d-none excel_status">${status}</div>
                                                 `+html_status+`
                                             </div>
                                         </div>
@@ -953,7 +1194,7 @@
                                                 </button>
                                             </h2>
                                             <div id="share_collapse_user_id_${userId}" class="accordion-collapse collapse" aria-labelledby="heading_user_id_${userId}" data-bs-parent="#share_accordion_user_id_${userId}" style="">
-                                                <div id="share_item_of_user_${userId}" class="accordion-body">
+                                                <div id="share_item_of_user_${userId}" class="view_item_of_user accordion-body">
                                                     
                                                 </div>
                                             </div>
@@ -1031,7 +1272,10 @@
                                         <div social="`+social+`" class="card w-100 shadow-sm border-1 border p-3 mt-2 list_log_share">
                                             <div class="row align-items-center">
                                                 <div class="col-4">Round ${roundId}</div>
-                                                <div class="col-4">Datetime: ${datetime}</div>
+                                                <div class="col-4">Datetime: <span class="excel_datetime">${datetime}</span></div>
+                                                <div class="mx-2 d-none excel_account">${result.account}</div>
+                                                <div class="mx-2 d-none excel_name">${result.name}</div>
+                                                <div class="mx-2 d-none excel_social">${social}</div>
                                                 `+html_social+`
                                             </div>
                                         </div>
@@ -1088,7 +1332,7 @@
                                                 </button>
                                             </h2>
                                             <div id="video_collapse_user_id_${userId}" class="accordion-collapse collapse" aria-labelledby="heading_user_id_${userId}" data-bs-parent="#video_accordion_user_id_${userId}" style="">
-                                                <div id="video_item_of_user_${userId}" class="accordion-body">
+                                                <div id="video_item_of_user_${userId}" class="view_item_of_user accordion-body">
                                                     
                                                 </div>
                                             </div>
@@ -1123,8 +1367,10 @@
                                         <div status="`+status+`" class="card w-100 shadow-sm border-1 border p-3 mt-2 list_log_video">
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="mx-2">Round ${roundId}</div>
-                                                <div class="mx-2">Datetime: ${datetime}</div>
-                                                <div class="mx-2">${formattedDuration}</div>
+                                                <div class="mx-2">Datetime: <span class="excel_datetime">${datetime}</span></div>
+                                                <div class="mx-2"><span class="excel_countTime">${formattedDuration}</span></div>
+                                                <div class="mx-2 d-none excel_account">${result.account}</div>
+                                                <div class="mx-2 d-none excel_name">${result.name}</div>
                                             </div>
                                         </div>
                                     `;

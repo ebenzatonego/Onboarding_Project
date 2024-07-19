@@ -152,9 +152,10 @@ class LogsController extends Controller
         $log_web = DB::table('logs')
                 ->join('users', 'users.id', '=', 'logs.user_id')
                 ->select('logs.*', 'users.name' , 'users.account')
+                ->whereDate('logs.created_at', '=', '2024-07-06')
                 ->offset($offset)
                 ->limit($limit)
-                ->orderBy('id' , 'DESC')
+                ->orderBy('logs.id' , 'DESC')
                 ->get();
 
         return response()->json($log_web);

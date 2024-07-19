@@ -1139,6 +1139,8 @@
         let datetime_start = document.querySelector('#datetime_start').value;
         let datetime_end = document.querySelector('#datetime_end').value;
 
+        let status = document.querySelector('#status').value ;
+
         let show_start ;
         let show_end ;
 
@@ -1160,7 +1162,11 @@
             document.querySelector('#btn_cf_edit_data').disabled = false ;
         }
         else{
-            document.querySelector('#btn_cf_edit_data').disabled = true ;
+            if(!status){
+                document.querySelector('#btn_cf_edit_data').disabled = false ;
+            }else{
+                document.querySelector('#btn_cf_edit_data').disabled = true ;
+            }
         }
 
         let inputDateTime = document.getElementById('datetime_start').value;
@@ -1244,6 +1250,7 @@
             datetime_start.value = '';
             datetime_end.value = '';
             datetime_start.removeAttribute("readonly");
+            show_preview_date_start_end();
         }
 
     }

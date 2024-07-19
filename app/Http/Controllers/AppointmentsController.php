@@ -147,7 +147,14 @@ class AppointmentsController extends Controller
         $appointment = Appointment::findOrFail($id);
         $appointment->update($requestData);
 
-        return redirect('appointments')->with('flash_message', 'Appointment updated!');
+        if($requestData['type'] == 'อบรม'){
+           return redirect('/manage_appointment/train'); 
+        }
+        else{
+           return redirect('/manage_appointment/quiz'); 
+        }
+
+        // return redirect('appointments')->with('flash_message', 'Appointment updated!');
     }
 
     /**

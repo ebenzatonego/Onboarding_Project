@@ -2140,6 +2140,8 @@
         let datetime_start = document.querySelector('#datetime_start').value;
         let datetime_end = document.querySelector('#datetime_end').value;
 
+        let status = document.querySelector('#status').value ;
+
         let all_day = document.querySelector('#all_day').value;
         let date_start = document.querySelector('#date_start').value;
         let time_start = document.querySelector('#time_start').value;
@@ -2175,7 +2177,11 @@
             }
         }
         else{
-            document.querySelector('#btn_cf_edit_data').disabled = true ;
+            if(!status){
+                document.querySelector('#btn_cf_edit_data').disabled = false ;
+            }else{
+                document.querySelector('#btn_cf_edit_data').disabled = true ;
+            }
         }
 
         let inputDateTime = document.getElementById('datetime_start').value;
@@ -2259,6 +2265,8 @@
             datetime_start.value = '';
             datetime_end.value = '';
             datetime_start.removeAttribute("readonly");
+
+            show_preview_date_start_end();
         }
 
     }

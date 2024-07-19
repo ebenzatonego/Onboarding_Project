@@ -464,13 +464,24 @@
                         </a>
                     </li>
 
-                    <li class="">
+                    <li class="d-none">
                         <a href="{{ url('/log_web') }}" class="">
                             <div class="parent-icon">
                                 <i class="fa-solid fa-arrow-pointer"></i>
                             </div>
                             <div class="menu-title">
                                 LOG
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="d-none">
+                        <a href="{{ url('/log_delete') }}" class="">
+                            <div class="parent-icon">
+                                <i class="fa-solid fa-delete-right"></i>
+                            </div>
+                            <div class="menu-title">
+                                LOG Delete
                             </div>
                         </a>
                     </li>

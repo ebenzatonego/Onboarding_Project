@@ -396,7 +396,7 @@
 
 </style>
 
-<a id="goto_manage_appointment" href="{{ url('/manage_appointment') }}" class="d-none"></a>
+<a id="goto_manage_appointment" href="" class="d-none"></a>
 
 <!-- Modal for cropping -->
 <div class="modal fade" id="cropModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="cropModalLabel" aria-hidden="true">
@@ -1473,6 +1473,8 @@
         let datetime_start = document.querySelector('#datetime_start').value;
         let datetime_end = document.querySelector('#datetime_end').value;
 
+        let status = document.querySelector('#status').value ;
+
         let show_start ;
         let show_end ;
 
@@ -1494,7 +1496,11 @@
             document.querySelector('#btn_cf_edit_data').disabled = false ;
         }
         else{
-            document.querySelector('#btn_cf_edit_data').disabled = true ;
+            if(!status){
+                document.querySelector('#btn_cf_edit_data').disabled = false ;
+            }else{
+                document.querySelector('#btn_cf_edit_data').disabled = true ;
+            }
         }
 
         let inputDateTime = document.getElementById('datetime_start').value;
@@ -1578,6 +1584,8 @@
             datetime_start.value = '';
             datetime_end.value = '';
             datetime_start.removeAttribute("readonly");
+
+            show_preview_date_start_end();
         }
 
     }
@@ -1693,7 +1701,15 @@
         }).then(function(data){
             // console.log(data);
             if(data == 'success'){
-                document.querySelector('#goto_manage_appointment').click();
+
+                let btn_goto = document.querySelector('#goto_manage_appointment');
+                if(type == 'อบรม'){
+                   btn_goto.setAttribute('href' , "{{ url('/manage_appointment/train') }}")
+                }
+                else{
+                    btn_goto.setAttribute('href' , "{{ url('/manage_appointment/quiz') }}")
+                }
+                btn_goto.click();
             }
         }).catch(function(error){
             console.error(error);

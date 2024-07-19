@@ -20,6 +20,47 @@
         align-items: center;
         justify-content: center;
     }
+
+    /* checkbox*/
+    .cyberpunk-checkbox {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #30cfd0;
+  border-radius: 5px;
+  background-color: transparent;
+  display: inline-block;
+  position: relative;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.cyberpunk-checkbox:before {
+  content: "";
+  background-color: #30cfd0;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  transition: all 0.3s ease-in-out;
+}
+
+.cyberpunk-checkbox:checked:before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.cyberpunk-checkbox-label {
+  font-size: 18px;
+  color: #000;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+}
 </style>
 
 <div class="card border-top border-0 border-4 border-dark">
@@ -46,13 +87,25 @@
             </div>
 
             <div id="div_for_export" class="row mt-4 d-none">
-                <div class="col-4">
+                <div class="col-2">
+                    <label class="cyberpunk-checkbox-label">
+                        <input id="select_check_pdpa" type="checkbox" class="cyberpunk-checkbox" onclick ="search_data_in_card();">
+                        Check PDPA
+                    </label>
+                </div>
+                <div class="col-2">
+                    <label class="cyberpunk-checkbox-label">
+                        <input id="select_check_coc" type="checkbox" class="cyberpunk-checkbox" onclick ="search_data_in_card();">
+                        Check COC
+                    </label>
+                </div>
+                <div class="col-3">
                     <div class="input-group">
                         <span class="input-group-text bg-transparent"><i class="fa-solid fa-magnifying-glass"></i></span>
                         <input type="text" class="form-control border-start-0" id="search_account" placeholder="ค้นหาด้วยชื่อหรือรหัสตัวแทน" oninput="delay_search_data_in_card();">
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-3">
                     <select id="search_rank" class="form-select" onchange="search_data_in_card();">
                         <option selected="" value="">Choose Rank</option>
                         <option value="AG">AG</option>
@@ -71,7 +124,7 @@
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </div> -->
-                <div class="col-4">
+                <div class="col-2">
                     <button id="btn_export_excel" type="button" class="btn btn-outline-secondary float-end" onclick="exportExcel()">
                         Export Excel
                     </button>
@@ -147,13 +200,15 @@
             result.forEach(item => {
 
                 let html = `
-                    <div id_user="`+item.id+`" name_user="${item.name ? item.name : '-'}" account="${item.account ? item.account : '-'}" current_rank="${item.current_rank ? item.current_rank : '-'}" class="row member mt-2 mb-2">
+                    <div id_user="`+item.id+`" name_user="${item.name ? item.name : '-'}" account="${item.account ? item.account : '-'}" current_rank="${item.current_rank ? item.current_rank : '-'}" check_pdpa="${item.name ? item.check_pdpa : '-'}" check_coc="${item.name ? item.check_coc : '-'}" class="row member mt-2 mb-2">
                         <div class="col-1">
                             <center>
                                 <img style="width: 100%;" src="${item.photo ? item.photo : "{{ url('/img/icon/profile.png') }}"}" class="p-1" alt="">
                             </center>
                         </div>
                         <div class="col-4">
+                            <h6>check_pdpa : ${item.check_pdpa ? item.check_pdpa : '-'}</h6>
+                            <h6>check_coc : ${item.check_coc ? item.check_coc : '-'}</h6>
                             <h6>Name : ${item.name ? item.name : '-'}</h6>
                             <h6>Account : ${item.account ? item.account : '-'}</h6>
                             <h6>Nickname : ${item.nickname ? item.nickname : '-'}</h6> 
@@ -341,24 +396,24 @@ function delay_search_data_in_card() {
 }
 
 function search_data_in_card() {
+    let count_row = 0;
 
-    let count_row = 0 ;
-    // ดึงค่า input จาก search_account และ search_rank
+    // ดึงค่า input จาก search_account, search_rank, select_check_pdpa และ select_check_coc
     const searchAccount = document.getElementById('search_account').value.trim().toLowerCase();
     const searchRank = document.getElementById('search_rank').value.trim();
+    const select_check_pdpa = document.getElementById('select_check_pdpa').checked;
+    const select_check_coc = document.getElementById('select_check_coc').checked;
 
     // ดึงทุก div ที่มี class member
     const members = document.querySelectorAll('.member');
 
-    // ถ้าทั้ง searchAccount และ searchRank ว่าง ให้แสดงทุก member
-    // console.log(searchAccount);
-    // console.log(searchRank);
-    if (!searchAccount && !searchRank) {
+    // ถ้าทั้ง searchAccount, searchRank, select_check_pdpa และ select_check_coc ว่าง ให้แสดงทุก member
+    if (!searchAccount && !searchRank && !select_check_pdpa && !select_check_coc) {
         members.forEach(member => {
             member.classList.remove('d-none');
             count_row = count_row + 1;
         });
-        document.querySelector('#show_count_row').innerHTML = `${count_row.toLocaleString()}` ;
+        document.querySelector('#show_count_row').innerHTML = `${count_row.toLocaleString()}`;
         return;
     }
 
@@ -367,9 +422,13 @@ function search_data_in_card() {
         const nameUser = member.getAttribute('name_user').toLowerCase();
         const account = member.getAttribute('account').toLowerCase();
         const currentRank = member.getAttribute('current_rank');
+        const checkPdpa = member.getAttribute('check_pdpa') === 'Yes';
+        const checkCoc = member.getAttribute('check_coc') === 'Yes';
 
         let isAccountMatch = true;
         let isRankMatch = true;
+        let isPdpaMatch = true;
+        let isCocMatch = true;
 
         // ตรวจสอบ searchAccount ว่าไม่ว่างและค้นหาใน name_user และ account
         if (searchAccount) {
@@ -381,8 +440,18 @@ function search_data_in_card() {
             isRankMatch = currentRank === searchRank;
         }
 
+        // ตรวจสอบ select_check_pdpa
+        if (select_check_pdpa) {
+            isPdpaMatch = checkPdpa;
+        }
+
+        // ตรวจสอบ select_check_coc
+        if (select_check_coc) {
+            isCocMatch = checkCoc;
+        }
+
         // ถ้าเงื่อนไขตรงกันทั้งหมดให้แสดงผล
-        if (isAccountMatch && isRankMatch) {
+        if (isAccountMatch && isRankMatch && isPdpaMatch && isCocMatch) {
             member.classList.remove('d-none');
             count_row = count_row + 1;
         } else {
@@ -390,8 +459,10 @@ function search_data_in_card() {
         }
     });
 
-    document.querySelector('#show_count_row').innerHTML = `${count_row.toLocaleString()}` ;
+    document.querySelector('#show_count_row').innerHTML = `${count_row.toLocaleString()}`;
 }
+
+
 
 async function fetchUserData(userIds) {
     const chunkSize = 250;

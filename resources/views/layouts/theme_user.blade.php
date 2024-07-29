@@ -293,7 +293,7 @@
         max-width: 150px;
     }
 </style>
-<header>
+<header translate="no">
     <div class="loading-Az">
         <img src="{{url('img/icon/Az Web_loading speed.gif')}}" alt="">
     </div>
@@ -395,7 +395,7 @@
         </nav>
     </div>
 </header>
-<div class="container container-content my-4">
+<div translate="no" class="container container-content my-4">
     <div class="row row-content">
 
         <div class="div-btn-back d-none">

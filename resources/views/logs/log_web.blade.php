@@ -26,7 +26,7 @@
             </div>
 
             <div id="div_for_export" class="row mt-4 d-none">
-                <div class="col-4">
+                <div class="col-3">
                     <div class="input-group">
                         <span class="input-group-text bg-transparent"><i class="fa-solid fa-magnifying-glass"></i></span>
                         <input type="text" class="form-control border-start-0" id="search_account" placeholder="ค้นหาด้วยชื่อหรือรหัสตัวแทน" oninput="delay_search_data_in_card();">
@@ -41,15 +41,21 @@
                         <option value="member">member</option>
                     </select>
                 </div>
-                <div class="col-3">
+                <div class="col-2">
                     <div class="input-group">
                         <span class="input-group-text bg-transparent"><i class="fa-solid fa-magnifying-glass"></i></span>
-                        <input type="text" class="form-control border-start-0" id="search_log_content" placeholder="ค้นหา Log Content" oninput="delay_search_data_in_card();">
+                        <input type="text" class="form-control border-start-0" id="search_log_content" placeholder="Log Content" oninput="delay_search_data_in_card();">
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="input-group">
+                        <span class="input-group-text bg-transparent"><i class="fa-solid fa-magnifying-glass"></i></span>
+                        <input type="text" class="form-control border-start-0" id="search_current_rank" placeholder="Rank" oninput="delay_search_data_in_card();">
                     </div>
                 </div>
                 <div class="col-3">
                     <button id="btn_export_excel" type="button" class="btn btn-outline-secondary float-end" onclick="exportExcel()">
-                        Export Excel
+                        Export
                     </button>
                 </div>
             </div>
@@ -58,11 +64,12 @@
         <hr>
         <div class="col-12 mt-2">
         	<div class="row mb-2">
-                <div class="col-3"><h6>Datetime</h6></div>
-                <div class="col-3"><h6>Log Content</h6></div>
+                <div class="col-2"><h6>Datetime</h6></div>
+                <div class="col-2"><h6>Log Content</h6></div>
                 <div class="col-2"><h6>Account</h6></div>
                 <div class="col-2"><h6>Name</h6></div>
                 <div class="col-2"><h6>Role</h6></div>
+                <div class="col-2"><h6>Rank</h6></div>
             </div>
             <div id="content_tbody" class="card-body p-0">
                 <!-- content_tbody -->
@@ -115,14 +122,15 @@
 				let formattedDateTime = moment(createdAtText).format('DD/MM/YYYY HH:mm');
 
 				let html = `
-				    <div name_user="${item.name}" account="${item.account}" role="${item.role}" log_content="${item.log_content}" class="log-item data_log_web">
+				    <div name_user="${item.name}" account="${item.account}" role="${item.role}" log_content="${item.log_content}" current_rank="${item.current_rank}" class="log-item data_log_web">
 				        <div class="card w-100 shadow-sm border-1 border p-3 mt-1">
 				            <div class="row view_item_of_user">
-				                <div class="col-3 excel_DateTime">${formattedDateTime}</div>
-				                <div class="col-3 excel_log_content">${item.log_content}</div>
+				                <div class="col-2 excel_DateTime">${formattedDateTime}</div>
+				                <div class="col-2 excel_log_content">${item.log_content}</div>
 				                <div class="col-2 excel_account">${item.account}</div>
 				                <div class="col-2 excel_name">${item.name}</div>
-				                <div class="col-2 excel_role">${item.role}</div>
+                                <div class="col-2 excel_role">${item.role}</div>
+				                <div class="col-2 excel_current_rank">${item.current_rank}</div>
 				            </div>
 				        </div>
 				    </div>
@@ -159,61 +167,69 @@
 	function search_data_in_card() {
 	    // console.log('search_data_in_card');
 	    let count_row = 0;
-	    
-	    // ดึงค่า input จาก search_account, search_role และ search_log_content
-	    const searchAccount = document.getElementById('search_account').value.trim().toLowerCase();
-	    const searchRole = document.getElementById('search_role').value.trim().toLowerCase();
-	    const searchLogContent = document.getElementById('search_log_content').value.trim().toLowerCase();
 
-	    // ดึงทุก div ที่มี class data_log_web
-	    const data_log_web = document.querySelectorAll('.data_log_web');
+        // ดึงค่า input จาก search_account, search_role, search_log_content และ search_current_rank
+        const searchAccount = document.getElementById('search_account').value.trim().toLowerCase();
+        const searchRole = document.getElementById('search_role').value.trim().toLowerCase();
+        const searchLogContent = document.getElementById('search_log_content').value.trim().toLowerCase();
+        const searchCurrentRank = document.getElementById('search_current_rank').value.trim().toLowerCase();
 
-	    // ถ้าทั้ง searchAccount, searchRole และ searchLogContent ว่าง ให้แสดงทุก data_log
-	    if (!searchAccount && !searchRole && !searchLogContent) {
-	        data_log_web.forEach(data_log => {
-	            data_log.classList.remove('d-none');
-	            count_row = count_row + 1;
-	        });
-	        document.querySelector('#show_count_row').innerHTML = `${count_row.toLocaleString()}`;
-	        return;
-	    }
+        // ดึงทุก div ที่มี class data_log_web
+        const data_log_web = document.querySelectorAll('.data_log_web');
 
-	    // วนลูปตรวจสอบแต่ละ data_log
-	    data_log_web.forEach(data_log => {
-	        const nameUser = data_log.getAttribute('name_user').toLowerCase();
-	        const account = data_log.getAttribute('account').toLowerCase();
-	        const currentRole = data_log.getAttribute('role').toLowerCase();
-	        const logContent = data_log.getAttribute('log_content').toLowerCase();
+        // ถ้าทั้ง searchAccount, searchRole, searchLogContent และ searchCurrentRank ว่าง ให้แสดงทุก data_log
+        if (!searchAccount && !searchRole && !searchLogContent && !searchCurrentRank) {
+            data_log_web.forEach(data_log => {
+                data_log.classList.remove('d-none');
+                count_row = count_row + 1;
+            });
+            document.querySelector('#show_count_row').innerHTML = `${count_row.toLocaleString()}`;
+            return;
+        }
 
-	        let isAccountMatch = true;
-	        let isRankMatch = true;
-	        let isLogContentMatch = true;
+        // วนลูปตรวจสอบแต่ละ data_log
+        data_log_web.forEach(data_log => {
+            const nameUser = data_log.getAttribute('name_user').toLowerCase();
+            const account = data_log.getAttribute('account').toLowerCase();
+            const currentRole = data_log.getAttribute('role').toLowerCase();
+            const logContent = data_log.getAttribute('log_content').toLowerCase();
+            const currentRank = data_log.getAttribute('current_rank').toLowerCase();
 
-	        // ตรวจสอบ searchAccount ว่าไม่ว่างและค้นหาใน name_user และ account
-	        if (searchAccount) {
-	            isAccountMatch = nameUser.includes(searchAccount) || account.includes(searchAccount);
-	        }
+            let isAccountMatch = true;
+            let isRoleMatch = true;
+            let isLogContentMatch = true;
+            let isCurrentRankMatch = true;
 
-	        // ตรวจสอบ searchRole ว่าไม่ว่างและค้นหาใน current_role
-	        if (searchRole) {
-	            isRankMatch = currentRole === searchRole;
-	        }
+            // ตรวจสอบ searchAccount ว่าไม่ว่างและค้นหาใน name_user และ account
+            if (searchAccount) {
+                isAccountMatch = nameUser.includes(searchAccount) || account.includes(searchAccount);
+            }
 
-	        // ตรวจสอบ searchLogContent ว่าไม่ว่างและค้นหาใน log_content
-	        if (searchLogContent) {
-	            isLogContentMatch = logContent.includes(searchLogContent);
-	        }
+            // ตรวจสอบ searchRole ว่าไม่ว่างและค้นหาใน current_role
+            if (searchRole) {
+                isRoleMatch = currentRole === searchRole;
+            }
 
-	        // ถ้าเงื่อนไขตรงกันทั้งหมดให้แสดงผล
-	        if (isAccountMatch && isRankMatch && isLogContentMatch) {
-	            data_log.classList.remove('d-none');
-	            count_row = count_row + 1;
-	        } else {
-	            data_log.classList.add('d-none');
-	        }
-	    });
+            // ตรวจสอบ searchLogContent ว่าไม่ว่างและค้นหาใน log_content
+            if (searchLogContent) {
+                isLogContentMatch = logContent.includes(searchLogContent);
+            }
 
-	    document.querySelector('#show_count_row').innerHTML = `${count_row.toLocaleString()}`;
+            // ตรวจสอบ searchCurrentRank ว่าไม่ว่างและค้นหาใน current_rank
+            if (searchCurrentRank) {
+                isCurrentRankMatch = currentRank.includes(searchCurrentRank);
+            }
+
+            // ถ้าเงื่อนไขตรงกันทั้งหมดให้แสดงผล
+            if (isAccountMatch && isRoleMatch && isLogContentMatch && isCurrentRankMatch) {
+                data_log.classList.remove('d-none');
+                count_row = count_row + 1;
+            } else {
+                data_log.classList.add('d-none');
+            }
+        });
+
+        document.querySelector('#show_count_row').innerHTML = `${count_row.toLocaleString()}`;
 	}
 
 	function exportExcel() {
@@ -240,6 +256,7 @@
                     const excelAccount = viewItem.querySelector('.excel_account').textContent;
                     const excelName = viewItem.querySelector('.excel_name').textContent;
                     const excelRole = viewItem.querySelector('.excel_role').textContent;
+                    const excelCurrentRank = viewItem.querySelector('.excel_current_rank').textContent;
 
                     excelData[sheetName].push({
                         Datetime: excelDatetime,
@@ -247,6 +264,7 @@
                         Account: excelAccount,
                         Name: excelName,
                         Role: excelRole,
+                        CurrentRank: excelCurrentRank,
                     });
                 });
             });

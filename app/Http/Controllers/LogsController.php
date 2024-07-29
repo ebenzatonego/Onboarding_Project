@@ -151,7 +151,7 @@ class LogsController extends Controller
 
         $log_web = DB::table('logs')
                 ->join('users', 'users.id', '=', 'logs.user_id')
-                ->select('logs.*', 'users.name' , 'users.account')
+                ->select('logs.*', 'users.name' , 'users.account' , 'users.current_rank')
                 // ->whereDate('logs.created_at', '>=', '2024-07-07')
                 ->offset($offset)
                 ->limit($limit)

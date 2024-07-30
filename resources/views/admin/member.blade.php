@@ -107,7 +107,7 @@
                 </div>
                 <div class="col-3">
                     <select id="search_rank" class="form-select" onchange="search_data_in_card();">
-                        <option selected="" value="">Choose Rank</option>
+                        <option selected="" value="">All Rank</option>
                         <option value="AG">AG</option>
                         <option value="UM">UM</option>
                         <option value="SUM">SUM</option>

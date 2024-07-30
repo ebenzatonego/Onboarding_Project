@@ -34,7 +34,7 @@
                 </div>
                 <div class="col-2">
                     <select id="search_role" class="form-select" onchange="search_data_in_card();">
-                        <option selected="" value="">Choose Role</option>
+                        <option selected="" value="">All Rank</option>
                         <option value="Super-admin">Super-admin</option>
                         <option value="Admin">Admin</option>
                         <option value="staff">staff</option>

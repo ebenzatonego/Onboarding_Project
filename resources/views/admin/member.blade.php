@@ -84,6 +84,9 @@
                         แสดงผล <span id="show_count_row"></span>
                     </div>
                 </div>
+                <div class="col-12">
+                    <h6 class="text-danger"><b id="b_loading"></b></h6>
+                </div>
             </div>
 
             <div id="div_for_export" class="row mt-4 d-none">
@@ -130,9 +133,7 @@
                     </button>
                 </div>
             </div>
-
         </div>
-        <h6 class="text-danger"><b id="b_loading"></b></h6>
         <hr>
         <div class="col-12 mt-2">
             <div id="content_tbody" class="card-body p-0">
@@ -399,7 +400,7 @@ function delay_search_data_in_card() {
     }, 1000);
 }
 
-function search_data_in_card() {
+async function search_data_in_card() {
 
     document.querySelector('#b_loading').innerHTML = 'กำลังโหลด..' ;
     let count_row = 0;
@@ -425,7 +426,7 @@ function search_data_in_card() {
     }
 
     // วนลูปตรวจสอบแต่ละ member
-    members.forEach(member => {
+    await members.forEach(member => {
         const nameUser = member.getAttribute('name_user').toLowerCase();
         const account = member.getAttribute('account').toLowerCase();
         const currentRank = member.getAttribute('current_rank');

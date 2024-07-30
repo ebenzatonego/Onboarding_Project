@@ -401,8 +401,7 @@ function delay_search_data_in_card() {
 }
 
 async function search_data_in_card() {
-
-    document.querySelector('#b_loading').innerHTML = 'กำลังโหลด..' ;
+    document.querySelector('#b_loading').innerHTML = 'กำลังโหลด..';
     let count_row = 0;
 
     // ดึงค่า input จาก search_account, search_rank, select_check_pdpa และ select_check_coc
@@ -418,15 +417,15 @@ async function search_data_in_card() {
     if (!searchAccount && !searchRank && !select_check_pdpa && !select_check_coc) {
         members.forEach(member => {
             member.classList.remove('d-none');
-            count_row = count_row + 1;
+            count_row++;
         });
         document.querySelector('#show_count_row').innerHTML = `${count_row.toLocaleString()}`;
-        document.querySelector('#b_loading').innerHTML = '' ;
+        document.querySelector('#b_loading').innerHTML = '';
         return;
     }
 
     // วนลูปตรวจสอบแต่ละ member
-    await members.forEach(member => {
+    for (const member of members) {
         const nameUser = member.getAttribute('name_user').toLowerCase();
         const account = member.getAttribute('account').toLowerCase();
         const currentRank = member.getAttribute('current_rank');
@@ -461,16 +460,16 @@ async function search_data_in_card() {
         // ถ้าเงื่อนไขตรงกันทั้งหมดให้แสดงผล
         if (isAccountMatch && isRankMatch && isPdpaMatch && isCocMatch) {
             member.classList.remove('d-none');
-            count_row = count_row + 1;
+            count_row++;
         } else {
             member.classList.add('d-none');
         }
-    });
+    }
 
     document.querySelector('#show_count_row').innerHTML = `${count_row.toLocaleString()}`;
-    document.querySelector('#b_loading').innerHTML = '' ;
-
+    document.querySelector('#b_loading').innerHTML = '';
 }
+
 
 
 

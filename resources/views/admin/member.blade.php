@@ -89,13 +89,13 @@
             <div id="div_for_export" class="row mt-4 d-none">
                 <div class="col-2">
                     <label class="cyberpunk-checkbox-label">
-                        <input id="select_check_pdpa" type="checkbox" class="cyberpunk-checkbox" onclick ="search_data_in_card();">
+                        <input id="select_check_pdpa" type="checkbox" class="cyberpunk-checkbox" onclick ="delay_search_data_in_card();">
                         Check PDPA
                     </label>
                 </div>
                 <div class="col-2">
                     <label class="cyberpunk-checkbox-label">
-                        <input id="select_check_coc" type="checkbox" class="cyberpunk-checkbox" onclick ="search_data_in_card();">
+                        <input id="select_check_coc" type="checkbox" class="cyberpunk-checkbox" onclick ="delay_search_data_in_card();">
                         Check COC
                     </label>
                 </div>
@@ -132,6 +132,7 @@
             </div>
 
         </div>
+        <h6 class="text-danger"><b id="b_loading"></b></h6>
         <hr>
         <div class="col-12 mt-2">
             <div id="content_tbody" class="card-body p-0">
@@ -396,6 +397,8 @@ function delay_search_data_in_card() {
 }
 
 function search_data_in_card() {
+
+    document.querySelector('#b_loading').innerHTML = 'กำลังโหลด..' ;
     let count_row = 0;
 
     // ดึงค่า input จาก search_account, search_rank, select_check_pdpa และ select_check_coc
@@ -414,6 +417,7 @@ function search_data_in_card() {
             count_row = count_row + 1;
         });
         document.querySelector('#show_count_row').innerHTML = `${count_row.toLocaleString()}`;
+        document.querySelector('#b_loading').innerHTML = '' ;
         return;
     }
 
@@ -460,6 +464,8 @@ function search_data_in_card() {
     });
 
     document.querySelector('#show_count_row').innerHTML = `${count_row.toLocaleString()}`;
+    document.querySelector('#b_loading').innerHTML = '' ;
+
 }
 
 

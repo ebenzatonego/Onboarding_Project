@@ -185,6 +185,7 @@
     // ฟังก์ชันการดึงข้อมูล
     async function fetchMembers(page) {
         countListMember.textContent = 'กำลังโหลด...'; // แสดงสถานะการโหลด
+        document.querySelector('#b_loading').innerHTML = 'กำลังโหลด..' ;
         // console.log('fetchMembers > ' + page);
         
         if (!hasMoreData) return;
@@ -267,12 +268,14 @@
                 fetchMembers(currentPage); // เรียกตัวเองซ้ำจนกว่าจะดึงข้อมูลครบ
             } else {
                 countListMember.textContent = `สมาชิกทั้งหมด: ${totalMembers.toLocaleString()}`; // อัพเดทจำนวนสมาชิก
+                document.querySelector('#b_loading').innerHTML = '' ;
                 document.querySelector('#show_count_row').innerHTML = `${totalMembers.toLocaleString()}` ;
                 document.querySelector('#div_for_export').classList.remove('d-none');
             }
         } catch (error) {
             console.error('Error fetching members:', error);
             countListMember.textContent = 'เกิดข้อผิดพลาดในการโหลดข้อมูล'; // แสดงข้อความเมื่อเกิดข้อผิดพลาด
+            document.querySelector('#b_loading').innerHTML = 'เกิดข้อผิดพลาดในการโหลดข้อมูล' ;
         }
     }
 

@@ -400,9 +400,11 @@ function delay_search_data_in_card() {
     }, 1000);
 }
 
-async function search_data_in_card() {
+function search_data_in_card() {
 
-    document.querySelector('#b_loading').innerHTML = 'กำลังโหลด..';
+    document.querySelector('#b_loading').innerHTML = 'กำลังโหลด..' ;
+    console.log("b_loading >> Open");
+
     let count_row = 0;
 
     // ดึงค่า input จาก search_account, search_rank, select_check_pdpa และ select_check_coc
@@ -418,64 +420,61 @@ async function search_data_in_card() {
     if (!searchAccount && !searchRank && !select_check_pdpa && !select_check_coc) {
         members.forEach(member => {
             member.classList.remove('d-none');
-            count_row += 1;
+            count_row = count_row + 1;
         });
         document.querySelector('#show_count_row').innerHTML = `${count_row.toLocaleString()}`;
-        document.querySelector('#b_loading').innerHTML = '';
+        document.querySelector('#b_loading').innerHTML = '' ;
+        console.log("b_loading >> colse");
         return;
     }
 
     // วนลูปตรวจสอบแต่ละ member
-    const promises = [];
-    for (const member of members) {
-        promises.push((async () => {
-            const nameUser = member.getAttribute('name_user').toLowerCase();
-            const account = member.getAttribute('account').toLowerCase();
-            const currentRank = member.getAttribute('current_rank');
-            const checkPdpa = member.getAttribute('check_pdpa') === 'Yes';
-            const checkCoc = member.getAttribute('check_coc') === 'Yes';
+    members.forEach(member => {
+        const nameUser = member.getAttribute('name_user').toLowerCase();
+        const account = member.getAttribute('account').toLowerCase();
+        const currentRank = member.getAttribute('current_rank');
+        const checkPdpa = member.getAttribute('check_pdpa') === 'Yes';
+        const checkCoc = member.getAttribute('check_coc') === 'Yes';
 
-            let isAccountMatch = true;
-            let isRankMatch = true;
-            let isPdpaMatch = true;
-            let isCocMatch = true;
+        let isAccountMatch = true;
+        let isRankMatch = true;
+        let isPdpaMatch = true;
+        let isCocMatch = true;
 
-            // ตรวจสอบ searchAccount ว่าไม่ว่างและค้นหาใน name_user และ account
-            if (searchAccount) {
-                isAccountMatch = nameUser.includes(searchAccount) || account.includes(searchAccount);
-            }
+        // ตรวจสอบ searchAccount ว่าไม่ว่างและค้นหาใน name_user และ account
+        if (searchAccount) {
+            isAccountMatch = nameUser.includes(searchAccount) || account.includes(searchAccount);
+        }
 
-            // ตรวจสอบ searchRank ว่าไม่ว่างและค้นหาใน current_rank
-            if (searchRank) {
-                isRankMatch = currentRank === searchRank;
-            }
+        // ตรวจสอบ searchRank ว่าไม่ว่างและค้นหาใน current_rank
+        if (searchRank) {
+            isRankMatch = currentRank === searchRank;
+        }
 
-            // ตรวจสอบ select_check_pdpa
-            if (select_check_pdpa) {
-                isPdpaMatch = checkPdpa;
-            }
+        // ตรวจสอบ select_check_pdpa
+        if (select_check_pdpa) {
+            isPdpaMatch = checkPdpa;
+        }
 
-            // ตรวจสอบ select_check_coc
-            if (select_check_coc) {
-                isCocMatch = checkCoc;
-            }
+        // ตรวจสอบ select_check_coc
+        if (select_check_coc) {
+            isCocMatch = checkCoc;
+        }
 
-            // ถ้าเงื่อนไขตรงกันทั้งหมดให้แสดงผล
-            if (isAccountMatch && isRankMatch && isPdpaMatch && isCocMatch) {
-                member.classList.remove('d-none');
-                count_row += 1;
-            } else {
-                member.classList.add('d-none');
-            }
-        })());
-    }
-
-    await Promise.all(promises);
+        // ถ้าเงื่อนไขตรงกันทั้งหมดให้แสดงผล
+        if (isAccountMatch && isRankMatch && isPdpaMatch && isCocMatch) {
+            member.classList.remove('d-none');
+            count_row = count_row + 1;
+        } else {
+            member.classList.add('d-none');
+        }
+    });
 
     document.querySelector('#show_count_row').innerHTML = `${count_row.toLocaleString()}`;
-    document.querySelector('#b_loading').innerHTML = '';
-}
+    document.querySelector('#b_loading').innerHTML = '' ;
+    console.log("b_loading >> close");
 
+}
 
 
 

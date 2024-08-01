@@ -161,4 +161,29 @@ class LogsController extends Controller
         return response()->json($log_web);
 
     }
+
+    function log_delete(){
+        return view('log_delete_content.index');
+    }
+    function get_list_log_web_delete(Request $request) {
+        $limit = $request->input('limit', 350); // จำนวนแถวต่อครั้ง, ค่าเริ่มต้นคือ 350
+        $page = $request->input('page', 1); // หน้าที่จะดึงข้อมูล
+        $offset = ($page - 1) * $limit;
+        
+        // $log_web = Log::offset($offset)
+        //                ->limit($limit)
+        //                ->get();
+
+        $log_web = DB::table('log_delete_contents')
+                ->join('users', 'users.id', '=', 'log_delete_contents.user_id')
+                ->select('log_delete_contents.*', 'users.name' , 'users.account' , 'users.current_rank', 'users.role')
+                // ->whereDate('log_delete_contents.created_at', '>=', '2024-07-07')
+                ->offset($offset)
+                ->limit($limit)
+                ->orderBy('log_delete_contents.id' , 'DESC')
+                ->get();
+
+        return response()->json($log_web);
+
+    }
 }

@@ -44,6 +44,7 @@ Route::get('/get_list_log_web', 'LogsController@get_list_log_web');
 Route::get('/get_group_manager', 'AdminController@get_group_manager');
 Route::get('/get_area_supervisor', 'AdminController@get_area_supervisor');
 Route::post('/edit_area_super_visor', 'AdminController@edit_area_super_visor');
+Route::get('/get_list_log_web_delete', 'LogsController@get_list_log_web_delete');
 
 
 // Video INTRO

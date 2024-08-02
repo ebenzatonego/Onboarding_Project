@@ -189,7 +189,7 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
 
     // LOG
     Route::get('log_web', 'LogsController@log_web');
-Route::get('log_delete', 'LogsController@log_delete');
+Route::get('log_delete', 'LogsContro    ller@log_delete');
 });
 
 // member & staff
@@ -198,6 +198,7 @@ Route::middleware(['auth', 'role:Super-admin,Admin,staff,member'])->group(functi
     // News
     Route::get('page_news', 'NewsController@index');
     Route::get('news_show/{id}', 'NewsController@show');
+    Route::get('/log_news/{id}', 'NewsController@log_news');
 
     // training
     Route::get('/training_show/{id}', 'TrainingController@show');
@@ -207,15 +208,18 @@ Route::middleware(['auth', 'role:Super-admin,Admin,staff,member'])->group(functi
 
     // Appointments
     Route::get('/show_appointment_train/{id}', 'AppointmentsController@show_appointment_train');
+    Route::get('/log_appointments/{id}', 'AppointmentsController@log_appointments');
 
     // activitys
     Route::get('page_activitys', 'ActivitysController@index');
     Route::get('activitys_show/{id}', 'ActivitysController@show');
+    Route::get('/log_activitys/{id}', 'ActivitysController@log_activitys');
 
     // products
     Route::get('/page_products', 'ProductsController@index');
     Route::get('/product_show/{id}', 'ProductsController@show');
     Route::get('/page_products_fav', 'ProductsController@page_products_fav');
+    Route::get('/log_products/{id}', 'ProductsController@log_products');
 
     // Tools
     Route::get('/tools', 'Tools_appsController@index');

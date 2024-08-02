@@ -828,5 +828,20 @@ class ActivitysController extends Controller
         return 'success' ;
         
     }
+    public function log_activitys($id)
+    {
+        // $training = Training::findOrFail($id);
+        $activity = DB::table('activitys')
+                ->join('activity_types', 'activity_types.id', '=', 'activitys.activity_type_id')
+                ->leftJoin('users', 'users.id', '=', 'activitys.creator')
+                ->where('activitys.id' , $id)
+                ->select('activitys.*',
+                    DB::raw('SUBSTRING(REGEXP_REPLACE(REPLACE(activitys.detail, "&nbsp;", " "), "<[^>]*>", ""), 1, 350) as detail'),
+                    'activity_types.name_type',
+                    'users.name as name_creator',
+                )
+                ->first();
 
+        return view('activitys.log_activitys', compact('activity'));
+    }
 }

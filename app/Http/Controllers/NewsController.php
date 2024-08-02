@@ -827,4 +827,20 @@ class NewsController extends Controller
 
     }
 
+    public function log_news($id)
+    {
+        // $training = Training::findOrFail($id);
+        $news = DB::table('news')
+                ->join('news_types', 'news_types.id', '=', 'news.news_type_id')
+                ->leftJoin('users', 'users.id', '=', 'news.creator')
+                ->where('news.id' , $id)
+                ->select('news.*',
+                    DB::raw('SUBSTRING(REGEXP_REPLACE(REPLACE(news.detail, "&nbsp;", " "), "<[^>]*>", ""), 1, 350) as detail'),
+                    'news_types.name_type',
+                    'users.name as name_creator',
+                )
+                ->first();
+
+        return view('news.log_news', compact('news'));
+    }
 }

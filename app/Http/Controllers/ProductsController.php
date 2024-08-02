@@ -868,4 +868,21 @@ class ProductsController extends Controller
         return 'success' ;
 
     }
+
+    public function log_products($id)
+    {
+        // $product = Training::findOrFail($id);
+        $product = DB::table('products')
+                ->join('product_types', 'product_types.id', '=', 'products.product_type_id')
+                ->leftJoin('users', 'users.id', '=', 'products.creator')
+                ->where('products.id' , $id)
+                ->select('products.*',
+                    DB::raw('SUBSTRING(REGEXP_REPLACE(REPLACE(products.detail, "&nbsp;", " "), "<[^>]*>", ""), 1, 350) as detail'),
+                    'product_types.name_type',
+                    'users.name as name_creator',
+                )
+                ->first();
+
+        return view('products.log_products', compact('product'));
+    }
 }

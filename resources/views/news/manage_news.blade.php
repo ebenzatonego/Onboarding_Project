@@ -603,7 +603,12 @@
                                     @endif
                                   @endif
                                 </div>
-                                <div class="col-6 mt-2">
+                                <div class="col-3 mt-2 d-">
+                                  <a href="{{ url('/log_news') }}/`+result['data_news'][i].id+`" class="btn btn-sm btn-secondary w-100">
+                                    LOG
+                                  </a>
+                                </div>
+                                <div class="col-3 mt-2">
                                   <form method="POST" action="{{ url('/news') }}/`+result['data_news'][i].id+`" accept-charset="UTF-8" style="display:inline" onsubmit="return confirmDelete(event, this)">
                                       {{ method_field('DELETE') }}
                                       {{ csrf_field() }}

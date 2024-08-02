@@ -763,4 +763,21 @@ class AppointmentsController extends Controller
         return 'success' ;
 
     }
+
+    public function log_appointments($id)
+    {
+        // $appointment = appointment::findOrFail($id);
+        $appointment = DB::table('appointments')
+                // ->join('appointment_types', 'appointment_types.id', '=', 'appointments.appointment_type_id')
+                ->leftJoin('users', 'users.id', '=', 'appointments.creator')
+                ->where('appointments.id' , $id)
+                ->select('appointments.*',
+                    DB::raw('SUBSTRING(REGEXP_REPLACE(REPLACE(appointments.detail, "&nbsp;", " "), "<[^>]*>", ""), 1, 350) as detail'),
+                    // 'appointment_types.type_article',
+                    'users.name as name_creator',
+                )
+                ->first();
+
+        return view('appointments.log_appointment', compact('appointment'));
+    }
 }

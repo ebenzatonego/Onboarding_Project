@@ -532,7 +532,12 @@
                                     <i class="fa-solid fa-money-check-pen"></i> ดูข้อมูล / แก้ไขข้อมูล
                                   </a>
                                 </div>
-                                <div class="col-12 mt-2" >
+                                <div class="col-6 mt-2" >
+                                  <a href="{{ url('/log_appointments') }}/`+result['data_appointments'][i].id+`" class="w-100 btn btn-sm btn-secondary w-100">
+                                    LOG
+                                  </a>
+                              </div>
+                                <div class="col-6 mt-2" >
                                   <form method="POST" action="{{ url('/appointments') }}/`+result['data_appointments'][i].id+`" accept-charset="UTF-8" style="display:inline" onsubmit="return confirmDelete(event, this)">
                                       {{ method_field('DELETE') }}
                                       {{ csrf_field() }}

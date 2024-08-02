@@ -723,116 +723,123 @@
   	function get_log_view(){
         return new Promise((resolve) => {
       		// ดึงข้อมูล JSON จาก Blade Template
-    	    let db_log_view = @json($appointment->user_view);
 
-    	    // แปลง JSON เป็นอาร์เรย์ JavaScript
-    	    let logViewArray = JSON.parse(db_log_view);
+            if("{{ $appointment->user_view }}"){
 
-    	    // ตรวจสอบค่าในคอนโซล
-    	    // console.log(logViewArray);
+        	    let db_log_view = @json($appointment->user_view);
 
-    	    let content_logs_view = document.querySelector('#content_logs_view');
-    	    	content_logs_view.innerHTML = '';
+        	    // แปลง JSON เป็นอาร์เรย์ JavaScript
+        	    let logViewArray = JSON.parse(db_log_view);
 
-    	    let html_heading ;
+        	    // ตรวจสอบค่าในคอนโซล
+        	    // console.log(logViewArray);
 
-    	    if(logViewArray){
-    	    	for (let userId in logViewArray) {
-    			    // แสดงชื่อผู้ใช้หรือข้อมูลอื่นที่ต้องการแสดง
-    			    // console.log(`User ID: ${userId}`);
+        	    let content_logs_view = document.querySelector('#content_logs_view');
+        	    	content_logs_view.innerHTML = '';
 
-    			    fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
-    			      	.then(response => response.json())
-    			      	.then(result => {
-    			          	// console.log(result);
+        	    let html_heading ;
 
-    			          	if(result){
+        	    if(logViewArray){
+        	    	for (let userId in logViewArray) {
+        			    // แสดงชื่อผู้ใช้หรือข้อมูลอื่นที่ต้องการแสดง
+        			    // console.log(`User ID: ${userId}`);
 
-    			          		let roundCount = Object.keys(logViewArray[userId]).length;
+        			    fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+        			      	.then(response => response.json())
+        			      	.then(result => {
+        			          	// console.log(result);
 
-    						    html_heading = `
-    					  			<div name_user="`+result.name+`" account="`+result.account+`" class="log-item accordion" id="view_accordion_user_id_${userId}">
-    									<div class="accordion-item">
-    										<h2 class="accordion-header" id="view_heading_user_id_${userId}">
-    								  			<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#view_collapse_user_id_${userId}" aria-expanded="false" aria-controls="view_collapse_user_id_${userId}">
-    												`+result.account+` `+result.name+` (`+roundCount+` ครั้ง)
-    								  			</button>
-    										</h2>
-    										<div id="view_collapse_user_id_${userId}" class="accordion-collapse collapse" aria-labelledby="view_heading_user_id_${userId}" data-bs-parent="#view_accordion_user_id_${userId}" style="">
-    											<div id="view_item_of_user_${userId}" class="view_item_of_user accordion-body">
-    												
-    											</div>
-    										</div>
-    									</div>
-    								</div>
-    							`;
-                    			content_logs_view.insertAdjacentHTML('beforeend', html_heading); // แทรกล่างสุด
+        			          	if(result){
 
-                    			let item_of_user = document.querySelector('#view_item_of_user_'+userId);
-                    			// วนลูปเข้าไปยังรอบการดูของผู้ใช้
-    						    for (let roundId in logViewArray[userId]) {
-    						        let datetime = logViewArray[userId][roundId].datetime;
-    						        // console.log(`Round ID: ${roundId}, Datetime: ${datetime}`);
+        			          		let roundCount = Object.keys(logViewArray[userId]).length;
 
-    						        let html_item_of_user = `
-    						        	<div class="card w-100 shadow-sm border-1 border p-3 mt-2">
-    									    <div class="d-flex justify-content-start">
-    									        <div class="mx-2">Round ${roundId}</div>
-                                                <div class="mx-2">Datetime: <span class="excel_datetime">${datetime}</span></div>
-                                                <div class="mx-2 d-none excel_account">${result.account}</div>
-    									        <div class="mx-2 d-none excel_name">${result.name}</div>
-    									    </div>
-    									</div>
-    						        `;
-                    				item_of_user.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+        						    html_heading = `
+        					  			<div name_user="`+result.name+`" account="`+result.account+`" class="log-item accordion" id="view_accordion_user_id_${userId}">
+        									<div class="accordion-item">
+        										<h2 class="accordion-header" id="view_heading_user_id_${userId}">
+        								  			<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#view_collapse_user_id_${userId}" aria-expanded="false" aria-controls="view_collapse_user_id_${userId}">
+        												`+result.account+` `+result.name+` (`+roundCount+` ครั้ง)
+        								  			</button>
+        										</h2>
+        										<div id="view_collapse_user_id_${userId}" class="accordion-collapse collapse" aria-labelledby="view_heading_user_id_${userId}" data-bs-parent="#view_accordion_user_id_${userId}" style="">
+        											<div id="view_item_of_user_${userId}" class="view_item_of_user accordion-body">
+        												
+        											</div>
+        										</div>
+        									</div>
+        								</div>
+        							`;
+                        			content_logs_view.insertAdjacentHTML('beforeend', html_heading); // แทรกล่างสุด
 
-    						    }
-    			          	}
+                        			let item_of_user = document.querySelector('#view_item_of_user_'+userId);
+                        			// วนลูปเข้าไปยังรอบการดูของผู้ใช้
+        						    for (let roundId in logViewArray[userId]) {
+        						        let datetime = logViewArray[userId][roundId].datetime;
+        						        // console.log(`Round ID: ${roundId}, Datetime: ${datetime}`);
 
-    			      	});
-    			}
-    	    }
+        						        let html_item_of_user = `
+        						        	<div class="card w-100 shadow-sm border-1 border p-3 mt-2">
+        									    <div class="d-flex justify-content-start">
+        									        <div class="mx-2">Round ${roundId}</div>
+                                                    <div class="mx-2">Datetime: <span class="excel_datetime">${datetime}</span></div>
+                                                    <div class="mx-2 d-none excel_account">${result.account}</div>
+        									        <div class="mx-2 d-none excel_name">${result.name}</div>
+        									    </div>
+        									</div>
+        						        `;
+                        				item_of_user.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+
+        						    }
+        			          	}
+
+        			      	});
+        			}
+        	    }
+            }
             resolve();
         });
   	}
 
   	function get_log_like(){
         return new Promise((resolve) => {
-      		// ดึงข้อมูล JSON จาก Blade Template
-    	    let db_log_like = @json($appointment->user_like);
 
-    	    // แปลง JSON เป็นอาร์เรย์ JavaScript
-    	    let loglikeArray = JSON.parse(db_log_like);
+            if("{{ $appointment->user_like }}"){
+          		// ดึงข้อมูล JSON จาก Blade Template
+        	    let db_log_like = @json($appointment->user_like);
 
-    	    // ตรวจสอบค่าในคอนโซล
-    	    // console.log(loglikeArray);
+        	    // แปลง JSON เป็นอาร์เรย์ JavaScript
+        	    let loglikeArray = JSON.parse(db_log_like);
 
-    	    let content_logs_like = document.querySelector('#content_logs_like');
-    	    	content_logs_like.innerHTML = '';
+        	    // ตรวจสอบค่าในคอนโซล
+        	    // console.log(loglikeArray);
 
-    	    let html_heading ;
+        	    let content_logs_like = document.querySelector('#content_logs_like');
+        	    	content_logs_like.innerHTML = '';
 
-    	    for (let i = 0; i < loglikeArray.length; i++) {
-    		    fetch("{{ url('/') }}/api/get_user_for_log/" + loglikeArray[i])
-    		      	.then(response => response.json())
-    		      	.then(result => {
-    		          	// console.log(result);
+        	    let html_heading ;
 
-    		          	if(result){
-    		          		html_heading = `
-    				        	<div name_user="`+result.name+`" account="`+result.account+`" class="log-item card w-100 shadow-sm border-1 border p-3 mt-2">
-    							    <div class="d-flex justify-content-start">
-    							        <div class="mx-2">`+result.account+`</div>
-    							        <div class="mx-2">`+result.name+`</div>
-    							    </div>
-    							</div>
-    				        `;
-                    		content_logs_like.insertAdjacentHTML('beforeend', html_heading); // แทรกล่างสุด
+        	    for (let i = 0; i < loglikeArray.length; i++) {
+        		    fetch("{{ url('/') }}/api/get_user_for_log/" + loglikeArray[i])
+        		      	.then(response => response.json())
+        		      	.then(result => {
+        		          	// console.log(result);
 
-    		          	}
+        		          	if(result){
+        		          		html_heading = `
+        				        	<div name_user="`+result.name+`" account="`+result.account+`" class="log-item card w-100 shadow-sm border-1 border p-3 mt-2">
+        							    <div class="d-flex justify-content-start">
+        							        <div class="mx-2">`+result.account+`</div>
+        							        <div class="mx-2">`+result.name+`</div>
+        							    </div>
+        							</div>
+        				        `;
+                        		content_logs_like.insertAdjacentHTML('beforeend', html_heading); // แทรกล่างสุด
 
-    		        });
-    	    }
+        		          	}
+
+        		        });
+        	    }
+            }
             resolve();
         });
 
@@ -840,92 +847,96 @@
 
     function get_log_rating(){
         return new Promise((resolve) => {
-            // ดึงข้อมูล JSON จาก Blade Template
-            let db_log_rating = @json($appointment->log_rating);
 
-            // แปลง JSON เป็นอาร์เรย์ JavaScript
-            let log_ratingArray = JSON.parse(db_log_rating);
+            if("{{ $appointment->log_rating }}"){
 
-            // ตรวจสอบค่าในคอนโซล
-            // console.log(log_ratingArray);
+                // ดึงข้อมูล JSON จาก Blade Template
+                let db_log_rating = @json($appointment->log_rating);
 
-            let content_logs_rating = document.querySelector('#content_logs_rating');
-                content_logs_rating.innerHTML = '';
+                // แปลง JSON เป็นอาร์เรย์ JavaScript
+                let log_ratingArray = JSON.parse(db_log_rating);
 
-            let html_heading ;
+                // ตรวจสอบค่าในคอนโซล
+                // console.log(log_ratingArray);
 
-            if(log_ratingArray){
-                for (let userId in log_ratingArray) {
-                    // แสดงชื่อผู้ใช้หรือข้อมูลอื่นที่ต้องการแสดง
-                    // console.log(`User ID: ${userId}`);
+                let content_logs_rating = document.querySelector('#content_logs_rating');
+                    content_logs_rating.innerHTML = '';
 
-                    fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
-                        .then(response => response.json())
-                        .then(result => {
-                            // console.log(result);
+                let html_heading ;
 
-                            if(result){
+                if(log_ratingArray){
+                    for (let userId in log_ratingArray) {
+                        // แสดงชื่อผู้ใช้หรือข้อมูลอื่นที่ต้องการแสดง
+                        // console.log(`User ID: ${userId}`);
 
-                                let roundCount = Object.keys(log_ratingArray[userId]).length;
+                        fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(result => {
+                                // console.log(result);
 
-                                html_heading = `
-                                    <div name_user="`+result.name+`" account="`+result.account+`" class="log-item accordion" id="rating_accordion_user_id_${userId}">
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="rating_heading_user_id_${userId}">
-                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rating_collapse_user_id_${userId}" aria-expanded="false" aria-controls="rating_collapse_user_id_${userId}">
-                                                    `+result.account+` `+result.name+` (`+roundCount+` ครั้ง)
-                                                </button>
-                                            </h2>
-                                            <div id="rating_collapse_user_id_${userId}" class="accordion-collapse collapse" aria-labelledby="heading_user_id_${userId}" data-bs-parent="#rating_accordion_user_id_${userId}" style="">
-                                                <div id="rating_item_of_user_${userId}" class="view_item_of_user accordion-body">
-                                                    
+                                if(result){
+
+                                    let roundCount = Object.keys(log_ratingArray[userId]).length;
+
+                                    html_heading = `
+                                        <div name_user="`+result.name+`" account="`+result.account+`" class="log-item accordion" id="rating_accordion_user_id_${userId}">
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="rating_heading_user_id_${userId}">
+                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rating_collapse_user_id_${userId}" aria-expanded="false" aria-controls="rating_collapse_user_id_${userId}">
+                                                        `+result.account+` `+result.name+` (`+roundCount+` ครั้ง)
+                                                    </button>
+                                                </h2>
+                                                <div id="rating_collapse_user_id_${userId}" class="accordion-collapse collapse" aria-labelledby="heading_user_id_${userId}" data-bs-parent="#rating_accordion_user_id_${userId}" style="">
+                                                    <div id="rating_item_of_user_${userId}" class="view_item_of_user accordion-body">
+                                                        
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                `;
-                                content_logs_rating.insertAdjacentHTML('beforeend', html_heading); // แทรกล่างสุด
-
-                                let item_of_user = document.querySelector('#rating_item_of_user_'+userId);
-                                // วนลูปเข้าไปยังรอบการดูของผู้ใช้
-                                for (let roundId in log_ratingArray[userId]) {
-                                    let datetime = log_ratingArray[userId][roundId].datetime;
-                                    let rating = log_ratingArray[userId][roundId].rating;
-                                    let status = log_ratingArray[userId][roundId].status;
-                                    // console.log(`Round ID: ${roundId}, Datetime: ${datetime}`);
-
-                                    let html_status = ``;
-
-                                    if (status == "Active") {
-                                        html_status = `
-                                            <div class="bg-success py-1 px-3 text-white rounded-pill">Active</div>
-                                        `;
-                                    }
-                                    else if(status == "Canceled"){
-                                        html_status = `
-                                            <div class="bg-danger py-1 px-3 text-white rounded-pill">Cancle</div>
-                                        `;
-                                    }
-
-                                    let html_item_of_user = `
-                                        <div status="`+status+`" class="card w-100 shadow-sm border-1 border p-3 mt-2 list_log_rating">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="mx-2">Round ${roundId}</div>
-                                                <div class="mx-2">Datetime: <span class="excel_datetime">${datetime}</span></div>
-                                                <div class="mx-2">Rating: <span class="excel_rating">${rating}</span></div>
-                                                <div class="mx-2 d-none excel_account">${result.account}</div>
-                                                <div class="mx-2 d-none excel_name">${result.name}</div>
-                                                <div class="mx-2 d-none excel_status">${status}</div>
-                                                `+html_status+`
-                                            </div>
-                                        </div>
                                     `;
-                                    item_of_user.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    content_logs_rating.insertAdjacentHTML('beforeend', html_heading); // แทรกล่างสุด
 
+                                    let item_of_user = document.querySelector('#rating_item_of_user_'+userId);
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in log_ratingArray[userId]) {
+                                        let datetime = log_ratingArray[userId][roundId].datetime;
+                                        let rating = log_ratingArray[userId][roundId].rating;
+                                        let status = log_ratingArray[userId][roundId].status;
+                                        // console.log(`Round ID: ${roundId}, Datetime: ${datetime}`);
+
+                                        let html_status = ``;
+
+                                        if (status == "Active") {
+                                            html_status = `
+                                                <div class="bg-success py-1 px-3 text-white rounded-pill">Active</div>
+                                            `;
+                                        }
+                                        else if(status == "Canceled"){
+                                            html_status = `
+                                                <div class="bg-danger py-1 px-3 text-white rounded-pill">Cancle</div>
+                                            `;
+                                        }
+
+                                        let html_item_of_user = `
+                                            <div status="`+status+`" class="card w-100 shadow-sm border-1 border p-3 mt-2 list_log_rating">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div class="mx-2">Round ${roundId}</div>
+                                                    <div class="mx-2">Datetime: <span class="excel_datetime">${datetime}</span></div>
+                                                    <div class="mx-2">Rating: <span class="excel_rating">${rating}</span></div>
+                                                    <div class="mx-2 d-none excel_account">${result.account}</div>
+                                                    <div class="mx-2 d-none excel_name">${result.name}</div>
+                                                    <div class="mx-2 d-none excel_status">${status}</div>
+                                                    `+html_status+`
+                                                </div>
+                                            </div>
+                                        `;
+                                        item_of_user.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+
+                                    }
                                 }
-                            }
 
-                        });
+                            });
+                    }
                 }
             }
             resolve();
@@ -935,92 +946,96 @@
 
     function get_logs_dislike(){
         return new Promise((resolve) => {
-            // ดึงข้อมูล JSON จาก Blade Template
-            let db_log_dislike = @json($appointment->user_dislike);
 
-            // แปลง JSON เป็นอาร์เรย์ JavaScript
-            let log_dislikeArray = JSON.parse(db_log_dislike);
+            if("{{ $appointment->user_dislike }}"){
 
-            // ตรวจสอบค่าในคอนโซล
-            // console.log(log_dislikeArray);
+                // ดึงข้อมูล JSON จาก Blade Template
+                let db_log_dislike = @json($appointment->user_dislike);
 
-            let content_logs_dislike = document.querySelector('#content_logs_dislike');
-                content_logs_dislike.innerHTML = '';
+                // แปลง JSON เป็นอาร์เรย์ JavaScript
+                let log_dislikeArray = JSON.parse(db_log_dislike);
 
-            let html_heading ;
+                // ตรวจสอบค่าในคอนโซล
+                // console.log(log_dislikeArray);
 
-            if(log_dislikeArray){
-                for (let userId in log_dislikeArray) {
-                    // แสดงชื่อผู้ใช้หรือข้อมูลอื่นที่ต้องการแสดง
-                    // console.log(`User ID: ${userId}`);
+                let content_logs_dislike = document.querySelector('#content_logs_dislike');
+                    content_logs_dislike.innerHTML = '';
 
-                    fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
-                        .then(response => response.json())
-                        .then(result => {
-                            // console.log(result);
+                let html_heading ;
 
-                            if(result){
+                if(log_dislikeArray){
+                    for (let userId in log_dislikeArray) {
+                        // แสดงชื่อผู้ใช้หรือข้อมูลอื่นที่ต้องการแสดง
+                        // console.log(`User ID: ${userId}`);
 
-                                let roundCount = Object.keys(log_dislikeArray[userId]).length;
+                        fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(result => {
+                                // console.log(result);
 
-                                html_heading = `
-                                    <div name_user="`+result.name+`" account="`+result.account+`" class="log-item accordion" id="dislike_accordion_user_id_${userId}">
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="dislike_heading_user_id_${userId}">
-                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#dislike_collapse_user_id_${userId}" aria-expanded="false" aria-controls="dislike_collapse_user_id_${userId}">
-                                                    `+result.account+` `+result.name+` (`+roundCount+` ครั้ง)
-                                                </button>
-                                            </h2>
-                                            <div id="dislike_collapse_user_id_${userId}" class="accordion-collapse collapse" aria-labelledby="heading_user_id_${userId}" data-bs-parent="#dislike_accordion_user_id_${userId}" style="">
-                                                <div id="dislike_item_of_user_${userId}" class="view_item_of_user accordion-body">
-                                                    
+                                if(result){
+
+                                    let roundCount = Object.keys(log_dislikeArray[userId]).length;
+
+                                    html_heading = `
+                                        <div name_user="`+result.name+`" account="`+result.account+`" class="log-item accordion" id="dislike_accordion_user_id_${userId}">
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="dislike_heading_user_id_${userId}">
+                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#dislike_collapse_user_id_${userId}" aria-expanded="false" aria-controls="dislike_collapse_user_id_${userId}">
+                                                        `+result.account+` `+result.name+` (`+roundCount+` ครั้ง)
+                                                    </button>
+                                                </h2>
+                                                <div id="dislike_collapse_user_id_${userId}" class="accordion-collapse collapse" aria-labelledby="heading_user_id_${userId}" data-bs-parent="#dislike_accordion_user_id_${userId}" style="">
+                                                    <div id="dislike_item_of_user_${userId}" class="view_item_of_user accordion-body">
+                                                        
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                `;
-                                content_logs_dislike.insertAdjacentHTML('beforeend', html_heading); // แทรกล่างสุด
-
-                                let item_of_user = document.querySelector('#dislike_item_of_user_'+userId);
-                                // วนลูปเข้าไปยังรอบการดูของผู้ใช้
-                                for (let roundId in log_dislikeArray[userId]) {
-                                    let datetime = log_dislikeArray[userId][roundId].datetime;
-                                    let reasons = log_dislikeArray[userId][roundId].reasons;
-                                    let status = log_dislikeArray[userId][roundId].status;
-                                    // console.log(`Round ID: ${roundId}, Datetime: ${datetime}`);
-
-                                    let html_status = ``;
-
-                                    if (status == "Active") {
-                                        html_status = `
-                                            <div class="bg-success py-1 px-3 text-white rounded-pill">Active</div>
-                                        `;
-                                    }
-                                    else if(status == "Canceled"){
-                                        html_status = `
-                                            <div class="bg-danger py-1 px-3 text-white rounded-pill">Cancle</div>
-                                        `;
-                                    }
-
-                                    let html_item_of_user = `
-                                        <div status="`+status+`" class="card w-100 shadow-sm border-1 border p-3 mt-2 list_log_dislike">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="mx-2">Round ${roundId}</div>
-                                                <div class="mx-2">Datetime: <span class="excel_datetime">${datetime}</span></div>
-                                                <div class="mx-2">เหตุผล: <span class="excel_reasons">${reasons}</span></div>
-                                                <div class="mx-2 d-none excel_account">${result.account}</div>
-                                                <div class="mx-2 d-none excel_name">${result.name}</div>
-                                                <div class="mx-2 d-none excel_status">${status}</div>
-                                                `+html_status+`
-                                            </div>
-                                        </div>
                                     `;
-                                    item_of_user.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    content_logs_dislike.insertAdjacentHTML('beforeend', html_heading); // แทรกล่างสุด
 
+                                    let item_of_user = document.querySelector('#dislike_item_of_user_'+userId);
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in log_dislikeArray[userId]) {
+                                        let datetime = log_dislikeArray[userId][roundId].datetime;
+                                        let reasons = log_dislikeArray[userId][roundId].reasons;
+                                        let status = log_dislikeArray[userId][roundId].status;
+                                        // console.log(`Round ID: ${roundId}, Datetime: ${datetime}`);
+
+                                        let html_status = ``;
+
+                                        if (status == "Active") {
+                                            html_status = `
+                                                <div class="bg-success py-1 px-3 text-white rounded-pill">Active</div>
+                                            `;
+                                        }
+                                        else if(status == "Canceled"){
+                                            html_status = `
+                                                <div class="bg-danger py-1 px-3 text-white rounded-pill">Cancle</div>
+                                            `;
+                                        }
+
+                                        let html_item_of_user = `
+                                            <div status="`+status+`" class="card w-100 shadow-sm border-1 border p-3 mt-2 list_log_dislike">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div class="mx-2">Round ${roundId}</div>
+                                                    <div class="mx-2">Datetime: <span class="excel_datetime">${datetime}</span></div>
+                                                    <div class="mx-2">เหตุผล: <span class="excel_reasons">${reasons}</span></div>
+                                                    <div class="mx-2 d-none excel_account">${result.account}</div>
+                                                    <div class="mx-2 d-none excel_name">${result.name}</div>
+                                                    <div class="mx-2 d-none excel_status">${status}</div>
+                                                    `+html_status+`
+                                                </div>
+                                            </div>
+                                        `;
+                                        item_of_user.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+
+                                    }
                                 }
-                            }
 
-                        });
+                            });
+                    }
                 }
             }
             resolve();
@@ -1030,90 +1045,94 @@
 
     function get_logs_fav(){
         return new Promise((resolve) => {
-            // ดึงข้อมูล JSON จาก Blade Template
-            let db_log_fav = @json($appointment->user_fav);
 
-            // แปลง JSON เป็นอาร์เรย์ JavaScript
-            let log_favArray = JSON.parse(db_log_fav);
+            if("{{ $appointment->user_fav }}"){
 
-            // ตรวจสอบค่าในคอนโซล
-            // console.log(log_favArray);
+                // ดึงข้อมูล JSON จาก Blade Template
+                let db_log_fav = @json($appointment->user_fav);
 
-            let content_logs_favorites = document.querySelector('#content_logs_favorites');
-                content_logs_favorites.innerHTML = '';
+                // แปลง JSON เป็นอาร์เรย์ JavaScript
+                let log_favArray = JSON.parse(db_log_fav);
 
-            let html_heading ;
+                // ตรวจสอบค่าในคอนโซล
+                // console.log(log_favArray);
 
-            if(log_favArray){
-                for (let userId in log_favArray) {
-                    // แสดงชื่อผู้ใช้หรือข้อมูลอื่นที่ต้องการแสดง
-                    // console.log(`User ID: ${userId}`);
+                let content_logs_favorites = document.querySelector('#content_logs_favorites');
+                    content_logs_favorites.innerHTML = '';
 
-                    fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
-                        .then(response => response.json())
-                        .then(result => {
-                            // console.log(result);
+                let html_heading ;
 
-                            if(result){
+                if(log_favArray){
+                    for (let userId in log_favArray) {
+                        // แสดงชื่อผู้ใช้หรือข้อมูลอื่นที่ต้องการแสดง
+                        // console.log(`User ID: ${userId}`);
 
-                                let roundCount = Object.keys(log_favArray[userId]).length;
+                        fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(result => {
+                                // console.log(result);
 
-                                html_heading = `
-                                    <div name_user="`+result.name+`" account="`+result.account+`" class="log-item accordion" id="fav_accordion_user_id_${userId}">
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="fav_heading_user_id_${userId}">
-                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fav_collapse_user_id_${userId}" aria-expanded="false" aria-controls="fav_collapse_user_id_${userId}">
-                                                    `+result.account+` `+result.name+` (`+roundCount+` ครั้ง)
-                                                </button>
-                                            </h2>
-                                            <div id="fav_collapse_user_id_${userId}" class="accordion-collapse collapse" aria-labelledby="heading_user_id_${userId}" data-bs-parent="#fav_accordion_user_id_${userId}" style="">
-                                                <div id="fav_item_of_user_${userId}" class="view_item_of_user accordion-body">
-                                                    
+                                if(result){
+
+                                    let roundCount = Object.keys(log_favArray[userId]).length;
+
+                                    html_heading = `
+                                        <div name_user="`+result.name+`" account="`+result.account+`" class="log-item accordion" id="fav_accordion_user_id_${userId}">
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="fav_heading_user_id_${userId}">
+                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fav_collapse_user_id_${userId}" aria-expanded="false" aria-controls="fav_collapse_user_id_${userId}">
+                                                        `+result.account+` `+result.name+` (`+roundCount+` ครั้ง)
+                                                    </button>
+                                                </h2>
+                                                <div id="fav_collapse_user_id_${userId}" class="accordion-collapse collapse" aria-labelledby="heading_user_id_${userId}" data-bs-parent="#fav_accordion_user_id_${userId}" style="">
+                                                    <div id="fav_item_of_user_${userId}" class="view_item_of_user accordion-body">
+                                                        
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                `;
-                                content_logs_favorites.insertAdjacentHTML('beforeend', html_heading); // แทรกล่างสุด
-
-                                let item_of_user = document.querySelector('#fav_item_of_user_'+userId);
-                                // วนลูปเข้าไปยังรอบการดูของผู้ใช้
-                                for (let roundId in log_favArray[userId]) {
-                                    let datetime = log_favArray[userId][roundId].datetime;
-                                    let status = log_favArray[userId][roundId].status;
-                                    // console.log(`Round ID: ${roundId}, Datetime: ${datetime}`);
-
-                                    let html_status = ``;
-
-                                    if (status == "Active") {
-                                        html_status = `
-                                            <div class="bg-success py-1 px-3 text-white rounded-pill">Active</div>
-                                        `;
-                                    }
-                                    else if(status == "Canceled"){
-                                        html_status = `
-                                            <div class="bg-danger py-1 px-3 text-white rounded-pill">Cancle</div>
-                                        `;
-                                    }
-
-                                    let html_item_of_user = `
-                                        <div status="`+status+`" class="card w-100 shadow-sm border-1 border p-3 mt-2 list_log_fav">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="mx-2">Round ${roundId}</div>
-                                                <div class="mx-2">Datetime: <span class="excel_datetime">${datetime}</span></div>
-                                                <div class="mx-2 d-none excel_account">${result.account}</div>
-                                                <div class="mx-2 d-none excel_name">${result.name}</div>
-                                                <div class="mx-2 d-none excel_status">${status}</div>
-                                                `+html_status+`
-                                            </div>
-                                        </div>
                                     `;
-                                    item_of_user.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    content_logs_favorites.insertAdjacentHTML('beforeend', html_heading); // แทรกล่างสุด
 
+                                    let item_of_user = document.querySelector('#fav_item_of_user_'+userId);
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in log_favArray[userId]) {
+                                        let datetime = log_favArray[userId][roundId].datetime;
+                                        let status = log_favArray[userId][roundId].status;
+                                        // console.log(`Round ID: ${roundId}, Datetime: ${datetime}`);
+
+                                        let html_status = ``;
+
+                                        if (status == "Active") {
+                                            html_status = `
+                                                <div class="bg-success py-1 px-3 text-white rounded-pill">Active</div>
+                                            `;
+                                        }
+                                        else if(status == "Canceled"){
+                                            html_status = `
+                                                <div class="bg-danger py-1 px-3 text-white rounded-pill">Cancle</div>
+                                            `;
+                                        }
+
+                                        let html_item_of_user = `
+                                            <div status="`+status+`" class="card w-100 shadow-sm border-1 border p-3 mt-2 list_log_fav">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div class="mx-2">Round ${roundId}</div>
+                                                    <div class="mx-2">Datetime: <span class="excel_datetime">${datetime}</span></div>
+                                                    <div class="mx-2 d-none excel_account">${result.account}</div>
+                                                    <div class="mx-2 d-none excel_name">${result.name}</div>
+                                                    <div class="mx-2 d-none excel_status">${status}</div>
+                                                    `+html_status+`
+                                                </div>
+                                            </div>
+                                        `;
+                                        item_of_user.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+
+                                    }
                                 }
-                            }
 
-                        });
+                            });
+                    }
                 }
             }
             resolve();
@@ -1123,135 +1142,139 @@
 
     function get_logs_share(){
         return new Promise((resolve) => {
-            // ดึงข้อมูล JSON จาก Blade Template
-            let db_log_share = @json($appointment->user_share);
 
-            // แปลง JSON เป็นอาร์เรย์ JavaScript
-            let log_shareArray = JSON.parse(db_log_share);
+            if("{{ $appointment->user_share }}"){
 
-            // ตรวจสอบค่าในคอนโซล
-            // console.log(log_shareArray);
+                // ดึงข้อมูล JSON จาก Blade Template
+                let db_log_share = @json($appointment->user_share);
 
-            let content_logs_share = document.querySelector('#content_logs_share');
-                content_logs_share.innerHTML = '';
+                // แปลง JSON เป็นอาร์เรย์ JavaScript
+                let log_shareArray = JSON.parse(db_log_share);
 
-            let html_heading ;
+                // ตรวจสอบค่าในคอนโซล
+                // console.log(log_shareArray);
 
-            if(log_shareArray){
-                for (let userId in log_shareArray) {
-                    // แสดงชื่อผู้ใช้หรือข้อมูลอื่นที่ต้องการแสดง
-                    // console.log(`User ID: ${userId}`);
+                let content_logs_share = document.querySelector('#content_logs_share');
+                    content_logs_share.innerHTML = '';
 
-                    fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
-                        .then(response => response.json())
-                        .then(result => {
-                            // console.log(result);
+                let html_heading ;
 
-                            if(result){
+                if(log_shareArray){
+                    for (let userId in log_shareArray) {
+                        // แสดงชื่อผู้ใช้หรือข้อมูลอื่นที่ต้องการแสดง
+                        // console.log(`User ID: ${userId}`);
 
-                                let roundCount = Object.keys(log_shareArray[userId]).length;
+                        fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(result => {
+                                // console.log(result);
 
-                                html_heading = `
-                                    <div name_user="`+result.name+`" account="`+result.account+`" class="log-item accordion" id="share_accordion_user_id_${userId}">
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="share_heading_user_id_${userId}">
-                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#share_collapse_user_id_${userId}" aria-expanded="false" aria-controls="share_collapse_user_id_${userId}">
-                                                    `+result.account+` `+result.name+` (`+roundCount+` ครั้ง)
-                                                </button>
-                                            </h2>
-                                            <div id="share_collapse_user_id_${userId}" class="accordion-collapse collapse" aria-labelledby="heading_user_id_${userId}" data-bs-parent="#share_accordion_user_id_${userId}" style="">
-                                                <div id="share_item_of_user_${userId}" class="view_item_of_user accordion-body">
-                                                    
+                                if(result){
+
+                                    let roundCount = Object.keys(log_shareArray[userId]).length;
+
+                                    html_heading = `
+                                        <div name_user="`+result.name+`" account="`+result.account+`" class="log-item accordion" id="share_accordion_user_id_${userId}">
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="share_heading_user_id_${userId}">
+                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#share_collapse_user_id_${userId}" aria-expanded="false" aria-controls="share_collapse_user_id_${userId}">
+                                                        `+result.account+` `+result.name+` (`+roundCount+` ครั้ง)
+                                                    </button>
+                                                </h2>
+                                                <div id="share_collapse_user_id_${userId}" class="accordion-collapse collapse" aria-labelledby="heading_user_id_${userId}" data-bs-parent="#share_accordion_user_id_${userId}" style="">
+                                                    <div id="share_item_of_user_${userId}" class="view_item_of_user accordion-body">
+                                                        
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                `;
-                                content_logs_share.insertAdjacentHTML('beforeend', html_heading); // แทรกล่างสุด
-
-                                let item_of_user = document.querySelector('#share_item_of_user_'+userId);
-                                // วนลูปเข้าไปยังรอบการดูของผู้ใช้
-                                for (let roundId in log_shareArray[userId]) {
-                                    let datetime = log_shareArray[userId][roundId].datetime;
-                                    let social = log_shareArray[userId][roundId].social;
-                                    // console.log(`Round ID: ${roundId}, Datetime: ${datetime}`);
-
-                                    let html_social = ``;
-
-                                    if (social == "line") {
-                                        html_social = `
-                                        <div class="col-4">
-                                            <center>
-                                            <div class="logsLine active py-1 px-3 text-white rounded-pill d-flex justify-content-center align-items-center" style="width:50%;">
-                                                <i class="fa-brands fa-line me-2"></i> Line
-                                            </div>
-                                            </center>
-                                        </div>
-                                        `;
-                                    }
-                                    else if(social == "facebook"){
-                                        html_social = `
-                                        <div class="col-4">
-                                            <center>
-                                            <div class="logsFacebook active py-1 px-3 text-white rounded-pill d-flex justify-content-center align-items-center" style="width:50%;">
-                                                <i class="fa-brands fa-facebook me-2"></i> facebook
-                                            </div>
-                                            </center>
-                                        </div>
-                                        `;
-                                    }
-                                    else if(social == "twitte"){
-                                        html_social = `
-                                        <div class="col-4">
-                                            <center>
-                                            <div class="logsTwitter active py-1 px-3 text-white rounded-pill d-flex justify-content-center align-items-center" style="width:50%;">
-                                                <i class="fa-brands fa-x-twitter"></i>
-                                            </div>
-                                            </center>
-                                        </div>
-                                        `;
-                                    }
-                                    else if(social == "whatsapp"){
-                                        html_social = `
-                                        <div class="col-4">
-                                            <center>
-                                            <div class="logsWhatsapp active py-1 px-3 text-white rounded-pill d-flex justify-content-center align-items-center" style="width:50%;">
-                                                <i class="fa-brands fa-whatsapp me-2"></i>Whatsapp
-                                            </div>
-                                            </center>
-                                        </div>
-                                        `;
-                                    }
-                                    else if(social == "copy"){
-                                        html_social = `
-                                        <div class="col-4">
-                                            <center>
-                                            <div class="logsCopy active py-1 px-3 text-white rounded-pill d-flex justify-content-center align-items-center" style="width:50%;">
-                                                Copy
-                                            </div>
-                                            </center>
-                                        </div>
-                                        `;
-                                    }
-
-                                    let html_item_of_user = `
-                                        <div social="`+social+`" class="card w-100 shadow-sm border-1 border p-3 mt-2 list_log_share">
-                                            <div class="row align-items-center">
-                                                <div class="col-4">Round ${roundId}</div>
-                                                <div class="col-4">Datetime: <span class="excel_datetime">${datetime}</span></div>
-                                                <div class="mx-2 d-none excel_account">${result.account}</div>
-                                                <div class="mx-2 d-none excel_name">${result.name}</div>
-                                                <div class="mx-2 d-none excel_social">${social}</div>
-                                                `+html_social+`
-                                            </div>
-                                        </div>
                                     `;
-                                    item_of_user.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    content_logs_share.insertAdjacentHTML('beforeend', html_heading); // แทรกล่างสุด
 
+                                    let item_of_user = document.querySelector('#share_item_of_user_'+userId);
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in log_shareArray[userId]) {
+                                        let datetime = log_shareArray[userId][roundId].datetime;
+                                        let social = log_shareArray[userId][roundId].social;
+                                        // console.log(`Round ID: ${roundId}, Datetime: ${datetime}`);
+
+                                        let html_social = ``;
+
+                                        if (social == "line") {
+                                            html_social = `
+                                            <div class="col-4">
+                                                <center>
+                                                <div class="logsLine active py-1 px-3 text-white rounded-pill d-flex justify-content-center align-items-center" style="width:50%;">
+                                                    <i class="fa-brands fa-line me-2"></i> Line
+                                                </div>
+                                                </center>
+                                            </div>
+                                            `;
+                                        }
+                                        else if(social == "facebook"){
+                                            html_social = `
+                                            <div class="col-4">
+                                                <center>
+                                                <div class="logsFacebook active py-1 px-3 text-white rounded-pill d-flex justify-content-center align-items-center" style="width:50%;">
+                                                    <i class="fa-brands fa-facebook me-2"></i> facebook
+                                                </div>
+                                                </center>
+                                            </div>
+                                            `;
+                                        }
+                                        else if(social == "twitte"){
+                                            html_social = `
+                                            <div class="col-4">
+                                                <center>
+                                                <div class="logsTwitter active py-1 px-3 text-white rounded-pill d-flex justify-content-center align-items-center" style="width:50%;">
+                                                    <i class="fa-brands fa-x-twitter"></i>
+                                                </div>
+                                                </center>
+                                            </div>
+                                            `;
+                                        }
+                                        else if(social == "whatsapp"){
+                                            html_social = `
+                                            <div class="col-4">
+                                                <center>
+                                                <div class="logsWhatsapp active py-1 px-3 text-white rounded-pill d-flex justify-content-center align-items-center" style="width:50%;">
+                                                    <i class="fa-brands fa-whatsapp me-2"></i>Whatsapp
+                                                </div>
+                                                </center>
+                                            </div>
+                                            `;
+                                        }
+                                        else if(social == "copy"){
+                                            html_social = `
+                                            <div class="col-4">
+                                                <center>
+                                                <div class="logsCopy active py-1 px-3 text-white rounded-pill d-flex justify-content-center align-items-center" style="width:50%;">
+                                                    Copy
+                                                </div>
+                                                </center>
+                                            </div>
+                                            `;
+                                        }
+
+                                        let html_item_of_user = `
+                                            <div social="`+social+`" class="card w-100 shadow-sm border-1 border p-3 mt-2 list_log_share">
+                                                <div class="row align-items-center">
+                                                    <div class="col-4">Round ${roundId}</div>
+                                                    <div class="col-4">Datetime: <span class="excel_datetime">${datetime}</span></div>
+                                                    <div class="mx-2 d-none excel_account">${result.account}</div>
+                                                    <div class="mx-2 d-none excel_name">${result.name}</div>
+                                                    <div class="mx-2 d-none excel_social">${social}</div>
+                                                    `+html_social+`
+                                                </div>
+                                            </div>
+                                        `;
+                                        item_of_user.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+
+                                    }
                                 }
-                            }
 
-                        });
+                            });
+                    }
                 }
             }
             resolve();

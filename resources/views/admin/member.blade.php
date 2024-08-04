@@ -109,7 +109,7 @@
                     </div>
                 </div>
                 <div class="col-3">
-                    <select id="search_rank" class="form-select" onchange="search_data_in_card();">
+                    <select id="search_rank" class="form-select" onchange="delay_search_data_in_card();">
                         <option selected="" value="">All Rank</option>
                         <option value="AG">AG</option>
                         <option value="UM">UM</option>
@@ -391,6 +391,9 @@
 let searchTimeout;
 
 function delay_search_data_in_card() {
+
+    document.querySelector('#b_loading').innerHTML = 'กำลังโหลด..';
+    console.log("b_loading >> Open");
     // Clear the previous timeout
     clearTimeout(searchTimeout);
 
@@ -403,9 +406,6 @@ function delay_search_data_in_card() {
 function search_data_in_card() {
 
     console.log("เริ่มค้นหา");
-
-    document.querySelector('#b_loading').innerHTML = 'กำลังโหลด..';
-    console.log("b_loading >> Open");
 
     let count_row = 0;
 

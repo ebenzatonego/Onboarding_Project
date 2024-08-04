@@ -20,9 +20,19 @@ use App\Models\Log_excel_user;
 use App\Models\Activity_type;
 use App\Models\Activity;
 use App\Models\Calendar;
+use Illuminate\Support\Facades\Artisan;
 
 class AdminController extends Controller
 {
+    public function clearCache()
+    {
+        Artisan::call('cache:clear');
+        Artisan::call('view:clear');
+        Artisan::call('route:clear');
+        Artisan::call('config:clear');
+        
+        return response()->json(['status' => 'Cache cleared successfully']);
+    }
 
     public function verify_account($account){
         $check_user = User::where('account' , $account)->first();

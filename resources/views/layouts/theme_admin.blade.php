@@ -486,6 +486,33 @@
                         </a>
                     </li>
 
+                    <!-- Clear Cache -->
+                    @if(Auth::user()->role == "Super-admin")
+                        <hr>
+                        <li class="" onclick="click_clear_cache();" style="cursor: pointer;">
+                            <a class="">
+                                <div class="parent-icon">
+                                    <i class="fa-duotone fa-solid fa-broom"></i>
+                                </div>
+                                <div class="menu-title">
+                                    Clear Cache
+                                </div>
+                            </a>
+                        </li>
+
+                        <script>
+                            function click_clear_cache(){
+                                fetch(`{{ url('/') }}/api/clear_cache`)
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        console.log(data.status);
+                                    })
+                                    .catch(error => console.error('Error:', error));
+                            }
+                        </script>
+                    @endif
+                    <!-- END Clear Cache -->
+
                     @endif
                 @endif
 

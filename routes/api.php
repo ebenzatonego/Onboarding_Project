@@ -18,6 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// Clear_cache
+Route::get('/clear_cache', 'AdminController@clear_cache');
+
 // FHC
 Route::get('/verify_account/{account}', 'AdminController@verify_account');
 

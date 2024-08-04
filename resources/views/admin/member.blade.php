@@ -480,7 +480,7 @@ function loop_members(members , searchAccount, searchRank, select_check_pdpa, se
 function remove_b_loading(){
     // console.log(sum_count_row);
     return new Promise((resolve) => {
-        document.querySelector('#show_count_row').innerHTML = sum_count_row;
+        document.querySelector('#show_count_row').innerHTML = sum_count_row.toLocaleString();
         document.querySelector('#b_loading').innerHTML = '';
         // console.log("b_loading >> close");
         resolve();

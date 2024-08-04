@@ -20,16 +20,24 @@ use App\Models\Log_excel_user;
 use App\Models\Activity_type;
 use App\Models\Activity;
 use App\Models\Calendar;
-use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\File;
 
 class AdminController extends Controller
 {
     public function clearCache()
     {
-        Artisan::call('cache:clear');
-        Artisan::call('view:clear');
-        Artisan::call('route:clear');
-        Artisan::call('config:clear');
+        // Define the cache paths
+        $cachePaths = [
+            storage_path('framework/cache/data'),
+            storage_path('framework/views'),
+            storage_path('framework/sessions'),
+            storage_path('framework/testing')
+        ];
+
+        // Clear the cache files
+        foreach ($cachePaths as $path) {
+            File::cleanDirectory($path);
+        }
         
         return response()->json(['status' => 'Cache cleared successfully']);
     }

@@ -400,9 +400,13 @@ function delay_search_data_in_card() {
     }, 1000);
 }
 
+var sum_count_row  ;
+
 async function search_data_in_card() {
+
+    // console.log("เริ่มค้นหา");
+    // console.log("b_loading >> Open");
     document.querySelector('#b_loading').innerHTML = 'กำลังโหลด..';
-    console.log("b_loading >> Open");
 
     let count_row = 0;
 
@@ -413,52 +417,74 @@ async function search_data_in_card() {
 
     const members = document.querySelectorAll('.member');
 
-    if (!searchAccount && !searchRank && !select_check_pdpa && !select_check_coc) {
-        members.forEach(member => {
-            member.classList.remove('d-none');
-            count_row++;
-        });
-    } else {
-        await Promise.all(Array.from(members).map(async (member) => {
-            const nameUser = member.getAttribute('name_user').toLowerCase();
-            const account = member.getAttribute('account').toLowerCase();
-            const currentRank = member.getAttribute('current_rank');
-            const checkPdpa = member.getAttribute('check_pdpa') === 'Yes';
-            const checkCoc = member.getAttribute('check_coc') === 'Yes';
+    await loop_members(members , searchAccount, searchRank, select_check_pdpa, select_check_coc, count_row);
+    await remove_b_loading();
+    
+}
 
-            let isAccountMatch = true;
-            let isRankMatch = true;
-            let isPdpaMatch = true;
-            let isCocMatch = true;
+function loop_members(members , searchAccount, searchRank, select_check_pdpa, select_check_coc, count_row){
 
-            if (searchAccount) {
-                isAccountMatch = nameUser.includes(searchAccount) || account.includes(searchAccount);
-            }
+    return new Promise((resolve) => {
 
-            if (searchRank) {
-                isRankMatch = currentRank === searchRank;
-            }
-
-            if (select_check_pdpa) {
-                isPdpaMatch = checkPdpa;
-            }
-
-            if (select_check_coc) {
-                isCocMatch = checkCoc;
-            }
-
-            if (isAccountMatch && isRankMatch && isPdpaMatch && isCocMatch) {
+        if (!searchAccount && !searchRank && !select_check_pdpa && !select_check_coc) {
+            members.forEach(member => {
                 member.classList.remove('d-none');
                 count_row++;
-            } else {
-                member.classList.add('d-none');
-            }
-        }));
-    }
+                sum_count_row = count_row ;
+            });
+        } else {
 
-    document.querySelector('#show_count_row').innerHTML = `${count_row.toLocaleString()}`;
-    document.querySelector('#b_loading').innerHTML = '';
-    console.log("b_loading >> close");
+            members.forEach(member => {
+                const nameUser = member.getAttribute('name_user').toLowerCase();
+                const account = member.getAttribute('account').toLowerCase();
+                const currentRank = member.getAttribute('current_rank');
+                const checkPdpa = member.getAttribute('check_pdpa') === 'Yes';
+                const checkCoc = member.getAttribute('check_coc') === 'Yes';
+
+                let isAccountMatch = true;
+                let isRankMatch = true;
+                let isPdpaMatch = true;
+                let isCocMatch = true;
+
+                if (searchAccount) {
+                    isAccountMatch = nameUser.includes(searchAccount) || account.includes(searchAccount);
+                }
+
+                if (searchRank) {
+                    isRankMatch = currentRank === searchRank;
+                }
+
+                if (select_check_pdpa) {
+                    isPdpaMatch = checkPdpa;
+                }
+
+                if (select_check_coc) {
+                    isCocMatch = checkCoc;
+                }
+
+                if (isAccountMatch && isRankMatch && isPdpaMatch && isCocMatch) {
+                    member.classList.remove('d-none');
+                    count_row++;
+                    sum_count_row = count_row ;
+                } else {
+                    member.classList.add('d-none');
+                }
+            });
+
+        }
+        resolve();
+
+    });
+}
+
+function remove_b_loading(){
+    // console.log(sum_count_row);
+    return new Promise((resolve) => {
+        document.querySelector('#show_count_row').innerHTML = sum_count_row;
+        document.querySelector('#b_loading').innerHTML = '';
+        // console.log("b_loading >> close");
+        resolve();
+    });
 }
 
 

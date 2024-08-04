@@ -577,8 +577,8 @@
                         </a>
                     </li>
 
-                    <li class="d-">
-                        <a href="{{ url('/log_web') }}" class="">
+                    <li>
+                        <a href="javascript:;" class="has-arrow">
                             <div class="parent-icon">
                                 <i class="fa-solid fa-arrow-pointer"></i>
                             </div>
@@ -586,18 +586,41 @@
                                 LOG
                             </div>
                         </a>
+                        
+                        <ul>
+                            <li class="d-">
+                                <a href="{{ url('/log_web') }}" class="btn">
+                                    <div class="parent-icon">
+                                        <i class="fa-regular fa-globe-pointer"></i>
+                                    </div>
+                                    <div class="menu-title">
+                                        LOG WEB
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="d-">
+                                <a href="{{ url('/log_delete') }}" class="btn">
+                                    <div class="parent-icon">
+                                        <i class="fa-solid fa-delete-right"></i>
+                                    </div>
+                                    <div class="menu-title">
+                                        LOG Delete
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="d-">
+                                <a href="{{ url('/log_content') }}" class="btn">
+                                    <div class="parent-icon">
+                                        <i class="fa-solid fa-newspaper"></i>
+                                    </div>
+                                    <div class="menu-title">
+                                        LOG Content
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
 
-                    <li class="d-">
-                        <a href="{{ url('/log_delete') }}" class="">
-                            <div class="parent-icon">
-                                <i class="fa-solid fa-delete-right"></i>
-                            </div>
-                            <div class="menu-title">
-                                LOG Delete
-                            </div>
-                        </a>
-                    </li>
 
                     <!-- Clear Cache -->
                     @if(Auth::user()->role == "Super-admin")

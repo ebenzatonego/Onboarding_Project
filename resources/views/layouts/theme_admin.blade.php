@@ -5,7 +5,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Favicons -->
     <link href="{{ url('/img/logo/LOGO (2).png') }}" rel="icon">
     <link href="{{ url('/img/logo/LOGO (2).png') }}" rel="apple-touch-icon">

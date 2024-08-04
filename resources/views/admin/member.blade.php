@@ -416,21 +416,10 @@ function search_data_in_card() {
 
     const members = document.querySelectorAll('.member');
 
-    let members_length = members.length;
-    let check_loop = 0;
-
     if (!searchAccount && !searchRank && !select_check_pdpa && !select_check_coc) {
         members.forEach(member => {
             member.classList.remove('d-none');
             count_row++;
-
-            console.log(member);
-            check_loop++;
-            if(check_loop >= members_length){
-                document.querySelector('#show_count_row').innerHTML = `${count_row.toLocaleString()}`;
-                document.querySelector('#b_loading').innerHTML = '';
-                console.log("b_loading >> close");
-            }
         });
     } else {
         members.forEach(member => {
@@ -464,22 +453,17 @@ function search_data_in_card() {
             if (isAccountMatch && isRankMatch && isPdpaMatch && isCocMatch) {
                 member.classList.remove('d-none');
                 count_row++;
-                check_loop++;
             } else {
                 member.classList.add('d-none');
-                check_loop++;
-
             }
-
-            if(check_loop >= members_length){
-                document.querySelector('#show_count_row').innerHTML = `${count_row.toLocaleString()}`;
-                document.querySelector('#b_loading').innerHTML = '';
-                console.log("b_loading >> close");
-            }
-
-
         });
     }
+
+    setTimeout(() => {
+        document.querySelector('#show_count_row').innerHTML = `${count_row.toLocaleString()}`;
+        document.querySelector('#b_loading').innerHTML = '';
+        console.log("b_loading >> close");
+    }, 2500);
 
 }
 

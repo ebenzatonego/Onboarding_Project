@@ -370,7 +370,7 @@
     // }
 
     function edit_upper_al(upper_al_id) {
-        console.log("upper_al_id >> " + upper_al_id);
+        // console.log("upper_al_id >> " + upper_al_id);
     }
 
     function formatDate(date) {
@@ -393,7 +393,7 @@ let searchTimeout;
 function delay_search_data_in_card() {
 
     document.querySelector('#b_loading').innerHTML = 'กำลังโหลด..';
-    console.log("b_loading >> Open");
+    // console.log("b_loading >> Open");
     // Clear the previous timeout
     clearTimeout(searchTimeout);
 
@@ -405,7 +405,7 @@ function delay_search_data_in_card() {
 
 function search_data_in_card() {
 
-    console.log("เริ่มค้นหา");
+    // console.log("เริ่มค้นหา");
 
     let count_row = 0;
 
@@ -462,7 +462,7 @@ function search_data_in_card() {
     setTimeout(() => {
         document.querySelector('#show_count_row').innerHTML = `${count_row.toLocaleString()}`;
         document.querySelector('#b_loading').innerHTML = '';
-        console.log("b_loading >> close");
+        // console.log("b_loading >> close");
     }, 2500);
 
 }

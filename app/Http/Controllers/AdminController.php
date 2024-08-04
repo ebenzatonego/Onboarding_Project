@@ -26,12 +26,16 @@ class AdminController extends Controller
 {
     public function clearCache()
     {
+        // Change directory
+        chdir('/var/www/azsale/Onboarding_Project');
+
+        // Run artisan commands
         Artisan::call('cache:clear');
         Artisan::call('view:clear');
         Artisan::call('route:clear');
         Artisan::call('config:clear');
-        
-        return response()->json(['status' => 'Cache cleared successfully']);
+
+        return response()->json(['status' => 'Commands executed successfully']);
     }
 
     public function verify_account($account){

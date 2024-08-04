@@ -515,12 +515,12 @@
                                     const result = await response.json();
 
                                     if (response.ok) {
-                                        console.error(result.message);
+                                        console.log(result.message);
                                     } else {
-                                        console.error('Error: ' + result.error);
+                                        console.log('Error: ' + result.error);
                                     }
                                 } catch (error) {
-                                    console.error('Error:', error);
+                                    console.log('Error:', error);
                                     console.error('An unexpected error occurred.');
                                 }
                             }

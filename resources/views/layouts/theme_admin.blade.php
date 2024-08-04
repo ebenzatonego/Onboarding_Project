@@ -615,7 +615,6 @@
 
                         <script>
                             async function runCommands() {
-                                document.querySelector('#btn_Modal_clear_cache_success').click();
                                 try {
                                     const response = await fetch("{{ url('/') }}/api/run-commands", {
                                         method: 'POST',
@@ -630,6 +629,7 @@
                                     if (response.ok) {
                                         console.log(result.message);
                                         // console.log(result);
+                                        document.querySelector('#btn_Modal_clear_cache_success').click();
                                     } else {
                                         console.log('Error: ' + result.error);
                                     }

@@ -20,22 +20,31 @@ use App\Models\Log_excel_user;
 use App\Models\Activity_type;
 use App\Models\Activity;
 use App\Models\Calendar;
-use Artisan;
+
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class AdminController extends Controller
 {
-    public function clearCache()
+    public function runCommands(Request $request)
     {
-        // Change directory
-        chdir('/var/www/azsale/Onboarding_Project');
+        $commands = [
+            'cd /var/www/azsale/Onboarding_Project && php artisan cache:clear',
+            'cd /var/www/azsale/Onboarding_Project && php artisan view:clear',
+            'cd /var/www/azsale/Onboarding_Project && php artisan route:clear',
+            'cd /var/www/azsale/Onboarding_Project && php artisan config:clear',
+        ];
 
-        // Run artisan commands
-        Artisan::call('cache:clear');
-        Artisan::call('view:clear');
-        Artisan::call('route:clear');
-        Artisan::call('config:clear');
+        foreach ($commands as $command) {
+            $process = Process::fromShellCommandline($command);
+            $process->run();
 
-        return response()->json(['status' => 'Commands executed successfully']);
+            if (!$process->isSuccessful()) {
+                return response()->json(['error' => $process->getErrorOutput()], 500);
+            }
+        }
+
+        return response()->json(['message' => 'Commands executed successfully']);
     }
 
     public function verify_account($account){

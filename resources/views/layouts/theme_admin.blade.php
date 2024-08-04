@@ -489,7 +489,7 @@
                     <!-- Clear Cache -->
                     @if(Auth::user()->role == "Super-admin")
                         <hr>
-                        <li class="" onclick="click_clear_cache();" style="cursor: pointer;">
+                        <li class="" onclick="runCommands();" style="cursor: pointer;">
                             <a class="">
                                 <div class="parent-icon">
                                     <i class="fa-duotone fa-solid fa-broom"></i>
@@ -501,14 +501,29 @@
                         </li>
 
                         <script>
-                            function click_clear_cache(){
-                                fetch(`{{ url('/') }}/api/clear_cache`)
-                                    .then(response => response.json())
-                                    .then(data => {
-                                        console.log(data.status);
-                                    })
-                                    .catch(error => console.error('Error:', error));
+                            async function runCommands() {
+                                try {
+                                    const response = await fetch("{{ url('/') }}/api/run-commands", {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                                        },
+                                    });
+
+                                    const result = await response.json();
+
+                                    if (response.ok) {
+                                        console.error(result.message);
+                                    } else {
+                                        console.error('Error: ' + result.error);
+                                    }
+                                } catch (error) {
+                                    console.error('Error:', error);
+                                    console.error('An unexpected error occurred.');
+                                }
                             }
+
                         </script>
                     @endif
                     <!-- END Clear Cache -->

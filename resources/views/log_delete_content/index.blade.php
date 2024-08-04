@@ -9,7 +9,7 @@
                 <div class="col-6">
                     <div class="float-start">
                         <h5 class="mb-0 text-dark">
-                            <i class="fa-solid fa-arrow-pointer me-2 font-22 text-dark"></i>
+                            <i class="fa-solid fa-delete-right  me-2 font-22 text-dark"></i>
                             Log delete
                         </h5>
                     </div>

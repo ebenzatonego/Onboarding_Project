@@ -165,6 +165,7 @@ class LogsController extends Controller
     function log_delete(){
         return view('log_delete_content.index');
     }
+
     function get_list_log_web_delete(Request $request) {
         $limit = $request->input('limit', 350); // จำนวนแถวต่อครั้ง, ค่าเริ่มต้นคือ 350
         $page = $request->input('page', 1); // หน้าที่จะดึงข้อมูล
@@ -185,5 +186,9 @@ class LogsController extends Controller
 
         return response()->json($log_web);
 
+    }
+
+     function log_content(){
+        return view('logs.log_content');
     }
 }

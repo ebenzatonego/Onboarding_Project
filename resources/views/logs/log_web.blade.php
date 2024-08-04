@@ -9,7 +9,7 @@
                 <div class="col-6">
                     <div class="float-start">
                         <h5 class="mb-0 text-dark">
-                            <i class="fa-solid fa-arrow-pointer me-2 font-22 text-dark"></i>
+                            <i class="fa-regular fa-globe-pointer me-2 font-22 text-dark"></i>
                             Log Web
                         </h5>
                     </div>

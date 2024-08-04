@@ -190,6 +190,7 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
     // LOG
     Route::get('log_web', 'LogsController@log_web');
     Route::get('log_delete', 'LogsController@log_delete');
+    Route::get('log_content', 'LogsController@log_content');
 });
 
 // member & staff

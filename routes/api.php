@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 // Clear_cache
-Route::post('/run-commands', 'CommandController@runCommands');
+Route::post('/run-commands', 'AdminController@runCommands');
 
 
 // FHC

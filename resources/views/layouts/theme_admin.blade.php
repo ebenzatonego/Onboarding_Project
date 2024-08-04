@@ -516,6 +516,7 @@
 
                                     if (response.ok) {
                                         console.log(result.message);
+                                        console.log(result);
                                     } else {
                                         console.log('Error: ' + result.error);
                                     }

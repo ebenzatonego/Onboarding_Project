@@ -63,6 +63,87 @@
     .modal{
         z-index: 999999!important;
     }
+
+    .loading-container-clear_cache {
+        display: flex;
+    }
+
+    .loading-spinner {
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        border-left-color: #000;
+        animation: spin 1s linear infinite;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        margin-right: 20px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes drawCheck {
+        0% {
+            transform: scale(0);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    .checkmark_clear_cache {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: block;
+        stroke-width: 2;
+        stroke: #29cc39;
+        stroke-miterlimit: 10;
+        margin: 10% auto;
+        box-shadow: inset 0px 0px 0px #ffffff;
+        animation: fill 0.9s ease-in-out .4s forwards, scale .3s ease-in-out .9s both
+    }
+
+    .checkmark_clear_cache__check {
+        transform-origin: 50% 50%;
+        stroke-dasharray: 48;
+        stroke-dashoffset: 48;
+        animation: stroke 0.8s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards
+    }
+
+    @keyframes stroke {
+        100% {
+            stroke-dashoffset: 0
+        }
+    }
+
+    @keyframes scale {
+
+        0%,
+        100% {
+            transform: none
+        }
+
+        50% {
+            transform: scale3d(1.1, 1.1, 1)
+        }
+    }
+
+    @keyframes fill {
+        100% {
+            box-shadow: inset 0px 0px 0px 60px #fff
+        }
+    }
 </style>
 
 @php
@@ -119,6 +200,37 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- button MODAL Clear Cache Success -->
+    <button type="button" class="btn btn-primary d-none" id="btn_Modal_clear_cache_success" data-toggle="modal" data-target="#Modal_clear_cache_success">
+    </button>
+
+    <!-- MODAL Clear Cache Success -->
+    <div class="modal fade" id="Modal_clear_cache_success" tabindex="-1" aria-labelledby="Label_clear_cache_success" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body d-flex justify-content-center">
+                    <div class="loading-container-clear_cache" class="col-12 mt-5">
+                        <div id="div_success_Excel" class="contrainerCheckmark">
+                            <svg class="checkmark_clear_cache" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                                <circle class="checkmark_clear_cache__circle" cx="26" cy="26" r="25" fill="none" />
+                                <path class="checkmark_clear_cache__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                            </svg>
+                            <center>
+                                <h5 class="mt-3">เสร็จสิ้น</h5>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <hr>
+                    <center>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                    </center>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="wrapper">
@@ -503,6 +615,7 @@
 
                         <script>
                             async function runCommands() {
+                                document.querySelector('#btn_Modal_clear_cache_success').click();
                                 try {
                                     const response = await fetch("{{ url('/') }}/api/run-commands", {
                                         method: 'POST',
@@ -527,6 +640,7 @@
                             }
 
                         </script>
+
                     @endif
                     <!-- END Clear Cache -->
 

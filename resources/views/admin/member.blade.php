@@ -464,15 +464,17 @@ function search_data_in_card() {
             if (isAccountMatch && isRankMatch && isPdpaMatch && isCocMatch) {
                 member.classList.remove('d-none');
                 count_row++;
-
                 check_loop++;
-                if(check_loop >= members_length){
-                    document.querySelector('#show_count_row').innerHTML = `${count_row.toLocaleString()}`;
-                    document.querySelector('#b_loading').innerHTML = '';
-                    console.log("b_loading >> close");
-                }
             } else {
                 member.classList.add('d-none');
+                check_loop++;
+
+            }
+
+            if(check_loop >= members_length){
+                document.querySelector('#show_count_row').innerHTML = `${count_row.toLocaleString()}`;
+                document.querySelector('#b_loading').innerHTML = '';
+                console.log("b_loading >> close");
             }
 
 

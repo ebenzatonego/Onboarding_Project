@@ -400,7 +400,7 @@ function delay_search_data_in_card() {
     }, 1000);
 }
 
-var sum_count_row  ;
+var sum_count_row = 0  ;
 
 async function search_data_in_card() {
 

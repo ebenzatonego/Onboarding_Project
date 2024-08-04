@@ -487,14 +487,19 @@
         const dateTimeEnd = document.getElementById('date_time_end');
         const dateTimeStart = document.getElementById('date_time_start');
         
-        // ตั้งค่าวันเวลาปัจจุบันเป็นค่าเริ่มต้นสำหรับ date_time_end
+        // ตั้งค่าวันเวลาปัจจุบันเป็นค่าเริ่มต้นสำหรับ date_time_end (เวลาของประเทศไทย UTC+7)
         const now = new Date();
-        dateTimeEnd.value = now.toISOString().slice(0, 16);
-        dateTimeEnd.max = now.toISOString().slice(0, 16);
+        const thailandOffset = 7 * 60 * 60 * 1000; // UTC+7 offset in milliseconds
+        const thailandTime = new Date(now.getTime() + thailandOffset);
+        const formattedThailandTime = thailandTime.toISOString().slice(0, 16);
+
+        dateTimeEnd.value = formattedThailandTime;
+        dateTimeEnd.max = formattedThailandTime;
 
         // ตั้งค่าวันที่ 5/7/2024 เป็นค่าเริ่มต้นสำหรับ date_time_start
         const startMinDate = new Date('2024-07-05T00:00');
-        dateTimeStart.min = startMinDate.toISOString().slice(0, 16);
+        const formattedStartMinDate = new Date(startMinDate.getTime() + thailandOffset).toISOString().slice(0, 16);
+        dateTimeStart.min = formattedStartMinDate;
         
         dateTimeStart.addEventListener('change', () => {
             const startDate = new Date(dateTimeStart.value);
@@ -509,10 +514,11 @@
         dateTimeEnd.addEventListener('change', () => {
             const endDate = new Date(dateTimeEnd.value);
             const now = new Date();
+            const thailandNow = new Date(now.getTime() + thailandOffset);
 
-            if (endDate > now) {
+            if (endDate > thailandNow) {
                 alert('ไม่สามารถเลือกวันเวลาที่เกินวันเวลาปัจจุบันได้');
-                dateTimeEnd.value = now.toISOString().slice(0, 16);
+                dateTimeEnd.value = formattedThailandTime;
             }
             
             const startDate = new Date(dateTimeStart.value);

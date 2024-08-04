@@ -587,8 +587,8 @@
                             </div>
                         </a>
                         
-                        <ul>
-                            <li class="d-">
+                        <ul class="d-none">
+                            <li class="">
                                 <a href="{{ url('/log_web') }}" class="btn">
                                     <div class="parent-icon">
                                         <i class="fa-regular fa-globe-pointer"></i>
@@ -598,7 +598,7 @@
                                     </div>
                                 </a>
                             </li>
-                            <li class="d-">
+                            <li class="">
                                 <a href="{{ url('/log_delete') }}" class="btn">
                                     <div class="parent-icon">
                                         <i class="fa-solid fa-delete-right"></i>
@@ -608,7 +608,7 @@
                                     </div>
                                 </a>
                             </li>
-                            <li class="d-">
+                            <li class="">
                                 <a href="{{ url('/log_content') }}" class="btn">
                                     <div class="parent-icon">
                                         <i class="fa-solid fa-newspaper"></i>

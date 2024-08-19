@@ -909,81 +909,81 @@
             // END activitys
 
             // products
-            if(result.products){
-                for (let i = 0; i < result.products.length; i++) {
-                    let db_log_view = result.products[i].user_view;
+            // if(result.products){
+            //     for (let i = 0; i < result.products.length; i++) {
+            //         let db_log_view = result.products[i].user_view;
 
-                    // แปลง JSON เป็นอาร์เรย์ JavaScript
-                    let logViewArray ;
-                    if(db_log_view){
-                        logViewArray = JSON.parse(db_log_view);
-                    }
-                    else{
-                        logViewArray = false ;
-                    }
+            //         // แปลง JSON เป็นอาร์เรย์ JavaScript
+            //         let logViewArray ;
+            //         if(db_log_view){
+            //             logViewArray = JSON.parse(db_log_view);
+            //         }
+            //         else{
+            //             logViewArray = false ;
+            //         }
 
-                    let content_logs_view = document.querySelector('#content_logs_view');
-                        content_logs_view.innerHTML = '';
+            //         let content_logs_view = document.querySelector('#content_logs_view');
+            //             content_logs_view.innerHTML = '';
 
-                    let html_heading ;
+            //         let html_heading ;
 
-                    if(logViewArray){
-                        for (let userId in logViewArray) {
-                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
-                            .then(response => response.json())
-                            .then(user => {
-                                // console.log(user);
+            //         if(logViewArray){
+            //             for (let userId in logViewArray) {
+            //                 fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+            //                 .then(response => response.json())
+            //                 .then(user => {
+            //                     // console.log(user);
 
-                                if(user){
-                                    let roundCount = Object.keys(logViewArray[userId]).length;
-                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
-                                    for (let roundId in logViewArray[userId]) {
-                                        let datetime = logViewArray[userId][roundId].datetime;
-                                        let html_item_of_user = `
-                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="products" class="card w-100 shadow-sm border-1 border p-3 mt-2">
-                                                <div class="d-flex justify-content-start">
-                                                    <div class="mx-2">
-                                                        <b>ประเภท : </b>
-                                                        <span class="excel_type">
-                                                            ผลิตภัณฑ์
-                                                        </span>
-                                                    </div>
-                                                    <div class="mx-2">
-                                                        <b>ชื่อเนื้อหา : </b>
-                                                        <span class="excel_name_content">
-                                                            ${result.products[i].title}
-                                                        </span>
-                                                    </div>
-                                                    <div class="mx-2 ">
-                                                        <b>รหัสตัวแทน : </b>
-                                                        <span class="excel_account">
-                                                            ${user.account}
-                                                        </span>
-                                                    </div>
-                                                    <div class="mx-2 ">
-                                                        <b>ชื่อ : </b>
-                                                        <span class="excel_name">
-                                                            ${user.name}
-                                                        </span>
-                                                    </div>
-                                                    <div class="mx-2">
-                                                        <b>Datetime : </b>
-                                                        <span class="excel_datetime">
-                                                            ${datetime}
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        `;
-                                        content_logs_view.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
-                                    }
-                                }
+            //                     if(user){
+            //                         let roundCount = Object.keys(logViewArray[userId]).length;
+            //                         // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+            //                         for (let roundId in logViewArray[userId]) {
+            //                             let datetime = logViewArray[userId][roundId].datetime;
+            //                             let html_item_of_user = `
+            //                                 <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="products" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+            //                                     <div class="d-flex justify-content-start">
+            //                                         <div class="mx-2">
+            //                                             <b>ประเภท : </b>
+            //                                             <span class="excel_type">
+            //                                                 ผลิตภัณฑ์
+            //                                             </span>
+            //                                         </div>
+            //                                         <div class="mx-2">
+            //                                             <b>ชื่อเนื้อหา : </b>
+            //                                             <span class="excel_name_content">
+            //                                                 ${result.products[i].title}
+            //                                             </span>
+            //                                         </div>
+            //                                         <div class="mx-2 ">
+            //                                             <b>รหัสตัวแทน : </b>
+            //                                             <span class="excel_account">
+            //                                                 ${user.account}
+            //                                             </span>
+            //                                         </div>
+            //                                         <div class="mx-2 ">
+            //                                             <b>ชื่อ : </b>
+            //                                             <span class="excel_name">
+            //                                                 ${user.name}
+            //                                             </span>
+            //                                         </div>
+            //                                         <div class="mx-2">
+            //                                             <b>Datetime : </b>
+            //                                             <span class="excel_datetime">
+            //                                                 ${datetime}
+            //                                             </span>
+            //                                         </div>
+            //                                     </div>
+            //                                 </div>
+            //                             `;
+            //                             content_logs_view.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+            //                         }
+            //                     }
 
-                            });
-                        }
-                    }
-                }
-            }
+            //                 });
+            //             }
+            //         }
+            //     }
+            // }
             // END products
 
             // career_path_contents

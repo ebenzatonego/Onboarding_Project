@@ -325,41 +325,21 @@
             }
         });
 
-        get_data_log_content();
+        // get_data_log_content();
     });
 
+    document.addEventListener('DOMContentLoaded', async function () {
+        await for_trainings();
+        await for_appointments_train();
+    });
 
-    // async function get_data_log_content(){
-        
-    //     fetch("{{ url('/') }}/api/get_log_content")
-    //         .then(response => response.json())
-    //         .then(result => {
-    //             console.log(result);
-
-    //             if(result){
-    //                 await user_view_create_html(result);
-    //                 await user_like_create_html(result);
-    //                 await log_rating_create_html(result);
-    //                 await user_dislike_create_html(result);
-    //                 await user_fav_create_html(result);
-    //                 await user_share_create_html(result);
-    //                 await log_video_create_html(result);
-    //                 await user_download_pdf_create_html(result);
-    //             }
-
-    //         });
-    // }
-
-    async function get_data_log_content() {
+    async function for_trainings(){
         try {
-            const response = await fetch("{{ url('/') }}/api/get_log_content");
+            const response = await fetch("{{ url('/') }}/api/get_log_content/trainings");
             const result = await response.json();
             console.log(result);
 
             if (result) {
-                document.querySelector('#btn_export_excel').classList.add('d-none');
-                document.querySelector('#text_show_load').classList.remove('d-none');
-
                 await user_view_create_html(result);
                 await user_like_create_html(result);
                 await log_rating_create_html(result);
@@ -374,6 +354,51 @@
             console.error('Error fetching data:', error);
         }
     }
+
+    async function for_appointments_train(){
+        try {
+            const response = await fetch("{{ url('/') }}/api/get_log_content/appointments_train");
+            const result = await response.json();
+            console.log(result);
+
+            if (result) {
+                await user_view_create_html(result);
+                await user_like_create_html(result);
+                await log_rating_create_html(result);
+                await user_dislike_create_html(result);
+                await user_fav_create_html(result);
+                await user_share_create_html(result);
+                await log_video_create_html(result);
+                await user_download_pdf_create_html(result);
+                await load_success();
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+
+
+    // async function get_data_log_content() {
+    //     try {
+    //         const response = await fetch("{{ url('/') }}/api/get_log_content");
+    //         const result = await response.json();
+    //         console.log(result);
+
+    //         if (result) {
+    //             await user_view_create_html(result);
+    //             await user_like_create_html(result);
+    //             await log_rating_create_html(result);
+    //             await user_dislike_create_html(result);
+    //             await user_fav_create_html(result);
+    //             await user_share_create_html(result);
+    //             await log_video_create_html(result);
+    //             await user_download_pdf_create_html(result);
+    //             await load_success();
+    //         }
+    //     } catch (error) {
+    //         console.error('Error fetching data:', error);
+    //     }
+    // }
 
     function load_success(){
         setTimeout(function() {

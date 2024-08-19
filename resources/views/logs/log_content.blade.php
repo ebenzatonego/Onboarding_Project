@@ -1132,6 +1132,7 @@
                     `;
                     let content_logs_view = document.querySelector('#content_logs_view');
                         // content_logs_view.innerHTML = '';
+                    console.log('เพิ่มข้อมูล product');
                     content_logs_view.insertAdjacentHTML('beforeend', html_item_of_user);
                 }
             }

@@ -75,14 +75,19 @@
         </div>
         <div class="col-6 mb-4">
             <div class="d-flex justify-content-end">
-                <button id="btn_export_excel" type="button" class="btn btn-outline-secondary float-end mt-3 mx-2" onclick="exportExcel()">
+                <button id="btn_export_excel" type="button" class="btn btn-outline-secondary float-end mt-3 mx-2 d-none" onclick="exportExcel()">
                 Export Excel
             </button>
             </div>
         </div>
 
+        <div id="text_show_load" class="col-12 mt-2 mb-4">
+            <h6 class="text-danger"><b>กำลังโหลด..</b></h6>
+        </div>
         <hr>
+    </div>
 
+    <div class="row d-none">
         <div class="col-3">
             <label class="">DateTime Start</label>
             <input type="datetime-local" id="date_time_start" class="form-control" value="">
@@ -93,17 +98,23 @@
         </div>
         <div class="col-3">
             <label class="">ค้นหา</label>
-            <input type="text" style="width: 100%; max-width: 400px;" class="form-control" name="search_account" id="search_account" placeholder="ค้นหาด้วยชื่อหรือรหัสตัวแทน" value="" oninput="delay_search_data_in_card();">
+            <input type="text" style="width: 100%; max-width: 400px;" class="form-control" name="search_account" id="search_account" placeholder="ค้นหาด้วยชื่อหรือรหัสตัวแทน" value="">
         </div>
         <div class="col-2">
             <label class="">Content</label>
-            <select id="" class="form-select" onchange="search_data_in_card();">
+            <select id="search_content" class="form-select">
                 <option selected="" value="">All Content</option>
-                <option value="Super-admin">Super-admin</option>
+                <option value="trainings">หลักสูตร</option>
+                <option value="appointments_train">ปฏิทินหลักสูตร</option>
+                <option value="appointments_quiz">สนามสอบ</option>
+                <option value="news">ข่าว</option>
+                <option value="activitys">กิจกรรม</option>
+                <option value="products">ผลิตภัณฑ์</option>
+                <option value="career_path_contents">Career path</option>
             </select>
         </div>
         <div class="col-1">
-            <button type="button" class="btn btn-info float-end mt-3 mx-2">
+            <button type="button" class="btn btn-info float-end mt-3 mx-2" onclick="check_search_data_in_card();">
                 ค้นหา
             </button>
         </div>
@@ -211,235 +222,35 @@
                 </div>
                 <!-- logs_rate -->
                 <div class="tab-pane fade" id="logs_rate" role="tabpanel">
-                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="me-2 btn btn-outline-info active" data-bs-toggle="pill" onclick="change_view_active_logs_rate('All')">
-                                All
-                            </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="me-2 btn btn-outline-success" data-bs-toggle="pill" onclick="change_view_active_logs_rate('Active')">
-                                Active
-                            </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="me-2 btn btn-outline-danger" data-bs-toggle="pill" onclick="change_view_active_logs_rate('Inactive')">
-                                Inactive
-                            </button>
-                        </li>
-                    </ul>
                     <div id="content_logs_rating">
                         <!-- content_logs_rating -->
                     </div>
-                    <script>
-                        function change_view_active_logs_rate(type) {
-                            let list_log_rating = document.querySelectorAll('.list_log_rating');
-                            list_log_rating.forEach(function(item) {
-                                if (type === 'Active') {
-                                    if (item.getAttribute('status') === 'Canceled') {
-                                        item.classList.add('d-none');
-                                    } else {
-                                        item.classList.remove('d-none');
-                                    }
-                                }
-                                else if (type === 'Inactive') {
-                                    if (item.getAttribute('status') === 'Active') {
-                                        item.classList.add('d-none');
-                                    } else {
-                                        item.classList.remove('d-none');
-                                    }
-                                }
-                                else if (type === 'All') {
-                                    item.classList.remove('d-none');
-                                }
-                            });
-                        }
-                    </script>
                 </div>
                 <!-- logs_dislike -->
                 <div class="tab-pane fade" id="logs_dislike" role="tabpanel">
-                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="me-2 btn btn-outline-info active" data-bs-toggle="pill" onclick="change_view_active_logs_dislike('All')">
-                                All
-                            </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="me-2 btn btn-outline-success" data-bs-toggle="pill" onclick="change_view_active_logs_dislike('Active')">
-                                Active
-                            </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="me-2 btn btn-outline-danger" data-bs-toggle="pill" onclick="change_view_active_logs_dislike('Inactive')">
-                                Inactive
-                            </button>
-                        </li>
-                    </ul>
                     <div class="tab-content" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-active" role="tabpanel" aria-labelledby="pills-active-tab">
                             <div id="content_logs_dislike">
                                 <!-- content_logs_dislike -->
                             </div>
                         </div>
-                        <script>
-                            function change_view_active_logs_dislike(type) {
-                                let list_log_dislike = document.querySelectorAll('.list_log_dislike');
-                                list_log_dislike.forEach(function(item) {
-                                    if (type === 'Active') {
-                                        if (item.getAttribute('status') === 'Canceled') {
-                                            item.classList.add('d-none');
-                                        } else {
-                                            item.classList.remove('d-none');
-                                        }
-                                    }
-                                    else if (type === 'Inactive') {
-                                        if (item.getAttribute('status') === 'Active') {
-                                            item.classList.add('d-none');
-                                        } else {
-                                            item.classList.remove('d-none');
-                                        }
-                                    }
-                                    else if (type === 'All') {
-                                        item.classList.remove('d-none');
-                                    }
-                                });
-                            }
-                        </script>
                     </div>
                 </div>
                 <!-- logs_fav -->
                 <div class="tab-pane fade" id="logs_fav" role="tabpanel">
-                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="me-2 btn btn-outline-info active" data-bs-toggle="pill" onclick="change_view_active_logs_fav('All')">
-                                All
-                            </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="me-2 btn btn-outline-success" data-bs-toggle="pill" onclick="change_view_active_logs_fav('Active')">
-                                Active
-                            </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="me-2 btn btn-outline-danger" data-bs-toggle="pill" onclick="change_view_active_logs_fav('Inactive')">
-                                Inactive
-                            </button>
-                        </li>
-                    </ul>
                     <div id="content_logs_favorites">
                         <!-- content_logs_favorites -->
                     </div>
-                    <script>
-                        function change_view_active_logs_fav(type) {
-                            let list_log_fav = document.querySelectorAll('.list_log_fav');
-                            list_log_fav.forEach(function(item) {
-                                if (type === 'Active') {
-                                    if (item.getAttribute('status') === 'Canceled') {
-                                        item.classList.add('d-none');
-                                    } else {
-                                        item.classList.remove('d-none');
-                                    }
-                                }
-                                else if (type === 'Inactive') {
-                                    if (item.getAttribute('status') === 'Active') {
-                                        item.classList.add('d-none');
-                                    } else {
-                                        item.classList.remove('d-none');
-                                    }
-                                }
-                                else if (type === 'All') {
-                                    item.classList.remove('d-none');
-                                }
-                            });
-                        }
-                    </script>
                 </div>
                 <!-- logs_share -->
                 <div class="tab-pane fade" id="logs_share" role="tabpanel">
                     <div class="w-100">
-                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active btn mx-1" data-bs-toggle="pill" onclick="change_view_active_logs_share('All');">
-                                    All
-                                </button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link btn mx-1 logsFacebook" data-bs-toggle="pill" onclick="change_view_active_logs_share('facebook');">
-                                    <i class="fa-brands fa-facebook me-2"></i> Facebook
-                                </button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link btn mx-1 logsLine" data-bs-toggle="pill" onclick="change_view_active_logs_share('line');">
-                                    <i class="fa-brands fa-line me-2"></i> Line
-                                </button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link btn mx-1 logsTwitter" data-bs-toggle="pill" onclick="change_view_active_logs_share('twitte');">
-                                    <i class="fa-brands fa-x-twitter"></i> 
-                                </button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link btn mx-1 logsWhatsapp" data-bs-toggle="pill" onclick="change_view_active_logs_share('whatsapp');">
-                                    <i class="fa-brands fa-whatsapp me-2"></i> WhatsApp
-                                </button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link btn mx-1 logsCopy" data-bs-toggle="pill" onclick="change_view_active_logs_share('copy');">
-                                    Copy
-                                </button>
-                            </li>
-                        </ul>
                         <div class="tab-content" id="pills-tabContent">
                             <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-home-tab">
                                 <div id="content_logs_share">
                                     <!-- content_logs_share -->
                                 </div>
                             </div>
-                            <script>
-                                function change_view_active_logs_share(type) {
-                                    let list_log_share = document.querySelectorAll('.list_log_share');
-                                    list_log_share.forEach(function(item) {
-                                        if (type === 'line') {
-                                            if (item.getAttribute('social') !== 'line') {
-                                                item.classList.add('d-none');
-                                            } else {
-                                                item.classList.remove('d-none');
-                                            }
-                                        }
-                                        else if (type === 'facebook') {
-                                            if (item.getAttribute('social') !== 'facebook') {
-                                                item.classList.add('d-none');
-                                            } else {
-                                                item.classList.remove('d-none');
-                                            }
-                                        }
-                                        else if (type === 'twitte') {
-                                            if (item.getAttribute('social') !== 'twitte') {
-                                                item.classList.add('d-none');
-                                            } else {
-                                                item.classList.remove('d-none');
-                                            }
-                                        }
-                                        else if (type === 'whatsapp') {
-                                            if (item.getAttribute('social') !== 'whatsapp') {
-                                                item.classList.add('d-none');
-                                            } else {
-                                                item.classList.remove('d-none');
-                                            }
-                                        }
-                                        else if (type === 'copy') {
-                                            if (item.getAttribute('social') !== 'copy') {
-                                                item.classList.add('d-none');
-                                            } else {
-                                                item.classList.remove('d-none');
-                                            }
-                                        }
-                                        else if (type === 'All') {
-                                            item.classList.remove('d-none');
-                                        }
-                                    });
-                                }
-                            </script>
                         </div>
                     </div>
                 </div>
@@ -451,30 +262,14 @@
                 </div>
                 <!-- logs_download_pdf -->
                 <div class="tab-pane fade" id="logs_download_pdf" role="tabpanel">
-                    <div id="content_logs_download_pdf">
-                        <div class="card w-100 shadow-sm  border-1 border p-3 mt-2">
-                            <div class="d-flex justify-content-between align-items-center ">
-                                <div>name(account)</div>
-                                <div>12/5/2567 18:00น.</div>
-                                <div class="bg-success py-1 px-3 text-white rounded-pill">active</div>
-                            </div>
-                        </div>
-                        <div class="card w-100 shadow-sm  border-1 border p-3 mt-2">
-                            <div class="d-flex justify-content-between align-items-center ">
-                                <div>name(account)</div>
-                                <div>12/5/2567 18:00น.</div>
-                                <div class="bg-danger py-1 px-3 text-white rounded-pill">cancle</div>
-                            </div>
-                        </div>
+                    <div id="content_user_download_pdf">
+                        <!-- content_logs_video -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="div_empty_data">
-        <b class="text-danger">กรุณากรองข้อมูลที่ต้องการ</b>
-    </div>
 </div>
 
 
@@ -493,13 +288,15 @@
         const thailandTime = new Date(now.getTime() + thailandOffset);
         const formattedThailandTime = thailandTime.toISOString().slice(0, 16);
 
-        dateTimeEnd.value = formattedThailandTime;
+        // dateTimeEnd.value = formattedThailandTime;
+        dateTimeStart.max = formattedThailandTime;
         dateTimeEnd.max = formattedThailandTime;
 
         // ตั้งค่าวันที่ 5/7/2024 เป็นค่าเริ่มต้นสำหรับ date_time_start
         const startMinDate = new Date('2024-07-05T00:00');
         const formattedStartMinDate = new Date(startMinDate.getTime() + thailandOffset).toISOString().slice(0, 16);
         dateTimeStart.min = formattedStartMinDate;
+        dateTimeEnd.min = formattedStartMinDate;
         
         dateTimeStart.addEventListener('change', () => {
             const startDate = new Date(dateTimeStart.value);
@@ -527,6 +324,3762 @@
                 dateTimeEnd.value = dateTimeStart.value;
             }
         });
+
+        get_data_log_content();
     });
+
+
+    // async function get_data_log_content(){
+        
+    //     fetch("{{ url('/') }}/api/get_log_content")
+    //         .then(response => response.json())
+    //         .then(result => {
+    //             console.log(result);
+
+    //             if(result){
+    //                 await user_view_create_html(result);
+    //                 await user_like_create_html(result);
+    //                 await log_rating_create_html(result);
+    //                 await user_dislike_create_html(result);
+    //                 await user_fav_create_html(result);
+    //                 await user_share_create_html(result);
+    //                 await log_video_create_html(result);
+    //                 await user_download_pdf_create_html(result);
+    //             }
+
+    //         });
+    // }
+
+    async function get_data_log_content() {
+        try {
+            const response = await fetch("{{ url('/') }}/api/get_log_content");
+            const result = await response.json();
+            console.log(result);
+
+            if (result) {
+                document.querySelector('#btn_export_excel').classList.add('d-none');
+                document.querySelector('#text_show_load').classList.remove('d-none');
+
+                await user_view_create_html(result);
+                await user_like_create_html(result);
+                await log_rating_create_html(result);
+                await user_dislike_create_html(result);
+                await user_fav_create_html(result);
+                await user_share_create_html(result);
+                await log_video_create_html(result);
+                await user_download_pdf_create_html(result);
+                await load_success();
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+
+    function load_success(){
+        setTimeout(function() {
+            document.querySelector('#btn_export_excel').classList.remove('d-none');
+            document.querySelector('#text_show_load').classList.add('d-none');
+        }, 5000);
+    }
+
+    function user_view_create_html(result){
+        return new Promise((resolve) => {
+            // trainings 
+            if(result.trainings){
+                for (let i = 0; i < result.trainings.length; i++) {
+                    let db_log_view = result.trainings[i].user_view;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_view = document.querySelector('#content_logs_view');
+                        content_logs_view.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="trainings" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            หลักสูตร
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.trainings[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_view.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END trainings
+
+            // appointments_train
+            if(result.appointments_train){
+                for (let i = 0; i < result.appointments_train.length; i++) {
+                    let db_log_view = result.appointments_train[i].user_view;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_view = document.querySelector('#content_logs_view');
+                        content_logs_view.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="appointments_train" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            ปฏิทินหลักสูตร
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.appointments_train[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_view.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END appointments_train
+
+            // appointments_quiz
+            if(result.appointments_quiz){
+                for (let i = 0; i < result.appointments_quiz.length; i++) {
+                    let db_log_view = result.appointments_quiz[i].user_view;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_view = document.querySelector('#content_logs_view');
+                        content_logs_view.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="appointments_quiz" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            สนามสอบ
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.appointments_quiz[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_view.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END appointments_quiz
+
+            // news
+            if(result.news){
+                for (let i = 0; i < result.news.length; i++) {
+                    let db_log_view = result.news[i].user_view;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_view = document.querySelector('#content_logs_view');
+                        content_logs_view.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="news" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            ข่าว
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.news[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_view.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END news
+
+            // activitys
+            if(result.activitys){
+                for (let i = 0; i < result.activitys.length; i++) {
+                    let db_log_view = result.activitys[i].user_view;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_view = document.querySelector('#content_logs_view');
+                        content_logs_view.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="activitys" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            กิจกรรม
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.activitys[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_view.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END activitys
+
+            // products
+            if(result.products){
+                for (let i = 0; i < result.products.length; i++) {
+                    let db_log_view = result.products[i].user_view;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_view = document.querySelector('#content_logs_view');
+                        content_logs_view.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="products" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            ผลิตภัณฑ์
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.products[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_view.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END products
+
+            // career_path_contents
+            if(result.career_path_contents){
+                for (let i = 0; i < result.career_path_contents.length; i++) {
+                    let db_log_view = result.career_path_contents[i].user_view;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_view = document.querySelector('#content_logs_view');
+                        content_logs_view.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="career_path_contents" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            Career path
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.career_path_contents[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_view.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END career_path_contents
+        resolve();
+        });
+    }
+
+    function user_like_create_html(result){
+        return new Promise((resolve) => {
+            // trainings 
+            if(result.trainings){
+                for (let i = 0; i < result.trainings.length; i++) {
+                    let db_log_view = result.trainings[i].user_like;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_like = document.querySelector('#content_logs_like');
+                        content_logs_like.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let xxi = 0; xxi < logViewArray.length; xxi++) {
+                            
+
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + logViewArray[xxi])
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    let html_item_of_user = `
+                                        <div name_user="`+user.name+`" account="`+user.account+`" name_content="trainings" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                            <div class="d-flex justify-content-start">
+                                                <div class="mx-2">
+                                                    <b>ประเภท : </b>
+                                                    <span class="excel_type">
+                                                        หลักสูตร
+                                                    </span>
+                                                </div>
+                                                <div class="mx-2">
+                                                    <b>ชื่อเนื้อหา : </b>
+                                                    <span class="excel_name_content">
+                                                        ${result.trainings[i].title}
+                                                    </span>
+                                                </div>
+                                                <div class="mx-2 ">
+                                                    <b>รหัสตัวแทน : </b>
+                                                    <span class="excel_account">
+                                                        ${user.account}
+                                                    </span>
+                                                </div>
+                                                <div class="mx-2 ">
+                                                    <b>ชื่อ : </b>
+                                                    <span class="excel_name">
+                                                        ${user.name}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `;
+                                    content_logs_like.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END trainings
+
+            // appointments_train
+            if(result.appointments_train){
+                for (let i = 0; i < result.appointments_train.length; i++) {
+                    let db_log_view = result.appointments_train[i].user_like;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_like = document.querySelector('#content_logs_like');
+                        content_logs_like.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let xxi = 0; xxi < logViewArray.length; xxi++) {
+                            
+
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + logViewArray[xxi])
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    let html_item_of_user = `
+                                        <div name_user="`+user.name+`" account="`+user.account+`" name_content="appointments_train" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                            <div class="d-flex justify-content-start">
+                                                <div class="mx-2">
+                                                    <b>ประเภท : </b>
+                                                    <span class="excel_type">
+                                                        ปฏิทินหลักสูตร
+                                                    </span>
+                                                </div>
+                                                <div class="mx-2">
+                                                    <b>ชื่อเนื้อหา : </b>
+                                                    <span class="excel_name_content">
+                                                        ${result.appointments_train[i].title}
+                                                    </span>
+                                                </div>
+                                                <div class="mx-2 ">
+                                                    <b>รหัสตัวแทน : </b>
+                                                    <span class="excel_account">
+                                                        ${user.account}
+                                                    </span>
+                                                </div>
+                                                <div class="mx-2 ">
+                                                    <b>ชื่อ : </b>
+                                                    <span class="excel_name">
+                                                        ${user.name}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `;
+                                    content_logs_like.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END appointments_train
+
+            // appointments_quiz
+            if(result.appointments_quiz){
+                for (let i = 0; i < result.appointments_quiz.length; i++) {
+                    let db_log_view = result.appointments_quiz[i].user_like;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_like = document.querySelector('#content_logs_like');
+                        content_logs_like.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let xxi = 0; xxi < logViewArray.length; xxi++) {
+                            
+
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + logViewArray[xxi])
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    let html_item_of_user = `
+                                        <div name_user="`+user.name+`" account="`+user.account+`" name_content="appointments_quiz" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                            <div class="d-flex justify-content-start">
+                                                <div class="mx-2">
+                                                    <b>ประเภท : </b>
+                                                    <span class="excel_type">
+                                                        สนามสอบ
+                                                    </span>
+                                                </div>
+                                                <div class="mx-2">
+                                                    <b>ชื่อเนื้อหา : </b>
+                                                    <span class="excel_name_content">
+                                                        ${result.appointments_quiz[i].title}
+                                                    </span>
+                                                </div>
+                                                <div class="mx-2 ">
+                                                    <b>รหัสตัวแทน : </b>
+                                                    <span class="excel_account">
+                                                        ${user.account}
+                                                    </span>
+                                                </div>
+                                                <div class="mx-2 ">
+                                                    <b>ชื่อ : </b>
+                                                    <span class="excel_name">
+                                                        ${user.name}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `;
+                                    content_logs_like.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END appointments_quiz
+
+            // news
+            if(result.news){
+                for (let i = 0; i < result.news.length; i++) {
+                    let db_log_view = result.news[i].user_like;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_like = document.querySelector('#content_logs_like');
+                        content_logs_like.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let xxi = 0; xxi < logViewArray.length; xxi++) {
+                            
+
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + logViewArray[xxi])
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    let html_item_of_user = `
+                                        <div name_user="`+user.name+`" account="`+user.account+`" name_content="news" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                            <div class="d-flex justify-content-start">
+                                                <div class="mx-2">
+                                                    <b>ประเภท : </b>
+                                                    <span class="excel_type">
+                                                        ข่าว
+                                                    </span>
+                                                </div>
+                                                <div class="mx-2">
+                                                    <b>ชื่อเนื้อหา : </b>
+                                                    <span class="excel_name_content">
+                                                        ${result.news[i].title}
+                                                    </span>
+                                                </div>
+                                                <div class="mx-2 ">
+                                                    <b>รหัสตัวแทน : </b>
+                                                    <span class="excel_account">
+                                                        ${user.account}
+                                                    </span>
+                                                </div>
+                                                <div class="mx-2 ">
+                                                    <b>ชื่อ : </b>
+                                                    <span class="excel_name">
+                                                        ${user.name}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `;
+                                    content_logs_like.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END news
+
+            // activitys
+            if(result.activitys){
+                for (let i = 0; i < result.activitys.length; i++) {
+                    let db_log_view = result.activitys[i].user_like;
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_like = document.querySelector('#content_logs_like');
+                        content_logs_like.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let xxi = 0; xxi < logViewArray.length; xxi++) {
+                            
+
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + logViewArray[xxi])
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    let html_item_of_user = `
+                                        <div name_user="`+user.name+`" account="`+user.account+`" name_content="activitys" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                            <div class="d-flex justify-content-start">
+                                                <div class="mx-2">
+                                                    <b>ประเภท : </b>
+                                                    <span class="excel_type">
+                                                        กิจกรรม
+                                                    </span>
+                                                </div>
+                                                <div class="mx-2">
+                                                    <b>ชื่อเนื้อหา : </b>
+                                                    <span class="excel_name_content">
+                                                        ${result.activitys[i].title}
+                                                    </span>
+                                                </div>
+                                                <div class="mx-2 ">
+                                                    <b>รหัสตัวแทน : </b>
+                                                    <span class="excel_account">
+                                                        ${user.account}
+                                                    </span>
+                                                </div>
+                                                <div class="mx-2 ">
+                                                    <b>ชื่อ : </b>
+                                                    <span class="excel_name">
+                                                        ${user.name}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `;
+                                    content_logs_like.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END activitys
+
+            // products
+            if(result.products){
+                for (let i = 0; i < result.products.length; i++) {
+                    let db_log_view = result.products[i].user_like;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_like = document.querySelector('#content_logs_like');
+                        content_logs_like.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let xxi = 0; xxi < logViewArray.length; xxi++) {
+                            
+
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + logViewArray[xxi])
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    let html_item_of_user = `
+                                        <div name_user="`+user.name+`" account="`+user.account+`" name_content="products" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                            <div class="d-flex justify-content-start">
+                                                <div class="mx-2">
+                                                    <b>ประเภท : </b>
+                                                    <span class="excel_type">
+                                                        ผลิตภัณฑ์
+                                                    </span>
+                                                </div>
+                                                <div class="mx-2">
+                                                    <b>ชื่อเนื้อหา : </b>
+                                                    <span class="excel_name_content">
+                                                        ${result.products[i].title}
+                                                    </span>
+                                                </div>
+                                                <div class="mx-2 ">
+                                                    <b>รหัสตัวแทน : </b>
+                                                    <span class="excel_account">
+                                                        ${user.account}
+                                                    </span>
+                                                </div>
+                                                <div class="mx-2 ">
+                                                    <b>ชื่อ : </b>
+                                                    <span class="excel_name">
+                                                        ${user.name}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `;
+                                    content_logs_like.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END products
+        resolve();
+        });
+    }
+
+    function log_rating_create_html(result){
+        return new Promise((resolve) => {
+            // trainings 
+            if(result.trainings){
+                for (let i = 0; i < result.trainings.length; i++) {
+                    let db_log_view = result.trainings[i].log_rating;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_rating = document.querySelector('#content_logs_rating');
+                        content_logs_rating.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let rating = logViewArray[userId][roundId].rating;
+                                        let status = logViewArray[userId][roundId].status;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="trainings" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            หลักสูตร
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.trainings[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Rating : </b>
+                                                        <span class="excel_rating">
+                                                            ${rating}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Status : </b>
+                                                        <span class="excel_status">
+                                                            ${status}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_rating.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END trainings
+
+            // appointments_train
+            if(result.appointments_train){
+                for (let i = 0; i < result.appointments_train.length; i++) {
+                    let db_log_view = result.appointments_train[i].log_rating;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_rating = document.querySelector('#content_logs_rating');
+                        content_logs_rating.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let rating = logViewArray[userId][roundId].rating;
+                                        let status = logViewArray[userId][roundId].status;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="appointments_train" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            ปฏิทินหลักสูตร
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.appointments_train[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Rating : </b>
+                                                        <span class="excel_rating">
+                                                            ${rating}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Status : </b>
+                                                        <span class="excel_status">
+                                                            ${status}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_rating.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END appointments_train
+
+            // appointments_quiz
+            if(result.appointments_quiz){
+                for (let i = 0; i < result.appointments_quiz.length; i++) {
+                    let db_log_view = result.appointments_quiz[i].log_rating;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_rating = document.querySelector('#content_logs_rating');
+                        content_logs_rating.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let rating = logViewArray[userId][roundId].rating;
+                                        let status = logViewArray[userId][roundId].status;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="appointments_quiz" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            สนามสอบ
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.appointments_quiz[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Rating : </b>
+                                                        <span class="excel_rating">
+                                                            ${rating}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Status : </b>
+                                                        <span class="excel_status">
+                                                            ${status}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_rating.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END appointments_quiz
+
+            // news
+            if(result.news){
+                for (let i = 0; i < result.news.length; i++) {
+                    let db_log_view = result.news[i].log_rating;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_rating = document.querySelector('#content_logs_rating');
+                        content_logs_rating.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let rating = logViewArray[userId][roundId].rating;
+                                        let status = logViewArray[userId][roundId].status;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="news" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            ข่าว
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.news[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Rating : </b>
+                                                        <span class="excel_rating">
+                                                            ${rating}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Status : </b>
+                                                        <span class="excel_status">
+                                                            ${status}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_rating.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END news
+
+            // activitys
+            if(result.activitys){
+                for (let i = 0; i < result.activitys.length; i++) {
+                    let db_log_view = result.activitys[i].log_rating;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_rating = document.querySelector('#content_logs_rating');
+                        content_logs_rating.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let rating = logViewArray[userId][roundId].rating;
+                                        let status = logViewArray[userId][roundId].status;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="activitys" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            กิจกรรม
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.activitys[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Rating : </b>
+                                                        <span class="excel_rating">
+                                                            ${rating}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Status : </b>
+                                                        <span class="excel_status">
+                                                            ${status}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_rating.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END activitys
+
+            // products
+            if(result.products){
+                for (let i = 0; i < result.products.length; i++) {
+                    let db_log_view = result.products[i].log_rating;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_rating = document.querySelector('#content_logs_rating');
+                        content_logs_rating.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let rating = logViewArray[userId][roundId].rating;
+                                        let status = logViewArray[userId][roundId].status;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="products" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            ผลิตภัณฑ์
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.products[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Rating : </b>
+                                                        <span class="excel_rating">
+                                                            ${rating}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Status : </b>
+                                                        <span class="excel_status">
+                                                            ${status}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_rating.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END products
+        resolve();
+        });
+    }
+
+    function user_dislike_create_html(result){
+        return new Promise((resolve) => {
+            // trainings 
+            if(result.trainings){
+                for (let i = 0; i < result.trainings.length; i++) {
+                    let db_log_view = result.trainings[i].user_dislike;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_dislike = document.querySelector('#content_logs_dislike');
+                        content_logs_dislike.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let reasons = logViewArray[userId][roundId].reasons;
+                                        let status = logViewArray[userId][roundId].status;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="trainings" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            หลักสูตร
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.trainings[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Reasons : </b>
+                                                        <span class="excel_reasons">
+                                                            ${reasons}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Status : </b>
+                                                        <span class="excel_status">
+                                                            ${status}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_dislike.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END trainings
+
+            // appointments_train
+            if(result.appointments_train){
+                for (let i = 0; i < result.appointments_train.length; i++) {
+                    let db_log_view = result.appointments_train[i].user_dislike;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_dislike = document.querySelector('#content_logs_dislike');
+                        content_logs_dislike.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let reasons = logViewArray[userId][roundId].reasons;
+                                        let status = logViewArray[userId][roundId].status;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="appointments_train" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            ปฏิทินหลักสูตร
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.appointments_train[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Reasons : </b>
+                                                        <span class="excel_reasons">
+                                                            ${reasons}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Status : </b>
+                                                        <span class="excel_status">
+                                                            ${status}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_dislike.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END appointments_train
+
+            // appointments_quiz
+            if(result.appointments_quiz){
+                for (let i = 0; i < result.appointments_quiz.length; i++) {
+                    let db_log_view = result.appointments_quiz[i].user_dislike;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_dislike = document.querySelector('#content_logs_dislike');
+                        content_logs_dislike.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let reasons = logViewArray[userId][roundId].reasons;
+                                        let status = logViewArray[userId][roundId].status;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="appointments_quiz" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            สนามสอบ
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.appointments_quiz[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Reasons : </b>
+                                                        <span class="excel_reasons">
+                                                            ${reasons}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Status : </b>
+                                                        <span class="excel_status">
+                                                            ${status}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_dislike.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END appointments_quiz
+
+            // news
+            if(result.news){
+                for (let i = 0; i < result.news.length; i++) {
+                    let db_log_view = result.news[i].user_dislike;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_dislike = document.querySelector('#content_logs_dislike');
+                        content_logs_dislike.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let reasons = logViewArray[userId][roundId].reasons;
+                                        let status = logViewArray[userId][roundId].status;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="news" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            ข่าว
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.news[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Reasons : </b>
+                                                        <span class="excel_reasons">
+                                                            ${reasons}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Status : </b>
+                                                        <span class="excel_status">
+                                                            ${status}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_dislike.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END news
+
+            // activitys
+            if(result.activitys){
+                for (let i = 0; i < result.activitys.length; i++) {
+                    let db_log_view = result.activitys[i].user_dislike;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_dislike = document.querySelector('#content_logs_dislike');
+                        content_logs_dislike.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let reasons = logViewArray[userId][roundId].reasons;
+                                        let status = logViewArray[userId][roundId].status;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="activitys" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            กิจกรรม
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.activitys[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Reasons : </b>
+                                                        <span class="excel_reasons">
+                                                            ${reasons}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Status : </b>
+                                                        <span class="excel_status">
+                                                            ${status}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_dislike.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END activitys
+
+            // products
+            if(result.products){
+                for (let i = 0; i < result.products.length; i++) {
+                    let db_log_view = result.products[i].user_dislike;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_dislike = document.querySelector('#content_logs_dislike');
+                        content_logs_dislike.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let reasons = logViewArray[userId][roundId].reasons;
+                                        let status = logViewArray[userId][roundId].status;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="products" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            ผลิตภัณฑ์
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.products[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Reasons : </b>
+                                                        <span class="excel_reasons">
+                                                            ${reasons}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Status : </b>
+                                                        <span class="excel_status">
+                                                            ${status}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_dislike.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END products
+        resolve();
+        });
+    }
+
+    function user_fav_create_html(result){
+        return new Promise((resolve) => {
+            // trainings 
+            if(result.trainings){
+                for (let i = 0; i < result.trainings.length; i++) {
+                    let db_log_view = result.trainings[i].user_fav;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_favorites = document.querySelector('#content_logs_favorites');
+                        content_logs_favorites.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let status = logViewArray[userId][roundId].status;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="trainings" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            หลักสูตร
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.trainings[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Status : </b>
+                                                        <span class="excel_status">
+                                                            ${status}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_favorites.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END trainings
+
+            // appointments_train
+            if(result.appointments_train){
+                for (let i = 0; i < result.appointments_train.length; i++) {
+                    let db_log_view = result.appointments_train[i].user_fav;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_favorites = document.querySelector('#content_logs_favorites');
+                        content_logs_favorites.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let status = logViewArray[userId][roundId].status;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="appointments_train" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            ปฏิทินหลักสูตร
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.appointments_train[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Status : </b>
+                                                        <span class="excel_status">
+                                                            ${status}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_favorites.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END appointments_train
+
+            // appointments_quiz
+            if(result.appointments_quiz){
+                for (let i = 0; i < result.appointments_quiz.length; i++) {
+                    let db_log_view = result.appointments_quiz[i].user_fav;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_favorites = document.querySelector('#content_logs_favorites');
+                        content_logs_favorites.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let status = logViewArray[userId][roundId].status;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="appointments_quiz" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            สนามสอบ
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.appointments_quiz[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Status : </b>
+                                                        <span class="excel_status">
+                                                            ${status}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_favorites.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END appointments_quiz
+
+            // news
+            if(result.news){
+                for (let i = 0; i < result.news.length; i++) {
+                    let db_log_view = result.news[i].user_fav;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_favorites = document.querySelector('#content_logs_favorites');
+                        content_logs_favorites.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let status = logViewArray[userId][roundId].status;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="news" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            ข่าว
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.news[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Status : </b>
+                                                        <span class="excel_status">
+                                                            ${status}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_favorites.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END news
+
+            // activitys
+            if(result.activitys){
+                for (let i = 0; i < result.activitys.length; i++) {
+                    let db_log_view = result.activitys[i].user_fav;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_favorites = document.querySelector('#content_logs_favorites');
+                        content_logs_favorites.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let status = logViewArray[userId][roundId].status;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="activitys" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            กิจกรรม
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.activitys[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Status : </b>
+                                                        <span class="excel_status">
+                                                            ${status}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_favorites.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END activitys
+
+            // products
+            if(result.products){
+                for (let i = 0; i < result.products.length; i++) {
+                    let db_log_view = result.products[i].user_fav;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_favorites = document.querySelector('#content_logs_favorites');
+                        content_logs_favorites.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let status = logViewArray[userId][roundId].status;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="products" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            ผลิตภัณฑ์
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.products[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Status : </b>
+                                                        <span class="excel_status">
+                                                            ${status}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_favorites.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END products
+        resolve();
+        });
+    }
+
+    function user_share_create_html(result){
+        return new Promise((resolve) => {
+            // trainings 
+            if(result.trainings){
+                for (let i = 0; i < result.trainings.length; i++) {
+                    let db_log_view = result.trainings[i].user_share;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_share = document.querySelector('#content_logs_share');
+                        content_logs_share.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let social = logViewArray[userId][roundId].social;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="trainings" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            หลักสูตร
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.trainings[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Social : </b>
+                                                        <span class="excel_social">
+                                                            ${social}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_share.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END trainings
+
+            // appointments_train
+            if(result.appointments_train){
+                for (let i = 0; i < result.appointments_train.length; i++) {
+                    let db_log_view = result.appointments_train[i].user_share;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_share = document.querySelector('#content_logs_share');
+                        content_logs_share.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let social = logViewArray[userId][roundId].social;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="appointments_train" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            ปฏิทินหลักสูตร
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.appointments_train[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Social : </b>
+                                                        <span class="excel_social">
+                                                            ${social}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_share.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END appointments_train
+
+            // appointments_quiz
+            if(result.appointments_quiz){
+                for (let i = 0; i < result.appointments_quiz.length; i++) {
+                    let db_log_view = result.appointments_quiz[i].user_share;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_share = document.querySelector('#content_logs_share');
+                        content_logs_share.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let social = logViewArray[userId][roundId].social;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="appointments_quiz" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            สนามสอบ
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.appointments_quiz[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Social : </b>
+                                                        <span class="excel_social">
+                                                            ${social}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_share.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END appointments_quiz
+
+            // news
+            if(result.news){
+                for (let i = 0; i < result.news.length; i++) {
+                    let db_log_view = result.news[i].user_share;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_share = document.querySelector('#content_logs_share');
+                        content_logs_share.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let social = logViewArray[userId][roundId].social;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="news" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            ข่าว
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.news[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Social : </b>
+                                                        <span class="excel_social">
+                                                            ${social}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_share.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END news
+
+            // activitys
+            if(result.activitys){
+                for (let i = 0; i < result.activitys.length; i++) {
+                    let db_log_view = result.activitys[i].user_share;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_share = document.querySelector('#content_logs_share');
+                        content_logs_share.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let social = logViewArray[userId][roundId].social;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="activitys" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            กิจกรรม
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.activitys[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Social : </b>
+                                                        <span class="excel_social">
+                                                            ${social}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_share.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END activitys
+
+            // products
+            if(result.products){
+                for (let i = 0; i < result.products.length; i++) {
+                    let db_log_view = result.products[i].user_share;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_share = document.querySelector('#content_logs_share');
+                        content_logs_share.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let social = logViewArray[userId][roundId].social;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="products" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            ผลิตภัณฑ์
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.products[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Social : </b>
+                                                        <span class="excel_social">
+                                                            ${social}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_share.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END products
+        resolve();
+        });
+    }
+
+    function log_video_create_html(result){
+        return new Promise((resolve) => {
+            // news
+            if(result.news){
+                for (let i = 0; i < result.news.length; i++) {
+                    let db_log_view = result.news[i].log_video;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_video = document.querySelector('#content_logs_video');
+                        content_logs_video.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let countTime = logViewArray[userId][roundId].countTime;
+                                        let hours = Math.floor(countTime / 3600);
+                                        let minutes = Math.floor((countTime % 3600) / 60);
+                                        let seconds = Math.floor(countTime % 60);
+
+                                        let formattedDuration = "";
+                                        if (hours > 0) {
+                                            formattedDuration += hours + " ชั่วโมง ";
+                                        }
+                                        if (minutes > 0) {
+                                            formattedDuration += minutes + " นาที ";
+                                        }
+                                        if (seconds > 0 || (hours === 0 && minutes === 0)) {
+                                            // เพื่อให้แสดงวินาทีเสมอถ้าไม่มีชั่วโมงและนาที
+                                            formattedDuration += seconds + " วินาที";
+                                        }
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="news" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            ข่าว
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.news[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Count Time : </b>
+                                                        <span class="excel_countTime">
+                                                            ${formattedDuration}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_video.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END news
+
+            // activitys
+            if(result.activitys){
+                for (let i = 0; i < result.activitys.length; i++) {
+                    let db_log_view = result.activitys[i].log_video;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_video = document.querySelector('#content_logs_video');
+                        content_logs_video.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let countTime = logViewArray[userId][roundId].countTime;
+                                        let hours = Math.floor(countTime / 3600);
+                                        let minutes = Math.floor((countTime % 3600) / 60);
+                                        let seconds = Math.floor(countTime % 60);
+
+                                        let formattedDuration = "";
+                                        if (hours > 0) {
+                                            formattedDuration += hours + " ชั่วโมง ";
+                                        }
+                                        if (minutes > 0) {
+                                            formattedDuration += minutes + " นาที ";
+                                        }
+                                        if (seconds > 0 || (hours === 0 && minutes === 0)) {
+                                            // เพื่อให้แสดงวินาทีเสมอถ้าไม่มีชั่วโมงและนาที
+                                            formattedDuration += seconds + " วินาที";
+                                        }
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="activitys" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            กิจกรรม
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.activitys[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Count Time : </b>
+                                                        <span class="excel_countTime">
+                                                            ${formattedDuration}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_video.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END activitys
+
+            // career_path_contents
+            if(result.career_path_contents){
+                for (let i = 0; i < result.career_path_contents.length; i++) {
+                    let db_log_view = result.career_path_contents[i].log_video;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_logs_video = document.querySelector('#content_logs_video');
+                        content_logs_video.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let countTime = logViewArray[userId][roundId].countTime;
+                                        let hours = Math.floor(countTime / 3600);
+                                        let minutes = Math.floor((countTime % 3600) / 60);
+                                        let seconds = Math.floor(countTime % 60);
+
+                                        let formattedDuration = "";
+                                        if (hours > 0) {
+                                            formattedDuration += hours + " ชั่วโมง ";
+                                        }
+                                        if (minutes > 0) {
+                                            formattedDuration += minutes + " นาที ";
+                                        }
+                                        if (seconds > 0 || (hours === 0 && minutes === 0)) {
+                                            // เพื่อให้แสดงวินาทีเสมอถ้าไม่มีชั่วโมงและนาที
+                                            formattedDuration += seconds + " วินาที";
+                                        }
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="career_path_contents" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            Career path
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.career_path_contents[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Count Time : </b>
+                                                        <span class="excel_countTime">
+                                                            ${formattedDuration}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_video.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END career_path_contents
+        resolve();
+        });
+    }
+
+    function user_download_pdf_create_html(result){
+        return new Promise((resolve) => {
+            // products
+            if(result.products){
+                for (let i = 0; i < result.products.length; i++) {
+                    let db_log_view = result.products[i].user_download_pdf;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_user_download_pdf = document.querySelector('#content_user_download_pdf');
+                        content_user_download_pdf.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="products" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            ผลิตภัณฑ์
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.products[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_user_download_pdf.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END products
+
+            // career_path_contents
+            if(result.career_path_contents){
+                for (let i = 0; i < result.career_path_contents.length; i++) {
+                    let db_log_view = result.career_path_contents[i].user_download_pdf;
+
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
+
+                    let content_user_download_pdf = document.querySelector('#content_user_download_pdf');
+                        content_user_download_pdf.innerHTML = '';
+
+                    let html_heading ;
+
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            .then(response => response.json())
+                            .then(user => {
+                                // console.log(user);
+
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="career_path_contents" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            Career path
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.career_path_contents[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_user_download_pdf.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
+            // END career_path_contents
+        resolve();
+        });
+    }
+
+
+    // ---------- กดค้นหา ---------- //
+    function check_search_data_in_card() {
+
+        const dateTimeStart = document.getElementById('date_time_start').value;
+        const dateTimeEnd = document.getElementById('date_time_end').value;
+        const searchAccount = document.getElementById('search_account').value;
+        const searchContent = document.getElementById('search_content').value;
+
+        if (!dateTimeStart || !dateTimeEnd) {
+            alert('กรุณาเลือกวันที่');
+        }
+        else {
+            search_data_in_card(dateTimeStart, dateTimeEnd, searchAccount, searchContent);
+        }
+
+    }
+
+    async function search_data_in_card(dateTimeStart, dateTimeEnd, searchAccount, searchContent){
+
+        console.log('DateTime Start:', dateTimeStart);
+        console.log('DateTime End:', dateTimeEnd);
+        console.log('Search Account:', searchAccount);
+        console.log('Search Content:', searchContent);
+
+        await get_log_view(dateTimeStart, dateTimeEnd, searchAccount, searchContent);
+        await get_log_like(dateTimeStart, dateTimeEnd, searchAccount, searchContent);
+        await get_log_rating(dateTimeStart, dateTimeEnd, searchAccount, searchContent);
+        await get_logs_dislike(dateTimeStart, dateTimeEnd, searchAccount, searchContent);
+        await get_logs_fav(dateTimeStart, dateTimeEnd, searchAccount, searchContent);
+        await get_logs_share(dateTimeStart, dateTimeEnd, searchAccount, searchContent);
+        await get_logs_video(dateTimeStart, dateTimeEnd, searchAccount, searchContent);
+        await get_logs_pdf(dateTimeStart, dateTimeEnd, searchAccount, searchContent);
+
+    }
+
+    function get_log_view(dateTimeStart, dateTimeEnd, searchAccount, searchContent){
+        return new Promise((resolve) => {
+            setTimeout(function() {
+                console.log("get_log_view");
+            }, 2000);
+            resolve();
+        });
+    }
+
+    function get_log_like(dateTimeStart, dateTimeEnd, searchAccount, searchContent){
+        return new Promise((resolve) => {
+            setTimeout(function() {
+                console.log("get_log_like");
+            }, 2000);
+            resolve();
+        });
+    }
+
+    function get_log_rating(dateTimeStart, dateTimeEnd, searchAccount, searchContent){
+        return new Promise((resolve) => {
+            setTimeout(function() {
+                console.log("get_log_rating");
+            }, 2000);
+            resolve();
+        });
+    }
+
+    function get_logs_dislike(dateTimeStart, dateTimeEnd, searchAccount, searchContent){
+        return new Promise((resolve) => {
+            setTimeout(function() {
+                console.log("get_logs_dislike");
+            }, 2000);
+            resolve();
+        });
+    }
+
+    function get_logs_fav(dateTimeStart, dateTimeEnd, searchAccount, searchContent){
+        return new Promise((resolve) => {
+            setTimeout(function() {
+                console.log("get_logs_fav");
+            }, 2000);
+            resolve();
+        });
+    }
+
+    function get_logs_share(dateTimeStart, dateTimeEnd, searchAccount, searchContent){
+        return new Promise((resolve) => {
+            setTimeout(function() {
+                console.log("get_logs_share");
+            }, 2000);
+            resolve();
+        });
+    }
+
+    function get_logs_video(dateTimeStart, dateTimeEnd, searchAccount, searchContent){
+        return new Promise((resolve) => {
+            setTimeout(function() {
+                console.log("get_logs_video");
+            }, 2000);
+            resolve();
+        });
+    }
+
+    function get_logs_pdf(dateTimeStart, dateTimeEnd, searchAccount, searchContent){
+        return new Promise((resolve) => {
+            setTimeout(function() {
+                console.log("get_logs_pdf");
+            }, 2000);
+            resolve();
+        });
+    }
+
 </script>
 @endsection

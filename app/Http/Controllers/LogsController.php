@@ -188,7 +188,61 @@ class LogsController extends Controller
 
     }
 
-     function log_content(){
+    function log_content(){
         return view('logs.log_content');
+    }
+
+    function get_log_content(){
+
+        $data_log = [];
+
+        $log_content_trainings = DB::table('trainings')
+            ->select('title', 'user_like', 'user_dislike', 'user_share', 'user_fav', 'user_view', 'log_rating', 'log_video')
+            // ->limit(5)
+            ->get();
+
+        $log_content_appointments_train = DB::table('appointments')
+            ->where('type' , "อบรม")
+            ->select('title', 'user_like', 'user_dislike', 'user_share', 'user_fav', 'user_view', 'log_rating')
+            // ->limit(5)
+            ->get();
+
+        $log_content_appointments_quiz = DB::table('appointments')
+            ->where('type' , "สอบ")
+            ->select('title', 'user_like', 'user_dislike', 'user_share', 'user_fav', 'user_view', 'log_rating')
+            // ->limit(5)
+            ->get();
+
+        $log_content_news = DB::table('news')
+            ->select('title', 'user_like', 'user_dislike', 'user_share', 'user_fav', 'user_view', 'log_rating', 'log_video')
+            // ->limit(5)
+            ->get();
+
+        $log_content_activitys = DB::table('activitys')
+            ->select('title', 'user_like', 'user_dislike', 'user_share', 'user_fav', 'user_view', 'log_rating', 'log_video')
+            // ->limit(5)
+            ->get();
+
+        $log_content_products = DB::table('products')
+            ->select('title', 'user_like', 'user_dislike', 'user_share', 'user_fav', 'user_view', 'log_rating', 'user_download_pdf')
+            // ->limit(5)
+            ->get();
+
+        $log_content_career_path_contents = DB::table('career_path_contents')
+            ->select('title', 'user_view', 'user_download_pdf' , 'log_video')
+            // ->limit(5)
+            ->get();
+
+
+        $data_log['trainings'] = $log_content_trainings;
+        $data_log['appointments_train'] = $log_content_appointments_train;
+        $data_log['appointments_quiz'] = $log_content_appointments_quiz;
+        $data_log['news'] = $log_content_news;
+        $data_log['activitys'] = $log_content_activitys;
+        $data_log['products'] = $log_content_products;
+        $data_log['career_path_contents'] = $log_content_career_path_contents;
+
+        return $data_log ;
+
     }
 }

@@ -334,8 +334,8 @@
         await for_appointments_quiz();
         await for_news();
         await for_activitys();
-        await for_products();
         await for_career_path_contents();
+        await for_products();
         await load_success();
     });
 

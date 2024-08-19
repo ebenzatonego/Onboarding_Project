@@ -645,7 +645,7 @@
         // console.log("START");
 
         // ตรวจสอบการเลื่อนตำแหน่ง => content_popup => birthday
-        check_current_rank();
+        // check_current_rank();
         check_user_coc();
         check_user_status_login();
 

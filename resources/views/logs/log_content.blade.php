@@ -462,9 +462,6 @@
             }
         } catch (error) {
             console.error('Error fetching data:', error);
-            setTimeout(function() {
-                for_products();
-            }, 3000);
         }
     }
 

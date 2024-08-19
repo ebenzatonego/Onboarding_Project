@@ -924,7 +924,7 @@
             //         }
 
             //         let content_logs_view = document.querySelector('#content_logs_view');
-                        content_logs_view.innerHTML = '';
+                        // content_logs_view.innerHTML = '';
 
             //         let html_heading ;
 

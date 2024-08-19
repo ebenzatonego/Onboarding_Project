@@ -725,6 +725,7 @@
                     }
                     else{
                         // alert("เกิดข้อผิดพลาดในการตรวจสอบ");
+                        console.log("เกิดข้อผิดพลาดในการตรวจสอบ");
                         async function runCommands() {
                             try {
                                 const response = await fetch("{{ url('/') }}/api/run-commands", {

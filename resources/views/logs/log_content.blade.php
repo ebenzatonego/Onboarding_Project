@@ -909,82 +909,86 @@
             // END activitys
 
             // products
-            main_create_user_view_product(result);
-            // if(result.products){
-            //     for (let i = 0; i < result.products.length; i++) {
-            //         let db_log_view = result.products[i].user_view;
+            if(result.products){
+                for (let i = 0; i < result.products.length; i++) {
+                    let db_log_view = result.products[i].user_view;
 
-            //         // แปลง JSON เป็นอาร์เรย์ JavaScript
-            //         let logViewArray ;
-            //         if(db_log_view){
-            //             logViewArray = JSON.parse(db_log_view);
-            //         }
-            //         else{
-            //             logViewArray = false ;
-            //         }
+                    // แปลง JSON เป็นอาร์เรย์ JavaScript
+                    let logViewArray ;
+                    if(db_log_view){
+                        logViewArray = JSON.parse(db_log_view);
+                    }
+                    else{
+                        logViewArray = false ;
+                    }
 
-            //         let content_logs_view = document.querySelector('#content_logs_view');
-                        // content_logs_view.innerHTML = '';
+                    let content_logs_view = document.querySelector('#content_logs_view');
+                        content_logs_view.innerHTML = '';
 
-            //         let html_heading ;
+                    let html_heading ;
 
-            //         if(logViewArray){
-            //             for (let userId in logViewArray) {
-            //                 fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
-            //                 .then(response => response.json())
-            //                 .then(user => {
-            //                     // console.log(user);
+                    if(logViewArray){
+                        for (let userId in logViewArray) {
+                            // fetch("{{ url('/') }}/api/get_user_for_log/" + userId)
+                            // .then(response => response.json())
+                            // .then(user => {
 
-            //                     if(user){
-            //                         let roundCount = Object.keys(logViewArray[userId]).length;
-            //                         // วนลูปเข้าไปยังรอบการดูของผู้ใช้
-            //                         for (let roundId in logViewArray[userId]) {
-            //                             let datetime = logViewArray[userId][roundId].datetime;
-            //                             let html_item_of_user = `
-            //                                 <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="products" class="card w-100 shadow-sm border-1 border p-3 mt-2">
-            //                                     <div class="d-flex justify-content-start">
-            //                                         <div class="mx-2">
-            //                                             <b>ประเภท : </b>
-            //                                             <span class="excel_type">
-            //                                                 ผลิตภัณฑ์
-            //                                             </span>
-            //                                         </div>
-            //                                         <div class="mx-2">
-            //                                             <b>ชื่อเนื้อหา : </b>
-            //                                             <span class="excel_name_content">
-            //                                                 ${result.products[i].title}
-            //                                             </span>
-            //                                         </div>
-            //                                         <div class="mx-2 ">
-            //                                             <b>รหัสตัวแทน : </b>
-            //                                             <span class="excel_account">
-            //                                                 ${user.account}
-            //                                             </span>
-            //                                         </div>
-            //                                         <div class="mx-2 ">
-            //                                             <b>ชื่อ : </b>
-            //                                             <span class="excel_name">
-            //                                                 ${user.name}
-            //                                             </span>
-            //                                         </div>
-            //                                         <div class="mx-2">
-            //                                             <b>Datetime : </b>
-            //                                             <span class="excel_datetime">
-            //                                                 ${datetime}
-            //                                             </span>
-            //                                         </div>
-            //                                     </div>
-            //                                 </div>
-            //                             `;
-            //                             content_logs_view.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
-            //                         }
-            //                     }
+                                let user = [];
+                                user['account'] = "test";
+                                user['name'] = "test";
+                                console.log(user);
 
-            //                 });
-            //             }
-            //         }
-            //     }
-            // }
+                                if(user){
+                                    let roundCount = Object.keys(logViewArray[userId]).length;
+                                    // วนลูปเข้าไปยังรอบการดูของผู้ใช้
+
+                                    for (let roundId in logViewArray[userId]) {
+                                        let datetime = logViewArray[userId][roundId].datetime;
+                                        let html_item_of_user = `
+                                            <div name_user="`+user.name+`" account="`+user.account+`" datetime="`+datetime+`" name_content="products" class="card w-100 shadow-sm border-1 border p-3 mt-2">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="mx-2">
+                                                        <b>ประเภท : </b>
+                                                        <span class="excel_type">
+                                                            ผลิตภัณฑ์
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>ชื่อเนื้อหา : </b>
+                                                        <span class="excel_name_content">
+                                                            ${result.products[i].title}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>รหัสตัวแทน : </b>
+                                                        <span class="excel_account">
+                                                            ${user.account}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2 ">
+                                                        <b>ชื่อ : </b>
+                                                        <span class="excel_name">
+                                                            ${user.name}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <b>Datetime : </b>
+                                                        <span class="excel_datetime">
+                                                            ${datetime}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        content_logs_view.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    }
+                                }
+
+                            // });
+                        }
+                    }
+                }
+            }
             // END products
 
             // career_path_contents
@@ -1067,103 +1071,6 @@
         resolve();
         });
     }
-
-    // ---- FOR USER VIEW PRODUCT ---- //
-    async function processLogViewArray(logViewArray, result) {
-        // แบ่ง logViewArray เป็นกลุ่มย่อย ๆ
-        const batchSize = 10; // ขนาดของกลุ่มย่อย
-        for (let i = 0; i < logViewArray.length; i += batchSize) {
-            const batch = logViewArray.slice(i, i + batchSize);
-            const promises = batch.map(userId => fetchUserAndRender(userId, logViewArray, result));
-            await Promise.all(promises);
-            // ถยอยทำการดึงข้อมูลด้วยการหน่วงเวลา 100ms ระหว่างแต่ละกลุ่มย่อย
-            await new Promise(resolve => setTimeout(resolve, 100));
-        }
-        console.log('All content has been processed.');
-    }
-
-    async function fetchUserAndRender(userId, logViewArray, result) {
-        try {
-            const response = await fetch("{{ url('/') }}/api/get_user_for_log/" + userId);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const user = await response.json();
-            if (user) {
-                const userLogs = logViewArray[userId];
-                const roundCount = Object.keys(userLogs).length;
-                for (let roundId in userLogs) {
-                    const datetime = userLogs[roundId].datetime;
-                    let html_item_of_user = `
-                        <div name_user="${user.name}" account="${user.account}" datetime="${datetime}" name_content="products" class="card w-100 shadow-sm border-1 border p-3 mt-2">
-                            <div class="d-flex justify-content-start">
-                                <div class="mx-2">
-                                    <b>ประเภท : </b>
-                                    <span class="excel_type">
-                                        ผลิตภัณฑ์
-                                    </span>
-                                </div>
-                                <div class="mx-2">
-                                    <b>ชื่อเนื้อหา : </b>
-                                    <span class="excel_name_content">
-                                        ${result.products[i].title}
-                                    </span>
-                                </div>
-                                <div class="mx-2 ">
-                                    <b>รหัสตัวแทน : </b>
-                                    <span class="excel_account">
-                                        ${user.account}
-                                    </span>
-                                </div>
-                                <div class="mx-2 ">
-                                    <b>ชื่อ : </b>
-                                    <span class="excel_name">
-                                        ${user.name}
-                                    </span>
-                                </div>
-                                <div class="mx-2">
-                                    <b>Datetime : </b>
-                                    <span class="excel_datetime">
-                                        ${datetime}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                    let content_logs_view = document.querySelector('#content_logs_view');
-                        // content_logs_view.innerHTML = '';
-                    console.log('เพิ่มข้อมูล product');
-                    content_logs_view.insertAdjacentHTML('beforeend', html_item_of_user);
-                }
-            }
-        } catch (error) {
-            console.error('Error fetching user data:', error);
-        }
-    }
-
-    async function main_create_user_view_product(result) {
-        if (result.products) {
-            for (let i = 0; i < result.products.length; i++) {
-                let db_log_view = result.products[i].user_view;
-
-                // แปลง JSON เป็นอาร์เรย์ JavaScript
-                let logViewArray;
-                if (db_log_view) {
-                    logViewArray = JSON.parse(db_log_view);
-                } else {
-                    logViewArray = [];
-                }
-
-                if (logViewArray.length > 0) {
-                    await processLogViewArray(Object.keys(logViewArray), result);
-                }
-            }
-        }
-    }
-
-    // ---- END FOR USER VIEW PRODUCT ---- //
-
-
 
     function user_like_create_html(result){
         return new Promise((resolve) => {

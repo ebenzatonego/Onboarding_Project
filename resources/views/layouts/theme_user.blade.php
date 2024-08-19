@@ -645,7 +645,7 @@
         // console.log("START");
 
         // ตรวจสอบการเลื่อนตำแหน่ง => content_popup => birthday
-        // check_current_rank();
+        check_current_rank();
         check_user_coc();
         check_user_status_login();
 
@@ -674,7 +674,7 @@
         let currentMonth = String(today.getMonth() + 1).padStart(2, '0');
 
         if (current_rank != last_rank && last_rank && !check_video_congratulation) {
-            window.location.href = "{{ url('/show_video_congrats') }}?from=" + "{{ url()->full() }}";
+            // window.location.href = "{{ url('/show_video_congrats') }}?from=" + "{{ url()->full() }}";
         } else {
 
             fetch("{{ url('/') }}/api/get_active_content_popup")

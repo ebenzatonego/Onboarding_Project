@@ -1069,12 +1069,12 @@
     }
 
     // ---- FOR USER VIEW PRODUCT ---- //
-    async function processLogViewArray(logViewArray, result, content_logs_view) {
+    async function processLogViewArray(logViewArray, result) {
         // แบ่ง logViewArray เป็นกลุ่มย่อย ๆ
         const batchSize = 10; // ขนาดของกลุ่มย่อย
         for (let i = 0; i < logViewArray.length; i += batchSize) {
             const batch = logViewArray.slice(i, i + batchSize);
-            const promises = batch.map(userId => fetchUserAndRender(userId, logViewArray, result, content_logs_view));
+            const promises = batch.map(userId => fetchUserAndRender(userId, logViewArray, result));
             await Promise.all(promises);
             // ถยอยทำการดึงข้อมูลด้วยการหน่วงเวลา 100ms ระหว่างแต่ละกลุ่มย่อย
             await new Promise(resolve => setTimeout(resolve, 100));
@@ -1082,7 +1082,7 @@
         console.log('All content has been processed.');
     }
 
-    async function fetchUserAndRender(userId, logViewArray, result, content_logs_view) {
+    async function fetchUserAndRender(userId, logViewArray, result) {
         try {
             const response = await fetch("{{ url('/') }}/api/get_user_for_log/" + userId);
             if (!response.ok) {
@@ -1130,6 +1130,8 @@
                             </div>
                         </div>
                     `;
+                    let content_logs_view = document.querySelector('#content_logs_view');
+                        // content_logs_view.innerHTML = '';
                     content_logs_view.insertAdjacentHTML('beforeend', html_item_of_user);
                 }
             }
@@ -1151,11 +1153,8 @@
                     logViewArray = [];
                 }
 
-                let content_logs_view = document.querySelector('#content_logs_view');
-                // content_logs_view.innerHTML = '';
-
                 if (logViewArray.length > 0) {
-                    await processLogViewArray(Object.keys(logViewArray), result, content_logs_view);
+                    await processLogViewArray(Object.keys(logViewArray), result);
                 }
             }
         }

@@ -331,6 +331,12 @@
     document.addEventListener('DOMContentLoaded', async function () {
         await for_trainings();
         await for_appointments_train();
+        await for_appointments_quiz();
+        await for_news();
+        await for_activitys();
+        await for_products();
+        await for_career_path_contents();
+        await load_success();
     });
 
     async function for_trainings(){
@@ -348,7 +354,6 @@
                 await user_share_create_html(result);
                 await log_video_create_html(result);
                 await user_download_pdf_create_html(result);
-                await load_success();
             }
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -370,7 +375,111 @@
                 await user_share_create_html(result);
                 await log_video_create_html(result);
                 await user_download_pdf_create_html(result);
-                await load_success();
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+
+    async function for_appointments_quiz(){
+        try {
+            const response = await fetch("{{ url('/') }}/api/get_log_content/appointments_quiz");
+            const result = await response.json();
+            console.log(result);
+
+            if (result) {
+                await user_view_create_html(result);
+                await user_like_create_html(result);
+                await log_rating_create_html(result);
+                await user_dislike_create_html(result);
+                await user_fav_create_html(result);
+                await user_share_create_html(result);
+                await log_video_create_html(result);
+                await user_download_pdf_create_html(result);
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+
+    async function for_news(){
+        try {
+            const response = await fetch("{{ url('/') }}/api/get_log_content/news");
+            const result = await response.json();
+            console.log(result);
+
+            if (result) {
+                await user_view_create_html(result);
+                await user_like_create_html(result);
+                await log_rating_create_html(result);
+                await user_dislike_create_html(result);
+                await user_fav_create_html(result);
+                await user_share_create_html(result);
+                await log_video_create_html(result);
+                await user_download_pdf_create_html(result);
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+
+    async function for_activitys(){
+        try {
+            const response = await fetch("{{ url('/') }}/api/get_log_content/activitys");
+            const result = await response.json();
+            console.log(result);
+
+            if (result) {
+                await user_view_create_html(result);
+                await user_like_create_html(result);
+                await log_rating_create_html(result);
+                await user_dislike_create_html(result);
+                await user_fav_create_html(result);
+                await user_share_create_html(result);
+                await log_video_create_html(result);
+                await user_download_pdf_create_html(result);
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+
+    async function for_products(){
+        try {
+            const response = await fetch("{{ url('/') }}/api/get_log_content/products");
+            const result = await response.json();
+            console.log(result);
+
+            if (result) {
+                await user_view_create_html(result);
+                await user_like_create_html(result);
+                await log_rating_create_html(result);
+                await user_dislike_create_html(result);
+                await user_fav_create_html(result);
+                await user_share_create_html(result);
+                await log_video_create_html(result);
+                await user_download_pdf_create_html(result);
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+
+    async function for_career_path_contents(){
+        try {
+            const response = await fetch("{{ url('/') }}/api/get_log_content/career_path_contents");
+            const result = await response.json();
+            console.log(result);
+
+            if (result) {
+                await user_view_create_html(result);
+                await user_like_create_html(result);
+                await log_rating_create_html(result);
+                await user_dislike_create_html(result);
+                await user_fav_create_html(result);
+                await user_share_create_html(result);
+                await log_video_create_html(result);
+                await user_download_pdf_create_html(result);
             }
         } catch (error) {
             console.error('Error fetching data:', error);

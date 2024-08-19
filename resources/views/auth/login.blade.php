@@ -706,31 +706,55 @@
         form.addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent the form from submitting automatically
             
-            form.submit();
+            // form.submit();
 
             let account = document.querySelector('#account').value;
             // console.log(account);
-            // fetch("{{ url('/') }}/api/check_pdpa/" + account)
-            //     .then(response => response.text())
-            //     .then(result => {
+            fetch("{{ url('/') }}/api/check_pdpa/" + account)
+                .then(response => response.text())
+                .then(result => {
 
-            //         if (result == "Yes") {
-            //             form.submit();
-            //         }
-            //         else if (result == "No") {
-            //             document.querySelector('#btn_modal_pdpa').click();
-            //         }
-            //         else if (result == "Account none") {
-            //             alert("ไม่พบ Account ของคุณ");
-            //         }
-            //         else{
-            //             alert("เกิดข้อผิดพลาดในการตรวจสอบ");
-            //         }
-            //     })
-            //     .catch(error => {
-            //         console.error('Error:', error); // Log any errors
-            //         alert("เกิดข้อผิดพลาดในการตรวจสอบ PDPA >> " + error); // Alert if there is an error
-            //     });
+                    if (result == "Yes") {
+                        form.submit();
+                    }
+                    else if (result == "No") {
+                        document.querySelector('#btn_modal_pdpa').click();
+                    }
+                    else if (result == "Account none") {
+                        alert("ไม่พบ Account ของคุณ");
+                    }
+                    else{
+                        // alert("เกิดข้อผิดพลาดในการตรวจสอบ");
+                        async function runCommands() {
+                            try {
+                                const response = await fetch("{{ url('/') }}/api/run-commands", {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                                    },
+                                });
+
+                                const result = await response.json();
+
+                                if (response.ok) {
+                                    console.log(result.message);
+                                    // console.log(result);
+                                    document.getElementById('submit_button').click();
+                                } else {
+                                    console.log('Error: ' + result.error);
+                                }
+                            } catch (error) {
+                                console.log('Error:', error);
+                                console.error('An unexpected error occurred.');
+                            }
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error); // Log any errors
+                    alert("เกิดข้อผิดพลาดในการตรวจสอบ PDPA >> " + error); // Alert if there is an error
+                });
         });
     })
 

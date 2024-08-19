@@ -577,7 +577,7 @@
                         </a>
                     </li>
 
-                    <li class="d-none">
+                    <li class="">
                         <a href="javascript:;" class="has-arrow">
                             <div class="parent-icon">
                                 <i class="fa-solid fa-arrow-pointer"></i>
@@ -608,7 +608,7 @@
                                     </div>
                                 </a>
                             </li>
-                            <li class="">
+                            <li class="d-none">
                                 <a href="{{ url('/log_content') }}" class="btn">
                                     <div class="parent-icon">
                                         <i class="fa-solid fa-newspaper"></i>

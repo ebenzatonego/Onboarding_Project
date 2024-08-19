@@ -444,9 +444,9 @@
         }
     }
 
-    async function for_products(){
+    async function for_career_path_contents(){
         try {
-            const response = await fetch("{{ url('/') }}/api/get_log_content/products");
+            const response = await fetch("{{ url('/') }}/api/get_log_content/career_path_contents");
             const result = await response.json();
             console.log(result);
 
@@ -465,9 +465,9 @@
         }
     }
 
-    async function for_career_path_contents(){
+    async function for_products(){
         try {
-            const response = await fetch("{{ url('/') }}/api/get_log_content/career_path_contents");
+            const response = await fetch("{{ url('/') }}/api/get_log_content/products");
             const result = await response.json();
             console.log(result);
 

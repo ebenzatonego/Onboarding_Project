@@ -624,8 +624,8 @@
 
                     <!-- Clear Cache -->
                     @if(Auth::user()->role == "Super-admin")
-                        <hr>
-                        <li class="" onclick="runCommands();" style="cursor: pointer;">
+                        <hr class="d-none">
+                        <li class="d-none" onclick="runCommands();" style="cursor: pointer;">
                             <a class="">
                                 <div class="parent-icon">
                                     <i class="fa-duotone fa-solid fa-broom"></i>

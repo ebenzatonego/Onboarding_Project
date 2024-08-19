@@ -934,9 +934,8 @@
                             // .then(user => {
 
                                 let user = [];
-                                user['account'] = "test";
-                                user['name'] = "test";
-                                console.log(user);
+                                user['account'] = "-";
+                                user['name'] = "-";
 
                                 if(user){
                                     let roundCount = Object.keys(logViewArray[userId]).length;

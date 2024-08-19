@@ -705,30 +705,32 @@
         // Form submit event listener
         form.addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent the form from submitting automatically
+            
+            form.submit();
 
             let account = document.querySelector('#account').value;
             // console.log(account);
-            fetch("{{ url('/') }}/api/check_pdpa/" + account)
-                .then(response => response.text())
-                .then(result => {
+            // fetch("{{ url('/') }}/api/check_pdpa/" + account)
+            //     .then(response => response.text())
+            //     .then(result => {
 
-                    if (result == "Yes") {
-                        form.submit();
-                    }
-                    else if (result == "No") {
-                        document.querySelector('#btn_modal_pdpa').click();
-                    }
-                    else if (result == "Account none") {
-                        alert("ไม่พบ Account ของคุณ");
-                    }
-                    else{
-                        alert("เกิดข้อผิดพลาดในการตรวจสอบ");
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error); // Log any errors
-                    alert("เกิดข้อผิดพลาดในการตรวจสอบ PDPA >> " + error); // Alert if there is an error
-                });
+            //         if (result == "Yes") {
+            //             form.submit();
+            //         }
+            //         else if (result == "No") {
+            //             document.querySelector('#btn_modal_pdpa').click();
+            //         }
+            //         else if (result == "Account none") {
+            //             alert("ไม่พบ Account ของคุณ");
+            //         }
+            //         else{
+            //             alert("เกิดข้อผิดพลาดในการตรวจสอบ");
+            //         }
+            //     })
+            //     .catch(error => {
+            //         console.error('Error:', error); // Log any errors
+            //         alert("เกิดข้อผิดพลาดในการตรวจสอบ PDPA >> " + error); // Alert if there is an error
+            //     });
         });
     })
 

@@ -513,7 +513,7 @@
         setTimeout(function() {
             document.querySelector('#btn_export_excel').classList.remove('d-none');
             document.querySelector('#text_show_load').classList.add('d-none');
-        }, 5000);
+        }, 8000);
     }
 
     function user_view_create_html(result){

@@ -533,7 +533,7 @@
                     }
 
                     let content_logs_view = document.querySelector('#content_logs_view');
-                        content_logs_view.innerHTML = '';
+                        // content_logs_view.innerHTML = '';
 
                     let html_heading ;
 
@@ -611,7 +611,7 @@
                     }
 
                     let content_logs_view = document.querySelector('#content_logs_view');
-                        content_logs_view.innerHTML = '';
+                        // content_logs_view.innerHTML = '';
 
                     let html_heading ;
 
@@ -689,7 +689,7 @@
                     }
 
                     let content_logs_view = document.querySelector('#content_logs_view');
-                        content_logs_view.innerHTML = '';
+                        // content_logs_view.innerHTML = '';
 
                     let html_heading ;
 
@@ -767,7 +767,7 @@
                     }
 
                     let content_logs_view = document.querySelector('#content_logs_view');
-                        content_logs_view.innerHTML = '';
+                        // content_logs_view.innerHTML = '';
 
                     let html_heading ;
 
@@ -845,7 +845,7 @@
                     }
 
                     let content_logs_view = document.querySelector('#content_logs_view');
-                        content_logs_view.innerHTML = '';
+                        // content_logs_view.innerHTML = '';
 
                     let html_heading ;
 
@@ -924,7 +924,7 @@
             //         }
 
             //         let content_logs_view = document.querySelector('#content_logs_view');
-            //             content_logs_view.innerHTML = '';
+                        content_logs_view.innerHTML = '';
 
             //         let html_heading ;
 
@@ -1002,7 +1002,7 @@
                     }
 
                     let content_logs_view = document.querySelector('#content_logs_view');
-                        content_logs_view.innerHTML = '';
+                        // content_logs_view.innerHTML = '';
 
                     let html_heading ;
 
@@ -1152,7 +1152,7 @@
                 }
 
                 let content_logs_view = document.querySelector('#content_logs_view');
-                content_logs_view.innerHTML = '';
+                // content_logs_view.innerHTML = '';
 
                 if (logViewArray.length > 0) {
                     await processLogViewArray(Object.keys(logViewArray), result, content_logs_view);
@@ -1182,7 +1182,7 @@
                     }
 
                     let content_logs_like = document.querySelector('#content_logs_like');
-                        content_logs_like.innerHTML = '';
+                        // content_logs_like.innerHTML = '';
 
                     let html_heading ;
 
@@ -1253,7 +1253,7 @@
                     }
 
                     let content_logs_like = document.querySelector('#content_logs_like');
-                        content_logs_like.innerHTML = '';
+                        // content_logs_like.innerHTML = '';
 
                     let html_heading ;
 
@@ -1324,7 +1324,7 @@
                     }
 
                     let content_logs_like = document.querySelector('#content_logs_like');
-                        content_logs_like.innerHTML = '';
+                        // content_logs_like.innerHTML = '';
 
                     let html_heading ;
 
@@ -1395,7 +1395,7 @@
                     }
 
                     let content_logs_like = document.querySelector('#content_logs_like');
-                        content_logs_like.innerHTML = '';
+                        // content_logs_like.innerHTML = '';
 
                     let html_heading ;
 
@@ -1465,7 +1465,7 @@
                     }
 
                     let content_logs_like = document.querySelector('#content_logs_like');
-                        content_logs_like.innerHTML = '';
+                        // content_logs_like.innerHTML = '';
 
                     let html_heading ;
 
@@ -1536,7 +1536,7 @@
                     }
 
                     let content_logs_like = document.querySelector('#content_logs_like');
-                        content_logs_like.innerHTML = '';
+                        // content_logs_like.innerHTML = '';
 
                     let html_heading ;
 
@@ -1612,7 +1612,7 @@
                     }
 
                     let content_logs_rating = document.querySelector('#content_logs_rating');
-                        content_logs_rating.innerHTML = '';
+                        // content_logs_rating.innerHTML = '';
 
                     let html_heading ;
 
@@ -1704,7 +1704,7 @@
                     }
 
                     let content_logs_rating = document.querySelector('#content_logs_rating');
-                        content_logs_rating.innerHTML = '';
+                        // content_logs_rating.innerHTML = '';
 
                     let html_heading ;
 
@@ -1796,7 +1796,7 @@
                     }
 
                     let content_logs_rating = document.querySelector('#content_logs_rating');
-                        content_logs_rating.innerHTML = '';
+                        // content_logs_rating.innerHTML = '';
 
                     let html_heading ;
 
@@ -1888,7 +1888,7 @@
                     }
 
                     let content_logs_rating = document.querySelector('#content_logs_rating');
-                        content_logs_rating.innerHTML = '';
+                        // content_logs_rating.innerHTML = '';
 
                     let html_heading ;
 
@@ -1980,7 +1980,7 @@
                     }
 
                     let content_logs_rating = document.querySelector('#content_logs_rating');
-                        content_logs_rating.innerHTML = '';
+                        // content_logs_rating.innerHTML = '';
 
                     let html_heading ;
 
@@ -2072,7 +2072,7 @@
                     }
 
                     let content_logs_rating = document.querySelector('#content_logs_rating');
-                        content_logs_rating.innerHTML = '';
+                        // content_logs_rating.innerHTML = '';
 
                     let html_heading ;
 
@@ -2169,7 +2169,7 @@
                     }
 
                     let content_logs_dislike = document.querySelector('#content_logs_dislike');
-                        content_logs_dislike.innerHTML = '';
+                        // content_logs_dislike.innerHTML = '';
 
                     let html_heading ;
 
@@ -2261,7 +2261,7 @@
                     }
 
                     let content_logs_dislike = document.querySelector('#content_logs_dislike');
-                        content_logs_dislike.innerHTML = '';
+                        // content_logs_dislike.innerHTML = '';
 
                     let html_heading ;
 
@@ -2353,7 +2353,7 @@
                     }
 
                     let content_logs_dislike = document.querySelector('#content_logs_dislike');
-                        content_logs_dislike.innerHTML = '';
+                        // content_logs_dislike.innerHTML = '';
 
                     let html_heading ;
 
@@ -2445,7 +2445,7 @@
                     }
 
                     let content_logs_dislike = document.querySelector('#content_logs_dislike');
-                        content_logs_dislike.innerHTML = '';
+                        // content_logs_dislike.innerHTML = '';
 
                     let html_heading ;
 
@@ -2537,7 +2537,7 @@
                     }
 
                     let content_logs_dislike = document.querySelector('#content_logs_dislike');
-                        content_logs_dislike.innerHTML = '';
+                        // content_logs_dislike.innerHTML = '';
 
                     let html_heading ;
 
@@ -2629,7 +2629,7 @@
                     }
 
                     let content_logs_dislike = document.querySelector('#content_logs_dislike');
-                        content_logs_dislike.innerHTML = '';
+                        // content_logs_dislike.innerHTML = '';
 
                     let html_heading ;
 
@@ -2726,7 +2726,7 @@
                     }
 
                     let content_logs_favorites = document.querySelector('#content_logs_favorites');
-                        content_logs_favorites.innerHTML = '';
+                        // content_logs_favorites.innerHTML = '';
 
                     let html_heading ;
 
@@ -2811,7 +2811,7 @@
                     }
 
                     let content_logs_favorites = document.querySelector('#content_logs_favorites');
-                        content_logs_favorites.innerHTML = '';
+                        // content_logs_favorites.innerHTML = '';
 
                     let html_heading ;
 
@@ -2896,7 +2896,7 @@
                     }
 
                     let content_logs_favorites = document.querySelector('#content_logs_favorites');
-                        content_logs_favorites.innerHTML = '';
+                        // content_logs_favorites.innerHTML = '';
 
                     let html_heading ;
 
@@ -2981,7 +2981,7 @@
                     }
 
                     let content_logs_favorites = document.querySelector('#content_logs_favorites');
-                        content_logs_favorites.innerHTML = '';
+                        // content_logs_favorites.innerHTML = '';
 
                     let html_heading ;
 
@@ -3066,7 +3066,7 @@
                     }
 
                     let content_logs_favorites = document.querySelector('#content_logs_favorites');
-                        content_logs_favorites.innerHTML = '';
+                        // content_logs_favorites.innerHTML = '';
 
                     let html_heading ;
 
@@ -3151,7 +3151,7 @@
                     }
 
                     let content_logs_favorites = document.querySelector('#content_logs_favorites');
-                        content_logs_favorites.innerHTML = '';
+                        // content_logs_favorites.innerHTML = '';
 
                     let html_heading ;
 
@@ -3241,7 +3241,7 @@
                     }
 
                     let content_logs_share = document.querySelector('#content_logs_share');
-                        content_logs_share.innerHTML = '';
+                        // content_logs_share.innerHTML = '';
 
                     let html_heading ;
 
@@ -3326,7 +3326,7 @@
                     }
 
                     let content_logs_share = document.querySelector('#content_logs_share');
-                        content_logs_share.innerHTML = '';
+                        // content_logs_share.innerHTML = '';
 
                     let html_heading ;
 
@@ -3411,7 +3411,7 @@
                     }
 
                     let content_logs_share = document.querySelector('#content_logs_share');
-                        content_logs_share.innerHTML = '';
+                        // content_logs_share.innerHTML = '';
 
                     let html_heading ;
 
@@ -3496,7 +3496,7 @@
                     }
 
                     let content_logs_share = document.querySelector('#content_logs_share');
-                        content_logs_share.innerHTML = '';
+                        // content_logs_share.innerHTML = '';
 
                     let html_heading ;
 
@@ -3581,7 +3581,7 @@
                     }
 
                     let content_logs_share = document.querySelector('#content_logs_share');
-                        content_logs_share.innerHTML = '';
+                        // content_logs_share.innerHTML = '';
 
                     let html_heading ;
 
@@ -3666,7 +3666,7 @@
                     }
 
                     let content_logs_share = document.querySelector('#content_logs_share');
-                        content_logs_share.innerHTML = '';
+                        // content_logs_share.innerHTML = '';
 
                     let html_heading ;
 
@@ -3756,7 +3756,7 @@
                     }
 
                     let content_logs_video = document.querySelector('#content_logs_video');
-                        content_logs_video.innerHTML = '';
+                        // content_logs_video.innerHTML = '';
 
                     let html_heading ;
 
@@ -3856,7 +3856,7 @@
                     }
 
                     let content_logs_video = document.querySelector('#content_logs_video');
-                        content_logs_video.innerHTML = '';
+                        // content_logs_video.innerHTML = '';
 
                     let html_heading ;
 
@@ -3956,7 +3956,7 @@
                     }
 
                     let content_logs_video = document.querySelector('#content_logs_video');
-                        content_logs_video.innerHTML = '';
+                        // content_logs_video.innerHTML = '';
 
                     let html_heading ;
 
@@ -4061,7 +4061,7 @@
                     }
 
                     let content_user_download_pdf = document.querySelector('#content_user_download_pdf');
-                        content_user_download_pdf.innerHTML = '';
+                        // content_user_download_pdf.innerHTML = '';
 
                     let html_heading ;
 
@@ -4139,7 +4139,7 @@
                     }
 
                     let content_user_download_pdf = document.querySelector('#content_user_download_pdf');
-                        content_user_download_pdf.innerHTML = '';
+                        // content_user_download_pdf.innerHTML = '';
 
                     let html_heading ;
 

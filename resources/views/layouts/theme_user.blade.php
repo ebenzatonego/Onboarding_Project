@@ -674,7 +674,25 @@
         let currentMonth = String(today.getMonth() + 1).padStart(2, '0');
 
         if (current_rank != last_rank && last_rank && !check_video_congratulation) {
-            // window.location.href = "{{ url('/show_video_congrats') }}?from=" + "{{ url()->full() }}";
+
+            let arr_num_rank = [];
+                arr_num_rank['AG'] = 1 ;
+                arr_num_rank['UM'] = 2 ;
+                arr_num_rank['SUM'] = 3 ;
+                arr_num_rank['DM'] = 4 ;
+                arr_num_rank['SDM'] = 5 ;
+                arr_num_rank['AVP'] = 6 ;
+                arr_num_rank['VP'] = 7 ;
+                arr_num_rank['EVP'] = 8 ;
+                arr_num_rank['SEVP'] = 9 ;
+
+            // console.log(arr_num_rank[current_rank]);
+            // console.log(arr_num_rank[last_rank]);
+
+            if(arr_num_rank[current_rank] > arr_num_rank[last_rank]){
+                window.location.href = "{{ url('/show_video_congrats') }}?from=" + "{{ url()->full() }}";
+            }
+
         } else {
 
             fetch("{{ url('/') }}/api/get_active_content_popup")

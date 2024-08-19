@@ -585,7 +585,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_logs_view.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_logs_view.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -663,7 +663,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_logs_view.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_logs_view.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -741,7 +741,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_logs_view.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_logs_view.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -819,7 +819,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_logs_view.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_logs_view.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -897,7 +897,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_logs_view.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_logs_view.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -976,7 +976,7 @@
             //                                     </div>
             //                                 </div>
             //                             `;
-            //                             content_logs_view.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+            //                             content_logs_view.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
             //                         }
             //                     }
 
@@ -1054,7 +1054,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_logs_view.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_logs_view.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -1130,7 +1130,7 @@
                             </div>
                         </div>
                     `;
-                    content_logs_view.insertAdjacentHTML('beforeend', html_item_of_user);
+                    content_logs_view.insertAdjacentHTML('afterend', html_item_of_user);
                 }
             }
         } catch (error) {
@@ -1227,7 +1227,7 @@
                                             </div>
                                         </div>
                                     `;
-                                    content_logs_like.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    content_logs_like.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     
                                 }
 
@@ -1298,7 +1298,7 @@
                                             </div>
                                         </div>
                                     `;
-                                    content_logs_like.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    content_logs_like.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     
                                 }
 
@@ -1369,7 +1369,7 @@
                                             </div>
                                         </div>
                                     `;
-                                    content_logs_like.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    content_logs_like.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     
                                 }
 
@@ -1440,7 +1440,7 @@
                                             </div>
                                         </div>
                                     `;
-                                    content_logs_like.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    content_logs_like.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     
                                 }
 
@@ -1510,7 +1510,7 @@
                                             </div>
                                         </div>
                                     `;
-                                    content_logs_like.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    content_logs_like.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     
                                 }
 
@@ -1581,7 +1581,7 @@
                                             </div>
                                         </div>
                                     `;
-                                    content_logs_like.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                    content_logs_like.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     
                                 }
 
@@ -1678,7 +1678,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_logs_rating.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_logs_rating.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -1770,7 +1770,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_logs_rating.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_logs_rating.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -1862,7 +1862,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_logs_rating.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_logs_rating.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -1954,7 +1954,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_logs_rating.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_logs_rating.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -2046,7 +2046,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_logs_rating.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_logs_rating.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -2138,7 +2138,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_logs_rating.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_logs_rating.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -2235,7 +2235,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_logs_dislike.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_logs_dislike.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -2327,7 +2327,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_logs_dislike.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_logs_dislike.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -2419,7 +2419,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_logs_dislike.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_logs_dislike.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -2511,7 +2511,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_logs_dislike.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_logs_dislike.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -2603,7 +2603,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_logs_dislike.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_logs_dislike.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -2695,7 +2695,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_logs_dislike.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_logs_dislike.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -2785,7 +2785,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_logs_favorites.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_logs_favorites.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -2870,7 +2870,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_logs_favorites.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_logs_favorites.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -2955,7 +2955,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_logs_favorites.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_logs_favorites.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -3040,7 +3040,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_logs_favorites.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_logs_favorites.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -3125,7 +3125,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_logs_favorites.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_logs_favorites.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -3210,7 +3210,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_logs_favorites.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_logs_favorites.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -3300,7 +3300,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_logs_share.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_logs_share.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -3385,7 +3385,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_logs_share.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_logs_share.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -3470,7 +3470,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_logs_share.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_logs_share.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -3555,7 +3555,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_logs_share.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_logs_share.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -3640,7 +3640,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_logs_share.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_logs_share.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -3725,7 +3725,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_logs_share.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_logs_share.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -3830,7 +3830,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_logs_video.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_logs_video.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -3930,7 +3930,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_logs_video.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_logs_video.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -4030,7 +4030,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_logs_video.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_logs_video.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -4113,7 +4113,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_user_download_pdf.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_user_download_pdf.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 
@@ -4191,7 +4191,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                        content_user_download_pdf.insertAdjacentHTML('beforeend', html_item_of_user); // แทรกล่างสุด
+                                        content_user_download_pdf.insertAdjacentHTML('afterend', html_item_of_user); // แทรกล่างสุด
                                     }
                                 }
 

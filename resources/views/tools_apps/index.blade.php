@@ -379,7 +379,7 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
-/*        text-decoration-line: underline;*/
+        /*        text-decoration-line: underline;*/
     }
 
     .title-coc {
@@ -630,7 +630,6 @@
 </style>
 
 <script>
-
     document.addEventListener("DOMContentLoaded", function() {
 
         // Get the URL parameters
@@ -643,8 +642,6 @@
             document.querySelector('#pills-tutorials-tab').click();
         }
     });
-    
-
 </script>
 
 
@@ -1282,9 +1279,9 @@
                         // document.querySelector('#div_tools_type_app').classList.remove('d-none');
                         // document.querySelector('#div_tools_type_web').classList.remove('d-none');
                         let item_all = document.querySelectorAll('.div_tools_app');
-                            item_all.forEach(item_all => {
-                                item_all.classList.remove('d-none')
-                            })
+                        item_all.forEach(item_all => {
+                            item_all.classList.remove('d-none')
+                        })
                     } else if (tabs_type_app_value == "app") {
                         // document.querySelector('#div_tools_type_app').classList.remove('d-none');
                         let app = document.querySelectorAll('[type_app="app"]');
@@ -1793,7 +1790,7 @@
                     <br>
                     <br>(5.3.29) ผู้ขายประกันชีวิตต้องเก็บรักษาข้อมูล แฟ้ม หรือ เอกสารของลูกค้าตามที่กฎหมายและนโยบายบริษัทฯ กำหนด และส่งมอบเอกสารดังกล่าวนั้นให้แก่บริษัทฯ หากการเป็น ตัวแทนของผู้ขายประกันชีวิตกับบริษัทฯ สิ้นสุดลง หรือเมื่อตน ลาออกจากบริษัทฯ ไม่ว่าด้วยสาเหตุใดก็ตาม
                     <br>(5.3.29) The Sales Person must keep and maintain records, files or documents of the Client in accordance with the local laws and AACP's policy applicable and hand them over to AACP if his/her agency is terminated or the Sales Person resigns for whatever reason.
-                    
+
                     <br>
                     <br>(5.4) ผู้ขายประกันชีวิตต้องมอบข้อมูลและเอกสารทั้งหมด และหรือค่าเบี้ยประกันภัยให้แก่ลูกค้า และบริษัทฯ เร็วที่สุดเท่าที่ จะทำได้ ภายในระยะเวลาที่บริษัทฯ กำหนด
                     <br>(5.4) The Sales Person must submit information and all documents and/or premiums respectively to the Client and to AACP as soon as possible within the time period required. ขั้นตอนทางธุรกิจ Business Process ผู้ขายประกันชีวิตต้อง The Sales Person must:
@@ -1826,7 +1823,7 @@
                     <br>
                     <br>(5.4.9) ผู้ขายประกันชีวิตต้องไม่เก็บค่าเบี้ยประกันภัยหรือเงิน อื่นในนามของบริษัทฯ เว้นแต่ได้รับมอบอำนาจเป็นลายลักษณ์ อักษรจากบริษัทฯ ให้กระทำการได้ หากผู้ขายประกันชีวิต ได้รับมอบอำนาจดังกล่าว ผู้ขายประกันชีวิตต้องปฏิบัติตาม นโยบายของบริษัทฯ หรือตามข้อพึงปฏิบัติตามจรรยาบรรณนี้ โดยเคร่งครัด
                     <br>(5.4.9) The Sales Person must not collect premium or any other moneys on behalf of AACP unless authorized in writing by AACP to do so. If the Sales Person is so authorized then the Sales Person must strictly comply with AACP's Policy and this Code of Conduct in doing so.
-                   <br><br>
+                    <br><br>
                     การฝ่าฝืน Consequences of Non-Compliance
                     การฝ่าฝืนข้อพึงปฏิบัติตามจรรยาบรรณนี้ของผู้ขายประกันชีวิต อาจทำให้ผู้ขายประกันชีวิตและบริษัทฯ เสื่อมเสียชื่อเสียง และ ได้รับโทษตามกฎหมาย ซึ่งรวมถึงการถูกตักเตือน ปรับ ระงับ หรือเพิกถอนใบอนุญาต การฝ่าฝืนข้อพึงปฏิบัติตาม จรรยาบรรณนี้อาจทำให้ผู้ขายประกันชีวิตถูกบอกเลิกสัญญากับ บริษัทฯ หรือถูกบันทึกพฤติกรรมและรายงานการกระทำ ความผิดทางอาญาต่อเจ้าหน้าที่ของรัฐ
                     <br>Failure by any Sales Person to comply with the Sales Person Code of Conduct can expose that Sales Person and AACP to damage to his/her/its reputation, as well as legal and regulatory penalties including warnings, fines, suspension or withdrawal of licenses. Failure to comply can also expose the Sales Person to a termination of his/her contract with AACP, blacklisting and a criminal report filed with the authorities against the Sales Person.
@@ -1834,9 +1831,9 @@
                 </p>
                 <div class="w-100 d-flex justify-content-center">
 
-                
+
                     <label for="submit_coc" class="btn-submit-coc" id="label_submit_coc">
-                        <input type="checkbox" name="submit_coc" id="submit_coc" class="me-2" >
+                        <input type="checkbox" name="submit_coc" id="submit_coc" class="me-2">
                         <svg id="svg_submit_coc" class="me-2 d-none" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M17.7778 0.746667L20.8 3.76889C20.8711 3.84 20.9422 3.87556 21.0133 3.91111C21.2267 4.01778 24.9956 3.94667 25.5289 3.94667C26.9156 3.94667 28.0533 5.08444 28.0533 6.47111C28.0533 7.04 28.0178 10.7733 28.0889 10.9867C28.1244 11.0578 28.16 11.1289 28.2311 11.2L31.2533 14.2222C32.2489 15.2178 32.2489 16.7822 31.2533 17.7778C30.8622 18.1689 28.16 20.7644 28.0889 21.0133C27.9822 21.2267 28.0533 24.9956 28.0533 25.5289C28.0533 26.9156 26.9156 28.0533 25.5289 28.0533C24.7467 28.0533 21.5111 27.9822 21.0133 28.0889C20.9422 28.1244 20.8711 28.16 20.8 28.2311L17.7778 31.2533C16.7822 32.2489 15.2178 32.2489 14.2222 31.2533C13.8667 30.8978 11.1644 28.1244 10.9867 28.0889C10.4889 27.9822 7.21778 28.0533 6.47111 28.0533C5.08444 28.0533 3.94667 26.9156 3.94667 25.5289C3.94667 24.7467 4.01778 21.5111 3.91111 21.0133C3.87556 20.8711 1.06667 18.1333 0.746667 17.7778C-0.248889 16.7822 -0.248889 15.2178 0.746667 14.2222L3.76889 11.2L3.94667 10.7378V6.47111C3.94667 5.08444 5.08444 3.94667 6.47111 3.94667C7.04 3.94667 10.7733 3.98222 10.9867 3.91111C11.2356 3.80444 13.8311 1.13778 14.2222 0.746667C15.2178 -0.248889 16.7822 -0.248889 17.7778 0.746667ZM10.4533 16.5333L13.7956 19.8756C14.1511 20.2311 14.7556 20.2311 15.1111 19.8756L21.5467 13.44C22.4356 12.5511 21.0844 11.2356 20.2311 12.1244L14.4356 17.8844L11.7689 15.2178C10.88 14.3289 9.56444 15.68 10.4533 16.5333ZM19.4844 5.08444L16.4622 2.06222C16.2133 1.81333 15.8222 1.81333 15.5733 2.06222L12.5511 5.08444C12.0889 5.54667 11.4489 5.83111 10.7733 5.83111H6.47111C6.11556 5.83111 5.83111 6.11556 5.83111 6.47111V10.7733C5.83111 11.1289 5.76 11.4489 5.65333 11.7333C5.51111 12.0178 5.33333 12.3022 5.12 12.5511L2.09778 15.5733C1.84889 15.8222 1.84889 16.2133 2.09778 16.4622L5.12 19.4844C5.36889 19.7333 5.54667 19.9822 5.65333 20.3022C5.79556 20.6222 5.83111 20.9422 5.83111 21.2622V25.5644C5.83111 25.92 6.11556 26.2044 6.47111 26.2044H10.7733C11.1289 26.2044 11.4489 26.2756 11.7333 26.3822C12.0533 26.5244 12.3022 26.7022 12.5511 26.9156L15.5733 29.9378C15.8222 30.1867 16.2133 30.1867 16.4622 29.9378L19.4844 26.9156C19.7333 26.6667 19.9822 26.4889 20.3022 26.3822C20.6222 26.24 20.9422 26.2044 21.2622 26.2044H25.5644C25.92 26.2044 26.2044 25.92 26.2044 25.5644V21.2622C26.2044 20.5867 26.4533 19.9467 26.9511 19.4844L29.9733 16.4622C30.2222 16.2133 30.2222 15.8222 29.9733 15.5733L26.9511 12.5511C26.9511 12.5156 26.2044 11.9467 26.2044 10.7733V6.47111C26.2044 6.11556 25.92 5.83111 25.5644 5.83111H21.2622C20.0889 5.83111 19.4844 5.08444 19.4844 5.08444Z" fill="white" />
                         </svg>
@@ -1877,7 +1874,7 @@
                 flex-wrap: wrap;
                 transform: scale(0.8);
                 position: relative;
-                top:-50px;
+                top: -50px;
             }
 
             .menu-tutorials .item {
@@ -2050,6 +2047,46 @@
                     font-style: normal;
                     font-weight: 400;
                     line-height: normal;
+                }
+
+                .cover-container {
+                    position: relative;
+                    width: 560px;
+                    max-height: 315px;
+                    min-height: 180px;
+                }
+
+                video {
+                    width: 100% !important;
+                    height: 100% !important;
+                    margin: 0 !important;
+                }
+
+                .cover-container:hover .play-button {
+                    filter: drop-shadow(1px 1px 80px hsla(206.5, 0%, 10%, 50%));
+                    transform: scale(1.8);
+                }
+
+                .cover {
+                    cursor: pointer;
+                }
+
+                .play-button {
+                    font-size: 28px;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transform: translate(-50%, -50%);
+                    transition: all 250ms ease-in-out;
+                    color: #243286;
+                }
+
+                .cover {
+                    top: 0;
+                    bottom: 0;
                 }
             </style>
             <div class="container_tools d-none" id="start_tutorials">
@@ -2234,6 +2271,34 @@
                                 <a class="button secondary url mt-3" href="#two" onclick="tutorials_go_to('main_tutorials')">กลับหน้าหลัก</a>
                             </div>
                         </div>
+
+                    </div>
+
+                    <div class="item text-center">
+                        <p class="title-tools" style="font-size: 25px;">บทช่วยสอนอื่นๆ</p>
+                        <div class="d-flex justify-content-center">
+
+                            <div class="cover-container" onclick="this.nextElementSibling.style.display='block'; this.style.display='none' ;document.querySelector('#video_tutorials').play();">
+                                <img src="{{url('img/icon/thumbnail_tutorial.jpg')}}" class="cover" />
+                                <div class="play-button">
+                                    <i class="fa-solid fa-play"></i>
+                                </div>
+                            </div>
+                            <div style="display:none" class="cover-container">
+                                <!-- Embed code here -->
+                                <!-- <iframe class="w-100 h-100" src="{{url('video/agency journey_5 sub.mp4')}}" style="max-width: 560px;" title="video tutorials" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen autoplay loading="lazy"></iframe> -->
+                                <!-- <video controls autoplay class="w-100 h-100" src="{{url('video/agency journey_5 sub.mp4')}}" style="max-width: 560px;" title="video tutorials" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen  loading="lazy"></video> -->
+
+                                <video  controls autoplay id="video_tutorials" loading="lazy">
+                                    <source src="https://firebasestorage.googleapis.com/v0/b/az-sale-web24.appspot.com/o/videos%2FTutorial%2Fagency%20journey_5%20sub.mp4?alt=media&token=cfe8b501-5133-49e6-9aa1-367206049917" type="video/mp4">
+                                </video>
+                                <!-- End Embed code -->
+                            </div>
+                        </div>
+                        <p class="mb-0" style="color: #003781;text-align: center;font-size: 20px;margin-top: 30px;font-weight: 700;">Allianz Ayudhaya</p>
+                        <p class="mb-0" style="color: #003781;text-align: center;font-size: 20px;font-weight: 700;">สอนแบบหลักประกันและเพิ่มเติม</p>
+                        <p class="mb-0" style="color: #003781;text-align: center;font-size: 20px;">สอนโดยพี่แนน DM of Powerful Miracle และพี่โอ๋ DM of Powerful One</p>
+
 
                     </div>
                 </div>
@@ -2958,10 +3023,10 @@
         // }
     });
 
-    function check_user_coc_for_tools(){
-        let check_coc = "{{ Auth::user()->check_coc }}" ;
+    function check_user_coc_for_tools() {
+        let check_coc = "{{ Auth::user()->check_coc }}";
 
-        if(check_coc == 'Yes'){
+        if (check_coc == 'Yes') {
             // document.querySelector('#submit_coc').click();
             document.querySelector('#label_submit_coc').classList.add('active');
             document.querySelector('#svg_submit_coc').classList.remove('d-none');
@@ -2969,15 +3034,15 @@
         }
     }
 
-    function update_coc_of_user(){
+    function update_coc_of_user() {
         fetch("{{ url('/') }}/api/update_coc_of_user/" + "{{ Auth::user()->id }}")
             .then(response => response.text())
             .then(result => {
                 // console.log(result);
-                if( result == "success" ){
+                if (result == "success") {
                     return create_logs('Agree coc_button');
                     document.querySelector('#span_alert_tools').classList.add('d-none');
-                    if(document.querySelector('#span_alert_tools_menu')){
+                    if (document.querySelector('#span_alert_tools_menu')) {
                         document.querySelector('#span_alert_tools_menu').classList.add('d-none');
                     }
                 }
@@ -3074,12 +3139,12 @@
 
                         let phone = `-`;
                         if (result[i].phone) {
-                            phone = result[i].phone ;
+                            phone = result[i].phone;
                         }
 
                         let mail = `-`;
                         if (result[i].mail) {
-                            mail = result[i].mail ;
+                            mail = result[i].mail;
                         }
 
                         let html = `

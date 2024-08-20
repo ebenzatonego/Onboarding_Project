@@ -2286,10 +2286,7 @@
                             </div>
                             <div style="display:none" class="cover-container">
                                 <!-- Embed code here -->
-                                <!-- <iframe class="w-100 h-100" src="{{url('video/agency journey_5 sub.mp4')}}" style="max-width: 560px;" title="video tutorials" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen autoplay loading="lazy"></iframe> -->
-                                <!-- <video controls autoplay class="w-100 h-100" src="{{url('video/agency journey_5 sub.mp4')}}" style="max-width: 560px;" title="video tutorials" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen  loading="lazy"></video> -->
-
-                                <video  controls autoplay id="video_tutorials" loading="lazy">
+                                <video  controls id="video_tutorials" loading="lazy">
                                     <source src="https://firebasestorage.googleapis.com/v0/b/az-sale-web24.appspot.com/o/videos%2FTutorial%2Fagency%20journey_5%20sub.mp4?alt=media&token=cfe8b501-5133-49e6-9aa1-367206049917" type="video/mp4">
                                 </video>
                                 <!-- End Embed code -->

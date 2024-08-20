@@ -608,7 +608,7 @@
                                     </div>
                                 </a>
                             </li>
-                            <li class="d-">
+                            <li class="d-none">
                                 <a href="{{ url('/log_content') }}" class="btn">
                                     <div class="parent-icon">
                                         <i class="fa-solid fa-newspaper"></i>

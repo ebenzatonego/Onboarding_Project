@@ -690,7 +690,7 @@
             // console.log(arr_num_rank[last_rank]);
 
             if(arr_num_rank[current_rank] > arr_num_rank[last_rank]){
-                // window.location.href = "{{ url('/show_video_congrats') }}?from=" + "{{ url()->full() }}";
+                window.location.href = "{{ url('/show_video_congrats') }}?from=" + "{{ url()->full() }}";
             }
 
         } else {

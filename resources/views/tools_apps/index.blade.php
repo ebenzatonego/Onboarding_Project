@@ -1308,12 +1308,12 @@
                             Financial Health Check
                         </span>
                         <div class="d-flex justify-content-between align-items-center">
-                            <!-- <a href="https://financial-health-check.azayagencyjourney.com/?user_params={{ Auth::user()->account }}" class="btn-create-tools">
+                            <a href="https://financial-health-check.azayagencyjourney.com/?user_params={{ Auth::user()->account }}" class="btn-create-tools" onclick="return create_logs('เข้าสู่เว็บไซต์ button_application FHC');">
                                 กดเพื่อสร้าง
-                            </a> -->
-                            <button class="btn-create-tools-no-show" disabled onclick="return create_logs('เข้าสู่เว็บไซต์ button_application FHC');">
+                            </a>
+                            <!-- <button class="btn-create-tools-no-show" disabled onclick="return create_logs('เข้าสู่เว็บไซต์ button_application FHC');">
                                 coming soon
-                            </button>
+                            </button> -->
                             <i class="fa-light fa-circle-exclamation cursor-pointer" onclick="open_modal_detail_app('FHC')"></i>
                         </div>
                     </div>
